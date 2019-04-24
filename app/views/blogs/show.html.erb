@@ -1,0 +1,63 @@
+<div class="main user-show">
+  <div class="container">
+
+			<div class="form users-form">
+			    <div class="form-body">
+
+				    <div class="header-post">
+						<img src="<%= "/user_images/#{@user.image_name}" %>" class="content_icon">
+						<div class="post-user">
+							<div class="post-top"><%= @user.name %></div>
+							<div class="post-bottom"><%= @blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+						</div>
+					</div>
+					<div class="post-body">	
+
+						  <div class="swiper-container">
+						    <div class="swiper-wrapper">
+
+						      <% if @blog.image_01 %><div class="swiper-slide"><img src="<%= "/blog_images/#{@blog.image_01}" %>" class="content_image"></div><% end %>
+						      <% if @blog.image_02 %><div class="swiper-slide"><img src="<%= "/blog_images/#{@blog.image_02}" %>" class="content_image"></div><% end %>
+						      <% if @blog.image_03 %><div class="swiper-slide"><img src="<%= "/blog_images/#{@blog.image_03}" %>" class="content_image"></div><% end %>
+						      <% if @blog.image_04 %><div class="swiper-slide"><img src="<%= "/blog_images/#{@blog.image_04}" %>" class="content_image"></div><% end %>
+
+						    </div>
+						    <!-- Add Pagination -->
+						    <div class="swiper-pagination"></div>
+						    <!-- Add Arrows -->
+						    <div class="swiper-button-next"></div>
+						    <div class="swiper-button-prev"></div>
+						  </div>
+
+						  
+
+
+						<h3><%= @blog.title %></h3>
+							<%= simple_format @blog.content %>
+					</div>
+					
+			    </div>
+
+				<div class="border"></div>
+
+				<div class="users-index-item">
+	            募集状態：<%= @user.switch %>｜<%= @user.item %>／<%= @user.prefecture.name if @user.prefecture_id? %><br>                  
+	            <img src="<%= "/user_images/#{@user.image_name}" %>" class="image_icon">
+	            サークル名：<%= @user.name %> <br>
+	            活動時間：<%= @user.schedule %> <br>
+	            活動場所：<%= @user.area %> <br>
+	            こんな人を募集しています：<%= @user.recruitment %> <br>
+	          	</div>
+
+			</div>
+
+
+
+  </div>
+</div>
+
+
+
+
+
+

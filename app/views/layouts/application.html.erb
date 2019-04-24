@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Circle</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload' %>
+  
+
+  </head>
+
+  <body>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <header>
+      <div class="header-logo">
+          <%= link_to("サークルブック", "/" ) %>
+      </div>
+      <ul class="header-menus">
+        <!-- ログイン時の処理 -->
+        <% if current_admin_user %>
+          <li>
+              <%= link_to(current_admin_user.email, new_user_path) %>             
+          </li>  
+          <li>
+              <%= link_to("投稿する", new_blog_path ) %>
+          </li>       
+          <li>
+              <%= link_to("サークル一覧", users_path ) %>
+          </li>
+          <li>
+              <%= link_to("投稿一覧", blogs_path ) %>
+          </li>
+          <li>
+              <%= link_to("ログアウト", destroy_admin_user_session_path, method: :delete ) %>
+          </li>
+        
+        <!-- ログインなし -->
+        <% else %>
+          <li>
+              <%= link_to("サークル一覧", users_path ) %>
+          </li>
+          <li>
+              <%= link_to("投稿一覧", blogs_path ) %>
+          </li>
+          <li>
+              <%= link_to("サークル登録", new_admin_user_registration_path ) %>
+          </li>
+          <li>
+              <%= link_to("ログイン", new_admin_user_session_path ) %>
+          </li>
+
+        <% end %>
+      </ul>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
+    <%= yield %>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+
+    
+  </body>
+
+</html>
+
+
+
+
+
+

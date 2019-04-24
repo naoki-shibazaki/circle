@@ -1,0 +1,37 @@
+<div class="main users-index">
+  <div class="container">
+    <h1 class="users-heading">全国の<%= @item %>サークル一覧</h1>
+
+
+
+    <% @prefectures.each do |prefecture| %>
+      <% if prefecture.group != @x %>
+        <h2><%= prefecture.group %></h2>
+        <%= link_to prefecture.name, "/#{@kana}/#{prefecture.kana}" %>
+        <% @x = prefecture.group %>
+      <% else %>
+        <%= link_to prefecture.name, "/#{@kana}/#{prefecture.kana}" %>
+      <% end %>
+    <% end %>
+
+
+
+    <% @users.each do |user| %>
+
+        <%= link_to(user_path(user.id)) do %>
+          <div class="users-index-item">
+            募集状態：<%= user.switch %>｜<%= user.item %>／<%= user.prefecture.name if user.prefecture_id? %><br>                  
+            <img src="<%= "/user_images/#{user.image_name}" %>" class="image_icon">
+            サークル名：<%= user.name %> <br>
+            活動時間：<%= user.schedule %> <br>
+            活動場所：<%= user.area %> <br>
+            こんな人を募集しています：<%= user.recruitment %> <br>
+          </div>
+        <% end %>
+
+    <% end %>
+    
+  </div>
+</div>
+
+

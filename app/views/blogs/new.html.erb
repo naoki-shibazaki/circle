@@ -1,0 +1,33 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">投稿</div>
+    <div class="form users-form">
+      <div class="form-body">
+
+
+      <%= form_for @blog do |f| %>
+            <p>タイトル</p>
+            <%= f.text_field :title %>       
+  
+            <p>画像１</p>
+            <%= f.file_field :image_01 %>
+
+            <p>画像２</p>
+            <%= f.file_field :image_02 %>
+
+            <p>画像３</p>
+            <%= f.file_field :image_03 %>  
+            
+            <p>画像４</p>
+            <%= f.file_field :image_04 %>          
+
+            <p>本文</p>
+            <%= f.text_area :content %>       
+
+            <%= f.submit "投稿" %>
+      <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

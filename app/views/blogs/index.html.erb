@@ -1,0 +1,36 @@
+<div class="main users-index">
+  <div class="container">
+    <h1 class="users-heading">投稿一覧</h1>
+
+  <% @users.each do |user| %>
+    <% user.blogs.each do |blog| %>
+    <%= link_to(blog_path(blog.id)) do %>
+      <div class="form users-form">
+          <div class="form-body">
+
+            <div class="header-post">
+            <img src="<%= "/user_images/#{user.image_name}" %>" class="content_icon">
+            <div class="post-user">
+              <div class="post-top"><%= user.name %></div>
+              <div class="post-bottom"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+            </div>
+          </div>
+          <div class="post-body">   
+            <img src="<%= "/blog_images/#{blog.image_01}" %>" class="content_image"><br>
+
+
+            <h3><%= blog.title %></h3>
+              <%= simple_format blog.content.truncate(150) %>
+              <%= truncate(blog.content) do %>
+                <p class="content-more">もっとみる</p>
+              <% end %>         
+          </div>
+        
+          </div>
+      </div>
+    <% end %>
+    <% end %> 
+  <% end %> 
+    
+  </div>
+</div>

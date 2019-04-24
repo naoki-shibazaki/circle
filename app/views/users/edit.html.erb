@@ -1,0 +1,71 @@
+<div class="main users-edit">
+  <div class="container">
+    <div class="form-heading">アカウント編集</div>
+    <div class="form users-form">
+      <div class="form-body">
+
+      <%= form_for @user do |f| %>
+
+        <p>サークル名</p>
+        <%= f.text_field :name, class: 'form-control'%>
+
+        <p>アイコン画像</p>
+	    <%= f.file_field :image %>
+
+	    <p>LINE@／LINE ID</p>
+	    <%= f.text_field :line_id, class: 'form-control'%>
+	    
+	    <p>募集状況</p>
+	    <%= f.select :switch, [ ['メンバー募集中','メンバー募集中'], ['メンバー募集停止中','メンバー募集停止中'] ], 
+	    :prompt => "選択してください" %>
+
+	    <p>サークル種目</p>	    
+	    <%= f.select :item, [ ['写真・カメラ','写真・カメラ'], ['バスケットボール','バスケットボール'] ] , 
+	    :prompt => "選択してください"%>
+
+	    <p>都道府県</p>	    
+	    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
+
+	    <p>活動場所</p>
+	    <%= f.text_field :area, class: 'form-control'%>
+
+	    <p>活動時間</p>
+	    <%= f.text_field :schedule, class: 'form-control'%>
+
+	    <p>募集年齢</p>
+	    <%= f.text_field :age, class: 'form-control'%>
+
+	    <p>こんな人を探しています</p>
+	    <%= f.text_field :recruitment, class: 'form-control'%>
+
+	    <p>サークル設立</p>
+	    <%= f.text_field :foundation, class: 'form-control'%>
+
+	    <p>構成メンバー</p>
+	    <%= f.text_field :member, class: 'form-control'%>
+
+	    <p>平均年齢</p>
+	    <%= f.text_field :average_age, class: 'form-control'%>
+
+	    <p>会費・費用</p>
+	    <%= f.text_field :cost, class: 'form-control'%>
+
+	    <p>サークル目標</p>
+	    <%= f.text_field :goal, class: 'form-control'%>
+
+	    <p>ホームページ／SNS</p>
+	    <%= f.text_field :web, class: 'form-control'%>
+
+	    <p>アピール・注意事項</p>
+	    <%= f.text_area :appeal, class: 'form-control'%>
+
+        <%= f.submit "#{@user_button}" %>
+
+      <% end %>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

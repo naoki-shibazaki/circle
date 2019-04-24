@@ -1,0 +1,126 @@
+<div class="main user-show">
+  <div class="container">
+
+    
+	<div class="user-profile">
+		<div class="header-wrapper">
+			<img src="<%= "/user_images/#{@user.image_name}" %>" class="profile_imege">
+			<div class="data-box">
+				<span class="data-l"><%= @user.prefecture.name if @user.prefecture_id? %></span>
+				<span class="data-r"><%= @user.item %></span>
+			</div>
+
+			<% if session[:user_id] %>
+
+					<% if @user.id == @current_user.id %>
+						<div class="contact-button edit"><%= link_to("プロフィールの編集", edit_user_path) %></div>
+						<%= link_to("アカウントの削除", user_path, ethod: :delete, data: {confirm: "アカウントを削除しますか？"})%>
+					<% else %>
+						<% if @user.line_id %>
+							<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+						<% else %>
+							<div class="contact-button mail"><a href="mailto:<%= @user.email %>">メールで連絡する</a></div>
+						<% end %>
+					<% end %>
+
+			<% else %>	
+			
+					<% if @user.line_id %>
+						<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+					<% else %>
+						<div class="contact-button mail"><a href="mailto:<%= @user.email %>">メールで連絡する</a></div>
+					<% end %>			 
+
+			<% end %> 
+
+		
+
+		</div>
+
+
+		<div class="profile-content">
+			<h1 class="user_name"><%= @user.name %></h1>
+			<div class="content_01">
+				<span class="data-l"><%= @user.switch %></span>
+				<span class="data-r">募集年齢：<%= @user.age %></span>				
+			</div>
+			<div class="content_02">
+				<span class="data-l"><%= @user.schedule %></span>
+				<span class="data-r"><%= @user.area %></span>				
+			</div>
+
+			<div class="content_03"><%= @user.recruitment %></div>
+
+			<div class="border"></div>
+
+			<div class="content_04">
+				<span class="data-l">構成メンバー：<%= @user.member %></span>
+				<span class="data-r">平均年齢：<%= @user.average_age %></span>				
+			</div>
+
+			<div class="content_05">
+				<span class="data-l">費用：<%= @user.cost %></span>
+				<span class="data-r">設立：<%= @user.foundation %></span>				
+			</div>
+
+			<div class="content_06">
+				<h2 class="user_goal"><%= @user.name %>の目標</h2>
+				<%= @user.goal %>
+			</div>
+
+			<div class="content_07">
+				<h2 class="user_appeal">アピール・注意事項</h2>
+				<%= simple_format @user.appeal %>
+			</div>
+
+			<div class="content_08"><a href="<%= @user.web %>"><%= @user.web %></div>			
+
+		</div>
+
+	</div>
+
+
+	<% if @user.blogs.any? %>
+	<% @user.blogs.each do |blog| %>
+		<%= link_to(blog_path(blog.id)) do %>
+			<div class="form users-form">
+			    <div class="form-body">
+
+				    <div class="header-post">
+						<img src="<%= "/user_images/#{@user.image_name}" %>" class="content_icon">
+
+						<div class="post-user">
+							<div class="post-top"><%= @user.name %></div>
+							<div class="post-bottom"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+						</div>
+					</div>
+					<div class="post-body">	
+						<% if blog.image_01 %>
+							<div class="swiper-slide"><img src="<%= "/blog_images/#{blog.image_01}" %>" class="content_image"></div>
+						<% end %>
+	
+						<h3><%= blog.title %></h3>
+							<%= simple_format blog.content.truncate(150) %>
+							<%= truncate(blog.content) do %>
+								<p class="content-more">もっとみる</p>
+							<% end %>					
+					</div>
+				
+			    </div>
+			</div>
+		<% end %>
+	<% end %>	
+	<% end %>
+  
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
