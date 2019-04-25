@@ -4,4 +4,13 @@ class User < ApplicationRecord
 	belongs_to :admin_user, optional: true
 	# validates :email, {presence: true, uniqueness: true}
 	# validates :password, presence: true
+	with_options presence: true, on: :update do
+	  validates :name
+	  validates :switch
+	  validates :item
+	  validates :prefecture_id
+	end
+
+	paginates_per 10  # 1ページあたり表示項目
+	
 end

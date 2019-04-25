@@ -6,11 +6,12 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 
 
 	def top
-		@users = User.all.order(updated_at: "DESC")
+		@users = User.all.order(updated_at: "DESC").page(params[:page])
 	end
 
 	def index
-		@users = User.all.order(updated_at: "DESC")
+		@users = User.all.order(updated_at: "DESC").page(params[:page])
+
 	end
 
 	def new
@@ -50,7 +51,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 		if @user.update(user_params)
 			redirect_to users_path
 		else
-			render edit_user_path
+			render "/users/edit"
 		end	
 	end
 

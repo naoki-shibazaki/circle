@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :blogs
 
-  root "users#index"
+  root "users#top"
 
 
 	get "camera/:kana" => "prefectures#camera"

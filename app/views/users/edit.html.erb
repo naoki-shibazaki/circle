@@ -3,10 +3,15 @@
     <div class="form-heading">アカウント編集</div>
     <div class="form users-form">
       <div class="form-body">
+	      <% @user.errors.full_messages.each do |message| %>
+	          <div class="form-error">
+	            <%= message %>
+	          </div>
+	      <% end %>
 
       <%= form_for @user do |f| %>
 
-        <p>サークル名</p>
+        <p>サークル名※</p>
         <%= f.text_field :name, class: 'form-control'%>
 
         <p>アイコン画像</p>
@@ -15,15 +20,15 @@
 	    <p>LINE@／LINE ID</p>
 	    <%= f.text_field :line_id, class: 'form-control'%>
 	    
-	    <p>募集状況</p>
+	    <p>募集状況※</p>
 	    <%= f.select :switch, [ ['メンバー募集中','メンバー募集中'], ['メンバー募集停止中','メンバー募集停止中'] ], 
 	    :prompt => "選択してください" %>
 
-	    <p>サークル種目</p>	    
+	    <p>サークル種目※</p>	    
 	    <%= f.select :item, [ ['写真・カメラ','写真・カメラ'], ['バスケットボール','バスケットボール'] ] , 
 	    :prompt => "選択してください"%>
 
-	    <p>都道府県</p>	    
+	    <p>都道府県※</p>	    
 	    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
 
 	    <p>活動場所</p>

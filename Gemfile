@@ -68,3 +68,6 @@ gem 'seed-fu'
 gem 'paperclip'
 
 gem 'devise'
+
+gem 'kaminari'
+

@@ -6,8 +6,12 @@
 		<div class="header-wrapper">
 			<img src="<%= "/user_images/#{@user.image_name}" %>" class="profile_imege">
 			<div class="data-box">
-				<span class="data-l"><%= @user.prefecture.name if @user.prefecture_id? %></span>
-				<span class="data-r"><%= @user.item %></span>
+				<% if @user.prefecture_id.present? %>
+					<span class="data-l"><%= @user.prefecture.name if @user.prefecture_id? %></span>
+				<% end %>
+				<% if @user.item.present? %>
+					<span class="data-r"><%= @user.item %></span>
+				<% end %>
 			</div>
 
 			<% if admin_user_signed_in? %>
@@ -62,11 +66,6 @@
 				<span class="data-l">費用：<%= @user.cost %></span>
 				<span class="data-r">設立：<%= @user.foundation %></span>				
 			</div>
-
-	<div class="content_05">
-		<span class="data-l">id：<%= @user.id %></span>
-		<span class="data-r">user_id：<%= @user.user_id %></span>				
-	</div>
 
 			<div class="content_06">
 				<h2 class="user_goal"><%= @user.name %>の目標</h2>

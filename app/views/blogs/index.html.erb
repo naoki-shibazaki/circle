@@ -16,7 +16,11 @@
             </div>
           </div>
           <div class="post-body">   
-            <img src="<%= "/blog_images/#{blog.image_01}" %>" class="content_image"><br>
+            <% if blog.image_01 %>
+              <div class="swiper-slide">
+                <img src="<%= "/blog_images/#{blog.image_01}" %>" class="content_image">
+              </div>
+            <% end %>
 
 
             <h3><%= blog.title %></h3>
@@ -31,6 +35,9 @@
     <% end %>
     <% end %> 
   <% end %> 
+    
+    <%= paginate @users %>
+
     
   </div>
 </div>
