@@ -13,14 +13,16 @@
 						</div>
 						<% end %>
 						
-						<% if @user.id == current_admin_user.id %>
-						<div class="post-edit">
-							<div class="post-edit_btn">
-								<%= link_to( "編集", edit_blog_path) %>／
-								<%= link_to( "削除", blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) %>
-									
+						<% if admin_user_signed_in?  %>
+							<% if @user.id == current_admin_user.id %>
+							<div class="post-edit">
+								<div class="post-edit_btn">
+									<%= link_to( "編集", edit_blog_path) %>／
+									<%= link_to( "削除", blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) %>
+										
+								</div>
 							</div>
-						</div>
+							<% end %>
 						<% end %>
 					</div>
 
