@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 	get "camera" => "prefectures#camera_top"
 	get "basketball" => "prefectures#basketball_top"
 
+	get ":kana" => "prefectures#prefecture_top"
 
 	get "blogs" => "blogs#index"
 

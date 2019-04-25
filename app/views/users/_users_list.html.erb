@@ -1,23 +1,29 @@
 <% @users.each do |user| %>
 
-        <%= link_to(user_path(user.id)) do %>
-          <div class="users-index-item ribbon19-wrapper">
-            <div class="ribbon19-content">
+        
+          <div class="users-index-item ribbon-wrapper">
+            <div class="ribbon-content">
               <% if user.switch == "募集中" %>
-                <span class="ribbon19 green"><%= user.switch %></span>
+                <span class="ribbon green"><%= user.switch %></span>
               <% else %>
-                <span class="ribbon19 red"><%= user.switch %></span>
+                <span class="ribbon red"><%= user.switch %></span>
               <% end %>
-              
             </div>
-            <%= user.item %>／<%= user.prefecture.name if user.prefecture_id? %><br>                  
+
+            <%= link_to("##{user.item}", "/", class: "tag_btn") %>　
+            <%= link_to("##{user.prefecture.name}", "/#{user.prefecture.kana}", class: "tag_btn") %>
+
+            <%= link_to(user_path(user.id)) do %>  
+            <div class="user-content">             
             <img src="<%= "/user_images/#{user.image_name}" %>" class="image_icon">
             サークル名：<%= user.name %> <br>
             活動時間：<%= user.schedule %> <br>
             活動場所：<%= user.area %> <br>
             こんな人を募集しています：<%= user.recruitment %> <br>
+            </div>
+            <% end %>
           </div>
-        <% end %>
+          
 
     <% end %>
     

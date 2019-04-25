@@ -4,12 +4,12 @@ class PrefecturesController < ApplicationController
 
 	def camera
 		@item = "写真・カメラ"
-		@users = User.where(prefecture_id: @prefecture.id).where(item: @item)
+		@users = User.all.order(updated_at: "DESC").where(prefecture_id: @prefecture.id).where(item: @item).page(params[:page]).per(10)
 	end
 
 	def basketball
 		@item = "バスケットボール"
-		@users = User.where(prefecture_id: @prefecture.id).where(item: @item)
+		@users = User.all.order(updated_at: "DESC").where(prefecture_id: @prefecture.id).where(item: @item).page(params[:page]).per(10)
 	end
 
 
@@ -25,9 +25,13 @@ class PrefecturesController < ApplicationController
 		@users = User.where(item: @item)		
 	end
 
+	def prefecture_top
+		@users = User.all.order(updated_at: "DESC").where(prefecture_id: @prefecture.id).page(params[:page]).per(10)
+	end
+
 	def set_prefecture
-		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@prefectures = Prefecture.where.not(kana: "nil")
+		@prefecture = Prefecture.all.order(updated_at: "DESC").find_by(kana: params[:kana])
+		@prefectures = Prefecture.all.order(updated_at: "DESC").where.not(kana: "nil")
 		@x = "nil"
 	end
 

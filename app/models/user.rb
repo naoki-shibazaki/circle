@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	has_many :blogs, -> { order('created_at DESC') }
+	has_many :blogs, dependent: :destroy
 	belongs_to :prefecture, optional: true
 	belongs_to :admin_user, optional: true
 	# validates :email, {presence: true, uniqueness: true}
@@ -12,3 +12,6 @@ class User < ApplicationRecord
 	end
 	
 end
+
+
+# , -> { order('created_at DESC') }

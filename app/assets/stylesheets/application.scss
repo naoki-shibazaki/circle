@@ -459,6 +459,10 @@ header {
     margin-top: 10px;
 }
 
+.users-index-item .user-content{
+  width: 100%;
+  margin-top: 10px;
+}
 
 
 
@@ -468,9 +472,12 @@ header {
 }
 
 .image_icon{
-  width: 70px;
   float: left;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
   margin-right: 20px;
+  object-fit: cover;
 }
 
 /* posts/index ================================ */
@@ -692,19 +699,12 @@ header {
   color: #bcc8d4;
 }
 
-.ribbon19-wrapper {
+.ribbon-wrapper {
   display: block;
   position: relative;
-  // margin: 15px auto;
-  // padding: 10px 0;
-  // width: 300px;
-  // height: 150px;
-  // background: #f1f1f1;
-  // box-shadow: 0 3px 5px rgba(0, 0, 0, 0.14);
-  // box-sizing: border-box;
 }
 
-.ribbon19-content {
+.ribbon-content {
   position: absolute;
   top: 0;
   right: 0;
@@ -713,7 +713,7 @@ header {
   overflow: hidden;
   }
 
-.ribbon19 {
+.ribbon {
   display: inline-block;
   position: absolute;
   padding: 5px 0;
@@ -727,25 +727,33 @@ header {
   letter-spacing: 0.05em;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
-  // border-top: dashed 1px rgba(255, 255, 255, 0.65);
-  // border-bottom: dashed 1px rgba(255, 255, 255, 0.65);
 }
 
-.ribbon19-content .green{
+.ribbon-content .green{
   position: absolute;
   background: #39bd39;
-  // box-shadow: 0 0 0 2px rgb(57, 195, 212);
 }
 
-.ribbon19-content .red{
+.ribbon-content .red{
   position: absolute;
   background: #ff7171;
-  // box-shadow: 0 0 0 2px rgb(57, 195, 212);
 }
 
+.tag_btn{
+  display: inline-block;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 6px 8px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px; 
+}
 
-
-
+.tag_btn:hover {
+    border: 1px solid #a8abb1;
+    -webkit-transition: border .2s cubic-bezier(1,0,0,1);
+    transition: border .2s cubic-bezier(1,0,0,1);
+}
 
 
 
