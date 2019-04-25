@@ -88,10 +88,10 @@ class BlogsController < ApplicationController
 
 
 	def destroy
-		@blog = Blog.find(params[:id])
-		@blog.destroy
+	    @blog = Blog.find_by(id: params[:id])
+   		@blog.destroy		
 
-		redirect_to user_path(params[:user_id])
+		redirect_to("/")
 	end
 
 
@@ -108,7 +108,7 @@ class BlogsController < ApplicationController
 			:image_01,
 			:image_02,
 			:image_03,
-			:image_04
+			:image_04,
 		)
 	end
 

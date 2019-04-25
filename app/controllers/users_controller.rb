@@ -3,15 +3,14 @@ class UsersController < ApplicationController
 # before_action :authenticate_user, {only: [:edit, :update]}
 # before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
 before_action :ensure_correct_user, {only: [:edit, :update]}
-
+before_action :set_users
 
 	def top
-		@users = User.all.order(updated_at: "DESC").page(params[:page]).per(10)
+		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)
 	end
 
 	def index
-		@users = User.all.order(updated_at: "DESC").page(params[:page]).per(10)
-
+		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)
 	end
 
 	def new
@@ -37,7 +36,6 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 
 	def edit
 		@user = User.find_by(id: current_admin_user.id)
-		@user_button = "更新する"
 	end
 
 	def update
@@ -65,21 +63,21 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 	end
 
 	def login
-		@user = User.find_by(email: params[:session][:email],
-							 password: params[:session][:password])
-		if @user
-			session[:user_id] = @user.id
-			flash[:notice] = "ログインしました"
-			redirect_to users_path
-		else
-			render("users/login_form")
-		end
+		# @user = User.find_by(email: params[:session][:email],
+		# 					 password: params[:session][:password])
+		# if @user
+		# 	session[:user_id] = @user.id
+		# 	flash[:notice] = "ログインしました"
+		# 	redirect_to users_path
+		# else
+		# 	render("users/login_form")
+		# end
  	end
 
  	def logout
-	    session[:user_id] = nil
-	    flash[:notice] = "ログアウトしました"
-	    redirect_to users_path
+	    # session[:user_id] = nil
+	    # flash[:notice] = "ログアウトしました"
+	    # redirect_to users_path
   	end
 
 	def ensure_correct_user
@@ -117,6 +115,11 @@ private
     	)
 	end
 
+	def set_users
+		@users = User.where.not(switch: "nil")
+	end
+
+		
 
 
 end

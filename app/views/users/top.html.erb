@@ -5,22 +5,7 @@
   <%= link_to "写真・カメラ", camera_path %><br>
   <%= link_to "バスケットボール", basketball_path %><br>
 
-    <% @users.each do |user| %>
-
-        <%= link_to(user_path(user.id)) do %>
-          <div class="users-index-item">
-            募集状態：<%= user.switch %>｜<%= user.item %>／<%= user.prefecture.name if user.prefecture_id? %><br>                  
-            <img src="<%= "/user_images/#{user.image_name}" %>" class="image_icon">
-            サークル名：<%= user.name %> <br>
-            活動時間：<%= user.schedule %> <br>
-            活動場所：<%= user.area %> <br>
-            こんな人を募集しています：<%= user.recruitment %> <br>
-          </div>
-        <% end %>
-
-    <% end %>
-
-    <%= paginate @users %>
+    <%= render "users_list.html.erb" %>
 
     
   </div>

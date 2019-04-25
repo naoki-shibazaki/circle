@@ -21,7 +21,7 @@
 	    <%= f.text_field :line_id, class: 'form-control'%>
 	    
 	    <p>募集状況※</p>
-	    <%= f.select :switch, [ ['メンバー募集中','メンバー募集中'], ['メンバー募集停止中','メンバー募集停止中'] ], 
+	    <%= f.select :switch, [ ['募集中','募集中'], ['受付終了','受付終了'] ], 
 	    :prompt => "選択してください" %>
 
 	    <p>サークル種目※</p>	    
@@ -64,7 +64,7 @@
 	    <p>アピール・注意事項</p>
 	    <%= f.text_area :appeal, class: 'form-control'%>
 
-        <%= f.submit "#{@user_button}" %>
+        <%= f.submit "更新する" %>
 
       <% end %>
 

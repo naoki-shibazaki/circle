@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_24_152526) do
+ActiveRecord::Schema.define(version: 2019_04_25_101253) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,16 +30,16 @@ ActiveRecord::Schema.define(version: 2019_04_24_152526) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content"
-    t.string "blog_image_name"
-    t.string "photo_file_name"
-    t.string "photo_content_type"
-    t.bigint "photo_file_size"
-    t.datetime "photo_updated_at"
-    t.string "photo"
     t.string "image_01"
     t.string "image_02"
     t.string "image_03"
     t.string "image_04"
+    t.string "blog_image_name"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.string "photo_file_size"
+    t.string "photo_updated_at"
+    t.string "photo"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
