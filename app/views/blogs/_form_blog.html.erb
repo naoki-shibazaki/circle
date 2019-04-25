@@ -1,0 +1,21 @@
+<%= form_for @blog do |f| %>
+            <p>タイトル</p>
+            <%= f.text_field :title %>       
+  
+            <p>画像１</p>
+            <%= f.file_field :image_01 %>
+
+            <p>画像２</p>
+            <%= f.file_field :image_02 %>
+
+            <p>画像３</p>
+            <%= f.file_field :image_03 %>  
+            
+            <p>画像４</p>
+            <%= f.file_field :image_04 %>          
+
+            <p>本文</p>
+            <%= f.text_area :content %>       
+
+            <%= f.submit @blog_button %>
+      <% end %>

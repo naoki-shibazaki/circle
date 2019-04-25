@@ -25,6 +25,11 @@ a {
   font-size: 14px;
 }
 
+a:hover, a:focus {
+  text-decoration: none;
+  color: #2d3133;
+}
+
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
@@ -45,6 +50,7 @@ body {
   background-color: #3ecdc6;
   margin: 0;
   min-height: 1vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif !important;
 }
 
 .main {
@@ -53,15 +59,17 @@ body {
   width: 100%;
   height: auto;
   min-height: 100%;
-  background-color: #f5f8fa;
+  background-color: #e9ebee;
 }
 
 .container {
   max-width: 400px;
-  background-color: #fff;
+  // background-color: #fff;
   margin: auto;
+  padding:0 !important;
   clear: both;
 }
+
 
 /* ヘッダー ================================ */
 header {
@@ -172,10 +180,10 @@ header {
 
 /* フォーム================================ */
 .form {
-  max-width: 600px;
+  // max-width: 600px;
   margin: 0 auto 10px;
-  background-color: white;
-  box-shadow: 0 2px 6px #c1ced7;
+  background-color: #fff;
+  // box-shadow: 0 2px 6px #c1ced7;
 }
 
 .form-body {
@@ -242,9 +250,9 @@ header {
 
 .users-index-item {
   padding: 20px 30px;
-  background-color: white;
+  background-color: #fff;
   overflow: hidden;
-  box-shadow: 0 2px 6px #c1ced7;
+  // box-shadow: 0 2px 6px #c1ced7;
   display: table;
   width: 100%;
   margin-bottom: 20px;
@@ -347,8 +355,8 @@ header {
 
 .user-profile{
   width: 400px;
-  margin: auto;
-  /* background-color: #fff; */
+  margin: 0 auto 20px;
+  background-color: #fff;
 }
 
 .header-wrapper{
@@ -626,6 +634,27 @@ header {
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+}
+
+.post-edit {
+    display: inline-block;
+    float: right;
+    margin:4px 2px 0px;
+    color: #969696;
+}
+
+.post-edit_btn{
+  padding: 5px 10px;
+  border-radius: 7px;
+}
+
+.post-edit_btn a {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.post-edit_btn a {
+    color: #969696;
 }
 
 

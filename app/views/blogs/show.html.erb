@@ -11,8 +11,18 @@
 							<div class="post-top"><%= @user.name %></div>
 							<div class="post-bottom"><%= @blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
 						</div>
+						<% end %>
+						
+						<% if @user.id == current_admin_user.id %>
+						<div class="post-edit">
+							<div class="post-edit_btn">
+								<%= link_to( "編集", edit_blog_path) %>／
+								<%= link_to( "削除", blog_path, ethod: :delete, data: {confirm: "投稿を削除しますか？"}) %>
+									
+							</div>
+						</div>
+						<% end %>
 					</div>
-					<% end %>
 
 					<div class="post-body">	
 
@@ -32,9 +42,6 @@
 						    <div class="swiper-button-prev"></div>
 						  </div>
 
-						  
-
-
 						<h3><%= @blog.title %></h3>
 							<%= simple_format @blog.content %>
 					</div>
@@ -43,6 +50,7 @@
 
 				<div class="border"></div>
 
+				<%= link_to(user_path(@user.id)) do %>
 				<div class="users-index-item">
 	            募集状態：<%= @user.switch %>｜<%= @user.item %>／<%= @user.prefecture.name if @user.prefecture_id? %><br>                  
 	            <img src="<%= "/user_images/#{@user.image_name}" %>" class="image_icon">
@@ -51,6 +59,7 @@
 	            活動場所：<%= @user.area %> <br>
 	            こんな人を募集しています：<%= @user.recruitment %> <br>
 	          	</div>
+	          	<% end %>
 
 			</div>
 
