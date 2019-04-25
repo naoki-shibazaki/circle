@@ -53,7 +53,6 @@ class BlogsController < ApplicationController
 
 	def edit
 		@blog = Blog.find(params[:id])
-		@blog_button = "更新する"
 	end
 
 	def update

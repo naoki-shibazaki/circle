@@ -15,11 +15,27 @@
 
             <%= link_to(user_path(user.id)) do %>  
             <div class="user-content">             
-            <img src="<%= "/user_images/#{user.image_name}" %>" class="image_icon">
-            サークル名：<%= user.name %> <br>
-            活動時間：<%= user.schedule %> <br>
-            活動場所：<%= user.area %> <br>
-            こんな人を募集しています：<%= user.recruitment %> <br>
+              <img src="<%= "/user_images/#{user.image_name}" %>" class="image_icon">
+
+              <div class="list_wrapper">
+                <div class="list_01">
+                  <h2 class="user_name"><%= user.name %></h2>
+                </div>
+
+                <div class="list_02">
+                  <span class="user_schedule">活動時間：<%= user.schedule %></span>
+                </div>
+
+                <div class="list_03">
+                  <span class="user_area">活動場所：<%= user.area %></span>
+                </div>
+              </div>
+
+              <div class="list_04">
+                <h3 class="recruitment_title">こんな人を募集中です！</h3>
+                <span class="user_recruitment"><%= user.recruitment %></span>
+              </div>
+   
             </div>
             <% end %>
           </div>
