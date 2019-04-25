@@ -10,7 +10,5 @@ class User < ApplicationRecord
 	  validates :item
 	  validates :prefecture_id
 	end
-
-	paginates_per 10  # 1ページあたり表示項目
 	
 end

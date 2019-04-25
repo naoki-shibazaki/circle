@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
 
 
 	def index
-		@users = User.all.order(updated_at: "DESC").page(params[:page])
+		@users = User.all.order(updated_at: "DESC").page(params[:page]).per(10)
 	end	
 
 

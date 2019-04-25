@@ -6,11 +6,11 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 
 
 	def top
-		@users = User.all.order(updated_at: "DESC").page(params[:page])
+		@users = User.all.order(updated_at: "DESC").page(params[:page]).per(10)
 	end
 
 	def index
-		@users = User.all.order(updated_at: "DESC").page(params[:page])
+		@users = User.all.order(updated_at: "DESC").page(params[:page]).per(10)
 
 	end
 

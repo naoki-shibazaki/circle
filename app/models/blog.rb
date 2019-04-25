@@ -9,5 +9,4 @@ class Blog < ApplicationRecord
 	validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
 
 
-	paginates_per 10  # 1ページあたり表示項目
 end
