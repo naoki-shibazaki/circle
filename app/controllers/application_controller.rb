@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 	before_action :set_current_user	
 
+
 	def set_current_user
     	@current_user = User.find_by(id: session[:user_id])
   	end
@@ -18,5 +19,11 @@ class ApplicationController < ActionController::Base
 	      redirect_to users_path
 	    end
  	end
+
+	def after_sign_in_path_for(resource)
+	  	edit_user_path(current_admin_user)
+	end
+
+
 
 end

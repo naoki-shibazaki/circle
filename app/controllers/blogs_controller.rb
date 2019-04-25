@@ -15,7 +15,7 @@ class BlogsController < ApplicationController
 
 	def create
 		@blog = Blog.new(blog_params)
-		@blog.user_id = @current_user.id
+		@blog.user_id = current_admin_user.id
 		@blog.save
 
 		if image = params[:blog][:image_01]

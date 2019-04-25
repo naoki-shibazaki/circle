@@ -15,18 +15,15 @@
 
   <body>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
     <header>
       <div class="header-logo">
           <%= link_to("サークルブック", "/" ) %>
       </div>
       <ul class="header-menus">
         <!-- ログイン時の処理 -->
-        <% if current_admin_user %>
+        <% if admin_user_signed_in?  %>
           <li>
-              <%= link_to(current_admin_user.email, new_user_path) %>             
+              <%= link_to(current_admin_user.email, user_path(current_admin_user)) %>             
           </li>  
           <li>
               <%= link_to("投稿する", new_blog_path ) %>
@@ -63,6 +60,12 @@
     <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="alert">
+        <%= flash[:alert] %>
       </div>
     <% end %>
     

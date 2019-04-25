@@ -11,15 +11,15 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-
   super
 
     user = User.new
-    user.user_id = resource.id
-    user.save!
- 
-
+    user.id = resource.id
+    user.image_name = "default_user.jpg"
+    user.save
+  
   end
+
 
   # GET /resource/edit
   # def edit
