@@ -18,15 +18,6 @@ before_action :set_users
 	end
 
 	def create
-		# @user = User.new(user_params)
-		# @user.image_name = "default_user.jpg"
-		# if @user.save
-		#   session[:user_id] = @user.id
-		#   flash[:notice] = "ユーザー登録が完了しました"
-		#   redirect_to edit_user_path(@user.id)
-		# else
-		#   render new_user_path
-		# end
 	end
 
 	def show
@@ -63,21 +54,9 @@ before_action :set_users
 	end
 
 	def login
-		# @user = User.find_by(email: params[:session][:email],
-		# 					 password: params[:session][:password])
-		# if @user
-		# 	session[:user_id] = @user.id
-		# 	flash[:notice] = "ログインしました"
-		# 	redirect_to users_path
-		# else
-		# 	render("users/login_form")
-		# end
  	end
 
  	def logout
-	    # session[:user_id] = nil
-	    # flash[:notice] = "ログアウトしました"
-	    # redirect_to users_path
   	end
 
 	def ensure_correct_user
@@ -87,16 +66,34 @@ before_action :set_users
 	   end
 	end
 
+	def event_index
+		@events = Event.all
+		@prefectures = Prefecture.all
+		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)	
+	end
+
+	def prefecture_index
+		@events = Event.all
+		@prefectures = Prefecture.all
+		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)	
+	end
+
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefectures = Prefecture.all.where.not(kana: "nil")
 		@x = "nil"
-		@users = User.where(event_id: @event.id).where.not(switch: "nil").order(updated_at: "DESC").page(params[:page]).per(10)
+		@users = User.where(event_id: @event.id).order(updated_at: "DESC").page(params[:page]).per(10)
 	end
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(prefecture_id: @prefecture.id).where.not(switch: "nil").order(updated_at: "DESC").page(params[:page]).per(10)
+		@users = User.where(prefecture_id: @prefecture.id).order(updated_at: "DESC").page(params[:page]).per(10)
+	end
+
+	def event_prefecture
+		@event = Event.find_by(ruby: params[:ruby])
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(updated_at: "DESC").page(params[:page]).per(10)
 	end
 
 

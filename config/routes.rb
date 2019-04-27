@@ -11,19 +11,14 @@ Rails.application.routes.draw do
 
 	get "events/:ruby" => "users#event"
 	get "prefectures/:kana" => "users#prefecture"
-
-
-	# get "camera/:kana" => "prefectures#camera"
-	# get "basketball/:kana" => "prefectures#basketball"
-
-	# get "camera" => "prefectures#camera_top"
-	# get "basketball" => "prefectures#basketball_top"
+	get ":ruby/:kana" => "users#event_prefecture"
 
 	get "blogs" => "blogs#index"
+	get "events" => "users#event_index"
+	get "prefectures" => "users#prefecture_index"
 
 	get "login" => "users#login_form"
 	post "login" => "users#login"
 	post "logout" => "users#logout"
     
-
 end
