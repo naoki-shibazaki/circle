@@ -6,11 +6,11 @@
 		<div class="header-wrapper">
 			<img src="<%= "/user_images/#{@user.image_name}" %>" class="profile_imege">
 			<div class="data-box">
+				<% if @user.event_id.present? %>
+					<span class="data-r"><%= @user.event.name if @user.event_id? %></span>
+				<% end %>
 				<% if @user.prefecture_id.present? %>
 					<span class="data-l"><%= @user.prefecture.name if @user.prefecture_id? %></span>
-				<% end %>
-				<% if @user.item.present? %>
-					<span class="data-r"><%= @user.item %></span>
 				<% end %>
 			</div>
 

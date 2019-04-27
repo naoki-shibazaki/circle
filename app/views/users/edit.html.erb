@@ -25,8 +25,7 @@
 	    :prompt => "選択してください" %>
 
 	    <p>サークル種目※</p>	    
-	    <%= f.select :item, [ ['写真・カメラ','写真・カメラ'], ['バスケットボール','バスケットボール'] ] , 
-	    :prompt => "選択してください"%>
+	    <%= f.collection_select :event_id, Event.all, :id, :name %>
 
 	    <p>都道府県※</p>	    
 	    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>

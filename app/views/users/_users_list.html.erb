@@ -10,7 +10,7 @@
               <% end %>
             </div>
 
-            <%= link_to("##{user.item}", "/", class: "tag_btn") %>　
+            <%= link_to("##{user.event.name}", "/#{user.event.kana}", class: "tag_btn") %>　
             <%= link_to("##{user.prefecture.name}", "/#{user.prefecture.kana}", class: "tag_btn") %>
 
             <%= link_to(user_path(user.id)) do %>  

@@ -111,6 +111,7 @@ private
 		    :password, 
 		    :goal,
 		    :user_id,
+		    :event_id,
 		    :prefecture_id
     	)
 	end
