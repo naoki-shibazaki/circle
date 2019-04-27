@@ -9,14 +9,15 @@ Rails.application.routes.draw do
 
   root "users#top"
 
+	get "events/:ruby" => "users#event"
+	get "prefectures/:kana" => "users#prefecture"
 
-	get "camera/:kana" => "prefectures#camera"
-	get "basketball/:kana" => "prefectures#basketball"
 
-	get "camera" => "prefectures#camera_top"
-	get "basketball" => "prefectures#basketball_top"
+	# get "camera/:kana" => "prefectures#camera"
+	# get "basketball/:kana" => "prefectures#basketball"
 
-	get ":kana" => "prefectures#prefecture_top"
+	# get "camera" => "prefectures#camera_top"
+	# get "basketball" => "prefectures#basketball_top"
 
 	get "blogs" => "blogs#index"
 

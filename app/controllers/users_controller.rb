@@ -87,6 +87,18 @@ before_action :set_users
 	   end
 	end
 
+	def event
+		@event = Event.find_by(ruby: params[:ruby])
+		@prefectures = Prefecture.all.where.not(kana: "nil")
+		@x = "nil"
+		@users = User.where(event_id: @event.id).where.not(switch: "nil").order(updated_at: "DESC").page(params[:page]).per(10)
+	end
+
+	def prefecture
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(prefecture_id: @prefecture.id).where.not(switch: "nil").order(updated_at: "DESC").page(params[:page]).per(10)
+	end
+
 
 private
 	def user_params
