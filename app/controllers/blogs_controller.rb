@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
 
 
 	def index
-		@users = User.all.order(updated_at: "DESC").page(params[:page]).per(10)
+		@blogs = Blog.all.order(updated_at: "DESC").page(params[:page]).per(10)
 	end	
 
 
@@ -108,6 +108,8 @@ class BlogsController < ApplicationController
 			:image_02,
 			:image_03,
 			:image_04,
+			:image_name,
+			:name
 		)
 	end
 
