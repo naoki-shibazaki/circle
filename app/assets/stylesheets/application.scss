@@ -785,4 +785,43 @@ header {
 }
 
 
+.check_boxes input[type=checkbox] {
+display: none;  /* checkboxを非表示にする */
+}
+.check_boxes label {
+position: relative; /* ボックスの位置を指定する */
+padding: 0 0 0 42px;  /* ボックス内側の余白を指定する */
+font-weight: normal;
+}
+.check_boxes label:hover:after {
+border-color: #0171bd;  /* ボックスの境界線を実線で指定する */
+}
+.check_boxes label:after, .check_boxes label:before{
+position: absolute; /* ボックスの位置を指定する */
+content: "";  /* ボックスのコンテンツ */ 
+display: block; /* ブロックレベル要素化する */ 
+top: 50%; /* 上部から配置の基準位置を決める */ 
+}
+.check_boxes label:after {
+left: 15px; /* 左から配置の基準位置を決める */ 
+margin-top: -10px;  /* チェック枠の位置 */
+width: 15px;  /* ボックスの横幅を指定する */
+height: 15px; /* ボックスの高さを指定する */
+border: 2px solid #ccc; /* ボックスの境界線を実線で指定する */
+border-radius: 6px; /* ボックスの角丸を指定する */
+}
+.check_boxes label:before {
+left: 21px; /* 左から配置の基準位置を決める */ 
+margin-top: -7px; /* チェックマークの位置 */
+width: 5px; /* ボックスの横幅を指定する */
+height: 9px;  /* ボックスの高さを指定する */
+border-right: 3px solid #0171bd;  /* 境界線（右）のスタイルを指定する */
+border-bottom: 3px solid #0171bd; /* 境界線（下）のスタイルを指定する */
+transform: rotate(45deg); /* 要素を回転させる */
+opacity: 0; /* 要素を透過指定する */
+}
+.check_boxes input[type=checkbox]:checked + label:before {
+opacity: 1; /* 要素を表示する */
+}
+
 

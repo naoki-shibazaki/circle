@@ -49,7 +49,11 @@
 	    <%= f.text_field :member, class: 'form-control'%>
 
 	    <p>平均年齢</p>
-	    <%= f.text_field :average_age, class: 'form-control'%>
+	    <div class="check_boxes">
+	   		<%= f.collection_check_boxes(:average_age, Age.all, :decade, :name, 
+	   		checked: @user.average_age,include_hidden: false) %>
+
+	    </div>
 
 	    <p>会費・費用</p>
 	    <%= f.text_field :cost, class: 'form-control'%>
@@ -66,7 +70,6 @@
         <%= f.submit "更新する" %>
 
       <% end %>
-
 
 
       </div>

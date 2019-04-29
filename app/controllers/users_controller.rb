@@ -23,10 +23,12 @@ before_action :set_users
 	def show
 		@user = User.find(params[:id])
 		@blogs = @user.blogs.all
+		@data = AdminUser.find_by(id: params[:id])
 	end
 
 	def edit
 		@user = User.find_by(id: current_admin_user.id)
+		@average = [10,20,30]
 	end
 
 	def update
@@ -35,6 +37,11 @@ before_action :set_users
 		if image = params[:user][:image]
 			@user.image_name = "#{@user.id}.jpg"
 		    File.binwrite("public/user_images/#{@user.image_name}",image.read)
+
+			# img = MiniMagick::Image.read(params[:user][:image])
+		 #    img.resize "300x300"
+		 #    img.write "public/user_images/#{@user.image_name}"
+
 		end
 
 		if @user.update(user_params)
@@ -113,7 +120,6 @@ private
 		    :recruitment, 
 		    :foundation, 
 		    :member, 
-		    :average_age, 
 		    :cost, 
 		    :web, 
 		    :appeal, 
@@ -121,7 +127,10 @@ private
 		    :goal,
 		    :user_id,
 		    :event_id,
-		    :prefecture_id
+		    :decade,
+		    :prefecture_id,
+		    :average_age => []
+
     	)
 	end
 
