@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_155746) do
+ActiveRecord::Schema.define(version: 2019_04_29_233306) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_155746) do
     t.integer "prefecture_id"
     t.string "user_id"
     t.string "event_id"
+    t.integer "decade_age"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
   end
 

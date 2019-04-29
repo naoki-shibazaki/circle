@@ -28,7 +28,6 @@ before_action :set_users
 
 	def edit
 		@user = User.find_by(id: current_admin_user.id)
-		@average = [10,20,30]
 	end
 
 	def update
@@ -36,7 +35,7 @@ before_action :set_users
 
 		if image = params[:user][:image]
 			@user.image_name = "#{@user.id}.jpg"
-		    File.binwrite("public/user_images/#{@user.image_name}",image.read)
+		    File.binwrite("public/user_images/profile/#{@user.image_name}",image.read)
 
 			# img = MiniMagick::Image.read(params[:user][:image])
 		 #    img.resize "300x300"
@@ -129,7 +128,8 @@ private
 		    :event_id,
 		    :decade,
 		    :prefecture_id,
-		    :average_age => []
+		    {:decade_age => []} ,
+		    {:average_age => []}
 
     	)
 	end
