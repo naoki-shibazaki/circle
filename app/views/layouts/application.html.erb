@@ -71,6 +71,16 @@
     
     <%= yield %>
 
+
+<!-- button -->
+  <% if admin_user_signed_in?  %>
+    <%= link_to(new_blog_path) do %>
+      <span class="fixed_btn"><i class="fa fa-pencil "></i></span>
+    <% end %>
+  <% end %>
+<!-- button -->
+
+
   <!-- Initialize Swiper -->
   <script>
     var swiper = new Swiper('.swiper-container', {
