@@ -15,7 +15,10 @@
         <%= f.text_field :name, class: 'form-control'%>
 
         <p>アイコン画像</p>
-	    <%= f.file_field :image %>
+	    <%= f.file_field :image_01 %>
+
+        <p>ヘッダー画像</p>
+	    <%= f.file_field :image_02 %>	    
 
 	    <p>LINE@／LINE ID</p>
 	    <%= f.text_field :line_id, class: 'form-control'%>
@@ -50,8 +53,8 @@
 
 	    <p>平均年齢</p>
 	    <div class="check_boxes">
-	   		<%= f.collection_check_boxes(:average_age, Age.all, :decade, :name, 
-	   		checked: @user.average_age,include_hidden: false) %>
+	   		<%= f.collection_check_boxes(:decade_age, Age.all, :decade, :name, 
+	   		checked: @user.decade_age,include_hidden: false) %>
 
 	    </div>
 
