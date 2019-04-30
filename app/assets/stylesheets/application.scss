@@ -65,7 +65,7 @@ body {
 }
 
 .container {
-  max-width: 400px;
+  max-width: 500px;
   // background-color: #fff;
   margin: auto;
   padding:0 !important;
@@ -859,3 +859,63 @@ opacity: 1; /* 要素を表示する */
   border-bottom: none;
 }
 
+
+
+// ▼PC
+@media only screen and (min-width:768px) {
+
+.header-menus_sp{
+  display: none;
+}
+
+
+}
+
+
+// ▼SP
+@media only screen and (max-width:767px) {
+
+.user-profile{
+  width: 100%;
+}
+
+.header-logo {
+    padding-left: 10px;
+    line-height: 64px;
+}
+
+.header-logo a {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.header-menus{
+  display: none;
+}
+
+.header-menus_sp {
+    float: right;
+    padding-right: 0px;
+}
+
+.header-menus_sp li {
+    float: left;
+    color: #fff;
+    padding-left: 2px;
+    padding-top: 12px;
+    vertical-align: middle;
+}
+
+.header-menus_sp a {
+    float: left;
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: center;
+}
+
+.header-menus_sp .link_txt{
+    display: block;
+    font-size: 0.1rem;
+}
+
+}

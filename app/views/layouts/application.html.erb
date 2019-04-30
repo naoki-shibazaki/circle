@@ -3,6 +3,8 @@
   <head>
     <title>Circle</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -19,6 +21,7 @@
       <div class="header-logo">
           <%= link_to("サークルブック", "/" ) %>
       </div>
+
       <ul class="header-menus">
         <!-- ログイン時の処理 -->
         <% if admin_user_signed_in?  %>
@@ -55,6 +58,74 @@
 
         <% end %>
       </ul>
+
+
+      <!-- SP -->
+      <ul class="header-menus_sp">
+        <!-- ログイン時の処理 -->
+        <% if admin_user_signed_in?  %>
+          <li>
+            <%= link_to(user_path(current_admin_user)) do %>
+              <i class="fa fa-user "></i>
+              <div class="link_txt">プロフィール</div>
+            <% end %>
+          </li>  
+          <li>
+            <%= link_to(new_blog_path) do %>
+              <i class="fa fa-pencil "></i> 
+              <div class="link_txt">投稿する</div>
+            <% end %>
+          </li>       
+          <li>
+            <%= link_to(blogs_path) do %>
+               <i class="fa fa-book "></i> 
+               <div class="link_txt">活動記録</div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(users_path) do %>
+              <i class="fa fa-search "></i> 
+              <div class="link_txt">サークル検索</div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(destroy_admin_user_session_path, method: :delete) do %>
+               <i class="fa fa-sign-in "></i> 
+               <div class="link_txt">ログアウト</div>
+            <% end %>
+          </li>
+        
+        <!-- ログインなし -->
+        <% else %>
+          <li>
+            <%= link_to(users_path) do %>
+              <i class="fa fa-search "></i> 
+              <div class="link_txt">サークル検索</div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(blogs_path) do %>
+               <i class="fa fa-book "></i> 
+               <div class="link_txt">活動記録</div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(new_admin_user_registration_path) do %>
+               <i class="fa fa-user-plus "></i>
+               <div class="link_txt">サークル登録</div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(new_admin_user_session_path) do %>
+               <i class="fa fa-sign-in "></i> 
+               <div class="link_txt">ログイン</div>
+            <% end %>
+          </li>
+
+        <% end %>
+      </ul>
+
+
     </header>
 
     <% if flash[:notice] %>
