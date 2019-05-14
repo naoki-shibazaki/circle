@@ -75,6 +75,8 @@ gem 'paperclip'
 
 gem 'devise'
 
+gem "carrierwave"
+
 gem 'kaminari'
 
 gem 'jquery-rails'
