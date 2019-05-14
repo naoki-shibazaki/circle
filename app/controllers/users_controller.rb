@@ -37,9 +37,10 @@ before_action :set_users
 			@user.image_name = "profile_#{@user.id}.jpg"
 		    File.binwrite("public/user_images/profile/#{@user.image_name}",image.read)
 
-			# img = MiniMagick::Image.read(params[:user][:image])
-		 #    img.resize "300x300"
-		 #    img.write "public/user_images/#{@user.image_name}"
+		# img = MiniMagick::Image.read(params[:user][:image])
+		#    img.resize "300x300"
+		#    img.write "public/user_images/#{@user.image_name}"
+		
 		end
 
 		if image = params[:user][:image_02]
@@ -133,8 +134,8 @@ private
 		    :event_id,
 		    :decade,
 		    :prefecture_id,
-		    {:decade_age => []} ,
-		    {:average_age => []}
+		    decade_age: [],
+		    average_age: []
 
     	)
 	end
