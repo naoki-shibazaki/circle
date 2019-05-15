@@ -119,6 +119,7 @@ private
 		    :event_id,
 		    :decade,
 		    :prefecture_id,
+		    :image,
 		    :pic_profile,
 		   	:pic_header,
 		    :image_01,

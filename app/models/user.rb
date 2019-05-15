@@ -14,4 +14,6 @@ class User < ApplicationRecord
 
 	mount_uploader :pic_profile, ImageUploader
 	mount_uploader :pic_header, ImageUploader
+	mount_uploader :image, ImageUploader
+
 end
