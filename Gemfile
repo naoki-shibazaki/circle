@@ -26,7 +26,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem "font-awesome-rails"
 gem 'carrierwave'
 gem 'rmagick', '~> 3.1'
-gem 'fog'
+gem 'fog-aws'
 gem "aws-sdk-s3", require: false
 
 
