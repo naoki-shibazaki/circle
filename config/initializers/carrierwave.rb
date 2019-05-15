@@ -1,5 +1,3 @@
-CarrierWave.configure do |config|
-
 require 'carrierwave/storage/abstract'
 require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
@@ -20,6 +18,4 @@ if Rails.env.production?
 
   # 日本語ファイル名の設定
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
-end
-
 end
