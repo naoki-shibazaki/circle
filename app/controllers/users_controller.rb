@@ -134,6 +134,7 @@ private
 		    :event_id,
 		    :decade,
 		    :prefecture_id,
+		    :image,
 		    decade_age: [],
 		    average_age: []
 

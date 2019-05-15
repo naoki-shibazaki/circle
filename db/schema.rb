@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_002148) do
+ActiveRecord::Schema.define(version: 2019_05_15_010007) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(version: 2019_04_30_002148) do
     t.string "ruby"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image"
+  end
+
   create_table "prefectures", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -92,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_04_30_002148) do
     t.string "event_id"
     t.integer "decade_age"
     t.string "header_image"
+    t.string "image"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
   end
 

@@ -11,6 +11,8 @@ class User < ApplicationRecord
 	  validates :event_id
 	  validates :prefecture_id
 	end
+
+	mount_uploader :image, ImageUploader
 	
 end
 
