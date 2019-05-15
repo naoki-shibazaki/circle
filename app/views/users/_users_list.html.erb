@@ -14,8 +14,8 @@
             <%= link_to("##{user.prefecture.name}", "/prefectures/#{user.prefecture.kana}", class: "tag_btn") %>
 
             <%= link_to(user_path(user.id)) do %>  
-            <div class="user-content">             
-              <img src="<%= "/user_images/profile/#{user.image_name}" %>" class="image_icon">
+            <div class="user-content">
+              <%= image_tag user.pic_profile.url , class:'image_icon' %>
 
               <div class="list_wrapper">
                 <div class="list_01">

@@ -12,9 +12,6 @@ class User < ApplicationRecord
 	  validates :prefecture_id
 	end
 
-	mount_uploader :image, ImageUploader
-	
+	mount_uploader :pic_profile, ImageUploader
+	mount_uploader :pic_header, ImageUploader
 end
-
-
-# , -> { order('created_at DESC') }

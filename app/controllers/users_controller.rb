@@ -33,21 +33,6 @@ before_action :set_users
 	def update
 		@user = User.find(params[:id])
 
-		if image = params[:user][:image_01]
-			@user.image_name = "profile_#{@user.id}.jpg"
-		    File.binwrite("public/user_images/profile/#{@user.image_name}",image.read)
-
-		# img = MiniMagick::Image.read(params[:user][:image])
-		#    img.resize "300x300"
-		#    img.write "public/user_images/#{@user.image_name}"
-		
-		end
-
-		if image = params[:user][:image_02]
-			@user.header_image = "header_#{@user.id}.jpg"
-		    File.binwrite("public/user_images/header/#{@user.header_image}",image.read)
-		end
-
 		if @user.update(user_params)
 			redirect_to users_path
 		else
@@ -134,7 +119,10 @@ private
 		    :event_id,
 		    :decade,
 		    :prefecture_id,
-		    :image,
+		    :pic_profile,
+		   	:pic_header,
+		    :image_01,
+		    :image_02,
 		    decade_age: [],
 		    average_age: []
 

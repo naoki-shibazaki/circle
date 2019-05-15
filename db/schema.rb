@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_010007) do
+ActiveRecord::Schema.define(version: 2019_05_15_054428) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -71,35 +71,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_010007) do
     t.string "group"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image_name"
-    t.string "line_id"
-    t.string "switch"
-    t.string "item"
-    t.string "prefecture"
-    t.string "area"
-    t.string "schedule"
-    t.string "age"
-    t.string "recruitment"
-    t.string "foundation"
-    t.string "member"
-    t.string "average_age"
-    t.string "cost"
-    t.string "web"
-    t.text "appeal"
-    t.string "password"
-    t.string "goal"
-    t.integer "prefecture_id"
-    t.string "user_id"
-    t.string "event_id"
-    t.integer "decade_age"
-    t.string "header_image"
-    t.string "image"
-    t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'string　image_header' for column 'image_profile'
 
 end

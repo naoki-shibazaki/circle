@@ -6,7 +6,7 @@
 
 					<%= link_to(user_path(@user.id)) do %>
 				    <div class="header-post">
-						<img src="<%= "/user_images/profile/#{@user.image_name}" %>" class="content_icon">
+				    	<%= image_tag @user.pic_profile.url , class:'content_icon' %>    
 						<div class="post-user">
 							<div class="post-top"><%= @user.name %></div>
 							<div class="post-bottom"><%= @blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
@@ -54,8 +54,8 @@
 
 				<%= link_to(user_path(@user.id)) do %>
 				<div class="users-index-item">
-	            募集状態：<%= @user.switch %>｜<%= @user.item %>／<%= @user.prefecture.name if @user.prefecture_id? %><br>                  
-	            <img src="<%= "/user_images/profile/#{@user.image_name}" %>" class="image_icon">
+	            募集状態：<%= @user.switch %>｜<%= @user.item %>／<%= @user.prefecture.name if @user.prefecture_id? %><br>  
+	            <%= image_tag @user.pic_profile.url , class:'image_icon' %>
 	            サークル名：<%= @user.name %> <br>
 	            活動時間：<%= @user.schedule %> <br>
 	            活動場所：<%= @user.area %> <br>

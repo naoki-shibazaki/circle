@@ -4,8 +4,8 @@
     
 	<div class="user-profile">
 		<div class="header-wrapper">
-		<img src="<%= "/user_images/header/#{@user.header_image}" %>" class="header_imege">
-			<img src="<%= "/user_images/profile/#{@user.image_name}" %>" class="profile_imege">
+		<%= image_tag @user.pic_header.url , class:'header_imege' %>
+		<%= image_tag @user.pic_profile.url , class:'profile_imege' %>
 			<div class="data-box">
 				<% if @user.event_id.present? %>
 					<span class="data-r"><%= @user.event.name if @user.event_id? %></span>

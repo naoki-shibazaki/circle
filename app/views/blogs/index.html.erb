@@ -7,7 +7,7 @@
       <div class="form users-form">
           <div class="form-body">
             <div class="header-post">
-            <img src="<%= "/user_images/profile/#{blog.user.image_name}" %>" class="content_icon">        
+            <%= image_tag blog.user.pic_profile.url , class:'content_icon' %>     
             <div class="post-user">
               <div class="post-top"><%= blog.user.name %></div>              
               <div class="post-bottom"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
