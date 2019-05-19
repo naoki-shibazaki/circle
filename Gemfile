@@ -29,6 +29,7 @@ gem 'rmagick', '~> 3.1'
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false
 gem 'meta-tags'
+gem 'sitemap_generator'
 
 
 group :development, :test do
