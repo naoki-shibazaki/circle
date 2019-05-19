@@ -14,9 +14,9 @@
             </div>
           </div>
           <div class="post-body">   
-            <% if blog.image_01 %>
+            <% if blog.image_01.present? %>
               <div class="swiper-slide">
-                <img src="<%= "/blog_images/#{blog.image_01}" %>" class="content_image">
+                <%= image_tag blog.image_01.url , class:'content_image' %>
               </div>
             <% end %>
 

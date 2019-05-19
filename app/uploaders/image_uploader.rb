@@ -1,17 +1,17 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
+  include CarrierWave::MiniMagick
   # include CarrierWave::RMagick
 
 
-  #   process resize_to_limit: [1200, 900]
+    process resize_to_limit: [500, nil]
 
   #   version :thumb do
   #       process resize_to_limit: [480, 360]
   #   end  
 
   # Choose what kind of storage to use for this uploader:
-  # storage :file
-  # storage :fog
+
   
   if Rails.env.development?
     storage :file

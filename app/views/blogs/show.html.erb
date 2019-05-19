@@ -31,10 +31,10 @@
 						  <div class="swiper-container">
 						    <div class="swiper-wrapper">
 
-						      <% if @blog.image_01 %><div class="swiper-slide"><img src="<%= "/blog_images/#{@blog.image_01}" %>" class="content_image"></div><% end %>
-						      <% if @blog.image_02 %><div class="swiper-slide"><img src="<%= "/blog_images/#{@blog.image_02}" %>" class="content_image"></div><% end %>
-						      <% if @blog.image_03 %><div class="swiper-slide"><img src="<%= "/blog_images/#{@blog.image_03}" %>" class="content_image"></div><% end %>
-						      <% if @blog.image_04 %><div class="swiper-slide"><img src="<%= "/blog_images/#{@blog.image_04}" %>" class="content_image"></div><% end %>
+						      <% if @blog.image_01.present? %><div class="swiper-slide"><%= image_tag @blog.image_01.url , class:'content_image' %></div><% end %>
+						      <% if @blog.image_02.present? %><div class="swiper-slide"><%= image_tag @blog.image_02.url , class:'content_image' %></div><% end %>
+						      <% if @blog.image_03.present? %><div class="swiper-slide"><%= image_tag @blog.image_03.url , class:'content_image' %></div><% end %>
+						      <% if @blog.image_04.present? %><div class="swiper-slide"><%= image_tag @blog.image_04.url , class:'content_image' %></div><% end %>
 
 						    </div>
 						    <!-- Add Pagination -->
