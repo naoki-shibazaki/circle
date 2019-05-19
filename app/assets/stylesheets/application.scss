@@ -65,8 +65,7 @@ body {
 }
 
 .container {
-  max-width: 500px;
-  // background-color: #fff;
+  max-width: 450px;
   margin: auto;
   padding:0 !important;
   clear: both;
@@ -83,10 +82,10 @@ header {
 
 .header-logo {
   float: left;
+  line-height: 64px;
   padding-left: 20px;
   color: white;
   font-size: 22px;
-  line-height: 64px;
 }
 
 .header-logo a{
@@ -356,7 +355,6 @@ header {
 }
 
 .user-profile{
-  width: 400px;
   margin: 0 auto 20px;
   background-color: #fff;
 }
@@ -861,11 +859,14 @@ opacity: 1; /* 要素を表示する */
 }
 
 
-
 // ▼PC
 @media only screen and (min-width:768px) {
 
 .header-menus_sp{
+  display: none;
+}
+
+.footer_btn{
   display: none;
 }
 
@@ -876,17 +877,29 @@ opacity: 1; /* 要素を表示する */
 // ▼SP
 @media only screen and (max-width:767px) {
 
+header{
+  height: 60px;
+}
+
+.main{
+  top: 60px;
+}
+
+
 .user-profile{
   width: 100%;
 }
 
 .header-logo {
-    padding-left: 10px;
-    line-height: 64px;
+  display: none;
+    // width: 24%;
+    // padding-left:2px;
+    // vertical-align: middle;
+    // font-size: 10px;
 }
 
 .header-logo a {
-    font-size: 0.8rem;
+    font-size: 10px;
     font-weight: bold;
 }
 
@@ -895,28 +908,30 @@ opacity: 1; /* 要素を表示する */
 }
 
 .header-menus_sp {
-    float: right;
-    padding-right: 0px;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  text-align: center;
 }
 
 .header-menus_sp li {
-    float: left;
-    color: #fff;
-    padding-left: 2px;
-    padding-top: 12px;
-    vertical-align: middle;
+  color: #fff;
+  border-right: 1px solid #fff;
+  display: table-cell;
+  vertical-align: middle;
+  height: 60px;
 }
 
 .header-menus_sp a {
-    float: left;
-    font-size: 1.2rem;
-    color: #fff;
-    text-align: center;
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
 }
 
 .header-menus_sp .link_txt{
     display: block;
-    font-size: 0.1rem;
+    font-size: 8px;
 }
 
 }
