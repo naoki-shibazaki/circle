@@ -22,14 +22,20 @@ gem 'paperclip'
 gem 'devise'
 gem 'kaminari'
 gem 'jquery-rails'
+
 gem 'bootstrap-sass', '~> 3.3.7'
 gem "font-awesome-rails"
+
 gem 'carrierwave'
 gem 'rmagick', '~> 3.1'
+
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false
+
 gem 'meta-tags'
 gem 'sitemap_generator'
+gem 'aws-sdk'
+
 
 
 group :development, :test do
