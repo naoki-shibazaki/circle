@@ -12,6 +12,10 @@ class User < ApplicationRecord
 	  validates :prefecture_id
 	end
 
+	before_save do
+		self.average_age.gsub!(/[\[\]\"]/, "") if attribute_present?("average_age")
+	end
+
 	mount_uploader :pic_profile, ImageUploader
 	mount_uploader :pic_header, ImageUploader
 

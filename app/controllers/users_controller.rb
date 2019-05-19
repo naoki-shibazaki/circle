@@ -92,6 +92,13 @@ before_action :set_users
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(updated_at: "DESC").page(params[:page]).per(10)
 	end
 
+	# def event_prefecture_decade
+	# 	@event = Event.find_by(ruby: params[:ruby])
+	# 	@prefecture = Prefecture.find_by(kana: params[:kana])
+	# 	@age = Age.find_by(decade: params[:decade])
+	# 	@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id, decade: @average_age ).order(updated_at: "DESC").page(params[:page]).per(10)
+	# end
+
 
 private
 	def user_params

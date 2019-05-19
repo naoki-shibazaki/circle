@@ -28,6 +28,7 @@ gem 'carrierwave'
 gem 'rmagick', '~> 3.1'
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false
+gem 'meta-tags'
 
 
 group :development, :test do

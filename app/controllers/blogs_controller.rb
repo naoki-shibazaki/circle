@@ -36,13 +36,12 @@ class BlogsController < ApplicationController
 	def update
 		@blog = Blog.find(params[:id])
 
-		if @blog.save
+		if @blog.update(blog_params)
 			redirect_to blog_path
 		else
 			render "/blogs/edit"
 		end	
 	end
-
 
 	def destroy
 	    @blog = Blog.find_by(id: params[:id])

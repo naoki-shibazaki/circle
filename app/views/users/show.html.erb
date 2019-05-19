@@ -1,3 +1,9 @@
+<% set_meta_tags title: "【#{@user.event.name}／#{@user.prefecture.name}】 #{@user.name}",
+				 description: "【#{@user.event.name}／#{@user.prefecture.name}】 #{@user.appeal}", 
+				og: { title: @user.name, image: @user.pic_header.url } 
+%>
+
+
 <div class="main user-show">
   <div class="container">
 
@@ -58,7 +64,7 @@
 
 			<div class="content_04">
 				<span class="data-l">構成メンバー：<%= @user.member %></span>
-				<span class="data-r">平均年齢：<%= @user.average_age %></span>	
+				<span class="data-r">年齢層：<%= @user.average_age %></span>	
 
 			</div>
 
