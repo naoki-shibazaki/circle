@@ -11,8 +11,8 @@ def default_meta_tags
       canonical: request.original_url,
       separator: '|',
       icon: [
-        { href: image_url('/images/default.jpg') },
-        { href: image_url('/images/default.jpg'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
+        { href: image_url('/images/icon.jpg') },
+        { href: image_url('/images/icon.jpg'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
       ],
       og: {
         site_name: :site,
@@ -20,7 +20,7 @@ def default_meta_tags
         description: :description,
         type: 'website',
         url: request.original_url,
-        image: image_url('/images/default.jpg'),
+        image: image_url('/images/ogp.png'),
         locale: 'ja_JP'
       }
     }
