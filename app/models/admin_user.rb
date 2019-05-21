@@ -4,5 +4,10 @@ class AdminUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :user, dependent: :destroy     
+  has_one :user, dependent: :destroy  
+
+  def remember_me
+    true
+  end 
+
 end

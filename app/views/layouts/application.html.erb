@@ -166,11 +166,27 @@
 <!-- button -->
   <% if admin_user_signed_in? && controller.action_name != 'edit'  %>
 
-    <div class="footer_btn">
-      <%= link_to(new_blog_path) do %>
-        <span class="fixed_btn"><i class="fa fa-pencil "></i></span>
+    <% if controller.action_name != 'new' %>
+      <div class="footer_btn">
+        <%= link_to(new_blog_path) do %>
+          <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% else %>
+      <% if @path.is('users#show') %>
+          <% if @user.line_id != "" %>
+          <div class="footer_btn">
+            <a href="<%= @user.line_id %>"><span class="fixed_btn line"><i class="fa fa-comment-o "></i></span></a>
+          </div>
+        <% else %>
+          <div class="footer_btn">
+            <a href="mailto:<%= @data.email %>"><span class="fixed_btn mail"><i class="fa fa-envelope-o "></i></span></a>
+          </div>
+        <% end %>
       <% end %>
-    </div>
+
 
   <% end %>
 <!-- button -->

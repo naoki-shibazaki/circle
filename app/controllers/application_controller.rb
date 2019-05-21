@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 	before_action :set_current_user	
-
+	before_action :request_path
 
 	def set_current_user
     	@current_user = User.find_by(id: session[:user_id])
@@ -24,6 +24,11 @@ class ApplicationController < ActionController::Base
 	  	edit_user_path(current_admin_user)
 	end
 
-
+	def request_path
+	    @path = controller_path + '#' + action_name
+	    def @path.is(*str)
+	        str.map{|s| self.include?(s)}.include?(true)
+	    end
+	end	
 
 end

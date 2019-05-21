@@ -8,7 +8,14 @@
 
     
 	<div class="user-profile">
-		<div class="header-wrapper">
+		<div class="header-wrapper ribbon-wrapper">
+            <div class="ribbon-content">
+              <% if @user.switch == "募集中" %>
+                <span class="ribbon green"><%= @user.switch %></span>
+              <% else %>
+                <span class="ribbon red"><%= @user.switch %></span>
+              <% end %>
+            </div>	
 		<%= image_tag @user.pic_header.url , class:'header_imege' %>
 		<%= image_tag @user.pic_profile.url , class:'profile_imege' %>
 			<div class="data-box">
@@ -48,9 +55,7 @@
 
 		<div class="profile-content">
 			<h1 class="user_name"><%= @user.name %></h1>
-			<div class="content_01">
-				<span class="data-l"><%= @user.switch %></span>
-<!-- 				<span class="data-r">募集年齢：<%= @user.age %></span>	 -->			
+			<div class="content_01">		
 			</div>
 			<div class="content_02">
 				<span class="data-l"><%= @user.schedule %></span>

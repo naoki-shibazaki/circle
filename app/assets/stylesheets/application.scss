@@ -77,7 +77,7 @@ header {
   height: 64px;
   position: fixed;
   background-color: #3ecdc6;
-  z-index: 1;
+  z-index: 10;
   width: 100%;
 }
 
@@ -251,10 +251,9 @@ header {
 
 
 .users-index-item {
-  padding: 20px 30px;
+  padding: 20px 20px;
   background-color: #fff;
   overflow: hidden;
-  // box-shadow: 0 2px 6px #c1ced7;
   display: table;
   width: 100%;
   margin-bottom: 20px;
@@ -419,11 +418,13 @@ header {
   background-color: #b0b1b1;
 }
 
-.header-wrapper .line{
+.header-wrapper .line,
+.footer_btn .line{
   background-color: #45bd59;
 }
 
-.header-wrapper .mail{
+.header-wrapper .mail,
+.footer_btn .mail{
   background-color: #3ecdc6;
 }
 
@@ -771,6 +772,7 @@ header {
   width: 85px;
   height: 85px;
   overflow: hidden;
+  z-index: 1;
   }
 
 .ribbon {
@@ -896,7 +898,8 @@ opacity: 1; /* 要素を表示する */
   left: 0px !important;
 }
 
-.post-body p{
+.post-body p,
+.user-profile p{
   margin-bottom: 14px;
   font-size: 1rem;
 }
