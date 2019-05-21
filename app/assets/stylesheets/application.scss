@@ -200,7 +200,7 @@ header {
   width: 100%;
   border: 1px solid #d8dadf;
   padding: 10px;
-  color: #57575f;
+  color: #1c1e22;
   font-size: 16px;
   letter-spacing: 2px;
   border-radius: 2px;
@@ -533,7 +533,7 @@ header {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  margin-right: 20px;
+  margin-right: 16px;
   object-fit: cover;
 }
 
@@ -745,15 +745,18 @@ header {
 
 .content-more{
   color: #1b9637;
+  margin-top: 10px;
 }
 
 .users-heading,
 .form-heading,
 .posts-heading {
-  font-weight: 300;
-  /* margin: 60px 0 20px; */
-  font-size: 24px;
-  color: #bcc8d4;
+    font-weight: bold;
+    margin: 30px 0;
+    text-align: center;
+    line-height: 2rem;
+    font-size: 24px;
+    color: #696969;
 }
 
 .ribbon-wrapper {
@@ -895,11 +898,19 @@ opacity: 1; /* 要素を表示する */
 
 .post-body p{
   margin-bottom: 14px;
+  font-size: 1rem;
 }
 
 
+select{
+    width: 50%;
+    height: 30px;
+    margin-bottom: 14px;  
+}
 
-
+a.line_id {
+  color: #099609;
+}
 
 
 

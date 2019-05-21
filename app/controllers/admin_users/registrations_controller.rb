@@ -15,8 +15,6 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
 
     user = User.new
     user.id = resource.id
-    user.image_name = "default_profile.jpg"
-    user.header_image = "default_header.jpg"
     user.save
   
   end

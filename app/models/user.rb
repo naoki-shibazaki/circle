@@ -12,6 +12,11 @@ class User < ApplicationRecord
 	  validates :prefecture_id
 	end
 
+	validates :line_id, {
+	  	:allow_blank => true,
+	  	:format => URI::regexp(%w(http https)),
+	}
+
 	before_save do
 		self.average_age.gsub!(/[\[\]\"]/, "") if attribute_present?("average_age")
 	end

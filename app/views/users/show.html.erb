@@ -1,8 +1,7 @@
-<% set_meta_tags title: "【#{@user.event.name}／#{@user.prefecture.name}】 #{@user.name}",
-				 description: "【#{@user.event.name}／#{@user.prefecture.name}】 #{@user.appeal}", 
-				og: { title: @user.name, image: @user.pic_header.url } 
-%>
-
+	<% set_meta_tags title: @user.name,
+					 description: @user.appeal, 
+					og: { image: @user.pic_header.url } 
+	%>
 
 <div class="main user-show">
   <div class="container">
@@ -51,7 +50,7 @@
 			<h1 class="user_name"><%= @user.name %></h1>
 			<div class="content_01">
 				<span class="data-l"><%= @user.switch %></span>
-				<span class="data-r">募集年齢：<%= @user.age %></span>				
+<!-- 				<span class="data-r">募集年齢：<%= @user.age %></span>	 -->			
 			</div>
 			<div class="content_02">
 				<span class="data-l"><%= @user.schedule %></span>
@@ -110,10 +109,7 @@
 						<% end %>
 	
 						<h3 class="blog_title"><%= blog.title %></h3>
-							<%= simple_format blog.content.truncate(150) %>
-							<%= truncate(blog.content) do %>
-								<p class="content-more">もっとみる</p>
-							<% end %>					
+							<%= simple_format blog.content.truncate(140) %>
 					</div>
 				
 			    </div>

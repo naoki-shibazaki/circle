@@ -21,11 +21,8 @@
             <% end %>
 
 
-            <h3><%= blog.title %></h3>
-              <%= simple_format blog.content.truncate(150) %>
-              <%= truncate(blog.content) do %>
-                <p class="content-more">もっとみる</p>
-              <% end %>         
+            <h3 class="blog_title"><%= blog.title %></h3>
+              <%= simple_format blog.content.truncate(140) %>      
           </div>
         
           </div>

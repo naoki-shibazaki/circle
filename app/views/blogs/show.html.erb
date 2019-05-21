@@ -57,16 +57,42 @@
 
 				<div class="border"></div>
 
-				<%= link_to(user_path(@user.id)) do %>
-				<div class="users-index-item">
-	            募集状態：<%= @user.switch %>｜<%= @user.item %>／<%= @user.prefecture.name if @user.prefecture_id? %><br>  
-	            <%= image_tag @user.pic_profile.url , class:'image_icon' %>
-	            サークル名：<%= @user.name %> <br>
-	            活動時間：<%= @user.schedule %> <br>
-	            活動場所：<%= @user.area %> <br>
-	            こんな人を募集しています：<%= @user.recruitment %> <br>
-	          	</div>
-	          	<% end %>
+				<div class="users-index-item ribbon-wrapper">
+
+		            <%= link_to("##{@user.event.name}", "/events/#{@user.event.ruby}", class: "tag_btn") %>　
+		            <%= link_to("##{@user.prefecture.name}", "/prefectures/#{@user.prefecture.kana}", class: "tag_btn") %>
+
+		            <%= link_to(user_path(@user.id)) do %>  
+		            <div class="user-content">
+		              <%= image_tag @user.pic_profile.url , class:'image_icon' %>
+
+		              <div class="list_wrapper">
+		                <div class="list_01">
+		                  <h2 class="user_name"><%= @user.name %></h2>
+		                </div>
+
+		                <div class="list_02">
+		                  <span class="user_schedule">日時：<%= @user.schedule %></span>
+		                </div>
+
+		                <div class="list_03">
+		                  <span class="user_area">場所：<%= @user.area %></span>
+		                </div>
+		              </div>
+
+		              <div class="list_04">
+		                <span class="user_recruitment"><%= @user.recruitment %></span>
+		              </div>
+		   
+		            </div>
+		            <% end %>
+				</div>
+
+
+
+
+
+
 
 			</div>
 

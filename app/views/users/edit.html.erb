@@ -12,7 +12,7 @@
       <%= form_for @user do |f| %>
 
         <p>サークル名※</p>
-        <%= f.text_field :name, class: 'form-control'%>
+        <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
 
         <p>アイコン画像</p>
 	    <%= f.file_field :pic_profile %>
@@ -20,8 +20,9 @@
         <p>ヘッダー画像</p>
 	    <%= f.file_field :pic_header %>
 
-	    <p>LINE@／LINE ID</p>
-	    <%= f.text_field :line_id, class: 'form-control'%>
+	    <p>LINE@／LINEの"URL"</p>
+	    <a href="https://www.linebiz.com/jp/entry/" target="_blank" class="line_id"> >>30秒で作れるLINEアカウントの追加方法</a>
+	    <%= f.text_field :line_id, class: 'form-control', placeholder: "http://nav.cx/3JiS9Im" %>
 	    
 	    <p>募集状況※</p>
 	    <%= f.select :switch, [ ['募集中','募集中'], ['受付終了','受付終了'] ], 
@@ -34,22 +35,19 @@
 	    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
 
 	    <p>活動場所</p>
-	    <%= f.text_field :area, class: 'form-control'%>
+	    <%= f.text_field :area, class: 'form-control', placeholder: "世田谷区周辺" %>
 
 	    <p>活動時間</p>
-	    <%= f.text_field :schedule, class: 'form-control'%>
-
-	    <p>募集年齢</p>
-	    <%= f.text_field :age, class: 'form-control'%>
+	    <%= f.text_field :schedule, class: 'form-control', placeholder: "月曜日 18〜20時" %>
 
 	    <p>こんな人を探しています</p>
-	    <%= f.text_field :recruitment, class: 'form-control'%>
+	    <%= f.text_field :recruitment, class: 'form-control', placeholder: "初心者・経験者でもOKです！一緒にサークルブックを盛り上げていきましょう！" %>
 
 	    <p>サークル設立</p>
-	    <%= f.text_field :foundation, class: 'form-control'%>
+	    <%= f.text_field :foundation, class: 'form-control', placeholder: "2019年6月" %>
 
 	    <p>構成メンバー</p>
-	    <%= f.text_field :member, class: 'form-control'%>
+	    <%= f.text_field :member, class: 'form-control', placeholder: "10名程" %>
 
 	    <p>平均年齢</p>
 	    <div class="check_boxes">
@@ -58,16 +56,16 @@
 	    </div>
 
 	    <p>会費・費用</p>
-	    <%= f.text_field :cost, class: 'form-control'%>
+	    <%= f.text_field :cost, class: 'form-control', placeholder: "無料" %>
 
 	    <p>サークル目標</p>
-	    <%= f.text_field :goal, class: 'form-control'%>
+	    <%= f.text_field :goal, class: 'form-control', placeholder: "ゆくる、楽しく活動をする！" %>
 
 	    <p>ホームページ／SNS</p>
-	    <%= f.text_field :web, class: 'form-control'%>
+	    <%= f.text_field :web, class: 'form-control', placeholder: "https://www.circle-book.com/" %>
 
 	    <p>アピール・注意事項</p>
-	    <%= f.text_area :appeal, class: 'form-control'%>
+	    <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！興味がある人は気軽にご連絡ください！" %>
 
         <%= f.submit "更新する" %>
 
