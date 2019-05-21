@@ -109,7 +109,7 @@
 							<div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div>
 						<% end %>
 	
-						<h3><%= blog.title %></h3>
+						<h3 class="blog_title"><%= blog.title %></h3>
 							<%= simple_format blog.content.truncate(150) %>
 							<%= truncate(blog.content) do %>
 								<p class="content-more">もっとみる</p>

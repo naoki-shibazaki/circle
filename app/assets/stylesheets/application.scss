@@ -48,7 +48,7 @@ form input[type="submit"] {
 
 /* 共通レイアウト ================================ */
 body {
-  color: #2d3133;
+  color: #1c1e22;
   background-color: #3ecdc6;
   margin: 0;
   min-height: 1vh;
@@ -75,7 +75,8 @@ body {
 /* ヘッダー ================================ */
 header {
   height: 64px;
-  position: absolute;
+  position: fixed;
+  background-color: #3ecdc6;
   z-index: 1;
   width: 100%;
 }
@@ -373,11 +374,11 @@ header {
 }
 
 .header-wrapper .profile_imege{
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   position: absolute;
-  bottom: -45px;
+  bottom: -50px;
   left: 20px;
   border: 3px solid #fff;
   object-fit: cover;
@@ -385,7 +386,7 @@ header {
 
 .header-wrapper .data-box{
   position: absolute;
-  bottom: 7px;
+  bottom: 12px;
   right:10px;
 }
 
@@ -397,13 +398,13 @@ header {
 }
 
 .data-box .data-l{
-  margin-right: 10px;
+  margin-right: 14px;
 }
 
 .header-wrapper .contact-button{
   position: absolute;
-  bottom: -45px;
-  right: 30px;
+  bottom: -42px;
+  right: 24px;
   padding: 5px 10px;
   border-radius: 7px;
 }
@@ -428,7 +429,7 @@ header {
 
 
 .profile-content {
-    margin-top: 55px;
+    margin-top: 60px;
     padding: 0px 15px 15px;
 }
 
@@ -441,8 +442,16 @@ header {
 .profile-content .content_02,
 .profile-content .content_04,
 .profile-content .content_05{
-    color: #737373;
+    color: #1c1e22;
     font-size: 1rem;
+}
+
+.profile-content .content_01{
+      margin-top: 10px;
+}
+
+.profile-content .content_03{
+      margin-top: 10px;
 }
 
 .profile-content .content_01 .data-r,
@@ -455,8 +464,21 @@ header {
 .profile-content .content_03,
 .profile-content .content_06,
 .profile-content .content_07{
-    color: #737373;
+    color: #1c1e22;
     font-size: 1rem;
+}
+
+.profile-content .content_06,
+.profile-content .content_07{
+  margin-top: 14px;
+}
+
+.profile-content .content_08{
+  margin-top: 10px;
+}
+
+.profile-content .content_08 a{
+  color: #585858;
 }
 
 .profile-content .user_goal,
@@ -703,7 +725,7 @@ header {
 /* 共通 ================================ */
 .border{
     width: 96%;
-    margin: 10px auto;
+    margin: 12px auto;
     border-bottom: solid 1px #c1c1c1;
 }
 
@@ -858,6 +880,42 @@ opacity: 1; /* 要素を表示する */
   border-bottom: none;
 }
 
+.blog_title{
+  margin-top: 16px;
+  margin-bottom: 10px;
+}
+
+.swiper-button-next{
+  right: 0px !important;
+}
+
+.swiper-button-prev{
+  left: 0px !important;
+}
+
+.post-body p{
+  margin-bottom: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ▼PC
 @media only screen and (min-width:768px) {
@@ -869,6 +927,8 @@ opacity: 1; /* 要素を表示する */
 .footer_btn{
   display: none;
 }
+
+
 
 
 }
@@ -912,6 +972,8 @@ header{
   display: table;
   table-layout: fixed;
   text-align: center;
+  position: fixed;
+  background-color: #3ecdc6;
 }
 
 .header-menus_sp li {
@@ -933,5 +995,12 @@ header{
     display: block;
     font-size: 8px;
 }
+
+
+.swiper-container{
+  z-index: 0 !important;
+}
+
+
 
 }
