@@ -63,21 +63,16 @@ before_action :set_users
 	end
 
 	def event_index
-		@events = Event.all
-		@prefectures = Prefecture.all
 		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)	
 	end
 
 	def prefecture_index
-		@events = Event.all
-		@prefectures = Prefecture.all
 		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)	
 	end
 
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefectures = Prefecture.all.where.not(kana: "nil")
-		@x = "nil"
 		@users = User.where(event_id: @event.id).order(updated_at: "DESC").page(params[:page]).per(10)
 	end
 
@@ -91,13 +86,6 @@ before_action :set_users
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(updated_at: "DESC").page(params[:page]).per(10)
 	end
-
-	# def event_prefecture_decade
-	# 	@event = Event.find_by(ruby: params[:ruby])
-	# 	@prefecture = Prefecture.find_by(kana: params[:kana])
-	# 	@age = Age.find_by(decade: params[:decade])
-	# 	@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id, decade: @average_age ).order(updated_at: "DESC").page(params[:page]).per(10)
-	# end
 
 
 private
@@ -139,6 +127,9 @@ private
 
 	def set_users
 		@users = User.where.not(switch: "nil")
+		@events = Event.all.where.not(id: 0)
+		@prefectures = Prefecture.all.where.not(id: 0)
+		@x = "nil"
 	end
 
 		

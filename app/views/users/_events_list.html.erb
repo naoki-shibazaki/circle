@@ -1,0 +1,19 @@
+<div class="events-container">
+  <div onclick="obj=document.getElementById('open_e').style; obj.display=(obj.display=='none')?'block':'none';">
+    <a style="cursor:pointer;"><h2 class="events-title">趣味やスポーツから探す</h2></a>
+  </div>  
+
+  <div id="open_e" style="display:none;clear:both;">  
+    <ul class="events-menus">
+      <% @events.each do |event| %>
+        <li>
+              <%= link_to("/events/#{event.ruby}") do %>
+                <i class="<%= event.icon %>"></i> 
+                <div class="link_txt"><%= event.name %></div>
+              <% end %>
+          </li> 
+      <% end %> 
+    </ul> 
+  </div>
+
+</div>

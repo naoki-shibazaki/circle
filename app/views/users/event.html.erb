@@ -3,18 +3,9 @@
     <h1 class="users-heading"><%= @event.name %>のサークル一覧</h1>
 
 
-    <% @prefectures.each do |prefecture| %>
-      <% if prefecture.group != @x %>
-        <h2><%= prefecture.group %></h2>
-        <%= link_to prefecture.name, "/#{@event.ruby}/#{prefecture.kana}" %>
-        <% @x = prefecture.group %>
-      <% else %>
-        <%= link_to prefecture.name, "/#{@event.ruby}/#{prefecture.kana}" %>
-      <% end %>
-    <% end %>    
+    <%= render "prefectures_list.html.erb" %>
 
-
-    <%= render "/users/users_list.html.erb" %>
+    <%= render "users_list.html.erb" %>
 
     
   </div>
