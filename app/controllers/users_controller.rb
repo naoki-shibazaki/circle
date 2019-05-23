@@ -74,17 +74,29 @@ before_action :set_users
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefectures = Prefecture.all.where.not(kana: "nil")
 		@users = User.where(event_id: @event.id).order(updated_at: "DESC").page(params[:page]).per(10)
+		if @users.count == 0
+			@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)
+			@hit = 0 
+		end
 	end
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(prefecture_id: @prefecture.id).order(updated_at: "DESC").page(params[:page]).per(10)
+		if @users.count == 0
+			@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)
+			@hit = 0 
+		end		
 	end
 
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(updated_at: "DESC").page(params[:page]).per(10)
+		if @users.count == 0
+			@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)
+			@hit = 0 
+		end
 	end
 
 

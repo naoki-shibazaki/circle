@@ -2,9 +2,18 @@
   <div class="container">
     <h1 class="users-heading"><%= @prefecture.name %>のサークル一覧</h1>
 
-    <%= render "events_list.html.erb" %>
+	<% if @hit != 0 %>
+	    <%= render "events_list.html.erb" %>
+	<% end %>
 
-    <%= render "/users/users_list.html.erb" %>
+	<% if @hit == 0 %>
+		<div class="no_hit">該当サークルがありません</div>
+		<img class="imege_sorry" src="/images/sorry.png">
+		
+		<h2 class="users-heading">全国のサークル一覧</h2>
+	<% end %>
+
+    <%= render "users_list.html.erb" %>
 
     
   </div>
