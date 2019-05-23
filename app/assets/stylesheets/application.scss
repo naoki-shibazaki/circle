@@ -988,13 +988,16 @@ a.line_id {
 
 .users-txt{
     width: 90%;
-    margin: 0 auto 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #4a4949;
+    margin: 0 auto 46px;
     text-align: center;
     position: relative;
 }
 
 .imege_title{
-    width: 100%;
+    width: 450px;
     height: 140px;
     position: absolute;
     object-fit: cover;
@@ -1097,6 +1100,8 @@ header{
   z-index: 0 !important;
 }
 
-
+.imege_title{
+  width: 100%;
+}
 
 }

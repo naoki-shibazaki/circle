@@ -17,6 +17,12 @@ class User < ApplicationRecord
 	  	:format => URI::regexp(%w(http https)),
 	}
 
+	validates :web, {
+	  	:allow_blank => true,
+	  	:format => URI::regexp(%w(http https)),
+	}
+
+
 	before_save do
 		self.average_age.gsub!(/[\[\]\"]/, "") if attribute_present?("average_age")
 	end
