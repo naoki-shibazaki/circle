@@ -919,9 +919,9 @@ a.line_id {
 
 .events-container,
 .prefectures-container {
-    background-color: #fff;
-    margin: 20px 0px 20px;
-    padding: 26px 0px 16px;
+    // background-color: #fff;
+    // margin: 20px 0px 20px;
+    // padding: 26px 0px 16px;
 }
 
 
@@ -933,7 +933,6 @@ a.line_id {
     font-size: 20px;
     margin-bottom: 12px;
     color: #1c1e22;
-    text-align: center;
 }
 
 .prefectures-sub-title{
@@ -942,7 +941,7 @@ a.line_id {
 
 .events-menus{
     width: 70%;
-    margin: auto;
+    margin: 12px auto;
     display: table;
     table-layout: fixed;
     text-align: center;
@@ -971,6 +970,7 @@ a.line_id {
     width: 100%;
     margin: auto;
     padding-left: 10px;
+    padding-top: 18px;
 }
 
 .prefectures-menus li {
@@ -1020,7 +1020,62 @@ a.line_id {
 }
 
 
-
+.cp_actab {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  color: #ffffff;
+}
+.cp_actab input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.cp_actab label {
+  font-weight: bold;
+  line-height: 3;
+  position: relative;
+  display: block;
+  padding: 0 0 0 1em;
+  cursor: pointer;
+  margin: 0 0 1px 0;
+  background: #61cec7;
+}
+.cp_actab .cp_actab-content {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: max-height 0.35s;
+  transition: max-height 0.35s;
+  color: #333333;
+  background: #f8ffff;
+}
+.cp_actab .cp_actab-content p {
+  margin: 1em;
+}
+/* :checked */
+.cp_actab input:checked ~ .cp_actab-content {
+  max-height: 40em;
+}
+/* Icon */
+.cp_actab label::after {
+  line-height: 3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+  text-align: center;
+}
+.cp_actab input[type=checkbox] + label::after {
+  content: '+';
+}
+.cp_actab input[type=checkbox]:checked + label::after {
+  transform: rotate(315deg);
+}
 
 
 
