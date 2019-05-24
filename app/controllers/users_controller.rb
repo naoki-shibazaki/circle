@@ -14,7 +14,6 @@ before_action :set_users
 	end
 
 	def new
-		@user = User.new
 	end
 
 	def create

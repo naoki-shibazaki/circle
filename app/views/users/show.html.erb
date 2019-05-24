@@ -58,8 +58,14 @@
 			<div class="content_01">		
 			</div>
 			<div class="content_02">
-				<span class="data-l"><%= @user.schedule %></span>
-				<span class="data-r"><%= @user.area %></span>				
+                  <div class="user_schedule">
+                    <i class="fa fa-calendar "></i><%= @user.schedule %>
+                  </div>
+
+                  <div class="user_area">
+                    <i class="fa fa-map-marker "></i><%= @user.area %>
+                  </div>
+
 			</div>
 
 			<div class="content_03"><%= @user.recruitment %></div>
