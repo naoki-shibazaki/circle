@@ -15,14 +15,15 @@ Rails.application.routes.draw do
 	get "events/:ruby" => "users#event"
 	get "prefectures/:kana" => "users#prefecture"
 	get ":ruby/:kana" => "users#event_prefecture"
-	# get ":ruby/:kana/:decade" => "users#event_prefecture_decade"
 
 	get "blogs" => "blogs#index"
 	get "events" => "users#event_index"
 	get "prefectures" => "users#prefecture_index"
 
+	get "line" => "users#line"
+
 	get "login" => "users#login_form"
 	post "login" => "users#login"
 	post "logout" => "users#logout"
-    
+
 end

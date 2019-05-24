@@ -61,6 +61,9 @@ before_action :set_users
 	   end
 	end
 
+ 	def line
+  	end	
+
 	def event_index
 		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page]).per(10)	
 	end
