@@ -1090,8 +1090,13 @@ a.line_id {
     text-align: center;
 }
 
+
+.article_item {
+    width: 100%;
+}
+
 .article_padding {
-    padding: 2px 4px;
+    padding: 2px 2px;
 }
 
 .article_padding .flex_contents {
@@ -1109,6 +1114,9 @@ a.line_id {
     justify-content: space-between;
 }
 
+.article_item table{
+    width: 100%;
+}
 
 .article_item table tr {
     border-bottom: 1px solid #ECECEC;
@@ -1140,7 +1148,11 @@ a.line_id {
     color: #444;
 }
 
-
+.flex_list p{
+    font-size: 13px;
+    text-align: left;
+    line-height: 1.6;  
+}
 
 
 
