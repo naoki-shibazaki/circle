@@ -1037,7 +1037,7 @@ a.line_id {
   line-height: 3;
   position: relative;
   display: block;
-  padding: 0 0 0 1em;
+  padding: 0 0 0 2.4em;
   cursor: pointer;
   margin: 0 0 1px 0;
   background: #61cec7;
@@ -1053,16 +1053,16 @@ a.line_id {
 .cp_actab .cp_actab-content p {
   margin: 1em;
 }
-/* :checked */
+
 .cp_actab input:checked ~ .cp_actab-content {
   max-height: 40em;
 }
-/* Icon */
+
 .cp_actab label::after {
   line-height: 3;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   display: block;
   width: 3em;
   height: 3em;
@@ -1077,6 +1077,9 @@ a.line_id {
   transform: rotate(315deg);
 }
 
+.search_area{
+  margin: 10px 0 20px;
+}
 
 
 

@@ -8,7 +8,7 @@
       <ul class="prefectures-menus">
         <% @prefectures.each do |prefecture| %>
           <% if prefecture.group != @x %>
-            <h3 class="prefectures-sub-title"><%= prefecture.group %>エリア</h3>
+            <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
             <li>
               <% if @path.is('users#index', 'users#top') %>
                 <%= link_to prefecture.name, "/prefectures/#{prefecture.kana}" %>
