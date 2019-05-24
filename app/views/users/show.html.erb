@@ -56,6 +56,7 @@
 		<div class="profile-content">
 			<h1 class="user_name"><%= @user.name %></h1>
 			<div class="content_01">		
+			
 			</div>
 			<div class="content_02">
                   <div class="user_schedule">
@@ -72,31 +73,36 @@
 
 			<div class="border"></div>
 
-			<div class="content_04">
-				<span class="data-l">構成メンバー：<%= @user.member %></span>
-				<span class="data-r">年齢層：<%= @user.average_age %></span>	
-
-			</div>
-
-			<div class="content_05">
-				<span class="data-l">費用：<%= @user.cost %></span>
-				<span class="data-r">設立：<%= @user.foundation %></span>				
-			</div>
-
-			<div class="content_06">
-				<h2 class="user_goal"><%= @user.name %>の目標</h2>
-				<%= @user.goal %>
-			</div>
-
-			<div class="content_07">
-				<h2 class="user_appeal">アピール・注意事項</h2>
-				<%= simple_format @user.appeal %>
-			</div>
+			<div class="article_item article_padding">
+				<table>
+					<tbody>
+					<tr class="flex_contents">
+						<th class="flex_list">メンバー</th>
+						<td class="flex_list"><%= @user.member %></td>
+					</tr>
+					<tr class="flex_contents">
+						<th class="flex_list">年齢層</th>
+						<td class="flex_list"><%= @user.average_age %></td>
+					</tr>
+					<tr class="flex_contents">
+						<th class="flex_list">費用</th>
+						<td class="flex_list"><%= @user.cost %></td>
+					</tr>
+					<tr class="flex_contents">
+						<th class="flex_list">目標</th>
+						<td class="flex_list"><%= @user.goal %></td>
+					</tr>
+					<tr class="flex_contents">
+						<th class="flex_list">アピール<br>注意事項</th>
+						<td class="flex_list"><%= simple_format @user.appeal %></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>			
 
 			<div class="content_08"><a href="<%= @user.web %>"><i class="fa fa-chain "></i> <%= @user.web %></div>			
 
 		</div>
-
 	</div>
 
 

@@ -476,6 +476,7 @@ header {
 
 .profile-content .content_08{
   margin-top: 10px;
+  margin-left: 2px;
 }
 
 .profile-content .content_08 a{
@@ -1081,15 +1082,63 @@ a.line_id {
   margin: 10px 0 20px;
 }
 
-
 .user_schedule .fa,
 .user_area .fa{
-    width: 22px;
+    width: 24px;
+    color: #777;
     margin: auto;
     text-align: center;
 }
 
+.article_padding {
+    padding: 2px 4px;
+}
 
+.article_padding .flex_contents {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+
+.article_item table tr {
+    border-bottom: 1px solid #ECECEC;
+    align-items: baseline;
+}
+
+
+.article_item table tr:first-child th, 
+.article_item table tr:first-child td {
+    padding: 0 0 8px;
+}
+
+
+.article_item table th, 
+.article_item table td {
+    font-size: 13px;
+    text-align: left;
+    line-height: 1.6;
+    padding: 8px 0;
+}
+
+.article_item table td {
+    width: 70%;
+}
+
+.article_item table th {
+    width: 25%;
+    font-weight: bold;
+    color: #444;
+}
 
 
 
