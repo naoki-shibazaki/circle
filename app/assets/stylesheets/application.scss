@@ -1154,10 +1154,54 @@ a.line_id {
     line-height: 1.6;  
 }
 
-.line_img{
-  width: 100%;
-  margin:0 auto 30px;
+.line_img {
+    width: 100%;
+    margin: 20px auto 0;
 }
+
+.line_link_wrap{
+  margin-top: 30px;
+}
+
+.line_title{
+    padding-top: 70px;
+    font-size: 16px;
+    margin-left:10px;
+}
+
+.link_button {
+    font-weight: bold;
+    text-decoration: none;
+    background: #4cb923;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 5px 10px;
+    margin: 14px 10px;
+    border-radius: 20px;
+    display: block;
+    width: 90%;
+}
+
+.link_button:hover {
+  background: silver;
+  text-decoration: none;
+}
+
+.line_business{
+    margin-left: 10px;
+    display: block;
+    padding-bottom: 10px;
+}
+
+a.line_business {
+  color: #099609;
+}
+
+
+.line_txt{
+  padding: 6px 10px;
+}
+
 
 
 
