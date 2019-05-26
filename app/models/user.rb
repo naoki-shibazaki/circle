@@ -22,7 +22,8 @@ class User < ApplicationRecord
 	  	:format => URI::regexp(%w(http https)),
 	}
 
-
+	paginates_per 10
+	
 	before_save do
 		self.average_age.gsub!(/[\[\]\"]/, "") if attribute_present?("average_age")
 	end
