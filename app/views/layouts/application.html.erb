@@ -13,6 +13,7 @@
 
     <%= csrf_meta_tag %>
 
+
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <%= csp_meta_tag %>
@@ -53,7 +54,7 @@
               <%= link_to("サークル一覧", users_path ) %>
           </li>
           <li>
-              <%= link_to("投稿一覧", blogs_path ) %>
+              <%= link_to("ブロク", blogs_path ) %>
           </li>
           <li>
               <%= link_to("ログアウト", destroy_admin_user_session_path, method: :delete ) %>
@@ -65,7 +66,7 @@
               <%= link_to("サークル一覧", users_path ) %>
           </li>
           <li>
-              <%= link_to("投稿一覧", blogs_path ) %>
+              <%= link_to("ブロク", blogs_path ) %>
           </li>
           <li>
               <%= link_to("サークル登録", new_admin_user_registration_path ) %>
@@ -97,7 +98,7 @@
           <li>
             <%= link_to(blogs_path) do %>
                <i class="fa fa-book "></i> 
-               <div class="link_txt">活動記録</div>
+               <div class="link_txt">ブログ</div>
             <% end %>
           </li>
           <li>
@@ -124,7 +125,7 @@
           <li>
             <%= link_to(blogs_path) do %>
                <i class="fa fa-book "></i> 
-               <div class="link_txt">活動記録</div>
+               <div class="link_txt">ブログ</div>
             <% end %>
           </li>
           <li>

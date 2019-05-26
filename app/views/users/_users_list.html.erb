@@ -1,6 +1,5 @@
 <% @users.each do |user| %>
-
-        
+   
           <div class="users-index-item ribbon-wrapper">
             <div class="ribbon-content">
               <% if user.switch == "募集中" %>
@@ -41,9 +40,29 @@
    
             </div>
             <% end %>
-          </div>
-          
 
-    <% end %>
+
+
+            <% user.blogs.last(1).each do |blog| %> 
+             
+              <% if blog.title.present? %>
+                <div class="border"></div>
+
+                <%= link_to(blog_path(blog.id)) do %>
+                  <div class="blog_link">
+                    <div class="catch_image"><%= image_tag blog.image_01.url , class:'post_image' %></div>   
+                    <h3 class="post_title"><%= blog.title %></h3>
+                  </div>
+                <% end %> 
+
+              <% end %>            
+                      
+            <% end %>
+
+
+
+          </div>         
+
+<% end %>
     
     <%= paginate @users %>
