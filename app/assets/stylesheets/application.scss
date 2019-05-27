@@ -408,7 +408,8 @@ header {
   border-radius: 7px;
 }
 
-.header-wrapper .contact-button a{
+.header-wrapper .contact-button a,
+.post_cta .contact-button a{
   color: #fff;
   font-size: 1rem;
   font-weight: bold;
@@ -419,12 +420,14 @@ header {
 }
 
 .header-wrapper .line,
-.footer_btn .line{
+.footer_btn .line,
+.post_cta .line{
   background-color: #45bd59;
 }
 
 .header-wrapper .mail,
-.footer_btn .mail{
+.footer_btn .mail,
+.post_cta .mail{
   background-color: #3ecdc6;
 }
 
@@ -1225,6 +1228,25 @@ a.line_business {
     font-size: 16px;
     padding-top: 8px;
 }
+
+
+.post_cta {
+    width: 170px;
+    text-align: center;
+    margin: 0 auto 26px;
+}
+
+.post_cta .contact-button {
+    padding: 8px 10px;
+    border-radius: 7px;
+}
+
+
+
+
+
+
+
 
 
 

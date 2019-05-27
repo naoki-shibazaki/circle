@@ -30,7 +30,7 @@ class BlogsController < ApplicationController
 	def show
 		@blog = Blog.find(params[:id])
 		@user = User.find_by(id: @blog.user.id)
-
+		@data = AdminUser.find_by(id: @blog.user.id)
 	end
 
 	def edit

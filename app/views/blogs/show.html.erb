@@ -52,8 +52,34 @@
 						<h3 class="blog_title"><%= @blog.title %></h3>
 						<%= simple_format @blog.content %>
 					</div>
-					
+
 			    </div>
+
+
+				<div class="post_cta">
+					<% if admin_user_signed_in? %>
+
+							<% if @user.id == current_admin_user.id %>
+
+							<% else %>
+								<% if @user.line_id != "" %>
+									<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+								<% else %>
+									<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
+								<% end %>
+							<% end %>
+
+					<% else %>	
+					
+							<% if @user.line_id != "" %>
+								<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+							<% else %>
+								<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
+							<% end %>			 
+
+					<% end %> 
+				</div>
+
 
 				<div class="border"></div>
 
