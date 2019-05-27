@@ -6,11 +6,11 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_users
 
 	def top
-		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page])
+		@users = User.all.order(:last_post => :desc,:updated_at => :DESC).where.not(switch: "nil").page(params[:page])
 	end
 
 	def index
-		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page])
+		@users = User.all.order(:last_post => :desc,:updated_at => :DESC).where.not(switch: "nil").page(params[:page])
 	end
 
 	def new
@@ -65,11 +65,11 @@ before_action :set_users
   	end	
 
 	def event_index
-		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page])	
+		@users = User.all.order(:last_post => :desc,:updated_at => :DESC).where.not(switch: "nil").page(params[:page])	
 	end
 
 	def prefecture_index
-		@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page])	
+		@users = User.all.order(:last_post => :desc,:updated_at => :DESC).where.not(switch: "nil").page(params[:page])	
 	end
 
 	def event
@@ -77,7 +77,7 @@ before_action :set_users
 		@prefectures = Prefecture.all.where.not(kana: "nil")
 		@users = User.where(event_id: @event.id).order(updated_at: "DESC").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc,:updated_at => :DESC).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
 		end
 	end
@@ -86,7 +86,7 @@ before_action :set_users
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(prefecture_id: @prefecture.id).order(updated_at: "DESC").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc,:updated_at => :DESC).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
 		end		
 	end
@@ -96,7 +96,7 @@ before_action :set_users
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(updated_at: "DESC").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(updated_at: "DESC").where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc,:updated_at => :DESC).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
 		end
 	end
