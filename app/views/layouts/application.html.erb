@@ -107,12 +107,27 @@
               <div class="link_txt">サークル検索</div>
             <% end %>
           </li>
+
           <li>
-            <%= link_to(destroy_admin_user_session_path, method: :delete) do %>
-               <i class="fa fa-sign-in "></i> 
-               <div class="link_txt">ログアウト</div>
-            <% end %>
+            <div id="nav-drawer">
+                <input id="nav-input" type="checkbox" class="nav-unshown">
+                <label id="nav-open" for="nav-input"><span></span></label>
+                <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+                <div id="nav-content">
+                  <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
+                  <ul>
+                    <li><%= link_to 'ホーム', root_path %></li>
+                    <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
+                    <li><a href="http://nav.cx/3JiS9Im">LINE@でお問い合わせ</a></li>
+<!--                     <li>
+                      link_to("アカウントの削除", user_path, method: :delete, data: {confirm: "アカウントを削除しますか？　※一度削除すると元には戻せません。"})
+                    </li> -->
+                  </ul>
+                </div>
+            </div>
+            <div class="link_txt">メニュー</div>
           </li>
+
         
         <!-- ログインなし -->
         <% else %>
@@ -140,6 +155,24 @@
                <div class="link_txt">ログイン</div>
             <% end %>
           </li>
+
+
+          <li>
+            <div id="nav-drawer">
+                <input id="nav-input" type="checkbox" class="nav-unshown">
+                <label id="nav-open" for="nav-input"><span></span></label>
+                <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+                <div id="nav-content">
+                  <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
+                  <ul>
+                    <li><%= link_to 'ホーム', root_path %></li>
+                    <li><a href="http://nav.cx/3JiS9Im">LINE@でお問い合わせ</a></li>
+                  </ul>
+                </div>
+            </div>
+            <div class="link_txt">メニュー</div>
+          </li>
+
 
         <% end %>
       </ul>
