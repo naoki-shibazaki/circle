@@ -143,7 +143,7 @@ private
 
 	def set_users
 		@users = User.order(:last_post => :desc).where.not(switch: "nil")
-		@events = Event.all.where.not(id: 0)
+		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.where.not(id: 0)
 		@x = "nil"
 	end

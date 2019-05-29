@@ -427,7 +427,8 @@ header {
 
 .header-wrapper .mail,
 .footer_btn .mail,
-.post_cta .mail{
+.post_cta .mail,
+.menu_btn{
   background-color: #3ecdc6;
 }
 
@@ -946,7 +947,7 @@ a.line_id {
 }
 
 .events-menus{
-    width: 90%;
+    width: 76%;
     margin: 12px auto;
     display: table;
     table-layout: fixed;
@@ -954,9 +955,11 @@ a.line_id {
 }
 
 .events-menus li {
-    display: table-cell;
+    float: left;
     vertical-align: middle;
     height: 60px;
+    margin-bottom: 10px;
+    width: 50%;
 }
 
 .events-menus a{
@@ -1355,7 +1358,18 @@ a.line_business {
     height: 36px;
 }
 
+.menu_btn {
+    width: 140px;
+    margin: 14px auto 0px;
+    padding: 5px 10px;
+    border-radius: 7px;
+}
 
+.menu_btn a {
+    color: #fff !important;
+    font-weight: bold;
+    font-size: 14px !important;
+}
 
 
 
@@ -1377,6 +1391,17 @@ a.line_business {
 
 
 }
+
+
+@media only screen and (max-width:450px) {
+
+.imege_title img,
+.imege_title{
+  width: 100%;
+}
+
+}
+
 
 
 // ▼SP
@@ -1446,8 +1471,6 @@ header{
   z-index: 0 !important;
 }
 
-.imege_title{
-  width: 100%;
-}
+
 
 }

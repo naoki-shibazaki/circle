@@ -29,7 +29,7 @@
 	    :prompt => "選択してください" %>
 
 	    <p>サークル種目※</p>	    
-	    <%= f.collection_select :event_id, Event.all, :id, :name %>
+	    <%= f.collection_select :event_id, Event.all.order(:order => :asc), :id, :name %>
 
 	    <p>都道府県※</p>	    
 	    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
