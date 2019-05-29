@@ -77,7 +77,7 @@ before_action :set_users
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefectures = Prefecture.all.where.not(kana: "nil")
-		@users = User.where(event_id: @event.id).order(:last_post => :desc).page(params[:page])
+		@users = User.where(event_id: @event.id).order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 		if @users.count == 0
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
@@ -86,7 +86,7 @@ before_action :set_users
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(prefecture_id: @prefecture.id).order(:last_post => :desc).page(params[:page])
+		@users = User.where(prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 		if @users.count == 0
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
@@ -96,7 +96,7 @@ before_action :set_users
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(:last_post => :desc).page(params[:page])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 		if @users.count == 0
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
