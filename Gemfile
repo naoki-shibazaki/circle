@@ -40,6 +40,9 @@ gem 'meta-tags'
 gem 'sitemap_generator'
 gem 'aws-sdk'
 
+gem 'rinku'
+gem 'rails_autolink'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
