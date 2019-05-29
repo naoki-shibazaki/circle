@@ -7,8 +7,7 @@ class User < ApplicationRecord
 
 	with_options presence: true, on: :update do
 	  validates :name
-	  validates :switch
-	  validates :event_id
+	  validates :event_ids
 	  validates :prefecture_id
 	end
 
