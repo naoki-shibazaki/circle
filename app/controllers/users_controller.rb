@@ -11,6 +11,8 @@ before_action :set_users
 
 	def index
 		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@b1_name = "サークル一覧"
+		@b1_url = "/users"
 	end
 
 	def new
@@ -82,6 +84,8 @@ before_action :set_users
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
 		end
+		@b1_name = @event.name
+		@b1_url = "/events/#{@event.ruby}"
 	end
 
 	def prefecture
@@ -90,7 +94,9 @@ before_action :set_users
 		if @users.count == 0
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
-		end		
+		end
+		@b1_name = @prefecture.name
+		@b1_url = "/prefectures/#{@prefecture.kana}"	
 	end
 
 	def event_prefecture
@@ -101,6 +107,21 @@ before_action :set_users
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
 		end
+		@b1_name = @event.name
+		@b1_url = "/events/#{@event.ruby}"
+		@b2_name = @prefecture.name
+		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+	end
+
+	def decade
+		@decade = Age.find_by(decade: params[:decade])
+		@event = Event.find_by(ruby: params[:ruby])
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		if @users.count == 0
+			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@hit = 0 
+		end		
 	end
 
 

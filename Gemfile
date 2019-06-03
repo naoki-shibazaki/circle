@@ -13,6 +13,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'mini_magick', '~> 4.8'
 
+gem 'gretel'
+
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -42,6 +44,9 @@ gem 'aws-sdk'
 
 gem 'rinku'
 gem 'rails_autolink'
+
+
+
 
 
 group :development, :test do

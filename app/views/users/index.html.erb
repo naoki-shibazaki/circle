@@ -3,14 +3,15 @@
 
     <h1 class="users-heading">全国のサークル一覧</h1>
 
+     <%= render "/layouts/breadcrumb" %>
+
 	<div class="search_area">
 	    <%= render "events_list.html.erb" %>
 
 	    <%= render "prefectures_list.html.erb" %>
 	</div>
 
-	    <%= render "users_list.html.erb" %>
-
+<%= render "users_list.html.erb" %>
 
 
   </div>

@@ -6,6 +6,8 @@ class BlogsController < ApplicationController
 
 	def index
 		@blogs = Blog.all.order(updated_at: "DESC").page(params[:page]).per(10)
+		@b1_name = "活動ブログ"
+		@b1_url = "/blogs"
 	end	
 
 

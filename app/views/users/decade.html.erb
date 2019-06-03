@@ -3,12 +3,10 @@
 <div class="main users-index">
   <div class="container">
     <h1 class="users-heading">
+      【<%=@decade.name %>】
     	<%= @prefecture.name %>で活動している<br>
     	<%= @event.name %>のサークル一覧
     </h1>
-
-  <%= render "/layouts/breadcrumb" %>
-
 
 	<% if @hit == 0 %>
 		<div class="no_hit">該当サークルがありません</div>

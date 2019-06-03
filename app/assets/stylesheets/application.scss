@@ -1372,6 +1372,79 @@ a.line_business {
 }
 
 
+.breadcrumbs{
+  border: solid 1px #ccc;
+  border-width: 1px 0;
+  background-color: #fff;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.breadcrumbs ul,
+.breadcrumbs li{
+ margin: 0;
+ padding: 0;
+}
+
+.breadcrumbs a{
+ color: #6d6d6d;
+ text-decoration: none;
+  font-size: 10px;
+}
+
+.breadcrumbs a:hover{
+ color: #606c76;
+}
+
+.breadcrumbs ul{
+ display: flex;
+ margin: auto;
+}
+
+.breadcrumbs li{
+ list-style: none;
+ height: 30px;
+ line-height: 30px;
+ margin-right: 28px;
+  margin-left: 10px;
+ position: relative;
+}
+
+.breadcrumbs li:before,
+.breadcrumbs li:after{
+ content: "";
+ display: block;
+ position: absolute;
+ top: 0;
+ border-top: 15px solid transparent;
+ border-right: 15px solid transparent;
+ border-bottom: 15px solid transparent;
+}
+
+.breadcrumbs li:before{
+ right: -40px;
+ border-left: 15px solid #ccc;
+}
+
+.breadcrumbs li:after{
+ right: -39px;
+ border-left: 15px solid #fff;
+}
+
+.active a{
+ color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,6 +4,8 @@
   <div class="container">
     <h1 class="users-heading"><%= @prefecture.name %>のサークル一覧</h1>
 
+ 	<%= render "/layouts/breadcrumb" %>
+
 	<% if @hit != 0 %>
 		<div class="search_area">
 	    	<%= render "events_list.html.erb" %>

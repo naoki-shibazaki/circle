@@ -1,0 +1,10 @@
+<div class="breadcrumbs">
+ <nav>
+   <ul>
+     <li><%= link_to 'ホーム', root_path %></li>
+     <% if @b1_name.present? %><li><%= link_to @b1_name, @b1_url %></li><% end %>
+     <% if @b2_name.present? %><li><%= link_to @b2_name, @b2_url %></li><% end %>
+     <% if @b3_name.present? %><li><%= link_to @b3_name, @b3_url %></li><% end %>
+   </ul>
+ </nav>
+</div>
