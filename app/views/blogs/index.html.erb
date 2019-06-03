@@ -1,9 +1,8 @@
 <% set_meta_tags title: "投稿一覧" %>
 <div class="main users-index">
   <div class="container">
+    <%= render "/layouts/breadcrumb" %>
     <h1 class="users-heading">活動ブログ</h1>
-
-  <%= render "/layouts/breadcrumb" %>
 
 
   <% @blogs.each do |blog| %>

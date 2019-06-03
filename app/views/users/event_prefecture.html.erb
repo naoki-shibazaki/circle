@@ -2,12 +2,13 @@
 
 <div class="main users-index">
   <div class="container">
+    <%= render "/layouts/breadcrumb" %>
     <h1 class="users-heading">
     	<%= @prefecture.name %>で活動している<br>
     	<%= @event.name %>のサークル一覧
     </h1>
 
-  <%= render "/layouts/breadcrumb" %>
+
 
 
 	<% if @hit == 0 %>
