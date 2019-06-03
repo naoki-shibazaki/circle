@@ -8,8 +8,11 @@
     	<%= @event.name %>のサークル一覧
     </h1>
 
-
-
+  <% if @hit != 0 %>
+    <div class="search_area">
+        <%= render "ages_list.html.erb" %>
+    </div>
+  <% end %>
 
 	<% if @hit == 0 %>
 		<div class="no_hit">該当サークルがありません</div>

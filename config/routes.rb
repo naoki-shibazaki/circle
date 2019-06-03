@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 	get "events/:ruby" => "users#event"
 	get "prefectures/:kana" => "users#prefecture"
 	get ":ruby/:kana" => "users#event_prefecture"
-	get ":ruby/:kana/:decade" => "users#decade"
+	get ":ruby/:kana/:decade" => "users#age"
 
 	get "blogs" => "blogs#index"
 	get "events" => "users#event_index"

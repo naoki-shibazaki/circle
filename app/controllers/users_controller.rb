@@ -11,6 +11,8 @@ before_action :set_users
 
 	def index
 		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+
+		# パンくず
 		@b1_name = "サークル一覧"
 		@b1_url = "/users"
 	end
@@ -84,6 +86,8 @@ before_action :set_users
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
 		end
+
+		# パンくず		
 		@b1_name = @event.name
 		@b1_url = "/events/#{@event.ruby}"
 	end
@@ -95,6 +99,8 @@ before_action :set_users
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
 		end
+
+		# パンくず
 		@b1_name = @prefecture.name
 		@b1_url = "/prefectures/#{@prefecture.kana}"	
 	end
@@ -107,21 +113,31 @@ before_action :set_users
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
 		end
+
+		# パンくず
 		@b1_name = @event.name
 		@b1_url = "/events/#{@event.ruby}"
 		@b2_name = @prefecture.name
 		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
 	end
 
-	def decade
-		@decade = Age.find_by(decade: params[:decade])
+	def age
+		@age = Age.find_by(decade: params[:decade])
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('average_age like?', "%#{@age.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 		if @users.count == 0
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 			@hit = 0 
-		end		
+		end	
+
+		# パンくず
+		@b1_name = @event.name
+		@b1_url = "/events/#{@event.ruby}"
+		@b2_name = @prefecture.name
+		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+		@b3_name = @age.name
+		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@age.decade}"	
 	end
 
 
@@ -166,6 +182,7 @@ private
 		@users = User.order(:last_post => :desc).where.not(switch: "nil")
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.where.not(id: 0)
+		@ages = Age.all
 		@x = "nil"
 	end
 
