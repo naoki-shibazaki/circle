@@ -36,7 +36,7 @@ before_action :set_users
 	def update
 		@user = User.find(params[:id])
 
-		@user.last_post = @user.created_at
+		@user.last_post = @user.updated_at
 
 		if @user.update(user_params)
 			redirect_to users_path
