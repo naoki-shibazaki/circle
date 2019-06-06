@@ -55,6 +55,12 @@
 	   		checked: @user.average_age,include_hidden: false) %>
 	    </div>
 
+	    <p>募集・歓迎</p>
+	    <div class="check_boxes">
+	   		<%= f.collection_check_boxes(:grouping, Group.all, :name, :name, 
+	   		checked: @user.grouping,include_hidden: false) %>
+	    </div>
+
 	    <p>会費・費用</p>
 	    <%= f.text_field :cost, class: 'form-control', placeholder: "無料" %>
 

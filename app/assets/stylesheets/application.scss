@@ -947,7 +947,7 @@ a.line_id {
 }
 
 .events-menus{
-    width: 76%;
+    width: 90%;
     margin: 12px auto;
     display: table;
     table-layout: fixed;
@@ -959,7 +959,7 @@ a.line_id {
     vertical-align: middle;
     height: 60px;
     margin-bottom: 10px;
-    width: 50%;
+    width: 33%;
 }
 
 .events-menus a{
@@ -1008,6 +1008,25 @@ a.line_id {
 }
 
 .ages-menus a{
+    display: block;
+    font-size: 14px;
+    text-decoration: none;  
+}
+
+.groups-menus{
+    width: 100%;
+    margin: auto;
+    padding-left: 10px;
+    padding-top: 18px;
+}
+
+.groups-menus li {
+    display: table-cell;
+    padding-right: 26px;
+    height: 40px;
+}
+
+.groups-menus a{
     display: block;
     font-size: 14px;
     text-decoration: none;  

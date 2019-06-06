@@ -5,5 +5,5 @@ Event.seed(:id,
   { :id => 2, :order => 2, :name => "バスケットボール" , :ruby => "basketball", :icon => "fa fa-group" },
   { :id => 3, :order => 5, :name => "学生団体" , :ruby => "student", :icon => "fa fa-flag" },
   { :id => 4, :order => 3, :name => "バレーボール" , :ruby => "volleyball", :icon => "fa fa-group" },
-  { :id => 5, :order => 4, :name => "バドミントン" , :ruby => "badminton", :icon => "fa fa-paper-plane-o" }
+  { :id => 5, :order => 4, :name => "バドミントン" , :ruby => "badminton", :icon => "fa fa-group" }
 )

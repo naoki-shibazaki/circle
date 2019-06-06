@@ -71,7 +71,7 @@
 
 				<div class="users-index-item ribbon-wrapper">
 
-		            <%= link_to("##{@user.event.name}", "/events/#{@user.event.ruby}", class: "tag_btn") %>　
+		            <%= link_to("##{@user.event.name}", "/#{@user.event.ruby}", class: "tag_btn") %>　
 		            <%= link_to("##{@user.prefecture.name}", "/prefectures/#{@user.prefecture.kana}", class: "tag_btn") %>
 
 		            <%= link_to(user_path(@user.id)) do %>  

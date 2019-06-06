@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_145837) do
+ActiveRecord::Schema.define(version: 2019_06_05_150731) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(version: 2019_05_29_145837) do
     t.string "order"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "group"
+  end
+
   create_table "prefectures", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -97,6 +104,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_145837) do
     t.string "pic_profile"
     t.string "pic_header"
     t.string "last_post"
+    t.string "grouping"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
   end
 

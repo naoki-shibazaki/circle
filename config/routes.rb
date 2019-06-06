@@ -7,24 +7,20 @@ Rails.application.routes.draw do
   resources :users
   resources :blogs
 
-  root "users#top"
+  root 'users#top'
 
-  get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
+	get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
+	get 'line' , to: 'users#line'
+	get 'blogs' , to: 'blogs#index'
 
-	get "events/:ruby" => "users#event"
-	get "prefectures/:kana" => "users#prefecture"
-	get ":ruby/:kana" => "users#event_prefecture"
-	get ":ruby/:kana/:decade" => "users#age"
+	get 'prefectures' , to: 'users#prefecture_index'
+	get 'prefectures/:kana' , to: 'users#prefecture'
+	
+	get ':ruby' , to: 'users#event'
+	get ':ruby/:kana' , to: 'users#event_prefecture'
+	get ':ruby/:kana/group/:group' , to: 'users#group'
+	get ':ruby/:kana/:decade' , to: 'users#age'
 
-	get "blogs" => "blogs#index"
-	get "events" => "users#event_index"
-	get "prefectures" => "users#prefecture_index"
-
-	get "line" => "users#line"
-
-	get "login" => "users#login_form"
-	post "login" => "users#login"
-	post "logout" => "users#logout"
 
 end

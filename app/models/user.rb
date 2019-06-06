@@ -25,6 +25,7 @@ class User < ApplicationRecord
 	
 	before_save do
 		self.average_age.gsub!(/[\[\]\"]/, "") if attribute_present?("average_age")
+		self.grouping.gsub!(/[\[\]\"]/, "") if attribute_present?("grouping")
 	end
 
 	mount_uploader :pic_profile, ImageUploader
