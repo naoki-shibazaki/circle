@@ -5,12 +5,26 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 
     process resize_to_limit: [500, nil]
+    process :fix_rotate   
+
+
 
   #   version :thumb do
   #       process resize_to_limit: [480, 360]
   #   end  
 
   # Choose what kind of storage to use for this uploader:
+
+
+# アップロードした写真が回転してしまう問題に対応
+  def fix_rotate
+      manipulate! do |img|
+          img = img.auto_orient
+          img = yield(img) if block_given?
+          img
+      end
+  end
+
 
   
   if Rails.env.development?
