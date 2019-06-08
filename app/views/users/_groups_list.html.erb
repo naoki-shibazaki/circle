@@ -9,7 +9,7 @@
         <% @groups.each do |group| %>
 
             <li>
-              <%= link_to("/#{@event.ruby}/#{@prefecture.kana}/group/#{group.group}") do %>
+              <%= link_to("/#{@event.ruby}/#{@prefecture.kana}/#{group.group}") do %>
                 <div class="link_txt"><%= group.name %></div>
               <% end %>
             </li> 

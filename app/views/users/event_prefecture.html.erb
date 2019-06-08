@@ -16,8 +16,7 @@
   <% end %>
 
 	<% if @hit == 0 %>
-		<div class="no_hit">該当サークルがありません</div>
-		<img class="imege_sorry" src="/images/sorry.png">
+    <%= render "/users/no_hit.html.erb" %>
 		
 		<h2 class="users-heading">全国のサークル一覧</h2>
 	<% end %>
