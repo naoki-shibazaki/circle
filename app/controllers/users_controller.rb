@@ -36,9 +36,8 @@ before_action :set_users
 	def update
 		@user = User.find(params[:id])
 
-		@user.last_post = @user.updated_at
-
 		if @user.update(user_params)
+			@user.last_post = @user.updated_at
 			redirect_to users_path
 		else
 			render "/users/edit"
@@ -100,6 +99,47 @@ before_action :set_users
 		@b1_name = @prefecture.name
 		@b1_url = "/prefectures/#{@prefecture.kana}"	
 	end
+
+
+	def prefecture_group
+		@group = Group.find_by(group: params[:group])
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		if @users.count == 0
+			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@hit = 0 
+		end	
+
+		# パンくず
+		@b1_name = @prefecture.name
+		@b1_url = "/prefectures/#{@prefecture.kana}"	
+		@b2_name = @group.name
+		@b2_url = "/prefectures/#{@prefecture.kana}/#{@group.group}"
+	end
+
+
+	def prefecture_age
+		@age = Age.find_by(decade: params[:decade])
+		@group = Group.find_by(group: params[:group])
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(prefecture_id: @prefecture.id).where('average_age like?', "%#{@age.name}%").where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		if @users.count == 0
+			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@hit = 0 
+		end	
+
+		# パンくず
+		@b1_name = @prefecture.name
+		@b1_url = "/prefectures/#{@prefecture.kana}"	
+		@b2_name = @group.name
+		@b2_url = "/prefectures/#{@prefecture.kana}/#{@group.group}"	
+		@b3_name = @age.name
+		@b3_url = "/prefectures/#{@prefecture.kana}/#{@group.group}/#{@age.decade}"		
+	end
+
+
+
+
 
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])

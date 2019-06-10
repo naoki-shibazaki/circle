@@ -1,0 +1,25 @@
+<% set_meta_tags title: "【#{@age.name}の#{@group.name} 歓迎！】#{@prefecture.name}のサークル一覧" %>
+
+<div class="main users-index">
+  <div class="container">
+ 	<%= render "/layouts/breadcrumb" %>
+    <h1 class="users-heading">【<%= @age.name %>の<%= @group.name %> 歓迎！】<br>
+    	<%= @prefecture.name %>のサークル一覧</h1>
+
+	<% if @hit != 0 %>
+		<div class="search_area">
+	    	<%= render "events_list.html.erb" %>
+		</div>
+	<% end %>
+
+	<% if @hit == 0 %>
+		<%= render "/users/no_hit.html.erb" %>
+		
+		<h2 class="users-heading">全国のサークル一覧</h2>
+	<% end %>
+
+    <%= render "users_list.html.erb" %>
+
+    
+  </div>
+</div>

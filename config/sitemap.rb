@@ -19,12 +19,29 @@ SitemapGenerator::Sitemap.create do
     add blog_path(blog), :lastmod => blog.updated_at, :priority => 0.7, :changefreq => 'daily'
   end
 
+
+
+
   Prefecture.find_each do |prefecture|
 
     if prefecture.kana != "nil"
       add "/prefectures/#{prefecture.kana}", :lastmod => prefecture.updated_at, :priority => 0.5, :changefreq => 'daily'
+
+
+          Group.find_each do |prefecture_group|
+                add "/prefectures/#{prefecture.kana}/#{prefecture_group.group}", :lastmod => prefecture_group.updated_at, :priority => 0.5, :changefreq => 'daily'
+
+                Age.find_each do |prefecture_age|
+                      add "/prefectures/#{prefecture.kana}/#{prefecture_group.group}/#{prefecture_age.decade}", :lastmod => prefecture_age.updated_at, :priority => 0.5, :changefreq => 'daily'
+                end
+
+          end
     end
+
   end
+
+
+
 
   Event.find_each do |event|
 

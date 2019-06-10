@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'
+	get 'prefectures/:kana/:group' , to: 'users#prefecture_group'
+	get 'prefectures/:kana/:group/:decade' , to: 'users#prefecture_age'
 	
 	get ':ruby' , to: 'users#event'
 	get ':ruby/:kana' , to: 'users#event_prefecture'
