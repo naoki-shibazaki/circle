@@ -6,6 +6,8 @@ class BlogsController < ApplicationController
 
 	def index
 		@blogs = Blog.all.order(updated_at: "DESC").page(params[:page]).per(10)
+
+		# パンくず
 		@b1_name = "活動ブログ"
 		@b1_url = "/blogs"
 	end	
@@ -33,6 +35,12 @@ class BlogsController < ApplicationController
 		@blog = Blog.find(params[:id])
 		@user = User.find_by(id: @blog.user.id)
 		@data = AdminUser.find_by(id: @blog.user.id)
+
+		# パンくず
+		@b1_name = "活動ブログ"
+		@b1_url = "/blogs"
+		@b2_name = "#{@blog.title.truncate(16)}"
+		@b2_url = ""
 	end
 
 	def edit

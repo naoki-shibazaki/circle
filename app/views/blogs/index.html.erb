@@ -36,7 +36,7 @@
 
 
 
-            <h3 class="blog_title"><%= blog.title %></h3>
+            <h3 class="blog_title"><%= blog.title.truncate(36) %></h3>
               <%= simple_format blog.content.truncate(140) %>      
           </div>
         
