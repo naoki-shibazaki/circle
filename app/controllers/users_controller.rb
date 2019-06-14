@@ -28,11 +28,11 @@ before_action :set_users
 		@blogs = @user.blogs.all
 		@data = AdminUser.find_by(id: params[:id])
 
-		@b1_name = @user.event.name.truncate(7)
+		@b1_name = @user.event.name
 		@b1_url = "/#{@user.event.ruby}"
 		@b2_name = @user.prefecture.name
 		@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
-		@b3_name = @user.name
+		@b3_name = @user.name.truncate(6)
 		@b3_url = ""
 	end
 
