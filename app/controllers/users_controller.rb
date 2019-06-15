@@ -32,7 +32,7 @@ before_action :set_users
 		@b1_url = "/#{@user.event.ruby}"
 		@b2_name = @user.prefecture.name
 		@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
-		@b3_name = @user.name.truncate(7)
+		@b3_name = @user.name.truncate(8)
 		@b3_url = ""
 	end
 
@@ -45,6 +45,7 @@ before_action :set_users
 
 		if @user.update(user_params)
 			@user.last_post = @user.updated_at
+			@user.save
 			redirect_to users_path
 		else
 			render "/users/edit"

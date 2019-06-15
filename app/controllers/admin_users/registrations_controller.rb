@@ -16,6 +16,7 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
 
     user = User.new
     user.id = resource.id
+    user.last_post = Time.now.yesterday
     user.save
   
   end

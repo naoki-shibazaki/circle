@@ -1,6 +1,6 @@
 <%= form_for @blog do |f| %>
             <p>タイトル</p>
-            <%= f.text_field :title %>       
+            <%= f.text_field :title, class: 'form-control', placeholder: "日々の活動記録や次回の開催予告など！" %> 
   
             <p>画像１</p>
             <%= f.file_field :image_01 %>
@@ -15,7 +15,7 @@
             <%= f.file_field :image_04 %>          
 
             <p>本文</p>
-            <%= f.text_area :content %>       
+            <%= f.text_area :content, class: 'form-control', placeholder: "○月○日に△△で、サークルブックの活動をしましたー！！今回はこんなことをしました！"  %>       
 
             <%= f.submit @blog_button %>
       <% end %>
