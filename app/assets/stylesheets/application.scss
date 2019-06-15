@@ -670,6 +670,7 @@ header {
     font-size: 0.7rem;
 }
 
+
 .header-post{
   margin-bottom: 14px;
 }
@@ -728,6 +729,12 @@ header {
     color: #969696;
 }
 
+
+.post_time {
+    color: #909090;
+    font-size: 0.7rem;
+    padding-top: 4px;
+}
 
 /* 共通 ================================ */
 .border{
@@ -1484,8 +1491,10 @@ a.line_business {
 }
 
 
-
-
+.blog_list .post_title {
+    font-size: 16px;
+    padding-top: 6px;
+}
 
 
 

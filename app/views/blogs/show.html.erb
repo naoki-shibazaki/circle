@@ -112,7 +112,7 @@
 			</div>
 
 
-            <% @user.blogs.each do |blog| %> 
+            <% @user.blogs.reverse_each do |blog| %> 
              
               <% if blog.title.present? %>
 
@@ -122,8 +122,9 @@
 
 	                <%= link_to(blog_path(blog.id)) do %>
 	                  <div class="blog_link">
-	                    <div class="catch_image"><%= image_tag blog.image_01.url , class:'post_image' %></div>   
-	                    <h3 class="post_title"><%= blog.title.truncate(36) %></h3>
+	                    <div class="catch_image"><%= image_tag blog.image_01.url , class:'post_image' %></div>
+	                    <div class="post_time"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %> </div>
+	                    <h3 class="post_title"><%= blog.title.truncate(18) %></h3>
 	                  </div>
 	                <% end %> 
 
