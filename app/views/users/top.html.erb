@@ -4,8 +4,14 @@
   	<img class="imege_title" src="/images/top.png">
     <h1 class="users-heading">サークルブック</h1>
 	    <div class="users-txt">
-    		サークルメンバー募集SNS<br>
-    		LINEで簡単に相談ができます！
+		        <% if admin_user_signed_in?  %>
+		        	<%= link_to("活動ブログ", new_blog_path ) %>を投稿すると<br>
+		        	サークルの掲載順位が上がります！
+		        
+		        <% else %>
+		    		サークルメンバー募集SNS<br>
+		    		LINEで簡単に相談ができます！
+		        <% end %>
 		</div>
 
 	<div class="search_area">

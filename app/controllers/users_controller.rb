@@ -46,7 +46,7 @@ before_action :set_users
 		if @user.update(user_params)
 			# @user.last_post = @user.updated_at
 			# @user.save
-			redirect_to users_path
+			redirect_to root_path
 		else
 			render "/users/edit"
 		end	

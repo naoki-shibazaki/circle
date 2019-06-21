@@ -654,6 +654,7 @@ header {
 .post-body{
   clear:left;
   display: block;
+  word-break: break-all;
 }
 
 .post-user{
@@ -1164,6 +1165,7 @@ a.line_id {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+    word-break: break-all;
 }
 
 .article_item table{
@@ -1494,6 +1496,14 @@ a.line_business {
 .blog_list .post_title {
     font-size: 16px;
     padding-top: 6px;
+}
+
+
+.users-txt a{
+    font-size: 16px;
+    font-weight: bold;
+    color: #4a4949;  
+    border-bottom: 1px solid;
 }
 
 
