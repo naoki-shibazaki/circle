@@ -1512,63 +1512,8 @@ a.line_business {
 }
 
 
-
-
-// ▼PC
-@media only screen and (min-width:768px) {
-
-.header-menus_sp{
-  display: none;
-}
-
-.footer_btn{
-  display: none;
-}
-
-
-
-
-}
-
-
-
-
-
-@media only screen and (max-width:450px) {
-
-.imege_title img,
-.imege_title{
-  width: 100%;
-}
-
-}
-
-
-
-
-
-// ▼SP
-@media only screen and (max-width:767px) {
-
-header{
-  height: 60px;
-}
-
-.main{
-  top: 60px;
-}
-
-
-.user-profile{
-  width: 100%;
-}
-
 .header-logo {
   display: none;
-    // width: 24%;
-    // padding-left:2px;
-    // vertical-align: middle;
-    // font-size: 10px;
 }
 
 .header-logo a {
@@ -1607,6 +1552,63 @@ header{
 .header-menus_sp .link_txt{
     display: block;
     font-size: 10px;
+}
+
+
+
+
+
+
+
+
+// ▼PC
+@media only screen and (min-width:768px) {
+
+.footer_btn{
+  display: none;
+}
+
+
+ .link_txt {
+    display: none;
+}
+
+
+
+
+}
+
+
+
+
+
+@media only screen and (max-width:450px) {
+
+.imege_title img,
+.imege_title{
+  width: 100%;
+}
+
+}
+
+
+
+
+
+// ▼SP
+@media only screen and (max-width:767px) {
+
+header{
+  height: 60px;
+}
+
+.main{
+  top: 60px;
+}
+
+
+.user-profile{
+  width: 100%;
 }
 
 

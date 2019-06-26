@@ -37,49 +37,7 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <header>
-      <div class="header-logo">
-          <%= link_to("サークルブック", "/" ) %>
-      </div>
 
-      <ul class="header-menus">
-        <!-- ログイン時の処理 -->
-        <% if admin_user_signed_in?  %>
-          <li>
-              <%= link_to(current_admin_user.email, user_path(current_admin_user)) %>             
-          </li>  
-          <li>
-              <%= link_to("投稿する", new_blog_path ) %>
-          </li>       
-          <li>
-              <%= link_to("サークル一覧", users_path ) %>
-          </li>
-          <li>
-              <%= link_to("活動ブログ", blogs_path ) %>
-          </li>
-          <li>
-              <%= link_to("ログアウト", destroy_admin_user_session_path, method: :delete ) %>
-          </li>
-        
-        <!-- ログインなし -->
-        <% else %>
-          <li>
-              <%= link_to("サークル一覧", users_path ) %>
-          </li>
-          <li>
-              <%= link_to("活動ブログ", blogs_path ) %>
-          </li>
-          <li>
-              <%= link_to("サークル登録", new_admin_user_registration_path ) %>
-          </li>
-          <li>
-              <%= link_to("ログイン", new_admin_user_session_path ) %>
-          </li>
-
-        <% end %>
-      </ul>
-
-
-      <!-- SP -->
       <ul class="header-menus_sp">
         <!-- ログイン時の処理 -->
         <% if admin_user_signed_in?  %>
@@ -108,25 +66,8 @@
             <% end %>
           </li>
 
-          <li>
-            <div id="nav-drawer">
-                <input id="nav-input" type="checkbox" class="nav-unshown">
-                <label id="nav-open" for="nav-input"><span></span></label>
-                <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-                <div id="nav-content">
-                  <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
-                  <ul>
-                    <li><%= link_to 'ホーム', root_path %></li>
-                    <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
-                    <li><a href="http://nav.cx/3JiS9Im">LINE@でお問い合わせ</a></li>
-<!--                     <li>
-                      link_to("アカウントの削除", user_path, method: :delete, data: {confirm: "アカウントを削除しますか？　※一度削除すると元には戻せません。"})
-                    </li> -->
-                  </ul>
-                </div>
-            </div>
-            <div class="link_txt">メニュー</div>
-          </li>
+          <%= render "/layouts/menu" %>
+
 
         
         <!-- ログインなし -->
@@ -157,23 +98,8 @@
           </li>
 
 
-          <li>
-            <div id="nav-drawer">
-                <input id="nav-input" type="checkbox" class="nav-unshown">
-                <label id="nav-open" for="nav-input"><span></span></label>
-                <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-                <div id="nav-content">
-                  <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
-                  <div class="menu_btn"><%= link_to 'サークル登録', new_admin_user_registration_path %></div>
-                  <div class="menu_btn"><%= link_to 'ログイン', new_admin_user_session_path %></div>
-                  <ul>
-                    <li><%= link_to 'ホーム', root_path %></li>
-                    <li><a href="http://nav.cx/3JiS9Im">LINE@でお問い合わせ</a></li>
-                  </ul>
-                </div>
-            </div>
-            <div class="link_txt">メニュー</div>
-          </li>
+          <%= render "/layouts/menu" %>
+
 
 
         <% end %>
