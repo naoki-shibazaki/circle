@@ -338,6 +338,11 @@ private
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@x = "nil"
+
+		if admin_user_signed_in?
+			@user = User.find_by(id: current_admin_user.id)
+		end
+		
 	end
 
 		

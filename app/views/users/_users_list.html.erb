@@ -1,3 +1,18 @@
+
+
+<% if admin_user_signed_in?  %>
+  <div class="post_message">
+      <%= link_to(user_path(current_admin_user)) do %>
+        <%= image_tag @user.pic_profile.url , class:'post_image_icon' %>
+       <% end %>
+
+      <%= link_to(new_blog_path) do %>      
+        <div class="post_link">サークル活動をつぶやく</div>
+      <% end %> 
+  </div>
+<% end %>
+
+
 <% @users.each do |user| %>
    
           <div class="users-index-item ribbon-wrapper">
