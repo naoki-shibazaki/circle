@@ -12,10 +12,10 @@ Rails.application.routes.draw do
 	get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
 
+	get 'faq' , to: 'users#faq'
 	get 'rules' , to: 'users#rules'
 	get 'privacypolicy' , to: 'users#privacypolicy'
 	get 'line' , to: 'users#line'
-	get 'blogs' , to: 'blogs#index'
 
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'

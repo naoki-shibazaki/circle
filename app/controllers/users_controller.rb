@@ -82,7 +82,10 @@ before_action :set_users
 
  	def privacypolicy
   	end	
-  	
+
+ 	def faq
+  	end	
+
 
 	def prefecture_index
 		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])	
