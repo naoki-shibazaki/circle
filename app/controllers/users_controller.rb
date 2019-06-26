@@ -336,7 +336,7 @@ private
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.where.not(id: 0)
 		@ages = Age.all
-		@groups = Group.all
+		@groups = Group.all.order(:id => :asc)
 		@x = "nil"
 	end
 
