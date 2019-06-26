@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
 	get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
+
+	get 'rules' , to: 'users#rules'
+	get 'privacypolicy' , to: 'users#privacypolicy'
 	get 'line' , to: 'users#line'
 	get 'blogs' , to: 'blogs#index'
 

@@ -1,44 +1,41 @@
-        <!-- ログイン時の処理 -->
-        <% if admin_user_signed_in?  %>
+<li>
+    <div id="nav-drawer">
+        <input id="nav-input" type="checkbox" class="nav-unshown">
+        <label id="nav-open" for="nav-input"><span></span></label>
+        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+        <div id="nav-content">
+          <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
 
-            <li>
-              <div id="nav-drawer">
-                  <input id="nav-input" type="checkbox" class="nav-unshown">
-                  <label id="nav-open" for="nav-input"><span></span></label>
-                  <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-                  <div id="nav-content">
-                    <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
-                    <ul>
-                      <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
-                      <li><a href="http://nav.cx/3JiS9Im">LINE@でお問い合わせ</a></li>
-  <!--                     <li>
-                        link_to("アカウントの削除", user_path, method: :delete, data: {confirm: "アカウントを削除しますか？　※一度削除すると元には戻せません。"})
-                      </li> -->
-                    </ul>
-                  </div>
-              </div>
-              <div class="link_txt">メニュー</div>
-            </li>
-          
-          
-          <!-- ログインなし -->
+
+          <% if admin_user_signed_in?  %>
+
+            <div class="menu_btn"><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %>
+            </div>
+
+            <!--                     <li>
+              link_to("アカウントの削除", user_path, method: :delete, data: {confirm: "アカウントを削除しますか？　※一度削除すると元には戻せません。"})
+            </li> -->
+
           <% else %>
+            <div class="menu_btn"><%= link_to 'サークル登録', new_admin_user_registration_path %></div>
+            <div class="menu_btn"><%= link_to 'ログイン', new_admin_user_session_path %></div>
+          <% end %>
 
-            <li>
-              <div id="nav-drawer">
-                  <input id="nav-input" type="checkbox" class="nav-unshown">
-                  <label id="nav-open" for="nav-input"><span></span></label>
-                  <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-                  <div id="nav-content">
-                    <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
-                    <div class="menu_btn"><%= link_to 'サークル登録', new_admin_user_registration_path %></div>
-                    <div class="menu_btn"><%= link_to 'ログイン', new_admin_user_session_path %></div>
-                    <ul>
-                      <li><a href="http://nav.cx/3JiS9Im">LINE@でお問い合わせ</a></li>
-                    </ul>
-                  </div>
-              </div>
-              <div class="link_txt">メニュー</div>
-            </li>
 
-        <% end %>
+          <ul>
+            <li><%= link_to '利用規約', '/rules' %></li>
+            <li><%= link_to 'プライバシーポリシー', '/privacypolicy' %></li>
+            <li><a href="http://nav.cx/3JiS9Im">お問い合わせ（LINE@）</a></li>
+          </ul>
+
+        </div>
+    </div>
+    <div class="link_txt">メニュー</div>
+</li>
+
+
+
+
+
+
+

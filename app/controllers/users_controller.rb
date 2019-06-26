@@ -77,6 +77,13 @@ before_action :set_users
  	def line
   	end	
 
+ 	def rules
+  	end	
+
+ 	def privacypolicy
+  	end	
+  	
+
 	def prefecture_index
 		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])	
 	end
@@ -342,7 +349,7 @@ private
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)
 		end
-		
+
 	end
 
 		

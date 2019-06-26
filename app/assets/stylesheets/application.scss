@@ -1585,9 +1585,36 @@ a.line_business {
 }
 
 
+.page_wrap {
+    background-color: #fff;
+    padding: 16px;
+}
 
+.page_title {
+    font-size: 20px;
+    margin-top: 24px;
+    margin-bottom: 4px;
+}
 
+.page_wrap p{
+    margin-bottom: 10px;
+    font-size: 12px;
+}
 
+.page_wrap a{
+    border-bottom: 1px solid #2d3133;
+}
+
+.rules_link {
+    margin-bottom: 12px;
+    color: #7b7b7b;
+    font-size: 12px;
+}
+
+.rules_link a {
+  color: #2d3133;
+  border-bottom:1px solid; 
+}
 
 
 
