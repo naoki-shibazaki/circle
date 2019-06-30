@@ -481,6 +481,7 @@ header {
 .profile-content .content_08{
   margin-top: 10px;
   margin-left: 2px;
+  word-break: break-all;  
 }
 
 .profile-content .content_08 a{
@@ -1608,12 +1609,13 @@ a.line_business {
 .rules_link {
     margin-bottom: 12px;
     color: #5f5f5f;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .rules_link a {
   color: #2d3133;
   border-bottom:1px solid; 
+  font-size: 11px;
 }
 
 

@@ -81,7 +81,7 @@ class BlogsController < ApplicationController
 			:image_03,
 			:image_04,
 			:image_name,
-			:name
+			:name,
 		)
 	end
 
