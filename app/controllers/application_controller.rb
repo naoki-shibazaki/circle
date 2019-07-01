@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 	before_action :set_current_user	
 	before_action :request_path
+	before_action :set_data
 
 	def set_current_user
     	@current_user = User.find_by(id: session[:user_id])
@@ -30,5 +31,9 @@ class ApplicationController < ActionController::Base
 	        str.map{|s| self.include?(s)}.include?(true)
 	    end
 	end	
+
+	def set_data
+		@time = Time.now
+	end
 
 end
