@@ -28,12 +28,18 @@ before_action :set_users
 		@blogs = @user.blogs.all
 		@data = AdminUser.find_by(id: params[:id])
 
+
+		if @user.switch.present?
 		@b1_name = @user.event.name
 		@b1_url = "/#{@user.event.ruby}"
 		@b2_name = @user.prefecture.name
 		@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
 		@b3_name = @user.name.truncate(8)
 		@b3_url = ""
+		end
+
+
+
 	end
 
 	def edit
