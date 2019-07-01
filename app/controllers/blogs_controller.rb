@@ -23,11 +23,16 @@ class BlogsController < ApplicationController
 		@blog.user_id = current_admin_user.id
 		@blog.save
 
-		@user = User.find_by(id: current_admin_user.id)
-		@user.last_post = @blog.created_at
-		@user.save
+		if @blog.update(blog_params)
 
-	redirect_to blogs_path
+			@user = User.find_by(id: current_admin_user.id)
+			@user.last_post = @blog.created_at
+			@user.save
+
+			redirect_to blogs_path
+		else
+			render "/blogs/edit"
+		end	
 
 	end
 
@@ -81,7 +86,7 @@ class BlogsController < ApplicationController
 			:image_03,
 			:image_04,
 			:image_name,
-			:name,
+			:name
 		)
 	end
 

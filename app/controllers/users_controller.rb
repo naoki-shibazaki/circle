@@ -44,8 +44,6 @@ before_action :set_users
 		@user = User.find(params[:id])
 
 		if @user.update(user_params)
-			# @user.last_post = @user.updated_at
-			# @user.save
 			redirect_to root_path
 		else
 			render "/users/edit"

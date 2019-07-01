@@ -3,6 +3,11 @@
     <div class="form-heading">投稿</div>
     <div class="form users-form">
       <div class="form-body">
+		<% @blog.errors.full_messages.each do |message| %>
+	          <div class="form-error">
+	            <%= message %>
+	          </div>
+	     <% end %>
 
 
       <%= render "form_blog.html.erb"%>
