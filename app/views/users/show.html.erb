@@ -40,6 +40,10 @@
 						<% end %>
 					<% end %>
 
+					<% if current_admin_user.id == 1 %>
+						<div class="admin_edit"><%= link_to("編集", edit_user_path) %></div>
+					<% end %>
+
 			<% else %>	
 			
 					<% if @user.line_id != "" %>

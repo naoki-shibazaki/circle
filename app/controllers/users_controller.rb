@@ -43,7 +43,7 @@ before_action :set_users
 	end
 
 	def edit
-		@user = User.find_by(id: current_admin_user.id)
+		@user = User.find(params[:id])
 	end
 
 	def update
@@ -73,8 +73,14 @@ before_action :set_users
 
 	def ensure_correct_user
 	   if current_admin_user.id != params[:id].to_i
-	      flash[:notice] = "権限がありません"
-	      redirect_to users_path
+	   		if current_admin_user.id == 1   			
+	   		
+
+		   	else
+		      flash[:notice] = "権限がありません"
+		      redirect_to users_path
+
+		    end
 	   end
 	end
 
