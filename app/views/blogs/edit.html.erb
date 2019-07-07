@@ -5,7 +5,9 @@
       <div class="form-body">
       	<% if @blog.errors.any? %>
 	          <div class="form-error">
-	            対応していない画像のファイル形式です
+              いずれかのエラーが発生いたしました。<br>
+              ・必須項目の未記入<br>
+	            ・対応していない画像のファイル形式
 	          </div>
 		<% end %>
 

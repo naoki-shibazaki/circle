@@ -53,7 +53,7 @@
 						  </div>
 
 						<h3 class="blog_title"><%= @blog.title %></h3>
-						<%= simple_format @blog.content %>
+						<%= raw Rinku.auto_link(simple_format @blog.content) %>
 					</div>
 
 			    </div>

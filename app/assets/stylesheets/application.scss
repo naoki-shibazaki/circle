@@ -496,10 +496,6 @@ header {
   word-break: break-all;  
 }
 
-.profile-content .content_08 a{
-  color: #585858;
-}
-
 .profile-content .user_goal,
 .profile-content .user_appeal {
     font-size: 1rem;
@@ -934,6 +930,20 @@ opacity: 1; /* 要素を表示する */
   font-size: 1rem;
 }
 
+.post-body a,
+.flex_contents a,
+.profile-content .content_08 a{
+    color: #3ecdc6;
+}
+
+.post-body a,
+.flex_contents a{
+    font-weight: 100;
+}
+
+.profile-content .content_08{
+  color: #777;
+}
 
 select{
     width: 50%;
@@ -1629,6 +1639,7 @@ a.line_business {
   border-bottom:1px solid; 
   font-size: 11px;
 }
+
 
 
 
