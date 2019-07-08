@@ -139,12 +139,12 @@
     <% else %>
       <% if @path.is('users#show') %>
           <% if @user.line_id != "" %>
-          <div class="footer_btn">
-            <a href="<%= @user.line_id %>"><span class="fixed_btn line"><i class="fa fa-comment-o "></i></span></a>
+          <div class="footer_btn bg_btn">
+            <a href="<%= @user.line_id %>"><span class="fixed_btn_b line">このサークルにLINEで連絡する！</span></a>
           </div>
         <% else %>
-          <div class="footer_btn">
-            <a href="mailto:<%= @data.email %>"><span class="fixed_btn mail"><i class="fa fa-envelope-o "></i></span></a>
+          <div class="footer_btn bg_btn">
+            <a href="mailto:<%= @data.email %>"><span class="fixed_btn_b mail">このサークルにメールで連絡する！</span></a>
           </div>
         <% end %>
       <% end %>
