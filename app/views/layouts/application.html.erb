@@ -137,7 +137,7 @@
     <% end %>
 
     <% else %>
-      <% if @path.is('#show') %>
+      <% if @path.is('#show') && @user.switch == "募集中" %>
           <% if @user.line_id != "" %>
           <div class="footer_btn bg_btn">
             <a href="<%= @user.line_id %>"><span class="fixed_btn_b line">このサークルにLINEで連絡する！</span></a>

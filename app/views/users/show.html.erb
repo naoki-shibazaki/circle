@@ -33,11 +33,19 @@
 					<% if @user.id == current_admin_user.id %>
 						<div class="contact-button edit"><%= link_to("プロフィールの編集", edit_user_path) %></div>
 					<% else %>
-						<% if @user.line_id != "" %>
-							<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+
+						<% if @user.switch == "募集中" %>
+
+								<% if @user.line_id != "" %>
+									<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+								<% else %>
+									<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
+								<% end %>	
+
 						<% else %>
-							<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
+								<div class="contact-button end">募集終了</div>
 						<% end %>
+
 					<% end %>
 
 					<% if current_admin_user.id == 1 %>
@@ -45,12 +53,20 @@
 					<% end %>
 
 			<% else %>	
+
+				<% if @user.switch == "募集中" %>
+
+						<% if @user.line_id != "" %>
+							<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+						<% else %>
+							<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
+						<% end %>	
+
+				<% else %>
+						<div class="contact-button end">募集終了</div>
+				<% end %>
 			
-					<% if @user.line_id != "" %>
-						<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
-					<% else %>
-						<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
-					<% end %>			 
+		 
 
 			<% end %> 
 
@@ -108,7 +124,7 @@
 				</table>
 			</div>			
 
-			<div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></div>			
+			<div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></a></div>			
 
 		</div>
 	</div>
@@ -152,7 +168,8 @@
 				    </div>
 				</div>
 			<% end %>
-		<% end %>	
+		<% end %>
+		<div class="space_btm"></div>
 
 	<% else %>
 		<div class="space_btm"></div>

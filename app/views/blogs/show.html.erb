@@ -60,13 +60,13 @@
 
 
 				<div class="post_cta">
-
-					<% if @user.line_id != "" %>
-						<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
-					<% else %>
-						<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
+					<% if @user.switch == "募集中" %>
+						<% if @user.line_id != "" %>
+							<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+						<% else %>
+							<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
+						<% end %>
 					<% end %>
-					
 				</div>
 
 
