@@ -1,6 +1,6 @@
 	<% set_meta_tags title: @user.name,
 					 description: @user.appeal, 
-					og: { image: @user.pic_header.url } 
+					og: { image: @user.pic_profile.url } 
 	%>
 
 <div class="main user-show">
@@ -39,7 +39,7 @@
 								<% if @user.line_id != "" %>
 									<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
 								<% else %>
-									<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
+									<div class="contact-button mail"><a href="mailto:<%= @data.email %>?subject=【サークルブック】新規のお問い合わせ">メールで連絡する</a></div>
 								<% end %>	
 
 						<% else %>
@@ -50,6 +50,9 @@
 
 					<% if current_admin_user.id == 1 %>
 						<div class="admin_edit"><%= link_to("編集", edit_user_path) %></div>
+						<div class="admin_delete"><%= link_to( "削除", user_path, method: :delete, data: {confirm: "このサークルを削除しますか？"}) %></div>
+
+						
 					<% end %>
 
 			<% else %>	
@@ -169,7 +172,7 @@
 				</div>
 			<% end %>
 		<% end %>
-		
+
 	<% end %>
 
 	<% if @user.switch == "募集中" %>

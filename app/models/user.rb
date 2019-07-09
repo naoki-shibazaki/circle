@@ -1,9 +1,9 @@
 class User < ApplicationRecord
 	has_many :blogs, dependent: :destroy
-	has_many :ages, dependent: :destroy
+	belongs_to :ages, optional: true
 	belongs_to :prefecture, optional: true
 	belongs_to :event, optional: true
-	belongs_to :admin_user, optional: true
+	belongs_to :admin_user, optional: true, dependent: :destroy
 
 	with_options presence: true, on: :update do
 	  validates :name

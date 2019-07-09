@@ -435,7 +435,16 @@ header {
     background-color: #b0b1b1;
 }
 
-.admin_edit a{
+.admin_delete{
+    position: absolute;
+    padding: 5px 10px;
+    margin: 12px 100px;
+    border-radius: 7px;
+    background-color: #b0b1b1;
+}
+
+.admin_edit a,
+.admin_delete a{
   color: #fff;
 }
 
