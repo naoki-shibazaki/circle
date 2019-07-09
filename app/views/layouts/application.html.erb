@@ -126,32 +126,35 @@
 
 
 <!-- button -->
-  <% if admin_user_signed_in? && controller.action_name != 'edit'  %>
-
-    <% if controller.action_name != 'new' %>
-      <div class="footer_btn">
-        <%= link_to(new_blog_path) do %>
-          <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
-        <% end %>
+  <% if @path.is('#show') && @user.switch == "募集中" %>
+      <% if @user.line_id != "" %>
+      <div class="footer_btn bg_btn">
+        <a href="<%= @user.line_id %>"><span class="fixed_btn_b line">このサークルにLINEで連絡する！</span></a>
+      </div>
+    <% else %>
+      <div class="footer_btn bg_btn">
+        <a href="mailto:<%= @data.email %>?subject=【サークルブック】新規のお問い合わせ"><span class="fixed_btn_b mail">このサークルにメールで連絡する！</span></a>
       </div>
     <% end %>
+  <% end %>
 
-    <% else %>
-      <% if @path.is('#show') && @user.switch == "募集中" %>
-          <% if @user.line_id != "" %>
-          <div class="footer_btn bg_btn">
-            <a href="<%= @user.line_id %>"><span class="fixed_btn_b line">このサークルにLINEで連絡する！</span></a>
+
+  <% if admin_user_signed_in? && controller.action_name != 'show'  %>
+
+    <% if controller.action_name != 'new' %>
+      <% if controller.action_name != 'edit' %>
+          <div class="footer_btn">
+            <%= link_to(new_blog_path) do %>
+              <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
+            <% end %>
           </div>
-        <% else %>
-          <div class="footer_btn bg_btn">
-            <a href="mailto:<%= @data.email %>?subject=【サークルブック】新規のお問い合わせ"><span class="fixed_btn_b mail">このサークルにメールで連絡する！</span></a>
-          </div>
-        <% end %>
       <% end %>
-
+    <% end %>
 
   <% end %>
 <!-- button -->
+
+
 
 
   <!-- Initialize Swiper -->
