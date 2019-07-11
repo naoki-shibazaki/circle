@@ -1713,14 +1713,13 @@ a.line_business {
 
 #sosyal {
     margin: 50px auto;
+    text-align: center;
   }
-  .sosyal_facebook {
-    background-color: #2e4a88;
-    box-shadow: 0 4px 0 #1B3D82;
-    text-shadow: 0 -1px -1px #1B3D82;
 
+  .sosyal_facebook,
+  .sosyal_twitter,
+  .sosyal_line{
     display: inline;
-    position: relative;
     font-family: Arial;
     font-size: 14px;
     font-weight: bold;
@@ -1728,7 +1727,15 @@ a.line_business {
     text-decoration: none;
     color: white;
     border-radius: 5px;
-    padding: 14px 80px;
+    padding: 14px 20px;
+  }
+
+  .sosyal_facebook {
+    background-color: #2e4a88;
+    box-shadow: 0 4px 0 #1B3D82;
+    text-shadow: 0 -1px -1px #1B3D82;
+
+
   }
   .sosyal_facebook:hover {
     background-color: #354F84;
@@ -1740,17 +1747,6 @@ a.line_business {
   .sosyal_twitter {
     background-color: #008DDE;
     box-shadow: 0 4px 0 #0078BD;
-
-    display: inline;
-    position: relative;
-    font-family: Arial;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    border-radius: 5px;
-    padding: 14px 80px;
   }
   .sosyal_twitter:active {
     top: 2px;
@@ -1763,17 +1759,6 @@ a.line_business {
   .sosyal_line {
     background-color: #35de00;
     box-shadow: 0 4px 0 #2dc715;
-
-    display: inline;
-    position: relative;
-    font-family: Arial;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    border-radius: 5px;
-    padding: 14px 80px;
   }
   .sosyal_line:active {
     top: 2px;
@@ -1916,9 +1901,21 @@ max-width: 100%;
   margin: 0;
 }
 
+.copyTarget {
+    border: 1px solid #e5e5e5;
+    margin: 1px auto;
+    font-size: 12px;
+    padding: 0.5em;
+    width: 100%;
+    color: #696969;
+}
 
-
-
+.copyBtn{
+    border: 1px solid #e5e5e5;
+    margin: 1px auto;
+    padding: 0.5em 12px;
+    width: 100%;
+}
 
 
 
