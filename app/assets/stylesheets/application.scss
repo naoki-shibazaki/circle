@@ -1714,7 +1714,7 @@ a.line_business {
 #sosyal {
     margin: 50px auto;
   }
-  .facebook {
+  .sosyal_facebook {
     background-color: #2e4a88;
     box-shadow: 0 4px 0 #1B3D82;
     text-shadow: 0 -1px -1px #1B3D82;
@@ -1730,14 +1730,14 @@ a.line_business {
     border-radius: 5px;
     padding: 14px 80px;
   }
-  .facebook:hover {
+  .sosyal_facebook:hover {
     background-color: #354F84;
   }
-  .facebook:active {
+  .sosyal_facebook:active {
     top: 2px;
       box-shadow: 0 2px 0 #1B3D82;
   }
-  .twitter {
+  .sosyal_twitter {
     background-color: #008DDE;
     box-shadow: 0 4px 0 #0078BD;
 
@@ -1752,14 +1752,15 @@ a.line_business {
     border-radius: 5px;
     padding: 14px 80px;
   }
-  .twitter:active {
+  .sosyal_twitter:active {
     top: 2px;
       box-shadow: 0 2px 0 #0078BD;
   }
-  .twitter:hover {
+  .sosyal_twitter:hover {
     background-color: #1397D8;
   }
-  .line {
+
+  .sosyal_line {
     background-color: #35de00;
     box-shadow: 0 4px 0 #2dc715;
 
@@ -1774,11 +1775,11 @@ a.line_business {
     border-radius: 5px;
     padding: 14px 80px;
   }
-  .line:active {
+  .sosyal_line:active {
     top: 2px;
       box-shadow: 0 2px 0 #2dc715;
   }
-  .line:hover {
+  .sosyal_line:hover {
     background-color: #35de00ed;
   }
 

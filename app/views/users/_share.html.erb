@@ -18,11 +18,11 @@
             </div>
 
             <div id='sosyal'>
-               <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@user.name}", class: 'twitter', title: 'Twitter', target: '_blank' %>
+               <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@user.name}", class: 'sosyal_twitter', title: 'Twitter', target: '_blank' %>
 
-               <%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=#{@user.name}", class: 'facebook', title: 'Facebook', target: '_blank' %>
+               <%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=#{@user.name}", class: 'sosyal_facebook', title: 'Facebook', target: '_blank' %>
 
-               <%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=#{@user.name}", class: 'line', title: 'LINE', target: '_blank' %>
+               <%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=#{@user.name}", class: 'sosyal_line', title: 'LINE', target: '_blank' %>
             </div>
      </div>
   </div>
