@@ -1,0 +1,28 @@
+<% flash.each do |message_type, message| %>
+ 
+  <% if flash[:share] %>
+      <div class="flash_social">
+
+        <p>サークルの更新完了！</p>
+        <p><%= @user.name %>をシェアする！</p>
+
+            <div id='sosyal'>
+               <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@user.name}", class: 'sosyal_twitter', title: 'Twitter', target: '_blank' %>
+
+               <%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=#{@user.name}", class: 'sosyal_facebook', title: 'Facebook', target: '_blank' %>
+
+               <%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=#{@user.name}", class: 'sosyal_line', title: 'LINE', target: '_blank' %>
+            </div>
+
+    </div>
+
+  <% end %>
+
+<% end %>
+
+
+<script>
+  $(function(){
+  setTimeout("$('.flash_social').fadeOut('slow')", 5000) 
+  })
+</script>

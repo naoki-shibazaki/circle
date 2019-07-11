@@ -96,8 +96,6 @@
 
           <%= render "/layouts/menu" %>
 
-
-
         <% end %>
       </ul>
 
@@ -115,6 +113,8 @@
         <%= flash[:alert] %>
       </div>
     <% end %>
+
+    <%= render 'layouts/flash_messages' %>
     
     
     <%= yield %>

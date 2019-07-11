@@ -1913,8 +1913,8 @@ max-width: 100%;
     font-size: 12px;
     padding: 0.5em;
     width: 80%;
+    overflow-x: scroll;
     color: #696969;
-    overflow-x: auto;
 }
 
 .copyBtn{
@@ -1922,6 +1922,19 @@ max-width: 100%;
     margin: 1px auto;
     padding: 0.5em 12px;
     width: 20%;
+}
+
+.flash_social{
+  padding: 10px 0;
+  background: #fff;
+  text-align: center;
+  position: absolute;
+  top: 64px;
+  z-index: 10;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  font-size: 14px;
 }
 
 

@@ -50,7 +50,8 @@ before_action :set_users
 		@user = User.find(params[:id])
 
 		if @user.update(user_params)
-			redirect_to root_path
+			flash[:share] = ''
+			redirect_to user_path
 		else
 			render "/users/edit"
 		end	
