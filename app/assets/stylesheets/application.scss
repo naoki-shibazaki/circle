@@ -1157,6 +1157,11 @@ a.line_id {
   display: block;
 }
 
+.imege_happy{
+  width: 150px;
+  margin: 26px auto;
+  display: block;
+}
 
 .cp_actab {
   position: relative;
@@ -1707,12 +1712,12 @@ a.line_business {
 
 
 .url_copy {
-    display: -webkit-inline-box;
+    display: inline-flex;
 }
 
 
 #sosyal {
-    margin: 50px auto;
+    margin: 40px auto;
     text-align: center;
   }
 
@@ -1891,9 +1896,10 @@ max-width: 100%;
 }
 .popupModal1 .modalMain {
      color:#222;
-     text-align: left;
      font-size: 14px;
      line-height: 1.8em;
+    text-align: center;
+    margin: auto;
 }
 
 
