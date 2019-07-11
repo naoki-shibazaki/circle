@@ -5,6 +5,7 @@
 
         <p>サークルの更新完了！</p>
         <p><%= @user.name %>をシェアする！</p>
+        <p>※５秒後に自動で消えます</p>
 
             <div id='sosyal'>
                <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@user.name}", class: 'sosyal_twitter', title: 'Twitter', target: '_blank' %>
