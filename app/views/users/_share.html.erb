@@ -1,0 +1,30 @@
+<div class="popupModal1">
+
+ <input type="radio" name="modalPop" id="pop11" />
+ <label for="pop11"><i class="fa fa-share-alt "></i></label>
+ <input type="radio" name="modalPop" id="pop12" />
+ <label for="pop12">CLOSE</label>
+ <input type="radio" name="modalPop" id="pop13" />
+ <label for="pop13">×</label>
+ <div class="modalPopup2">
+  <div class="modalPopup3">
+
+   <h2 class="modalTitle">シェアする</h2>
+     <div class="modalMain">
+
+            <div class="url_copy">
+              <div class="copyTarget"><%= @url %></div>
+              <button class="copyBtn"><i class="fa fa-files-o "></i></button>
+            </div>
+
+            <div id='sosyal'>
+               <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@user.name}", class: 'twitter', title: 'Twitter', target: '_blank' %>
+
+               <%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=#{@user.name}", class: 'facebook', title: 'Facebook', target: '_blank' %>
+
+               <%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=#{@user.name}", class: 'line', title: 'LINE', target: '_blank' %>
+            </div>
+     </div>
+  </div>
+ </div>
+</div>

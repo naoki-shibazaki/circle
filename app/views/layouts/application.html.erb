@@ -10,9 +10,7 @@
     })(window,document,'script','dataLayer','GTM-WZ5RS5L');</script>
     <!-- End Google Tag Manager -->
 
-
     <%= csrf_meta_tag %>
-
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -24,8 +22,6 @@
     <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload' %>
-  
-
 
   </head>
 
@@ -173,6 +169,23 @@
       },
     });
   </script>
+
+<script>
+  function copyText () {
+    var $target = document.querySelector('.copyTarget');
+    if (!$target) {
+      return false;
+    }
+    var range = document.createRange();
+    range.selectNode($target);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    return false;
+  }
+  document.querySelector('.copyBtn').addEventListener('click', copyText, false);
+</script>
+
 
     
   </body>

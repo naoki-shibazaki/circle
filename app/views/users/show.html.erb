@@ -28,53 +28,63 @@
 				<% end %>
 			</div>
 
-			<% if admin_user_signed_in? %>
 
-					<% if @user.id == current_admin_user.id %>
-						<div class="contact-button edit"><%= link_to("プロフィールの編集", edit_user_path) %></div>
-					<% else %>
-
-						<% if @user.switch == "募集中" %>
-
-								<% if @user.line_id != "" %>
-									<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
-								<% else %>
-									<div class="contact-button mail"><a href="mailto:<%= @data.email %>?subject=【サークルブック】新規のお問い合わせ">メールで連絡する</a></div>
-								<% end %>	
-
-						<% else %>
-								<div class="contact-button end">募集終了</div>
-						<% end %>
-
-					<% end %>
-
+			<div class="admin_area">
+				<% if admin_user_signed_in? %>
 					<% if current_admin_user.id == 1 %>
 						<div class="admin_edit"><%= link_to("編集", edit_user_path) %></div>
 						<div class="admin_delete"><%= link_to( "削除", user_path, method: :delete, data: {confirm: "このサークルを削除しますか？"}) %></div>
-
-						
 					<% end %>
-
-			<% else %>	
-
-				<% if @user.switch == "募集中" %>
-
-						<% if @user.line_id != "" %>
-							<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
-						<% else %>
-							<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
-						<% end %>	
-
-				<% else %>
-						<div class="contact-button end">募集終了</div>
 				<% end %>
-			
-		 
+			</div>
 
-			<% end %> 
+
+
+			<div class="contact_area">
+
+				<div class="share_btn">
+					<%= render "share" %>
+				</div>
+
+				<% if admin_user_signed_in? %>
+
+						<% if @user.id == current_admin_user.id %>
+							<div class="contact-button edit"><%= link_to("プロフィールの編集", edit_user_path) %></div>
+						<% else %>
+
+							<% if @user.switch == "募集中" %>
+
+									<% if @user.line_id != "" %>
+										<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+									<% else %>
+										<div class="contact-button mail"><a href="mailto:<%= @data.email %>?subject=【サークルブック】新規のお問い合わせ">メールで連絡する</a></div>
+									<% end %>	
+
+							<% else %>
+									<div class="contact-button end">募集終了</div>
+							<% end %>
+
+						<% end %>
+
+				<% else %>	
+
+					<% if @user.switch == "募集中" %>
+
+							<% if @user.line_id != "" %>
+								<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
+							<% else %>
+								<div class="contact-button mail"><a href="mailto:<%= @data.email %>">メールで連絡する</a></div>
+							<% end %>	
+
+					<% else %>
+							<div class="contact-button end">募集終了</div>
+					<% end %>
+				
+				<% end %> 
+		
+			</div>
 
 		</div>
-
 
 		<div class="profile-content">
 			<h1 class="user_name"><%= @user.name %></h1>
@@ -130,7 +140,7 @@
 			<div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></a></div>			
 
 		</div>
-	</div>
+	</div>	
 
 	<% if @user.blogs.any? %>
 		<% @user.blogs.reverse_each do |blog| %>

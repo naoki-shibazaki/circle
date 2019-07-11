@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
 
 	def set_data
 		@time = Time.now
+		@url = request.url
 	end
 
 end

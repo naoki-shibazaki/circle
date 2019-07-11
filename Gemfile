@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'mini_magick', '~> 4.8'
 
 gem 'gretel'
+gem 'zeroclipboard-rails'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
