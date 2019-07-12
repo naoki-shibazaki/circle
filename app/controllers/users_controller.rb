@@ -50,7 +50,7 @@ before_action :set_users
 		@user = User.find(params[:id])
 
 		if @user.update(user_params)
-			flash[:share] = ''
+			flash[:share] = 'プロフィール更新完了！'
 			redirect_to user_path
 		else
 			render "/users/edit"

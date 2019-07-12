@@ -28,8 +28,9 @@ class BlogsController < ApplicationController
 			@user = User.find_by(id: current_admin_user.id)
 			@user.last_post = @blog.created_at
 			@user.save
-
-			redirect_to blogs_path
+			
+			flash[:share] = 'ブログ投稿完了！'
+			redirect_to blog_path(@blog.id)
 		else
 			render "/blogs/edit"
 		end	
@@ -57,6 +58,7 @@ class BlogsController < ApplicationController
 		@blog = Blog.find(params[:id])
 
 		if @blog.update(blog_params)
+			flash[:share] = 'ブログ更新完了！'
 			redirect_to blog_path
 		else
 			render "/blogs/edit"

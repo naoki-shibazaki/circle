@@ -3,9 +3,13 @@
   <% if flash[:share] %>
       <div class="flash_social">
 
-        <p>サークルの更新完了！</p>
-        <p><%= @user.name %>をシェアする！</p>
+        <p><%= flash[:share] %></p>
+        <p>SNSでシェアする！</p>
         <p>※５秒後に自動で消えます</p>
+
+
+
+          <% if @path.is('users#show') %>
 
             <div id='sosyal'>
                <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@user.name}", class: 'sosyal_twitter', title: 'Twitter', target: '_blank' %>
@@ -14,6 +18,23 @@
 
                <%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=#{@user.name}", class: 'sosyal_line', title: 'LINE', target: '_blank' %>
             </div>
+
+          <% end %>
+
+
+          <% if @path.is('blogs#show') %>
+
+            <div id='sosyal'>
+               <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@blog.title}", class: 'sosyal_twitter', title: 'Twitter', target: '_blank' %>
+
+               <%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=#{@blog.title}", class: 'sosyal_facebook', title: 'Facebook', target: '_blank' %>
+
+               <%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=#{@blog.title}", class: 'sosyal_line', title: 'LINE', target: '_blank' %>
+            </div>
+
+          <% end %>
+
+
 
     </div>
 
