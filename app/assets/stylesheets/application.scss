@@ -412,9 +412,12 @@ header {
   padding: 5px 10px;
   border-radius: 7px;
   background-color: #efb712;
-  color: #fff;
   font-weight: bold;
   font-size: 16px;
+}
+
+.share_btn .fa-share-alt{
+  color: #fff;
 }
 
 .share_btn a{
@@ -1873,7 +1876,6 @@ max-width: 100%;
     display: none;
 }
 
-
 .modalPopup2 {
     animation: fadeIn 1s ease 0s 1 normal;
     -webkit-animation: fadeIn 1s ease 0s 1 normal;
@@ -1919,6 +1921,7 @@ max-width: 100%;
     overflow-x: scroll;
     color: #696969;
     float: left;
+    display: inline-grid;
 }
 
 .copyBtn{
