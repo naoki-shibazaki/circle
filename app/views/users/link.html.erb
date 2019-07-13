@@ -1,0 +1,41 @@
+<% set_meta_tags title: "サークルのリンク集" %>
+<div class="main users-index">
+  <div class="container">
+  	<div class="link_page">
+
+    	<h1 class="users-heading">サークルブック</h1>
+
+		<div class="link_list">
+			<h2 class="link_title">種目別のサークル</h2>
+			<ul>
+				<% @events.each do |event| %>
+		              <li><%= link_to "#{event.name}のサークル一覧", event.ruby %></li>  
+		        <% end %>
+	    	</ul>
+    	</div>
+
+
+		<div class="link_list">
+			<h2 class="link_title">47都道府県ごとのサークル</h2>
+			<ul>
+				<% @prefectures.each do |prefecture| %>
+		              <li><%= link_to "#{prefecture.name}のサークル一覧", "/prefectures/#{prefecture.kana}" %></li>  
+		        <% end %>
+	    	</ul>
+    	</div>
+
+
+		<% @events.each do |event| %>
+			<div class="link_list">
+				<h2 class="link_title"><%= event.name %>のサークル一覧</h2>
+				<ul>
+					<% @prefectures.each do |prefecture| %>
+			              <li><%= link_to "#{prefecture.name}の#{event.name} サークル", "/#{event.ruby}/#{prefecture.kana}" %></li>  
+			        <% end %>
+				</ul>
+	    	</div>
+		<% end %>
+
+	</div>
+  </div>
+</div>

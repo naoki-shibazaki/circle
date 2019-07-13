@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 	get 'rules' , to: 'users#rules'
 	get 'privacypolicy' , to: 'users#privacypolicy'
 	get 'line' , to: 'users#line'
+	get 'link' , to: 'users#link'
 
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'

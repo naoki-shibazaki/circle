@@ -88,6 +88,9 @@ before_action :set_users
  	def line
   	end	
 
+  	def link
+  	end	
+
  	def rules
   	end	
 
