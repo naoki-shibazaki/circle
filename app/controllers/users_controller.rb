@@ -44,6 +44,7 @@ before_action :set_users
 
 	def edit
 		@user = User.find(params[:id])
+		@groups = Group.all.order(:id => :asc)
 	end
 
 	def update
