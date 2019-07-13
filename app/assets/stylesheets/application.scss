@@ -1500,12 +1500,10 @@ a.line_business {
 }
 
 
-
-
 .menu_btn {
-    width: 140px;
+    width: 170px;
     margin: 14px auto 0px;
-    padding: 5px 10px;
+    padding: 6px 10px;
     border-radius: 7px;
 }
 
@@ -1965,6 +1963,10 @@ max-width: 100%;
   list-style-type: circle;
   margin-left: 20px;
   margin-bottom: 6px;
+}
+
+.current_email{
+  margin-bottom: 20px;
 }
 
 

@@ -72,6 +72,25 @@ before_action :set_users
  	def logout
   	end
 
+	def update_email
+
+		if admin_user_signed_in?
+			@data = AdminUser.find_by(id: current_admin_user.id)
+
+			
+			# @data.skip_reconfirmation! 
+			# if @data.update_with_password(user_params)
+			#   redirect_to user_path(@data), notice: 'アドレスを更新しました'
+			# else
+			#   render path
+			# end
+		end
+
+
+
+	end
+
+
 	def ensure_correct_user
 	   if current_admin_user.id != params[:id].to_i
 	   		if current_admin_user.id == 1   			
