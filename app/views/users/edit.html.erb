@@ -5,14 +5,16 @@
       <div class="form-body">
       	<% if @user.errors.any? %>
 	          <div class="form-error">
-	            対応していない画像のファイル形式か<br>
-	            必須項目が未記入の可能性がります。
+              いずれかのエラーが発生いたしました。<br>
+              ・必須項目の未記入<br>
+	          ・対応していない画像のファイル形式<br>
+              ・その他のエラー
 	          </div>
 		<% end %>
 
       <%= form_for @user do |f| %>
 
-        <p>サークル名(必須)</p>
+        <p>サークル名<span class="must_red">(必須)</span></p>
         <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
 
         <p>アイコン画像</p>
@@ -25,14 +27,14 @@
 	    <a href="/line" target="_blank" class="line_id"> >>30秒で作れるLINEアカウントの追加方法</a>
 	    <%= f.text_field :line_id, class: 'form-control', placeholder: "http://nav.cx/3JiS9Im" %>
 	    
-	    <p>募集状況(必須)</p>
+	    <p>募集状況<span class="must_red">(必須)</span></p>
 	    <%= f.select :switch, [ ['募集中','募集中'], ['受付終了','受付終了'] ], 
 	    :prompt => "選択してください" %>
 
-	    <p>サークル種目(必須)</p>	    
+	    <p>サークル種目<span class="must_red">(必須)</span></p>	    
 	    <%= f.collection_select :event_id, Event.all.order(:order => :asc), :id, :name %>
 
-	    <p>都道府県(必須)</p>	    
+	    <p>都道府県<span class="must_red">(必須)</span></p>	    
 	    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
 
 	    <p>活動場所</p>
