@@ -142,8 +142,8 @@
 		</div>
 	</div>	
 
-	<% if @user.blogs.any? %>
-		<% @user.blogs.reverse_each do |blog| %>
+	<% if @blogs.any? %>
+		<% @blogs.each do |blog| %>
 			<%= link_to(blog_path(blog.id)) do %>
 				<div class="form users-form">
 				    <div class="form-body">
