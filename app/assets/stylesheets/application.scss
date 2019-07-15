@@ -586,6 +586,7 @@ header {
 
 .image_icon{
   float: left;
+  display: block;
   width: 90px;
   height: 90px;
   border-radius: 50%;
@@ -791,6 +792,7 @@ header {
 /* 共通 ================================ */
 .border{
     display: block;
+    clear: both;
     width: 96%;
     margin: 12px auto;
     border-bottom: solid 1px #c1c1c1;
