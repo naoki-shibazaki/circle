@@ -73,6 +73,13 @@
 	    <p>アピール・注意事項</p>
 	    <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！興味がある人は気軽にご連絡ください！" %>
 
+		<br>
+	    <p>ギャラリー画像の追加（No.1〜4）</p>
+	    <%= f.file_field :gallery_01 %>
+	   	<%= f.file_field :gallery_02 %>
+	    <%= f.file_field :gallery_03 %>
+	   	<%= f.file_field :gallery_04 %>
+
         <%= f.submit "更新する" %>
 
       <% end %>

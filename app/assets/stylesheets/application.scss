@@ -1981,6 +1981,32 @@ max-width: 100%;
   padding-left: 4px;
 }
 
+.gallery_wrap{
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 12px auto 12px;
+}
+
+.gallery_container{
+  margin: 0 auto;
+  border-radius: 12px;
+  display: inline-table;
+  overflow: hidden;
+  vertical-align: top;
+  width: 90%;
+}
+
+.gallery_imege{
+  width: 49%;
+  margin: 0.8px;
+  height: 100px;
+  object-fit: cover;
+}
+
+
+
+
 
 
 

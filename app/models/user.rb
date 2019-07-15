@@ -30,5 +30,10 @@ class User < ApplicationRecord
 
 	mount_uploader :pic_profile, ImageUploader
 	mount_uploader :pic_header, ImageUploader
+	mount_uploader :gallery_01, ImageUploader
+	mount_uploader :gallery_02, ImageUploader
+	mount_uploader :gallery_03, ImageUploader
+	mount_uploader :gallery_04, ImageUploader
+
 
 end

@@ -32,16 +32,16 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
     @data = AdminUser.find_by(id: current_admin_user.id)
 
 
-    if @data.current_password == resource.current_password
+    # if @data.valid_password?(params[:current_password])
 
-        if @data.update(data_params)
-        else
-          render "/admin_users/edit"
-        end
+    #     if @data.update(data_params)
+    #     else
+    #       render "/admin_users/edit"
+    #     end
 
-    else
-        render "/admin_users/edit"
-    end
+    # else
+    #     render "/admin_users/edit"
+    # end
 
   end
 

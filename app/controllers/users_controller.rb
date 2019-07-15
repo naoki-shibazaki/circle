@@ -367,6 +367,10 @@ private
 		   	:pic_header,
 		    :image_01,
 		    :image_02,
+		    :gallery_01,
+		    :gallery_02,
+		    :gallery_03,
+		    :gallery_04,
 		    decade_age: [],
 		    average_age: [],
 		    grouping: []

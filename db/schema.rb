@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_04_045705) do
+ActiveRecord::Schema.define(version: 2019_07_15_141020) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -105,6 +105,10 @@ ActiveRecord::Schema.define(version: 2019_07_04_045705) do
     t.string "pic_header"
     t.string "last_post"
     t.string "grouping"
+    t.string "gallery_01"
+    t.string "gallery_02"
+    t.string "gallery_03"
+    t.string "gallery_04"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
   end
 
