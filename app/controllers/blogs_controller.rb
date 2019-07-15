@@ -40,6 +40,7 @@ class BlogsController < ApplicationController
 	def show
 		@blog = Blog.find(params[:id])
 		@user = User.find_by(id: @blog.user.id)
+		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: @blog.user.id)
 
 		# パンくず

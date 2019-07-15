@@ -25,7 +25,6 @@ before_action :set_users
 
 	def show
 		@user = User.find(params[:id])
-		# @blogs = @user.blogs.all
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: params[:id])
 
