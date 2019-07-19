@@ -1,33 +1,43 @@
 <% if @user.gallery_01.present? || @user.gallery_02.present? || @user.gallery_03.present? || @user.gallery_04.present? %>
 
 	<div class="gallery_wrap">
-		<div class="gallery_container">
 
-    		<% if @user.gallery_01.present? %>
-	    		<a href="<%= @user.gallery_01.url %>" class="swipe" rel="gallery" title="">
-	    			<img src="<%= @user.gallery_01.url %>" alt="<%= @user.name %>" class="gallery_imege" />
-	    		</a>
-			<% end %>
+		<% if @count == 1 %>
+			<div class="gallery_odd">
+		<% else %>
+			<div class="gallery_even">
+		<% end %>
 
-    		<% if @user.gallery_02.present? %>
-	    		<a href="<%= @user.gallery_02.url %>" class="swipe" rel="gallery" title="">
-	    			<img src="<%= @user.gallery_02.url %>" alt="<%= @user.name %>" class="gallery_imege" />
-	    		</a>
-			<% end %>
+			<div class="gallery_container">
 
-    		<% if @user.gallery_03.present? %>
-	    		<a href="<%= @user.gallery_03.url %>" class="swipe" rel="gallery" title="">
-	    			<img src="<%= @user.gallery_03.url %>" alt="<%= @user.name %>" class="gallery_imege" />
-	    		</a>
-			<% end %>
+		    		<% if @user.gallery_01.present? %>
+			    		<a href="<%= @user.gallery_01.url %>" class="swipe" rel="gallery" title="<%= @user.name %>">
+			    			<img src="<%= @user.gallery_01.url %>" alt="<%= @user.name %>" class="gallery_imege" />
+			    		</a>
+					<% end %>
 
-    		<% if @user.gallery_04.present? %>
-	    		<a href="<%= @user.gallery_04.url %>" class="swipe" rel="gallery" title="">
-	    			<img src="<%= @user.gallery_04.url %>" alt="<%= @user.name %>" class="gallery_imege" />
-	    		</a>
-			<% end %>			
+		    		<% if @user.gallery_02.present? %>
+			    		<a href="<%= @user.gallery_02.url %>" class="swipe" rel="gallery" title="<%= @user.name %>">
+			    			<img src="<%= @user.gallery_02.url %>" alt="<%= @user.name %>" class="gallery_imege" />
+			    		</a>
+					<% end %>
+
+		    		<% if @user.gallery_03.present? %>
+			    		<a href="<%= @user.gallery_03.url %>" class="swipe" rel="gallery" title="<%= @user.name %>">
+			    			<img src="<%= @user.gallery_03.url %>" alt="<%= @user.name %>" class="gallery_imege" />
+			    		</a>
+					<% end %>
+
+		    		<% if @user.gallery_04.present? %>
+			    		<a href="<%= @user.gallery_04.url %>" class="swipe" rel="gallery" title="<%= @user.name %>">
+			    			<img src="<%= @user.gallery_04.url %>" alt="<%= @user.name %>" class="gallery_imege" />
+			    		</a>
+					<% end %>
+
+			</div>			
 
 		</div>
+
 	</div>
 
 <% end %>

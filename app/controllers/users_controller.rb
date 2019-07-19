@@ -28,6 +28,23 @@ before_action :set_users
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: params[:id])
 
+		@count = 0
+
+		if @user.gallery_01.present?
+			@count += 1
+		end
+
+		if @user.gallery_02.present?
+			@count += 1
+		end
+
+		if @user.gallery_03.present?
+			@count += 1
+		end
+
+		if @user.gallery_04.present?
+			@count += 1
+		end
 
 		if @user.switch.present?
 		@b1_name = @user.event.name

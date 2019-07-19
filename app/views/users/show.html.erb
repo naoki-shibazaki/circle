@@ -33,8 +33,24 @@
                 <span class="ribbon red"><%= @user.switch %></span>
               <% end %>
             </div>	
-		<%= image_tag @user.pic_header.url , class:'header_imege' %>
-		<%= image_tag @user.pic_profile.url , class:'profile_imege' %>
+
+			<% if @user.pic_header.present? %>
+				<a href="<%= @user.pic_header.url %>" class="swipe" rel="show_profile" title="<%= @user.name %>">
+				    <img src="<%= @user.pic_header.url %>" alt="<%= @user.name %>" class="header_imege" />
+				</a>
+			<% else %>
+				<%= image_tag @user.pic_header.url , class:'header_imege' %>
+			<% end %>
+
+			<% if @user.pic_profile.present? %>
+				<a href="<%= @user.pic_profile.url %>" class="swipe" rel="show_profile" title="<%= @user.name %>">
+				    <img src="<%= @user.pic_profile.url %>" alt="<%= @user.name %>" class="profile_imege" />
+				</a>
+			<% else %>
+				<%= image_tag @user.pic_profile.url , class:'profile_imege' %>
+			<% end %>
+
+
 			<div class="data-box">
 				<% if @user.event_id.present? %>
 					<span class="data-r"><%= @user.event.name if @user.event_id? %></span>
