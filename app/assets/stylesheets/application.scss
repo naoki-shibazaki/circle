@@ -4,6 +4,7 @@
 
 
 
+
 /* reset ================================ */
 * {
   box-sizing: border-box;
@@ -1990,7 +1991,7 @@ max-width: 100%;
 
 .gallery_container{
   margin: 0 auto;
-  border-radius: 12px;
+  border-radius: 12px 20px 20px 12px;
   display: inline-table;
   overflow: hidden;
   vertical-align: top;

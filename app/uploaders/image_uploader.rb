@@ -24,7 +24,6 @@ class ImageUploader < CarrierWave::Uploader::Base
       end
   end
 
-
   
   if Rails.env.development?
     storage :file

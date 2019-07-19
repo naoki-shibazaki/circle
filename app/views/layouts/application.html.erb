@@ -20,15 +20,20 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'default-skin', media: 'all', 'data-turbolinks-track': 'reload' %>    
+    <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %> 
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'photoswipe.min', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'photoswipe-ui-default.min', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery-1.10.2.min', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery.photoswipe', 'data-turbolinks-track': 'reload' %>
 
-    <%= render 'layouts/js_photoswipe' %>
+    <script>
+    ;(function($){
+        $(function(){
+            $('a.swipe').photoSwipe();
+        });
+    })(jQuery);
+    </script>
 
   </head>
 
@@ -156,9 +161,6 @@
 
   <% end %>
 <!-- button -->
-
-
-  <%= render 'layouts/html_photoswipe' %>
 
   <!-- Initialize Swiper -->
   <script>
