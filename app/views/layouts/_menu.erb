@@ -6,21 +6,23 @@
         <div id="nav-content">
           <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
 
-
           <!-- ログイン時のみ -->
           <% if admin_user_signed_in?  %>
+          <ul>
 
-            <div class="menu_btn"><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %>
-            </div>
-            <div class="menu_btn"><%= link_to 'メールアドレス変更', edit_admin_user_registration_path %>
-            </div>
+              <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
+
+              <li><%= link_to 'メールアドレス変更', edit_admin_user_registration_path %></li>
+
+          </ul>
+
           <!-- ログイン時のみ -->
 
           <% else %>
             <div class="menu_btn"><%= link_to 'サークル登録', new_admin_user_registration_path %></div>
+
             <div class="menu_btn"><%= link_to 'ログイン', new_admin_user_session_path %></div>
           <% end %>
-
 
 
           <ul>
