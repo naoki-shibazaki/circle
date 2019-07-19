@@ -20,8 +20,15 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'default-skin', media: 'all', 'data-turbolinks-track': 'reload' %>    
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'photoswipe.min', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'photoswipe-ui-default.min', 'data-turbolinks-track': 'reload' %>
+
+    <%= render 'layouts/js_photoswipe' %>
 
   </head>
 
@@ -151,7 +158,7 @@
 <!-- button -->
 
 
-
+  <%= render 'layouts/html_photoswipe' %>
 
   <!-- Initialize Swiper -->
   <script>
@@ -190,7 +197,6 @@
   </script>
 
 
-    
   </body>
 
 </html>

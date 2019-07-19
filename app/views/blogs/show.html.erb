@@ -9,6 +9,7 @@
 
 	<% set_meta_tags title: @blog.title,
 					 description: @blog.content, 
+					og: { image: image_url('/images/default.png') },
 					twitter: { card: 'summary'}  
 	%>
 

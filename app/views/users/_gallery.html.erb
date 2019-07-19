@@ -2,23 +2,41 @@
 
 	<div class="gallery_wrap">
 		<div class="gallery_container">
+			<div class="my-gallery">
 
-    		<% if @user.gallery_01.present? %>
-				<%= image_tag @user.gallery_01.url, class:'gallery_imege' %>
-			<% end %>
+	    		<% if @user.gallery_01.present? %>
+	    			<figure>
+	    				<a href="<%= @user.gallery_01.url %>" data-size="500x375">
+	    					<img src="<%= @user.gallery_01.url %>" alt="<%= @user.name %>" class="gallery_imege" />
+	    				</a>
+	    			</figure>
+				<% end %>
 
-			<% if @user.gallery_02.present? %>
-				<%= image_tag @user.gallery_02.url, class:'gallery_imege' %>
-			<% end %>
+				<% if @user.gallery_02.present? %>
+	    			<figure>
+	    				<a href="<%= @user.gallery_02.url %>" data-size="500x375">
+	    					<img src="<%= @user.gallery_02.url %>" alt="<%= @user.name %>" class="gallery_imege" />
+	    				</a>
+	    			</figure>
+				<% end %>
 
-			<% if @user.gallery_03.present? %>
-				<%= image_tag @user.gallery_03.url, class:'gallery_imege' %>
-			<% end %>
+				<% if @user.gallery_03.present? %>
+	    			<figure>
+	    				<a href="<%= @user.gallery_03.url %>" data-size="500x375">
+	    					<img src="<%= @user.gallery_03.url %>" alt="<%= @user.name %>" class="gallery_imege" />
+	    				</a>
+	    			</figure>
+				<% end %>
 
-			<% if @user.gallery_04.present? %>
-				<%= image_tag @user.gallery_04.url, class:'gallery_imege' %>
-			<% end %>
+				<% if @user.gallery_04.present? %>
+	    			<figure>
+	    				<a href="<%= @user.gallery_04.url %>" data-size="500x375">
+	    					<img src="<%= @user.gallery_04.url %>" alt="<%= @user.name %>" class="gallery_imege" />
+	    				</a>
+	    			</figure>
+				<% end %>				
 
+			</div>
 		</div>
 	</div>
 

@@ -35,5 +35,4 @@ class User < ApplicationRecord
 	mount_uploader :gallery_03, ImageUploader
 	mount_uploader :gallery_04, ImageUploader
 
-
 end
