@@ -22,7 +22,10 @@ def default_meta_tags
         url: request.original_url,
         image: image_url('/images/ogp.png'),
         locale: 'ja_JP'
-      }
+      },
+      twitter: {
+          card: 'summary_large_image'
+      }      
     }
  end
 
