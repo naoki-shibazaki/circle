@@ -1,7 +1,22 @@
+<% if @user.pic_profile.present? %>
+
 	<% set_meta_tags title: @user.name,
 					 description: @user.appeal, 
 					og: { image: @user.pic_profile.url }
 	%>
+
+<% else %>
+
+	<% set_meta_tags title: @user.name,
+					 description: @user.appeal, 
+					twitter: { card: 'summary'}  
+	%>	
+
+<% end %>
+
+
+
+
 
 <div class="main user-show">
   <div class="container">

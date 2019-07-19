@@ -1,7 +1,20 @@
-<% set_meta_tags title: @blog.title,
-				 description: @blog.content, 
-				og: { image: @blog.image_01.url }
-%>
+<% if @blog.image_01.present? %>
+
+	<% set_meta_tags title: @blog.title,
+					 description: @blog.content, 
+					og: { image: @blog.image_01.url }
+	%>
+
+<% else %>
+
+	<% set_meta_tags title: @blog.title,
+					 description: @blog.content, 
+					twitter: { card: 'summary'}  
+	%>
+
+<% end %>
+
+
 
 <div class="main user-show">
   <div class="container">
