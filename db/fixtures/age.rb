@@ -5,6 +5,6 @@ Age.seed(:id,
   { :id => 3, :name => "30代" , :decade => 30 },
   { :id => 4, :name => "40代" , :decade => 40 },
   { :id => 5, :name => "50代" , :decade => 50 },
-  { :id => 6, :name => "60代" , :decade => 60 }
+  { :id => 6, :name => "60代以上" , :decade => 60 }
 
 )

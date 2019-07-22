@@ -18,6 +18,7 @@
         <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
 
         <p>アイコン画像</p>
+        <span class="file_size">※10MB以下のJPEGかPNGのみ</span>
 	    <%= f.file_field :pic_profile %>
 	
         <p>カバー写真／ヘッダー画像</p>
@@ -75,6 +76,7 @@
 
 		<br>
 	    <p>ギャラリー画像の追加（No.1〜4）</p>
+        <span class="file_size">※10MB以下のJPEGかPNGのみ</span>
 	    <%= f.file_field :gallery_01 %>
 	   	<%= f.file_field :gallery_02 %>
 	    <%= f.file_field :gallery_03 %>
