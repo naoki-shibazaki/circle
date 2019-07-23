@@ -46,7 +46,7 @@ class BlogsController < ApplicationController
 		# パンくず
 		@b1_name = "活動ブログ"
 		@b1_url = "/blogs"
-		@b2_name = "#{@blog.title.truncate(18)}"
+		@b2_name = "#{@blog.title.truncate(16)}"
 		@b2_url = ""
 	end
 
