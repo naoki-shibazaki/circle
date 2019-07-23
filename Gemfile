@@ -42,6 +42,7 @@ gem "aws-sdk-s3", require: false
 gem 'meta-tags'
 gem 'sitemap_generator'
 gem 'aws-sdk'
+gem 'whenever', :require => false
 
 gem 'rinku'
 gem 'rails_autolink'
