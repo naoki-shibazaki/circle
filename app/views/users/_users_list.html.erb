@@ -53,19 +53,25 @@
                 <span class="user_recruitment"><%= user.recruitment.truncate(110) %></span>
               </div>
 
-              <% if user.schedules.present? %>
-                <h3 class="schedule_t"><i class="fa fa-calendar "></i> 次回の開催予定</h3>
-              <% end %>
 
-              <% user.schedules.last(2).each do |schedule| %> 
-                <% if schedule.present? %>
+              <% if user.switch == "募集中" %>
 
-                  <%= schedule.day %>
-                  <%= schedule.venue %>
-                  <br>
+                <% if user.schedules.present? %>
+                  <h3 class="schedule_t"><i class="fa fa-calendar "></i> 次回の開催予定</h3>
+                <% end %>
 
-                <% end %>                  
-              <% end %>    
+                <% user.schedules.last(2).each do |schedule| %> 
+                  <% if schedule.present? %>
+
+                    <%= schedule.day %>
+                    <%= schedule.venue %>
+                    <br>
+
+                  <% end %>                  
+                <% end %>   
+
+              <% end %> 
+
 
 
             </div>
