@@ -1,0 +1,46 @@
+<% if admin_user_signed_in? %>
+  <% if @user.id == current_admin_user.id  %>
+
+
+    <div class="schedule_title">活動日の追加</div>
+
+    <div class="schedule_input">
+
+      <%= form_for ([@user, @user.schedules.build]) do |f| %>
+
+          <%= f.date_field :day, value: Time.now.strftime("%Y-%m-%d"), class: 'form-day' %>
+
+          <%= f.text_field :venue, class: 'form-venue', placeholder: "開催場所" %> 
+
+          <%= button_tag :type => "submit", :class =>"btn_submit" do %>
+              <i class="fa fa-plus-circle "></i> 
+          <% end %>
+
+      <% end %>
+
+    </div>
+
+
+    <% if @schedules.present? %>
+
+      <% @schedules.each.each do |schedule| %>
+
+        <%= schedule.day %>
+        <%= schedule.venue %>
+
+       <%= link_to user_schedule_path(@user, schedule),
+          :method => :delete,
+          data: { confirm: 'このスケジュールを削除しますか？'} do %>
+          [×]
+      <% end %>    
+
+        <br>
+      <% end %>
+      
+    <% end %>
+
+
+    <div class="border"></div>
+
+  <% end %>
+<% end %>

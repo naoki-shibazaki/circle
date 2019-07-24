@@ -120,6 +120,12 @@
 		</div>
 
 		<div class="profile-content">
+
+
+		<%= render "users/schedule_form" %>
+
+
+
 			<h1 class="user_name"><%= @user.name %></h1>
 			<div class="content_01">		
 			
@@ -178,6 +184,29 @@
 
 		</div>
 	</div>	
+
+
+    <% if @schedules.present? %>
+     	<div class="form users-form">
+			<div class="form-body">
+        		
+        		<h3 class="schedule_title"><i class="fa fa-calendar "></i> 次回の開催予定</h3>
+
+			    <% @schedules.each do |schedule| %> 
+			        <% if schedule.present? %>
+
+			          <%= schedule.day %>
+			          <%= schedule.venue %>
+			          <br>
+
+			        <% end %>                  
+			    <% end %>
+
+			</div>
+		</div>
+	<% end %>
+
+
 
 	<% if @blogs.any? %>
 		<% @blogs.each do |blog| %>

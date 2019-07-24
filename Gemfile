@@ -32,6 +32,8 @@ gem 'jquery-rails'
 
 gem 'bootstrap-sass', '~> 3.3.7'
 gem "font-awesome-rails"
+gem "bootstrap4-datetime-picker-rails"
+gem 'momentjs-rails'
 
 gem 'carrierwave'
 gem 'rmagick', '~> 3.1'

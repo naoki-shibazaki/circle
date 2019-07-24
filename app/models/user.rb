@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	has_many :blogs, dependent: :destroy
+	has_many :schedules, dependent: :destroy
 	belongs_to :ages, optional: true
 	belongs_to :prefecture, optional: true
 	belongs_to :event, optional: true

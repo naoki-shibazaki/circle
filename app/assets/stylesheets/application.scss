@@ -1,7 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "tempusdominus-bootstrap-4.css";
 @import "font-awesome";
-
 
 
 
@@ -2021,7 +2021,49 @@ max-width: 100%;
   font-size: 12px;
 }
 
+.schedule_title{
+  font-size: 14px;
+  font-weight: bold;
+}
 
+.schedule_t{
+  font-size: 14px;
+  font-weight: bold;
+  margin: 16px 0 6px;  
+}
+
+.schedule_input{
+  display: inline-block;
+}
+
+.schedule_input input{
+    border: 1px solid #d8dadf;
+    padding: 10px;
+    color: #1c1e22;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border-radius: 2px;
+}
+
+.form-day,
+.form-venue {
+    height: 30px;
+    margin-bottom: 14px;
+}
+
+.form-day{
+  width: 45%;
+}
+
+.form-venue {
+    width: 40%;
+}
+
+.btn_submit {
+    color: #3ecdc6;
+    font-size: 20px;
+    border: none;
+}
 
 
 // ▼PC

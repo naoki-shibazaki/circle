@@ -4,7 +4,10 @@ Rails.application.routes.draw do
  :sessions => 'admin_users/sessions'
 }
 
-  resources :users
+  resources :users do
+  	resources :schedules, only: [:create, :destroy]
+  end
+
   resources :blogs
 
   root 'users#top'
