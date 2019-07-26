@@ -56,16 +56,16 @@
 
               <% if user.switch == "募集中" %>
 
-                <% if user.schedules.present? %>
-                  <h3 class="schedule_t"><i class="fa fa-calendar "></i> 次回の開催予定</h3>
-                <% end %>
-
                 <% @schedules.each do |schedule| %>
 
                     <% if schedule.user_id == user.id %>
+                      <% if @count == 0 %>
+                        <h3 class="schedule_t"><i class="fa fa-calendar "></i> 次回の開催予定</h3>
+                      <% end %>
+
                       <% if @count < 2 %>
 
-                        <%= schedule.day %>
+                        <%= Time.parse(schedule.day).strftime("%-m/%d") %>
                         <%= schedule.venue %>
                         <br>
 

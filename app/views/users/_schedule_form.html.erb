@@ -25,7 +25,7 @@
 
       <% @schedules.each.each do |schedule| %>
 
-        <%= schedule.day %>
+        <%= Time.parse(schedule.day).strftime("%-m/%d") %>
         <%= schedule.venue %>
 
        <%= link_to user_schedule_path(@user, schedule),
@@ -33,7 +33,6 @@
           data: { confirm: 'このスケジュールを削除しますか？'} do %>
           [×]
       <% end %>    
-
         <br>
       <% end %>
       

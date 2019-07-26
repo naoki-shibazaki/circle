@@ -4,6 +4,11 @@ class SchedulesController < ApplicationController
 	def create
 		@user = User.find(params[:user_id])		
 		@user.schedules.create(schedule_params)
+
+		@user.last_post = @time
+		@user.save
+
+
 		redirect_to user_path(@user)
 	end
 
@@ -17,8 +22,9 @@ class SchedulesController < ApplicationController
 
 	private
 		def schedule_params
-			params.require(:schedule).permit(:day, :venue, :s_user_id)
+			params.require(:schedule).permit(:day, :venue, :date)
 		end
+
 
 
 end
