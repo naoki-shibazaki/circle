@@ -176,6 +176,8 @@
 						<th class="flex_list">アピール<br>注意事項</th>
 						<td class="flex_list"><%= raw Rinku.auto_link(simple_format @user.appeal) %></td>
 					</tr>
+
+					<% if @schedules.present? %>
 					<tr class="flex_contents">
 						<th class="flex_list">活動予定</th>
 						<td class="flex_list">
@@ -183,7 +185,7 @@
 						    <% @schedules.each do |schedule| %> 
 						        <% if schedule.present? %>
 
-						          <%= Time.parse(schedule.day).strftime("%-m/%d") %>
+						          <%= Time.parse(schedule.day).strftime("%-m/%d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 						          <%= schedule.venue %>
 						          <br>
 
@@ -192,6 +194,8 @@
 
 						</td>
 					</tr>
+					<% end %>
+
 					</tbody>
 				</table>
 			</div>			

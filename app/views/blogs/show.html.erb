@@ -86,42 +86,44 @@
 				</div>
 
 
-				<div class="border"></div>
+				<% if @user.switch.present? %>
+					<div class="border"></div>
 
-				<div class="users-index-item ribbon-wrapper"> 
+					<div class="users-index-item ribbon-wrapper"> 
 
-		            <%= link_to("##{@user.event.name}", "/#{@user.event.ruby}", class: "tag_btn") %>　
-		            <%= link_to("##{@user.prefecture.name}", "/prefectures/#{@user.prefecture.kana}", class: "tag_btn") %>
+			            <%= link_to("##{@user.event.name}", "/#{@user.event.ruby}", class: "tag_btn") %>　
+			            <%= link_to("##{@user.prefecture.name}", "/prefectures/#{@user.prefecture.kana}", class: "tag_btn") %>
 
-		            <%= link_to(user_path(@user.id)) do %>  
-		            <div class="user-content">
-		              <%= image_tag @user.pic_profile.url , class:'image_icon' %>
+			            <%= link_to(user_path(@user.id)) do %>  
+			            <div class="user-content">
+			              <%= image_tag @user.pic_profile.url , class:'image_icon' %>
 
-		              <div class="list_wrapper">
-		                <div class="list_01">
-		                  <h2 class="user_name"><%= @user.name %></h2>
-		                </div>
+			              <div class="list_wrapper">
+			                <div class="list_01">
+			                  <h2 class="user_name"><%= @user.name %></h2>
+			                </div>
 
-		                <div class="list_02">
-		                  <span class="user_schedule">
-		                    <i class="fa fa-calendar "></i><%= @user.schedule %>
-		                  </span>
-		                </div>
+			                <div class="list_02">
+			                  <span class="user_schedule">
+			                    <i class="fa fa-calendar "></i><%= @user.schedule %>
+			                  </span>
+			                </div>
 
-		                <div class="list_03">
-		                  <span class="user_area">
-		                    <i class="fa fa-map-marker "></i><%= @user.area %>
-		                  </span>
-		                </div>
-		              </div>
+			                <div class="list_03">
+			                  <span class="user_area">
+			                    <i class="fa fa-map-marker "></i><%= @user.area %>
+			                  </span>
+			                </div>
+			              </div>
 
-		              <div class="list_04">
-		                <span class="user_recruitment"><%= @user.recruitment %></span>
-		              </div>
-		   
-		            </div>
-		            <% end %>
-				</div>
+			              <div class="list_04">
+			                <span class="user_recruitment"><%= @user.recruitment %></span>
+			              </div>
+			   
+			            </div>
+			            <% end %>
+					</div>
+				<% end %>
 
 
 
