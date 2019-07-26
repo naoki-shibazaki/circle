@@ -54,9 +54,34 @@
               </div>
 
 
+              <% if user.switch == "募集中" %>
+
+                <% if user.schedules.present? %>
+                  <h3 class="schedule_t"><i class="fa fa-calendar "></i> 次回の開催予定</h3>
+                <% end %>
+
+                <% @schedules.each do |schedule| %>
+
+                    <% if schedule.user_id == user.id %>
+                      <% if @count < 2 %>
+
+                        <%= schedule.day %>
+                        <%= schedule.venue %>
+                        <br>
+
+                      <% @count += 1 %>
+
+                      <% end %>
+                    <% end %>
+
+                <% end %>   
+
+              <% end %> 
+              <% @count = 0 %>
+
+
             </div>
             <% end %>
-
 
 
             <% user.blogs.last(1).each do |blog| %> 

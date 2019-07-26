@@ -403,6 +403,7 @@ private
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@x = "nil"
+		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
 
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)
