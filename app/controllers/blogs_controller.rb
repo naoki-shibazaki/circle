@@ -2,16 +2,20 @@ class BlogsController < ApplicationController
 
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
 	before_action :ensure_correct_user, {only: [:edit, :update]}
+	before_action :set_blog
 
 
 	def index
-		@blogs = Blog.all.order(updated_at: "DESC").page(params[:page]).per(10)
-
 		# パンくず
 		@b1_name = "活動ブログ"
 		@b1_url = "/blogs"
 	end	
 
+	def top
+		# パンくず
+		@b1_name = "活動ブログ"
+		@b1_url = "/blogs"
+	end	
 
 	def new
 		@blog = Blog.new
@@ -89,10 +93,72 @@ class BlogsController < ApplicationController
 	end	
 
 
+	def event
+		@event = Event.find_by(ruby: params[:ruby])
+		@users = User.where(event_id: @event.id).where.not(switch: "nil")
+
+		# パンくず
+		@b1_name = "活動ブログ"
+		@b1_url = "/blogs"
+		@b2_name = @event.name
+		@b2_url = "/blog/#{@event.ruby}"	
+
+	end
+
+	def event_prefecture
+		@event = Event.find_by(ruby: params[:ruby])
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where.not(switch: "nil")
+
+		# パンくず
+		@b1_name = "活動ブログ"
+		@b1_url = "/blogs"
+		@b2_name = @event.name
+		@b2_url = "/blog/#{@event.ruby}"
+		@b3_name = @prefecture.name
+		@b3_url = "/blog/#{@event.ruby}/#{@prefecture.kana}"		
+	end
+
+	def prefecture_index
+		
+	end
+
+
+	def prefecture
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(prefecture_id: @prefecture.id).where.not(switch: "nil")
+
+		# パンくず
+		@b1_name = "活動ブログ"
+		@b1_url = "/blogs"
+		@b2_name = @prefecture.name
+		@b2_url = "/blog/prefectures/#{@prefecture.kana}"	
+
+	end
+
+
+
+
 	private
 	def set_user
 	    @user = User.where(:id => params[:user_id]).first
 	    @blog = Blog.where(:id => params[:id]).first
+    end
+
+    def set_blog
+    	@users = User.all.where.not(switch: "nil")
+	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
+    	@users_r = User.all.where.not(switch: "nil")
+	    @blogs_r = Blog.all.order(created_at: "DESC").page(params[:page])	    
+		@events = Event.all.where.not(id: 0).order(:order => :asc)
+		@prefectures = Prefecture.all.where.not(id: 0)	
+		@x = "nil"
+		@blog_count = 0
+
+		if admin_user_signed_in?
+			@user = User.find_by(id: current_admin_user.id)
+		end
+
     end
 
 	def blog_params

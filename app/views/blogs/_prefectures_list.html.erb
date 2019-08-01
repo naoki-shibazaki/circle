@@ -1,0 +1,36 @@
+<div class="prefectures-container">
+
+  <div class="cp_actab">
+    <input id="tab-two" type="checkbox" name="tabs">
+    <label for="tab-two">47都道府県から探す</label>
+    <div class="cp_actab-content">
+
+      <ul class="prefectures-menus">
+        <% @prefectures.each do |prefecture| %>
+          <% if prefecture.group != @x %>
+            <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+            <li>
+              <% if @path.is('blogs#index', 'blogs#top', 'blogs#prefecture_index') %>
+                <%= link_to prefecture.name, "/blog/prefectures/#{prefecture.kana}" %>
+              <% else %>
+                <%= link_to prefecture.name, "/blog/#{@event.ruby}/#{prefecture.kana}" %>
+              <% end %>           
+            </li> 
+            <% @x = prefecture.group %>
+            
+          <% else %>
+            <li>
+              <% if @path.is('blogs#index', 'blogs#top', 'blogs#prefecture_index') %>
+                <%= link_to prefecture.name, "/blog/prefectures/#{prefecture.kana}" %>
+              <% else %>
+                <%= link_to prefecture.name, "/blog/#{@event.ruby}/#{prefecture.kana}" %>
+              <% end %>           
+            </li> 
+          <% end %>
+        <% end %> 
+      </ul> 
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="events-container">
+
+  <div class="cp_actab">
+    <input id="tab-one" type="checkbox" name="tabs">
+    <label for="tab-one">趣味やスポーツ、団体から探す</label>
+    <div class="cp_actab-content">
+
+      <ul class="events-menus">
+        <% @events.each do |event| %>
+
+          <% if @path.is('blogs#index', 'blogs#top', 'blogs#prefecture_index') %>
+              <li>
+                <%= link_to("/blog/#{event.ruby}") do %>
+                  <i class="<%= event.icon %>"></i> 
+                  <div class="link_txt"><%= event.name %></div>
+                <% end %>
+              </li> 
+          <% else %>
+              <li>
+                <%= link_to("/blog/#{event.ruby}/#{@prefecture.kana}") do %>
+                  <i class="<%= event.icon %>"></i> 
+                  <div class="link_txt"><%= event.name %></div>
+                <% end %>
+              </li> 
+          <% end %> 
+          
+        <% end %> 
+      </ul> 
+
+    </div>
+  </div>
+
+</div>

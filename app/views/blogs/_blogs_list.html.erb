@@ -1,0 +1,152 @@
+  <% if admin_user_signed_in?  %>
+    <div class="post_message">
+        <%= link_to(user_path(current_admin_user)) do %>
+          <%= image_tag @user.pic_profile.url , class:'post_image_icon' %>
+         <% end %>
+
+        <%= link_to(new_blog_path) do %>      
+          <div class="post_link">サークル活動をつぶやく！</div>
+        <% end %> 
+    </div>
+  <% end %>
+
+
+  <% @blogs.each do |blog| %>
+
+    <% @users.each do |user| %>
+      <% if blog.user_id == user.id %>
+
+        <% @blog_count += 1 %>
+
+          <div class="form users-form">
+              <div class="blog-body">
+
+                <div class="header-post">
+
+                      <%= link_to(blog_path(blog.id)) do %>
+
+                              <%= image_tag blog.user.pic_profile.url , class:'content_icon' %>     
+                              <div class="post-user">
+                                <div class="post-top"><%= blog.user.name %></div>              
+                                <div class="post-bottom"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+                              </div>
+                            </div>
+                            <div class="post-body">   
+
+
+                                <div class="swiper-container">
+                                  <div class="swiper-wrapper">
+
+                                    <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
+                                    <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
+                                    <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
+                                    <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
+
+                                  </div>
+                                  <!-- Add Pagination -->
+                                  <div class="swiper-pagination"></div>
+                                  <!-- Add Arrows -->
+                                  <div class="swiper-button-next"></div>
+                                  <div class="swiper-button-prev"></div>
+                                </div>
+
+
+
+                              <h3 class="blog_title"><%= blog.title.truncate(36) %></h3>
+                                <%= simple_format blog.content.truncate(120) %>      
+                            </div>
+
+                              <div class="blog_tag">
+                                <%= link_to("##{user.event.name}", "/#{user.event.ruby}", class: "tag_btn") %>　
+                                <%= link_to("##{user.prefecture.name}", "/prefectures/#{user.prefecture.kana}", class: "tag_btn") %>
+                              </div>
+                            
+                          
+                            </div>
+                        </div>
+
+                    <% end %>
+
+      <% end %>
+    <% end %>
+
+  <% end %> 
+
+
+
+
+
+<% if @blog_count == 0 %>
+      <img class="imege_sorry" src="/images/sorry.png"> 
+
+      <h2 class="users-heading">全国のサークル活動ブログ</h2>
+
+
+  <% @blogs_r.each do |blog| %>
+
+    <% @users_r.each do |user| %>
+      <% if blog.user_id == user.id %>
+
+          <div class="form users-form">
+              <div class="blog-body">
+
+                <div class="header-post">
+
+                      <%= link_to(blog_path(blog.id)) do %>
+
+                              <%= image_tag blog.user.pic_profile.url , class:'content_icon' %>     
+                              <div class="post-user">
+                                <div class="post-top"><%= blog.user.name %></div>              
+                                <div class="post-bottom"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+                              </div>
+                            </div>
+                            <div class="post-body">   
+
+
+                                <div class="swiper-container">
+                                  <div class="swiper-wrapper">
+
+                                    <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
+                                    <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
+                                    <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
+                                    <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
+
+                                  </div>
+                                  <!-- Add Pagination -->
+                                  <div class="swiper-pagination"></div>
+                                  <!-- Add Arrows -->
+                                  <div class="swiper-button-next"></div>
+                                  <div class="swiper-button-prev"></div>
+                                </div>
+
+
+
+                              <h3 class="blog_title"><%= blog.title.truncate(36) %></h3>
+                                <%= simple_format blog.content.truncate(120) %>      
+                            </div>
+
+                              <div class="blog_tag">
+                                <%= link_to("##{user.event.name}", "/#{user.event.ruby}", class: "tag_btn") %>　
+                                <%= link_to("##{user.prefecture.name}", "/prefectures/#{user.prefecture.kana}", class: "tag_btn") %>
+                              </div>
+                            
+                          
+                            </div>
+                        </div>
+
+                    <% end %>
+
+      <% end %>
+    <% end %>
+
+  <% end %> 
+
+
+<% end %>
+
+
+
+
+
+
+  <%= paginate @blogs %>

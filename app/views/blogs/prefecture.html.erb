@@ -1,0 +1,16 @@
+<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}のサークル活動ブログ" %>
+
+<div class="main users-index">
+  <div class="container">
+    <%= render "/layouts/breadcrumb" %>
+    <h1 class="users-heading"><%= @prefecture.name %>のサークル活動ブログ</h1>
+
+		<div class="search_area">
+		    <%= render "/blogs/events_list" %>
+		</div>
+
+    <%= render "/blogs/blogs_list" %>
+
+  </div>
+</div>
+

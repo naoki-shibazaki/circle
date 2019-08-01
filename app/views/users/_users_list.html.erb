@@ -65,7 +65,7 @@
 
                       <% if @count < 2 %>
 
-                        <%= Time.parse(schedule.day).strftime("%-m/%d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                        <%= Time.parse(schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
                         <%= schedule.venue %>
                         <br>
 

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :blogs
 
-  root 'users#top'
+	root 'users#top'
 
 	get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
@@ -24,6 +24,16 @@ Rails.application.routes.draw do
 	get 'prefectures/:kana' , to: 'users#prefecture'
 	get 'prefectures/:kana/:group' , to: 'users#prefecture_group'
 	get 'prefectures/:kana/:group/:decade' , to: 'users#prefecture_age'
+
+
+	get 'blog' , to: 'blogs#top'
+
+	get 'blog/prefectures' , to: 'blogs#prefecture_index'
+	get 'blog/prefectures/:kana' , to: 'blogs#prefecture'
+
+	get 'blog/:ruby' , to: 'blogs#event'
+	get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
+
 	
 	get ':ruby' , to: 'users#event'
 	get ':ruby/:kana' , to: 'users#event_prefecture'
