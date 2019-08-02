@@ -8,7 +8,5 @@ class Blog < ApplicationRecord
 	mount_uploader :image_03, ImageUploader
 	mount_uploader :image_04, ImageUploader
 
-	paginates_per 5
-
 
 end
