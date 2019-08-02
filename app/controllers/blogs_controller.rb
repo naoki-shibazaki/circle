@@ -58,7 +58,7 @@ class BlogsController < ApplicationController
 		@b2_url = "/blog/#{@user.event.ruby}"
 		@b3_name = "#{@user.prefecture.name}"
 		@b3_url = "/blog/#{@user.event.ruby}/#{@user.prefecture.kana}"	
-		@b4_name = "#{@blog.title.truncate(3)}"
+		@b4_name = "#{@blog.title.truncate(5)}"
 		@b4_url = ""		
 	end
 
