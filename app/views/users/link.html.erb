@@ -14,6 +14,16 @@
 	    	</ul>
     	</div>
 
+		<div class="link_list">
+			<h2 class="link_title">種目別の活動ブログ</h2>
+			<ul>
+				<% @events.each do |event| %>
+		              <li><%= link_to "#{event.name}の活動ブログ", "/blog/#{event.ruby}" %></li>  
+		        <% end %>
+	    	</ul>
+    	</div>
+
+
 
 		<div class="link_list">
 			<h2 class="link_title">47都道府県ごとのサークル</h2>
@@ -23,6 +33,17 @@
 		        <% end %>
 	    	</ul>
     	</div>
+
+		<div class="link_list">
+			<h2 class="link_title">47都道府県ごとの活動ブログ</h2>
+			<ul>
+				<% @prefectures.each do |prefecture| %>
+		              <li><%= link_to "#{prefecture.name}の活動ブログ", "/blog/prefectures/#{prefecture.kana}" %></li>  
+		        <% end %>
+	    	</ul>
+    	</div>
+
+
 
 
 		<% @events.each do |event| %>
@@ -35,6 +56,19 @@
 				</ul>
 	    	</div>
 		<% end %>
+
+		<% @events.each do |event| %>
+			<div class="link_list">
+				<h2 class="link_title"><%= event.name %>の活動ブログ</h2>
+				<ul>
+					<% @prefectures.each do |prefecture| %>
+			              <li><%= link_to "#{prefecture.name}の#{event.name} 活動ブログ", "/blog/#{event.ruby}/#{prefecture.kana}" %></li>  
+			        <% end %>
+				</ul>
+	    	</div>
+		<% end %>
+
+
 
 	</div>
   </div>

@@ -6,12 +6,9 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_users
 
 	def top
-		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 	end
 
 	def index
-		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
-
 		# パンくず
 		@b1_name = "サークル一覧"
 		@b1_url = "/users"
@@ -139,7 +136,9 @@ before_action :set_users
 
 
 	def prefecture_index
-		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])	
+		# パンくず
+		@b1_name = "47都道府県ごとのサークル"
+		@b1_url = ""		
 	end
 
 	def event
@@ -397,7 +396,7 @@ private
 	end
 
 	def set_users
-		@users = User.order(:last_post => :desc).where.not(switch: "nil")
+		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.where.not(id: 0)
 		@ages = Age.all

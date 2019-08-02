@@ -49,9 +49,13 @@ class BlogsController < ApplicationController
 
 		# パンくず
 		@b1_name = "活動ブログ"
-		@b1_url = "/blogs"
-		@b2_name = "#{@blog.title.truncate(16)}"
-		@b2_url = ""
+		@b1_url = "/blog"
+		@b2_name = "#{@user.event.name}"
+		@b2_url = "/blog/#{@user.event.ruby}"
+		@b3_name = "#{@user.prefecture.name}"
+		@b3_url = "/blog/#{@user.event.ruby}/#{@user.prefecture.kana}"	
+		@b4_name = "#{@blog.title.truncate(4)}"
+		@b4_url = ""		
 	end
 
 	def edit
@@ -99,7 +103,7 @@ class BlogsController < ApplicationController
 
 		# パンくず
 		@b1_name = "活動ブログ"
-		@b1_url = "/blogs"
+		@b1_url = "/blog"
 		@b2_name = @event.name
 		@b2_url = "/blog/#{@event.ruby}"	
 
@@ -112,7 +116,7 @@ class BlogsController < ApplicationController
 
 		# パンくず
 		@b1_name = "活動ブログ"
-		@b1_url = "/blogs"
+		@b1_url = "/blog"
 		@b2_name = @event.name
 		@b2_url = "/blog/#{@event.ruby}"
 		@b3_name = @prefecture.name
@@ -120,7 +124,11 @@ class BlogsController < ApplicationController
 	end
 
 	def prefecture_index
-		
+		# パンくず
+		@b1_name = "活動ブログ"
+		@b1_url = "/blog"
+		@b2_name = "47都道府県ごとの活動ブログ"
+		@b2_url = ""		
 	end
 
 
@@ -130,7 +138,7 @@ class BlogsController < ApplicationController
 
 		# パンくず
 		@b1_name = "活動ブログ"
-		@b1_url = "/blogs"
+		@b1_url = "/blog"
 		@b2_name = @prefecture.name
 		@b2_url = "/blog/prefectures/#{@prefecture.kana}"	
 
@@ -146,9 +154,9 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-    	@users = User.all.where.not(switch: "nil")
+    	@users = User.all.where.not(switch: "nil").page(params[:page])
 	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
-    	@users_r = User.all.where.not(switch: "nil")
+    	@users_r = User.all.where.not(switch: "nil").page(params[:page])
 	    @blogs_r = Blog.all.order(created_at: "DESC").page(params[:page])	    
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.where.not(id: 0)	

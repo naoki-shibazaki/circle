@@ -11,8 +11,17 @@
 	    <%= render "/blogs/prefectures_list" %>
 	</div>
 
+  	<div class="link_page">
+		<div class="link_list">
+			<h2 class="link_title">47都道府県ごとの活動ブログ</h2>
+			<ul>
+				<% @prefectures.each do |prefecture| %>
+		              <li><%= link_to "#{prefecture.name}の活動ブログ", "/blog/prefectures/#{prefecture.kana}" %></li>  
+		        <% end %>
+	    	</ul>
+    	</div>
+    </div>
 
-    <%= render "/blogs/blogs_list" %>
 
   </div>
 </div>
