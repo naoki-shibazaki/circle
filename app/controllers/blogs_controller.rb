@@ -154,9 +154,9 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-    	@users = User.all.where.not(switch: "nil").page(params[:page])
+    	@users = User.all.where.not(switch: "nil")
 	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
-    	@users_r = User.all.where.not(switch: "nil").page(params[:page])
+    	@users_r = User.all.where.not(switch: "nil")
 	    @blogs_r = Blog.all.order(created_at: "DESC").page(params[:page])	    
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.where.not(id: 0)	
