@@ -6,12 +6,16 @@ class BlogsController < ApplicationController
 
 
 	def index
+	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
+
 		# パンくず
 		@b1_name = "活動ブログ"
 		@b1_url = "/blogs"
 	end	
 
 	def top
+	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
+
 		# パンくず
 		@b1_name = "活動ブログ"
 		@b1_url = "/blogs"
@@ -155,9 +159,9 @@ class BlogsController < ApplicationController
 
     def set_blog
     	@users = User.all.where.not(switch: "nil")
-	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
+	    @blogs = Blog.all.order(created_at: "DESC")
     	@users_r = User.all.where.not(switch: "nil")
-	    @blogs_r = Blog.all.order(created_at: "DESC").page(params[:page])	    
+	    @blogs_r = Blog.all.order(created_at: "DESC")
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.where.not(id: 0)	
 		@x = "nil"

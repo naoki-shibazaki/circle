@@ -144,9 +144,6 @@
 
 <% end %>
 
-
-
-
-
-
+<% if @path.is('blogs#index', 'blogs#top') %>
   <%= paginate @blogs %>
+<% end %>
