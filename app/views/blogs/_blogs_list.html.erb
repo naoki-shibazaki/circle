@@ -34,21 +34,33 @@
                             <div class="post-body">   
 
 
-                                <div class="swiper-container">
-                                  <div class="swiper-wrapper">
+                              <% if blog.image_01.present? %>
 
-                                    <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
-                                    <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
-                                    <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
-                                    <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
+                                <% if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank? %>
 
+                                  <%= image_tag blog.image_01.url , class:'content_image_one' %>
+
+                                <% else %>
+
+                                  <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+
+                                      <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
+
+                                    </div>
+                                    <!-- Add Pagination -->
+                                    <div class="swiper-pagination"></div>
+                                    <!-- Add Arrows -->
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
                                   </div>
-                                  <!-- Add Pagination -->
-                                  <div class="swiper-pagination"></div>
-                                  <!-- Add Arrows -->
-                                  <div class="swiper-button-next"></div>
-                                  <div class="swiper-button-prev"></div>
-                                </div>
+
+                                <% end %>
+
+                              <% end %>
 
 
 
@@ -79,7 +91,7 @@
 <% if @blog_count == 0 %>
       <img class="imege_sorry" src="/images/sorry.png"> 
 
-      <h2 class="users-heading">全国のサークル活動ブログ</h2>
+      <h2 class="users-heading">全ての活動ブログ</h2>
 
 
   <% @blogs_r.each do |blog| %>
@@ -103,21 +115,33 @@
                             <div class="post-body">   
 
 
-                                <div class="swiper-container">
-                                  <div class="swiper-wrapper">
+                              <% if blog.image_01.present? %>
 
-                                    <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
-                                    <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
-                                    <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
-                                    <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
+                                <% if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank? %>
 
+                                  <%= image_tag blog.image_01.url , class:'content_image_one' %>
+
+                                <% else %>
+
+                                  <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+
+                                      <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
+
+                                    </div>
+                                    <!-- Add Pagination -->
+                                    <div class="swiper-pagination"></div>
+                                    <!-- Add Arrows -->
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
                                   </div>
-                                  <!-- Add Pagination -->
-                                  <div class="swiper-pagination"></div>
-                                  <!-- Add Arrows -->
-                                  <div class="swiper-button-next"></div>
-                                  <div class="swiper-button-prev"></div>
-                                </div>
+
+                                <% end %>
+
+                              <% end %>
 
 
 

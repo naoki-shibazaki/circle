@@ -52,6 +52,15 @@
 
 					<div class="post-body">	
 
+
+					<% if @blog.image_01.present? %>
+
+						<% if @blog.image_02.blank? && @blog.image_03.blank? && @blog.image_04.blank? %>
+
+							<%= image_tag @blog.image_01.url , class:'content_image_one' %>
+
+						<% else %>
+
 						  <div class="swiper-container">
 						    <div class="swiper-wrapper">
 
@@ -67,6 +76,11 @@
 						    <div class="swiper-button-next"></div>
 						    <div class="swiper-button-prev"></div>
 						  </div>
+
+						<% end %>
+
+					<% end %>
+
 
 						<h3 class="blog_title"><%= @blog.title %></h3>
 						<%= raw Rinku.auto_link(simple_format @blog.content) %>

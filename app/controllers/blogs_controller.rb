@@ -9,7 +9,7 @@ class BlogsController < ApplicationController
 	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
 
 		# パンくず
-		@b1_name = "活動ブログ"
+		@b1_name = "ブログ"
 		@b1_url = "/blogs"
 	end	
 
@@ -17,7 +17,7 @@ class BlogsController < ApplicationController
 	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
 
 		# パンくず
-		@b1_name = "活動ブログ"
+		@b1_name = "ブログ"
 		@b1_url = "/blogs"
 	end	
 
@@ -52,13 +52,13 @@ class BlogsController < ApplicationController
 		@data = AdminUser.find_by(id: @blog.user.id)
 
 		# パンくず
-		@b1_name = "活動ブログ"
+		@b1_name = "ブログ"
 		@b1_url = "/blog"
-		@b2_name = "#{@user.event.name}"
+		@b2_name = "#{@user.event.name.truncate(6)}"
 		@b2_url = "/blog/#{@user.event.ruby}"
 		@b3_name = "#{@user.prefecture.name}"
 		@b3_url = "/blog/#{@user.event.ruby}/#{@user.prefecture.kana}"	
-		@b4_name = "#{@blog.title.truncate(4)}"
+		@b4_name = "#{@blog.title.truncate(3)}"
 		@b4_url = ""		
 	end
 
@@ -106,7 +106,7 @@ class BlogsController < ApplicationController
 		@users = User.where(event_id: @event.id).where.not(switch: "nil")
 
 		# パンくず
-		@b1_name = "活動ブログ"
+		@b1_name = "ブログ"
 		@b1_url = "/blog"
 		@b2_name = @event.name
 		@b2_url = "/blog/#{@event.ruby}"	
@@ -119,7 +119,7 @@ class BlogsController < ApplicationController
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where.not(switch: "nil")
 
 		# パンくず
-		@b1_name = "活動ブログ"
+		@b1_name = "ブログ"
 		@b1_url = "/blog"
 		@b2_name = @event.name
 		@b2_url = "/blog/#{@event.ruby}"
@@ -129,7 +129,7 @@ class BlogsController < ApplicationController
 
 	def prefecture_index
 		# パンくず
-		@b1_name = "活動ブログ"
+		@b1_name = "ブログ"
 		@b1_url = "/blog"
 		@b2_name = "47都道府県ごとの活動ブログ"
 		@b2_url = ""		
@@ -141,7 +141,7 @@ class BlogsController < ApplicationController
 		@users = User.where(prefecture_id: @prefecture.id).where.not(switch: "nil")
 
 		# パンくず
-		@b1_name = "活動ブログ"
+		@b1_name = "ブログ"
 		@b1_url = "/blog"
 		@b2_name = @prefecture.name
 		@b2_url = "/blog/prefectures/#{@prefecture.kana}"	
