@@ -98,6 +98,7 @@ class BlogsController < ApplicationController
 
 
 	def event
+	    @blogs = Blog.all.order(created_at: "DESC")
 		@event = Event.find_by(ruby: params[:ruby])
 		@users = User.where(event_id: @event.id).where.not(switch: "nil")
 
@@ -110,6 +111,7 @@ class BlogsController < ApplicationController
 	end
 
 	def event_prefecture
+	    @blogs = Blog.all.order(created_at: "DESC")
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where.not(switch: "nil")
@@ -133,6 +135,7 @@ class BlogsController < ApplicationController
 
 
 	def prefecture
+	    @blogs = Blog.all.order(created_at: "DESC")
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(prefecture_id: @prefecture.id).where.not(switch: "nil")
 
