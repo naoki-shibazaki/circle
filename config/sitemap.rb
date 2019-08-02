@@ -26,7 +26,7 @@ SitemapGenerator::Sitemap.create do
 
     if prefecture.kana != "nil"
       add "/prefectures/#{prefecture.kana}", :lastmod => prefecture.updated_at, :priority => 0.5, :changefreq => 'daily'
-
+      add "/blog/prefectures/#{prefecture.kana}", :lastmod => prefecture.updated_at, :priority => 0.5, :changefreq => 'daily'
 
           Group.find_each do |prefecture_group|
                 add "/prefectures/#{prefecture.kana}/#{prefecture_group.group}", :lastmod => prefecture_group.updated_at, :priority => 0.5, :changefreq => 'daily'
@@ -48,11 +48,13 @@ SitemapGenerator::Sitemap.create do
     if event.ruby != "nil"
 
       add "/#{event.ruby}", :lastmod => event.updated_at, :priority => 0.5, :changefreq => 'daily'
+      add "/blog/#{event.ruby}", :lastmod => event.updated_at, :priority => 0.5, :changefreq => 'daily'
 
         Prefecture.find_each do |event_prefecture|
           
                 if event_prefecture.kana != "nil"
                   add "/#{event.ruby}/#{event_prefecture.kana}", :lastmod => event_prefecture.updated_at, :priority => 0.5, :changefreq => 'daily'
+                  add "/blog/#{event.ruby}/#{event_prefecture.kana}", :lastmod => event_prefecture.updated_at, :priority => 0.5, :changefreq => 'daily'
                
                         Age.find_each do |age|
                               add "/#{event.ruby}/#{event_prefecture.kana}/#{age.decade}", :lastmod => age.updated_at, :priority => 0.5, :changefreq => 'daily'
