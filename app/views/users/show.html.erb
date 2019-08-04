@@ -1,18 +1,30 @@
-<% if @user.pic_profile.present? %>
+<% if @user.event_id.present? && @user.prefecture_id.present? && @user.event_id != 0 && @user.prefecture_id != 0 %>
 
-	<% set_meta_tags title: @user.name,
-					 description: @user.appeal, 
-					og: { image: @user.pic_profile.url },
-					twitter: { card: 'summary'} 
-	%>
+		<% if @user.pic_profile.present? %>
+
+			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}／#{@user.event.name}",
+							 description: @user.appeal, 
+							og: { image: @user.pic_profile.url },
+							twitter: { card: 'summary'} 
+			%>
+
+		<% else %>
+
+			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}／#{@user.event.name}",
+							 description: @user.appeal, 
+							og: { image: image_url('/images/default.png') },
+							twitter: { card: 'summary'}  
+			%>	
+
+		<% end %>
 
 <% else %>
 
-	<% set_meta_tags title: @user.name,
-					 description: @user.appeal, 
-					og: { image: image_url('/images/default.png') },
-					twitter: { card: 'summary'}  
-	%>	
+			<% set_meta_tags title: @user.name,
+							 description: @user.appeal, 
+							og: { image: image_url('/images/default.png') },
+							twitter: { card: 'summary'}  
+			%>	
 
 <% end %>
 
@@ -200,7 +212,7 @@
 				</table>
 			</div>			
 
-			<div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></a></div>			
+			<div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></a></div>
 
 		</div>
 	</div>	

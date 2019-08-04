@@ -1,17 +1,29 @@
-<% if @blog.image_01.present? %>
+<% if @user.event_id.present? && @user.prefecture_id.present? && @user.event_id != 0 && @user.prefecture_id != 0 %>
 
-	<% set_meta_tags title: @blog.title,
-					 description: @blog.content, 
-					og: { image: @blog.image_01.url }
-	%>
+		<% if @blog.image_01.present? %>
+
+			<% set_meta_tags title: "#{@blog.title}｜#{@user.prefecture.name}／#{@user.event.name}",
+							 description: @blog.content, 
+							og: { image: @blog.image_01.url }
+			%>
+
+		<% else %>
+
+			<% set_meta_tags title: "#{@blog.title}｜#{@user.prefecture.name}／#{@user.event.name}",
+							 description: @blog.content, 
+							og: { image: image_url('/images/default.png') },
+							twitter: { card: 'summary'}  
+			%>
+
+		<% end %>
 
 <% else %>
 
-	<% set_meta_tags title: @blog.title,
-					 description: @blog.content, 
-					og: { image: image_url('/images/default.png') },
-					twitter: { card: 'summary'}  
-	%>
+			<% set_meta_tags title: @blog.title,
+							 description: @blog.content, 
+							og: { image: image_url('/images/default.png') },
+							twitter: { card: 'summary'}  
+			%>
 
 <% end %>
 
