@@ -45,6 +45,7 @@ gem 'meta-tags'
 gem 'sitemap_generator'
 gem 'aws-sdk'
 gem 'whenever', :require => false
+gem 'rack-rewrite'
 
 gem 'rinku'
 gem 'rails_autolink'
