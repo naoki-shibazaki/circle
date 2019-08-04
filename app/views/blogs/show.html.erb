@@ -106,7 +106,7 @@
 						<% if @user.line_id != "" %>
 							<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで連絡する</a></div>
 						<% else %>
-							<div class="contact-button mail"><a href="mailto:<%= @data.email %>?subject=【サークルブック】新規のお問い合わせ">メールで連絡する</a></div>
+							<div class="contact-button mail"><a href="mailto:<%= @data.email %>?subject=【サークルブック】新規のお問い合わせ&amp;body=ご担当者%20様%0d%0a%0d%0aサークルブックより新規のお問い合わせです。%0d%0a%0d%0a--------------------------------------%0d%0a内容：参加希望／質問／その他%0d%0a名前：%0d%0a年齢：%0d%0aメッセージ：%0d%0a%0d%0a--------------------------------------%0d%0a%0d%0aよろしくお願いいたします。">メールで連絡する</a></div>
 						<% end %>
 					<% end %>
 				</div>
