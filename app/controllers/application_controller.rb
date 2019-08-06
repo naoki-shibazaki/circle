@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 	before_action :ensure_domain
 	FQDN = 'www.circle-book.com'
 
-
 	# redirect correct server from herokuapp domain for SEO
 	def ensure_domain
 	 return unless /\.herokuapp.com/ =~ request.host
