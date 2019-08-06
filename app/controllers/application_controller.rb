@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
 	 # 主にlocalテスト用の対策80と443以外でアクセスされた場合ポート番号をURLに含める 
 	 port = ":#{request.port}" unless [80, 443].include?(request.port)
-	 redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
+	 redirect_to "#{request.protocol}#{www.circle-book.com}#{port}#{request.path}", status: :moved_permanently
 	end
 
 
