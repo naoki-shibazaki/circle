@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
 	before_action :request_path
 	before_action :set_data
 
+	#herokuapp.comから独自ドメインへリダイレクト
 	before_action :ensure_domain
+	FQDN = 'www.circle-book.com'
 
 
 	# redirect correct server from herokuapp domain for SEO
@@ -12,7 +14,7 @@ class ApplicationController < ActionController::Base
 
 	 # 主にlocalテスト用の対策80と443以外でアクセスされた場合ポート番号をURLに含める 
 	 port = ":#{request.port}" unless [80, 443].include?(request.port)
-	 redirect_to "#{request.protocol}#{www.circle-book.com}#{port}#{request.path}", status: :moved_permanently
+	 redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
 	end
 
 
