@@ -36,6 +36,9 @@ class ApplicationController < ActionController::Base
 		@time = Time.now
 		@url = request.url
 		@count = 0
+
+		@mail_title = "【サークルブック】新規のお問い合わせ"
+		@mail_message = "ご担当者%20様%0d%0a%0d%0aサークルブックより新規のお問い合わせです。%0d%0a%0d%0a--------------------------------------%0d%0a内容：参加希望／質問／その他%0d%0a名前：%0d%0a年齢：%0d%0aメッセージ：%0d%0a%0d%0a--------------------------------------%0d%0a%0d%0aよろしくお願いいたします。"
 	end
 
 end
