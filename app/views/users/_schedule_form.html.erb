@@ -4,13 +4,14 @@
 
     <div class="schedule_title">活動日の追加</div>
 
+
     <div class="schedule_input">
 
       <%= form_for ([@user, @user.schedules.build]) do |f| %>
 
           <%= f.date_field :day, value: Time.now.strftime("%Y-%m-%d"), class: 'form-day' %>
 
-          <%= f.text_field :venue, class: 'form-venue', placeholder: "開催場所" %> 
+          <%= f.text_field :venue, class: 'form-venue', placeholder: "開催場所(必須)" %> 
 
           <%= button_tag :type => "submit", :class =>"btn_submit" do %>
               <i class="fa fa-plus-circle "></i> 

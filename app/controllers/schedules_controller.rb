@@ -8,7 +8,6 @@ class SchedulesController < ApplicationController
 		@user.last_post = @time
 		@user.save
 
-
 		redirect_to user_path(@user)
 	end
 
