@@ -2,7 +2,7 @@
 
 		<% if @user.pic_profile.present? %>
 
-			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}／#{@user.event.name}",
+			<% set_meta_tags title: "【#{@user.name}】#{@user.prefecture.name}／#{@user.event.name}",
 							 description: @user.appeal, 
 							og: { image: @user.pic_profile.url },
 							twitter: { card: 'summary'} 
@@ -10,7 +10,7 @@
 
 		<% else %>
 
-			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}／#{@user.event.name}",
+			<% set_meta_tags title: "【#{@user.name}】#{@user.prefecture.name}／#{@user.event.name}",
 							 description: @user.appeal, 
 							og: { image: image_url('/images/default.png') },
 							twitter: { card: 'summary'}  
@@ -20,7 +20,7 @@
 
 <% else %>
 
-			<% set_meta_tags title: @user.name,
+			<% set_meta_tags title: "【#{@user.name}】",
 							 description: @user.appeal, 
 							og: { image: image_url('/images/default.png') },
 							twitter: { card: 'summary'}  
