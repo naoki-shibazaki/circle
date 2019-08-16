@@ -1,5 +1,5 @@
 <% if @group.name == "社会人" %>
-	<% set_meta_tags title: "#{@prefecture.name}の#{@group.name}サークル一覧" %>
+	<% set_meta_tags title: "#{@prefecture.name}で活動している#{@group.name}サークル一覧" %>
 <% else %>
 	<% set_meta_tags title: "【#{@group.name} 歓迎！】#{@prefecture.name}のサークル一覧" %>
 <% end %>
@@ -10,7 +10,7 @@
  	<%= render "/layouts/breadcrumb" %>
     <h1 class="users-heading">
 		<% if @group.name == "社会人" %>
-		    <%= @prefecture.name %>の<br>
+		    <%= @prefecture.name %>で活動している<br>
 		    <%= @group.name %>サークル一覧
 		<% else %>
 			<%= @group.name %> 歓迎！<br>
