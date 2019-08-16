@@ -3,8 +3,10 @@
 <div class="main users-index">
   <div class="container">
  	<%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading">【<%= @age.name %>の<%= @group.name %> 歓迎！】<br>
-    	<%= @prefecture.name %>のサークル一覧</h1>
+    <h1 class="users-heading">【
+    	<%= @age.name %>の<%= @group.name %> 歓迎！】<br>
+    	<%= @prefecture.name %>のサークル一覧
+    </h1>
 
 	<% if @hit != 0 %>
 		<div class="search_area">

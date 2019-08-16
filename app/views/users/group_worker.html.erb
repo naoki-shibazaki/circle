@@ -1,12 +1,11 @@
-<% set_meta_tags title: "【#{@group.name} 歓迎！】#{@prefecture.name}で活動している#{@event.name}のサークル一覧" %>
+<% set_meta_tags title: "#{@prefecture.name}で活動している#{@event.name}の#{@group.name}サークル一覧" %>
 
 <div class="main users-index">
   <div class="container">
     <%= render "/layouts/breadcrumb" %>
     <h1 class="users-heading">
-      【<%= @group.name %> 歓迎！】<br>
-    	<%= @prefecture.name %>で活動している<br>
-    	<%= @event.name %>のサークル一覧
+      <%= @prefecture.name %>で活動している<br>
+    	<%= @event.name %>の<%= @group.name %>サークル一覧
     </h1>
 
 	<% if @hit == 0 %>

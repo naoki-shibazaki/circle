@@ -1,10 +1,22 @@
-<% set_meta_tags title: "【#{@group.name} 歓迎！】#{@prefecture.name}のサークル一覧" %>
+<% if @group.name == "社会人" %>
+	<% set_meta_tags title: "#{@prefecture.name}の#{@group.name}サークル一覧" %>
+<% else %>
+	<% set_meta_tags title: "【#{@group.name} 歓迎！】#{@prefecture.name}のサークル一覧" %>
+<% end %>
+
 
 <div class="main users-index">
   <div class="container">
  	<%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading">【<%= @group.name %> 歓迎！】<br>
-    	<%= @prefecture.name %>のサークル一覧</h1>
+    <h1 class="users-heading">
+		<% if @group.name == "社会人" %>
+		    <%= @prefecture.name %>の<br>
+		    <%= @group.name %>サークル一覧
+		<% else %>
+			<%= @group.name %> 歓迎！<br>
+		    <%= @prefecture.name %>のサークル一覧
+		<% end %>
+    </h1>
 
 	<% if @hit != 0 %>
 		<div class="search_area">
