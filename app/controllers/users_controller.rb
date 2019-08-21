@@ -143,7 +143,7 @@ before_action :set_users
 
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
-		@prefectures = Prefecture.all.where.not(kana: "nil")
+		@prefectures = Prefecture.all.order(:order => :asc).where.not(kana: "nil")
 		@users = User.where(event_id: @event.id).order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 		if @users.count == 0
 			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
@@ -398,7 +398,7 @@ private
 	def set_users
 		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
-		@prefectures = Prefecture.all.where.not(id: 0)
+		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@x = "nil"
