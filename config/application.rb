@@ -14,15 +14,3 @@ module Circle
 	config.i18n.default_locale = :ja
   end
 end
-
-
-
-# config.middleware.insert_before 0, "Rack::Cors" do
-#   allow do
-#     origins '*'
-#     resource '*',
-#       :headers => 'Content-*',
-#       :methods => [:get],
-#       :max_age => 0
-#   end
-# end
