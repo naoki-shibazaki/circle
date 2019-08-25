@@ -4,6 +4,51 @@
 @import "font-awesome";
 
 
+  /* 既存のWebフォントの定義ここから */
+@font-face {
+    font-family: "FontAwesome";
+    font-style: normal;
+    font-weight: normal;
+    src: url("//{your.cloudfront.net}/path/font.eot"), 
+    src: url("//{your.cloudfront.net}/path/font.eot?#iefix") format("embedded-opentype"), 
+    url("//{your.cloudfront.net}/path/font.woff") format("woff"),
+    url("//{your.cloudfront.net}/path/font.ttf") format("truetype"),
+    url("//{your.cloudfront.net}/path/font.svg#FontAwesome") format("svg");
+}
+    /* 既存のWebフォントの定義ここまで */
+
+    /* Firefox hack start */
+    /* 非SSL用 */
+
+@-moz-document url-prefix("http://www.circle-book.com") {
+  @font-face {
+    font-family: "FontAwesome";
+    font-style: normal;
+    font-weight: normal;
+    src:url("//{your.cloudfront.net}/path/font.woff?firefox01") format("woff"),
+    url("//{your.cloudfront.net}/path/font.woff?firefox02") format("woff"),
+    url("//{your.cloudfront.net}/path/font.ttf?firefox01") format("truetype"),
+    url("//{your.cloudfront.net}/path/font.ttf?firefox02") format("truetype");
+  }
+}
+
+    /* SSL用 */
+@-moz-document url-prefix("https://www.circle-book.com") {
+  @font-face {
+    font-family: "FontAwesome";
+    font-style: normal;
+    font-weight: normal;
+    src:url("//{your.cloudfront.net}/path/font.woff?firefox_ssl01") format("woff"),
+    url("//{your.cloudfront.net}/path/font.woff?firefox_ssl02") format("woff"),
+    url("//{your.cloudfront.net}/path/font.ttf?firefox_ssl01") format("truetype"),
+    url("//{your.cloudfront.net}/path/font.ttf?firefox_ssl02") format("truetype");
+  }
+}
+    /* Firefox hack end */
+
+
+
+
 
 /* reset ================================ */
 * {
