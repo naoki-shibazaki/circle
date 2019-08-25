@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def www_domain
-	 return unless /^(http|https)://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$circle-book.com/ =~ request.host
+	 return unless /\^(http|https)://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$circle-book.com/ =~ request.host
 
 	 port = ":#{request.port}" unless [80, 443].include?(request.port)
 	 redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
