@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
 	root 'users#top'
 
-	get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
+	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
 	get 'faq' , to: 'users#faq'
 	get 'rules' , to: 'users#rules'
