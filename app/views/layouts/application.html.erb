@@ -2,6 +2,7 @@
 <html>
   <head>
 
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -24,16 +25,19 @@
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload' %>
+
+
+    <!-- フォトスライド -->
     <%= javascript_include_tag 'jquery-1.10.2.min', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'jquery.photoswipe', 'data-turbolinks-track': 'reload' %>
-
     <script>
     ;(function($){
-        $(function(){
-            $('a.swipe').photoSwipe();
-        });
+      $(function(){
+        $('a.swipe').photoSwipe();
+      });
     })(jQuery);
-    </script>
+    </script>  
+    <!-- フォトスライド -->
 
   </head>
 
