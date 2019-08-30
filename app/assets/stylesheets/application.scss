@@ -2117,11 +2117,14 @@ max-width: 100%;
     width: 44%;
     margin-right: 20px;
     height: 34px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .search_wrap .search-text{
     display: inline-block;
-    width: 80%;
+    width: 70%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -2138,13 +2141,19 @@ max-width: 100%;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
-.search_wrap form input[type="submit"]{
+.search_submit{
     background: #61cec7;
+    border-color: #fff;
     color: #fff;
-    height: 34px;
+    height: 36px;
     margin-left: 10px;
     padding: 0px 10px;
     border-radius: 6px;
+}
+
+.search_submit i{
+    font-size: 16px;
+    padding-right: 6px;
 }
 
 
