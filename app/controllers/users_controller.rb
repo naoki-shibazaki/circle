@@ -405,7 +405,7 @@ private
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
 
 		@search = User.ransack(params[:q]) 
-		@result = @search.result.order(:last_post => :desc).where.not(switch: "")
+		@result = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)
