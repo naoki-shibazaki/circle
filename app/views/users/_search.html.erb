@@ -2,12 +2,14 @@
 
 	<%= search_form_for @search, enforce_utf8: false do |f| %>
 	 
-	  <div class="search_select">
+
+<!-- 	  <div class="search_select">
 		  <%= f.collection_select :event_id_eq, Event.all.where.not(id: 0).order(:order => :asc), :id, :name, :include_blank => 'サークル種目' %>
 		  <%= f.collection_select :prefecture_id_eq, Prefecture.all.where.not(id: 0), :id, :name, :include_blank => '都道府県' %>
 	  </div>
+ -->
 
-	  <%= f.search_field :name_or_area_or_schedule_or_recruitment_or_average_age_or_grouping_or_cost_or_goal_or_appeal_cont, class: "search-text",placeholder: "その他のキーワード" %>
+	  <%= f.search_field :name_or_area_or_schedule_or_recruitment_or_average_age_or_grouping_or_cost_or_goal_or_appeal_cont, class: "search-text",placeholder: "キーワード検索" %>
 	   
       <%= button_tag :type => "submit", :class =>"search_submit" do %>
           <i class="fa fa-search "></i>検索
