@@ -50,7 +50,7 @@ gem 'rack-rewrite'
 
 gem 'rinku'
 gem 'rails_autolink'
-
+gem 'ransack'
 
 
 

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_users
 
-	def top
+	def top 
 	end
 
 	def index
@@ -144,9 +144,9 @@ before_action :set_users
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(kana: "nil")
-		@users = User.where(event_id: @event.id).order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(event_id: @event.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end
 
@@ -157,9 +157,9 @@ before_action :set_users
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end
 
@@ -172,9 +172,9 @@ before_action :set_users
 	def prefecture_group
 		@group = Group.find_by(group: params[:group])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end	
 
@@ -190,9 +190,9 @@ before_action :set_users
 		@age = Age.find_by(decade: params[:decade])
 		@group = Group.find_by(group: params[:group])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(prefecture_id: @prefecture.id).where('average_age like?', "%#{@age.name}%").where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(prefecture_id: @prefecture.id).where('average_age like?', "%#{@age.name}%").where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end	
 
@@ -212,9 +212,9 @@ before_action :set_users
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end
 
@@ -229,9 +229,9 @@ before_action :set_users
 		@age = Age.find_by(decade: params[:decade])
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('average_age like?', "%#{@age.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('average_age like?', "%#{@age.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end	
 
@@ -252,9 +252,9 @@ before_action :set_users
 	# 	@group = Group.find_by(group: params[:group])
 	# 	@event = Event.find_by(ruby: params[:ruby])
 	# 	@prefecture = Prefecture.find_by(kana: params[:kana])
-	# 	@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+	# 	@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 	# 	if @users.count == 0
-	# 		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+	# 		@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 	# 		@hit = 0 
 	# 	end	
 
@@ -272,9 +272,9 @@ before_action :set_users
 		@group = Group.find_by(:group => "beginner")
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end	
 
@@ -292,9 +292,9 @@ before_action :set_users
 		@group = Group.find_by(:group => "expert")
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end	
 
@@ -312,9 +312,9 @@ before_action :set_users
 		@group = Group.find_by(:group => "student")
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end	
 
@@ -333,9 +333,9 @@ before_action :set_users
 		@group = Group.find_by(:group => "worker")
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 			@hit = 0 
 		end	
 
@@ -396,13 +396,16 @@ private
 	end
 
 	def set_users
-		@users = User.all.order(:last_post => :desc).where.not(switch: "nil").page(params[:page])
+		@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@x = "nil"
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
+
+		@search = User.ransack(params[:q]) 
+		@result = @search.result.order(:last_post => :desc).where.not(switch: "")
 
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)
