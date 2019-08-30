@@ -45,6 +45,7 @@ input {
 form input[type="submit"] {
   border: none;
   cursor: pointer;
+  border-style: none;
 }
 
 /* 共通レイアウト ================================ */
@@ -123,6 +124,7 @@ header {
   float: left;
   line-height: 64px;
   color: white;
+  border-style: none;
   margin: 0;
   font-size: 13px;
 }
@@ -2087,6 +2089,7 @@ max-width: 100%;
     color: #3ecdc6;
     font-size: 20px;
     border: none;
+    border-style: none;
     background-color: #fff;
 }
 
@@ -2144,6 +2147,7 @@ max-width: 100%;
 .search_submit{
     background: #61cec7;
     border-color: #fff;
+    border-style: none;
     color: #fff;
     height: 36px;
     margin-left: 10px;

@@ -14,10 +14,10 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
   def create
   super
 
-    user = User.new
-    user.id = resource.id
-    user.last_post = Time.now.ago(3.days)
-    user.save
+    @user = User.new
+    @user.id = resource.id
+    @user.last_post = Time.now.ago(3.days)
+    @user.save
   
   end
 
