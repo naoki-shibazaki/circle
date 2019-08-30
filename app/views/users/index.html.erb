@@ -6,9 +6,7 @@
     <h1 class="users-heading">全国のサークル一覧</h1>
 
 
-<!-- 追加 -->
-	    <%= render "/users/search.html.erb" %>
-<!-- 追加 -->
+	<%= render "/users/search.html.erb" %>
 
 
 	<div class="search_area">
@@ -18,7 +16,6 @@
 	</div>
 
 
-<!-- 修正 -->
 	<% if @result.count == 0 %>
 
 		<%= render "/users/no_hit.html.erb" %>
@@ -29,7 +26,6 @@
 	<% else %>    
 		<%= render "users_list.html.erb" %>
 	<% end %>	
-<!-- 修正 -->
 
 
 

@@ -1,1 +1,10 @@
-    <img class="imege_sorry" src="/images/sorry.png">
+<img class="imege_sorry" src="/images/sorry.png">
+
+
+<% if @path.is('users#index', 'users#top') %>
+
+<% else %>
+
+	<%= render "/users/search.html.erb" %>
+
+<% end %>
