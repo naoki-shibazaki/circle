@@ -10,7 +10,7 @@ before_action :set_users
 
 	def index
 		# パンくず
-		@b1_name = "サークル一覧"
+		@b1_name = "サークル検索"
 		@b1_url = "/users"
 	end
 
@@ -396,16 +396,16 @@ private
 	end
 
 	def set_users
-		@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
+		@search = User.ransack(params[:q]) 
+		@users = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])
+		@user_all = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
+
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@x = "nil"
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
-
-		@search = User.ransack(params[:q]) 
-		@result = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)

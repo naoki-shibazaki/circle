@@ -13,8 +13,8 @@
 <% end %>
 
 
-<% @result.each do |user| %>
-   
+<% @users.each do |user| %>
+
           <div class="users-index-item ribbon-wrapper">
             <div class="ribbon-content">
               <% if user.switch == "募集中" %>
@@ -106,7 +106,7 @@
 
 <% end %>
 
-
 <%= render "/layouts/ad_square" %>
+
+<%= paginate @users %>
     
-<%= paginate @result %>
