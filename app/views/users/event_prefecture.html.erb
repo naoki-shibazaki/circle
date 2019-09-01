@@ -11,6 +11,13 @@
     	<%= @event.name %>のサークル一覧
     </h1>
 
+    <div class="user-read">
+      <p>
+        メンバー募集中！<%= @prefecture.name %>の<%= @event.name %><br>
+        サークルやチーム、クラブの一覧ページです！
+      </p>
+    </div>    
+
   <% if @hit != 0 %>
     <div class="search_area">
         <%= render "ages_list.html.erb" %>
