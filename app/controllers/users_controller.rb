@@ -397,17 +397,7 @@ private
 
 	def set_users
 		@search = User.ransack(params[:q]) 
-		@users = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		
-	    # if params[:q] != nil
-	    #   params[:q]= params[:q].to_s.split(/[\p{blank}\s]+/)
-	    #   @search = User.ransack(params[:q])
-	    #   @users = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-	    # else
-	    #   @search = User.ransack(params[:q])
-	    #   @users = @search.result .order(:last_post => :desc).where.not(switch: "").page(params[:page])
-	    # end		
-
+		@users = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])	
 		@user_all = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
