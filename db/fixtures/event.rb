@@ -11,9 +11,9 @@ Event.seed(:id,
   { :id => 8, :order => "03", :name => "フットサル" , :ruby => "futsal", :icon => "fa fa-soccer-ball-o" },
   { :id => 9, :order => "04", :name => "テニス" , :ruby => "tennis", :icon => "fa fa-group" },
   { :id => 10, :order => "09", :name => "卓球" , :ruby => "table-tennis", :icon => "fa fa-group" },
-  { :id => 11, :order => "10", :name => "ゲーム" , :ruby => "game", :icon => "fa fa-gamepad" },
+  { :id => 11, :order => "13", :name => "ゲーム" , :ruby => "game", :icon => "fa fa-gamepad" },
   { :id => 12, :order => "11", :name => "イベント" , :ruby => "event", :icon => "fa fa-flag" },
   { :id => 13, :order => "15", :name => "ゴルフ" , :ruby => "golf", :icon => "fa fa-map-pin" },
   { :id => 14, :order => "14", :name => "ウィッフルボール" , :ruby => "wiffleball", :icon => "fa fa-dribbble" },
-  { :id => 15, :order => "13", :name => "オールラウンド" , :ruby => "all-round", :icon => "fa fa-group" }
+  { :id => 15, :order => "10", :name => "オールラウンド" , :ruby => "all-round", :icon => "fa fa-group" }
 )
