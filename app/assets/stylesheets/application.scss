@@ -993,6 +993,7 @@ opacity: 1; /* 要素を表示する */
     z-index: 5;
     position: fixed;
     bottom: 0px;
+    text-align: center;
 }
 
 .fixed_btn_b {
@@ -1010,6 +1011,11 @@ opacity: 1; /* 要素を表示する */
     height: 52px;
     line-height: 52px;
     border-radius: 6px;
+}
+
+.footer_btn_2 .fixed_btn_b{
+    width: 48%;
+    display: inline-block;
 }
 
 .blog_title{
@@ -1407,9 +1413,14 @@ a.line_business {
 
 
 .post_cta {
-    width: 170px;
+    // width: 170px;
     text-align: center;
     margin: 0 auto 26px;
+}
+
+.post_cta .line,
+.post_cta .mail{
+  width: 46%;
 }
 
 .post_cta .contact-button {
@@ -1417,6 +1428,9 @@ a.line_business {
     border-radius: 7px;
 }
 
+.blob_cta_2 .contact-button{
+ display: inline-block;
+}
 
 
 #nav-drawer {

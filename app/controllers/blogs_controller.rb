@@ -62,7 +62,13 @@ class BlogsController < ApplicationController
 			@b4_name = "#{@blog.title.truncate(5)}"
 			@b4_url = ""
 		end		
+	
+		@mail_title = "【サークルブック】新規のお問い合わせ"
+		@mail_message = "#{@user.name}%20さん%0d%0a%0d%0aサークルブックより新規のお問い合わせです。%0d%0a%0d%0a--------------------------------------%0d%0a内容：参加希望／質問／その他%0d%0a名前：%0d%0a年齢：%0d%0aメッセージ：%0d%0a%0d%0a--------------------------------------%0d%0a%0d%0aこのメールに直接ご返信をお願いします。"
+
 	end
+
+
 
 	def edit
 		@blog = Blog.find(params[:id])
