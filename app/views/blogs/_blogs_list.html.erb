@@ -69,8 +69,13 @@
                             </div>
 
                               <div class="blog_tag">
-                                <%= link_to("##{user.event.name}", "/#{user.event.ruby}", class: "tag_btn") %>　
-                                <%= link_to("##{user.prefecture.name}", "/prefectures/#{user.prefecture.kana}", class: "tag_btn") %>
+                                <%= link_to("/#{user.event.ruby}", class: "tag_btn") do %>
+                                  <i class="fa fa-tags tag-color"></i><%= user.event.name %>
+                                <% end %>
+                                　
+                                <%= link_to("/prefectures/#{user.prefecture.kana}", class: "tag_btn") do %>
+                                  <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
+                                <% end %>
                               </div>
                             
                           
