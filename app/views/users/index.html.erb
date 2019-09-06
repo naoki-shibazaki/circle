@@ -1,9 +1,11 @@
-<% set_meta_tags title: "全国のサークル一覧" %>
+<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】メンバー募集中の全国のサークル一覧" %>
 <div class="main users-index">
   <div class="container">
      
     <%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading">全国のサークル一覧</h1>
+    <h1 class="users-heading">
+    	メンバー募集中の<br>全国のサークル一覧
+    </h1>
 
 
 	<%= render "/users/search.html.erb" %>
