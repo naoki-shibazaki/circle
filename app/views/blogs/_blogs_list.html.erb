@@ -21,7 +21,7 @@
           <div class="form users-form">
               <div class="blog-body">
 
-                <div class="header-post">
+                <div class="header-post cont-width">
 
                       <%= link_to(blog_path(blog.id)) do %>
 
@@ -63,12 +63,14 @@
                               <% end %>
 
 
-
-                              <h3 class="blog_title"><%= blog.title.truncate(36) %></h3>
-                                <%= simple_format blog.content.truncate(120) %>      
                             </div>
 
-                              <div class="blog_tag">
+                            <div class="cont-width">
+                              <h3 class="blog_title"><%= blog.title.truncate(36) %></h3>
+                                <%= simple_format blog.content.truncate(120) %>      
+
+
+                              <div class="blog_tag tag_bottom">
                                 <%= link_to("/#{user.event.ruby}", class: "tag_btn") do %>
                                   <i class="fa fa-tags tag-color"></i><%= user.event.name %>
                                 <% end %>
@@ -77,7 +79,7 @@
                                   <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
                                 <% end %>
                               </div>
-                            
+                            </div>                            
                           
                             </div>
                         </div>

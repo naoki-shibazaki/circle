@@ -39,7 +39,7 @@
 			    <div class="form-body">
 
 					<%= link_to(user_path(@user.id)) do %>
-				    	<div class="header-post">
+				    	<div class="header-post cont-width">
 				    	<%= image_tag @user.pic_profile.url , class:'content_icon' %>    
 						<div class="post-user">
 							<div class="post-top"><%= @user.name %></div>
@@ -98,10 +98,13 @@
 
 					<% end %>
 
+						<div class="cont-width">
+							<h3 class="blog_title"><%= @blog.title %></h3>
+							<%= raw Rinku.auto_link(simple_format @blog.content) %>
+						</div>
 
-						<h3 class="blog_title"><%= @blog.title %></h3>
-						<%= raw Rinku.auto_link(simple_format @blog.content) %>
 					</div>
+
 
 			    </div>
 

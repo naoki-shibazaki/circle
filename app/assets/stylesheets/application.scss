@@ -192,7 +192,11 @@ header {
 }
 
 .form-body {
-  padding: 30px 20px;
+  padding: 30px 0px;
+}
+
+.cont-width {
+  padding: 0px 20px;
 }
 
 .form-error {
@@ -743,7 +747,7 @@ header {
 
 
 .header-post{
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 }
 
 /* blogs/show ================================ */
@@ -832,10 +836,12 @@ header {
 }
 
 .content_image_one{
-    width: 90%;
-    height: 250px;
+    width: 100%;
+    height: 300px;
     margin: auto;
     display: block;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
     object-fit: cover;  
 }
 
@@ -905,6 +911,10 @@ header {
   background: #fff;
   border: 1px solid #e6e6e6;
   border-radius: 4px; 
+}
+
+.tag_bottom{
+  margin-top: 14px;
 }
 
 .tag_btn:hover {
@@ -2109,7 +2119,7 @@ max-width: 100%;
 }
 
 .blog-body{
-  padding: 20px;
+  padding: 20px 0px;
 }
 
 .blog_tag{

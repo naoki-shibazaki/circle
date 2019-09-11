@@ -226,7 +226,7 @@
 				<div class="form users-form">
 				    <div class="form-body">
 
-					    <div class="header-post">
+					    <div class="header-post cont-width">
 							<%= image_tag @user.pic_profile.url , class:'content_icon' %>
 
 							<div class="post-user">
@@ -264,9 +264,12 @@
                                 <% end %>
 
                               <% end %>
-		
-							<h3 class="blog_title"><%= blog.title %></h3>
-								<%= simple_format blog.content.truncate(140) %>
+							
+							<div class="cont-width">
+								<h3 class="blog_title"><%= blog.title %></h3>
+									<%= simple_format blog.content.truncate(140) %>
+							</div>
+							
 						</div>
 					
 				    </div>
