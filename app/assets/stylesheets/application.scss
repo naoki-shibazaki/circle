@@ -2215,8 +2215,19 @@ max-width: 100%;
   margin-top: 30px;
 }
 
+.pagination-wrap{
+    margin: auto;
+    display: table;
+    text-align: center;
+}
 
+.swiper-pagination{
+  display: contents;
+}
 
+.pagination-wrap .swiper-pagination-clickable .swiper-pagination-bullet{
+    margin: 0 4px;
+}
 
 
 
