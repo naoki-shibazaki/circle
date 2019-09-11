@@ -79,11 +79,14 @@
                                 <% end %>
                               </div>
                             </div>                            
-                          
-                            </div>
-                        </div>
-
+       
                     <% end %>
+
+
+                </div>
+            </div>
+
+
 
       <% end %>
     <% end %>
@@ -153,17 +156,17 @@
                               <h3 class="blog_title"><%= blog.title.truncate(36) %></h3>
                                 <%= simple_format blog.content.truncate(120) %>      
                             </div>
-
+                            
+                    <% end %>
+                          
                               <div class="blog_tag">
                                 <%= link_to("##{user.event.name}", "/#{user.event.ruby}", class: "tag_btn") %>　
                                 <%= link_to("##{user.prefecture.name}", "/prefectures/#{user.prefecture.kana}", class: "tag_btn") %>
                               </div>
-                            
                           
-                            </div>
-                        </div>
+              </div>
+          </div>
 
-                    <% end %>
 
       <% end %>
     <% end %>
