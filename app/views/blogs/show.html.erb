@@ -38,14 +38,14 @@
 			<div class="form users-form">
 			    <div class="form-body">
 
-					<%= link_to(user_path(@user.id)) do %>
-				    	<div class="header-post cont-width">
-				    	<%= image_tag @user.pic_profile.url , class:'content_icon' %>    
-						<div class="post-user">
-							<div class="post-top"><%= @user.name %></div>
-							<div class="post-bottom"><%= @blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
-						</div>
-					<% end %>
+				    <div class="header-post cont-width">
+						<%= link_to(user_path(@user.id)) do %>
+					    	<%= image_tag @user.pic_profile.url , class:'content_icon' %>    
+							<div class="post-user">
+								<div class="post-top"><%= @user.name %></div>
+								<div class="post-bottom"><%= @blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+							</div>
+						<% end %>
 						
 					<div class="post-share">
 						<%= render "blogs/share" %>
@@ -65,6 +65,7 @@
 
 							<% end %>
 						<% end %>
+
 					</div>
 
 					<div class="post-body">	
@@ -185,17 +186,17 @@
 
               	<% if blog.id != @blog.id %>
 
-            	<div class="blog_list">
+	            	<div class="blog_list">
 
-	                <%= link_to(blog_path(blog.id)) do %>
-	                  <div class="blog_link">
-	                    <div class="catch_image"><%= image_tag blog.image_01.url , class:'post_image' %></div>
-	                    <div class="post_time"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %> </div>
-	                    <h3 class="post_title"><%= blog.title.truncate(18) %></h3>
-	                  </div>
-	                <% end %> 
+		                <%= link_to(blog_path(blog.id)) do %>
+		                  <div class="blog_link">
+		                    <div class="catch_image"><%= image_tag blog.image_01.url , class:'post_image' %></div>
+		                    <div class="post_time"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %> </div>
+		                    <h3 class="post_title"><%= blog.title.truncate(18) %></h3>
+		                  </div>
+		                <% end %> 
 
-            	</div>
+	            	</div>
 
             	<% end %>
 

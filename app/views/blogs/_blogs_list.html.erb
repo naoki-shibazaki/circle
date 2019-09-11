@@ -21,21 +21,21 @@
           <div class="form users-form">
               <div class="blog-body">
 
-                <div class="header-post cont-width">
+                <%= link_to(blog_path(blog.id)) do %>
 
-                      <%= link_to(blog_path(blog.id)) do %>
+                            <div class="header-post cont-width">
 
                               <%= image_tag blog.user.pic_profile.url , class:'content_icon' %>     
                               <div class="post-user">
                                 <div class="post-top"><%= blog.user.name %></div>              
                                 <div class="post-bottom"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
                               </div>
+
                             </div>
+
                             <div class="post-body">   
 
-
                               <% if blog.image_01.present? %>
-
                                 <% if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank? %>
 
                                   <%= image_tag blog.image_01.url , class:'content_image_one' %>
@@ -51,25 +51,30 @@
                                       <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
 
                                     </div>
-                                  </div>
 
                                     <!-- Add Pagination -->
-                                    <div class="swiper-pagination pagination-bottom"></div>
-                                    <div class="pagination-margin"></div>                                    
+                                    <div class="swiper-pagination"></div>
+                                    <!-- Add Arrows -->
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>  
+
+                                  </div>
+
 
                                 <% end %>
-
                               <% end %>
-
 
                             </div>
 
                             <div class="cont-width">
                               <h3 class="blog_title"><%= blog.title.truncate(36) %></h3>
                                 <%= simple_format blog.content.truncate(120) %>      
+                            </div>                            
+
+                <% end %>
 
 
-                              <div class="blog_tag tag_bottom">
+                              <div class="blog_tag tag_bottom cont-width">
                                 <%= link_to("/#{user.event.ruby}", class: "tag_btn") do %>
                                   <i class="fa fa-tags tag-color"></i><%= user.event.name %>
                                 <% end %>
@@ -78,10 +83,6 @@
                                   <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
                                 <% end %>
                               </div>
-                            </div>                            
-       
-                    <% end %>
-
 
                 </div>
             </div>
@@ -111,16 +112,17 @@
           <div class="form users-form">
               <div class="blog-body">
 
-                <div class="header-post">
-
                       <%= link_to(blog_path(blog.id)) do %>
 
-                              <%= image_tag blog.user.pic_profile.url , class:'content_icon' %>     
-                              <div class="post-user">
-                                <div class="post-top"><%= blog.user.name %></div>              
-                                <div class="post-bottom"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
-                              </div>
+                            <div class="header-post">
+
+                                    <%= image_tag blog.user.pic_profile.url , class:'content_icon' %>     
+                                    <div class="post-user">
+                                      <div class="post-top"><%= blog.user.name %></div>              
+                                      <div class="post-bottom"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+                                    </div>
                             </div>
+
                             <div class="post-body">   
 
 
@@ -141,6 +143,13 @@
                                       <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
 
                                     </div>
+
+                                    <!-- Add Pagination -->
+                                    <div class="swiper-pagination"></div>
+                                    <!-- Add Arrows -->
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+
                                   </div>
 
                                 <% end %>
