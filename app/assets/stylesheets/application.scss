@@ -830,8 +830,10 @@ header {
 }
 
 .content_image{
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: 300px;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
     object-fit: cover;
 }
 
@@ -2208,6 +2210,18 @@ max-width: 100%;
   font-size: 15px;
 }
 
+.pagination-bottom{
+    left: 0;
+    width: 100%;
+}
+
+.pagination-bottom .swiper-pagination-bullet{
+    margin: 0 4px;
+}
+
+.pagination-margin{
+  margin-top: 30px;
+}
 
 
 
