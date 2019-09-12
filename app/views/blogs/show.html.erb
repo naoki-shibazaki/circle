@@ -202,7 +202,7 @@
 
 		                  <div class="blog_user">
 					    	<%= image_tag @user.pic_profile.url , class:'icon_s' %>    
-							<div class="blog_user_name"><%= @user.name %></div>
+							<div class="blog_user_name"><%= @user.name.truncate(16) %></div>
 		                  </div>
 		                <% end %> 
 
