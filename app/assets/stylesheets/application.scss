@@ -1418,8 +1418,8 @@ a.line_business {
 
 .post_title{
     font-size: 16px;
-    padding-top: 8px;
-    font-weight: normal;
+    font-weight: 700;
+    line-height: 1.5;
 }
 
 
@@ -1640,15 +1640,17 @@ a.line_business {
 
 
 .blog_list{
-  background-color: #fff;
   margin: 10px 0;
-  padding: 10px 20px;
+  padding: 16px 16px 20px;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
 }
 
 
-.blog_list .post_title {
+.blog_list{
     font-size: 16px;
-    padding-top: 6px;
+    padding-top: 16px;
 }
 
 
@@ -2235,6 +2237,41 @@ max-width: 100%;
 .pagination-wrap .swiper-pagination-clickable .swiper-pagination-bullet{
     margin: 0 4px;
 }
+
+.blog-list-wrap {
+    background: #f7f9f9;
+    padding: 20px 20px;
+}
+
+
+.others-blog{
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.blog_user{
+  padding-top: 26px 
+}
+
+.icon_s{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid #e6e6e6;
+    float: left;
+    object-fit: cover;
+}
+
+.blog_user_name{
+    margin: 4px 0 0 36px;
+    font-size: 16px;
+}
+
+
+
+
+
+
 
 
 
