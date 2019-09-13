@@ -173,6 +173,7 @@ class BlogsController < ApplicationController
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.where.not(id: 0)	
 		@x = "nil"
+		@category = "nil"
 		@blog_count = 0
 
 		if admin_user_signed_in?

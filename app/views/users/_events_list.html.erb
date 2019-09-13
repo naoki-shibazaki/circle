@@ -10,6 +10,11 @@
       <ul class="events-menus">
         <% @events.each do |event| %>
 
+        <% if @category != event.category %>
+          <div class="category-title">▼<%= event.category %></div>
+          <% @category = event.category %>
+        <% end %>
+
           <% if @path.is('users#index', 'users#top') %>
               <li>
                 <%= link_to("/#{event.ruby}") do %>

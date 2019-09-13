@@ -1115,7 +1115,8 @@ a.line_id {
 
 .events-menus .link_txt{
     display: block;
-    font-size: 12px;  
+    font-size: 12px; 
+    font-weight: 700; 
 }
 
 
@@ -1250,7 +1251,7 @@ a.line_id {
 }
 
 .cp_actab input:checked ~ .cp_actab-content {
-  max-height: 40em;
+  max-height: 50em;
 }
 
 .cp_actab label::after {
@@ -2267,12 +2268,14 @@ max-width: 100%;
     font-size: 16px;
 }
 
-
-
-
-
-
-
+.category-title{
+    display: block;
+    font-size: 16px;
+    margin: 10px 20px 10px;
+    text-align: left;
+    font-weight: 700;
+    color: #494949;
+}
 
 
 
