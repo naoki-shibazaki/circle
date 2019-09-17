@@ -1,0 +1,13 @@
+<% set_meta_tags title: "コラム" %>
+<div class="main users-index">
+  <div class="container">
+
+    <%= render "/layouts/breadcrumb" %>
+    <h1 class="users-heading">コラム</h1>
+
+    <% if admin_user_signed_in? %>
+        <%= link_to '投稿する', new_column_path if @current_user.id == 1 %>
+    <% end %>
+
+  </div>
+</div>

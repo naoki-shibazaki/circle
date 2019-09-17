@@ -135,9 +135,17 @@
     
     <%= yield %>
 
-
-
 <!-- button -->
+<% if @path.is('columns#show', 'columns#index') %>
+
+    <div class="footer_btn bg_btn">
+      <a href="/">
+        <span class="fixed_btn_b mail">無料でメンバーを募集する！</span>
+      </a>
+    </div>
+
+<% else %>
+
   <% if @path.is('#show') && @user.switch == "募集中" %>
       <% if @user.line_id != "" %>
       <div class="footer_btn bg_btn footer_btn_2">
@@ -169,6 +177,8 @@
     <% end %>
 
   <% end %>
+
+<% end %>
 <!-- button -->
 
   <!-- Initialize Swiper -->

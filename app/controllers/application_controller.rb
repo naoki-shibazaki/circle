@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
 	end
 
 
-
 	def set_current_user
     	@current_user = User.find_by(id: session[:user_id])
   	end
@@ -51,6 +50,7 @@ class ApplicationController < ActionController::Base
 		@time = Time.now
 		@url = request.url
 		@count = 0
+
 	end
 
 end

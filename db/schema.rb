@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_13_072901) do
+ActiveRecord::Schema.define(version: 2019_09_16_235551) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 2019_09_13_072901) do
     t.string "photo_updated_at"
     t.string "photo"
     t.index ["user_id"], name: "index_blogs_on_user_id"
+  end
+
+  create_table "columns", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
+    t.string "image"
   end
 
   create_table "events", force: :cascade do |t|
