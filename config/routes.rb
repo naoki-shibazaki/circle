@@ -4,13 +4,17 @@ Rails.application.routes.draw do
  :sessions => 'admin_users/sessions'
 }
 
-  resources :users do
-  	resources :schedules, only: [:create, :destroy]
-  end
+	resources :users do
+  		resources :schedules, only: [:create, :destroy]
+  	end
 
-  resources :blogs
-  resources :columns
+	resources :blogs
+	resources :places, except: :show
 
+	resources :prefectures, only: [] do
+    	resources :cities, only: :index
+  	end
+ 
 	root 'users#top'
 
 	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
@@ -34,6 +38,8 @@ Rails.application.routes.draw do
 
 	get 'blog/:ruby' , to: 'blogs#event'
 	get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
+
+	get 'places/:ruby/:kana/:city_kana/:id' , to: 'places#show'
 
 	
 	get ':ruby' , to: 'users#event'

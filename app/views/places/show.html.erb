@@ -1,0 +1,111 @@
+<div class="main user-show">
+  <div class="container">
+
+    <%= render "/layouts/breadcrumb" %>
+
+			<div class="form users-form">
+			    <div class="form-body">
+
+			    	<h1 class="place_title"><%= @place.name %></h1>
+
+						<% if admin_user_signed_in?  %>
+							<% if @place.user_id.to_i == @current_user.id.to_i || @current_user.id.to_i == 1 %>
+							
+							<div class="post-edit">
+								<div class="post-edit_btn">
+									<%= link_to( "編集", edit_place_path) %>／
+									<%= link_to( "削除", place_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) %>
+								</div>
+							</div>
+
+							<% end %>
+						<% end %>
+
+					</div>
+
+					<div class="post-body">
+
+					<h2 class="place_sub_title"><%= @place.name %>の<br><%= @event.name %>コートや公園情報</h2>
+						<div class="border"></div>
+
+						<div class="article_item article_padding">
+							<table>
+								<tbody>
+
+								<tr class="flex_contents">
+									<th class="flex_list">ユーザーID</th>
+									<td class="flex_list"><%= @place.user_id %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">施設名</th>
+									<td class="flex_list"><%= @place.name %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">種目</th>
+									<td class="flex_list"><%= @event.name %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">住所</th>
+									<td class="flex_list"><%= @place.address %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">アクセス</th>
+									<td class="flex_list"><%= @place.access %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">都道府県</th>
+									<td class="flex_list"><%= @prefecture.name %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">市区町村</th>
+									<td class="flex_list"><%= @city.name %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">駐車場情報</th>
+									<td class="flex_list"><%= @place.parking %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">利用可能時間</th>
+									<td class="flex_list"><%= @place.time %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">定休日</th>
+									<td class="flex_list"><%= @place.regular_holiday %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">施設規模</th>
+									<td class="flex_list"><%= @place.scale %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">利用料金</th>
+									<td class="flex_list"><%= @place.price %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">電話番号</th>
+									<td class="flex_list"><%= @place.tel %></td>
+								</tr>
+								<tr class="flex_contents">
+									<th class="flex_list">サイトURL</th>
+									<td class="flex_list"><a href="<%= @place.url %>" ><%= @place.url %></a></td>
+								<tr class="flex_contents">
+									<th class="flex_list">カテゴリー</th>
+									<td class="flex_list"><%= @place.tag %></td>
+								</tr>
+
+								</tbody>
+							</table>
+						</div>	
+
+
+
+
+
+					</div>
+
+			    </div>
+			</div>
+
+
+  </div>
+</div>
+

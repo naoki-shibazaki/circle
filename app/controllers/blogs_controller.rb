@@ -94,21 +94,6 @@ class BlogsController < ApplicationController
 	end
 
 
-	def ensure_correct_user
-		@blog = Blog.find(params[:id])
-		
-	   if current_admin_user.id != @blog.user_id.to_i
-	   		if current_admin_user.id == 1   			
-	   		
-		   	else
-		      flash[:notice] = "権限がありません"
-		      redirect_to blogs_path
-
-		    end
-	   end
-	end	
-
-
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
 		@users = User.where(event_id: @event.id).where.not(switch: "nil")
@@ -181,6 +166,21 @@ class BlogsController < ApplicationController
 		end
 
     end
+
+	def ensure_correct_user
+		@blog = Blog.find(params[:id])
+		
+	   if current_admin_user.id != @blog.user_id.to_i
+	   		if current_admin_user.id == 1   			
+	   		
+		   	else
+		      flash[:notice] = "権限がありません"
+		      redirect_to blogs_path
+
+		    end
+	   end
+	end	
+    
 
 	def blog_params
 		params.require(:blog).permit(

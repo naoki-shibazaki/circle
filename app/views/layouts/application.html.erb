@@ -130,19 +130,21 @@
       </div>
     <% end %>
 
-    <%= render 'layouts/flash_messages' %>
+     <!-- render 'layouts/flash_messages'  -->
     
     
     <%= yield %>
 
 <!-- button -->
-<% if @path.is('columns#show', 'columns#index') %>
+<% if @path.is('places') %>
 
+  <% if @path.is('places#index, places#show') %>
     <div class="footer_btn bg_btn">
       <a href="/">
-        <span class="fixed_btn_b mail">無料でメンバーを募集する！</span>
+        <span class="fixed_btn_b mail">メンバーを募集する！</span>
       </a>
     </div>
+  <% end %>
 
 <% else %>
 
@@ -216,6 +218,54 @@
     }
     document.querySelector('.copyBtn').addEventListener('click', copyText, false);
   </script>
+
+<script>
+function(){
+  $(function(){
+    return (function(){
+      var replaceChildrenOptions, replaceSelectOptions;
+      replaceSelectOptions = function($select, results) {
+        $select.html($('<option>'));
+        return $.each(results, function(){
+          var option;
+          option = $('<option>').val(this.id).text(this.name);
+          return $select.append(option);
+        });
+      };
+
+      replaceChildrenOptions = function() {
+        var $selectChildren, childrenPath;
+        childrenPath = $(this).find('option:selected').data().childrenPath;
+        $selectChildren = $(this).closest('form').find('.select-children');
+        if (childrenPath != null) {
+          return $.ajax({
+            url: childrenPath,
+            dataType: "json",
+            success: function(results) {
+              return replaceSelectOptions($selectChildren, results);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              console.error("Error occurred in replaceChildrenOptions");
+              console.log("XMLHttpRequest: " + XMLHttpRequest.status);
+              console.log("textStatus: " + textStatus);
+              return console.log("errorThrown: " + errorThrown);
+            }
+          });
+        } else {
+          return replaceSelectOptions($selectChildren, []);
+        }
+      };
+
+      return $('.select-parent').on({
+        'change': replaceChildrenOptions
+      });
+      
+    })();
+  });
+};
+</script>
+
+
 
 
   </body>

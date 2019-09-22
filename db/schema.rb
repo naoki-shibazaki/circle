@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_235551) do
+ActiveRecord::Schema.define(version: 2019_09_19_143247) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 2019_09_16_235551) do
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "prefecture_id"
+    t.string "city_kana"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
   create_table "columns", force: :cascade do |t|
     t.string "title"
     t.text "text"
@@ -74,6 +82,26 @@ ActiveRecord::Schema.define(version: 2019_09_16_235551) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "group"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_id"
+    t.string "prefecture_id"
+    t.string "city_id"
+    t.string "event_id"
+    t.string "name"
+    t.string "address"
+    t.string "access"
+    t.string "tag"
+    t.string "parking"
+    t.string "time"
+    t.string "regular_holiday"
+    t.string "scale"
+    t.string "price"
+    t.string "tel"
+    t.string "url"
   end
 
   create_table "prefectures", force: :cascade do |t|
