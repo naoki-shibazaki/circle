@@ -1,6 +1,7 @@
 class Place < ApplicationRecord
+	belongs_to :event
 	belongs_to :prefecture
-	belongs_to :city	
+	belongs_to :city
 	belongs_to :user, optional: true
 
   	validates :prefecture_id, presence: true

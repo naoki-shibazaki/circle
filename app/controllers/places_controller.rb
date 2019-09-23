@@ -76,13 +76,6 @@ class PlacesController < ApplicationController
 		redirect_to "/places"
 	end
 
-	def show_id
-		@place = Place.find(params[:id])
-		@event = Event.find_by(id: @place.event_id)
-		@prefecture = Prefecture.find_by(id: @place.prefecture_id)
-		@city = City.find_by(id: @place.city_id)
-	end		
-
 
 	private
 	def correct_user
@@ -111,6 +104,8 @@ class PlacesController < ApplicationController
 
 
     def set_place
+    	@places = Place.all
+
 	    if admin_user_signed_in?
 	      @current_user = User.find_by(id: current_admin_user.id)
 	    end

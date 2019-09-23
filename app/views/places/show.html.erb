@@ -13,7 +13,7 @@
 							
 							<div class="post-edit">
 								<div class="post-edit_btn">
-									<%= link_to( "編集", edit_place_path) %>／
+									<%= link_to( "編集", edit_place_path ) %>／
 									<%= link_to( "削除", place_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) %>
 								</div>
 							</div>
@@ -96,14 +96,16 @@
 							</table>
 						</div>	
 
-
-
-
-
 					</div>
 
+					<div class="g_map">
+						<iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.name}") %>></iframe>
+					</div>
+				
 			    </div>
 			</div>
+
+<%= render "/layouts/ad_square" %>
 
 
   </div>

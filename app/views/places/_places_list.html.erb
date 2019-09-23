@@ -1,0 +1,19 @@
+<h2>施設情報一覧</h2>
+
+<% @places.each do |place| %>
+      <div class="form users-form">
+          <div class="place-body">
+
+                  <%= link_to "/places/#{place.event.ruby}/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}" do %>
+                        <div class="post-body">   
+                          <h3 class="place_title"><%= place.name.truncate(36) %></h3>
+                        </div>
+                        
+                  <% end %>
+          </div>
+      </div>
+<% end %>
+
+
+<%= render "/layouts/ad_square" %>
+
