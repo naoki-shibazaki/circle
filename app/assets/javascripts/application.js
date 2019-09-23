@@ -19,5 +19,4 @@
 //= require moment
 //= require moment/ja.js
 //= require bootstrap-sprockets
-//= require common.coffee.js
 //= require_tree .
