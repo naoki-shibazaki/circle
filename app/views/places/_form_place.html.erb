@@ -21,7 +21,7 @@
             <% prefecture_options = Prefecture.where.not(id: 0).order(:id).map { |c| [c.name, c.id, data: { children_path: prefecture_cities_path(c) }] } %>
             <%= f.select :prefecture_id, prefecture_options, { include_blank: true }, class: 'select-parent' %>
 
-            <p>市区町村<span class="must_red">(必須)</span></p>  
+            <p>市区郡<span class="must_red">(必須)</span></p>  
             <% cities = @place.prefecture.try(:cities) || [] %>
             <% city_options = cities.map { |c| [c.name, c.id] } %>
             <%= f.select :city_id, city_options, { include_blank: true }, class: 'select-children' %>
