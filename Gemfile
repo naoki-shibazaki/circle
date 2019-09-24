@@ -33,7 +33,7 @@ gem 'jquery-rails'
 
 gem 'bootstrap-sass', '~> 3.3.7'
 gem "font-awesome-rails"
-gem "bootstrap4-datetime-picker-rails"
+# gem "bootstrap4-datetime-picker-rails"
 gem 'momentjs-rails'
 gem "rack-cors"
 

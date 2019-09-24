@@ -15,7 +15,6 @@
 //= require turbolinks
 
 //= require jquery
-//= require tempusdominus-bootstrap-4.js
 //= require moment
 //= require moment/ja.js
 //= require bootstrap-sprockets
