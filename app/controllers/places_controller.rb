@@ -127,7 +127,8 @@ class PlacesController < ApplicationController
 			:price,
 			:tel,
 			:url,
-			:tag
+			:tag,
+			:sns
 		)
 	end
 

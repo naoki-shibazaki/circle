@@ -4,6 +4,9 @@
             <p>施設名<span class="must_red">(必須)</span></p>
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック体育館" %> 
 
+            <p>インスタ埋め込み</p>
+            <%= f.text_area :sns, class: 'form-control', placeholder: "Instagram ⇒ 『…』から埋め込み ⇒ キャプションを追加のチェックを外し、URLをコピーして貼り付け"  %>            
+
             <p>種目<span class="must_red">(必須)</span></p>       
             <%= f.collection_select :event_id, Event.where.not(id: 0).order(:order => :asc), :id, :name, :prompt => "選択してください" %>            
 

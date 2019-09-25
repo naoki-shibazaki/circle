@@ -25,6 +25,10 @@
 
 					<div class="post-body">
 
+					<% if @place.sns.present? %>
+						<div class="sns_img"><%= @place.sns.html_safe %></div>
+					<% end %>
+
 					<h2 class="place_sub_title"><%= @place.name %>の<br><%= @event.name %>コートや公園情報</h2>
 						<div class="border"></div>
 
@@ -57,7 +61,7 @@
 									<td class="flex_list"><%= @prefecture.name %></td>
 								</tr>
 								<tr class="flex_contents">
-									<th class="flex_list">市区町村</th>
+									<th class="flex_list">市区郡</th>
 									<td class="flex_list"><%= @city.name %></td>
 								</tr>
 								<tr class="flex_contents">
