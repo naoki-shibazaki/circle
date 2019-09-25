@@ -25,7 +25,9 @@
 
 					<div class="post-body">
 
-
+					<% if @place.sns.present? %>
+						<div class="sns_img"><%= @place.sns.html_safe %></div>
+					<% end %>
 
 					<h2 class="place_sub_title"><%= @place.name %>の<br><%= @event.name %>コートや公園情報</h2>
 						<div class="border"></div>
