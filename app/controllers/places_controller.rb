@@ -46,6 +46,13 @@ class PlacesController < ApplicationController
 			redirect_to "/places"
 		end
 
+		@b1_name = "施設一覧"
+		@b1_url = "/places"
+		# @b2_name = @user.prefecture.name
+		# @b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
+		# @b3_name = @user.name.truncate(8)
+		# @b3_url = ""
+
 	end
 
 
