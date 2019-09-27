@@ -188,11 +188,30 @@ p {
     text-align: center;
 }
 
+.error_contact {
+  text-align: center;
+  margin-top: 30px;
+}
+
+a.error-link {
+    text-transform: uppercase;
+    font-size: 14px;
+    background-color: #567d7b;
+    padding: 16px 16px;
+    color: #ffffff;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 1.5;
+    text-decoration: none;
+    letter-spacing: 1px;
+    margin: 20px 4px 5px;
+    border-radius: 10px;
+}
+
   </style>
 </head>
 
 <body class="rails-default-error-page">
-  <!-- This file lives in public/500.html -->
 <h1>エラーページ</h1>
 <section class="error-container">
   <span>4</span>
@@ -201,10 +220,16 @@ p {
 </section>
 <img class="imege_error" src="/images/error.png">
 <p>
-  申し訳ございません。ページが表示できないため、トップページへお戻りください。
+  申し訳ございません。<br>
+  ページが表示できないため、トップページへお戻りください。
 </p>
 <div class="link-container">
   <a href="https://www.circle-book.com/" class="more-link">トップページに戻る</a>
+</div>
+
+<div class="error_contact">
+      <a href="http://nav.cx/3JiS9Im" class="error-link">LINE@に報告する</a>
+      <a href="mailto:circlebook47@gmail.com?subject=【422】エラー連絡" class="error-link">メールで報告する</a>
 </div>
 
 </body>
