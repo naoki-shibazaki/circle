@@ -55,11 +55,11 @@ class BlogsController < ApplicationController
 		if @user.switch.present?
 			@b1_name = "ブログ"
 			@b1_url = "/blog"
-			@b2_name = "#{@user.event.name.truncate(6)}"
+			@b2_name = "#{@user.event.name}"
 			@b2_url = "/blog/#{@user.event.ruby}"
 			@b3_name = "#{@user.prefecture.name}"
 			@b3_url = "/blog/#{@user.event.ruby}/#{@user.prefecture.kana}"	
-			@b4_name = "#{@blog.title.truncate(5)}"
+			@b4_name = "#{@blog.title}"
 			@b4_url = ""
 		end		
 	
