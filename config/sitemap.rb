@@ -25,7 +25,7 @@ SitemapGenerator::Sitemap.create do
   Prefecture.find_each do |prefecture|
 
     if prefecture.kana != "nil"
-      add "/prefectures/#{prefecture.kana}", :lastmod => prefecture.updated_at, :priority => 0.8, :changefreq => 'daily'
+      add "/prefectures/#{prefecture.kana}", :lastmod => prefecture.updated_at, :priority => 0.8, :changefreq => 'daily' 
       add "/blog/prefectures/#{prefecture.kana}", :lastmod => prefecture.updated_at, :priority => 0.3, :changefreq => 'weekly'
 
           Group.find_each do |prefecture_group|
@@ -71,6 +71,31 @@ SitemapGenerator::Sitemap.create do
     end      
 
   end
+
+
+  Event.find_each do |place_event|
+    if place_event.kana != "nil"
+      add "/places/#{place_event}", :lastmod => place_event.updated_at, :priority => 0.5, :changefreq => 'weekly'
+
+          Prefecture.find_each do |place_prefecture|
+            add "/places/#{place_event.ruby}/#{place_prefecture.kana}", :lastmod => place_prefecture.updated_at, :priority => 0.5, :changefreq => 'weekly'
+
+              City.where(prefecture_id: :place_prefecture.id).find_each do |place_city|
+                add "/places/#{place_event.ruby}/#{place_prefecture.kana}/#{place_city.city_kana}", :lastmod => place_city.updated_at, :priority => 0.5, :changefreq => 'weekly'
+
+              end  
+
+          end      
+
+    end
+  end
+
+
+
+  # Place.find_each do |place|
+
+
+  # end  
 
 
 
