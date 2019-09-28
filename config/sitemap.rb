@@ -74,7 +74,8 @@ SitemapGenerator::Sitemap.create do
 
 
   Event.find_each do |place_event|
-    if place_event.kana != "nil"
+    if place_event.ruby != "nil"
+      
       add "/places/#{place_event}", :lastmod => place_event.updated_at, :priority => 0.5, :changefreq => 'weekly'
 
           Prefecture.find_each do |place_prefecture|
