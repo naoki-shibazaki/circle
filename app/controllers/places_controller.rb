@@ -12,7 +12,7 @@ class PlacesController < ApplicationController
 
 	def new
 		@place = Place.new
-		@place_button = "投稿する"
+		@place_button = "登録する"
 	end
 
 	def create
@@ -26,7 +26,7 @@ class PlacesController < ApplicationController
 
 		if @place.update(place_params)
 			
-			flash[:share] = '投稿完了！'
+			flash[:share] = '登録完了！'
 			# redirect_to place_path(@place.id)
 			redirect_to "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@place.id}"
 		else
@@ -46,19 +46,20 @@ class PlacesController < ApplicationController
 			redirect_to "/places"
 		end
 
-		@b1_name = "施設一覧"
-		@b1_url = "/places"
-		# @b2_name = @user.prefecture.name
-		# @b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
-		# @b3_name = @user.name.truncate(8)
-		# @b3_url = ""
-
+		@b2_name = @event.name
+		@b2_url = "/places/#{@event.ruby}"	
+		@b3_name = @prefecture.name
+		@b3_url = "/places/#{@event.ruby}/#{@prefecture.kana}"
+		@b4_name = @city.name
+		@b4_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
+		@b5_name = @place.name
+		@b5_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@place.name}"
 	end
 
 
 	def edit
 		@place = Place.find(params[:id])
-		@place_button = "編集する"
+		@place_button = "更新する"
 	end
 
 	def update
@@ -82,6 +83,40 @@ class PlacesController < ApplicationController
 
 		redirect_to "/places"
 	end
+
+
+	def event
+		@event = Event.find_by(ruby: params[:ruby])
+	    @places = Place.where(event_id: @event.id)		
+
+		@b2_name = @event.name
+		@b2_url = "/places/#{@event.ruby}"	
+	end	
+
+	def prefecture
+		@event = Event.find_by(ruby: params[:ruby])
+		@prefecture = Prefecture.find_by(kana: params[:kana])		
+	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id)
+
+		@b2_name = @event.name
+		@b2_url = "/places/#{@event.ruby}"	
+		@b3_name = @prefecture.name
+		@b3_url = "/places/#{@event.ruby}/#{@prefecture.kana}"
+	end	
+
+	def city
+		@event = Event.find_by(ruby: params[:ruby])
+		@prefecture = Prefecture.find_by(kana: params[:kana])		
+		@city = City.find_by(city_kana: params[:city_kana])	
+	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).where(city_id: @city.id)
+
+		@b2_name = @event.name
+		@b2_url = "/places/#{@event.ruby}"	
+		@b3_name = @prefecture.name
+		@b3_url = "/places/#{@event.ruby}/#{@prefecture.kana}"
+		@b4_name = @city.name
+		@b4_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
+	end	
 
 
 	private
@@ -113,9 +148,13 @@ class PlacesController < ApplicationController
     def set_place
     	@places = Place.all
 
+    	@b1_name = "施設一覧"
+		@b1_url = "/places"
+
 	    if admin_user_signed_in?
 	      @current_user = User.find_by(id: current_admin_user.id)
 	    end
+
     end
 
 	def place_params

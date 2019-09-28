@@ -1,0 +1,13 @@
+<% set_meta_tags title: "#{@prefecture.name}の#{@city.name}にある#{@event.name}のコート情報一覧" %>
+<div class="main users-index">
+  <div class="container">
+
+    <%= render "/layouts/breadcrumb" %>
+    <h1 class="users-heading"><%= @prefecture.name %>の<%= @city.name %>にある<br><%= @event.name %>のコート情報一覧</h1>
+
+
+    <%= render "/places/places_list" %>
+
+
+  </div>
+</div>

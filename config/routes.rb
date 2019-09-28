@@ -39,6 +39,10 @@ Rails.application.routes.draw do
 	get 'blog/:ruby' , to: 'blogs#event'
 	get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
 
+
+	get 'places/:ruby' , to: 'places#event'
+	get 'places/:ruby/:kana' , to: 'places#prefecture'
+	get 'places/:ruby/:kana/:city_kana' , to: 'places#city'
 	get 'places/:ruby/:kana/:city_kana/:id' , to: 'places#show'
 
 	

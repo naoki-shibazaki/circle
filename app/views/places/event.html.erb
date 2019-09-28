@@ -1,9 +1,9 @@
-<% set_meta_tags title: "全国のコート情報一覧" %>
+<% set_meta_tags title: "#{@event.name}のコート情報一覧" %>
 <div class="main users-index">
   <div class="container">
 
     <%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading">全国のコート情報一覧</h1>
+    <h1 class="users-heading"><%= @event.name %>のコート情報一覧</h1>
 
 
     <%= render "/places/places_list" %>

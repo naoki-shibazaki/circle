@@ -1,11 +1,14 @@
-<div class="breadcrumbs">
- <nav>
-   <ul>
-     <li><%= link_to(root_path) do %><i class="fa fa-home home_icon "></i><% end %></li>
-     <% if @b1_name.present? %><li><%= link_to @b1_name, @b1_url %></li><% end %>
-     <% if @b2_name.present? %><li><%= link_to @b2_name, @b2_url %></li><% end %>
-     <% if @b3_name.present? %><li><%= link_to @b3_name, @b3_url %></li><% end %>
-     <% if @b4_name.present? %><li><%= link_to @b4_name, @b4_url %></li><% end %>     
-   </ul>
- </nav>
+<div class="breadcrumbs_wrapper">
+	<div class="breadcrumbs">
+	 <nav>
+	   <ul>
+	     <li><%= link_to(root_path) do %><i class="fa fa-home home_icon "></i><% end %></li>
+	     <% if @b1_name.present? %><li><%= link_to @b1_name, @b1_url %></li><% end %>
+	     <% if @b2_name.present? %><li><%= link_to @b2_name, @b2_url %></li><% end %>
+	     <% if @b3_name.present? %><li><%= link_to @b3_name, @b3_url %></li><% end %>
+	     <% if @b4_name.present? %><li><%= link_to @b4_name, @b4_url %></li><% end %>
+	     <% if @b5_name.present? %><li><%= link_to @b5_name, @b5_url %></li><% end %>
+	   </ul>
+	 </nav>
+	</div>
 </div>
