@@ -914,7 +914,7 @@ header {
 
 .ribbon-content .blue {
   position: absolute;
-  background: #39a3bd;
+  background: #3997bd;
 }
 
 .tag_btn{
@@ -1052,6 +1052,12 @@ opacity: 1; /* 要素を表示する */
   margin-bottom: 20px;
   font-size: 1rem;
 }
+
+.post-body p:last-child,
+.user-profile p:last-child{
+  margin-bottom: 0px;
+}
+
 
 .post-body a,
 .flex_contents a,
@@ -1350,6 +1356,14 @@ a.line_id {
     text-align: center;
 }
 
+.place_list table th {
+  width: 26%;
+}
+
+.place_list table td {
+    width: 70%;
+}
+
 .flex_list p{
     font-size: 13px;
     text-align: left;
@@ -1576,79 +1590,6 @@ a.line_business {
     font-size: 14px !important;
 }
 
-// .breadcrumbs_wrapper {
-//   width:100%;
-//   height:40px;
-// }
-
-// .breadcrumbs{
-//   border: solid 1px #ccc;
-//   border-width: 1px 0;
-//   background-color: #fff;
-//   width: 100%;
-// }
-
-// .breadcrumbs ul,
-// .breadcrumbs li{
-//  margin: 0;
-//  padding: 0;
-// }
-
-// .breadcrumbs a{
-//  color: #6d6d6d;
-//  text-decoration: none;
-//   font-size: 10px;
-// }
-
-// .breadcrumbs a:hover{
-//  color: #606c76;
-// }
-
-// .breadcrumbs ul{
-//   display:block;
-//   overflow-x: auto;
-//   overflow-y: hidden;
-//   -webkit-overflow-scrolling: touch;
-//   overflow-scrolling: touch;
-//   overflow: auto;
-//   white-space: nowrap;
-
-// }
-
-// .breadcrumbs li{
-//   list-style: none;
-//   height: 30px;
-//   line-height: 30px;
-//   margin-left: 10px;
-//   display:inline;
-//   padding-right:20px;
-//   flex: 0 0 40%;
-// }
-
-// .breadcrumbs li:before,
-// .breadcrumbs li:after{
-//  content: "";
-//  display: block;
-//  position: absolute;
-//  top: 0;
-//  border-top: 15px solid transparent;
-//  border-right: 15px solid transparent;
-//  border-bottom: 15px solid transparent;
-// }
-
-// .breadcrumbs li:before{
-//  right: -40px;
-//  border-left: 15px solid #ccc;
-// }
-
-// .breadcrumbs li:after{
-//  right: -39px;
-//  border-left: 15px solid #fff;
-// }
-
-// .active a{
-//  color: #000;
-// }
 
 .breadcrumbs_wrapper {
  width:100%;
@@ -1694,7 +1635,8 @@ padding:0 20px;
   position: absolute;
   width: 9px;
   height: 15px;
-  top: -10px;
+  font-size: 16px;
+  top: -12px;
   right: 15px;
   color: #6d6d6d;
 }
@@ -2368,6 +2310,43 @@ max-width: 100%;
     margin: auto;
     display: table;
 }
+
+.place_name{
+  padding: 0.25em 0.5em;
+  margin-bottom: 8px;
+  font-size: 20px;
+  color: #494949;
+  background: transparent;
+  border-left: solid 5px #61cec7;
+}
+
+.place_d{
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.place_more{
+    width: 50%;
+    padding: 8px 10px;
+    border-radius: 7px;
+    margin: 20px auto 0;
+    background-color: #3ecdc6;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold; 
+    text-align: center;    
+}
+
+.google_map{
+    background: #fff;
+    border: 2px solid #61cec7;
+    color: #61cec7;
+    padding: 15px 0;
+    width: 50%;
+    text-align: center;
+    margin: 10px auto 10px;
+}
+
 
 
 

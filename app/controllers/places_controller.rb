@@ -148,7 +148,7 @@ class PlacesController < ApplicationController
     def set_place
     	@places = Place.all
 
-    	@b1_name = "施設一覧"
+    	@b1_name = "コート情報"
 		@b1_url = "/places"
 
 	    if admin_user_signed_in?

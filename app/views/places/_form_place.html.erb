@@ -4,9 +4,6 @@
             <p>施設名<span class="must_red">(必須)</span></p>
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック体育館" %> 
 
-            <p>インスタ埋め込み</p>
-            <%= f.text_area :sns, class: 'form-control', placeholder: "Instagramの投稿ページ ⇒ 『…』ボタンから埋め込みを選択 ⇒ キャプションを追加のチェックを外し、URLをコピーして貼り付け"  %>    
-
             <p>種目<span class="must_red">(必須)</span></p>       
             <%= f.collection_select :event_id, Event.where.not(id: 0).order(:order => :asc), :id, :name, :prompt => "選択してください" %>            
 
@@ -50,7 +47,7 @@
             <%= f.text_field :tel, class: 'form-control', placeholder: "03-1234-5678"  %>
 
             <p>参考URL</p>
-            <%= f.text_field :url, class: 'form-control', placeholder: "https://www.circle-book.com/"  %>
+            <%= f.text_field :url, class: 'form-control', placeholder: "https://www.circle-book.com/"  %>              
 
             <%= f.submit @place_button %>
       <% end %>
