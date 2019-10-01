@@ -923,8 +923,14 @@ header {
   align-items: center;
   padding: 6px 8px;
   background: #fff;
-  border: 1.6px solid #bd7639;
+  border: 1px solid #519851;
   border-radius: 4px; 
+}
+
+.tag-color{
+  color: #519851;
+  padding-right: 4px;
+  font-size: 15px;
 }
 
 .tag_bottom{
@@ -2216,12 +2222,6 @@ max-width: 100%;
     color: #545454;
     background: #fff;
     padding: 12px 0px;
-}
-
-.tag-color{
-  color: #bd7639;
-  padding-right: 4px;
-  font-size: 15px;
 }
 
 .pagination-bottom{
