@@ -2337,10 +2337,13 @@ max-width: 100%;
 }
 
 .google_map{
-    background: #fff;
-    border: 2px solid #61cec7;
     color: #61cec7;
     padding: 15px 0;
+}
+
+.google_map_wrap{
+    background: #fff;
+    border: 2px solid #61cec7;
     width: 50%;
     text-align: center;
     margin: 10px auto 10px;

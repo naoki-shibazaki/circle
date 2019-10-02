@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
 
-	before_action :correct_user, {only: :new}
+	before_action :correct_user, {only: [:new, :count]}
 	before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 	before_action :set_place
 
@@ -84,6 +84,10 @@ class PlacesController < ApplicationController
 		redirect_to "/places"
 	end
 
+	def count
+	 	@places = Place.group(:user_id).count(:user_id)
+	end		
+
 
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
@@ -117,6 +121,13 @@ class PlacesController < ApplicationController
 		@b4_name = @city.name
 		@b4_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
 	end	
+
+
+
+
+
+
+
 
 
 	private
