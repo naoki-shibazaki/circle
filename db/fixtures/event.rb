@@ -24,7 +24,7 @@ Event.seed(:id,
   { :id => 18, :category => "その他", :order => "56", :name => "登山" , :ruby => "mountain", :icon => "fa fa-photo" },
   { :id => 19, :category => "その他", :order => "57", :name => "ダンス" , :ruby => "dance", :icon => "fa fa-group" },
   { :id => 20, :category => "その他", :order => "58", :name => "スノーボード" , :ruby => "snow-board", :icon => "fa fa-group" },
-  { :id => 13, :category => "その他", :order => "59", :name => "音楽" , :ruby => "golf", :icon => "fa fa-music" }
+  { :id => 13, :category => "その他", :order => "59", :name => "音楽" , :ruby => "music", :icon => "fa fa-music" }
 
 )
 
