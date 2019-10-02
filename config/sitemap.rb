@@ -67,11 +67,11 @@ SitemapGenerator::Sitemap.create do
                         end
 
 
-                        City.where(prefecture_id: :event_prefecture.id).find_each do |city|
+                        City.where(prefecture_id: event_prefecture.id).find_each do |city|
                           add "/places/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}", :lastmod => city.updated_at, :priority => 0.5, :changefreq => 'weekly'
 
-                            Place.where(event_id: :event.id).where(prefecture_id: :event_prefecture.id).where(city_id: :city.id).find_each do |place|
-                              add "/places/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}/#{place.id}", :lastmod => city.updated_at, :priority => 0.7, :changefreq => 'daily'
+                            Place.where(event_id: event.id).where(prefecture_id: event_prefecture.id).where(city_id: city.id).find_each do |place|
+                              add "/places/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}/#{place.id}", :lastmod => place.updated_at, :priority => 0.7, :changefreq => 'daily'
                             end 
 
                         end 
