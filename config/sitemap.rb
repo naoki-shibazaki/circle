@@ -73,25 +73,27 @@ SitemapGenerator::Sitemap.create do
   end
 
 
-  Event.find_each do |place_event|
+  # Event.find_each do |place_event|
+  #   if place_event.ruby != "nil"
+      
+  #     add "/places/#{place_event}", :lastmod => place_event.updated_at, :priority => 0.5, :changefreq => 'weekly'
 
-      add "/places/#{place_event}", :lastmod => place_event.updated_at, :priority => 0.5, :changefreq => 'weekly'
+  #         Prefecture.find_each do |place_prefecture|
+  #           add "/places/#{place_event.ruby}/#{place_prefecture.kana}", :lastmod => place_prefecture.updated_at, :priority => 0.5, :changefreq => 'weekly'
 
-          Prefecture.find_each do |place_prefecture|
-            add "/places/#{place_event.ruby}/#{place_prefecture.kana}", :lastmod => place_prefecture.updated_at, :priority => 0.5, :changefreq => 'weekly'
+  #             City.where(prefecture_id: :place_prefecture.id).find_each do |place_city|
+  #               add "/places/#{place_event.ruby}/#{place_prefecture.kana}/#{place_city.city_kana}", :lastmod => place_city.updated_at, :priority => 0.5, :changefreq => 'weekly'
 
-              City.where(prefecture_id: :place_prefecture.id).find_each do |place_city|
-                add "/places/#{place_event.ruby}/#{place_prefecture.kana}/#{place_city.city_kana}", :lastmod => place_city.updated_at, :priority => 0.5, :changefreq => 'weekly'
+  #                 Place.where(event_id: :place_event.id).where(prefecture_id: :place_prefecture.id).where(city_id: :place_city.id).find_each do |place|
+  #                   add "/places/#{place_event.ruby}/#{place_prefecture.kana}/#{place_city.city_kana}/#{place.id}", :lastmod => place_city.updated_at, :priority => 0.7, :changefreq => 'daily'
+  #                 end 
 
-                  Place.where(event_id: :place_event.id).where(prefecture_id: :place_prefecture.id).where(city_id: :place_city.id).find_each do |place|
-                    add "/places/#{place_event.ruby}/#{place_prefecture.kana}/#{place_city.city_kana}/#{place.id}", :lastmod => place_city.updated_at, :priority => 0.7, :changefreq => 'daily'
-                  end 
+  #             end  
 
-              end  
+  #         end      
 
-          end      
-
-  end
+  #   end
+  # end
 
 
 
