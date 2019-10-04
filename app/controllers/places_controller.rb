@@ -185,7 +185,10 @@ class PlacesController < ApplicationController
 			:tel,
 			:url,
 			:tag,
-			:sns
+			:sns,
+			:img_link,
+			:img_url,
+			:img_source
 		)
 	end
 

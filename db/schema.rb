@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_24_052520) do
+ActiveRecord::Schema.define(version: 2019_10_04_095048) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -103,6 +103,9 @@ ActiveRecord::Schema.define(version: 2019_09_24_052520) do
     t.string "tel"
     t.string "url"
     t.text "sns"
+    t.string "img_link"
+    t.string "img_url"
+    t.string "img_source"
   end
 
   create_table "prefectures", force: :cascade do |t|
