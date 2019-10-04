@@ -2,7 +2,6 @@
 
 
   <div class="users-index-item ribbon-wrapper">
-    <%= link_to "/places/#{place.event.ruby}/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}" do %>  
 
       <div class="ribbon-content">
         <% if place.tag.to_i == 1 %>
@@ -76,11 +75,9 @@
 
           </tbody>
         </table> 
-      </div>   
-
-      <div class="place_more">詳細を確認する</div>
-
-    <% end %><!-- リンク -->
+      </div>
+      
+      <%= link_to "詳細を確認する", "/places/#{place.event.ruby}/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}", class: "place_more" %>
 
   </div> <!-- 各フレーム -->
 

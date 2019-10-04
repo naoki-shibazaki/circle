@@ -2325,12 +2325,13 @@ max-width: 100%;
 }
 
 .place_more{
+    display: block;
     width: 50%;
     padding: 8px 10px;
     border-radius: 7px;
     margin: 20px auto 0;
     background-color: #3ecdc6;
-    color: #fff;
+    color: #fff !important;
     font-size: 1rem;
     font-weight: bold; 
     text-align: center;    
