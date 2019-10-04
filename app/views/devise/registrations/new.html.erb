@@ -12,7 +12,8 @@
 
           <div class="field">
             <%= f.label :メールアドレス %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <span class="cautions">必ず受信できるメールアドレスをご登録ください</span>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "circlebook47@gmail.com" %>
           </div>
 
           <div class="field">
@@ -20,12 +21,12 @@
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %>文字以上)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "password" %>
           </div>
 
           <div class="field">
             <%= f.label :パスワード再入力 %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password" %>
           </div>
 
           <div class="rules_link">
