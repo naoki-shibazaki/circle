@@ -34,7 +34,7 @@
 			<% if admin_user_signed_in?  %>
 				<% if @place.user_id.to_i == @current_user.id.to_i || @current_user.id.to_i == 1 %>
 				
-				<div class="post-edit">
+				<div class="place_edit">
 					<div class="post-edit_btn">
 						<%= link_to( "編集", edit_place_path ) %>／
 						<%= link_to( "削除", place_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) %>
