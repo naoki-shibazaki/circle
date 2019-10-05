@@ -1,7 +1,5 @@
 Event.seed(:id,
 
-  { :id => 0, :category => "nil", :order => 0, :name => "選択してください" , :ruby => "nil", :icon => "nil" },
-
   { :id => 2, :category => "スポーツ１", :order => "01", :name => "バスケットボール" , :ruby => "basketball", :icon => "fa fa-dribbble" },
   { :id => 4, :category => "スポーツ１", :order => "02", :name => "バレーボール" , :ruby => "volleyball", :icon => "fa fa-group" },
   { :id => 8, :category => "スポーツ１", :order => "03", :name => "フットサル" , :ruby => "futsal", :icon => "fa fa-soccer-ball-o" },
@@ -27,6 +25,3 @@ Event.seed(:id,
   { :id => 13, :category => "その他", :order => "59", :name => "音楽" , :ruby => "music", :icon => "fa fa-music" }
 
 )
-
-
-

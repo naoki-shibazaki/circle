@@ -1,6 +1,5 @@
 Prefecture.seed(:id,
 
-  { :id => 0, :group => "nil", :order => 0, :name => "選択してください" , :kana => "nil" },
   { :id => 1, :group => "北海道" , :order => "01", :name => "北海道" , :kana => "hokkaido" },
   { :id => 2, :group => "東北" , :order => "07", :name => "青森" , :kana => "aomori" },
   { :id => 3, :group => "東北" , :order => "05", :name => "岩手" , :kana => "iwate" },
