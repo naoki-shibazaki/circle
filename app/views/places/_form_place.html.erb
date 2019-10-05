@@ -19,6 +19,7 @@
             <p>アクセス</p>
             <%= f.text_field :access, class: 'form-control', placeholder: "大手町駅／東京駅"  %>
 
+
             <p>都道府県<span class="must_red">(必須)</span></p>         
             <% prefecture_options = Prefecture.where.not(id: 0).order(:id).map { |c| [c.name, c.id, data: { children_path: prefecture_cities_path(c) }] } %>
             <%= f.select :prefecture_id, prefecture_options, { include_blank: true }, class: 'select-parent' %>
@@ -27,6 +28,7 @@
             <% cities = @place.prefecture.try(:cities) || [] %>
             <% city_options = cities.map { |c| [c.name, c.id] } %>
             <%= f.select :city_id, city_options, { include_blank: true }, class: 'select-children' %>
+
 
             <p>駐車場情報</p>
             <%= f.text_field :parking, class: 'form-control', placeholder: "200台"  %>
@@ -48,8 +50,12 @@
 
             <div class="border"></div>
 
-            <p>施設の画像リンク</p>
-            <%= f.text_field :img_link, class: 'form-control', placeholder: "https://~~~picture.jpg"  %>
+
+            <p>施設画像のリンク</p>
+            １）画像を右クリック　２）画像アドレスをコピー
+            <img class="img_copy" src="/images/img_copy.jpg">
+
+            <%= f.text_field :img_link, class: 'form-control', placeholder: "画像アドレスをここに貼り付けてください"  %>
 
             <p>出典元（参照サイト名）</p>
             <%= f.text_field :img_source, class: 'form-control', placeholder: "サークルブック体育館"  %>            
