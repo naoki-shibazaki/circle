@@ -1,3 +1,7 @@
+<% set_meta_tags title: "#{@place.name}の#{@place.event.name}のコート情報",
+                         description: "#{@place.prefecture.name}#{@place.city.name}の#{"屋内" if @place.tag.to_i == 1}#{"屋外" if @place.tag.to_i == 2}にある#{@place.event.name}のコート情報"
+%>
+
 <div class="main user-show">
   <div class="container">
 
@@ -22,7 +26,7 @@
 
 	          <div class="list_02">
 	            <h3 class="place_d">
-	              <%= @place.prefecture.name %><%= @place.city.name %>にある<br>
+	              <%= @place.prefecture.name %><%= @place.city.name %>の<%= "屋内" if @place.tag.to_i == 1 %><%= "屋外" if @place.tag.to_i == 2 %>にある<br>
 	              <%= @place.event.name %>のコート情報
 	            </h3>
 	          </div>
@@ -91,7 +95,7 @@
 				</tr>
 				<tr class="flex_contents">
 					<th class="flex_list">電話番号</th>
-					<td class="flex_list"><%= @place.tel %></td>
+					<td class="flex_list"><a href="tel:<%= @place.tel %>"><%= @place.tel %></a>
 				</tr>
 				<tr class="flex_contents">
 					<th class="flex_list">サイトURL</th>
@@ -104,9 +108,9 @@
 
 
 				<div class="g_map">
-					<iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.name}") %>></iframe>
+					<iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></iframe>
 						<div class="google_map_wrap">
-						    <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@place.name}" do %>  
+						    <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@place.address}" do %>  
 						    	<div class="google_map">Google MAP</div>
 						    <% end %>
 					    </div>

@@ -20,8 +20,8 @@
 
           <div class="list_02">
             <h3 class="place_d">
-              <%= place.prefecture.name %><%= place.city.name %>にある<br>
-              <%= place.event.name %>のコート情報
+                <%= place.prefecture.name %><%= place.city.name %>の<%= "屋内" if place.tag.to_i == 1 %><%= "屋外" if place.tag.to_i == 2 %>にある<br>
+                <%= place.event.name %>のコート情報
             </h3>
           </div>
 
@@ -44,34 +44,34 @@
         <table>
           <tbody>
 
-          <tr class="flex_contents">
-            <th class="flex_list">住所</th>
-            <td class="flex_list"><%= place.address %></td>
-          </tr>
-          <tr class="flex_contents">
-            <th class="flex_list">駐車場情報</th>
-            <td class="flex_list"><%= place.parking %></td>
-          </tr>
-          <tr class="flex_contents">
-            <th class="flex_list">利用可能時間</th>
-            <td class="flex_list"><%= place.time %></td>
-          </tr>
-          <tr class="flex_contents">
-            <th class="flex_list">定休日</th>
-            <td class="flex_list"><%= place.regular_holiday %></td>
-          </tr>
-          <tr class="flex_contents">
-            <th class="flex_list">施設規模</th>
-            <td class="flex_list"><%= place.scale %></td>
-          </tr>
-          <tr class="flex_contents">
-            <th class="flex_list">利用料金</th>
-            <td class="flex_list"><%= place.price %></td>
-          </tr>
-          <tr class="flex_contents">
-            <th class="flex_list">電話番号</th>
-            <td class="flex_list"><%= place.tel %></td>
-          </tr>
+            <tr class="flex_contents">
+              <th class="flex_list">住所</th>
+              <td class="flex_list"><%= place.address %></td>
+            </tr>
+            <tr class="flex_contents">
+              <th class="flex_list">アクセス</th>
+              <td class="flex_list"><%= place.access %></td>
+            </tr>
+            <tr class="flex_contents">
+              <th class="flex_list">利用可能時間</th>
+              <td class="flex_list"><%= raw Rinku.auto_link(simple_format place.time) %></td>
+            </tr>
+            <tr class="flex_contents">
+              <th class="flex_list">定休日</th>
+              <td class="flex_list"><%= raw Rinku.auto_link(simple_format place.regular_holiday) %></td>
+            </tr>
+            <tr class="flex_contents">
+              <th class="flex_list">利用料金</th>
+              <td class="flex_list"><%= raw Rinku.auto_link(simple_format place.price) %></td>
+            </tr>
+            <tr class="flex_contents">
+              <th class="flex_list">電話番号</th>
+              <td class="flex_list"><a href="tel:<%= place.tel %>"><%= place.tel %></a>
+            </tr>
+            <tr class="flex_contents">
+              <th class="flex_list">サイトURL</th>
+              <td class="flex_list"><a href="<%= place.url %>" ><%= place.url %></a></td>
+            </tr>
 
           </tbody>
         </table> 

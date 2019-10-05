@@ -13,7 +13,7 @@
             <p>カテゴリー<span class="must_red">(必須)</span></p>
             <%= f.select :tag,[ ['屋内',1], ['屋外',2] ], :prompt => "選択してください"  %>
   
-            <p>住所</p>
+            <p>住所<span class="must_red">(必須)</span></p>
             <%= f.text_field :address, class: 'form-control', placeholder: "東京都千代田区丸の内1-1-1"  %>
 
             <p>アクセス</p>
