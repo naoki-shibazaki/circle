@@ -157,7 +157,7 @@ class PlacesController < ApplicationController
 
 
     def set_place
-    	@places = Place.all
+    	@places = Place.all.order(updated_at: "DESC")
 
     	@b1_name = "コート情報"
 		@b1_url = "/places"
