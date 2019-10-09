@@ -1,15 +1,20 @@
 <% set_meta_tags title: "【#{@time.strftime("%Y")}年版】メンバー募集中の全国のサークル一覧" %>
 <div class="main users-index">
   <div class="container">
-     
-    <%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading">
-    	メンバー募集中の<br>全国のサークル一覧
-    </h1>
-
+    <img class="imege_title" src="/images/top.png">
+    <h1 class="users-heading">サークル検索</h1>
+	    <div class="users-txt">
+		        <% if admin_user_signed_in?  %>
+		        	<%= link_to("活動ブログ", new_blog_path ) %>を投稿すると<br>
+		        	サークルの掲載順位が上がります！
+		        
+		        <% else %>
+		    		サークルメンバー募集SNS<br>
+		    		LINEやメールで直接連絡ができます！
+		        <% end %>
+		</div>
 
 	<%= render "/users/search.html.erb" %>
-
 
 	<div class="search_area">
 	    <%= render "events_list.html.erb" %>
