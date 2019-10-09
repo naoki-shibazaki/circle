@@ -26,7 +26,10 @@
 				  		<% @prefectures.each do |prefecture_child| %>
 					  		<% if prefecture.group == prefecture_child.group %> 
 								<div class="prefecture_child_list">
-									<%= link_to prefecture_child.name, "/places/basketball/#{prefecture_child.kana}" %>
+
+									<%= link_to("/places/basketball/#{prefecture_child.kana}") do %>
+						                <%= prefecture_child.name %>(<%= @places.where(prefecture_id: prefecture.id).count %>)
+					                <% end %>
 								</div>
 							<% end %>
 						<% end %>
