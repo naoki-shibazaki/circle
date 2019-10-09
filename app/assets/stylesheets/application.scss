@@ -2394,6 +2394,35 @@ max-width: 100%;
 }
 
 
+.coat_button{
+    font-weight: bold;
+    line-height: 3;
+    position: relative;
+    display: block;
+    padding: 0 0 0 2.4em;
+    cursor: pointer;
+    margin: 0 0 1px 0;
+    background: #61cec7;
+    color: #fff;
+}
+
+.coat_button a{
+  color: #fff;
+  padding-left: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ▼PC
 @media only screen and (min-width:768px) {

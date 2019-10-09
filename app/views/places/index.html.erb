@@ -6,8 +6,19 @@
     <h1 class="users-heading">全国のコート情報一覧</h1>
 
 
-    <%= render "/places/places_list" %>
+	<div class="search_area">
 
+		<div class="coat-container">
+
+			<div class="coat_button">
+				<i class="fa fa-search search-list"></i><%= link_to "バスケットボールのコート情報", "/places/basketball/" %>
+			</div>
+
+		</div>
+
+	</div>
+
+    <%= render "/places/places_list" %>
 
   </div>
 </div>

@@ -5,6 +5,41 @@
     <%= render "/layouts/breadcrumb" %>
     <h1 class="users-heading"><%= @event.name %>のコート情報一覧</h1>
 
+	<div class="search_area">
+
+		<div class="coat-container">
+
+
+			<% @prefectures.each do |prefecture| %>
+
+				  <div class="cp_actab">
+					<% if @count != prefecture.group %>
+
+					    <input id="tab-<%= @id %>" type="checkbox" name="tabs">
+
+					    <label for="tab-<%= @id %>"><%= prefecture.group %>エリア</label>
+						<% @count = prefecture.group %>
+						<% @id += 1 %>
+
+					<% end %>
+
+				  	<div class="cp_actab-content">
+				  		<% @prefectures.each do |prefecture_child| %>
+					  		<% if prefecture.group == prefecture_child.group %> 
+								<%= link_to prefecture_child.name, "/places/basketball/#{prefecture_child.kana}" %><br>
+							<% end %>
+						<% end %>
+				   	</div>
+
+				  </div>
+
+			<% end %>
+
+
+		</div>
+
+	</div>
+
 
     <%= render "/places/places_list" %>
 
