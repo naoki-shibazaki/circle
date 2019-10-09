@@ -1272,7 +1272,7 @@ a.line_id {
 }
 
 .cp_actab input:checked ~ .cp_actab-content {
-  max-height: 70em;
+  max-height: 120em;
 }
 
 .cp_actab label::after {
@@ -2421,7 +2421,12 @@ max-width: 100%;
 }
 
 
-
+.prefecture_city_list{
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px;
+    width: 25%;
+}
 
 
 

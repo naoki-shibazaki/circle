@@ -99,7 +99,8 @@ class PlacesController < ApplicationController
 
 	def prefecture
 		@event = Event.find_by(ruby: params[:ruby])
-		@prefecture = Prefecture.find_by(kana: params[:kana])		
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@cities = City.where(prefecture_id: @prefecture.id)
 	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).all.order(updated_at: "DESC")
 
 		@b2_name = @event.name
@@ -160,7 +161,7 @@ class PlacesController < ApplicationController
     	@places = Place.all.order(updated_at: "DESC")
 		@events = Event.all
 		@prefectures = Prefecture.all.order(:order => :asc)
-		@citys = City.all
+		@cities = City.all
 		@count = "nil"
 		@id = 1
 
