@@ -18,7 +18,11 @@
 		  	<div class="cp_actab-content">
 				<% @cities.each do |city| %>
 					<div class="prefecture_city_list">
-						<%= link_to city.name, "/places/#{@event.ruby}/#{@prefecture.kana}/#{city.city_kana}" %><br>
+
+						<%= link_to("/places/#{@event.ruby}/#{@prefecture.kana}/#{city.city_kana}") do %>
+			                <%= city.name %>(<%= @places.where(city_id: city.id).count %>)
+		                <% end %>
+
 					</div>
 				<% end %>
 		   	</div>
