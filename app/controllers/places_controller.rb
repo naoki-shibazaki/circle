@@ -159,7 +159,7 @@ class PlacesController < ApplicationController
     def set_place
     	@places = Place.all.order(updated_at: "DESC")
 		@events = Event.all
-		@prefectures = Prefecture.all	
+		@prefectures = Prefecture.all.order(:order => :asc)
 		@citys = City.all
 		@count = "nil"
 		@id = 1

@@ -9,7 +9,6 @@
 
 		<div class="coat-container">
 
-
 			<% @prefectures.each do |prefecture| %>
 
 				  <div class="cp_actab">
@@ -26,7 +25,9 @@
 				  	<div class="cp_actab-content">
 				  		<% @prefectures.each do |prefecture_child| %>
 					  		<% if prefecture.group == prefecture_child.group %> 
-								<%= link_to prefecture_child.name, "/places/basketball/#{prefecture_child.kana}" %><br>
+								<div class="prefecture_child_list">
+									<%= link_to prefecture_child.name, "/places/basketball/#{prefecture_child.kana}" %>
+								</div>
 							<% end %>
 						<% end %>
 				   	</div>
