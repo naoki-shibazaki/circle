@@ -200,7 +200,6 @@
     });
   </script>
 
-
   <!-- text copy -->
   <script>
     function copyText () {
@@ -216,7 +215,10 @@
       alert('コピーしました！');
       return false;
     }
-    document.querySelector('.copyBtn').addEventListener('click', copyText, false);
+    if ( addEventListener != null ){
+      document.querySelector('.copyBtn').addEventListener('click', copyText, false);
+    }
+
   </script>
 
 
