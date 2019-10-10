@@ -215,10 +215,7 @@
       alert('コピーしました！');
       return false;
     }
-    if ( document != null ){
-      document.querySelector('.copyBtn').addEventListener('click', copyText, false);
-    }
-
+      document.querySelector('.copyBtn').addEventListener('click', copyText, false) || document.createElement('input');
   </script>
 
 
