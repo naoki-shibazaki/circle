@@ -284,15 +284,35 @@
 	<% if !@blogs.any? && @users.count >= 2 %>
 
 		<div class="blog-list-wrap">
-			<h2 class="others-blog">条件が似ている<%= @user.event.name if @user.event_id? %> サークル</h2>
+			<h2 class="others-blog">条件が似ている<%= @user.event.name if @user.event_id? %>サークル</h2>
             <% @users.each do |user| %> 
 				<% if user.id != @user.id %>
 
 		            <%= link_to(user_path(user.id)) do %>  
 		            	<div class="blog_list">
-							<%= user.name %><br>
+				            <div class="user-content">
+				              <%= image_tag user.pic_profile.url , class:'image_icon' %>
+
+				              <div class="list_wrapper">
+				                <div class="list_01">
+				                  <h2 class="user_name"><%= user.name %></h2>
+				                </div>
+
+				                <div class="list_02">
+				                  <span class="user_schedule">
+				                    <i class="fa fa-calendar "></i><%= user.schedule %>
+				                  </span>
+				                </div>
+
+				                <div class="list_03">
+				                  <span class="user_area">
+				                    <i class="fa fa-map-marker "></i><%= user.area %>
+				                  </span>
+				                </div>
+				              </div>
+				         	</div>
 					
-							
+
 		            	</div>
 	            	<% end %>
 
