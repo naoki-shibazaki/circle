@@ -28,7 +28,7 @@
 								<div class="prefecture_child_list">
 
 									<%= link_to("/places/basketball/#{prefecture_child.kana}") do %>
-						                <%= prefecture_child.name %>(<%= @places.where(prefecture_id: prefecture_child.id).count %>)
+						                <%= prefecture_child.name %>(<%= @places_count.where(prefecture_id: prefecture_child.id).count %>)
 					                <% end %>
 								</div>
 							<% end %>

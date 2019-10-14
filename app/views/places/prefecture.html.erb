@@ -20,7 +20,7 @@
 					<div class="prefecture_city_list">
 
 						<%= link_to("/places/#{@event.ruby}/#{@prefecture.kana}/#{city.city_kana}") do %>
-			                <%= city.name %>(<%= @places.where(city_id: city.id).count %>)
+			                <%= city.name %>(<%= @places_count.where(city_id: city.id).count %>)
 		                <% end %>
 
 					</div>

@@ -91,7 +91,8 @@ class PlacesController < ApplicationController
 
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
-	    @places = Place.where(event_id: @event.id).all.order(updated_at: "DESC").page(params[:page])
+	    @places = Place.where(event_id: @event.id).order(updated_at: "DESC").page(params[:page])
+	    @places_count = Place.where(event_id: @event.id)
 
 		@b2_name = @event.name
 		@b2_url = "/places/#{@event.ruby}"	
@@ -102,6 +103,7 @@ class PlacesController < ApplicationController
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@cities = City.where(prefecture_id: @prefecture.id)
 	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).all.order(updated_at: "DESC").page(params[:page])
+	    @places_count = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id)
 
 		@b2_name = @event.name
 		@b2_url = "/places/#{@event.ruby}"	
@@ -114,7 +116,8 @@ class PlacesController < ApplicationController
 		@prefecture = Prefecture.find_by(kana: params[:kana])		
 		@city = City.find_by(city_kana: params[:city_kana])	
 	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).where(city_id: @city.id).all.order(updated_at: "DESC").page(params[:page])
-
+	    @places_count = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).where(city_id: @city.id)
+	    
 		@b2_name = @event.name
 		@b2_url = "/places/#{@event.ruby}"	
 		@b3_name = @prefecture.name
