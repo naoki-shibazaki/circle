@@ -2439,14 +2439,19 @@ max-width: 100%;
 }
 
 .user_list .user_list_header{
-  display: flex;
-  margin-top: 14px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80px;
 }
 
 .user_list .user_name {
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+
+
 
 
 
