@@ -25,6 +25,7 @@ before_action :set_users
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: params[:id])
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
+		@users = User.where(event_id: @user.event_id).where(prefecture_id: @user.prefecture_id).order(:last_post => :desc)
 
 		@count = 0
 

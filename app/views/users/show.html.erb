@@ -280,12 +280,33 @@
 
 	<% end %>
 
+
+	<% if !@blogs.any? && @users.count >= 2 %>
+
+		<div class="blog-list-wrap">
+			<h2 class="others-blog">条件が似ている<%= @user.event.name if @user.event_id? %> サークル</h2>
+            <% @users.each do |user| %> 
+				<% if user.id != @user.id %>
+
+		            <%= link_to(user_path(user.id)) do %>  
+		            	<div class="blog_list">
+							<%= user.name %><br>
+					
+							
+		            	</div>
+	            	<% end %>
+
+				<% end %>
+			<% end %>
+	    </div>
+
+	<% end %>
+
+
 	<% if @user.switch == "募集中" %>
 		<div class="space_btm"></div>
 	<% end %>
   
-
-
   </div>
 </div>
 
