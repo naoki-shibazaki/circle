@@ -281,7 +281,7 @@
 	<% end %>
 
 
-	<% if !@blogs.any? && @users.count >= 2 %>
+	<% if @users.count >= 2 %>
 
 		<div class="blog-list-wrap">
 			<h2 class="others-blog">条件が似ている<%= @user.event.name if @user.event_id? %>サークル</h2>
