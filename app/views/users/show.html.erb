@@ -321,15 +321,16 @@
 	<% end %>
 
 
-<% if @blogs.any? || @users.count >= 2 %>
-	<%= render "/layouts/ad_square" %>
-	<div class="ad_space"></div>
-<% end %>
+	<% if @blogs.count >= 3 || @users.count >= 4 %>
+		<%= render "/layouts/ad_square" %>
+		<div class="ad_space"></div>
+	<% end %>
 
 
 	<% if @user.switch == "募集中" %>
 		<div class="space_btm"></div>
 	<% end %>
+	
   
   </div>
 </div>
