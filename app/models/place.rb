@@ -8,6 +8,7 @@ class Place < ApplicationRecord
   validates :city_id, presence: true
   validates :event_id, presence: true
   validates :name, presence: true
+  validates :name, uniqueness: true
   validates :tag, presence: true
   validates :address, presence: true
 
