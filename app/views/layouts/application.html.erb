@@ -223,7 +223,7 @@
   <!-- 全角、半角変換 -->
   <script>
     $(function(){
-        $("#change_tel , #change_hoge").change(function(){
+        $("#change_tel , #change_address").change(function(){
             var str = $(this).val();
             str = str.replace( /[Ａ-Ｚａ-ｚ０-９－！”＃＄％＆’（）＝＜＞，．？＿［］｛｝＠＾～￥]/g, function(s) {
                 return String.fromCharCode(s.charCodeAt(0) - 65248);

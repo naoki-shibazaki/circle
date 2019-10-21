@@ -1,7 +1,6 @@
 <div class="place_form">
       <%= form_for @place do |f| %>
 
-
             <p>施設名<span class="must_red">(必須)</span></p>
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック体育館" %> 
 
@@ -15,7 +14,7 @@
             <%= f.select :tag,[ ['屋内',1], ['屋外',2] ], :prompt => "選択してください"  %>
   
             <p>住所<span class="must_red">(必須)</span></p>
-            <%= f.text_field :address, class: 'form-control', placeholder: "東京都千代田区丸の内1-1-1"  %>
+            <%= f.text_field :address, class: 'form-control', id: 'change_address', placeholder: "東京都千代田区丸の内1-1-1"  %>
 
             <p>アクセス</p>
             <%= f.text_field :access, class: 'form-control', placeholder: "大手町駅／東京駅"  %>
