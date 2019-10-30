@@ -69,7 +69,7 @@ before_action :set_users
 		if @user.update(user_params)
 
 			if @user.switch == "受付終了"
-				@user.last_post = Time.now.ago(30.days)
+				@user.last_post = Time.now.ago(60.days)
 				@user.save
 			end
 
