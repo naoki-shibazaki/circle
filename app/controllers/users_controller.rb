@@ -67,6 +67,12 @@ before_action :set_users
 		@user = User.find(params[:id])
 
 		if @user.update(user_params)
+
+			if @user.switch == "受付終了"
+				@user.last_post = Time.now.ago(30.days)
+				@user.save
+			end
+
 			flash[:share] = 'プロフィール更新完了！'
 			redirect_to user_path
 		else
