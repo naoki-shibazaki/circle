@@ -17,7 +17,7 @@
             <%= f.text_field :address, class: 'form-control', id: 'change_address', placeholder: "東京都千代田区丸の内1-1-1"  %>
 
             <p>アクセス</p>
-            <%= f.text_field :access, class: 'form-control', placeholder: "大手町駅／東京駅"  %>
+            <%= f.text_field :access, class: 'form-control change_font', placeholder: "大手町駅／東京駅"  %>
 
 
             <p>都道府県<span class="must_red">(必須)</span></p>         
@@ -31,7 +31,7 @@
 
 
             <p>駐車場情報</p>
-            <%= f.text_field :parking, class: 'form-control', id: 'change_parking', placeholder: "200台"  %>
+            <%= f.text_field :parking, class: 'form-control change_font', id: 'change_parking', placeholder: "200台"  %>
 
             <p>利用可能時間</p>
             <%= f.text_area :time, class: 'form-control change_font', id: 'change_time', placeholder: "平日10:00-20:00\n休日9:00-19:00"  %>
@@ -43,7 +43,7 @@
             <%= f.text_field :scale, class: 'form-control change_font', id: 'change_scale', placeholder: "コート２面"  %>
 
             <p>利用料金</p>
-            <%= f.text_area :price, class: 'form-control', id: 'change_price', placeholder: "午前　1時間1,000円\n午後　1時間1,500円\n"  %>
+            <%= f.text_area :price, class: 'form-control change_font', id: 'change_price', placeholder: "午前　1時間1,000円\n午後　1時間1,500円\n"  %>
             
             <p>電話番号</p>
             <%= f.text_field :tel, class: 'form-control', id: 'change_tel', placeholder: "03-1234-5678"  %>
