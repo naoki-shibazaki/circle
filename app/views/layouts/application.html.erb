@@ -233,6 +233,29 @@
     });
   </script>
 
+  <!-- 文字変換 -->
+  <script>
+    // 変換前
+    var beforeStr = new Array('<','>');
+    // 変換後
+    var afterStr = new Array('【','】');
+     
+    function convertStr(str) {
+        var fullStr = str;
+        for(var i = 0; i < beforeStr.length; i++) {
+            fullStr = fullStr.replace(new RegExp(beforeStr[i], 'g'), afterStr[i]);
+        }
+        return fullStr;
+    }
+    $(function() {
+        $('.change_font').on('blur', function() {
+            var str = $(this).val();
+            $(this).val(convertStr(str));
+        });
+     
+    });    
+  </script>
+
 
 
   </body>
