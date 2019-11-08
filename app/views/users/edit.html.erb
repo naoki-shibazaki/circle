@@ -5,12 +5,16 @@
       <div class="form-body cont-body">
       	<% if @user.errors.any? %>
 	          <div class="form-error">
-              いずれかのエラーが発生いたしました。<br>
-              ・必須項目の未記入<br>
-	          ・対応していない画像のファイル形式<br>
-              ・その他のエラー
+              以下の項目でエラーが発生いたしました。<br>
 	          </div>
 		<% end %>
+
+          <% @user.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              ・<%= message %>
+            </div>
+          <% end %>
+
 
       <%= form_for @user do |f| %>
 
@@ -18,7 +22,7 @@
         <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
 
         <p>アイコン画像</p>
-        <span class="file_size">※10MB以下のJPEGかPNGのみ</span>
+        <span class="file_size">※10MB以下のjpgかpngのみ対応<br>※iPhoneのheicデータには非対応</span>
 	    <%= f.file_field :pic_profile %>
 	
         <p>カバー写真／ヘッダー画像</p>
@@ -76,8 +80,8 @@
 
 		<br>
 	    <p>ギャラリー画像の追加（No.1〜4）</p>
-        <span class="file_size">※10MB以下のJPEGかPNGのみ</span>
-	    <%= f.file_field :gallery_01 %>
+        <span class="file_size">※10MB以下のjpgかpngのみ対応<br>※iPhoneのheicデータには非対応</span>
+       	<%= f.file_field :gallery_01 %>
 	   	<%= f.file_field :gallery_02 %>
 	    <%= f.file_field :gallery_03 %>
 	   	<%= f.file_field :gallery_04 %>
