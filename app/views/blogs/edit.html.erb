@@ -3,14 +3,18 @@
     <div class="form-heading">投稿の編集</div>
     <div class="form users-form">
       <div class="form-body cont-body">
-      	<% if @blog.errors.any? %>
-	          <div class="form-error">
-              いずれかのエラーが発生いたしました。<br>
-              ・必須項目の未記入<br>
-	            ・対応していない画像のファイル形式<br>
-              ・その他のエラー
-	          </div>
-		<% end %>
+        <% if @blog.errors.any? %>
+            <div class="form-error">
+              以下の項目でエラーが発生いたしました。<br>
+              ※原因不明の場合は空欄でご登録ください
+            </div>
+        <% end %>
+
+        <% @blog.errors.full_messages.each do |message| %>
+            <div class="form-error_message">
+              ・<%= message %>
+            </div>
+        <% end %>
 
 
       <%= render "form_blog.html.erb"%>

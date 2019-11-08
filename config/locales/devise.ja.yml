@@ -60,6 +60,13 @@ ja:
         gallery_02: "『ギャラリー画像 No.2』"
         gallery_03: "『ギャラリー画像 No.3』"
         gallery_04: "『ギャラリー画像 No.4』"
+      blog:
+        title: "『タイトル』"
+        image_01: "『画像１』"
+        image_02: "『画像２』"
+        image_03: "『画像３』"
+        image_04: "『画像４』"
+        content: "『本文』"
     models:
       user: "ユーザ"
   devise:
