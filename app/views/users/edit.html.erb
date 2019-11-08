@@ -6,11 +6,12 @@
       	<% if @user.errors.any? %>
 	          <div class="form-error">
               以下の項目でエラーが発生いたしました。<br>
+              ※原因不明の場合、該当項目を空欄でご登録ください。
 	          </div>
 		<% end %>
 
           <% @user.errors.full_messages.each do |message| %>
-            <div class="form-error">
+            <div class="form-error_message">
               ・<%= message %>
             </div>
           <% end %>
