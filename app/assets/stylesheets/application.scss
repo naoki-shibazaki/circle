@@ -2462,13 +2462,36 @@ max-width: 100%;
 }
 
 
+.openchat_wrap{
+    background: #fff;
+    padding: 10px 10px;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+.openchat_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #FFF;
+    width: 96%;
+    text-align: center;
+    margin: auto;
+    font-size: 12px;
+    padding: 0;
+    height: 52px;
+    border-radius: 6px;
+    background: #45bd59;
+}
+
+.openchat_btn a{
+  color: #fff;
+}
 
 
-
-
-
-
-
+// --------------------------------------
 // ▼PC
 @media only screen and (min-width:768px) {
 
