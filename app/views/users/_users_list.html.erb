@@ -28,7 +28,7 @@
               <i class="fa fa-tags tag-color"></i><%= user.event.name %>
             <% end %>
             　
-            <%= link_to("/prefectures/#{user.prefecture.kana}", class: "tag_btn") do %>
+            <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}", class: "tag_btn") do %>
               <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
             <% end %>
 
