@@ -1,13 +1,13 @@
 Event.seed(:id,
 
-  { :id => 2, :category => "スポーツ１", :order => "01", :name => "バスケットボール" , :ruby => "basketball",  :openchat => "https://line.me/ti/g2/QEaSObSQlI7NuqVrEeB1Jw", :icon => "fa fa-dribbble" },
+  { :id => 2, :category => "スポーツ１", :order => "01", :name => "バスケットボール" , :ruby => "basketball",  :openchat => "https://line.me/ti/g2/28860kzjimldNe2P9MOsqg", :icon => "fa fa-dribbble" },
   { :id => 4, :category => "スポーツ１", :order => "02", :name => "バレーボール" , :ruby => "volleyball",  :openchat => "https://line.me/ti/g2/VRCpbJsgXIinQcwSOyw0uQ", :icon => "fa fa-group" },
   { :id => 8, :category => "スポーツ１", :order => "03", :name => "フットサル" , :ruby => "futsal",  :openchat => "https://line.me/ti/g2/jq0AbQjRV3XsyDnmvNidtA", :icon => "fa fa-soccer-ball-o" },
   { :id => 9, :category => "スポーツ１", :order => "04", :name => "テニス" , :ruby => "tennis",  :openchat => "https://line.me/ti/g2/rQkRsdC0Ppg-xVTQVlQYgw", :icon => "fa fa-group" },
   { :id => 7, :category => "スポーツ１", :order => "05", :name => "野球・ソフトボール" , :ruby => "baseball",  :openchat => "https://line.me/ti/g2/StLPRlAGJPjl9rHX9BTXug", :icon => "fa fa-dribbble" },
   { :id => 16, :category => "スポーツ１", :order => "06", :name => "サッカー" , :ruby => "soccer",  :openchat => "https://line.me/ti/g2/TuGt6TZqgewnQONxcJd7Yw", :icon => "fa fa-soccer-ball-o" },
 
-  { :id => 5, :category => "スポーツ２", :order => "21", :name => "バドミントン" , :ruby => "badminton",  :openchat => "https://line.me/ti/g2/IvxQV2gYoby8p3zF0dx9Vg", :icon => "fa fa-group" },
+  { :id => 5, :category => "スポーツ２", :order => "21", :name => "バドミントン" , :ruby => "badminton",  :openchat => "https://line.me/ti/g2/9hLTdMzYeuiuO1fRinT_wQ", :icon => "fa fa-group" },
   { :id => 3, :category => "スポーツ２", :order => "22", :name => "ランニング" , :ruby => "running",  :openchat => "", :icon => "fa fa-child" },
   { :id => 10, :category => "スポーツ２", :order => "23", :name => "卓球" , :ruby => "table-tennis",  :openchat => "", :icon => "fa fa-group" },
   { :id => 14, :category => "スポーツ２", :order => "24", :name => "ウィッフルボール" , :ruby => "wiffleball",  :openchat => "", :icon => "fa fa-dribbble" },
