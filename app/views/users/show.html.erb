@@ -35,15 +35,17 @@
 
 	<% if admin_user_signed_in? %>
 		<% if @user.id == current_admin_user.id %>
-			<% if @user.event.openchat != "" %>
-				<div class="openchat_wrap">
-					<a href="<%= @user.event.openchat %>">
-						<div class="openchat_btn">
+			<% if @user.event_id.present? %>
+				<% if @user.event.openchat != "" %>
+					<div class="openchat_wrap">
+						<a href="<%= @user.event.openchat %>">
+							<div class="openchat_btn">
 								<%= @user.event.name if @user.event_id? %>専用の<br>
 								LINEオープンチャットに参加する
-						</div>
-					</a>
-				</div>
+							</div>
+						</a>
+					</div>
+				<% end %>
 			<% end %>
 		<% end %>
 	<% end %>
