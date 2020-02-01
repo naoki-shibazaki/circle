@@ -387,7 +387,7 @@ header {
   border-radius: 50%;
   position: absolute;
   bottom: -50px;
-  left: 20px;
+  left: 10px;
   border: 3px solid #fff;
   object-fit: cover;
 }
@@ -410,10 +410,13 @@ header {
 }
 
 .contact_area{
-  position: absolute;
-  display: -webkit-inline-box;
-  bottom: -42px;
-  right: 24px;
+    position: absolute;
+    height: 40px;
+    bottom: -50px;
+    right: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .share_btn{
@@ -434,7 +437,7 @@ header {
 }
 
 .header-wrapper .contact-button{
-  padding: 5px 10px;
+  padding: 5px 6px;
   border-radius: 7px;
 }
 
@@ -447,6 +450,11 @@ header {
 
 .header-wrapper .edit{
   background-color: #b0b1b1;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 12px;
 }
 
 .header-wrapper .end{
@@ -2489,6 +2497,38 @@ max-width: 100%;
 .openchat_btn a{
   color: #fff;
 }
+
+
+.icon_sns{
+  height: 40px;
+}
+
+.share_btn_tw {
+    margin-right: 10px;
+    padding: 0px 10px;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #1B95E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+
+.share_btn_tw a{
+    color: #fff;  
+}
+
+.share_btn_tw .fa-twitter{
+    margin-right: 6px;
+}
+
+.header-wrapper .edit a,
+.share_btn_tw a{
+    font-size: 14px;
+}
+
+
 
 
 // --------------------------------------

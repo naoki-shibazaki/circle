@@ -33,22 +33,8 @@
   <div class="container">
     <%= render "/layouts/breadcrumb" %>
 
-	<% if admin_user_signed_in? %>
-		<% if @user.id == current_admin_user.id %>
-			<% if @user.event_id.present? %>
-				<% if @user.event.openchat != "" %>
-					<div class="openchat_wrap">
-						<a href="<%= @user.event.openchat %>">
-							<div class="openchat_btn">
-								<%= @user.event.name if @user.event_id? %>専用の<br>
-								LINEオープンチャットに参加する
-							</div>
-						</a>
-					</div>
-				<% end %>
-			<% end %>
-		<% end %>
-	<% end %>
+    <%= render "/users/openchat" %>
+
     
 	<div class="user-profile">
 		<div class="header-wrapper ribbon-wrapper">
@@ -100,22 +86,23 @@
 
 			<div class="contact_area">
 
-				<div class="share_btn">
-					<%= render "users/share" %>
+				<div class="share_btn_tw">
+					    <%= render "/users/share_tw.html.erb" %>
 				</div>
 
 				<% if admin_user_signed_in? %>
 
 						<% if @user.id == current_admin_user.id %>
-							<div class="contact-button edit"><%= link_to("プロフィールの編集", edit_user_path) %></div>
+							<div class="contact-button edit"><%= link_to("プロフィール編集", edit_user_path) %></div>
 						<% else %>
 
 							<% if @user.switch == "募集中" %>
 
 									<% if @user.line_id != "" %>
-										<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで相談する</a></div>
-									<% else %>
-										<div class="contact-button mail"><a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">メールで相談する</a></div>
+										<div class="contact-button"><a href="<%= @user.line_id %>"><img src="/images/icon_line.png" alt="" class="icon_sns" /></a></div>
+									<% end %>
+									<% if @data.email != "" %>
+										<div class="contact-button"><a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>"><img src="/images/icon_mail.png" alt="" class="icon_sns" /></a></div>
 									<% end %>	
 
 							<% else %>
