@@ -115,11 +115,12 @@
 
 					<% if @user.switch == "募集中" %>
 
-							<% if @user.line_id != "" %>
-								<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで相談する</a></div>
-							<% else %>
-									<div class="contact-button mail"><a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">メールで相談する</a></div>
-							<% end %>	
+									<% if @user.line_id != "" %>
+										<div class="contact-button"><a href="<%= @user.line_id %>"><img src="/images/icon_line.png" alt="" class="icon_sns" /></a></div>
+									<% end %>
+									<% if @data.email != "" %>
+										<div class="contact-button"><a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>"><img src="/images/icon_mail.png" alt="" class="icon_sns" /></a></div>
+									<% end %>		
 
 					<% else %>
 							<div class="contact-button end">募集終了</div>
