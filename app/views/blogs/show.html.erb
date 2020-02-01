@@ -34,9 +34,36 @@
 
     <%= render "/layouts/breadcrumb" %>
 
-
 			<div class="form users-form">
+
+				<div class="post_share">
+					<div class="share_btn_tw">
+							<%= render "blogs/share_tw.html.erb" %>
+					</div>
+				
+					<% if admin_user_signed_in?  %>
+						<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
+
+						<div class="post_edit">
+						    <%= link_to(edit_blog_path) do %>
+								<i class="fa fa-pencil-square-o "></i> 
+							<% end %>
+						</div>
+
+						<div class="post_delete">
+						    <%= link_to(blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+								<i class="fa fa-trash "></i> 									    
+							<% end %>
+						</div>
+
+						<% end %>
+					<% end %>
+				</div>
+
+
+
 			    <div class="form-body">
+
 
 				    <div class="header-post cont-width">
 						<%= link_to(user_path(@user.id)) do %>
@@ -45,25 +72,6 @@
 								<div class="post-top"><%= @user.name %></div>
 								<div class="post-bottom"><%= @blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
 							</div>
-						<% end %>
-						
-					<div class="post-share">
-						<%= render "blogs/share" %>
-					</div>
-						
-						
-						<% if admin_user_signed_in?  %>
-							<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
-							
-							<div class="post-edit">
-								<div class="post-edit_btn">
-									<%= link_to( "編集", edit_blog_path) %>／
-									<%= link_to( "削除", blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) %>
-										
-								</div>
-							</div>
-
-							<% end %>
 						<% end %>
 
 					</div>
