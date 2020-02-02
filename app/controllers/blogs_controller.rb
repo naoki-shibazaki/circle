@@ -156,7 +156,7 @@ class BlogsController < ApplicationController
     	@users_r = User.all.where.not(switch: "nil")
 	    @blogs_r = Blog.all.order(created_at: "DESC")
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
-		@prefectures = Prefecture.all.where.not(id: 0)	
+		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)	
 		@x = "nil"
 		@category = "nil"
 		@blog_count = 0
