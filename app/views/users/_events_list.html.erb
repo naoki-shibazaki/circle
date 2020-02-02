@@ -18,15 +18,20 @@
           <% if @path.is('users#index', 'users#top') %>
               <li>
                 <%= link_to("/#{event.ruby}") do %>
-                  <i class="<%= event.icon %>"></i> 
-                  <div class="link_txt"><%= event.name %></div>
+                  <div class="e_icon_wrap">
+                    <img src="/images/events/e_icon_<%= event.ruby %>.jpg" alt="<%= event.name %>" class="e_icon">
+                    <div class="link_txt"><%= event.name %></div>
+                  </div>
                 <% end %>
               </li> 
+
           <% else %>
               <li>
                 <%= link_to("/#{event.ruby}/#{@prefecture.kana}") do %>
-                  <i class="<%= event.icon %>"></i> 
-                  <div class="link_txt"><%= event.name %></div>
+                  <div class="e_icon_wrap">
+                    <img src="/images/events/e_icon_<%= event.ruby %>.jpg" alt="<%= event.name %>" class="e_icon">
+                    <div class="link_txt"><%= event.name %></div>
+                  </div>
                 <% end %>
               </li> 
           <% end %>         
