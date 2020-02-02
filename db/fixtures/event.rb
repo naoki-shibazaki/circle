@@ -4,7 +4,7 @@ Event.seed(:id,
   { :id => 4, :category => "スポーツ１", :order => "02", :name => "バレーボール" , :ruby => "volleyball",  :openchat => "https://line.me/ti/g2/VRCpbJsgXIinQcwSOyw0uQ", :icon => "fa fa-group" },
   { :id => 8, :category => "スポーツ１", :order => "03", :name => "フットサル" , :ruby => "futsal",  :openchat => "https://line.me/ti/g2/jq0AbQjRV3XsyDnmvNidtA", :icon => "fa fa-soccer-ball-o" },
   { :id => 9, :category => "スポーツ１", :order => "04", :name => "テニス" , :ruby => "tennis",  :openchat => "https://line.me/ti/g2/rQkRsdC0Ppg-xVTQVlQYgw", :icon => "fa fa-group" },
-  { :id => 7, :category => "スポーツ１", :order => "05", :name => "野球・ソフトボール" , :ruby => "baseball",  :openchat => "https://line.me/ti/g2/StLPRlAGJPjl9rHX9BTXug", :icon => "fa fa-dribbble" },
+  { :id => 7, :category => "スポーツ１", :order => "05", :name => "野球" , :ruby => "baseball",  :openchat => "https://line.me/ti/g2/StLPRlAGJPjl9rHX9BTXug", :icon => "fa fa-dribbble" },
   { :id => 16, :category => "スポーツ１", :order => "06", :name => "サッカー" , :ruby => "soccer",  :openchat => "https://line.me/ti/g2/TuGt6TZqgewnQONxcJd7Yw", :icon => "fa fa-soccer-ball-o" },
 
   { :id => 5, :category => "スポーツ２", :order => "21", :name => "バドミントン" , :ruby => "badminton",  :openchat => "https://line.me/ti/g2/9hLTdMzYeuiuO1fRinT_wQ", :icon => "fa fa-group" },
