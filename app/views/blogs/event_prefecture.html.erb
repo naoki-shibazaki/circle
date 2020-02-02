@@ -2,10 +2,16 @@
 <div class="main users-index">
   <div class="container">
     <%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading">
-    	<%= @prefecture.name %>で活動している<br>
-    	<%= @event.name %>の活動ブログ    	
-    </h1>
+
+    <div class="e_header_wrap">
+      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+      <div class="link_txt">
+        <h1 class="e_header_title">
+	    	<%= @prefecture.name %>で活動している<br>
+	    	<%= @event.name %>の活動ブログ  
+        </h1>
+      </div>
+    </div>
 
     <%= render "/blogs/blogs_list" %>
 

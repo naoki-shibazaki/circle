@@ -3,11 +3,17 @@
 <div class="main users-index">
   <div class="container">
     <%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading">
-      【<%= @age.name %>】
-    	<%= @prefecture.name %>で活動している<br>
-    	<%= @event.name %>のサークル一覧
-    </h1>
+
+    <div class="e_header_wrap">
+      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+      <div class="link_txt">
+        <h1 class="e_header_title">
+          【<%= @age.name %>】
+          <%= @prefecture.name %>で活動している<br>
+          <%= @event.name %>のサークル一覧
+        </h1>
+      </div>
+    </div>
 
 	<% if @hit == 0 %>
 

@@ -3,7 +3,15 @@
 <div class="main users-index">
   <div class="container">
     <%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading"><%= @event.name %>の<br>サークル活動ブログ</h1>
+
+    <div class="e_header_wrap">
+      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+      <div class="link_txt">
+        <h1 class="e_header_title">
+          <%= @event.name %>の<br>サークル活動ブログ
+        </h1>
+      </div>
+    </div>
 
 		<div class="search_area">
 		    <%= render "/blogs/prefectures_list" %>
