@@ -1,4 +1,10 @@
-<% set_meta_tags title: "#{@prefecture.name}で活動している#{@event.name}の#{@group.name}サークル一覧" %>
+<% set_meta_tags title: "#{@prefecture.name}で活動している#{@event.name}の#{@group.name}サークル一覧",
+
+              og: { 
+                image: "/images/events/e_ogp_#{@event.ruby}.ogp"
+              }
+
+ %>
 
 <div class="main users-index">
   <div class="container">
