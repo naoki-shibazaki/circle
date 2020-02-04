@@ -2165,7 +2165,6 @@ max-width: 100%;
 .search_wrap{
     background-color: #fff;
     padding: 18px 14px;
-    border-radius: 6px;
     margin-bottom: 18px;
 }
 
@@ -2175,6 +2174,7 @@ max-width: 100%;
     justify-content: center;
     align-items: center;
     text-align: center;
+    border-radius: 6px !important;
 }
 
 .search_select select{
@@ -2187,6 +2187,7 @@ max-width: 100%;
 
 .search_select select:first-child{
     border-right: 1px solid #cecece;
+    border-radius: 6px 0px 0px 6px !important;
 }
 
 .search_wrap .search-text{
