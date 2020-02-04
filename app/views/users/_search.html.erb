@@ -4,8 +4,21 @@
 	 
 
 		<div class="search_select">
-		  <%= f.collection_select :event_id_eq, Event.all.where.not(id: 0).order(:order => :asc), :id, :name, :include_blank => 'サークル種目' %>
-		  <%= f.collection_select :prefecture_id_eq, Prefecture.all.where.not(id: 0), :id, :name, :include_blank => '都道府県' %>
+
+			<select name="event_select" onChange="location.href=value;">
+				<option value="#">サークル種目</option>
+			    <% @events.each do |event| %>
+					<option value="/<%= event.ruby %>"><%= event.name %></option>
+				<% end %>
+			</select>
+
+			<select name="prefecture_select" onChange="location.href=value;">
+				<option value="#">都道府県</option>
+			    <% @prefectures.each do |prefecture| %>
+					<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
+				<% end %>
+			</select>
+
 	  	</div>
 
 	  <%= f.search_field :name_or_area_or_schedule_or_recruitment_or_average_age_or_grouping_or_cost_or_goal_or_appeal_cont, class: "search-text",placeholder: "キーワード検索（１単語のみ）" %>	  
@@ -15,6 +28,5 @@
       <% end %>	  
 
 	<% end %>
-
 
 </div>
