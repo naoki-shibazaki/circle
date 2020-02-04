@@ -1,6 +1,6 @@
 Event.seed(:id,
 
-  { :id => 2, :category => "スポーツ１", :order => "01", :name => "バスケットボール" , :ruby => "basketball",  :openchat => "https://line.me/ti/g2/28860kzjimldNe2P9MOsqg", :icon => "fa fa-dribbble" },
+  { :id => 2, :category => "スポーツ１", :order => "01", :name => "バスケ" , :ruby => "basketball",  :openchat => "https://line.me/ti/g2/28860kzjimldNe2P9MOsqg", :icon => "fa fa-dribbble" },
   { :id => 4, :category => "スポーツ１", :order => "02", :name => "バレーボール" , :ruby => "volleyball",  :openchat => "https://line.me/ti/g2/VRCpbJsgXIinQcwSOyw0uQ", :icon => "fa fa-group" },
   { :id => 8, :category => "スポーツ１", :order => "03", :name => "フットサル" , :ruby => "futsal",  :openchat => "https://line.me/ti/g2/jq0AbQjRV3XsyDnmvNidtA", :icon => "fa fa-soccer-ball-o" },
   { :id => 9, :category => "スポーツ１", :order => "04", :name => "テニス" , :ruby => "tennis",  :openchat => "https://line.me/ti/g2/rQkRsdC0Ppg-xVTQVlQYgw", :icon => "fa fa-group" },
