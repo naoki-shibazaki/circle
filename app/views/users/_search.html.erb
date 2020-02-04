@@ -1,87 +1,93 @@
 <div class="search_wrap">	 
 
-		<div class="search_txt">
-			 <i class="fa fa-search "></i>サークル検索
-		</div>
-
 		<div class="search_select">
 
-        <% if @path.is('users#index', 'users#top') %>
+	        <% if @path.is('users#index', 'users#top') %>
 
-				<select name="event_select" onChange="location.href=value;">
-					<option value="#">サークル種目</option>
-				    <% @events.each do |event| %>
-						<option value="/<%= event.ruby %>"><%= event.name %></option>
-					<% end %>
-				</select>
-
-				<select name="prefecture_select" onChange="location.href=value;">
-					<option value="#">都道府県</option>
-				    <% @prefectures.each do |prefecture| %>
-						<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
-					<% end %>
-				</select>
-
-
-        <% elsif @path.is('users#event') %>
-
-				<select name="event_select" onChange="location.href=value;">
-					<option value="#"><%= @event.name %></option>
-				    <% @events.each do |event| %>
-					    <% if event.ruby != @event.ruby %>
+					<select name="event_select" onChange="location.href=value;">
+						<option value="#">サークル種目</option>
+					    <% @events.each do |event| %>
 							<option value="/<%= event.ruby %>"><%= event.name %></option>
 						<% end %>
-					<% end %>
-				</select>
+					</select>
 
-				<select name="prefecture_select" onChange="location.href=value;">
-					<option value="#">都道府県</option>
-				    <% @prefectures.each do |prefecture| %>
-						<option value="/<%= @event.ruby %>/<%= prefecture.kana %>"><%= prefecture.name %></option>
-					<% end %>
-				</select>
-		
-		<% elsif @path.is('users#prefecture') %>
-
-				<select name="event_select" onChange="location.href=value;">
-					<option value="#">サークル種目</option>s
-				    <% @events.each do |event| %>
-						<option value="/<%= event.ruby %>/<%= @prefecture.kana %>"><%= event.name %></option>
-					<% end %>
-				</select>
-
-				<select name="prefecture_select" onChange="location.href=value;">
-					<option value="#"><%= @prefecture.name %></option>
-				    <% @prefectures.each do |prefecture| %>
-					    <% if prefecture.kana != @prefecture.kana %>
+					<select name="prefecture_select" onChange="location.href=value;">
+						<option value="#">都道府県</option>
+					    <% @prefectures.each do |prefecture| %>
 							<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
 						<% end %>
-					<% end %>
-				</select>
+					</select>
+
+					<div class="search_icon"><i class="fa fa-search "></i></div>
 
 
-		<% else @path.is('users#event_prefecture') %>
 
-				<select name="event_select" onChange="location.href=value;">
-					<option value="#"><%= @event.name %></option>
-				    <% @events.each do |event| %>
-					    <% if event.ruby != @event.ruby %>
-							<option value="/<%= event.ruby %>"><%= event.name %></option>
+	        <% elsif @path.is('users#event') %>
+
+					<select name="event_select" onChange="location.href=value;">
+						<option value="#"><%= @event.name %></option>
+					    <% @events.each do |event| %>
+						    <% if event.ruby != @event.ruby %>
+								<option value="/<%= event.ruby %>"><%= event.name %></option>
+							<% end %>
 						<% end %>
-					<% end %>
-				</select>
+					</select>
 
-				<select name="prefecture_select" onChange="location.href=value;">
-					<option value="#"><%= @prefecture.name %></option>
-				    <% @prefectures.each do |prefecture| %>
-					    <% if prefecture.kana != @prefecture.kana %>
-							<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
+					<select name="prefecture_select" onChange="location.href=value;">
+						<option value="#">都道府県</option>
+					    <% @prefectures.each do |prefecture| %>
+							<option value="/<%= @event.ruby %>/<%= prefecture.kana %>"><%= prefecture.name %></option>
 						<% end %>
-					<% end %>
-				</select>
+					</select>
+
+					<div class="search_icon"><i class="fa fa-search "></i></div>
+
+			
+			<% elsif @path.is('users#prefecture') %>
+
+					<select name="event_select" onChange="location.href=value;">
+						<option value="#">サークル種目</option>s
+					    <% @events.each do |event| %>
+							<option value="/<%= event.ruby %>/<%= @prefecture.kana %>"><%= event.name %></option>
+						<% end %>
+					</select>
+
+					<select name="prefecture_select" onChange="location.href=value;">
+						<option value="#"><%= @prefecture.name %></option>
+					    <% @prefectures.each do |prefecture| %>
+						    <% if prefecture.kana != @prefecture.kana %>
+								<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
+							<% end %>
+						<% end %>
+					</select>
+
+					<div class="search_icon"><i class="fa fa-search "></i></div>
 
 
-		<% end %>		
+			<% else @path.is('users#event_prefecture') %>
+
+					<select name="event_select" onChange="location.href=value;">
+						<option value="#"><%= @event.name %></option>
+					    <% @events.each do |event| %>
+						    <% if event.ruby != @event.ruby %>
+								<option value="/<%= event.ruby %>"><%= event.name %></option>
+							<% end %>
+						<% end %>
+					</select>
+
+					<select name="prefecture_select" onChange="location.href=value;">
+						<option value="#"><%= @prefecture.name %></option>
+					    <% @prefectures.each do |prefecture| %>
+						    <% if prefecture.kana != @prefecture.kana %>
+								<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
+							<% end %>
+						<% end %>
+					</select>
+
+					<div class="search_icon"><i class="fa fa-search "></i></div>
+
+
+			<% end %>		
 
 
 	  	</div>

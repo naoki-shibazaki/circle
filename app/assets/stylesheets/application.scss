@@ -2164,22 +2164,29 @@ max-width: 100%;
 
 .search_wrap{
     background-color: #fff;
-    padding: 18px 14px 6px;
+    padding: 18px 14px;
     border-radius: 6px;
     margin-bottom: 18px;
 }
 
 .search_select{
-  display: flex;
+    display: flex;
+    border: solid 1px #b4ced6;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .search_select select{
-    width: 44%;
-    margin-right: 20px;
     height: 36px;
     background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    color: #4a4a4a;
+    border: none;
+    margin: 0;
+}
+
+.search_select select:first-child{
+    border-right: 1px solid #cecece;
 }
 
 .search_wrap .search-text{
@@ -2217,21 +2224,20 @@ max-width: 100%;
     padding-right: 6px;
 }
 
-.search_txt{
+.search_icon{
     background: #61cec7;
     border-color: #fff;
     border-style: none;
     color: #fff;
     height: 36px;
-    width: 160px;
-    padding: 0px 10px;
-    margin-bottom: 10px;
-    border-radius: 6px;
+    width: 50px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
-.search_txt i{
+.search_icon i{
     font-size: 16px;
     padding-right: 6px;
 }
