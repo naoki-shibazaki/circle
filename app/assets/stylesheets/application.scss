@@ -212,7 +212,7 @@ header {
   color: #1c1e22;
   font-size: 16px;
   letter-spacing: 2px;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
 .form textarea {
@@ -959,7 +959,7 @@ display: none;  /* checkboxを非表示にする */
 }
 .check_boxes label {
 position: relative; /* ボックスの位置を指定する */
-padding: 0 0 0 42px;  /* ボックス内側の余白を指定する */
+padding: 0 0 6px 42px;  /* ボックス内側の余白を指定する */
 font-weight: normal;
 }
 .check_boxes label:hover:after {
@@ -2674,6 +2674,38 @@ max-width: 100%;
     font-size: 20px;
     line-height: 1.2;
 }
+
+
+.edit_user select {
+    width: 50%;
+    height: 30px;
+    margin-bottom: 14px;
+    background: #fff;
+    background-color: #ffffff;
+    color: #4a4a4a;
+    border: 1px solid #d8dadf;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-left: 10px;
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
