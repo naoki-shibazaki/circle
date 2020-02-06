@@ -119,13 +119,13 @@
     </header>
 
     <% if flash[:notice] %>
-      <div class="flash">
+      <div class="flash time-limit">
         <%= flash[:notice] %>
       </div>
     <% end %>
 
     <% if flash[:alert] %>
-      <div class="alert">
+      <div class="alert time-limit">
         <%= flash[:alert] %>
       </div>
     <% end %>
@@ -256,7 +256,109 @@
     });    
   </script>
 
+  <!-- flashメッセージ -->
+  <script>
+  $(function(){
+    setTimeout("$('.time-limit').fadeOut('slow')", 1000) 
+  })  
+  </script>
 
+
+  <!-- 画像プレビュー -->
+  <script>
+  $(function(){
+    $fileField = $('#file_01')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_01");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });
+
+    $(function(){
+    $fileField = $('#file_02')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_02");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });
+
+  $(function(){
+    $fileField = $('#file_03')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_03");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });  
+
+  $(function(){
+    $fileField = $('#file_04')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_04");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });  
+
+  </script>
 
   </body>
 

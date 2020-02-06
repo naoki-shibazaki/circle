@@ -80,12 +80,53 @@
 	    <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！興味がある人は気軽にご連絡ください！" %>
 
 		<br>
-	    <p>ギャラリー画像の追加（No.1〜4）</p>
+	    <p>ギャラリー画像</p>
         <span class="file_size">※10MB以下のjpgかpngのみ対応</span>
-       	<%= f.file_field :gallery_01 %>
-	   	<%= f.file_field :gallery_02 %>
-	    <%= f.file_field :gallery_03 %>
-	   	<%= f.file_field :gallery_04 %>
+	       	<div class="img_field_gallery_wrap">
+
+				    <div id="img_field_01" onClick="$('#file_01').click()" >
+				        <% if @user.gallery_01.present? %>
+				          <%= image_tag(@user.gallery_01.url) %>
+				        <% else %>
+				          <i class="fa fa-image"></i>
+				        <% end %>
+				    </div>
+				    <%= f.file_field :gallery_01, class: "image", style: "display:none;", id: "file_01"%>
+
+
+				    <div id="img_field_02" onClick="$('#file_02').click()" >
+				        <% if @user.gallery_02.present? %>
+				          <%= image_tag(@user.gallery_02.url) %>
+				        <% else %>
+				          <i class="fa fa-image"></i>
+				        <% end %>
+				    </div>
+				    <%= f.file_field :gallery_02, class: "image", style: "display:none;", id: "file_02"%>
+
+
+				    <div id="img_field_03" onClick="$('#file_03').click()" >
+				        <% if @user.gallery_03.present? %>
+				          <%= image_tag(@user.gallery_03.url) %>
+				        <% else %>
+				          <i class="fa fa-image"></i>
+				        <% end %>
+				    </div>
+				    <%= f.file_field :gallery_03, class: "image", style: "display:none;", id: "file_03"%>
+
+
+				    <div id="img_field_04" onClick="$('#file_04').click()" >
+				        <% if @user.gallery_04.present? %>
+				          <%= image_tag(@user.gallery_04.url) %>
+				        <% else %>
+				          <i class="fa fa-image"></i>
+				        <% end %>
+				    </div>
+				    <%= f.file_field :gallery_04, class: "image", style: "display:none;", id: "file_04"%>
+
+		   	</div>
+
+
+
 
         <%= f.submit "更新する" %>
 
