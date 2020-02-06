@@ -6,7 +6,7 @@ def default_meta_tags
       title: 'サークルブック',
       reverse: true,
       charset: 'utf-8',
-      description: 'スポーツ・趣味のサークルメンバー募集SNS！気になったサークルと、LINEやメールで直接連絡ができるので簡単！社会人や学生、初心者、経験者など、誰でも参加できます！',
+      description: '【登録不要・無料で使える！】全国のスポーツ・趣味のサークルメンバー募集サイト！社会人や学生、初心者、経験者など、誰でも参加可能！バスケやバレー、フットサルなど無料で参加、メンバーの募集が簡単にできます！',
       keywords: 'サークル,スポーツ,趣味,社会人,学生',
       canonical: request.original_url,
       separator: '|',
