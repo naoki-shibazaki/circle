@@ -76,10 +76,6 @@
 	    <p>ホームページ／SNS</p>
 	    <%= f.text_field :web, class: 'form-control', placeholder: "https://www.circle-book.com/" %>
 
-	    <p>アピール・注意事項</p>
-	    <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！興味がある人は気軽にご連絡ください！" %>
-
-		<br>
 	    <p>ギャラリー画像</p>
         <span class="file_size">※10MB以下のjpgかpngのみ対応</span>
 	       	<div class="img_field_gallery_wrap">
@@ -125,7 +121,8 @@
 
 		   	</div>
 
-
+	    <p>アピール・注意事項</p>
+	    <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！興味がある人は気軽にご連絡ください！" %>
 
 
         <%= f.submit "更新する" %>

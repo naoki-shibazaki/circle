@@ -2704,7 +2704,7 @@ max-width: 100%;
 }
 
 .img_field_gallery_wrap{
-    margin: 0 auto;
+    margin: 0 auto 22px;
     display: inline-table;
     overflow: hidden;
     vertical-align: top;
@@ -2732,7 +2732,6 @@ max-width: 100%;
     position: relative;
     padding: 0;
     cursor: pointer;
-    width: 180px;
     height: 100px;
     background-position: center;
     background-repeat: no-repeat;
@@ -2747,6 +2746,17 @@ max-width: 100%;
     align-items: center;
 }
 
+#img_field_01,
+#img_field_02,
+#img_field_03,
+#img_field_04,
+#img_field_01 img,
+#img_field_02 img,
+#img_field_03 img,
+#img_field_04 img {
+    width: 160px;
+}
+
 #img_field_01 i,
 #img_field_02 i,
 #img_field_03 i,
@@ -2755,13 +2765,6 @@ max-width: 100%;
   color: #aaa;
   line-height: 250px;
   transition: 0.3s ease-out;
-}
-
-#img_field_01 img,
-#img_field_02 img,
-#img_field_03 img,
-#img_field_04 img {
-  width: 180px;
 }
 
 #img_field_01:hover,

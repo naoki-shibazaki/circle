@@ -1,19 +1,52 @@
 <%= form_for @blog do |f| %>
             <p>タイトル<span class="must_red">(必須)</span></p>
             <%= f.text_field :title, class: 'form-control', placeholder: "日々の活動記録など！" %> 
-  
-            <p>画像１</p>
-            <span class="file_size">※10MB以下のJPEGかPNGのみ</span>
-            <%= f.file_field :image_01 %>
 
-            <p>画像２</p>
-            <%= f.file_field :image_02 %>
+            <p>ブログ画像</p>
+            <span class="file_size">※10MB以下のjpgかpngのみ対応</span>
+                  <div class="img_field_gallery_wrap">
 
-            <p>画像３</p>
-            <%= f.file_field :image_03 %>  
-            
-            <p>画像４</p>
-            <%= f.file_field :image_04 %>          
+                            <div id="img_field_01" onClick="$('#file_01').click()" >
+                                <% if @blog.image_01.present? %>
+                                  <%= image_tag(@blog.image_01.url) %>
+                                <% else %>
+                                  <i class="fa fa-image"></i>
+                                <% end %>
+                            </div>
+                            <%= f.file_field :image_01, class: "image", style: "display:none;", id: "file_01"%>
+
+
+                            <div id="img_field_02" onClick="$('#file_02').click()" >
+                                <% if @blog.image_02.present? %>
+                                  <%= image_tag(@blog.image_02.url) %>
+                                <% else %>
+                                  <i class="fa fa-image"></i>
+                                <% end %>
+                            </div>
+                            <%= f.file_field :image_02, class: "image", style: "display:none;", id: "file_02"%>
+
+
+                            <div id="img_field_03" onClick="$('#file_03').click()" >
+                                <% if @blog.image_03.present? %>
+                                  <%= image_tag(@blog.image_03.url) %>
+                                <% else %>
+                                  <i class="fa fa-image"></i>
+                                <% end %>
+                            </div>
+                            <%= f.file_field :image_03, class: "image", style: "display:none;", id: "file_03"%>
+
+
+                            <div id="img_field_04" onClick="$('#file_04').click()" >
+                                <% if @blog.image_04.present? %>
+                                  <%= image_tag(@blog.image_04.url) %>
+                                <% else %>
+                                  <i class="fa fa-image"></i>
+                                <% end %>
+                            </div>
+                            <%= f.file_field :image_04, class: "image", style: "display:none;", id: "file_04"%>
+
+                  </div>
+
 
             <p>本文</p>
             <%= f.text_area :content, class: 'form-control', placeholder: "○月○日に△△で、サークルブックの活動をしましたー！！今回はこんなことをしました！"  %>       
