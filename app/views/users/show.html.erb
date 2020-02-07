@@ -234,7 +234,9 @@
 
 			<% if @user.requirement.present? %>
 			<div class="profile_list_t">応募に必要な情報<br><span class="profile_list_t_a">※コピーしてご応募ください</span></div>
-				<div class="profile_list_p profile_list_frame copyTarget"><%= simple_format @user.requirement %></div>	
+				<div class="profile_list_p profile_list_frame">
+					<div class="copyTarget"><%= simple_format @user.requirement %></div>
+				</div>	
 				<button class="copyBtn"><div class="requirement_copy"><i class="fa fa-copy "></i> コピーする</div></button>
 			
 				<div class="border"></div>
@@ -257,8 +259,6 @@
 					<% end %>
 				<% end %>
 			</div>
-
-
 
 
 		</div>
