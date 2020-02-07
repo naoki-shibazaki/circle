@@ -518,7 +518,7 @@ header {
 .profile-content .content_04,
 .profile-content .content_05{
     color: #1c1e22;
-    font-size: 1rem;
+    font-size: 14px;
 }
 
 .profile-content .content_01{
@@ -540,7 +540,7 @@ header {
 .profile-content .content_06,
 .profile-content .content_07{
     color: #1c1e22;
-    font-size: 1rem;
+    font-size: 14px;
 }
 
 .profile-content .content_06,
@@ -2018,7 +2018,13 @@ max-width: 100%;
     // padding: 0.5em 12px;
     // width: 20%;
     // height: 40px;
-    background-color: #e5e5e5;
+    background-color: #9a9a9a;
+    color: #fff;
+    font-size: 14px;
+    padding: 6px 20px;
+    border-radius: 6px;
+    border: none;
+    margin-top: 4px;
     margin-left: 10px;
 }
 
@@ -2837,7 +2843,9 @@ max-width: 100%;
     margin: 20px auto 20px !important;
 }
 
-
+.profile_list_t_a{
+  font-size: 12px;
+}
 
 
 
