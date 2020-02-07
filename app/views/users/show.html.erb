@@ -208,7 +208,7 @@
 
 			<% if @schedules.present? %>
 
-				<div class="profile_list_t">活動予定</div>
+				<div class="profile_list_t">活動スケジュール</div>
 				<div class="profile_list_p">
 				    <% @schedules.each do |schedule| %> 
 				        <% if schedule.present? %>
@@ -225,10 +225,12 @@
 			<% end %>
 
 
-			<div class="profile_list_t">アピール・注意事項</div>
-			<div class="profile_list_p profile_list_a"><%= raw Rinku.auto_link(simple_format @user.appeal) %></div>
+			<% if @user.requirement.present? %>
+				<div class="profile_list_t">サークルの詳細情報</div>
+				<div class="profile_list_p profile_list_a"><%= raw Rinku.auto_link(simple_format @user.appeal) %></div>
 
-			<div class="border"></div>
+				<div class="border"></div>
+			<% end %>
 
 			<% if @user.requirement.present? %>
 				<div class="profile_list_t">募集に必要な情報</div>
