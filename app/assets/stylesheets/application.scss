@@ -832,7 +832,7 @@ header {
     clear: both;
     width: 96%;
     margin: 12px auto;
-    border-bottom: solid 1px #c1c1c1;
+    border-bottom: solid 1px #ECECEC;
 }
 
 .content_icon{
@@ -1999,24 +1999,27 @@ max-width: 100%;
 }
 
 .copyTarget {
-    border: 1px solid #e5e5e5;
-    margin: 1px auto;
-    font-size: 12px;
-    padding: 0.5em;
-    width: 80%;
-    height: 40px;
-    overflow-x: scroll;
-    color: #696969;
-    float: left;
-    transform: translateZ(0);
+    // border: 1px solid #e5e5e5;
+    // margin: 1px auto;
+    // font-size: 12px;
+    // padding: 0.5em;
+    // width: 80%;
+    // height: 40px;
+    // overflow-x: scroll;
+    // color: #696969;
+    // float: left;
+    // transform: translateZ(0);
 }
 
+
 .copyBtn{
-    border: 1px solid #e5e5e5;
+    // border: 1px solid #e5e5e5;
+    // background-color: #e5e5e5;
+    // padding: 0.5em 12px;
+    // width: 20%;
+    // height: 40px;
     background-color: #e5e5e5;
-    padding: 0.5em 12px;
-    width: 20%;
-    height: 40px;
+    margin-left: 10px;
 }
 
 .flash_social{
@@ -2786,9 +2789,40 @@ max-width: 100%;
   color: #fff;
 }
 
+.form_small{
+    min-height: 90px !important;
+    margin-bottom: 16px;
+}
 
+.profile_list_t{
+    font-weight: bold;
+    color: #444;
+    padding: 4px 10px 2px;  
+}
 
+.profile_list_frame{
+    border: 1px solid #d8dadf;
+    margin: 0px 10px 2px;
+    border-radius: 4px;
+}
 
+.profile_list_p,
+.content_03{
+    padding: 0px 10px 0px;
+}
+
+.profile_list_p p{
+    font-size: 13px;
+}
+
+.profile_list_frame p{
+    color: #828282;
+    padding: 6px 2px;
+}
+
+.requirement_copy{
+    padding: 0px 10px 2px;
+}
 
 
 

@@ -397,6 +397,7 @@ private
 		    :gallery_02,
 		    :gallery_03,
 		    :gallery_04,
+		    :requirement,
 		    decade_age: [],
 		    average_age: [],
 		    grouping: []

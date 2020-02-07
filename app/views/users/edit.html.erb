@@ -121,8 +121,11 @@
 
 		   	</div>
 
+	    <p>応募に必要な情報</p>
+	    <%= f.text_area :requirement, class: 'form-control form_small', placeholder: "名前：&#13;&#10;年齢：&#13;&#10;性別：".html_safe %>
+
 	    <p>アピール・注意事項</p>
-	    <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！興味がある人は気軽にご連絡ください！" %>
+	    <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！&#13;&#10;興味がある人は気軽にご連絡ください！".html_safe %>
 
 
         <%= f.submit "更新する" %>
