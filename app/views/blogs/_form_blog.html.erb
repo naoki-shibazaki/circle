@@ -2,9 +2,9 @@
             <p>タイトル<span class="must_red">(必須)</span></p>
             <%= f.text_field :title, class: 'form-control', placeholder: "日々の活動記録など！" %> 
 
-            <p>ブログ画像</p>
+            <p>ブログ画像（最大4枚）</p>
             <span class="file_size">※10MB以下のjpgかpngのみ対応</span>
-                  <div class="img_field_gallery_wrap">
+                  <div class="img_field_gallery_wrap blog_gallery_wrap">
 
                             <div id="img_field_01" onClick="$('#file_01').click()" >
                                 <% if @blog.image_01.present? %>

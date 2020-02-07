@@ -2852,7 +2852,23 @@ max-width: 100%;
 }
 
 
+.blog_gallery_wrap #img_field_01, .blog_gallery_wrap #img_field_02, .blog_gallery_wrap #img_field_03, .blog_gallery_wrap #img_field_04, .blog_gallery_wrap #img_field_01 img, .blog_gallery_wrap #img_field_02 img, .blog_gallery_wrap #img_field_03 img, .blog_gallery_wrap #img_field_04 img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
 
+.blog_gallery_wrap #img_field_01,
+.blog_gallery_wrap #img_field_02,
+.blog_gallery_wrap #img_field_03,
+.blog_gallery_wrap #img_field_04{
+  border-radius:8px;
+  margin-right: 8px;
+}
+
+.blog_gallery_wrap #img_field_01 i, .blog_gallery_wrap #img_field_02 i, .blog_gallery_wrap #img_field_03 i, .blog_gallery_wrap #img_field_04 i {
+    font-size: 30px;
+}
 
 
 // --------------------------------------
