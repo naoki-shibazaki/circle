@@ -207,10 +207,9 @@
 			<div class="border"></div>
 
 			<% if @schedules.present? %>
-			<tr class="flex_contents">
-				<th class="flex_list">活動予定</th>
-				<td class="flex_list">
-					
+
+				<div class="profile_list_t">活動予定</div>
+				<div class="profile_list_p">
 				    <% @schedules.each do |schedule| %> 
 				        <% if schedule.present? %>
 
@@ -220,9 +219,9 @@
 
 				        <% end %>                  
 				    <% end %>
+				</div>
 
-				</td>
-			</tr>
+				<div class="border"></div>
 			<% end %>
 
 
