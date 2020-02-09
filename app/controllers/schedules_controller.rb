@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
 
+before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 before_action :set_schedules
 
 	def index
@@ -32,7 +33,7 @@ before_action :set_schedules
 
 	def edit
 		@schedule = Schedule.find(params[:id])
-		
+
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
 		@b2_name = "活動スケジュール"
@@ -47,6 +48,19 @@ before_action :set_schedules
 
 		redirect_to user_schedules_path
 	end
+
+	def ensure_correct_user		
+	   if current_admin_user.id != @user_id.to_i
+	   		if current_admin_user.id == 1   			
+	   		
+		   	else
+		      flash[:notice] = "権限がありません"
+		      redirect_to user_schedules_path
+
+		    end
+	   end
+	end	
+
 
 
 	private
