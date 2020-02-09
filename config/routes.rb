@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 }
 
 	resources :users do
-  		resources :schedules, only: [:create, :destroy]
+  		resources :schedules
   	end
 
 	resources :blogs

@@ -1,0 +1,29 @@
+<div class="schedule_profile_wrap">
+
+  <%= link_to("/#{@user.event.ruby}", class: "tag_btn") do %>
+    <i class="fa fa-tags tag-color"></i><%= @user.event.name %>
+  <% end %>
+  　
+  <%= link_to("/#{@user.event.ruby}/#{@user.prefecture.kana}", class: "tag_btn") do %>
+    <i class="fa fa-tags tag-color"></i><%= @user.prefecture.name %>
+  <% end %>
+
+
+  <%= link_to(user_path(@user.id)) do %>  
+    <div class="user-content">
+      <%= image_tag @user.pic_profile.url , class:'image_icon' %>
+
+      <div class="list_wrapper">
+        <div class="list_01">
+          <h2 class="user_name"><%= @user.name %></h2>
+        </div>
+
+      </div>
+    </div>  
+
+  <% end %>
+
+  <div class="reset"></div>
+
+</div>
+

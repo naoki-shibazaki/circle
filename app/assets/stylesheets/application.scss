@@ -2145,11 +2145,12 @@ max-width: 100%;
 }
 
 .form-day{
-  width: 40%;
+  width: 50%;
+  display: inline-block;
 }
 
 .form-venue {
-    width: 45%;
+    width: 100%;
 }
 
 .btn_submit {
@@ -2851,6 +2852,65 @@ max-width: 100%;
 
 .profile_list_p a {
     color: #3ecdc6;
+}
+
+.schedule_list_wrap{
+    padding: 0px 10px 0px;
+}
+
+.schedule_list{
+    border: 1px solid #d8dadf;
+    margin: 10px 0;
+    padding: 10px 10px;
+    border-radius: 6px;
+}
+
+.reset{
+  clear: both;
+}
+
+.schedule_profile_wrap .image_icon {
+    width: 50px;
+    height: 50px;
+}
+
+.schedule_add_wrap{
+    border: 1px solid #d8dadf;
+    padding: 10px 10px;
+}
+
+.form-time{
+  width: 20%;
+  display: inline-block;
+}
+
+.form-note{
+  min-height: 80px;
+}
+
+.schedule_input input[type="submit"] {
+    background-color: #3ecdc6;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    width: 120px;
+    border-radius: 2px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    float: right;
+}
+
+.schedule_add_btn{
+    margin: 70px auto 14px;
+    text-align: center;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #e09a1b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 80%; 
 }
 
 

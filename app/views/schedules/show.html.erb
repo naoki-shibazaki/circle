@@ -1,0 +1,70 @@
+<% set_meta_tags title: "メンバー募集中の全国のサークル一覧" %>
+
+<div class="main user-show">
+  <div class="container">
+
+    <%= render "/layouts/breadcrumb" %>
+
+
+	  	<div class="users-index-item">
+
+	  		<%= render "/schedules/profile" %>
+
+
+			<div class="schedule_title">
+				<%= Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>のスケジュール詳細
+			</div>
+		    <div class="article_item article_padding place_list ">
+		        <table>
+		          <tbody>
+
+					<tr class="flex_contents">
+						<th class="flex_list">日程</th>
+						<td class="flex_list">
+							<%= Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
+							<% if @schedule.time_s.present? %>
+					          <%= @schedule.time_s.strftime('%H:%M') %>
+					          〜
+					          <%= @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? %>
+					        <% end %>
+						</td>
+					</tr>
+					<tr class="flex_contents">
+						<th class="flex_list">場所</th>
+						<td class="flex_list"><%= @schedule.venue %></td>
+					</tr>
+					<tr class="flex_contents">
+						<th class="flex_list">住所</th>
+						<td class="flex_list"><%= @schedule.venue_address %></td>
+					</tr>
+					<tr class="flex_contents">
+						<th class="flex_list">備考欄</th>
+						<td class="flex_list"><%= @schedule.note %></td>
+					</tr>
+
+
+		          </tbody>
+		        </table> 
+		    </div>   
+
+				<% if @schedule.venue_address.present? %>
+					<div class="g_map">
+						<iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@schedule.venue_address}") %>></iframe>
+							<div class="google_map_wrap">
+							    <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@schedule.venue_address}" do %>  
+							    	<div class="google_map">Google MAP</div>
+							    <% end %>
+						    </div>
+					</div>
+				<% end %>
+
+	  	</div>
+
+		<%= render "/layouts/ad_square" %>
+
+
+
+
+
+  </div>
+</div>

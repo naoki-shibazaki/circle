@@ -58,31 +58,7 @@
               <% end %>
             </div>	
 
-			<% if @user.pic_header.present? %>
-				<a href="<%= @user.pic_header.url %>" class="swipe" rel="profile" title="プロフィール｜<%= @user.name %>">
-				    <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" class="header_imege" />
-				</a>
-			<% else %>
-				<%= image_tag @user.pic_header.url , class:'header_imege' %>
-			<% end %>
-
-			<% if @user.pic_profile.present? %>
-				<a href="<%= @user.pic_profile.url %>" class="swipe" rel="profile" title="プロフィール｜<%= @user.name %>">
-				    <img src="<%= @user.pic_profile.url %>" alt="プロフィール｜<%= @user.name %>" class="profile_imege" />
-				</a>
-			<% else %>
-				<%= image_tag @user.pic_profile.url , class:'profile_imege' %>
-			<% end %>
-
-
-			<div class="data-box">
-				<% if @user.event_id.present? %>
-					<span class="data-r"><%= @user.event.name if @user.event_id? %></span>
-				<% end %>
-				<% if @user.prefecture_id.present? %>
-					<span class="data-l"><%= @user.prefecture.name if @user.prefecture_id? %></span>
-				<% end %>
-			</div>
+		    <%= render "/users/profile" %>
 
 
 			<div class="admin_area">
@@ -147,7 +123,16 @@
 		<div class="profile-content">
 
 
-		<%= render "users/schedule_form" %>
+		<% if admin_user_signed_in? %>
+		  <% if @user.id == current_admin_user.id  %>
+
+
+		<%= link_to(user_schedules_path(@user.id)) do %> 
+			<div class="schedule_add_btn">活動スケジュールを追加する</div>	
+		<% end %>
+
+		  <% end %>
+		<% end %>
 
 
 
