@@ -1,0 +1,29 @@
+<div class="main users-index">
+  <div class="container">
+
+    <%= render "/layouts/breadcrumb" %>
+
+		<div class="users-index-item">
+
+			<%= render "/schedules/profile" %>
+
+			<% if admin_user_signed_in? %>
+			  <% if @user.id == current_admin_user.id  %>
+
+
+			    <div class="schedule_title">活動内容の修正</div>
+
+				<%= render "/schedules/schedule_form" %>
+
+
+			  <% end %>
+			<% end %>
+
+		</div>
+
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+
+	</div>
+</div>

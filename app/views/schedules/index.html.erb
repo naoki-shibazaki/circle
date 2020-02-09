@@ -17,44 +17,11 @@
 
 			    <div class="schedule_title">活動日の追加</div>
 
-				<div class="schedule_add_wrap">
-				    <div class="schedule_input">
-
-				      <%= form_for ([@user, @user.schedules.build]) do |f| %>
-						
-				      	<p>日時<span class="must_red">(必須)</span></p>
-				          <%= f.date_field :day, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control form-day' %>
-
-				          <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "開始時間" %> 
-				          〜
-				          <%= f.time_field :time_e, class: 'form-control form-time', placeholder: "終了時間" %> 
-
-						<p>開催場所<span class="must_red">(必須)</span></p>
-				          <%= f.text_field :venue, class: 'form-control form-venue', placeholder: "サークルブック体育館" %> 
-
-						<p>開催場所の住所<br><span class="profile_list_t_a">※入力するとGoogleマップが自動で表示されます</span></p>
-	  			          <%= f.text_field :venue_address, class: 'form-control form-venue', placeholder: "東京都千代田区丸の内１丁目" %> 
-
-						<p>備考欄</p>
-			 	          <%= f.text_area :note, class: 'form-control form-note', placeholder: "参加費500円" %> 
-
-				          <br>
-
-						<input type="submit" name="commit" value="追加する" data-disable-with="追加する">
-
-					 	<div class="reset"></div>
-
-				      <% end %>
-
-				    </div>
-				</div>
+				<%= render "/schedules/schedule_form" %>
 
 
 			  <% end %>
 			<% end %>
-
-
-
 
 
 			<div class="border"></div>
@@ -92,8 +59,11 @@
 			<% end %>
 
 
+		</div>
 
-	</div>
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
 
   </div>
 </div>
+

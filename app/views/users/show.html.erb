@@ -123,19 +123,6 @@
 		<div class="profile-content">
 
 
-		<% if admin_user_signed_in? %>
-		  <% if @user.id == current_admin_user.id  %>
-
-
-		<%= link_to(user_schedules_path(@user.id)) do %> 
-			<div class="schedule_add_btn">活動スケジュールを追加する</div>	
-		<% end %>
-
-		  <% end %>
-		<% end %>
-
-
-
 			<h1 class="user_name"><%= @user.name %></h1>
 			<div class="content_01">		
 			
@@ -152,6 +139,18 @@
 			</div>
 
 			<div class="content_03"><%= @user.recruitment %></div>
+
+
+				<% if admin_user_signed_in? %>
+				  <% if @user.id == current_admin_user.id  %>
+
+					<%= link_to(user_schedules_path(@user.id)) do %> 
+						<div class="schedule_add_btn">活動スケジュールを追加する</div>	
+					<% end %>
+
+				  <% end %>
+				<% end %>
+
 
 
  			<%= render "/users/gallery" %>
@@ -204,6 +203,11 @@
 
 				        <% end %>                  
 				    <% end %>
+
+					<%= link_to(user_schedules_path(@user.id)) do %> 
+						<div class="schedule_index_btn">詳細のスケジュールを見る</div>	
+					<% end %>
+
 				</div>
 
 				<div class="border"></div>

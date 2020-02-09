@@ -11,6 +11,32 @@
 	  		<%= render "/schedules/profile" %>
 
 
+			<% if admin_user_signed_in?  %>
+				<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
+
+				<div class="post_share">
+			
+						<div class="post_edit">
+						    <%= link_to(edit_user_schedule_path) do %>
+								<i class="fa fa-pencil-square-o "></i> 
+							<% end %>
+						</div>
+
+						<div class="post_delete">
+						    <%= link_to(user_schedule_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+								<i class="fa fa-trash "></i> 									    
+							<% end %>
+						</div>
+
+				</div>
+
+
+
+				<% end %>
+			<% end %>
+
+
+
 			<div class="schedule_title">
 				<%= Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>のスケジュール詳細
 			</div>
@@ -60,11 +86,11 @@
 
 	  	</div>
 
-		<%= render "/layouts/ad_square" %>
-
-
-
-
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
 
   </div>
 </div>
+
+
+
