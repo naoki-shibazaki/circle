@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
 
 	before_action :correct_user, {only: [:new, :count]}
-	before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
+	before_action :ensure_correct_user, {only: [:edit, :update]}
 	before_action :set_place
 
 

@@ -1,6 +1,6 @@
 class SchedulesController < ApplicationController
 
-before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
+before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_schedules
 
 	def index
