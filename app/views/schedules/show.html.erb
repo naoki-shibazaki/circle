@@ -1,4 +1,11 @@
-<% set_meta_tags title: "メンバー募集中の全国のサークル一覧" %>
+<% set_meta_tags title: "スケジュール詳細｜#{@user.name}",
+					og: { 
+								title: "スケジュール詳細｜#{@user.name}",
+								description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
+								image: @user.pic_profile.url
+							},
+					twitter: { card: 'summary'}  				
+ %>
 
 <div class="main user-show">
   <div class="container">
