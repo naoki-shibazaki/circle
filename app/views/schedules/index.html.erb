@@ -17,22 +17,6 @@
 			<%= render "/schedules/profile" %>
 
 
-
-			<% if admin_user_signed_in? %>
-			  <% if @user.id == current_admin_user.id  %>
-
-
-			    <div class="schedule_title">活動日の追加</div>
-
-				<%= render "/schedules/schedule_form" %>
-
-
-			  <% end %>
-			<% end %>
-
-
-			<div class="border"></div>
-
 			<% if @schedules.present? %>
 
 				<div class="profile_list_t">活動スケジュール</div>
@@ -64,6 +48,20 @@
 
 				<div class="border"></div>
 			<% end %>
+
+
+			<% if admin_user_signed_in? %>
+			  <% if @user.id == current_admin_user.id  %>
+
+
+			    <div class="schedule_title">活動日の追加</div>
+
+				<%= render "/schedules/schedule_form" %>
+
+
+			  <% end %>
+			<% end %>
+
 
 
 		</div>
