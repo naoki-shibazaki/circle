@@ -17,6 +17,31 @@
 			<%= render "/schedules/profile" %>
 
 
+<% if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present? %>
+
+	<div class="schedule_share_wrap">
+
+		<div class="share_btn_tw">
+		    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の活動スケジュール%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
+		      <i class="fa fa-twitter"></i>ツイート
+		    <% end %>
+		</div>
+
+
+		<div class="share_btn_line">
+			<%= link_to 'LINEで共有する', "http://line.me/R/msg/text/?#{request.url}", title: 'LINE', target: '_blank' %>
+		</div>
+
+	</div>
+
+<% end %>
+
+
+
+
+
+
+
 			<% if @schedules.present? %>
 
 				<div class="profile_list_t">活動スケジュール</div>

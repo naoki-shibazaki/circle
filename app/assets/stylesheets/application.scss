@@ -2927,6 +2927,45 @@ max-width: 100%;
 }
 
 
+.share_btn_line {
+    margin-right: 10px;
+    padding: 0px 10px;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #45bd59;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    font-size: 14px;
+}
+
+.share_btn_line a{
+    color: #fff;  
+}
+
+.schedule_share_wrap {
+    display: flex;
+    margin: 4px auto 10px;
+    text-align: center;
+    width: 100%;
+}
+
+
+.schedule_share_wrap .share_btn_tw,
+.schedule_share_wrap .share_btn_line{
+  width: 45%;
+  margin: auto;
+}
+
+
+
+
+
+
+
+
+
 // --------------------------------------
 // ▼PC
 @media only screen and (min-width:768px) {
