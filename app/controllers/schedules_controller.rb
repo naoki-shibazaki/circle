@@ -72,6 +72,7 @@ before_action :set_schedules
 		@user = User.find(params[:user_id])		
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 		@data = AdminUser.find_by(id: params[:user_id])
+		@schedule_month = 0
 
 		@mail_title = "【#{@user.name}】お問い合わせ"
 		@mail_message = "こちらに相談内容をご記入ください！"

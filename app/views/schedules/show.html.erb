@@ -7,11 +7,10 @@
 					twitter: { card: 'summary'}  				
  %>
 
-<div class="main user-show">
+<div class="main users-index">
   <div class="container">
 
     <%= render "/layouts/breadcrumb" %>
-
 
 	  	<div class="users-index-item">
 
@@ -43,10 +42,10 @@
 			<% end %>
 
 
+				<h2 class="schedule_title">
+					<%= Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>のスケジュール詳細
+				</h2>
 
-			<div class="schedule_title">
-				<%= Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>のスケジュール詳細
-			</div>
 		    <div class="article_item article_padding place_list ">
 		        <table>
 		          <tbody>
@@ -93,8 +92,69 @@
 
 	  	</div>
 
-	<%= render "/layouts/ad_square" %>
-	<div class="ad_space"></div>
+
+
+				<%= render "/layouts/ad_square" %>
+				<div class="ad_space"></div>
+
+
+
+			<div class="schedule_another">
+
+				<% if @schedules.present? %>
+
+					<div class="schedule_list_wrap">
+					    <% @schedules.each do |schedule| %> 
+					        <% if schedule.present? %>
+						        <% if schedule.id != @schedule.id %>
+
+					       
+
+									<% if @schedule_month != Time.parse(schedule.day).strftime("%-m") %>
+										<h2 class="schedule_m"><%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール</h2>
+										<% @schedule_month = Time.parse(schedule.day).strftime("%-m") %>
+									<% end %>							
+
+
+
+							        <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
+
+
+										<div class="schedule_list">
+								          <%= Time.parse(schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+
+											<% if schedule.time_s.present? %>
+									          <%= schedule.time_s.strftime('%H:%M') %>
+									          〜
+									          <%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+									        <% end %>
+
+
+								          <br>
+								          <%= schedule.venue %>
+								        </div>
+
+							        <% end %>
+
+
+
+								<% end %>
+
+					        <% end %>                  
+					    <% end %>
+					</div>
+
+				<% end %>
+
+				<div class="space_bottom"></div>
+
+			</div>	
+
+
+			
+
+
+
 
   </div>
 </div>

@@ -195,6 +195,8 @@
 				<div class="profile_list_t">活動スケジュール</div>
 				<div class="profile_list_p">
 				    <% @schedules.each do |schedule| %> 
+
+
 				        <% if schedule.present? %>
 
 				          <%= Time.parse(schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>

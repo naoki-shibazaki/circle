@@ -2114,8 +2114,11 @@ max-width: 100%;
 }
 
 .schedule_title{
-  font-size: 14px;
-  font-weight: bold;
+    font-size: 18px;
+    font-size: 18px;
+    margin-left: 2px;
+    margin-bottom: 10px;
+    color: #545454;
 }
 
 .schedule_t{
@@ -2860,6 +2863,8 @@ max-width: 100%;
 
 .schedule_list{
     border: 1px solid #d8dadf;
+    border-bottom: 4px solid #d8dadf;
+    border-bottom: 4px solid #d8dadf;
     margin: 10px 0;
     padding: 10px 10px;
     border-radius: 6px;
@@ -2951,19 +2956,28 @@ max-width: 100%;
     width: 100%;
 }
 
-
 .schedule_share_wrap .share_btn_tw,
 .schedule_share_wrap .share_btn_line{
   width: 45%;
   margin: auto;
 }
 
+.schedule_m{
+    font-size: 18px;
+    margin-left: 2px;
+    margin-top: 20px;
+    color: #545454;
+}
 
 
+.space_bottom{
+  margin-bottom: 60px;
+}
 
-
-
-
+.schedule_another{
+  background: #fff;
+  padding: 20px 20px;
+}
 
 
 // --------------------------------------
