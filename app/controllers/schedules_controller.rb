@@ -16,11 +16,18 @@ before_action :set_schedules
 		@user.last_post = @time
 		@user.save
 
+		flash[:notice] = "追加しました"
 		redirect_to user_schedules_path
 	end
 
 	def show
 		@schedule = Schedule.find(params[:id])
+
+
+		if @user.id.to_i !=@schedule.user_id.to_i
+			flash[:notice] = "存在しないURLです"
+			redirect_to "/users"
+		end
 
 
 		@b1_name = @user.name
@@ -46,6 +53,7 @@ before_action :set_schedules
 		@schedule = @user.schedules.find(params[:id])
 		@schedule.destroy
 
+		flash[:notice] = "削除しました"
 		redirect_to user_schedules_path
 	end
 

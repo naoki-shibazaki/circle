@@ -27,7 +27,6 @@ class PlacesController < ApplicationController
 		if @place.update(place_params)
 			
 			flash[:share] = '登録完了！'
-			# redirect_to place_path(@place.id)
 			redirect_to "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@place.id}"
 		else
 			render "/places/edit"

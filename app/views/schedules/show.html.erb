@@ -71,7 +71,7 @@
 					</tr>
 					<tr class="flex_contents">
 						<th class="flex_list">備考欄</th>
-						<td class="flex_list"><%= @schedule.note %></td>
+						<td class="flex_list"><%= raw Rinku.auto_link(simple_format @schedule.note) %></td>
 					</tr>
 
 
