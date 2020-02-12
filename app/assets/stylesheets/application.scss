@@ -2012,21 +2012,20 @@ max-width: 100%;
     // transform: translateZ(0);
 }
 
-
 .copyBtn{
     // border: 1px solid #e5e5e5;
     // background-color: #e5e5e5;
     // padding: 0.5em 12px;
     // width: 20%;
     // height: 40px;
-    background-color: #9a9a9a;
+    background-color: #e09a1b;
+    display: block;
     color: #fff;
     font-size: 14px;
     padding: 6px 20px;
     border-radius: 6px;
     border: none;
-    margin-top: 4px;
-    margin-left: 10px;
+    margin: 4px auto 40px;
 }
 
 .flash_social{
@@ -2987,6 +2986,17 @@ max-width: 100%;
 
 .place_list p:last-child {
     margin-bottom: 0px;
+}
+
+.schedule_list_copy{
+    width: 96%;
+    height: 60px;
+    overflow-y: scroll;
+    padding: 6px 10px;
+    background: #f1f1f1;
+    border: solid 1px #ccc;
+    border-radius: 2px;
+    margin: 24px auto 0px;
 }
 
 

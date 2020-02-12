@@ -1,0 +1,38 @@
+
+  <% if @schedules.present? %>
+
+      <div class="schedule_list_copy">
+        <div class="copyTarget">
+          <% @schedules.each do |schedule| %> 
+              <% if schedule.present? %>
+
+
+                    <% if @schedule_month != Time.parse(schedule.day).strftime("%-m") %>
+
+                      【<%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール】<br>
+                      
+                      <% @schedule_month = Time.parse(schedule.day).strftime("%-m") %>
+                    <% end %>             
+
+
+                    ・<%= Time.parse(schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+
+                    <% if schedule.time_s.present? %>
+                          <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+                    <% end %>
+                          <br>　<%= schedule.venue %><br>
+
+
+              <% end %>                  
+          <% end %>
+
+          <br>
+          ▼活動スケジュールの詳細
+          <br>
+          <%= request.url %>
+
+        </div>
+      </div>
+  <% end %>
+
+<button class="copyBtn"><div class="requirement_copy"><i class="fa fa-copy "></i> 全てのスケジュールをコピーする</div></button>
