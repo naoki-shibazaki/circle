@@ -7,11 +7,11 @@
               <% if schedule.present? %>
 
 
-                    <% if @schedule_month != Time.parse(schedule.day).strftime("%-m") %>
+                    <% if @schedule_m_c != Time.parse(schedule.day).strftime("%-m") %>
 
                       【<%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール】<br>
                       
-                      <% @schedule_month = Time.parse(schedule.day).strftime("%-m") %>
+                      <% @schedule_m_c = Time.parse(schedule.day).strftime("%-m") %>
                     <% end %>             
 
 
