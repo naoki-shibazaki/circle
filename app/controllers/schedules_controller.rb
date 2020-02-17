@@ -4,6 +4,9 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_schedules
 
 	def index
+
+		@schedule = @user.schedules.build
+
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
 		@b2_name = "活動スケジュール"
@@ -19,6 +22,18 @@ before_action :set_schedules
 		flash[:notice] = "追加しました"
 		redirect_to user_schedules_path
 	end
+
+	def update
+		@schedule = Schedule.find(params[:id])
+
+		if @schedule.update(schedule_params)
+			flash[:share] = '更新完了！'
+			redirect_to user_schedules_path
+		else
+			render "users/#{@user.id}/schedules/#{@schedule.id}/edit"
+		end	
+	end
+
 
 	def show
 		@schedule = Schedule.find(params[:id])
@@ -57,17 +72,10 @@ before_action :set_schedules
 		redirect_to user_schedules_path
 	end
 
-	def ensure_correct_user		
-	   if current_admin_user.id != @user_id.to_i
-	   		if current_admin_user.id == 1   			
-	   		
-		   	else
-		      flash[:notice] = "権限がありません"
-		      redirect_to user_schedules_path
 
-		    end
-	   end
-	end	
+			
+	   		
+
 
 
 
@@ -86,6 +94,22 @@ before_action :set_schedules
 		@mail_title = "【#{@user.name}】お問い合わせ"
 		@mail_message = "こちらに相談内容をご記入ください！"
 	end
+
+
+	def ensure_correct_user
+		@user = User.find(params[:user_id])		
+
+	   	if current_admin_user.id.to_i == @user.id.to_i	   		
+		
+	   	elsif current_admin_user.id == 1 
+
+		else
+		      flash[:notice] = "権限がありません"
+		      redirect_to users_path
+
+		end
+	end	
+
 
 
 

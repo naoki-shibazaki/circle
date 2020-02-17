@@ -23,7 +23,7 @@
 				<div class="post_share">
 			
 						<div class="post_edit">
-						    <%= link_to(edit_user_schedule_path) do %>
+						    <%= link_to(edit_user_schedule_path(@user.id, @schedule.id)) do %>
 								<i class="fa fa-pencil-square-o "></i> 
 							<% end %>
 						</div>
@@ -45,6 +45,7 @@
 				<h2 class="schedule_title">
 					<%= Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>のスケジュール詳細
 				</h2>
+
 
 		    <div class="article_item article_padding place_list ">
 		        <table>
