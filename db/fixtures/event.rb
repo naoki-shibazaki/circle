@@ -10,19 +10,19 @@ Event.seed(:id,
   { :id => 5, :category => "スポーツ２", :order => "21", :name => "バドミントン" , :ruby => "badminton",  :openchat => "https://line.me/ti/g2/9hLTdMzYeuiuO1fRinT_wQ", :icon => "fa fa-group" },
   { :id => 3, :category => "スポーツ２", :order => "22", :name => "ランニング" , :ruby => "running",  :openchat => "", :icon => "fa fa-child" },
   { :id => 10, :category => "スポーツ２", :order => "23", :name => "卓球" , :ruby => "table-tennis",  :openchat => "", :icon => "fa fa-group" },
-  { :id => 14, :category => "スポーツ２", :order => "24", :name => "ウィッフルボール" , :ruby => "wiffleball",  :openchat => "", :icon => "fa fa-dribbble" },
-  { :id => 17, :category => "スポーツ２", :order => "25", :name => "ロードバイク" , :ruby => "road-bike",  :openchat => "", :icon => "fa fa-bicycle" },
+  { :id => 17, :category => "スポーツ２", :order => "24", :name => "ロードバイク" , :ruby => "road-bike",  :openchat => "", :icon => "fa fa-bicycle" },
+  { :id => 21, :category => "スポーツ２", :order => "25", :name => "ボルダリング" , :ruby => "bouldering",  :openchat => "", :icon => "fa fa-group" },
   { :id => 15, :category => "スポーツ２", :order => "26", :name => "オールラウンド" , :ruby => "all-round",  :openchat => "", :icon => "fa fa-group" },
 
   { :id => 1, :category => "その他", :order => "51", :name => "写真・カメラ" , :ruby => "camera",  :openchat => "https://line.me/ti/g2/MrGVZOgwkBEGzRpvagL-Cw", :icon => "fa fa-camera-retro" },
   { :id => 12, :category => "その他", :order => "52", :name => "イベント" , :ruby => "event",  :openchat => "", :icon => "fa fa-flag" },
-  { :id => 21, :category => "その他", :order => "53", :name => "ボルダリング" , :ruby => "bouldering",  :openchat => "", :icon => "fa fa-group" },
-  { :id => 11, :category => "その他", :order => "54", :name => "ゲーム" , :ruby => "game",  :openchat => "", :icon => "fa fa-gamepad" },
-  { :id => 6, :category => "その他", :order => "55", :name => "筋トレ・合トレ" , :ruby => "work-out",  :openchat => "", :icon => "fa fa-trophy" },
+  { :id => 11, :category => "その他", :order => "53", :name => "ゲーム" , :ruby => "game",  :openchat => "", :icon => "fa fa-gamepad" },
+  { :id => 6, :category => "その他", :order => "54", :name => "筋トレ・合トレ" , :ruby => "work-out",  :openchat => "", :icon => "fa fa-trophy" },
+  { :id => 13, :category => "その他", :order => "55", :name => "音楽" , :ruby => "music",  :openchat => "", :icon => "fa fa-music" },
   { :id => 18, :category => "その他", :order => "56", :name => "登山" , :ruby => "mountain",  :openchat => "", :icon => "fa fa-photo" },
   { :id => 19, :category => "その他", :order => "57", :name => "ダンス" , :ruby => "dance",  :openchat => "", :icon => "fa fa-group" },
-  { :id => 20, :category => "その他", :order => "58", :name => "スノーボード" , :ruby => "snow-board",  :openchat => "", :icon => "fa fa-group" },
-  { :id => 13, :category => "その他", :order => "59", :name => "音楽" , :ruby => "music",  :openchat => "", :icon => "fa fa-music" }
+  { :id => 14, :category => "その他", :order => "58", :name => "よさこい" , :ruby => "yosakoi",  :openchat => "", :icon => "fa fa-dribbble" },
+  { :id => 20, :category => "その他", :order => "59", :name => "スノーボード" , :ruby => "snow-board",  :openchat => "", :icon => "fa fa-group" }
 
 )
 
