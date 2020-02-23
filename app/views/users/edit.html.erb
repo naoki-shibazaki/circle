@@ -1,6 +1,7 @@
 <div class="main users-edit">
   <div class="container">
     <div class="form users-form">
+
       <div class="form-body cont-body">
       	<% if @user.errors.any? %>
 	          <div class="form-error">
@@ -15,11 +16,14 @@
             </div>
         <% end %>
 
-
       <%= form_for @user do |f| %>
+
+	     <div class="p_t">サークル内容の編集</div>
+
 
 	    <div class="img_field_profile_wrap">
 
+			<p>プロフィール画像</p>
 			<div id="img_field_header" onClick="$('#file_header').click()" >
 			    <% if @user.pic_header.present? %>
 			      <%= image_tag(@user.pic_header.url) %>
