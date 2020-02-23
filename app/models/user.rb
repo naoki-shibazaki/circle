@@ -15,12 +15,12 @@ class User < ApplicationRecord
 
 	validates :line_id, {
 	  	:allow_blank => true,
-	  	:format => URI::regexp(%w(http https)),
+	  	:format => /\A#{URI::regexp(%w(http https))}\z/
 	}
 
 	validates :web, {
 	  	:allow_blank => true,
-	  	:format => URI::regexp(%w(http https)),
+	  	:format => /\A#{URI::regexp(%w(http https))}\z/
 	}
 
 	paginates_per 20
