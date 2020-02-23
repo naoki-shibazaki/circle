@@ -1,6 +1,5 @@
 <div class="main users-edit">
   <div class="container">
-    <div class="form-heading">アカウント編集</div>
     <div class="form users-form">
       <div class="form-body cont-body">
       	<% if @user.errors.any? %>
@@ -19,17 +18,39 @@
 
       <%= form_for @user do |f| %>
 
+	    <div class="img_field_profile_wrap">
+
+			<div id="img_field_header" onClick="$('#file_header').click()" >
+			    <% if @user.pic_header.present? %>
+			      <%= image_tag(@user.pic_header.url) %>
+			    <% else %>
+			      <i class="fa fa-image"></i>
+			    <% end %>
+			</div>
+			<%= f.file_field :pic_header, class: "image", style: "display:none;", id: "file_header"%>
+
+
+			<div id="img_field_profile" onClick="$('#file_profile').click()" >
+			    <% if @user.pic_profile.present? %>
+			      <%= image_tag(@user.pic_profile.url) %>
+			    <% else %>
+			      <i class="fa fa-image"></i>
+			    <% end %>
+			</div>
+			<%= f.file_field :pic_profile, class: "image", style: "display:none;", id: "file_profile"%>
+
+			<div class="file_size_p">※10MB以下のjpgかpngのみ対応</div>
+
+		</div>
+
+		<div class="img_field_profile_space"></div>
+
+
+
         <p>サークル名<span class="must_red">(必須)</span></p>
         <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
 
-        <p>アイコン画像</p>
-        <span class="file_size">※10MB以下のjpgかpngのみ対応</span>
-	    <%= f.file_field :pic_profile %>
-	
-        <p>カバー写真／ヘッダー画像</p>
-	    <%= f.file_field :pic_header %>
-
-	    <p>LINE@／LINEの"URL"</p>
+	    <p>LINEビジネス（LINE@）／LINEのURL</p>
 	    <a href="/line" target="_blank" class="line_id"> >>30秒で作れるLINEアカウントの追加方法</a>
 	    <%= f.text_field :line_id, class: 'form-control', placeholder: "http://nav.cx/3JiS9Im" %>
 	    
