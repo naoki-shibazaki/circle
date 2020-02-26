@@ -2596,9 +2596,8 @@ max-width: 100%;
 }
 
 .post_share{
-    height: 40px;
-    margin-right: 10px;
-    padding-top: 20px;
+	height: 40px;
+    margin-bottom: 12px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -3101,8 +3100,26 @@ max-width: 100%;
 }
 
 
+.schedule_cta .contact-button a{
+	font-size: 14px;
+}
+
+.schedule_cta{
+	font-size: 14px;
+    margin: 14px auto 24px;
+}
 
 
+.analytics_title{
+    background: linear-gradient(transparent 70%, #3ecdc6 70%);
+    color: #383838;
+    font-size: 15px;
+}
+
+.analytics_contents{
+	display: block;	
+    margin-top: 4px;
+}
 
 
 // --------------------------------------

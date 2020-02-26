@@ -78,7 +78,26 @@
 
 		          </tbody>
 		        </table> 
-		    </div>   
+		    </div> 
+
+
+				<div class="post_cta schedule_cta">
+					<% if @user.switch == "募集中" %>
+						<% if @user.line_id != "" %>
+							<div class="blob_cta_2">
+								<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで相談する</a></div>
+								<div class="contact-button mail">
+									<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">メールで相談する</a>
+								</div>
+							</div>
+						<% else %>
+							<div class="contact-button mail">
+								<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">メールで相談する</a>
+							</div>
+						<% end %>
+					<% end %>
+				</div>
+
 
 				<% if @schedule.venue_address.present? %>
 					<div class="g_map">
