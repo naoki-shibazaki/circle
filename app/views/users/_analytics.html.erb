@@ -1,8 +1,25 @@
 <div class="analytics_wrap">
 
-	<span class="analytics_title"><i class="fa fa-line-chart "></i> アクセス数</span>
+	<span class="analytics_title"><i class="fa fa-bar-chart-o "></i> アクセス数</span>
 	<div class="analytics_contents">
 		ページを見た人：<%= @user.impressionist_count %>人
 	</div>
+
+
+
+	<span class="analytics_title"><i class="fa fa-cog "></i> 管理設定</span>
+	<div class="analytics_contents">
+
+		<% if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present? %>
+			<div class="analytics_tw">
+			    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
+			      <i class="fa fa-twitter"></i> Twitterで告知する
+			    <% end %>
+		    </div>
+		<% end %>
+
+
+	</div>
+
 
 </div>

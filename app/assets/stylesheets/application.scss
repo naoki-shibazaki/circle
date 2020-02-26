@@ -3071,7 +3071,7 @@ max-width: 100%;
 
 .schedule_list_copy{
     width: 96%;
-    height: 60px;
+    height: 80px;
     overflow-y: scroll;
     padding: 6px 10px;
     background: #f9f9f9;
@@ -3113,12 +3113,30 @@ max-width: 100%;
 .analytics_title{
     background: linear-gradient(transparent 70%, #3ecdc6 70%);
     color: #383838;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .analytics_contents{
 	display: block;	
     margin-top: 4px;
+}
+
+.analytics_tw{
+    margin-right: 10px;
+    padding: 0px 10px;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #1B95E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    width: 60%;
+    margin: 10px auto 12px;	
+}
+
+.analytics_tw a{
+	color: #fff;
 }
 
 

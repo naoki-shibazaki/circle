@@ -43,7 +43,7 @@
 
 
 				<h2 class="schedule_title">
-					<%= Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>のスケジュール詳細
+					<%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>のスケジュール詳細
 				</h2>
 
 
@@ -54,7 +54,7 @@
 					<tr class="flex_contents">
 						<th class="flex_list">日程</th>
 						<td class="flex_list">
-							<%= Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
+							<%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
 							<% if @schedule.time_s.present? %>
 					          <%= @schedule.time_s.strftime('%H:%M') %>
 					          〜
@@ -141,7 +141,7 @@
 
 
 										<div class="schedule_list">
-								          <%= Time.parse(schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+								          <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
 											<% if schedule.time_s.present? %>
 									          <%= schedule.time_s.strftime('%H:%M') %>
