@@ -841,6 +841,8 @@ GEM
       rails (>= 3.1.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    impressionist (1.6.1)
+      nokogiri (~> 1)
     io-like (0.3.0)
     ipaddress (0.8.3)
     jbuilder (2.8.0)
@@ -1043,6 +1045,7 @@ DEPENDENCIES
   fog-aws
   font-awesome-rails
   gretel
+  impressionist
   jbuilder (~> 2.5)
   jquery-rails
   kaminari

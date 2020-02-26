@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_users
 
+impressionist actions: [:show]
+
 	def top 
 	end
 
@@ -26,7 +28,8 @@ before_action :set_users
 		@data = AdminUser.find_by(id: params[:id])
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 		@users = User.where(event_id: @user.event_id).where(prefecture_id: @user.prefecture_id).where(switch: "募集中").order(:last_post => :desc)
-
+    
+    	impressionist(@user, nil, unique: [:session_hash])
 		@count = 0
 
 		if @user.gallery_01.present?
@@ -402,6 +405,7 @@ private
 		    :gallery_03,
 		    :gallery_04,
 		    :requirement,
+		    :impressions_count,
 		    decade_age: [],
 		    average_age: [],
 		    grouping: []
