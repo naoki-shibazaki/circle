@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_users
 
-impressionist actions: [:show]
+impressionist unique: [:session_hash]
 
 	def top 
 	end

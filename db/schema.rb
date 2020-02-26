@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_031054) do
+ActiveRecord::Schema.define(version: 2020_02_26_091217) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_031054) do
     t.string "photo_file_size"
     t.string "photo_updated_at"
     t.string "photo"
+    t.integer "impressions_count", default: 0
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 

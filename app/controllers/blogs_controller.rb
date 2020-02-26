@@ -4,6 +4,8 @@ class BlogsController < ApplicationController
 	before_action :ensure_correct_user, {only: [:edit, :update]}
 	before_action :set_blog
 
+	impressionist unique: [:session_hash]
+
 
 	def index
 	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
@@ -50,6 +52,9 @@ class BlogsController < ApplicationController
 		@user = User.find_by(id: @blog.user.id)
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: @blog.user.id)
+
+		impressionist(@blog, nil, unique: [:session_hash])
+
 
 		# パンくず
 		if @user.switch.present?
