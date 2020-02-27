@@ -1,6 +1,5 @@
 <div class="main users-new">
   <div class="container">
-    <div class="form-heading">投稿</div>
     <div class="form users-form">
       <div class="form-body cont-body">
       	<% if @blog.errors.any? %>
@@ -9,6 +8,7 @@
 	          </div>
 		<% end %>
 
+      <div class="p_t">ブログの投稿</div>
 
       <%= render "form_blog.html.erb"%>
 

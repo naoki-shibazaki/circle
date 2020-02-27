@@ -45,7 +45,8 @@ Rails.application.routes.draw do
 	get 'places/:ruby/:kana/:city_kana' , to: 'places#city'
 	get 'places/:ruby/:kana/:city_kana/:id' , to: 'places#show'
 
-	
+	# post "likes/:post_id/create" => "likes#create"	
+
 	get ':ruby' , to: 'users#event'
 	get ':ruby/:kana' , to: 'users#event_prefecture'
 

@@ -3081,6 +3081,23 @@ max-width: 100%;
     margin: 24px auto 0px;
 }
 
+.schedule_list_copy::-webkit-scrollbar{
+  width: 10px;
+}
+.schedule_list_copy::-webkit-scrollbar-track{
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 2px #777; 
+}
+.schedule_list_copy::-webkit-scrollbar-thumb{
+  background: #ccc;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+
+
 .p_t{
     border: 2px solid #61cdc7;
     border-radius: 4px;
@@ -3138,6 +3155,32 @@ max-width: 100%;
 .analytics_tw a{
 	color: #fff;
 }
+
+.analytics_btn{
+    background-color: #b0b1b1;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 10px;
+    width: 70%;
+    border-radius: 4px;
+}
+
+.analytics_btn a{
+	color: #fff;
+}
+
+
+.blog_show{
+    padding: 0px 0px 30px;
+}
+
+.blog_share{
+    margin: 0;
+    padding: 30px 20px 30px 0px;	
+}
+
 
 
 // --------------------------------------
