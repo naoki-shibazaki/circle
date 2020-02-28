@@ -384,7 +384,11 @@ helper_method :link_count
 			redirect_to "mailto:#{@data.email}?subject=#{@mail_title}&amp;body=#{@mail_message}"
 
 	  	else
-			redirect_to root_path
+
+			@user.mail_count += 1
+			@user.save
+
+			redirect_to "/"
 
 	  	end
 
