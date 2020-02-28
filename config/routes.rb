@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 	get 'privacypolicy' , to: 'users#privacypolicy'
 	get 'line' , to: 'users#line'
 	get 'link' , to: 'users#link'
+	get 'redirect/:id', to: 'users#redirect'
 
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'

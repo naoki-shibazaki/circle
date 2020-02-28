@@ -6,6 +6,8 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_users
 
 impressionist unique: [:session_hash]
+helper_method :link_count
+
 
 	def top 
 	end
@@ -62,7 +64,6 @@ impressionist unique: [:session_hash]
 
 		@mail_title = "【#{@user.name}】お問い合わせ"
 		@mail_message = "こちらに相談内容をご記入ください！"
-		# @mail_message = "#{@user.name}%20さん%0d%0a%0d%0aサークルブックより、お問い合わせです。%0d%0a%0d%0a--------------------------------------%0d%0a内容：参加希望／質問／その他%0d%0a名前：%0d%0a年齢：%0d%0aメッセージ：%0d%0a%0d%0a--------------------------------------%0d%0a%0d%0aこのメールに直接ご返信をお願いします。"
 
 	end
 
@@ -115,8 +116,6 @@ impressionist unique: [:session_hash]
 			#   render path
 			# end
 		end
-
-
 
 	end
 
@@ -365,6 +364,34 @@ impressionist unique: [:session_hash]
 	end
 
 
+	def redirect
+
+		@user = User.find(params[:id])
+		@data = AdminUser.find_by(id: params[:id])
+		@mail_title = "【#{@user.name}】お問い合わせ"
+		@mail_message = "こちらに相談内容をご記入ください！"
+
+		if params[:count] == "line"
+			@user.line_count += 1
+			@user.save
+
+			redirect_to "#{@user.line_id}"
+
+	  	elsif params[:count] == "mail"
+			@user.mail_count += 1
+			@user.save
+			
+			redirect_to "mailto:#{@data.email}?subject=#{@mail_title}&amp;body=#{@mail_message}"
+
+	  	else
+			redirect_to root_path
+
+	  	end
+
+	end
+
+
+
 
 
 
@@ -409,6 +436,8 @@ private
 		    :gallery_04,
 		    :requirement,
 		    :impressions_count,
+		    :line_count,
+		    :mail_count,
 		    decade_age: [],
 		    average_age: [],
 		    grouping: []

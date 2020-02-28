@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_143909) do
+ActiveRecord::Schema.define(version: 2020_02_28_104912) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -203,6 +203,8 @@ ActiveRecord::Schema.define(version: 2020_02_26_143909) do
     t.string "gallery_04"
     t.text "requirement"
     t.integer "impressions_count", default: 0
+    t.integer "line_count", default: 0
+    t.integer "mail_count", default: 0
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
   end
 

@@ -87,10 +87,19 @@
 							<% if @user.switch == "募集中" %>
 
 									<% if @user.line_id != "" %>
-										<div class="contact-button"><a href="<%= @user.line_id %>"><img src="/images/icon_line.png" alt="" class="icon_sns" /></a></div>
+										<div class="contact-button">
+											<%= link_to action: :redirect, count: "line" do %>
+												<img src="/images/icon_line.png" alt="" class="icon_sns" />
+											<% end %>
+										</div>
 									<% end %>
+
 									<% if @data.email != "" %>
-										<div class="contact-button"><a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>"><img src="/images/icon_mail.png" alt="" class="icon_sns" /></a></div>
+										<div class="contact-button">
+											<%= link_to action: :redirect, count: "mail" do %>
+												<img src="/images/icon_mail.png" alt="" class="icon_sns" />
+											<% end %>
+										</div>
 									<% end %>	
 
 							<% else %>
@@ -104,10 +113,18 @@
 					<% if @user.switch == "募集中" %>
 
 									<% if @user.line_id != "" %>
-										<div class="contact-button"><a href="<%= @user.line_id %>"><img src="/images/icon_line.png" alt="" class="icon_sns" /></a></div>
+										<div class="contact-button">
+											<%= link_to action: :redirect, count: "line" do %>
+												<img src="/images/icon_line.png" alt="" class="icon_sns" />
+											<% end %>
+										</div>
 									<% end %>
 									<% if @data.email != "" %>
-										<div class="contact-button"><a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>"><img src="/images/icon_mail.png" alt="" class="icon_sns" /></a></div>
+										<div class="contact-button">
+											<%= link_to action: :redirect, count: "mail" do %>
+												<img src="/images/icon_mail.png" alt="" class="icon_sns" />
+											<% end %>
+										</div>
 									<% end %>		
 
 					<% else %>
@@ -127,7 +144,6 @@
 
 
   			<%= render "/users/analytics" %>
-
 
 			<div class="content_01"></div>
 			<div class="content_02">
@@ -253,14 +269,14 @@
 				<% if @user.switch == "募集中" %>
 					<% if @user.line_id != "" %>
 						<div class="blob_cta_2">
-							<div class="contact-button line"><a href="<%= @user.line_id %>">LINEで応募する</a></div>
+							<div class="contact-button line"><%= link_to "LINEで応募する", {action: :redirect, count: "line"} %></div>
 							<div class="contact-button mail">
-								<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">メールで応募する</a>
+								<%= link_to "メールで応募する", {action: :redirect, count: "mail"} %>
 							</div>
 						</div>
 					<% else %>
 						<div class="contact-button mail">
-							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">メールで応募する</a>
+							<%= link_to "メールで応募する", {action: :redirect, count: "mail"} %>
 						</div>
 					<% end %>
 				<% end %>

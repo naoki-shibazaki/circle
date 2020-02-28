@@ -14,15 +14,12 @@
 						<% @blogs.each do |blog| %>
 							<% @blogs_imp = @blogs_imp + blog.impressions_count %>
 						<% end %>
-		
+
 						<% if @blogs_imp > 30 %>
 							ブログを見た人：<%= @blogs_imp %>人
 						<% end %>
-
 					<% end %>
-
-
-
+					
 				</div>
 
 				<% if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present? %>
@@ -35,6 +32,12 @@
 
 			<% end %>
 
+
+			<% if current_admin_user.id == 1 %>
+					<br>
+					ライン：<%= @user.line_count %>回<br>
+					メール：<%= @user.mail_count %>回<br>
+			<% end %>
 
 
 			<span class="analytics_title"><i class="fa fa-cog "></i> 管理設定</span>
@@ -60,6 +63,7 @@
 
 
 			</div>
+
 
 
 		</div>
