@@ -44,6 +44,8 @@
 					<% if admin_user_signed_in?  %>
 						<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
 
+
+
 						<div class="post_edit">
 						    <%= link_to(edit_blog_path) do %>
 								<i class="fa fa-pencil-square-o "></i> 
@@ -58,6 +60,13 @@
 
 						<% end %>
 					<% end %>
+
+					<% if admin_user_signed_in?  %>
+						<% if current_admin_user.id == 1 %>
+							<div class="analytics_blog">閲覧数：<%= @blog.impressionist_count %>人</div>
+						<% end %>
+					<% end %>
+
 				</div>
 
 

@@ -55,7 +55,6 @@ class BlogsController < ApplicationController
 
 		impressionist(@blog, nil, unique: [:session_hash])
 
-
 		# パンくず
 		if @user.switch.present?
 			@b1_name = "ブログ"
@@ -196,7 +195,9 @@ class BlogsController < ApplicationController
 			:image_03,
 			:image_04,
 			:image_name,
-			:name
+			:name,
+			:requirement,
+		    :impressions_count
 		)
 	end
 

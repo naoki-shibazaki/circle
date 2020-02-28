@@ -30,6 +30,9 @@ impressionist unique: [:session_hash]
 		@users = User.where(event_id: @user.event_id).where(prefecture_id: @user.prefecture_id).where(switch: "募集中").order(:last_post => :desc)
     
     	impressionist(@user, nil, unique: [:session_hash])
+    	@week_imps = User.where(created_at: 7.day.ago.all_day)
+    	@blogs_imp = 0
+
 		@count = 0
 
 		if @user.gallery_01.present?

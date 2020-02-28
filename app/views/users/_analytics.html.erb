@@ -6,7 +6,16 @@
 
 			<span class="analytics_title"><i class="fa fa-bar-chart-o "></i> アクセス数</span>
 			<div class="analytics_contents">
-				ページを見た人：<%= @user.impressionist_count %>人
+				ページを見た人：<%= @user.impressionist_count %>人<br>
+				<% if @blogs.any? %>
+					<% @blogs.each do |blog| %>
+						<% @blogs_imp = @blogs_imp + blog.impressions_count %>
+					<% end %>
+					ブログを見た人：<%= @blogs_imp %>人
+				<% end %>
+
+
+
 			</div>
 
 			<% if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present? %>
