@@ -394,7 +394,27 @@ helper_method :link_count
 
 	end
 
+	def contact
 
+		@user = User.find(params[:id])
+		@data = AdminUser.find_by(id: params[:id])
+		@mail_title = "【#{@user.name}】お問い合わせ"
+		@mail_message = "こちらに相談内容をご記入ください！"
+
+		if params[:count] == "line"
+			@user.line_count += 1
+			@user.save
+
+	  	elsif params[:count] == "mail"
+			@user.mail_count += 1
+			@user.save
+			
+	  	else
+
+
+	  	end
+
+	end
 
 
 
