@@ -12,7 +12,11 @@
 					<% @blogs.each do |blog| %>
 						<% @blogs_imp = @blogs_imp + blog.impressions_count %>
 					<% end %>
-					ブログを見た人：<%= @blogs_imp %>人
+	
+					<% if @blogs_imp > 30 %>
+						ブログを見た人：<%= @blogs_imp %>人
+					<% end %>
+
 				<% end %>
 
 
