@@ -3,28 +3,53 @@
 
 	  	<div class="users-index-item">
 
-	  		<%= render "/schedules/profile" %>
+
+			<div class="schedule_profile_wrap">
+
+			  <%= link_to(user_path(@user.id)) do %>  
+			    <div class="user-content">
+			      <%= image_tag @user.pic_profile.url , class:'image_icon' %>
+
+			      <div class="list_wrapper">
+			        <div class="list_01">
+			          <h2 class="user_name"><%= @user.name %></h2>
+			        </div>
+
+			      </div>
+			    </div>  
+
+			  <% end %>
+
+			  <div class="reset"></div>
+
+			</div>
 
 
 			<div class="contact_sample_wrap">
 				
-				<div class="contact_t_wrap"><span class="contact_s_t">件名：</span>お問い合わせ時のサンプル</div>
+				<div class="contact_t_wrap"><span class="contact_s_t">件名：</span>お問い合わせのサンプル</div>
 
 				<div class="contact_sample">
 					<div class="copyTarget">
-					<%= @user.name %>さん<br>
-					<br>
+					<p><%= @user.name %> さん<br></p>
+
+					<p>
 					はじめまして、サークルブックを見てご連絡しました○○です。<br>
-					<br>
+					</p>
+
+					<p>
 					--------------------------------------<br>
 					名前： 例）サークルブック<br>
 					性別： 例）男<br>
 					年代： 例）30代<br>
 					経歴： 例）バスケ歴　3年<br>
 					--------------------------------------<br>
-					<br>
+					</p>
+					
+					<p>
 					社会人になってから運動しておらず、久々にバスケがしたいと思い、ご連絡しました！<br>
 					よろしくお願いいたします！
+					</p>
 					
 					</div>
 				</div>
@@ -57,6 +82,9 @@
 				  	<% end %>
 
 				 </div>
+
+
+				 <div class="contact_bottom"></div>
 
 		
 	
