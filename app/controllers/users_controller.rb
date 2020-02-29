@@ -425,7 +425,7 @@ helper_method :link_count
 
 
 		@mail_title = "【#{@user.name}】お問い合わせ"
-		@mail_message = "こちらに相談内容をご記入ください！"
+		@mail_message = "こちらにご記入ください！"
 
 
 	end
