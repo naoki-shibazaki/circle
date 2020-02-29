@@ -364,36 +364,6 @@ helper_method :link_count
 	end
 
 
-	def redirect
-
-		@user = User.find(params[:id])
-		@data = AdminUser.find_by(id: params[:id])
-		@mail_title = "【#{@user.name}】お問い合わせ"
-		@mail_message = "こちらに相談内容をご記入ください！"
-
-		if params[:count] == "line"
-			@user.line_count += 1
-			@user.save
-
-			redirect_to "#{@user.line_id}"
-
-	  	elsif params[:count] == "mail"
-			@user.mail_count += 1
-			@user.save
-			
-			redirect_to "mailto:#{@data.email}?subject=#{@mail_title}&amp;body=#{@mail_message}"
-
-	  	else
-
-			@user.mail_count += 1
-			@user.save
-
-			redirect_to "/"
-
-	  	end
-
-	end
-
 	def contact
 
 		if params[:count] == "line_b" || params[:count] == "mail_b"
