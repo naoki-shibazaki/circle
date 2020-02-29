@@ -149,20 +149,45 @@
 <% else %>
 
   <% if @path.is('#show') && @user.switch == "募集中" %>
-      <% if @user.line_id != "" %>
-      <div class="footer_btn bg_btn footer_btn_2">
-        <a href="<%= @user.line_id %>"><span class="fixed_btn_b line">LINEで相談する</span></a>
-        <a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-          <span class="fixed_btn_b mail">メールで相談する</span>
-        </a>
-      </div>
-    <% else %>
-      <div class="footer_btn bg_btn">
-        <a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-          <span class="fixed_btn_b mail">このサークルにメールで相談する！</span>
-        </a>
-      </div>
-    <% end %>
+
+
+        <!-- パラメータの振り分け -->
+        <% if @path.is('blogs') %>
+          <% @judge = "_b" %>
+        <% elsif @path.is('schedules') %>
+          <% @judge = "_s" %>
+        <% else %>
+          <% @judge = "" %>
+        <% end %>
+
+     
+        <% if @user.line_id != "" %>
+
+        <div class="footer_btn bg_btn footer_btn_2">
+
+          <%= link_to controller: :users, action: :contact, count: "line#{@judge}" do %>
+            <span class="fixed_btn_b line">LINEで相談する</span>
+          <% end %>
+
+
+          <%= link_to controller: :users, action: :contact, count: "mail#{@judge}" do %>
+            <span class="fixed_btn_b mail">メールで相談する</span>
+          <% end %>
+
+        </div>
+
+      <% else %>
+        <div class="footer_btn bg_btn">
+          
+          <%= link_to controller: :users, action: :contact, count: "mail#{@judge}" do %>
+             <span class="fixed_btn_b mail">このサークルにメールで相談する！</span>
+          <% end %>
+
+        </div>
+
+      <% end %>
+
+
   <% end %>
 
 

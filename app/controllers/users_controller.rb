@@ -396,23 +396,67 @@ helper_method :link_count
 
 	def contact
 
+		if params[:count] == "line_b" || params[:count] == "mail_b"
+		@blog = Blog.find(params[:id])
+		@user = User.find_by(id: @blog.user.id)
+		@data = AdminUser.find_by(id: @blog.user.id)
+
+			if params[:count] == "line_b"
+				@user.line_count += 1
+				@user.save
+
+		  	elsif params[:count] == "mail_b"
+				@user.mail_count += 1
+				@user.save
+				
+		  	else
+		  		
+		  	end
+
+
+
+		elsif params[:count] == "line_s" || params[:count] == "mail_s"
+		@schedule = Schedule.find(params[:id])
+		@user = User.find_by(id: @schedule.user_id)	
+		@data = AdminUser.find_by(id: @schedule.user_id)
+
+			if params[:count] == "line_s"
+				@user.line_count += 1
+				@user.save
+
+		  	elsif params[:count] == "mail_s"
+				@user.mail_count += 1
+				@user.save
+
+		  	else
+		  		
+		  	end			
+			
+
+
+		else
 		@user = User.find(params[:id])
 		@data = AdminUser.find_by(id: params[:id])
+
+			if params[:count] == "line"
+				@user.line_count += 1
+				@user.save
+
+		  	elsif params[:count] == "mail"
+				@user.mail_count += 1
+				@user.save
+				
+		  	else
+		  		
+		  	end
+
+		end
+
+
+
 		@mail_title = "【#{@user.name}】お問い合わせ"
 		@mail_message = "こちらに相談内容をご記入ください！"
 
-		if params[:count] == "line"
-			@user.line_count += 1
-			@user.save
-
-	  	elsif params[:count] == "mail"
-			@user.mail_count += 1
-			@user.save
-			
-	  	else
-
-
-	  	end
 
 	end
 
