@@ -4,10 +4,11 @@
 
 		<div class="analytics_wrap">
 
-			<% if @user.impressionist_count > 20 %>
+			<% if @user.impressionist_count > 20 || current_admin_user.id == 1 %>
 
 				<span class="analytics_title"><i class="fa fa-bar-chart-o "></i> アクセス数</span>
 				<div class="analytics_contents">
+					
 					※測定開始：2020年2月27日〜<br>
 					ページを見た人：<%= @user.impressionist_count %>人<br>
 					<% if @blogs.any? %>
@@ -15,8 +16,18 @@
 							<% @blogs_imp = @blogs_imp + blog.impressions_count %>
 						<% end %>
 
-						<% if @blogs_imp > 30 %>
-							ブログを見た人：<%= @blogs_imp %>人
+						<% if @blogs_imp > 30 || current_admin_user.id == 1 %>
+							ブログを見た人：<%= @blogs_imp %>人<br>
+						<% end %>
+					<% end %>
+
+					<% if @user.mail_count >10 || current_admin_user.id == 1 %>
+							クリック数（メール）：<%= @user.mail_count %>回<br>
+					<% end %>
+
+					<% if @user.line_count >10 || current_admin_user.id == 1 %>
+						<% if @user.line_id != "" %>
+							クリック数（LINE）：<%= @user.line_count %>回<br>
 						<% end %>
 					<% end %>
 					
@@ -25,20 +36,11 @@
 				<% if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present? %>
 					<div class="analytics_tw">
 					    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
-					      <i class="fa fa-twitter"></i> Twitterで告知する
+					      <i class="fa fa-twitter"></i> Twitterでツイートする！
 					    <% end %>
 				    </div>
 				<% end %>
 
-			<% end %>
-
-
-			<% if current_admin_user.id == 1 %>
-
-
-					<br>
-					クリック数（メール）：<%= @user.mail_count %>回<br>
-					クリック数（LINE）：<%= @user.line_count %>回<br>
 			<% end %>
 
 
