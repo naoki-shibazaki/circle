@@ -3260,7 +3260,7 @@ max-width: 100%;
 
 .contact_memo{
 	font-size: 16px;
-    background: linear-gradient(transparent 70%, #f1b851e6 70%);
+    background: linear-gradient(transparent 70%, #ffee78f0 70%);
 }
 
 .analytics_contents table{
@@ -3268,10 +3268,16 @@ max-width: 100%;
 	margin: 8px auto 10px;
 }
 
+.analytics_contents th{
+    padding-left: 20px;
+}
+
+
 .analytics_contents td{
     padding-left: 30px;
     padding-right: 20px;
     font-weight: bold;
+    text-align: right;
 }
 
 .analytics_contents tr{

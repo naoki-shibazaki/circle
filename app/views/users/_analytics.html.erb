@@ -14,7 +14,7 @@
 					<table>
 						<tr>
 							<th>ページを見た人</th>
-							<td><%= @user.impressionist_count %>人</td>
+							<td><%= @user.impressionist_count %> 人</td>
 						</tr>
 
 							<% if @blogs.any? %>
@@ -26,7 +26,7 @@
 
 								<tr>
 									<th>ブログを見た人</th>
-									<td><%= @blogs_imp %>人</td>
+									<td><%= @blogs_imp %> 人</td>
 								</tr>
 
 								<% end %>
@@ -35,7 +35,7 @@
 						<% if @user.mail_count >10 || current_admin_user.id == 1 %>
 								<tr>
 									<th>クリック数（メール）</th>
-									<td><%= @user.mail_count %>回</td>
+									<td><%= @user.mail_count %> 回</td>
 								</tr>								
 						<% end %>
 
@@ -43,7 +43,7 @@
 							<% if @user.line_id != "" %>
 								<tr>
 									<th>クリック数（LINE）</th>
-									<td><%= @user.line_count %>回</td>
+									<td><%= @user.line_count %> 回</td>
 								</tr>
 							<% end %>
 						<% end %>
