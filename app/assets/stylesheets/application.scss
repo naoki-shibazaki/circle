@@ -3263,6 +3263,20 @@ max-width: 100%;
     background: linear-gradient(transparent 70%, #f1b851e6 70%);
 }
 
+.analytics_contents table{
+	line-height: 2.2;
+	margin: 8px auto 10px;
+}
+
+.analytics_contents td{
+    padding-left: 30px;
+    padding-right: 20px;
+    font-weight: bold;
+}
+
+.analytics_contents tr{
+	border-bottom: 1px solid #dedede;
+}
 
 
 
