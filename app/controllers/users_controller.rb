@@ -159,10 +159,6 @@ helper_method :link_count
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(kana: "nil")
 		@users = User.where(event_id: @event.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end
 
 		# パンくず		
 		@b1_name = @event.name
@@ -172,10 +168,6 @@ helper_method :link_count
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end
 
 		# パンくず
 		@b1_name = @prefecture.name
@@ -187,10 +179,6 @@ helper_method :link_count
 		@group = Group.find_by(group: params[:group])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end	
 
 		# パンくず
 		@b1_name = @prefecture.name
@@ -205,10 +193,6 @@ helper_method :link_count
 		@group = Group.find_by(group: params[:group])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(prefecture_id: @prefecture.id).where('average_age like?', "%#{@age.name}%").where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end	
 
 		# パンくず
 		@b1_name = @prefecture.name
@@ -221,16 +205,10 @@ helper_method :link_count
 
 
 
-
-
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end
 
 		# パンくず
 		@b1_name = @event.name
@@ -244,10 +222,6 @@ helper_method :link_count
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('average_age like?', "%#{@age.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end	
 
 		# パンくず
 		@b1_name = @event.name
