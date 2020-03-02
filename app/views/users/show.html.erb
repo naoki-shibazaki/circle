@@ -3,7 +3,8 @@
 		<% if @user.pic_profile.present? %>
 
 			<% set_meta_tags title: "メンバー募集中！#{@user.prefecture.name}の#{@user.event.name}サークル【#{@user.name}】",
-							 description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！", 
+							 description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！",
+							 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
 
 							og: { 
 								title: "#{@user.name}｜サークルブック",
@@ -18,6 +19,7 @@
 
 			<% set_meta_tags title: "メンバー募集中！#{@user.prefecture.name}の#{@user.event.name}サークル【#{@user.name}】",
 							 description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！", 
+							 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
 
 							og: { 
 								title: "#{@user.name}｜サークルブック",
