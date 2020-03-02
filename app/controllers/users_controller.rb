@@ -261,10 +261,6 @@ helper_method :link_count
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end	
 
 		# パンくず
 		@b1_name = @event.name
@@ -281,10 +277,6 @@ helper_method :link_count
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end	
 
 		# パンくず
 		@b1_name = @event.name
@@ -301,10 +293,6 @@ helper_method :link_count
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end	
 
 		# パンくず
 		@b1_name = @event.name
@@ -322,10 +310,6 @@ helper_method :link_count
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		if @users.count == 0
-			@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-			@hit = 0 
-		end	
 
 		# パンくず
 		@b1_name = @event.name
