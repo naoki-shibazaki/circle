@@ -22,15 +22,16 @@
 		<div class="search_area">
 	    	<%= render "events_list.html.erb" %>
 		</div>
+
+		<%= render "users_list.html.erb" %>
+
 	<% end %>
 
 	<% if @hit == 0 %>
 		<%= render "/users/no_hit.html.erb" %>
 		
-		<h2 class="users-heading">全国のサークル一覧</h2>
 	<% end %>
 
-    <%= render "users_list.html.erb" %>
 
     
   </div>

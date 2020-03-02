@@ -21,13 +21,14 @@
       </div>
     </div>
 
-	<% if @hit == 0 %>
-		<%= render "/users/no_hit.html.erb" %>
-		
-		<h2 class="users-heading">全国のサークル一覧</h2>
-	<% end %>
- 
+  <% if @hit != 0 %>
     <%= render "/users/users_list.html.erb" %>
+  <% end %>
+
+
+  <% if @hit == 0 %>
+    <%= render "/users/no_hit.html.erb" %>
+  <% end %>
   
   </div>
 </div>

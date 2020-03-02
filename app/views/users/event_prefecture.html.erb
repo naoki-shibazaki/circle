@@ -24,17 +24,17 @@
   <% if @hit != 0 %>
     <div class="search_area">
         <%= render "ages_list.html.erb" %>
+
         <%= render "groups_list.html.erb" %>
     </div>
+
+        <%= render "/users/users_list.html.erb" %>
   <% end %>
 
 	<% if @hit == 0 %>
     <%= render "/users/no_hit.html.erb" %>
-		
-		<h2 class="users-heading">全国のサークル一覧</h2>
 	<% end %>
  
-    <%= render "/users/users_list.html.erb" %>
   
   </div>
 </div>
