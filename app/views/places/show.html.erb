@@ -107,6 +107,8 @@
 	      </div>   
 
 
+		<%= render "/places/link_to_user" %>
+
 				<div class="g_map">
 					<iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></iframe>
 						<div class="google_map_wrap">
