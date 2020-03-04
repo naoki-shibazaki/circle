@@ -29,14 +29,7 @@
 
       </div>
 
-      <% if place.img_link.present? && place.img_url.present? && place.img_source.present? %>
-        <div class="img_source_wrap">
-          <img src="<%= place.img_link %>" alt="" class="img_source">
-          <div class="img_url_source">
-            出典：<a href="<%= place.img_url %>" class="image_link"><%= place.img_source %></a>
-          </div>
-        </div>
-      <% end %>      
+   
 
       <div class="border"></div>
 

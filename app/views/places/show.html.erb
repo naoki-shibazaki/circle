@@ -1,5 +1,5 @@
-<% set_meta_tags title: "#{@place.name}の#{@place.event.name}のコート情報",
-                         description: "#{@place.prefecture.name}#{@place.city.name}の#{"屋内" if @place.tag.to_i == 1}#{"屋外" if @place.tag.to_i == 2}にある#{@place.event.name}のコート情報"
+<% set_meta_tags title: "#{@place.name}の#{@place.event.name}コート情報",
+                         description: "#{@place.prefecture.name}#{@place.city.name}の#{"屋内" if @place.tag.to_i == 1}#{"屋外" if @place.tag.to_i == 2}にある#{@place.event.name}コート情報"
 %>
 
 <div class="main user-show">
@@ -27,7 +27,7 @@
 	          <div class="list_02">
 	            <h3 class="place_d">
 	              <%= @place.prefecture.name %><%= @place.city.name %>の<%= "屋内" if @place.tag.to_i == 1 %><%= "屋外" if @place.tag.to_i == 2 %>にある<br>
-	              <%= @place.event.name %>のコート情報
+	              <%= @place.event.name %>コート情報
 	            </h3>
 	          </div>
 
@@ -49,14 +49,12 @@
 			<% end %>  
 
 
-		<% if @place.img_link.present? && @place.img_url.present? && @place.img_source.present? %>
-			<div class="img_source_wrap">
-				<img src="<%= @place.img_link %>" alt="" class="img_source">
-				<div class="img_url_source">
-					出典：<a href="<%= @place.img_url %>" class="image_link"><%= @place.img_source %></a>
-				</div>
-			</div>
-		<% end %>
+
+	        <div class="img_source_wrap">
+		      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" class="img_source" >
+		      	<div class="img_url_source">※画像はイメージです</div>
+		    </div>
+
 
 
 	      <div class="border"></div>
@@ -118,7 +116,12 @@
 					    </div>
 				</div>
 
+				<div class="link_to_user_btm"><%= render "/places/link_to_user" %></div>
+
 	  	</div>
+
+
+
 
 		<%= render "/layouts/ad_square" %>
 
