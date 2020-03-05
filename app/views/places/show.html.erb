@@ -124,19 +124,18 @@
 		<%= render "/layouts/ad_square" %>	  	
 
 
-
 		<% if @places.count >= 2 %>
 
-				<div class="user-list-wrap">
+				<div class="user-list-wrap others_place">
 					<h2 class="others-user">
 						条件が似ている<%= @prefecture.name %><%= @city.name %>にある<br>
-						<%= @event.name %>コート
+						<%= @event.name %>コート情報
 					</h2>
 							
 							<% @places.each do |place| %>
 
 
-							  <div class="users-index-item ribbon-wrapper">
+							  <div class="users-index-item ribbon-wrapper others_place_list">
 
 							      <div class="ribbon-content">
 							        <% if place.tag.to_i == 1 %>
