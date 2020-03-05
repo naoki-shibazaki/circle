@@ -51,7 +51,7 @@
 
 
 	        <div class="img_source_wrap">
-		      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" class="img_source" >
+		      <img src="/images/places/e_p_<%= @event.ruby %>_<%= @place.tag.to_i %>.jpg" alt="<%= @event.name %>" class="img_source" >
 		      	<div class="img_url_source">※画像はイメージです</div>
 		    </div>
 
@@ -121,9 +121,77 @@
 	  	</div>
 
 
+		<%= render "/layouts/ad_square" %>	  	
 
 
-		<%= render "/layouts/ad_square" %>
+
+		<% if @places.count >= 2 %>
+
+				<div class="user-list-wrap">
+					<h2 class="others-user">
+						条件が似ている<%= @prefecture.name %><%= @city.name %>にある<br>
+						<%= @event.name %>コート
+					</h2>
+							
+							<% @places.each do |place| %>
+
+
+							  <div class="users-index-item ribbon-wrapper">
+
+							      <div class="ribbon-content">
+							        <% if place.tag.to_i == 1 %>
+							          <span class="ribbon green">屋内</span>
+							        <% else place.tag.to_i == 2 %>
+							          <span class="ribbon blue">屋外</span>
+							        <% end %>
+							      </div>
+
+							      <div class="user-content">
+
+							        <div class="list_wrapper">
+							          <div class="list_01">
+							            <h2 class="place_name"><%= place.name.truncate(24) %></h2>
+							          </div>
+							        </div>
+
+							      </div>
+
+
+							      <div class="border"></div>
+
+							      <div class="article_item article_padding place_list ">
+							        <table>
+							          <tbody>
+
+							            <tr class="flex_contents">
+							              <th class="flex_list">住所</th>
+							              <td class="flex_list"><%= place.address %></td>
+							            </tr>
+							            <tr class="flex_contents">
+							              <th class="flex_list">アクセス</th>
+							              <td class="flex_list"><%= place.access %></td>
+							            </tr>
+
+							          </tbody>
+							        </table> 
+							      </div>
+							      
+							      <%= link_to "詳細を確認する", "/places/#{place.event.ruby}/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}", class: "place_more" %>
+
+							  </div>
+
+
+							<% end %>
+
+			    </div>
+
+			<% end %>
+
+
+
+		<% if @places.count >= 3 %>
+			<%= render "/layouts/ad_square" %>
+		<% end %>
 
 
 

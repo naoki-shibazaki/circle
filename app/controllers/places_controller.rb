@@ -39,7 +39,10 @@ class PlacesController < ApplicationController
 
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])		
-		@city = City.find_by(city_kana: params[:city_kana])		
+		@city = City.find_by(city_kana: params[:city_kana])	
+
+	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).where(city_id: @city.id)
+
 
 		if @event.id.to_i != @place.event_id.to_i || @prefecture.id.to_i != @place.prefecture_id.to_i || @city.id.to_i != @place.city_id.to_i
 			redirect_to "/places"

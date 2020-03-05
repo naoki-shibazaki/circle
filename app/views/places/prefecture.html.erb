@@ -3,7 +3,14 @@
   <div class="container">
 
     <%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading"><%= @prefecture.name %>にある<br><%= @event.name %>のコート情報一覧</h1>
+    <div class="e_header_wrap">
+ 	  <img src="/images/places/e_p_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+      <div class="link_txt">
+        <h1 class="e_header_title">
+		    <%= @prefecture.name %>にある<br><%= @event.name %>のコート情報一覧
+        </h1>
+      </div>
+    </div>
 
 	<div class="search_area">
 		<div class="coat-container">
