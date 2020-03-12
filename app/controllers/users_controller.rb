@@ -34,8 +34,13 @@ helper_method :link_count
     	impressionist(@user, nil, unique: [:session_hash])
     	@week_imps = User.where(created_at: 7.day.ago.all_day)
     	@blogs_imp = 0
-
 		@count = 0
+
+		if @user.id.to_s != params[:id]
+		      flash[:notice] = "URLが間違っています"
+		      redirect_to users_path			
+		end
+
 
 		if @user.gallery_01.present?
 			@count += 1
