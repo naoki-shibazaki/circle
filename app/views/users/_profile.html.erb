@@ -1,15 +1,11 @@
       <% if @user.pic_header.present? %>
-        <a href="<%= @user.pic_header.url %>" class="swipe" rel="profile" title="プロフィール｜<%= @user.name %>">
-            <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" class="header_imege" />
-        </a>
+        <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" class="header_imege" />
       <% else %>
         <%= image_tag @user.pic_header.url , class:'header_imege' %>
       <% end %>
 
       <% if @user.pic_profile.present? %>
-        <a href="<%= @user.pic_profile.url %>" class="swipe" rel="profile" title="プロフィール｜<%= @user.name %>">
-            <img src="<%= @user.pic_profile.url %>" alt="プロフィール｜<%= @user.name %>" class="profile_imege" />
-        </a>
+        <img src="<%= @user.pic_profile.url %>" alt="プロフィール｜<%= @user.name %>" class="profile_imege" />
       <% else %>
         <%= image_tag @user.pic_profile.url , class:'profile_imege' %>
       <% end %>
