@@ -26,9 +26,12 @@
                             <div class="header-post cont-width">
 
                               <%= image_tag blog.user.pic_profile.url , class:'content_icon' %>     
-                              <div class="post-user">
-                                <div class="post-top"><%= blog.user.name %></div>              
-                                <div class="post-bottom"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+                              <div class="post-user_wrap">
+                                <div class="post-user">
+                                  <div class="post-top"><%= @user.name.truncate(40) %></div>
+
+                                  <div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
+                                </div>
                               </div>
 
                             </div>
@@ -66,7 +69,7 @@
                             </div>
 
                             <div class="cont-width">
-                              <h3 class="blog_title"><%= blog.title.truncate(36) %></h3>
+                              <h2 class="blog_title"><%= blog.title.truncate(36) %></h2>
                                 <%= simple_format blog.content.truncate(120) %>      
                             </div>                            
 
