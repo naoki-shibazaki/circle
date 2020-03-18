@@ -367,7 +367,7 @@
 				            <div class="user-content">
 				            	<div class="user_list_header">
 					            	<%= image_tag user.pic_profile.url , class:'image_icon' %>
-					            	<h2 class="user_name"><%= user.name %></h2>
+					            	<h3 class="user_name"><%= user.name.truncate(20) %></h3>
 				            	</div>
 				
 
