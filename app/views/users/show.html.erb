@@ -142,9 +142,9 @@
 
 		<div class="profile-content">
 
+			<div class="post-bottom u_right">更新日：<%= @user.updated_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
+
 			<h1 class="user_name"><%= @user.name %></h1>
-
-
 
   			<%= render "/users/analytics" %>
 

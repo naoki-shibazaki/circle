@@ -3371,9 +3371,23 @@ max-width: 100%;
 	margin-top: 4px;
 }
 
+.u_right{
+	text-align: right;
+}
 
-
-
+.list_02,
+.list_03{
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    white-space: nowrap;	
+}
 
 
 
