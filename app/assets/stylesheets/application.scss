@@ -582,10 +582,6 @@ header {
     margin-top: 4px;
 }
 
-.list_wrapper{
-  padding-top: 10px;
-}
-
 .user-content .list_04{
   clear: both;
   margin-top: 10px;
@@ -3359,6 +3355,29 @@ max-width: 100%;
 .icon_c{
 	// color: #469246 !important;
 }
+
+.list_cnts{
+	clear: both;
+}
+
+.list_wrapper {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

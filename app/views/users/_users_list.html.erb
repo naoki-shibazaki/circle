@@ -40,22 +40,25 @@
                 <div class="list_01">
                   <h2 class="user_name"><%= user.name %></h2>
                 </div>
+              </div>
 
+
+              <div class="list_cnts">
                 <div class="list_02">
-                  <span class="user_schedule">
-                    <i class="fa fa-calendar icon_c"></i><%= user.schedule %>
-                  </span>
+                    <span class="user_schedule">
+                      <i class="fa fa-calendar icon_c"></i><%= user.schedule %>
+                    </span>
                 </div>
 
                 <div class="list_03">
-                  <span class="user_area">
-                    <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %><%= "：" if user.area.present? %><%= user.area %>
-                  </span>
-                </div>
-              </div>
+                    <span class="user_area">
+                      <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %><%= "：" if user.area.present? %><%= user.area %>
+                    </span>
+                </div>              
 
-              <div class="list_04">
-                <span class="user_recruitment"><%= user.recruitment.truncate(110) %></span>
+                <div class="list_04">
+                  <span class="user_recruitment"><%= user.recruitment.truncate(110) %></span>
+                </div>
               </div>
 
 
