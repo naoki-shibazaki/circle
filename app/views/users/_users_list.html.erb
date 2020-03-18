@@ -43,13 +43,13 @@
 
                 <div class="list_02">
                   <span class="user_schedule">
-                    <i class="fa fa-calendar "></i><%= user.schedule %>
+                    <i class="fa fa-calendar icon_c"></i><%= user.schedule %>
                   </span>
                 </div>
 
                 <div class="list_03">
                   <span class="user_area">
-                    <i class="fa fa-map-marker "></i><%= user.area %>
+                    <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %><%= "：" if user.area.present? %><%= user.area %>
                   </span>
                 </div>
               </div>
@@ -65,7 +65,7 @@
 
                     <% if schedule.user_id == user.id %>
                       <% if @count == 0 %>
-                        <h3 class="schedule_t"><i class="fa fa-calendar "></i> 次回の開催予定</h3>
+                        <h3 class="schedule_t"><i class="fa fa-calendar icon_c"></i> 次回の開催予定</h3>
                       <% end %>
 
                       <% if @count < 2 %>
@@ -73,11 +73,8 @@
                         <%= Time.parse(schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
                         <% if schedule.time_s.present? %>
-                          <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+                          <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %><br>
                         <% end %>
-
-                        <%= schedule.venue %>
-                        <br>
 
                       <% @count += 1 %>
 
