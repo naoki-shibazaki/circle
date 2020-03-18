@@ -70,7 +70,7 @@
 
                       <% if @count < 2 %>
 
-                        <%= "　／　" if @count == 1 %>
+                        <%= "／" if @count == 1 %>
                         ・<%= Time.parse(schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
                         <% if schedule.time_s.present? %>
