@@ -32,13 +32,16 @@
               <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
             <% end %>
 
+            <div class="post-bottom user_updated">更新日：<%= user.updated_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
+
+
             <%= link_to(user_path(user.id)) do %>  
             <div class="user-content">
               <%= image_tag user.pic_profile.url , class:'image_icon' %>
 
               <div class="list_wrapper">
                 <div class="list_01">
-                  <h2 class="user_name"><%= user.name %></h2>
+                  <h2 class="user_name"><%= user.name.truncate(40) %></h2>
                 </div>
               </div>
 
@@ -77,7 +80,7 @@
                         ・<%= Time.parse(schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
                         <% if schedule.time_s.present? %>
-                          <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+                          <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %>
                         <% end %>
 
                       <% @count += 1 %>
