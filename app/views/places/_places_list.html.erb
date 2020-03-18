@@ -11,21 +11,14 @@
         <% end %>
       </div>
 
-      <div class="user-content">
+      <div class="place_cnt_wrap">
 
-        <div class="list_wrapper">
-          <div class="list_01">
-            <h2 class="place_name"><%= place.name.truncate(24) %></h2>
-          </div>
+          <h2 class="place_name"><%= place.name.truncate(24) %></h2>
 
-          <div class="list_02">
-            <h3 class="place_d">
-                <%= place.prefecture.name %><%= place.city.name %>の<%= "屋内" if place.tag.to_i == 1 %><%= "屋外" if place.tag.to_i == 2 %>にある<br>
-                <%= place.event.name %>のコート情報
-            </h3>
-          </div>
-
-        </div>
+          <h3 class="place_d">
+              <%= place.prefecture.name %><%= place.city.name %>の<%= "屋内" if place.tag.to_i == 1 %><%= "屋外" if place.tag.to_i == 2 %>にある<br>
+              <%= place.event.name %>のコート情報
+          </h3>
 
       </div>
 
