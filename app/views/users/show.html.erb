@@ -155,7 +155,9 @@
                   </div>
 
                   <div class="user_area">
-                    <i class="fa fa-map-marker "></i><%= @user.area %>
+			        <% if @user.prefecture_id.present? %>
+			         <i class="fa fa-map-marker "></i><%= @user.prefecture.name %>：<%= @user.area %>
+			        <% end %>
                   </div>
 
 			</div>
