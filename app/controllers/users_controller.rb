@@ -462,8 +462,8 @@ private
 		@category = "nil"
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
 
-
-		@users.each do |user|
+		@users_a = User.all
+		@users_a.each do |user|
 			user.user_time = Time.now.yesterday
 			user.save
 		end
