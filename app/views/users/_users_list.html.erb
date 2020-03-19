@@ -78,11 +78,15 @@
 
                       <% if @count < 2 %>
 
-                        ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                        <div class="text_slide">
+                          ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
-                        <% if schedule.time_s.present? %>
-                          <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %><br>
-                        <% end %>
+                          <% if schedule.time_s.present? %>
+                            <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %>
+                          <% end %>
+
+                          <%= schedule.venue %>
+                        </div>
 
                       <% @count += 1 %>
 
