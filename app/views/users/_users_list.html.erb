@@ -34,7 +34,7 @@
 
 
             <% if user.user_time.present? %>
-              <div class="post-bottom user_updated">更新日：<%= user.user_time.strftime("%Y年%-m月%-d日") %></div>
+              <div class="post-bottom user_updated">更新日：<%= user.user_time %></div>
             <% end %>
 
             <%= link_to(user_path(user.id)) do %>  
