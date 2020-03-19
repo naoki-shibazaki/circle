@@ -78,6 +78,7 @@ helper_method :link_count
 
 	def update
 		@user = User.find(params[:id])
+		@user.user_time = Time.now
 
 		if @user.update(user_params)
 
@@ -439,6 +440,8 @@ private
 		    :impressions_count,
 		    :line_count,
 		    :mail_count,
+		    :user_time,
+		    :last_post,
 		    decade_age: [],
 		    average_age: [],
 		    grouping: []

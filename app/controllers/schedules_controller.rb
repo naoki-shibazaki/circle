@@ -16,7 +16,8 @@ before_action :set_schedules
 	def create	
 		@user.schedules.create(schedule_params)
 
-		@user.last_post = @time
+		@user.last_post = Time.now
+		@user.user_time = Time.now
 		@user.save
 
 		flash[:notice] = "追加しました"
@@ -27,6 +28,10 @@ before_action :set_schedules
 		@schedule = Schedule.find(params[:id])
 
 		if @schedule.update(schedule_params)
+
+			@user.user_time = Time.now
+		    @user.save
+			
 			flash[:share] = '更新完了！'
 			redirect_to user_schedules_path
 		else
