@@ -462,6 +462,14 @@ private
 		@category = "nil"
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
 
+
+		@users.each do |user|
+			user.user_time = Time.now.yesterday
+			user.save
+		end
+
+
+
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)
 		end
