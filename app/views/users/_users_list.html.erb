@@ -15,13 +15,16 @@
 
 <% @users.each do |user| %>
 
+        <div class="user_border"></div>
         <div class="header_user_list ribbon-wrapper">
 
+           <div class="header_img_wrap">
               <% if user.pic_header.present? %>
                 <img src="<%= user.pic_header.url %>" alt="プロフィール｜<%= user.name %>" class="header_imege_user_list" />
               <% else %>
                 <%= image_tag user.pic_header.url , class:'header_imege_user_list' %>
               <% end %>
+            </div>
 
 
               <div class="ribbon-content">
@@ -62,7 +65,7 @@
 
               <div class="list_wrapper">
                 <div class="list_01">
-                  <h2 class="user_name"><%= user.name.truncate(32) %></h2>
+                  <h2 class="user_name"><%= user.name.truncate(24) %></h2>
                 </div>
               </div>
 

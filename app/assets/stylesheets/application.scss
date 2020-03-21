@@ -3447,13 +3447,20 @@ max-width: 100%;
 
 
 .header_user_list{
+
+}
+
+.user_border{
     border-top: 4px solid #fff;
 }
+
 
 .header_imege_user_list{
     width: 100%;
     position: absolute;
     object-fit: cover;
+    display: block;
+    opacity: 0.4;
 }
 
 
@@ -3489,6 +3496,9 @@ max-width: 100%;
 .user_list_wrap .user_updated{
 	text-align: right;	
 }
+
+
+
 
 
 
