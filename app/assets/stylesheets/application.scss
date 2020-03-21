@@ -3372,10 +3372,13 @@ max-width: 100%;
 }
 
 .list_wrapper {
-    // display: flex;
-    // justify-content: left;
-    // align-items: center;
-    // height: 90px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 90px;
+}
+
+.user_list_wrapper {
     padding: 0px 0 0 98px;
 }
 
