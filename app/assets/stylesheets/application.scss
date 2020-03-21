@@ -3442,7 +3442,7 @@ max-width: 100%;
 
 .header_user_list,
 .header_imege_user_list{
-    height: 100px;
+    height: 120px;
 }
 
 
@@ -3459,7 +3459,7 @@ max-width: 100%;
 
 .header_user_list .tag_btn{
     position: inherit;
-    left: 14px;
+    left: 18px;
     top: 10px;
 }
 
@@ -3468,8 +3468,8 @@ max-width: 100%;
 	position: relative;
     border: 3px solid #fff;
     background: #fff;
-    left: 14px;
-    top: 26px;
+    left: 18px;
+    top: 40px;
 }
 
 
@@ -3490,7 +3490,9 @@ max-width: 100%;
 	text-align: right;	
 }
 
-
+.no_img_header{
+	background: #e4e4e4;
+}
 
 
 

@@ -20,7 +20,7 @@
               <% if user.pic_header.present? %>
                 <img src="<%= user.pic_header.url %>" alt="プロフィール｜<%= user.name %>" class="header_imege_user_list" />
               <% else %>
-                <%= image_tag user.pic_header.url , class:'header_imege_user_list' %>
+                <div class="header_imege_user_list no_img_header"></div>
               <% end %>
 
 
