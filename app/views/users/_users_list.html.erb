@@ -15,35 +15,54 @@
 
 <% @users.each do |user| %>
 
-          <div class="users-index-item ribbon-wrapper">
-            <div class="ribbon-content">
-              <% if user.switch == "募集中" %>
-                <span class="ribbon green"><%= user.switch %></span>
+        <div class="header_user_list ribbon-wrapper">
+
+              <% if user.pic_header.present? %>
+                <img src="<%= user.pic_header.url %>" alt="プロフィール｜<%= user.name %>" class="header_imege_user_list" />
               <% else %>
-                <span class="ribbon red"><%= user.switch %></span>
+                <%= image_tag user.pic_header.url , class:'header_imege_user_list' %>
               <% end %>
-            </div>
-
-            <%= link_to("/#{user.event.ruby}", class: "tag_btn") do %>
-              <i class="fa fa-tags tag-color"></i><%= user.event.name %>
-            <% end %>
-            　
-            <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}", class: "tag_btn") do %>
-              <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
-            <% end %>
 
 
-            <% if user.user_time.present? %>
-              <div class="post-bottom user_updated">更新日：<%= user.user_time.to_time.strftime("%Y年%-m月%-d日") %></div>
-            <% end %>
+              <div class="ribbon-content">
+                <% if user.switch == "募集中" %>
+                  <span class="ribbon green"><%= user.switch %></span>
+                <% else %>
+                  <span class="ribbon red"><%= user.switch %></span>
+                <% end %>
+              </div>
 
-            <%= link_to(user_path(user.id)) do %>  
-            <div class="user-content">
+
+              <%= link_to("/#{user.event.ruby}", class: "tag_btn") do %>
+                <i class="fa fa-tags tag-color"></i><%= user.event.name %>
+              <% end %>
+              　
+              <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}", class: "tag_btn") do %>
+                <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
+              <% end %>
+
+   
+    <%= link_to(user_path(user.id)) do %>  
+
+
               <%= image_tag user.pic_profile.url , class:'image_icon' %>
+
+              <% if user.user_time.present? %>
+                <div class="post-bottom user_updated">更新日：<%= user.user_time.to_time.strftime("%Y年%-m月%-d日") %></div>
+              <% end %>
+
+
+
+
+        </div>
+
+          <div class="users-index-item user_list_wrap">
+
+            <div class="user-content">
 
               <div class="list_wrapper">
                 <div class="list_01">
-                  <h2 class="user_name"><%= user.name.truncate(40) %></h2>
+                  <h2 class="user_name"><%= user.name.truncate(32) %></h2>
                 </div>
               </div>
 
@@ -100,24 +119,25 @@
 
 
             </div>
-            <% end %>
+            
+    <% end %>
 
 
-            <% user.blogs.last(1).each do |blog| %> 
-             
-              <% if blog.title.present? %>
-                <div class="border"></div>
+    <% user.blogs.last(1).each do |blog| %> 
+     
+      <% if blog.title.present? %>
+        <div class="border"></div>
 
-                <%= link_to(blog_path(blog.id)) do %>
-                  <div class="blog_link">
-                    <div class="catch_image"><%= image_tag blog.image_01.url , class:'post_image' %></div>   
-                    <h3 class="post_title"><%= blog.title.truncate(36) %></h3>
-                  </div>
-                <% end %> 
+        <%= link_to(blog_path(blog.id)) do %>
+          <div class="blog_link">
+            <div class="catch_image"><%= image_tag blog.image_01.url , class:'post_image' %></div>   
+            <h3 class="post_title"><%= blog.title.truncate(36) %></h3>
+          </div>
+        <% end %> 
 
-              <% end %>            
-                      
-            <% end %>
+      <% end %>            
+              
+    <% end %>
 
 
 
