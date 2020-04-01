@@ -21,18 +21,8 @@
 
 	    <%= render "prefectures_list.html.erb" %>
 	</div>
-
-
-	<% if @users.count == 0 %>
-
-		<%= render "/users/no_hit.html.erb" %>
-		
-		<h2 class="users-heading">全国のサークル一覧</h2>
-	    <%= render "/users/users_list_all.html.erb" %>
-
-	<% else %>    
+  
 		<%= render "users_list.html.erb" %>
-	<% end %>
     
 
   </div>
