@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_063425) do
+ActiveRecord::Schema.define(version: 2020_04_01_130116) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -206,7 +206,11 @@ ActiveRecord::Schema.define(version: 2020_03_19_063425) do
     t.integer "line_count", default: 0
     t.integer "mail_count", default: 0
     t.time "user_time"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
 end
