@@ -79,7 +79,7 @@ helper_method :link_count
 	def update
 		@user = User.find(params[:id])
 		@user.user_time = Time.now
-	    @user.last_post = Time.now.ago(3.days)
+	    # @user.last_post = Time.now.ago(3.days)
 
 		if @user.update(user_params)
 
