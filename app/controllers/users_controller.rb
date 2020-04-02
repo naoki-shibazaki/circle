@@ -155,6 +155,9 @@ helper_method :link_count
  	def faq
   	end	
 
+ 	def admin_users
+  	end	
+
 
 	def prefecture_index
 		# パンくず

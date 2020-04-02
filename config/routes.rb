@@ -4,7 +4,6 @@ Rails.application.routes.draw do
  :sessions => 'admin_users/sessions'
 }
 
-
 	resources :users do
   		resources :schedules
   	end
@@ -25,6 +24,7 @@ Rails.application.routes.draw do
 	get 'privacypolicy' , to: 'users#privacypolicy'
 	get 'line' , to: 'users#line'
 	get 'link' , to: 'users#link'
+	get 'admin_users' , to: 'users#admin_users'	
 	
 	get 'contact/:id', to: 'users#contact'
 
