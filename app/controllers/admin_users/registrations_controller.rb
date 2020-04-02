@@ -12,12 +12,11 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
   super
-    @user = User.new
-    @user.id = resource.id
-    @user.last_post = Time.now.ago(3.days)
-    @user.user_time = Time.now
-    @user.save
-
+    # @user = User.new
+    # @user.id = resource.id
+    # @user.last_post = Time.now.ago(3.days)
+    # @user.user_time = Time.now
+    # @user.save
   end
 
   # GET /resource/edit
