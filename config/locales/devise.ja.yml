@@ -17,6 +17,8 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
               confirmation: "が内容とあっていません。"
+              password: "『パスワード』"
+              password_confirmation: "『確認用パスワード』"
         admin_user:
           attributes:
             email:
@@ -26,6 +28,8 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
             password:
+              password: "『パスワード』"
+              password_confirmation: "『確認用パスワード』"
               taken: "は既に使用されています。"
               blank: "が入力されていません。"
               too_short: "は%{count}文字以上に設定して下さい。"
@@ -108,7 +112,11 @@ ja:
         unhappy: "気に入りません"
         update: "更新"
         we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
+        password: "『パスワード』"
+        password_confirmation: "『確認用パスワード』"
       new:
+        password: "『パスワード』"
+        password_confirmation: "『確認用パスワード』"
         sign_up: "アカウント登録"
     sessions:
       new:

@@ -5,21 +5,19 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-
-  # end
+  def new
+    super
+  end
 
   # POST /resource
   def create
   super
-
     @user = User.new
     @user.id = resource.id
     @user.last_post = Time.now.ago(3.days)
     @user.user_time = Time.now
     @user.save
-  
+
   end
 
   # GET /resource/edit

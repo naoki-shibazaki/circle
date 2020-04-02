@@ -4,6 +4,7 @@ Rails.application.routes.draw do
  :sessions => 'admin_users/sessions'
 }
 
+
 	resources :users do
   		resources :schedules
   	end
