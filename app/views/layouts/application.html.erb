@@ -146,6 +146,14 @@
     </div>
   <% end %>
 
+<% elsif @path.is('users#top') || @path.is('users#index') %>
+  <div class="footer_btn bg_btn">
+    <%= link_to(new_admin_user_registration_path) do %>
+      <span class="fixed_btn_b pickup">無料でメンバーを募集する！</span>
+    <% end %>
+  </div>
+
+
 <% else %>
 
   <% if @path.is('#show') && @user.switch == "募集中" %>

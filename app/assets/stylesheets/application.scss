@@ -3203,7 +3203,8 @@ max-width: 100%;
 }
 
 .contact_wrap .mail,
-.contact_wrap .line{
+.contact_wrap .line,
+.contact_wrap .pickup,{
     display: block;
     text-decoration: none;
     background: #3ecdc6;
@@ -3226,6 +3227,13 @@ max-width: 100%;
 
 .contact_wrap .line{
     background: #45bd59;
+}
+
+.contact_wrap .pickup,
+.header-wrapper .pickup,
+.footer_btn .pickup,
+.post_cta .pickup{
+  background-color: #e09a1b;
 }
 
 .contact_sample_wrap{
