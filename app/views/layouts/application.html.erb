@@ -52,22 +52,13 @@
 
       <ul class="header-menus_sp">
         <!-- ログイン時の処理 -->
-        <% if admin_user_signed_in? || user_signed_in? %>
-          <% if admin_user_signed_in? %>
-            <li>
-              <%= link_to(user_path(current_admin_user)) do %>
-                <i class="fa fa-user "></i>
-                <div class="link_txt">マイページ</div>
-              <% end %>
-            </li>
-          <% else user_signed_in? %>
-            <li>
-              <%= link_to(user_path(current_user)) do %>
-                <i class="fa fa-user "></i>
-                <div class="link_txt">マイページ</div>
-              <% end %>
-            </li>          
-          <% end %>
+        <% if admin_user_signed_in?  %>
+          <li>
+            <%= link_to(user_path(current_admin_user)) do %>
+              <i class="fa fa-user "></i>
+              <div class="link_txt">マイページ</div>
+            <% end %>
+          </li>  
           <li>
             <%= link_to(new_blog_path) do %>
               <i class="fa fa-pencil "></i> 
@@ -106,13 +97,13 @@
             <% end %>
           </li>
           <li>
-            <%= link_to(new_user_registration_path) do %>
+            <%= link_to(new_admin_user_registration_path) do %>
                <i class="fa fa-user-plus "></i>
                <div class="link_txt">サークル登録</div>
             <% end %>
           </li>
           <li>
-            <%= link_to(new_user_session_path) do %>
+            <%= link_to(new_admin_user_session_path) do %>
                <i class="fa fa-sign-in "></i> 
                <div class="link_txt">ログイン</div>
             <% end %>
@@ -200,22 +191,19 @@
   <% end %>
 
 
-  <% if admin_user_signed_in? || user_signed_in? %>
-    <% if controller.action_name != 'show' %>
+  <% if admin_user_signed_in? && controller.action_name != 'show'  %>
 
-      <% if controller.action_name != 'new' %>
-        <% if controller.action_name != 'edit' %>
-            <div class="footer_btn">
-              <%= link_to(new_blog_path) do %>
-                <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
-              <% end %>
-            </div>
-        <% end %>
+    <% if controller.action_name != 'new' %>
+      <% if controller.action_name != 'edit' %>
+          <div class="footer_btn">
+            <%= link_to(new_blog_path) do %>
+              <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
+            <% end %>
+          </div>
       <% end %>
-
     <% end %>
-  <% end %>
 
+  <% end %>
 
 <% end %>
 <!-- button -->

@@ -1,14 +1,15 @@
-<% if admin_user_signed_in? || user_signed_in? %>
-	<% if @user.id == @current_user.id || @current_user.id == 1 %>
+<% if admin_user_signed_in? %>
+	<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
 
 
 		<div class="analytics_wrap">
 
-			<% if @user.impressionist_count > 20 || @current_user.id == 1 %>
+			<% if @user.impressionist_count > 20 || current_admin_user.id == 1 %>
 
 				<span class="analytics_title"><i class="fa fa-bar-chart-o "></i> アクセス数</span>
 				<div class="analytics_contents">
 
+					※測定開始：2020年2月27日〜<br>
 
 					<table>
 						<tr>
@@ -21,7 +22,7 @@
 									<% @blogs_imp = @blogs_imp + blog.impressions_count %>
 								<% end %>
 
-								<% if @blogs_imp > 20 || @current_user.id == 1 %>
+								<% if @blogs_imp > 20 || current_admin_user.id == 1 %>
 
 								<tr>
 									<th>ブログを見た人</th>
@@ -31,14 +32,14 @@
 								<% end %>
 							<% end %>
 
-						<% if @user.mail_count >10 || @current_user.id == 1 %>
+						<% if @user.mail_count >10 || current_admin_user.id == 1 %>
 								<tr>
 									<th>クリック数（メール）</th>
 									<td><%= @user.mail_count %> 回</td>
 								</tr>								
 						<% end %>
 
-						<% if @user.line_count >10 || @current_user.id == 1 %>
+						<% if @user.line_count >10 || current_admin_user.id == 1 %>
 							<% if @user.line_id != "" %>
 								<tr>
 									<th>クリック数（LINE）</th>

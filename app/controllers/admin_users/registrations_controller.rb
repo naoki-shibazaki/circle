@@ -6,8 +6,7 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    # super
-    redirect_to new_user_registration_path
+    super
   end
 
   # POST /resource
@@ -17,7 +16,7 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
     @user.id = resource.id
     @user.last_post = Time.now.ago(3.days)
     @user.user_time = Time.now
-    @user.save    
+    @user.save
   end
 
   # GET /resource/edit

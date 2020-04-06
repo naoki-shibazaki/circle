@@ -1,8 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
 	has_many :blogs, dependent: :destroy
 	has_many :schedules, dependent: :destroy
 	has_many :places
@@ -29,10 +25,6 @@ class User < ApplicationRecord
 
 	paginates_per 20
 	is_impressionable counter_cache: true
-
-	def remember_me
-		true
-	end 
 	
 	before_save do
 		self.average_age.gsub!(/[\[\]\"]/, "") if attribute_present?("average_age")
