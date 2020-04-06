@@ -88,9 +88,9 @@ helper_method :link_count
 		end
 		@user.user_time = Time.now
 
-		# if @user.last_post < Time.now.ago(3.days)
+		if @user.last_post < Time.now.ago(3.days)
 		    @user.last_post = Time.now.ago(3.days)
-		# end
+		end
 
 		if @user.update(user_params)
 
