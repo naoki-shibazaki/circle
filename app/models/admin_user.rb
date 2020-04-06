@@ -5,6 +5,7 @@ class AdminUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :user, dependent: :destroy  
+  accepts_nested_attributes_for :user
 
   def remember_me
     true
