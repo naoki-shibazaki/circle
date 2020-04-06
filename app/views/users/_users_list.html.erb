@@ -1,6 +1,6 @@
 
 
-<% if admin_user_signed_in?  %>
+<% if admin_user_signed_in? || user_signed_in?  %>
   <div class="post_message">
       <%= link_to(user_path(current_admin_user)) do %>
         <%= image_tag @user.pic_profile.url , class:'post_image_icon' %>

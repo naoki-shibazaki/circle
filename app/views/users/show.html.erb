@@ -64,8 +64,8 @@
 
 
 			<div class="admin_area">
-				<% if admin_user_signed_in? %>
-					<% if current_admin_user.id == 1 %>
+				<% if admin_user_signed_in? || user_signed_in? %>
+					<% if @current_user.id == 1 %>
 						<div class="admin_edit"><%= link_to("編集", edit_user_path) %></div>
 						<div class="admin_delete"><%= link_to( "削除", user_path, method: :delete, data: {confirm: "このサークルを削除しますか？"}) %></div>
 					<% end %>
@@ -80,9 +80,9 @@
 					    <%= render "/users/share_tw.html.erb" %>
 				</div>
 
-				<% if admin_user_signed_in? %>
+				<% if admin_user_signed_in? || user_signed_in? %>
 
-						<% if @user.id == current_admin_user.id %>
+						<% if @user.id == @current_user.id %>
 							<div class="contact-button edit"><%= link_to("プロフィール編集", edit_user_path) %></div>
 						<% else %>
 
@@ -96,7 +96,7 @@
 										</div>
 									<% end %>
 
-									<% if @data.email != "" %>
+									<% if @user.email != "" %>
 										<div class="contact-button">
 											<%= link_to controller: :users, action: :contact, count: "mail" do %>
 												<img src="/images/icon_mail.png" alt="" class="icon_sns" />
@@ -121,7 +121,7 @@
 											<% end %>
 										</div>
 									<% end %>
-									<% if @data.email != "" %>
+									<% if @user.email != "" %>
 										<div class="contact-button">
 											<%= link_to controller: :users, action: :contact, count: "mail" do %>
 												<img src="/images/icon_mail.png" alt="" class="icon_sns" />
@@ -167,8 +167,8 @@
 			<div class="content_03"><%= @user.recruitment %></div>
 
 
-				<% if admin_user_signed_in? %>
-				  <% if @user.id == current_admin_user.id  %>
+				<% if admin_user_signed_in? || user_signed_in? %>
+				  <% if @user.id == @current_user.id %>
 
 					<%= link_to(user_schedules_path(@user.id)) do %> 
 						<div class="schedule_add_btn">活動スケジュールを追加する</div>	
@@ -241,21 +241,10 @@
 				    <% end %>
 
 
-					<% if admin_user_signed_in? %>
-
-					  	<% if @user.id != current_admin_user.id  %>
-							<%= link_to(user_schedules_path(@user.id)) do %> 
-								<div class="schedule_index_btn">スケジュールの詳細を見る</div>	
-							<% end %>
-						<% end %>
-
-					<% else %>
-
-							<%= link_to(user_schedules_path(@user.id)) do %> 
-								<div class="schedule_index_btn">スケジュールの詳細を見る</div>	
-							<% end %>
-
+					<%= link_to(user_schedules_path(@user.id)) do %> 
+						<div class="schedule_index_btn">スケジュールの詳細を見る</div>	
 					<% end %>
+
 
 
 

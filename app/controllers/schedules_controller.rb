@@ -1,7 +1,7 @@
 class SchedulesController < ApplicationController
 
-before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_schedules
+before_action :ensure_correct_user, {only: [:edit, :update]}
 
 	def index
 
@@ -78,11 +78,6 @@ before_action :set_schedules
 	end
 
 
-			
-	   		
-
-
-
 
 	private
 		def schedule_params
@@ -102,17 +97,24 @@ before_action :set_schedules
 
 
 	def ensure_correct_user
-		@user = User.find(params[:user_id])		
+		@user = User.find(params[:user_id])	
 
-	   	if current_admin_user.id.to_i == @user.id.to_i	   		
-		
-	   	elsif current_admin_user.id == 1 
+		if admin_user_signed_in? || user_signed_in?
+
+		   if @current_user.id.to_i == @user.id.to_i
+
+		   elsif @current_user.id == 1			
+		   
+		   else
+		      flash[:notice] = "権限がありません"
+		      redirect_to user_path(@user)
+		   end
 
 		else
 		      flash[:notice] = "権限がありません"
-		      redirect_to users_path
-
+		      redirect_to user_path(@user)
 		end
+
 	end	
 
 

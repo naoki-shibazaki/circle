@@ -66,8 +66,6 @@
 			<button class="copyBtn"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
 
 
-
-
 				<div class="contact_wrap">
 
 					<% if params[:count] == "line" || params[:count] == "line_b" || params[:count] == "line_s" %>
@@ -79,7 +77,7 @@
 
 				  	<% elsif params[:count] == "mail" || params[:count] == "mail_b" || params[:count] == "mail_s"%>
 						
-						<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+						<a href="mailto:<%= @user.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
 							<div class="contact-button mail">メールでお問い合わせをする！</div>
 						</a>
 						
@@ -89,7 +87,6 @@
 				  	<% end %>
 
 				 </div>
-
 
 				 <div class="contact_bottom"></div>
 

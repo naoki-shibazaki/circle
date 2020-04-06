@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 # before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
 before_action :ensure_correct_user, {only: [:edit, :update]}
 before_action :set_users
-
 impressionist unique: [:session_hash]
 helper_method :link_count
 
@@ -26,8 +25,12 @@ helper_method :link_count
 
 	def show
 		@user = User.find(params[:id])
+		# ▼device移行のための処理 
+		@admin_user = AdminUser.find_by(id: params[:id])
+		if @user.email.nil?
+			@user.email = @admin_user.email
+		end
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
-		@data = AdminUser.find_by(id: params[:id])
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 		@users = User.where(event_id: @user.event_id).where(prefecture_id: @user.prefecture_id).where(switch: "募集中").order(:last_post => :desc)
     
@@ -78,8 +81,16 @@ helper_method :link_count
 
 	def update
 		@user = User.find(params[:id])
+		# ▼device移行のための処理 
+		@admin_user = AdminUser.find_by(id: params[:id])
+		if @user.email.nil?
+			@user.email = @admin_user.email
+		end
 		@user.user_time = Time.now
-	    # @user.last_post = Time.now.ago(3.days)
+
+		# if @user.last_post < Time.now.ago(3.days)
+		    @user.last_post = Time.now.ago(3.days)
+		# end
 
 		if @user.update(user_params)
 
@@ -113,8 +124,11 @@ helper_method :link_count
 	def update_email
 
 		if admin_user_signed_in?
-			@data = AdminUser.find_by(id: current_admin_user.id)
-
+			# ▼device移行のための処理 
+			@admin_user = AdminUser.find_by(id: current_admin_user.id)
+			if @user.email.nil?
+				@user.email = @admin_user.email
+			end
 			
 			# @data.skip_reconfirmation! 
 			# if @data.update_with_password(user_params)
@@ -128,17 +142,30 @@ helper_method :link_count
 
 
 	def ensure_correct_user
-	   if current_admin_user.id != params[:id].to_i
-	   		if current_admin_user.id == 1   			
-	   		
 
-		   	else
-		      flash[:notice] = "権限がありません"
-		      redirect_to users_path
+		if admin_user_signed_in?
+		   if @current_user.id != params[:id].to_i
+		   		if @current_user.id == 1   			
+			   	else
+			      flash[:notice] = "権限がありません"
+			      redirect_to users_path
+			    end
+		   end
+		elsif user_signed_in?
+		   if @current_user.id != params[:id].to_i
+		   		if @current_user.id == 1   			
+			   	else
+			      flash[:notice] = "権限がありません"
+			      redirect_to users_path
+			    end
+		   end
+		else
+	      flash[:notice] = "権限がありません"
+	      redirect_to users_path
+		end
 
-		    end
-	   end
 	end
+
 
  	def line
   	end	
@@ -244,28 +271,6 @@ helper_method :link_count
 
 
 
-
-
-	# def group
-	# 	@group = Group.find_by(group: params[:group])
-	# 	@event = Event.find_by(ruby: params[:ruby])
-	# 	@prefecture = Prefecture.find_by(kana: params[:kana])
-	# 	@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-	# 	if @users.count == 0
-	# 		@users = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-	# 		@hit = 0 
-	# 	end	
-
-	# 	# パンくず
-	# 	@b1_name = @event.name
-	# 	@b1_url = "/#{@event.ruby}"
-	# 	@b2_name = @prefecture.name
-	# 	@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
-	# 	@b3_name = @group.name
-	# 	@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@group.group}"	
-	# end
-
-
 	def group_beginner
 		@group = Group.find_by(:group => "beginner")
 		@event = Event.find_by(ruby: params[:ruby])
@@ -337,7 +342,12 @@ helper_method :link_count
 		if params[:count] == "line_b" || params[:count] == "mail_b"
 		@blog = Blog.find(params[:id])
 		@user = User.find_by(id: @blog.user.id)
-		@data = AdminUser.find_by(id: @blog.user.id)
+		# ▼device移行のための処理 
+		@admin_user = AdminUser.find_by(id: @blog.user.id)
+		if @user.email.nil?
+			@user.email = @admin_user.email
+		end		
+
 
 			if params[:count] == "line_b"
 				@user.line_count += 1
@@ -351,12 +361,14 @@ helper_method :link_count
 		  		
 		  	end
 
-
-
 		elsif params[:count] == "line_s" || params[:count] == "mail_s"
 		@schedule = Schedule.find(params[:id])
 		@user = User.find_by(id: @schedule.user_id)	
-		@data = AdminUser.find_by(id: @schedule.user_id)
+		# ▼device移行のための処理 
+		@admin_user = AdminUser.find_by(id: @schedule.user_id)
+		if @user.email.nil?
+			@user.email = @admin_user.email
+		end		
 
 			if params[:count] == "line_s"
 				@user.line_count += 1
@@ -374,7 +386,11 @@ helper_method :link_count
 
 		else
 		@user = User.find(params[:id])
-		@data = AdminUser.find_by(id: params[:id])
+		# ▼device移行のための処理 
+		@admin_user = AdminUser.find_by(id: params[:id])
+		if @user.email.nil?
+			@user.email = @admin_user.email
+		end
 
 			if params[:count] == "line"
 				@user.line_count += 1
@@ -389,8 +405,6 @@ helper_method :link_count
 		  	end
 
 		end
-
-
 
 		@mail_title = "【#{@user.name}】お問い合わせ"
 		@mail_message = "こちらにご記入ください！"
@@ -457,7 +471,6 @@ private
 		@search = User.ransack(params[:q]) 
 		@users = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])	
 		@user_all = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
-
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
 		@ages = Age.all
@@ -466,14 +479,12 @@ private
 		@category = "nil"
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
 
-
-		if admin_user_signed_in?
-			@user = User.find_by(id: current_admin_user.id)
+		if admin_user_signed_in? || user_signed_in?
+			@user = User.find_by(id: @current_user.id)
 		end
 
 	end
 
-		
 
 
 end

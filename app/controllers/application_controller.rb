@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 	before_action :set_current_user	
 	before_action :request_path
 	before_action :set_data
+	before_action :configure_permitted_parameters, if: :devise_controller?
 
 	#herokuapp.comから独自ドメインへリダイレクト
 	before_action :ensure_domain
@@ -18,7 +19,17 @@ class ApplicationController < ActionController::Base
 
 
 	def set_current_user
-    	@current_user = User.find_by(id: session[:user_id])
+    	# @current_user = User.find_by(id: session[:user_id])
+
+		if admin_user_signed_in?
+			@current_user = current_admin_user
+
+		elsif user_signed_in?
+			@current_user = current_user
+		else
+
+		end	
+
   	end
 
   	def authenticate_user
@@ -36,8 +47,19 @@ class ApplicationController < ActionController::Base
  	end
 
 	def after_sign_in_path_for(resource)
-	  		edit_user_path(current_admin_user)
+
+		if current_user.nil?
+			edit_user_path(current_admin_user)
+		else
+	  		edit_user_path(current_user)
+		end
+
 	end
+
+	def configure_permitted_parameters
+		devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
+	end
+
 
 	def request_path
 	    @path = controller_path + '#' + action_name
@@ -50,7 +72,6 @@ class ApplicationController < ActionController::Base
 		@time = Time.now
 		@url = request.url
 		@count = 0
-
 	end
 
 end

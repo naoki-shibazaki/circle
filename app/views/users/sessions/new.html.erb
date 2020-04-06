@@ -3,13 +3,20 @@
 
     <%= render "/layouts/breadcrumb" %>
 
-    <h1 class="form-heading">旧ログインフォーム</h1>
+    <h1 class="form-heading">新ログインフォーム</h1>
+
+    <%= link_to admin_user_session_path do %>    
+      <div class="old_login">
+        旧ログインフォームはこちら<br>
+        〜2020年4月5日までに登録された方
+      </div>
+    <% end %>
+
     <div class="form users-form">
       <div class="form-body cont-body">
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
-        
+
           <div class="field">
             <%= f.label :メールアドレス %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -31,7 +38,7 @@
             <%= f.submit "ログイン" %>
           </div>
         <% end %>
-        
+
 
         <% if devise_mapping.registerable? && controller_name != 'registrations' %>
           <%= link_to "新規登録", new_registration_path(resource_name) %><br />

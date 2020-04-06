@@ -17,8 +17,9 @@
 	  		<%= render "/schedules/profile" %>
 
 
-			<% if admin_user_signed_in?  %>
-				<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
+			<% if admin_user_signed_in? || user_signed_in?  %>
+
+				<% if @user.id == @current_user.id || @current_user.id == 1 %>
 
 				<div class="post_share">
 			

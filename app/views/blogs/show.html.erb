@@ -41,8 +41,8 @@
 							<%= render "blogs/share_tw.html.erb" %>
 					</div>
 				
-					<% if admin_user_signed_in?  %>
-						<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
+					<% if admin_user_signed_in? || user_signed_in?  %>
+						<% if @user.id == @current_user.id || @current_user.id == 1 %>
 
 
 
@@ -61,8 +61,8 @@
 						<% end %>
 					<% end %>
 
-					<% if admin_user_signed_in?  %>
-						<% if current_admin_user.id == 1 %>
+					<% if admin_user_signed_in? || user_signed_in?  %>
+						<% if @current_user.id == 1 %>
 							<div class="analytics_blog">閲覧数：<%= @blog.impressionist_count %>人</div>
 						<% end %>
 					<% end %>

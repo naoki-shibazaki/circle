@@ -6,15 +6,19 @@
         <div id="nav-content">
           <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
 
-          <% if admin_user_signed_in?  %>
+          <% if admin_user_signed_in? || user_signed_in? %>
             <ul>
-                <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
-
-                <li><%= link_to 'ログイン情報の変更', edit_admin_user_registration_path %></li>
+              <% if admin_user_signed_in? %>
+                  <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
+                  <li><%= link_to 'ログイン情報の変更', edit_admin_user_registration_path %></li>
+              <% else user_signed_in? %>
+                  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                  <li><%= link_to 'ログイン情報の変更', edit_user_registration_path %></li>    
+              <% end %>
             </ul>
 
           <% else %>
-            <div class="menu_btn"><%= link_to 'サークル登録', new_admin_user_registration_path %></div>
+            <div class="menu_btn"><%= link_to 'サークル登録', new_user_registration_path %></div>
 
             <div class="menu_btn"><%= link_to 'ログイン', new_admin_user_session_path %></div>
 

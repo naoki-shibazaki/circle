@@ -1,8 +1,8 @@
 class BlogsController < ApplicationController
 
 	before_action :set_user, only: [:show, :edit, :update]
-	before_action :ensure_correct_user, {only: [:edit, :update]}
 	before_action :set_blog
+	before_action :ensure_correct_user, {only: [:edit, :update]}
 
 	impressionist unique: [:session_hash]
 
@@ -30,12 +30,12 @@ class BlogsController < ApplicationController
 
 	def create
 		@blog = Blog.new(blog_params)
-		@blog.user_id = current_admin_user.id
+		@blog.user_id = @current_user.id
 		@blog.save
 
 		if @blog.update(blog_params)
 
-			@user = User.find_by(id: current_admin_user.id)
+			@user = User.find_by(id: @current_user.id)
 			@user.last_post = Time.now
 			@user.user_time = Time.now
 		    @user.save
@@ -52,7 +52,11 @@ class BlogsController < ApplicationController
 		@blog = Blog.find(params[:id])
 		@user = User.find_by(id: @blog.user.id)
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
-		@data = AdminUser.find_by(id: @blog.user.id)
+		# ▼device移行のための処理 
+		@admin_user = AdminUser.find_by(id: @blog.user.id)
+		if @user.email.nil?
+			@user.email = @admin_user.email
+		end		
 
 		impressionist(@blog, nil, unique: [:session_hash])
 
@@ -156,7 +160,7 @@ class BlogsController < ApplicationController
 	def set_user
 	    @user = User.where(:id => params[:user_id]).first
 	    @blog = Blog.where(:id => params[:id]).first
-    end
+    end    
 
     def set_blog
     	@users = User.all.where.not(switch: "nil")
@@ -167,26 +171,32 @@ class BlogsController < ApplicationController
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)	
 		@x = "nil"
 		@category = "nil"
-		@blog_count = 0
+		@blog_count = 0		
 
-		if admin_user_signed_in?
-			@user = User.find_by(id: current_admin_user.id)
+		if admin_user_signed_in? || user_signed_in?
+			@user = User.find_by(id: @current_user.id)
 		end
 
     end
 
 	def ensure_correct_user
 		@blog = Blog.find(params[:id])
-		
-	   if current_admin_user.id != @blog.user_id.to_i
-	   		if current_admin_user.id == 1   			
-	   		
-		   	else
-		      flash[:notice] = "権限がありません"
-		      redirect_to blogs_path
 
-		    end
-	   end
+		if admin_user_signed_in? || user_signed_in?
+		
+		   	if @current_user.id != @blog.user_id.to_i
+		   		if @current_user.id == 1   			
+		   		
+			   	else
+			      flash[:notice] = "権限がありません"
+			      redirect_to blogs_path
+
+			    end
+		   	end
+		else
+			flash[:notice] = "権限がありません"
+		    redirect_to blogs_path		   	
+		end
 	end	
     
 
