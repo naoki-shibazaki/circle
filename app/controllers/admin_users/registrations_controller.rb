@@ -21,6 +21,16 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
     @user.last_post = Time.now.ago(3.days)
     @user.user_time = Time.now
     @user.save
+    
+    # @admin_user = AdminUser.new(admin_user_params)
+    # @admin_user.build_user
+    # if @admin_user.save
+    #   @user = User.find_by(admin_user_id: @admin_user.id)
+    #   session[:user_id] =  @user.id
+    #   flash[:share] = 'アドレス登録完了！'
+    #   redirect_to edit_user_path(@admin_user.user)        
+    # end
+    
   end
 
   # GET /resource/edit
@@ -88,7 +98,9 @@ private
     params.require(:admin_user).permit( :email )
   end
 
-
+  def admin_user_params
+    params.require(:admin_user).permit(:password, :email, :current_sign_in_at)
+  end
 
 
 end

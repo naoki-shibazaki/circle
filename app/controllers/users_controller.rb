@@ -130,7 +130,8 @@ helper_method :link_count
 	def ensure_correct_user
 	   if current_admin_user.id != params[:id].to_i
 	   		if current_admin_user.id == 1   			
-	   		
+	   # if @current_user.id != params[:id].to_i
+	   # 		if @current_user.id == 1  
 
 		   	else
 		      flash[:notice] = "権限がありません"
