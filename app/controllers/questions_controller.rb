@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
 
 	def index
-
+		@question = @user.questions.build
 	end	
 
 	def top
@@ -15,9 +15,15 @@ class QuestionsController < ApplicationController
 
 	end
 
+
 	def create
 		@user.questions.create(question_params)
 		redirect_to user_questions_path(@user)
+	end
+
+	def update
+		@question = Question.find(params[:id])
+		@question.update(question_params)
 	end
 
 	def show
@@ -25,10 +31,6 @@ class QuestionsController < ApplicationController
 	end
 
 	def edit
-
-	end
-
-	def update
 
 	end
 
