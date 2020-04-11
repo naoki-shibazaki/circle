@@ -4,29 +4,7 @@
 
     <h1 class="users-heading">質問コーナー</h1>
 
-	<%= form_for([@user, @user.questions.build]) do |f| %>
 
-	    <p>本文</p>
-	    <%= f.text_area :content, class: 'form-control', placeholder: "質問を書いてください！" %>       
-
-	<%= f.submit "質問する" %>
-	<% end %>
-
-
---------------------------------------
-
-	<% if @user.questions.any? %>
-		<ul>
-			<% @user.questions.each do |question| %>
-			<li>
-				<%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
-					<%= question.id %>
-					<%= question.content %>
-				<% end %>		
-			</li>
-			<% end %>
-		</ul>
-	<% end %>
 
   </div>
 </div>
