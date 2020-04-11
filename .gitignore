@@ -32,3 +32,6 @@
 
 # Ignore sitemap file
 public/sitemap.xml.gz
+
+#Cloudinary
+/.env

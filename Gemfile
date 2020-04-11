@@ -46,6 +46,9 @@ gem "rack-cors"
 gem 'carrierwave'
 gem 'rmagick', '~> 3.1'
 
+gem 'cloudinary'
+gem 'dotenv-rails'
+
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false
 

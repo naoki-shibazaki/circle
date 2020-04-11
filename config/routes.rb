@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
 	resources :users do
   		resources :schedules
+  		resources :questions
   	end
 
 	resources :blogs
