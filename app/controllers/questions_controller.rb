@@ -17,8 +17,14 @@ class QuestionsController < ApplicationController
 
 
 	def create
-		@user.questions.create(question_params)
-		redirect_to user_questions_path(@user)
+		if @user.questions.create(question_params)
+			
+			redirect_to user_questions_path(@user)
+
+		else
+			flash[:share] = '最大90文字です'
+			render user_questions_path(@user)
+		end
 	end
 
 	def update
