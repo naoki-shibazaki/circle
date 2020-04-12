@@ -41,6 +41,7 @@ class QuestionsController < ApplicationController
 
 	def set_user
 	    @user = User.find_by(id: params[:user_id])
+	    @questions = Question.all
     end
 
     private
