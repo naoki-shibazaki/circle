@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_024713) do
     t.integer "impressions_count", default: 0
     t.integer "line_count", default: 0
     t.integer "mail_count", default: 0
-    t.time "user_time"
+    t.date "user_time"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
