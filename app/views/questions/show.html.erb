@@ -1,6 +1,13 @@
- <% set_meta_tags og: {image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:#{@question.content},y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" },
-              twitter: {card: 'summary_large_image'} 
-	%>
+<% set_meta_tags title: "#{@question.content}｜#{@user.name}の質問コーナ",
+
+				og: { 
+					title: "#{@user.name}の質問コーナです！",
+					image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:#{@question.content},y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
+				},
+
+				twitter: { card: 'summary'} 
+%>
+
 
 <div class="main users-index">
   <div class="container bg_white">
@@ -52,9 +59,6 @@
 
 				<% end %>
 			<% end %>
-
-
-
 
 
 				<div class="qa_tw_share">
