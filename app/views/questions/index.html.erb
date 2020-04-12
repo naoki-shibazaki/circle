@@ -1,35 +1,64 @@
 <% set_meta_tags title: "質問コーナー" %>
 <div class="main users-index">
-  <div class="container">
+  <div class="container bg_white">
 
     <h1 class="users-heading">質問コーナー</h1>
 
 
-      <%= form_for ([@user, @question]) do |f| %>
-    
-        <%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！" %> 
 
-        <input type="submit" name="commit" value="質問する" data-disable-with="質問する">
+	<div class="qa_wrap">
+ 		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question.content %>">
 
-        <div class="reset"></div>
+			<div class="qa_profile_wrap">
 
-      <% end %>
+			<%= render "/questions/profile" %>
+			
+			</div>
+
+			
+			<div class="qa_answer_form">
+				<%= form_for ([@user, @question]) do |f| %>
+
+					<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！" %> 
+	
+					<input type="submit" name="commit" value="質問する" data-disable-with="質問する">
+
+					<div class="reset"></div>
+
+				<% end %>
+		 	 </div>
 
 
 
-	<% if @user.questions.any? %>
-		<ul>
-			<% @user.questions.each do |question| %>
-			<li>
-				<%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
-					<%= question.id %>
-					<%= question.content %>
-				<% end %>		
-			</li>
-			<% end %>
-		</ul>
+			<div class="qa_tw_share">
+				<div class="share_btn_tw">
+				    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@question.answer}%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
+				      <i class="fa fa-twitter"></i>質問をTwitterで募集する！
+				    <% end %>
+				</div>
+			</div>
+
+
+	</div>
+
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+
+
+	<% if @questions.any? %>
+		<div class="qa_card_warp">
+			<ul>
+				<% @questions.each do |question| %>
+				<li>
+					<%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
+ 						<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= question.content %>">
+					<% end %>		
+				</li>
+				<% end %>
+			</ul>
+		</div>
 	<% end %>
-
 
 
   </div>

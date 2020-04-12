@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
 
 	def create
 		if @user.questions.create(question_params)
-			
+
 			redirect_to user_questions_path(@user)
 
 		else
@@ -29,11 +29,17 @@ class QuestionsController < ApplicationController
 
 	def update
 		@question = Question.find(params[:id])
-		@question.update(question_params)
+
+		if @question.update(question_params)
+			flash[:share] = '更新しました！'
+			redirect_to user_question_path
+		end
+
 	end
 
 	def show
 		@question = Question.find(params[:id])
+
 	end
 
 	def edit
@@ -41,19 +47,23 @@ class QuestionsController < ApplicationController
 	end
 
 	def destroy
+		@question = @user.questions.find(params[:id])
+		@question.destroy
 
+		flash[:notice] = "削除しました"
+		redirect_to user_questions_path
 	end
-
-
-	def set_user
-	    @user = User.find_by(id: params[:user_id])
-	    @questions = Question.all
-    end
 
     private
     def question_params
-    	params.require(:question).permit(:content, :id)
+    	params.require(:question).permit(:id, :content, :answer)
     end
+
+	def set_user
+	    @user = User.find_by(id: params[:user_id])
+
+	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
+    end    
 
 
 end

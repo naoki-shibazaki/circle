@@ -3,14 +3,75 @@
 	%>
 
 <div class="main users-index">
-  <div class="container qa_wrap">
+  <div class="container bg_white">
 
-    <h1 class="users-heading">詳細ページ</h1>
+    <h1 class="users-heading">質問コーナー</h1>
+
+	<div class="qa_wrap">
+ 		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question.content %>">
+
+			<div class="qa_profile_wrap">
+
+			<%= render "/questions/profile" %>
 
 
- <img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question.content %>">
+				<div class="reset"></div>
 
-	<%= @question.content %>
+				<div class="qa_answer">
+					<% if @question.answer.present? %>
+
+						<%= @question.answer %>
+
+					<% else %>
+
+						未回答です！
+
+					<% end %>
+				</div>
+
+
+
+			<% if admin_user_signed_in?  %>
+				<% if @user.id == current_admin_user.id %>
+
+					<div class="qa_answer_form">
+					      <%= form_for ([@user,@question]) do |f| %>
+					    
+					        <%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！" %> 
+
+					        <input type="submit" name="commit" value="回答する" data-disable-with="回答する">
+
+					        <div class="reset"></div>
+
+					      <% end %>
+					</div>
+
+					    <%= link_to(user_question_path, method: :delete, data: {confirm: "質問を削除しますか？"}) do %>
+							<i class="fa fa-trash "></i> 									    
+						<% end %>
+
+				<% end %>
+			<% end %>
+
+
+
+
+
+				<div class="qa_tw_share">
+					<div class="share_btn_tw">
+					    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@question.answer}%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
+					      <i class="fa fa-twitter"></i>回答をTwitterでシェアする！
+					    <% end %>
+					</div>
+				</div>
+
+			</div>
+
+	</div>
+
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
 
 
   </div>

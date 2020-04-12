@@ -3537,16 +3537,43 @@ max-width: 100%;
 
 
 .qa_wrap{
-
+    width: 96%;
+    margin: 0 auto 30px;
 }
 
-.qa_wrap img{
+.qa_wrap img,
+.qa_card_warp img{
   width: 100%;
 }
 
+.bg_white{
+  background: #fff;
+}
 
+.qa_profile_wrap{
+  margin: 10px 0 0 0;
+}
 
+.qa_profile_wrap .image_icon {
+    width: 40px;
+    height: 40px;
+}
 
+.qa_profile_wrap .contact_name_wrap {
+    height: 40px;
+}
+
+.qa_answer {
+    margin-bottom: 40px;
+}
+
+.qa_answer_form{
+    margin-bottom: 40px;
+}
+
+.qa_card_warp li{
+    border-bottom: 20px solid #e8e8e8;
+}
 
 
 
