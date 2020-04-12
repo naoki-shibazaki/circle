@@ -44,7 +44,7 @@ before_action :set_schedules
 		@schedule = Schedule.find(params[:id])
 
 
-		if @user.id.to_i !=@schedule.user_id.to_i
+		if @user.id.to_i != @schedule.user_id.to_i
 			flash[:notice] = "存在しないURLです"
 			redirect_to "/users"
 		end

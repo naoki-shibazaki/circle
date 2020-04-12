@@ -40,6 +40,11 @@ class QuestionsController < ApplicationController
 	def show
 		@question = Question.find(params[:id])
 
+		if @user.id.to_i != @question.user_id.to_i
+			flash[:notice] = "存在しないURLです"
+			redirect_to "/users"
+		end
+
 	end
 
 	def edit
