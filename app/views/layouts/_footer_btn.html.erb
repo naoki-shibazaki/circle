@@ -1,12 +1,17 @@
 <!-- ログインあり -->
 <% if admin_user_signed_in? %>
 
-    <div class="footer_btn">
-      <%= link_to(new_blog_path) do %>
-        <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
-      <% end %>
-    </div>
+    <% if controller.action_name != 'new' %>
+      <% if controller.action_name != 'edit' %>
 
+        <div class="footer_btn">
+          <%= link_to(new_blog_path) do %>
+            <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
+          <% end %>
+        </div>
+
+      <% end %>
+    <% end %>
 
 
 
