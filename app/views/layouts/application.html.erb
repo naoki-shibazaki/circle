@@ -135,86 +135,10 @@
     
     <%= yield %>
 
-<!-- button -->
-<% if @path.is('places') %>
 
-  <% if @path.is('places#index, places#show') %>
-    <div class="footer_btn bg_btn">
-      <a href="/">
-        <span class="fixed_btn_b mail">メンバーを募集する！</span>
-      </a>
-    </div>
-  <% end %>
-
-<% elsif @path.is('users#top') || @path.is('users#index') %>
-  <div class="footer_btn bg_btn">
-    <%= link_to(new_admin_user_registration_path) do %>
-      <span class="fixed_btn_b pickup">無料でメンバーを募集する！</span>
-    <% end %>
-  </div>
+    <%= render "/layouts/footer_btn" %>
 
 
-<% else %>
-
-  <% if @path.is('#show') && @user.switch == "募集中" %>
-
-
-        <!-- パラメータの振り分け -->
-        <% if @path.is('blogs') %>
-          <% @judge = "_b" %>
-        <% elsif @path.is('schedules') %>
-          <% @judge = "_s" %>
-        <% else %>
-          <% @judge = "" %>
-        <% end %>
-
-     
-        <% if @user.line_id != "" %>
-
-        <div class="footer_btn bg_btn footer_btn_2">
-
-          <%= link_to controller: :users, action: :contact, count: "line#{@judge}" do %>
-            <span class="fixed_btn_b line">LINEで相談する</span>
-          <% end %>
-
-
-          <%= link_to controller: :users, action: :contact, count: "mail#{@judge}" do %>
-            <span class="fixed_btn_b mail">メールで相談する</span>
-          <% end %>
-
-        </div>
-
-      <% else %>
-        <div class="footer_btn bg_btn">
-          
-          <%= link_to controller: :users, action: :contact, count: "mail#{@judge}" do %>
-             <span class="fixed_btn_b mail">このサークルにメールで相談する！</span>
-          <% end %>
-
-        </div>
-
-      <% end %>
-
-
-  <% end %>
-
-
-  <% if admin_user_signed_in? && controller.action_name != 'show'  %>
-
-    <% if controller.action_name != 'new' %>
-      <% if controller.action_name != 'edit' %>
-          <div class="footer_btn">
-            <%= link_to(new_blog_path) do %>
-              <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
-            <% end %>
-          </div>
-      <% end %>
-    <% end %>
-
-  <% end %>
-
-<% end %>
-<!-- button -->
 
   <!-- Initialize Swiper -->
   <script>
