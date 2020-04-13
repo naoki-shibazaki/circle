@@ -6,14 +6,18 @@
         <div id="nav-content">
           <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
 
+
           <% if admin_user_signed_in?  %>
             <ul>
-                <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
-
-                <li><%= link_to 'ログイン情報の変更', edit_admin_user_registration_path %></li>
+                <li><%= link_to 'マイページ', user_path(current_admin_user)%></li>
+                <li><%= link_to 'プロフィール編集', edit_user_path(current_admin_user)%></li>
+                <li><%= link_to 'ブログの投稿', new_blog_path %></li>
+                <li><%= link_to 'スケジュールの編集', user_schedules_path(@user.id) %></li>
+                <li><%= link_to '質問コーナー', user_questions_path(@user.id) %></li>
             </ul>
 
           <% else %>
+
             <div class="menu_btn"><%= link_to 'サークル登録', new_admin_user_registration_path %></div>
 
             <div class="menu_btn"><%= link_to 'ログイン', new_admin_user_session_path %></div>
@@ -27,6 +31,14 @@
             <li><%= link_to '利用規約', '/rules' %></li>
             <li><%= link_to 'プライバシーポリシー', '/privacypolicy' %></li>
           </ul>
+
+          <% if admin_user_signed_in?  %>
+            <ul>
+                <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
+
+                <li><%= link_to 'ログイン情報の変更', edit_admin_user_registration_path %></li>
+            </ul>
+          <% end %>          
 
           <ul>
             <li><a href="http://nav.cx/3JiS9Im">お問い合わせ（LINE@）</a></li>

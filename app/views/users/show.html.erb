@@ -284,6 +284,15 @@
 							<%= link_to "メールで相談する", {controller: :users, action: :contact, count: "mail"} %>
 						</div>
 					<% end %>
+
+
+					<div class="contact-button qa_btn qa">
+						<%= link_to  user_questions_path(@user) do %>
+							このサークルに質問する
+						<% end %>
+					</div>
+
+
 				<% end %>
 			</div>
 

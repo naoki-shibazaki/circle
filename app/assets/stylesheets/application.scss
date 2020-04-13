@@ -503,6 +503,12 @@ header {
   background-color: #3ecdc6;
 }
 
+.header-wrapper .qa,
+.footer_btn .qa,
+.post_cta .qa{
+  background-color: #e09a1b;
+}
+
 
 .profile-content {
     margin-top: 62px;
@@ -3208,7 +3214,8 @@ max-width: 100%;
 
 .contact_wrap .mail,
 .contact_wrap .line,
-.contact_wrap .pickup,{
+.contact_wrap .qa,
+.contact_wrap .pickup{
     display: block;
     text-decoration: none;
     background: #3ecdc6;
@@ -3231,6 +3238,10 @@ max-width: 100%;
 
 .contact_wrap .line{
     background: #45bd59;
+}
+
+.contact_wrap .qa{
+    background: #e09a1b;
 }
 
 .contact_wrap .pickup,
@@ -3647,7 +3658,11 @@ max-width: 100%;
 } 
 
 
-
+.post_cta .qa_btn{
+    display: block;
+    margin: 20px auto 0;
+    width: 76%;
+}
 
 
 

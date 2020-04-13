@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
 
 		if @user.switch.present?
 		@b5_name = @question.content
-		@b5_url = ""		
+		@b5_url = ""
 		end
 
 	end
@@ -55,7 +55,6 @@ class QuestionsController < ApplicationController
 		@question = @user.questions.build
 
 	    @question_sample = "活動頻度はどれくらいですか？？"
-
 
 		if @user.switch.present?
 		@b5_name = @question_sample
