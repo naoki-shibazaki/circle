@@ -3588,7 +3588,7 @@ max-width: 100%;
 }
 
 .qa_card_warp {
-    border-top: 20px solid #e8e8e8;
+    // border-top: 20px solid #e8e8e8;
 }
 
 .qa_card_warp li{
@@ -3662,6 +3662,17 @@ max-width: 100%;
     display: block;
     margin: 20px auto 0;
     width: 76%;
+}
+
+.qa_card_txt {
+    font-size: 14px;
+    margin-left: 8px;
+    margin: 0 0 4px 8px;
+    color: #4e4e4e;
+}
+
+.ribbon-wrapper img{
+  width: 100%;
 }
 
 

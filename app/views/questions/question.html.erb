@@ -16,8 +16,21 @@
 
     <h1 class="users-heading">質問コーナー</h1>
 
+	<div class="ribbon-wrapper">
+		<div class="ribbon-content">
+			<% if @question.answer.nil? %>
+			  <span class="ribbon red">未回答</span>
+			<% else %>
+		  		<span class="ribbon green">回答済み</span>
+			<% end %>						
+		</div>
+
+		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question_sample %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question_sample %>">	
+	</div>
+
+						
+
 	<div class="qa_wrap">
- 		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question_sample %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question_sample %>">
 
 			<div class="qa_profile_wrap">
 
