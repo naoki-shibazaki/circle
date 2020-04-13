@@ -3616,6 +3616,34 @@ max-width: 100%;
   text-align: right;
 }
 
+.btn_tw_space{
+  margin-right: 10px;
+}
+
+.header-menus_sp .notice_icon::after,
+.analytics_contents .notice_icon::after {
+    content: "●";
+    font-family: 'Courier New', Courier, monospace;
+    color: #e4b561;
+    text-shadow: 0px 0px 2px #e4b561;    
+    position: relative;
+} 
+
+.header-menus_sp .notice_icon::after{
+    top: -10px;
+    right: -0px;
+    font-size: 16px;
+} 
+
+
+.analytics_contents .notice_icon::after{
+    top: -7px;
+    right: -6px;
+    font-size: 22px;
+    color: #f7aa30;
+    text-shadow: 0px 0px 2px #f7aa30;     
+} 
+
 
 
 
