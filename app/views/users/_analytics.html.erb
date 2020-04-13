@@ -67,23 +67,29 @@
 
 				<%= link_to(edit_user_path) do %>
 					<div class="analytics_btn">	
-						<i class="fa fa-user "></i> プロフィール編集
+						<i class="fa fa-user "></i>プロフィール編集
 					</div>
 				<% end %>
-
-				<%= link_to(user_schedules_path(@user.id)) do %> 
-					<div class="analytics_btn">	
-						<i class="fa fa-calendar "></i> スケジュール編集
-					</div>
-				<% end %>
-
 
 		        <%= link_to(new_blog_path) do %>
 					<div class="analytics_btn">	
-			          <i class="fa fa-pencil "></i> ブログを書く
+			          <i class="fa fa-pencil "></i>ブログを書く
 				    </div>
 		        <% end %>
-	
+
+				<%= link_to(user_schedules_path(@user.id)) do %> 
+					<div class="analytics_btn">	
+						<i class="fa fa-calendar "></i>スケジュール編集
+					</div>
+				<% end %>
+
+				<%= link_to(user_questions_path(@user.id)) do %> 
+					<div class="analytics_btn">	
+						<i class="fa fa-question-circle "></i>質問コーナー
+					</div>
+				<% end %>
+
+
 
 			</div>
 

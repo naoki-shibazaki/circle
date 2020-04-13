@@ -11,6 +11,8 @@
 
 <div class="main users-index">
   <div class="container bg_white">
+  	    <%= render "/layouts/breadcrumb" %>
+
 
     <h1 class="users-heading">質問コーナー</h1>
 
@@ -63,9 +65,9 @@
  						<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= question.content %>">
  						<div class="qa_judge">
 							<% if question.answer.nil? %>
-								未回答
+								<i class="fa fa-commenting-o "></i>未回答
 							<% else %>
-								回答済み
+								<i class="fa fa-bullhorn "></i>回答済み
 							<% end %>
  						</div>
 					<% end %>		

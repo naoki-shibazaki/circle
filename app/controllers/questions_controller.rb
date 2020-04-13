@@ -7,10 +7,6 @@ class QuestionsController < ApplicationController
 		@question = @user.questions.build
 	end	
 
-	def top
-
-	end	
-
 	def new
 
 	end
@@ -45,6 +41,11 @@ class QuestionsController < ApplicationController
 			redirect_to "/users"
 		end
 
+		if @user.switch.present?
+		@b5_name = @question.content
+		@b5_url = ""		
+		end
+
 	end
 
 	def edit
@@ -68,6 +69,19 @@ class QuestionsController < ApplicationController
 	    @user = User.find_by(id: params[:user_id])
 
 	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
+
+
+		if @user.switch.present?
+		@b1_name = @user.event.name
+		@b1_url = "/#{@user.event.ruby}"
+		@b2_name = @user.prefecture.name
+		@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
+		@b3_name = @user.name
+		@b3_url = "/users/#{@user.id}"
+		@b4_name = "質問コーナー"
+		@b4_url = "/users/#{@user.id}/questions"		
+		end
+
     end    
 
 

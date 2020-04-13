@@ -12,6 +12,7 @@
 
 <div class="main users-index">
   <div class="container bg_white">
+    <%= render "/layouts/breadcrumb" %>
 
     <h1 class="users-heading">質問コーナー</h1>
 
@@ -44,7 +45,7 @@
 
 					<div class="q_delete">
 					    <%= link_to(user_question_path, method: :delete, data: {confirm: "質問を削除しますか？"}) do %>
-							<i class="fa fa-trash "></i>この質問を削除する 									    
+							<i class="fa fa-trash-o "></i>この質問を削除する 									    
 						<% end %>
 					</div>
 
