@@ -59,17 +59,20 @@
 		<div class="qa_card_warp">
 			<ul>
 				<% @questions.each do |question| %>
-				<li>
+				<li class="ribbon-wrapper">
+					<div class="ribbon-content">
+						<% if question.answer.nil? %>
+						  <span class="ribbon red">未回答</span>
+						<% else %>
+					  		<span class="ribbon green">回答済み</span>
+						<% end %>
+					</div>
+
 					<%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
  						<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= question.content %>">
  						<div class="qa_judge">
-							<% if question.answer.nil? %>
-								<i class="fa fa-commenting-o "></i>未回答
-							<% else %>
-								<i class="fa fa-bullhorn "></i>回答済み
-							<% end %>
  						</div>
-					<% end %>		
+					<% end %>	
 				</li>
 				<% end %>
 			</ul>
@@ -78,7 +81,10 @@
 	<% else %>
 		<div class="qa_card_warp">
 			<ul>
-				<li>
+				<li class="ribbon-wrapper">
+					<div class="ribbon-content">
+						<span class="ribbon red">未回答</span>
+					</div>
 					<%= link_to "/users/#{@user.id}/question" do %>
  						<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question_sample %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question_sample %>">
 					<% end %>		
