@@ -5,6 +5,8 @@ class QuestionsController < ApplicationController
 
 	def index
 		@question = @user.questions.build
+
+	    @question_sample = "活動頻度はどれくらいですか？？"
 	end	
 
 	def new
@@ -13,14 +15,15 @@ class QuestionsController < ApplicationController
 
 
 	def create
+
 		if @user.questions.create(question_params)
 
 			redirect_to user_questions_path(@user)
 
 		else
-			flash[:share] = '最大90文字です'
 			render user_questions_path(@user)
 		end
+
 	end
 
 	def update
@@ -48,6 +51,20 @@ class QuestionsController < ApplicationController
 
 	end
 
+	def question
+		@question = @user.questions.build
+
+	    @question_sample = "活動頻度はどれくらいですか？？"
+
+
+		if @user.switch.present?
+		@b5_name = @question_sample
+		@b5_url = ""		
+		end
+
+	end
+
+
 	def edit
 
 	end
@@ -60,6 +77,9 @@ class QuestionsController < ApplicationController
 		redirect_to user_questions_path
 	end
 
+
+
+
     private
     def question_params
     	params.require(:question).permit(:id, :content, :answer)
@@ -67,9 +87,7 @@ class QuestionsController < ApplicationController
 
 	def set_user
 	    @user = User.find_by(id: params[:user_id])
-
 	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
-
 
 		if @user.switch.present?
 		@b1_name = @user.event.name

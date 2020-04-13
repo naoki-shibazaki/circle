@@ -19,7 +19,6 @@
 
 
 	<div class="qa_wrap">
- 		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question.content %>">
 
 			<div class="qa_profile_wrap">
 
@@ -75,6 +74,18 @@
 				<% end %>
 			</ul>
 		</div>
+
+	<% else %>
+		<div class="qa_card_warp">
+			<ul>
+				<li>
+					<%= link_to "/users/#{@user.id}/question" do %>
+ 						<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question_sample %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question_sample %>">
+					<% end %>		
+				</li>
+			</ul>
+		</div>		
+
 	<% end %>
 
 

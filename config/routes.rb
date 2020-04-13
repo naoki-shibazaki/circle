@@ -28,12 +28,12 @@ Rails.application.routes.draw do
 	get 'admin_users' , to: 'users#admin_users'	
 	
 	get 'contact/:id', to: 'users#contact'
+	get 'users/:user_id/question' , to: 'questions#question'
 
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'
 	get 'prefectures/:kana/:group' , to: 'users#prefecture_group'
 	get 'prefectures/:kana/:group/:decade' , to: 'users#prefecture_age'
-
 
 	get 'blog' , to: 'blogs#top'
 
