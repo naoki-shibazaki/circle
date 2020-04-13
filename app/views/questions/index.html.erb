@@ -30,7 +30,9 @@
 
 					<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！" %> 
 	
-					<input type="submit" name="commit" value="質問する" data-disable-with="質問する">
+					<div class="submit_btn">
+						<input type="submit" name="commit" value="質問する" data-disable-with="質問する">
+					</div>
 
 					<div class="reset"></div>
 
@@ -58,6 +60,13 @@
 				<li>
 					<%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
  						<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= question.content %>">
+ 						<div class="qa_judge">
+							<% if question.answer.nil? %>
+								未回答
+							<% else %>
+								回答済み
+							<% end %>
+ 						</div>
 					<% end %>		
 				</li>
 				<% end %>

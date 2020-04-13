@@ -2580,7 +2580,7 @@ max-width: 100%;
 }
 
 .share_btn_tw {
-    margin-right: 10px;
+    // margin-right: 10px;
     padding: 0px 10px;
     border-radius: 6px;
     color: #fff;
@@ -3572,9 +3572,50 @@ max-width: 100%;
     margin-bottom: 40px;
 }
 
+.qa_card_warp {
+    border-top: 20px solid #e8e8e8;
+}
+
 .qa_card_warp li{
     border-bottom: 20px solid #e8e8e8;
+    background-color: #e8e8e8;
 }
+
+.qa_answer_form .submit_btn{
+    margin: 8px auto 0;
+    text-align: center;
+    width: 160px;
+    padding: 0px 10px;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #3ecdc6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+
+.q_delete{
+  text-align: right;
+}
+
+.q_delete,
+.q_delete a{
+  color: #8e8e8e;
+}
+
+.q_delete i{
+  font-size: 16px;
+}
+
+.qa_judge{
+  text-align: right;
+}
+
+
+
+
+
 
 
 

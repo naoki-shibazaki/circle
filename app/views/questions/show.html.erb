@@ -41,21 +41,32 @@
 			<% if admin_user_signed_in?  %>
 				<% if @user.id == current_admin_user.id %>
 
+					<div class="q_delete">
+					    <%= link_to(user_question_path, method: :delete, data: {confirm: "質問を削除しますか？"}) do %>
+							<i class="fa fa-trash "></i>この質問を削除する 									    
+						<% end %>
+					</div>
+
+
 					<div class="qa_answer_form">
 					      <%= form_for ([@user,@question]) do |f| %>
 					    
 					        <%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！" %> 
 
-					        <input type="submit" name="commit" value="回答する" data-disable-with="回答する">
+							<div class="submit_btn">
+
+								<% if @question.answer.present? %>
+							        <input type="submit" name="commit" value="編集する" data-disable-with="編集する">
+								<% else %>
+									<input type="submit" name="commit" value="回答する" data-disable-with="回答する">
+								<% end %>
+
+						    </div>
 
 					        <div class="reset"></div>
 
 					      <% end %>
 					</div>
-
-					    <%= link_to(user_question_path, method: :delete, data: {confirm: "質問を削除しますか？"}) do %>
-							<i class="fa fa-trash "></i> 									    
-						<% end %>
 
 				<% end %>
 			<% end %>
