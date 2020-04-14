@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 	get 'line' , to: 'users#line'
 	get 'link' , to: 'users#link'
 	get 'admin_users' , to: 'users#admin_users'	
+	get 'questions' , to: 'questions#questions'		
 	
 	get 'contact/:id', to: 'users#contact'
 	get 'users/:user_id/question' , to: 'questions#question'

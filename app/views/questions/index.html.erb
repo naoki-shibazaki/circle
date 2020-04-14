@@ -14,9 +14,9 @@
   	    <%= render "/layouts/breadcrumb" %>
 
 
-    <h1 class="users-heading">質問コーナー</h1>
-
-
+	<%= link_to user_questions_path(@user) do %>
+	    <h1 class="users-heading">質問コーナー</h1>
+	<% end %>
 
 	<div class="qa_wrap">
 

@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
 
 	def index
 		@question = @user.questions.build
+	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
 
 	    @question_sample = "活動頻度はどれくらいですか？？"
 	end	
@@ -38,6 +39,7 @@ class QuestionsController < ApplicationController
 
 	def show
 		@question = Question.find(params[:id])
+	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
 
 		if @user.id.to_i != @question.user_id.to_i
 			flash[:notice] = "存在しないURLです"
@@ -53,6 +55,7 @@ class QuestionsController < ApplicationController
 
 	def question
 		@question = @user.questions.build
+		@questions = Question.where(user_id: @user.id).order(id: "DESC")
 
 	    @question_sample = "活動頻度はどれくらいですか？？"
 
@@ -77,6 +80,9 @@ class QuestionsController < ApplicationController
 	end
 
 
+	def questions
+		@questions = Question.all.order(id: "DESC")
+	end
 
 
     private
@@ -86,18 +92,22 @@ class QuestionsController < ApplicationController
 
 	def set_user
 	    @user = User.find_by(id: params[:user_id])
-	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
 
-		if @user.switch.present?
-		@b1_name = @user.event.name
-		@b1_url = "/#{@user.event.ruby}"
-		@b2_name = @user.prefecture.name
-		@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
-		@b3_name = @user.name
-		@b3_url = "/users/#{@user.id}"
-		@b4_name = "質問コーナー"
-		@b4_url = "/users/#{@user.id}/questions"		
+	    if @user.present?  	
+			if @user.switch.present?
+
+			@b1_name = @user.event.name
+			@b1_url = "/#{@user.event.ruby}"
+			@b2_name = @user.prefecture.name
+			@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
+			@b3_name = @user.name
+			@b3_url = "/users/#{@user.id}"
+			@b4_name = "質問コーナー"
+			@b4_url = "/users/#{@user.id}/questions"
+					
+			end
 		end
+
 
     end    
 
