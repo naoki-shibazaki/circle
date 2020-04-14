@@ -47,11 +47,17 @@
   <!-- questions -->
     <% if @path.is('questions') %>
 
-        <div class="footer_btn bg_btn">
-          <%= link_to user_questions_path do %>
-             <span class="fixed_btn_b mail">このサークルに質問する！</span>
-          <% end %>
-        </div>
+      <% if @path.is('questions#questions') %>
+
+      <% else %>
+
+          <div class="footer_btn bg_btn">
+            <%= link_to user_questions_path do %>
+               <span class="fixed_btn_b mail">このサークルに質問する！</span>
+            <% end %>
+          </div>
+
+      <% end %>
 
     <% end %>
 
