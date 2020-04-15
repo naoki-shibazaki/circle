@@ -19,13 +19,12 @@ class QuestionsController < ApplicationController
 			@question_sample = @question_first
 
 		elsif params[:sample] == "second"
-			@question_sample = @question_second			
+			@question_sample = @question_second
 
 		elsif params[:sample] == "third"
 			@question_sample = @question_third
 
 		else
-			@question_sample = @question_first
 
 		end
 
@@ -114,7 +113,7 @@ class QuestionsController < ApplicationController
 
 	    @question_first = "コロナの影響はありますか？？"
 	    @question_second = "男女比を教えてください"
-	    @question_third = "初心者でも参加しやすいですか？"	
+	    @question_third = "初心者でも参加しやすいですか？"
 
 
 	    if @user.present?  	
