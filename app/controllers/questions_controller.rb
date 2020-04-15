@@ -6,9 +6,37 @@ class QuestionsController < ApplicationController
 	def index
 		@question = @user.questions.build
 	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
-
-	    @question_sample = "活動頻度はどれくらいですか？？"
+    
 	end	
+
+
+	def question
+		@question = @user.questions.build
+		@questions = Question.where(user_id: @user.id).order(id: "DESC")
+
+
+		if params[:sample] == "first"
+			@question_sample = @question_first
+
+		elsif params[:sample] == "second"
+			@question_sample = @question_second			
+
+		elsif params[:sample] == "third"
+			@question_sample = @question_third
+
+		else
+			@question_sample = @question_first
+
+		end
+
+
+		if @user.switch.present?
+		@b5_name = @question_sample
+		@b5_url = ""		
+		end
+
+	end
+
 
 	def new
 
@@ -35,7 +63,7 @@ class QuestionsController < ApplicationController
 			@user.last_post = Time.now
 			@user.user_time = Time.now
 			@user.save	
-			
+
 			flash[:share] = '更新しました！'
 			redirect_to user_question_path
 		end
@@ -57,20 +85,6 @@ class QuestionsController < ApplicationController
 		end
 
 	end
-
-	def question
-		@question = @user.questions.build
-		@questions = Question.where(user_id: @user.id).order(id: "DESC")
-
-	    @question_sample = "活動頻度はどれくらいですか？？"
-
-		if @user.switch.present?
-		@b5_name = @question_sample
-		@b5_url = ""		
-		end
-
-	end
-
 
 	def edit
 
@@ -97,6 +111,11 @@ class QuestionsController < ApplicationController
 
 	def set_user
 	    @user = User.find_by(id: params[:user_id])
+
+	    @question_first = "活動頻度はどれくらいですか？？"
+	    @question_second = "男女比を教えてください"
+	    @question_third = "初心者でも参加しやすいですか？"	
+
 
 	    if @user.present?  	
 			if @user.switch.present?
