@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
 
 	def create
 
-		if @user.questions.create(question_params)
+		if @user.questions.create(question_params)		
 
 			redirect_to user_questions_path(@user)
 
@@ -31,6 +31,11 @@ class QuestionsController < ApplicationController
 		@question = Question.find(params[:id])
 
 		if @question.update(question_params)
+
+			@user.last_post = Time.now
+			@user.user_time = Time.now
+			@user.save	
+			
 			flash[:share] = '更新しました！'
 			redirect_to user_question_path
 		end
