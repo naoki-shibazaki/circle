@@ -21,7 +21,8 @@ class ApplicationController < ActionController::Base
 
 
 		if admin_user_signed_in?
-	    	@questions_current = Question.where(user_id: current_admin_user.id).order(id: "DESC")
+	    	@questions_current = Question.where(user_id: current_admin_user.id)
+	    	@questions_current_nil = Question.where(user_id: current_admin_user.id).where(answer: nil)
     	end
 
   	end

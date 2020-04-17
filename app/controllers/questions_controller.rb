@@ -46,11 +46,21 @@ class QuestionsController < ApplicationController
 
 		if @user.questions.create(question_params)		
 
+			if admin_user_signed_in?
+				if current_admin_user.id == @user.id
+					@user.last_post = Time.now
+					@user.user_time = Time.now
+					@user.save	
+				end
+			end
+
 			redirect_to user_questions_path(@user)
 
 		else
 			render user_questions_path(@user)
 		end
+
+
 
 	end
 
