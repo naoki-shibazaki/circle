@@ -3666,6 +3666,10 @@ max-width: 100%;
     margin: 20px auto 0;
     width: 76%;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;    
 }
 
 .qa_card_txt {
