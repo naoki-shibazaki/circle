@@ -32,9 +32,7 @@
 
 					<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 
 	
-					<div class="submit_btn">
-						<input type="submit" name="commit" value="質問する" data-disable-with="質問する">
-					</div>
+						<input type="submit" name="commit" value="質問する" data-disable-with="質問する" class="submit_btn">
 
 					<div class="reset"></div>
 
@@ -44,11 +42,11 @@
 
 
 			<div class="qa_tw_share">
-				<div class="share_btn_tw">
-				    <%= link_to("https://twitter.com/share?url=#{request.url}&text=質問を募集中です！%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
-				      <i class="fa fa-twitter"></i>質問をTwitterで募集する！
-				    <% end %>
-				</div>
+				<%= link_to("https://twitter.com/share?url=#{request.url}&text=質問を募集中です！%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
+					<div class="share_btn_tw">
+					     <i class="fa fa-twitter"></i>質問をTwitterで募集する！
+					</div>
+				<% end %>
 			</div>
 
 

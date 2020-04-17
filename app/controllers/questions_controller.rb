@@ -54,9 +54,12 @@ class QuestionsController < ApplicationController
 				end
 			end
 
+			flash[:notice] = '質問を送信しました！'
 			redirect_to user_questions_path(@user)
 
 		else
+
+			flash[:notice] = '質問が空欄です'			
 			render user_questions_path(@user)
 		end
 
@@ -73,7 +76,7 @@ class QuestionsController < ApplicationController
 			@user.user_time = Time.now
 			@user.save	
 
-			flash[:share] = '更新しました！'
+			flash[:notice] = '更新しました！'
 			redirect_to user_question_path
 		end
 
