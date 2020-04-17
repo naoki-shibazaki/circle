@@ -55,45 +55,63 @@
 
 
 
-			<% if admin_user_signed_in?  %>
-				<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
+				<% if admin_user_signed_in?  %>
+					<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
 
-					<div class="q_delete">
-					    <%= link_to(user_question_path, method: :delete, data: {confirm: "質問を削除しますか？"}) do %>
-							<i class="fa fa-trash-o "></i>この質問を削除する 									    
+						<div class="q_delete">
+						    <%= link_to(user_question_path, method: :delete, data: {confirm: "質問を削除しますか？"}) do %>
+								<i class="fa fa-trash-o "></i>この質問を削除する 									    
+							<% end %>
+						</div>
+
+
+						<div class="qa_answer_form">
+						      <%= form_for ([@user,@question]) do |f| %>
+						    
+						        <%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！（80文字以内）" %> 
+
+									<% if @question.answer.present? %>
+								        <input type="submit" name="commit" value="編集する" data-disable-with="編集する" class="submit_btn">
+									<% else %>
+										<input type="submit" name="commit" value="回答する" data-disable-with="回答する" class="submit_btn">
+									<% end %>
+
+						        <div class="reset"></div>
+
+						      <% end %>
+						</div>
+
+					<% end %>
+				<% end %>
+
+
+				<% if admin_user_signed_in?  %>
+					<% if @user.id == current_admin_user.id %>
+
+						<div class="qa_tw_share">
+							    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@question.answer}%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
+									<div class="share_btn_tw">
+									     <i class="fa fa-twitter"></i>回答をTwitterでシェアする！
+									</div>
+							    <% end %>
+						</div>
+
+					<% end %>
+
+				<% else %>
+					
+					<div class="post_cta profile_cta">
+						<%= link_to user_questions_path(@user) do %>
+							<div class="contact-button qa_btn qa">
+								このサークルに質問する
+							</div>
 						<% end %>
 					</div>
 
-
-					<div class="qa_answer_form">
-					      <%= form_for ([@user,@question]) do |f| %>
-					    
-					        <%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！（80文字以内）" %> 
-
-								<% if @question.answer.present? %>
-							        <input type="submit" name="commit" value="編集する" data-disable-with="編集する" class="submit_btn">
-								<% else %>
-									<input type="submit" name="commit" value="回答する" data-disable-with="回答する" class="submit_btn">
-								<% end %>
-
-					        <div class="reset"></div>
-
-					      <% end %>
-					</div>
-
 				<% end %>
-			<% end %>
-
-
-				<div class="qa_tw_share">
-					    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@question.answer}%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
-							<div class="share_btn_tw">
-							     <i class="fa fa-twitter"></i>回答をTwitterでシェアする！
-							</div>
-					    <% end %>
-				</div>
 
 			</div>
+
 
 	</div>
 
