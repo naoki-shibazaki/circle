@@ -115,12 +115,6 @@ class QuestionsController < ApplicationController
 		@questions = Question.all.order(id: "DESC")
 	end
 
-
-    private
-    def question_params
-    	params.require(:question).permit(:id, :content, :answer)
-    end
-
 	def set_user
 	    @user = User.find_by(id: params[:user_id])
 
@@ -146,6 +140,13 @@ class QuestionsController < ApplicationController
 
 
     end    
+
+
+    private
+    def question_params
+    	params.require(:question).permit(:id, :content, :answer)
+    end
+
 
 
 end

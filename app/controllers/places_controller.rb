@@ -129,14 +129,6 @@ class PlacesController < ApplicationController
 	end	
 
 
-
-
-
-
-
-
-
-	private
 	def correct_user
 	    if admin_user_signed_in?
 
@@ -179,6 +171,7 @@ class PlacesController < ApplicationController
 
     end
 
+	private
 	def place_params
 		params.require(:place).permit(
 			:user_id,

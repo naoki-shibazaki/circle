@@ -78,17 +78,7 @@ before_action :set_schedules
 	end
 
 
-			
-	   		
-
-
-
-
-	private
-		def schedule_params
-			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note)
-		end
-
+	   	
 	def set_schedules
 		@user = User.find(params[:user_id])		
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
@@ -115,6 +105,11 @@ before_action :set_schedules
 		end
 	end	
 
+
+	private
+		def schedule_params
+			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note)
+		end
 
 
 

@@ -152,7 +152,6 @@ class BlogsController < ApplicationController
 
 
 
-	private
 	def set_user
 	    @user = User.where(:id => params[:user_id]).first
 	    @blog = Blog.where(:id => params[:id]).first
@@ -189,7 +188,7 @@ class BlogsController < ApplicationController
 	   end
 	end	
     
-
+	private
 	def blog_params
 		params.require(:blog).permit(
 			:title, 

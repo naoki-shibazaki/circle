@@ -51,7 +51,6 @@ class ColumnsController < ApplicationController
   end
 
 
-  private
     def set_column
       @columns = Column.all.order(created_at: "DESC")
 
@@ -77,6 +76,7 @@ class ColumnsController < ApplicationController
     end
   end
 
+  private
   def column_params
     params.require(:column).permit(
       :title, 
