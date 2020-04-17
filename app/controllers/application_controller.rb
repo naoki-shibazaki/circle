@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
 
 	def set_current_user
     	@current_user = User.find_by(id: session[:user_id])
+
+
+		if admin_user_signed_in?
+	    	@questions_current = Question.where(user_id: current_admin_user.id).order(id: "DESC")
+    	end
+
   	end
 
   	def authenticate_user

@@ -55,7 +55,11 @@
         <% if admin_user_signed_in?  %>
           <li>
             <%= link_to(user_path(current_admin_user)) do %>
-              <i class="fa fa-user notice_icon"></i>
+                <% if @questions_current.count >= 3 %>
+                  <i class="fa fa-user"></i>
+                <% else %>
+                  <i class="fa fa-user notice_icon"></i>              
+                <% end %>
               <div class="link_txt">マイページ</div>
             <% end %>
           </li>  

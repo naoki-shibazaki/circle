@@ -84,7 +84,11 @@
 				<% end %>
 
 				<%= link_to(user_questions_path(@user.id)) do %> 
-					<div class="analytics_btn notice_icon">	
+	                <% if @questions_current.count >= 3 %>
+	                  <div class="analytics_btn">
+	                <% else %>
+	                  <div class="analytics_btn notice_icon">            
+	                <% end %>					
 						<i class="fa fa-question-circle "></i>質問コーナー
 					</div>
 				<% end %>
