@@ -46,6 +46,6 @@ Prefecture.seed(:id,
   { :id => 44, :group => "九州" , :order => "43", :name => "大分県" , :kana => "oita" },
   { :id => 45, :group => "九州" , :order => "45", :name => "宮崎県" , :kana => "miyazaki" },
   { :id => 46, :group => "九州" , :order => "46", :name => "鹿児島県" , :kana => "kagoshima" },
-  { :id => 47, :group => "九州" , :order => "47", :name => "沖縄県" , :kana => "okinawa" }
-
+  { :id => 47, :group => "九州" , :order => "47", :name => "沖縄県" , :kana => "okinawa" },
+  { :id => 50, :group => "全国" , :order => "50", :name => "全国" , :kana => "zenkoku" }
 )

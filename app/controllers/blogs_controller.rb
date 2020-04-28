@@ -118,7 +118,7 @@ class BlogsController < ApplicationController
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id).where.not(switch: "nil")
+		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where.not(switch: "nil")
 
 		# パンくず
 		@b1_name = "ブログ"
@@ -140,7 +140,7 @@ class BlogsController < ApplicationController
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(prefecture_id: @prefecture.id).where.not(switch: "nil")
+		@users = User.where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where.not(switch: "nil")
 
 		# パンくず
 		@b1_name = "ブログ"

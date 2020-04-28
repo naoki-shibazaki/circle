@@ -65,7 +65,7 @@
 	    <p>サークル種目<span class="must_red">(必須)</span></p>	    
 	    <%= f.collection_select :event_id, Event.all.order(:order => :asc), :id, :name, :prompt => "選択してください" %>
 
-	    <p>都道府県<span class="must_red">(必須)</span></p>	    
+	    <p>都道府県<span class="must_red">(必須)</span></p>
 	    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, :prompt => "選択してください" %>
 
 	    <p>活動時間</p>
