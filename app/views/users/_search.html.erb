@@ -16,7 +16,9 @@
 					<select name="prefecture_select" onChange="location.href=value;">
 						<option value="#">都道府県</option>
 					    <% @prefectures.each do |prefecture| %>
-							<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
+							<% if prefecture.id != 50 %>
+								<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
+							<% end %>
 						<% end %>
 					</select>
 
@@ -37,7 +39,9 @@
 					<select name="prefecture_select" onChange="location.href=value;">
 						<option value="#">都道府県</option>
 					    <% @prefectures.each do |prefecture| %>
-							<option value="/<%= @event.ruby %>/<%= prefecture.kana %>"><%= prefecture.name %></option>
+							<% if prefecture.id != 50 %>
+								<option value="/<%= @event.ruby %>/<%= prefecture.kana %>"><%= prefecture.name %></option>
+							<% end %>
 						<% end %>
 					</select>
 
@@ -56,8 +60,10 @@
 					<select name="prefecture_select" onChange="location.href=value;">
 						<option value="#"><%= @prefecture.name %></option>
 					    <% @prefectures.each do |prefecture| %>
-						    <% if prefecture.kana != @prefecture.kana %>
-								<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
+					   		<% if prefecture.id != 50 %>
+							    <% if prefecture.kana != @prefecture.kana %>
+									<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
+								<% end %>
 							<% end %>
 						<% end %>
 					</select>

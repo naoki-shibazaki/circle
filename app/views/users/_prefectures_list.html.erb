@@ -9,25 +9,29 @@
 
       <ul class="prefectures-menus">
         <% @prefectures.each do |prefecture| %>
-          <% if prefecture.group != @x %>
-            <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
-            <li>
-              <% if @path.is('users#index', 'users#top') %>
-                <%= link_to prefecture.name, "/prefectures/#{prefecture.kana}" %>
-              <% else %>
-                <%= link_to prefecture.name, "/#{@event.ruby}/#{prefecture.kana}" %>
-              <% end %>           
-            </li> 
-            <% @x = prefecture.group %>
+          <% if prefecture.id != 50 %>        
             
-          <% else %>
-            <li>
-              <% if @path.is('users#index', 'users#top') %>
-                <%= link_to prefecture.name, "/prefectures/#{prefecture.kana}" %>
-              <% else %>
-                <%= link_to prefecture.name, "/#{@event.ruby}/#{prefecture.kana}" %>
-              <% end %>           
-            </li> 
+            <% if prefecture.group != @x %>
+              <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+              <li>
+                <% if @path.is('users#index', 'users#top') %>
+                  <%= link_to prefecture.name, "/prefectures/#{prefecture.kana}" %>
+                <% else %>
+                  <%= link_to prefecture.name, "/#{@event.ruby}/#{prefecture.kana}" %>
+                <% end %>           
+              </li> 
+              <% @x = prefecture.group %>
+              
+            <% else %>
+              <li>
+                <% if @path.is('users#index', 'users#top') %>
+                  <%= link_to prefecture.name, "/prefectures/#{prefecture.kana}" %>
+                <% else %>
+                  <%= link_to prefecture.name, "/#{@event.ruby}/#{prefecture.kana}" %>
+                <% end %>           
+              </li> 
+            <% end %>
+          
           <% end %>
         <% end %> 
       </ul> 
