@@ -2125,10 +2125,9 @@ max-width: 100%;
 
 .schedule_title{
     font-size: 18px;
-    font-size: 18px;
-    margin-left: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     color: #545454;
+    text-align: center;
 }
 
 .schedule_t{
@@ -3689,6 +3688,22 @@ max-width: 100%;
 
 .contact-button{
   color: #fff
+}
+
+.schedule_ogp_wrap{
+  margin-top: 20px;
+}
+
+.schedule_ogp_wrap img{
+  width: 100%;
+}
+
+.schedule_tw_share{
+  margin-bottom: 20px;
+}
+
+.schedule_tw_share .share_btn_tw{
+  height: 50px;
 }
 
 

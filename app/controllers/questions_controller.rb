@@ -112,7 +112,7 @@ class QuestionsController < ApplicationController
 
 
 	def questions
-		@questions = Question.all.order(id: "DESC")
+		@questions = Question.all.order(id: "DESC").page(params[:page])
 	end
 
 	def set_user
