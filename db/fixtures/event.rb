@@ -17,27 +17,29 @@ Event.seed(:id,
 
   { :id => 3, :category => "スポーツ２", :order => "21", :name => "ランニング" , :ruby => "running",  :openchat => "", :icon => "fa fa-child" },
   { :id => 21, :category => "スポーツ２", :order => "22", :name => "ボルダリング" , :ruby => "bouldering",  :openchat => "", :icon => "fa fa-group" },
-  { :id => 23, :category => "スポーツ２", :order => "23", :name => "ビーチバレー" , :ruby => "beach-volleyball",  :openchat => "", :icon => "fa fa-group" },
+  { :id => 6, :category => "スポーツ２", :order => "23", :name => "筋トレ・合トレ" , :ruby => "work-out",  :openchat => "", :icon => "fa fa-trophy" },
 
-  { :id => 17, :category => "スポーツ２", :order => "24", :name => "ロードバイク" , :ruby => "road-bike",  :openchat => "", :icon => "fa fa-bicycle" },
-  { :id => 6, :category => "スポーツ２", :order => "25", :name => "筋トレ・合トレ" , :ruby => "work-out",  :openchat => "", :icon => "fa fa-trophy" },
-  { :id => 15, :category => "スポーツ２", :order => "26", :name => "オールラウンド" , :ruby => "all-round",  :openchat => "", :icon => "fa fa-group" },
+  { :id => 19, :category => "スポーツ２", :order => "24", :name => "ダンス" , :ruby => "dance",  :openchat => "", :icon => "fa fa-group" },
+  { :id => 14, :category => "スポーツ２", :order => "25", :name => "よさこい" , :ruby => "yosakoi",  :openchat => "", :icon => "fa fa-dribbble" },
+  { :id => 17, :category => "スポーツ２", :order => "26", :name => "ロードバイク" , :ruby => "road-bike",  :openchat => "", :icon => "fa fa-bicycle" },
 
+  { :id => 25, :category => "スポーツ２", :order => "27", :name => "ハンドボール" , :ruby => "handball",  :openchat => "", :icon => "fa fa-group" },
+  { :id => 20, :category => "スポーツ２", :order => "28", :name => "スノーボード" , :ruby => "snow-board",  :openchat => "", :icon => "fa fa-group" },
+  { :id => 23, :category => "スポーツ２", :order => "29", :name => "ビーチバレー" , :ruby => "beach-volleyball",  :openchat => "", :icon => "fa fa-group" },
 
 # --------------------------------------
 
   { :id => 1, :category => "その他", :order => "51", :name => "写真・カメラ" , :ruby => "camera",  :openchat => "https://line.me/ti/g2/MrGVZOgwkBEGzRpvagL-Cw", :icon => "fa fa-camera-retro" },
-  { :id => 14, :category => "その他", :order => "52", :name => "よさこい" , :ruby => "yosakoi",  :openchat => "", :icon => "fa fa-dribbble" },
-  { :id => 19, :category => "その他", :order => "53", :name => "ダンス" , :ruby => "dance",  :openchat => "", :icon => "fa fa-group" },
+  { :id => 18, :category => "その他", :order => "52", :name => "登山" , :ruby => "mountain",  :openchat => "", :icon => "fa fa-photo" },
+  { :id => 12, :category => "その他", :order => "53", :name => "イベント" , :ruby => "event",  :openchat => "", :icon => "fa fa-flag" },
 
-  { :id => 12, :category => "その他", :order => "54", :name => "イベント" , :ruby => "event",  :openchat => "", :icon => "fa fa-flag" },
-  { :id => 11, :category => "その他", :order => "55", :name => "ゲーム" , :ruby => "game",  :openchat => "", :icon => "fa fa-gamepad" },
-  { :id => 13, :category => "その他", :order => "56", :name => "音楽" , :ruby => "music",  :openchat => "", :icon => "fa fa-music" },
+  { :id => 24, :category => "その他", :order => "54", :name => "学生団体" , :ruby => "student-group",  :openchat => "", :icon => "fa fa-group" },
+  { :id => 26, :category => "その他", :order => "55", :name => "ボランティア" , :ruby => "volunteer",  :openchat => "", :icon => "fa fa-group" },
+  { :id => 15, :category => "その他", :order => "56", :name => "オールラウンド" , :ruby => "all-round",  :openchat => "", :icon => "fa fa-group" },
 
-  { :id => 18, :category => "その他", :order => "57", :name => "登山" , :ruby => "mountain",  :openchat => "", :icon => "fa fa-photo" },
-  { :id => 20, :category => "その他", :order => "58", :name => "スノーボード" , :ruby => "snow-board",  :openchat => "", :icon => "fa fa-group" },
-  { :id => 24, :category => "その他", :order => "59", :name => "学生団体" , :ruby => "student-group",  :openchat => "", :icon => "fa fa-group" }
+  { :id => 11, :category => "その他", :order => "57", :name => "ゲーム" , :ruby => "game",  :openchat => "", :icon => "fa fa-gamepad" },
+  { :id => 13, :category => "その他", :order => "58", :name => "音楽" , :ruby => "music",  :openchat => "", :icon => "fa fa-music" },
+  { :id => 27, :category => "その他", :order => "59", :name => "ヨガ" , :ruby => "yoga",  :openchat => "", :icon => "fa fa-group" }
 
 
 )
-
