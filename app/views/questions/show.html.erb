@@ -121,9 +121,11 @@
 
 	<div class="qa_card_warp">
 
+	<%if @questions.each.count > 1 %>
 		<div class="qa_card_txt">
 			▼ <%= @user.name %>さんに寄せられた他の質問です！
 		</div>
+	<% end %>
 
 		<ul>
 			<% @questions.each do |question| %>
