@@ -40,7 +40,11 @@
 
 			<%= render "/schedules/schedule_copy" %>
 
-
+	      <% if admin_user_signed_in? %>
+	        <% if @user.id == current_admin_user.id  %>
+				<%= render "/schedules/post" %>
+			<% end %>
+	      <% end %>
 
 			<% if @schedules.present? %>
 
@@ -77,19 +81,6 @@
 				    <% end %>
 				</div>
 
-			<% end %>
-
-
-			<% if admin_user_signed_in? %>
-			  <% if @user.id == current_admin_user.id  %>
-
-
-			    <div class="schedule_title">活動日の追加</div>
-
-				<%= render "/schedules/schedule_form" %>
-
-
-			  <% end %>
 			<% end %>
 
 

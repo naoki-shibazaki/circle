@@ -1957,8 +1957,10 @@ max-width: 100%;
     background: rgba(255, 255, 255, 0.5);
     display: inline-block;
     position: fixed;
-    left: 10px;
-    bottom: 20px;
+    // left: 10px;
+    // bottom: 20px;
+    right: 10px;
+    top: 100px;    
     z-index: 999;
     width: 44pt;
     height: 44pt;
@@ -1990,18 +1992,18 @@ max-width: 100%;
 }
 
 .popupModal1 .modalTitle {
-     padding-bottom: .5em;
-     margin: .5em 0;
-     color: #5f5f5f;
-     border-bottom: 1px solid #ccc;
-     font-weight: bold;
-      text-align: center;
+    padding-bottom: .5em;
+    margin: .5em 0;
+    color: #5f5f5f;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
 }
 .popupModal1 .modalMain {
-     color:#222;
-     font-size: 14px;
-     line-height: 1.8em;
-    text-align: center;
+    color:#222;
+    font-size: 14px;
+    line-height: 1.8em;
     margin: auto;
 }
 
@@ -2029,14 +2031,16 @@ max-width: 100%;
     // padding: 0.5em 12px;
     // width: 20%;
     // height: 40px;
-    background-color: #e09a1b;
-    display: block;
+    background-color: #8a8a8a;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
     color: #fff;
     font-size: 14px;
     padding: 6px 20px;
     border-radius: 6px;
     border: none;
-    margin: 4px auto 40px;
+    margin: 4px auto 30px;
 }
 
 .flash_social{
@@ -2977,8 +2981,8 @@ max-width: 100%;
 }
 
 .schedule_add_wrap{
-    border: 1px solid #d8dadf;
-    padding: 10px 10px;
+    // border: 1px solid #d8dadf;
+    // padding: 10px 10px;
 }
 
 .form-time{
@@ -3000,6 +3004,10 @@ max-width: 100%;
     margin-top: 8px;
     margin-bottom: 0;
     float: right;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
 
 .schedule_add_btn{
@@ -3705,6 +3713,29 @@ max-width: 100%;
 .schedule_tw_share .share_btn_tw{
   height: 50px;
 }
+
+.schedule_post_wrap .popupModal1{
+  text-align: center;
+}
+
+.schedule_input{
+  text-align: left;
+}
+
+.schedule_post_btn{
+    background-color: #e09a1b;
+    color: #fff;
+    font-size: 14px;
+    padding: 6px 20px;
+    border-radius: 6px;
+    border: none;
+    margin: 10px auto 20px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
 
 
 
