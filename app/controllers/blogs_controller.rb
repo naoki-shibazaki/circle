@@ -167,6 +167,7 @@ class BlogsController < ApplicationController
 		@x = "nil"
 		@category = "nil"
 		@blog_count = 0
+		@contact_judge = "_b"
 
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)

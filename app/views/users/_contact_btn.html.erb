@@ -1,0 +1,36 @@
+<% if @user.contact == "line" && @user.line_id != "" %>
+		<div class="contact-button">
+			<%= link_to controller: :users, action: :contact, count: "line" do %>
+				<img src="/images/icon_line.png" alt="" class="icon_sns" />
+			<% end %>
+		</div>
+
+<% elsif @user.contact == "mail" %>
+
+	<% if @data.email != "" %>
+		<div class="contact-button">
+			<%= link_to controller: :users, action: :contact, count: "mail" do %>
+				<img src="/images/icon_mail.png" alt="" class="icon_sns" />
+			<% end %>
+		</div>
+	<% end %>
+
+<% else %>
+
+	<% if @user.line_id != "" %>
+		<div class="contact-button">
+			<%= link_to controller: :users, action: :contact, count: "line" do %>
+				<img src="/images/icon_line.png" alt="" class="icon_sns" />
+			<% end %>
+		</div>
+	<% end %>
+
+	<% if @data.email != "" %>
+		<div class="contact-button">
+			<%= link_to controller: :users, action: :contact, count: "mail" do %>
+				<img src="/images/icon_mail.png" alt="" class="icon_sns" />
+			<% end %>
+		</div>
+	<% end %>	
+
+<% end %>

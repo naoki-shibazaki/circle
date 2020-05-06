@@ -136,18 +136,7 @@
 
 				<div class="post_cta">
 					<% if @user.switch == "募集中" %>
-						<% if @user.line_id != "" %>
-							<div class="blob_cta_2">
-								<div class="contact-button line"><%= link_to "LINEで相談する", {controller: :users, action: :contact, count: "line_b" } %></div>
-								<div class="contact-button mail">
-									<%= link_to "メールで相談する", {controller: :users, action: :contact, count: "mail_b"} %>
-								</div>
-							</div>
-						<% else %>
-							<div class="contact-button mail">
-								<%= link_to "メールで相談する", {controller: :users, action: :contact, count: "mail_b"} %>
-							</div>
-						<% end %>
+						<%= render "/layouts/contact_btn" %>
 					<% end %>
 				</div>
 

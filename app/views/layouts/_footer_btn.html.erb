@@ -77,32 +77,53 @@
           <% end %>
 
 
-          <% if @user.line_id != "" %>
-
-              <div class="footer_btn bg_btn footer_btn_2">
-
-                <%= link_to controller: :users, action: :contact, count: "line#{@judge}" do %>
-                  <span class="fixed_btn_b line">LINEで相談する</span>
-                <% end %>
 
 
-                <%= link_to controller: :users, action: :contact, count: "mail#{@judge}" do %>
-                  <span class="fixed_btn_b mail">メールで相談する</span>
-                <% end %>
-
-              </div>
-
-          <% else %>
+        <% if @user.contact == "line" && @user.line_id != "" %>
 
               <div class="footer_btn bg_btn">
-                
+                <%= link_to controller: :users, action: :contact, count: "line#{@judge}" do %>
+                  <span class="fixed_btn_b line">このサークルにLINEで相談する！</span>
+                <% end %>
+              </div>
+
+        
+        <% elsif @user.contact == "mail" %>
+              <div class="footer_btn bg_btn">
                 <%= link_to controller: :users, action: :contact, count: "mail#{@judge}" do %>
                    <span class="fixed_btn_b mail">このサークルにメールで相談する！</span>
                 <% end %>
-
               </div>
 
-          <% end %>
+        <% else %>
+
+            <% if @user.line_id != "" %>
+
+                <div class="footer_btn bg_btn footer_btn_2">
+
+                  <%= link_to controller: :users, action: :contact, count: "line#{@judge}" do %>
+                    <span class="fixed_btn_b line">LINEで相談する</span>
+                  <% end %>
+
+                  <%= link_to controller: :users, action: :contact, count: "mail#{@judge}" do %>
+                    <span class="fixed_btn_b mail">メールで相談する</span>
+                  <% end %>
+
+                </div>
+
+            <% else %>
+
+                <div class="footer_btn bg_btn">
+                  <%= link_to controller: :users, action: :contact, count: "mail#{@judge}" do %>
+                     <span class="fixed_btn_b mail">このサークルにメールで相談する！</span>
+                  <% end %>
+                </div>
+
+            <% end %>
+
+        <% end %>
+
+
 
       <% end %>
     <% end %>
