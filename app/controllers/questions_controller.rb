@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
 				end
 			end
 
-			flash[:notice] = '質問を送信しました！'
+			flash[:notice] = '送信しました！'
 			redirect_to user_questions_path(@user)
 
 		else

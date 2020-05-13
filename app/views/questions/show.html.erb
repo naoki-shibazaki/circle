@@ -44,7 +44,7 @@
 				<div class="qa_answer">
 					<% if @question.answer.present? %>
 
-						<%= @question.answer %>
+						<%= simple_format @question.answer %>
 
 					<% else %>
 
