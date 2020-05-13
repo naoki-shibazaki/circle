@@ -72,16 +72,20 @@
 
 					<% if params[:count] == "line" || params[:count] == "line_b" || params[:count] == "line_s" %>
 
-						<a href="<%= @user.line_id %>">
-							<div class="contact-button line">LINEでお問い合わせをする！</div>
-						</a>
+						<% if @user.contact != "mail" %>
+							<a href="<%= @user.line_id %>">
+								<div class="contact-button line">LINEでお問い合わせをする！</div>
+							</a>
+						<% end %>
 						
 
 				  	<% elsif params[:count] == "mail" || params[:count] == "mail_b" || params[:count] == "mail_s"%>
 						
-						<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-							<div class="contact-button mail">メールでお問い合わせをする！</div>
-						</a>
+						<% if @user.contact != "line" %>
+							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+								<div class="contact-button mail">メールでお問い合わせをする！</div>
+							</a>
+						<% end %>
 						
 				  	<% else %>
 
