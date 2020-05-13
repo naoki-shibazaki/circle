@@ -3755,8 +3755,9 @@ max-width: 100%;
 }
 
 .sns_form{
-  display: inline-block;
-  margin-right: 14px;
+    display: inline-block;
+    display: table-cell;
+    padding-right: 10px;
 }
 
 .sns_input{
