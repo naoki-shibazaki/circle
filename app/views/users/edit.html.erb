@@ -103,7 +103,25 @@
 	    <p>サークル目標</p>
 	    <%= f.text_field :goal, class: 'form-control', placeholder: "ゆくる、楽しく活動をする！" %>
 
-	    <p>ホームページ／SNS</p>
+
+		<div class="sns_form">
+		    <p>Twitter ID</p>
+		    <div class="sns_input">
+		    	<span class="atmark">@</span><%= f.text_field :twitter, class: 'form-control', placeholder: "circle_book_" %>
+		    </div>
+		</div>
+
+		<div class="sns_form">
+		    <p>Instagram ID</p>
+		    <div class="sns_input">
+			    <span class="atmark">@</span><%= f.text_field :instagram, class: 'form-control', placeholder: "circlebook47" %>
+			</div>
+		</div>
+
+		<div class="reset"></div>
+
+
+	    <p>ホームページ</p>
 	    <%= f.text_field :web, class: 'form-control', placeholder: "https://www.circle-book.com/" %>
 
 	    <p>サークル画像（最大4枚）</p>

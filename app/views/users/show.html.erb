@@ -177,6 +177,29 @@
 						<td class="flex_list"><%= @user.goal %></td>
 					</tr>
 
+
+					<% if @user.twitter.present? || @user.instagram.present? %>
+						<tr class="flex_contents">
+							<th class="flex_list">SNS</th>
+							<td class="flex_list">
+
+								<% if @user.twitter.present? %>
+									<a href="https://twitter.com/<%= @user.twitter %>">
+										<span class="sns_link twitter_link"><i class="fa fa-twitter-square "></i> Twitter</span>
+									</a>
+								<% end %>
+
+								<% if @user.instagram.present? %>
+									<a href="https://www.instagram.com/<%= @user.instagram %>">
+										<span class="sns_link instagram_link"><i class="fa fa-instagram "></i> Instagram</span>
+									</a>
+								<% end %>
+								
+							</td>
+						</tr>
+					<% end %>
+
+
 					</tbody>
 				</table>
 			</div>	

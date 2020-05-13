@@ -3740,6 +3740,40 @@ max-width: 100%;
     background-color: #e09a1b;
 }
 
+.sns_link{
+  padding-right: 14px;
+}
+
+.twitter_link,
+.twitter_link a{
+  color: #1B95E0;
+}
+
+.instagram_link,
+.instagram_link a{
+  color: #CF2E92;  
+}
+
+.sns_form{
+  display: inline-block;
+  margin-right: 14px;
+}
+
+.sns_input{
+    display: flex;
+}
+
+.atmark{
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 2px;
+}
+
+
+
+
 
 
 // --------------------------------------
