@@ -1,24 +1,41 @@
-<% set_meta_tags title: "質問コーナ" %>
+<% set_meta_tags title: "#{@event_question.question}｜#{@event.name}の質問コーナー",
+
+				og: { 
+					title: "#{@event.name}の質問コーナーです！",
+					description: "", 
+					image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:#{@event_question.question},y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
+				},
+
+				twitter: { card: 'summary_large_image'} 
+%>
+
 
 <div class="main users-index">
   <div class="container bg_white">
   	    <!-- <%= render "/layouts/breadcrumb" %> -->
 
-	    <h1 class="users-heading">質問コーナー</h1>
+		<%= link_to "/#{@event.ruby}/qa/" do %>
+		    <h1 class="users-heading"><%= @event.name %>の質問コーナー</h1>
+		<% end %>
 
-	<%= @event_question.question %>
+	<div class="ribbon-wrapper qa_card_img">
+
+
+		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @event_question.question %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @event_question.question %>">	
+	</div>
+
 
 
 	<div class="qa_wrap">
 
 		<% if member_signed_in? %> 
 
-				<div class="qa_answer_form">
+				<div class="qa_answer_form event_qa_answer_form">
 					<%= form_for ([@event_question, @event_answer]), :url => { :controller => :event_answers, :action => :create }  do |f| %>
 
 						<%= f.hidden_field :member_id, :value => current_member.id %> 
 
-						<%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！（80文字以内）" %>
+						<%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！" %>
 
 							<input type="submit" name="commit" value="回答する！" data-disable-with="回答する！" class="submit_btn">
 
@@ -28,18 +45,36 @@
 			 	 </div>		
 
 		<% else %>
-			  <%= link_to "新規登録", new_member_registration_path, class: 'post' %>
+			  <%= link_to "登録して回答する！", new_member_registration_path, class: 'post' %>
 		<% end %>
 
 	</div>
 
+		
+		<% if @event_question.event_answers.present? %>
 
 		 	 <% @event_question.event_answers.each do |event_answer| %>
-									
-					<%= event_answer.answer %>
+					
+				<div class="event_anser_card">
+
+				    <div class="user-content">
+						<img class="image_icon" src="/images/default.png">
+				      
+				      <div class="list_wrapper contact_name_wrap">
+				        <div class="list_01">
+				          <h2 class="user_name">user_name</h2>
+				        </div>
+
+				      </div>
+				    </div> 
+
+					<%= raw Rinku.auto_link(simple_format event_answer.answer) %>
+				</div>
 
 
 		 	 <% end %>
+
+		<% end %>
 	
 
 

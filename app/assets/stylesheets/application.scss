@@ -1076,7 +1076,8 @@ opacity: 1; /* 要素を表示する */
 
 .post-body p,
 .user-profile p,
-.qa_answer p{
+.qa_answer p,
+.event_anser_card p{
   margin-bottom: 20px;
   font-size: 1rem;
 }
@@ -3783,11 +3784,36 @@ max-width: 100%;
 }
 
 
+.event_qa_answer_form{
+    margin-top: 30px;
+}
+
+.event_qa_answer_form .form-note {
+    min-height: 200px
+}
 
 
+.event_anser_card{
+    border: solid 1px #c5c5c5;
+    color: #616161;
+    margin: 20px;
+    padding: 10px 10px;
+    border-radius: 8px;
+}
 
 
+.event_anser_card .image_icon{
+    width: 40px;
+    height: 40px;
+}
 
+.event_anser_card .contact_name_wrap {
+    height: 40px;
+}
+
+.event_anser_card .user-content {
+    margin-bottom: 10px;
+}
 
 // --------------------------------------
 // ▼PC

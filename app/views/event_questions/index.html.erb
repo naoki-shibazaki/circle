@@ -4,11 +4,16 @@
   <div class="container bg_white">
   	    <!-- <%= render "/layouts/breadcrumb" %> -->
 
-	    <h1 class="users-heading">質問コーナー</h1>
+		<div class="e_header_wrap">
+			<img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+			<div class="link_txt">
+				<h1 class="e_header_title"><%= @event.name %>の<br>質問コーナー</h1>
+			</div>
+		</div>
 
 <% if member_signed_in? %> <!-- ユーザーがログインしているか調べる -->
   <!-- ユーザーがログインしていた時の処理 -->
-  <h2> 現在 <%= current_member.name %> さんがログインしています </h2> <!-- ここを追加します -->
+  <h2> 現在ログイン中しています </h2> <!-- ここを追加します -->
   <h4> メールアドレス： <%= current_member.email %> </h4>
   <%= link_to "ログアウト", destroy_member_session_path, method: :delete %> <!-- ログアウトをする -->
 <% else %>
@@ -17,8 +22,6 @@
   <%= link_to "ログイン", new_member_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
   <%= link_to "新規登録", new_member_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
 <% end %>
-
-
 
 
 	<div class="qa_wrap">
@@ -35,19 +38,30 @@
 				<% end %>
 		 	 </div>
 
+	</div>
 
-		 	 <% @event_questions.each do |event_question| %>
-				
-				<%= link_to "/#{@event.ruby}/qa/#{event_question.id}" do %>
-					
-					<%= event_question.question %>
 
-				<% end %>
+	<div class="qa_card_warp">
 
-		 	 <% end %>
+		<ul>
+			<% @event_questions.each do |event_question| %>
+			
+					<li class="ribbon-wrapper">
 
+						<%= link_to "/#{@event.ruby}/qa/#{event_question.id}" do %>
+								<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= event_question.question %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= event_question.question %>">
+								<div class="qa_judge">
+								</div>
+						<% end %>	
+					</li>
+
+			<% end %>
+		</ul>
 
 	</div>
+
+
+
 	
 
   </div>

@@ -44,7 +44,7 @@
 				<div class="qa_answer">
 					<% if @question.answer.present? %>
 
-						<%= simple_format @question.answer %>
+						<%= raw Rinku.auto_link(simple_format @question.answer) %>
 
 					<% else %>
 

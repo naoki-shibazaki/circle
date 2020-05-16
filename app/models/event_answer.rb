@@ -1,4 +1,4 @@
 class EventAnswer < ApplicationRecord
 	belongs_to :event_question
-	# belongs_to :member
+	validates :answer, presence: true
 end

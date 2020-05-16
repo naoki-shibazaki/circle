@@ -30,7 +30,7 @@ class EventQuestionsController < ApplicationController
 	end	
 
 	def event_questions
-		
+
 	end
 
 
