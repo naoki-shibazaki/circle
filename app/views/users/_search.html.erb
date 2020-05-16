@@ -7,7 +7,7 @@
 	        <% if @path.is('users#index', 'users#top') %>
 
 					<select name="event_select" onChange="location.href=value;">
-						<option value="#">サークル種目</option>
+						<option value="#">サークル・団体</option>
 					    <% @events.each do |event| %>
 							<option value="/<%= event.ruby %>"><%= event.name %></option>
 						<% end %>
@@ -51,7 +51,7 @@
 	        <% elsif @path.is('users#prefecture') %>
 
 					<select name="event_select" onChange="location.href=value;">
-						<option value="#">サークル種目</option>
+						<option value="#">サークル・団体</option>
 					    <% @events.each do |event| %>
 							<option value="/<%= event.ruby %>/<%= @prefecture.kana %>"><%= event.name %></option>
 						<% end %>
