@@ -42,7 +42,14 @@ class ApplicationController < ActionController::Base
  	end
 
 	def after_sign_in_path_for(resource)
+
+		if admin_user_signed_in?
 	  		edit_user_path(current_admin_user)
+
+	  	else member_signed_in?
+	  		"/event_questions"
+	  	end	
+
 	end
 
 	def request_path

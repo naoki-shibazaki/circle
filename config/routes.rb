@@ -3,6 +3,10 @@ Rails.application.routes.draw do
  :registrations => 'admin_users/registrations',
  :sessions => 'admin_users/sessions'
 }
+  devise_for :members, :controllers => {
+ :registrations => 'members/registrations',
+ :sessions => 'members/sessions'
+}
 
 	resources :users do
   		resources :schedules
@@ -15,6 +19,7 @@ Rails.application.routes.draw do
 	resources :prefectures, only: [] do
     	resources :cities, only: :index
   	end
+ 	
  
 	root 'users#top'
 
@@ -26,7 +31,8 @@ Rails.application.routes.draw do
 	get 'line' , to: 'users#line'
 	get 'link' , to: 'users#link'
 	get 'admin_users' , to: 'users#admin_users'	
-	get 'questions' , to: 'questions#questions'		
+	get 'questions' , to: 'questions#questions'
+	get 'event_questions' , to: 'event_questions#event_questions'	
 	
 	get 'contact/:id', to: 'users#contact'
 	get 'users/:user_id/question' , to: 'questions#question'
@@ -53,10 +59,14 @@ Rails.application.routes.draw do
 	# post "likes/:post_id/create" => "likes#create"	
 
 	get ':ruby' , to: 'users#event'
+
+	get ':ruby/qa' , to: 'event_questions#index'
+	post ':ruby/qa' , to: 'event_questions#create'
+	get ':ruby/qa/:id' , to: 'event_questions#show'
+	post ':ruby/qa/:id' , to: 'event_answers#create'
+
 	get ':ruby/:kana' , to: 'users#event_prefecture'
-
 	# get ':ruby/:kana/group/:group' , to: 'users#group'
-
 	get ':ruby/:kana/beginner' , to: 'users#group_beginner'
 	get ':ruby/:kana/expert' , to: 'users#group_expert'
 	get ':ruby/:kana/student' , to: 'users#group_student'

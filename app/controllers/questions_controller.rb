@@ -9,7 +9,6 @@ class QuestionsController < ApplicationController
     
 	end	
 
-
 	def question
 		@question = @user.questions.build
 		@questions = Question.where(user_id: @user.id).order(id: "DESC")

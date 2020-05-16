@@ -1,0 +1,47 @@
+<% set_meta_tags title: "質問コーナ" %>
+
+<div class="main users-index">
+  <div class="container bg_white">
+  	    <!-- <%= render "/layouts/breadcrumb" %> -->
+
+	    <h1 class="users-heading">質問コーナー</h1>
+
+	<%= @event_question.question %>
+
+
+	<div class="qa_wrap">
+
+		<% if member_signed_in? %> 
+
+				<div class="qa_answer_form">
+					<%= form_for ([@event_question, @event_answer]), :url => { :controller => :event_answers, :action => :create }  do |f| %>
+
+						<%= f.hidden_field :member_id, :value => current_member.id %> 
+
+						<%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！（80文字以内）" %>
+
+							<input type="submit" name="commit" value="回答する！" data-disable-with="回答する！" class="submit_btn">
+
+						<div class="reset"></div>
+
+					<% end %>
+			 	 </div>		
+
+		<% else %>
+			  <%= link_to "新規登録", new_member_registration_path, class: 'post' %>
+		<% end %>
+
+	</div>
+
+
+		 	 <% @event_question.event_answers.each do |event_answer| %>
+									
+					<%= event_answer.answer %>
+
+
+		 	 <% end %>
+	
+
+
+  </div>
+</div>
