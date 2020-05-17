@@ -1,6 +1,8 @@
 class EventQuestionsController < ApplicationController
 
 	before_action :set_event_question
+	before_action :ensure_correct_member, {only: [:edit, :update]}
+
 
 	def index 
 		@event_question = @event.event_questions.build  
@@ -44,13 +46,20 @@ class EventQuestionsController < ApplicationController
 
 	end	
 
+	def delete
+	    @event_question = EventQuestion.find_by(id: params[:id])
+   		@event_question.destroy		
+
+		redirect_to("/event_questions")
+	end	
+
 	def event_questions
 		@event_questions = EventQuestion.all.order(created_at: "DESC")
 		@events = Event.all
 
 		# パンくず
 		@b1_name = "質問一覧"
-		@b1_url = "/event_questions"		
+		@b1_url = "/event_questions"
 	end
 
 
@@ -59,6 +68,17 @@ class EventQuestionsController < ApplicationController
 		@event_questions = EventQuestion.all.order(created_at: "DESC")
 		@members = Member.all
     end
+
+	def ensure_correct_user
+		@event_question = EventQuestion.find_by(id: params[:id])
+
+	   		if current_member.id == 1
+
+		   	else
+		      flash[:notice] = "権限がありません"
+		      redirect_to "/event_questions"
+		    end
+	end	
 
 
     private

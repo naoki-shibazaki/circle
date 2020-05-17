@@ -28,25 +28,37 @@
 
 		<% if member_signed_in? %> 
 
-				<div class="qa_answer_form event_qa_answer_form">
-					<%= form_for ([@event_question, @event_answer]), :url => { :controller => :event_answers, :action => :create }  do |f| %>
+			<% if current_member.id == 1 %>
+				<div class="post_delete">
+				    <%= link_to("/#{@event.ruby}/qa/#{@event_question.id}", method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>質問を削除する									    
+				    <% end %>
+				</div>
+			<% end %>
 
-						<%= f.hidden_field :member_id, :value => current_member.id %> 
 
-						<%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！" %>
+			<div class="qa_answer_form event_qa_answer_form">
+				<%= form_for ([@event_question, @event_answer]), :url => { :controller => :event_answers, :action => :create }  do |f| %>
 
-							<input type="submit" name="commit" value="回答する！" data-disable-with="回答する！" class="submit_btn">
+					<%= f.hidden_field :member_id, :value => current_member.id %> 
 
-						<div class="reset"></div>
+					<%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！" %>
 
-					<% end %>
-			 	 </div>		
+						<input type="submit" name="commit" value="回答する！" data-disable-with="回答する！" class="submit_btn">
+
+					<div class="reset"></div>
+
+				<% end %>
+		 	 </div>	
+
 
 		<% else %>
 			  <%= link_to "この質問に答える！", new_member_registration_path, class: 'member_add_btn' %>
+
 		<% end %>
 
 	</div>
+
+
 
 
 
