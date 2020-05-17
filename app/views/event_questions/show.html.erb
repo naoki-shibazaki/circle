@@ -30,7 +30,7 @@
 
 			<% if current_member.id == 1 %>
 				<div class="post_delete">
-				    <%= link_to("/#{@event.ruby}/qa/#{@event_question.id}", method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>質問を削除する									    
+				    <%= link_to("/#{@event.ruby}/qa/#{@event_question.id}", method: :delete, data: {confirm: "質問を削除しますか？"}) do %>質問を削除する									    
 				    <% end %>
 				</div>
 			<% end %>
@@ -99,8 +99,15 @@
 
 							<%= raw Rinku.auto_link(simple_format event_answer.answer) %>
 
-						</div>
+							<% if current_member.id == 1 %>
+								<div class="post_delete">
+								    <%= link_to("/#{@event.ruby}/qa/#{@event_question.id}/#{event_answer.id}", method: :delete, data: {confirm: "回答を削除しますか？"}) do %>回答を削除する									    
+								    <% end %>
+								</div>
+							<% end %>
 
+
+						</div>
 
 				 	<% end %>
 

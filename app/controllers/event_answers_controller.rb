@@ -33,6 +33,16 @@ class EventAnswersController < ApplicationController
 
 	end	
 
+	def delete
+		@event_answer = EventAnswer.find_by(id: params[:id])
+	    @event_question = EventQuestion.find_by(id: @event_answer.event_question_id)
+
+   		@event_answer.destroy		
+
+		redirect_to("/event_questions")
+	end	
+
+
     def set_event_answer
     	@event = Event.find_by(ruby: params[:ruby])
     	@event_question = EventQuestion.find_by(id: params[:id])	

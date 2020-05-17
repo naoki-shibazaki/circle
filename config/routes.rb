@@ -66,7 +66,8 @@ Rails.application.routes.draw do
 	get ':ruby/qa/:id' , to: 'event_questions#show'
 	post ':ruby/qa/:id' , to: 'event_answers#create'
 
-	delete ':ruby/qa/:id' , to: 'event_questions#delete'	
+	delete ':ruby/qa/:id' , to: 'event_questions#delete'
+	delete ':ruby/qa/:event_question_id/:id' , to: 'event_answers#delete'
 
 	get ':ruby/:kana' , to: 'users#event_prefecture'
 	# get ':ruby/:kana/group/:group' , to: 'users#group'
