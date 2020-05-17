@@ -5,5 +5,7 @@ class Member < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 	# has_many :event_answers
- 
+
+	mount_uploader :image_profile, ImageUploader
+
 end

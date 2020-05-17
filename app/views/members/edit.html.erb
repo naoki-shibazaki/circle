@@ -1,0 +1,55 @@
+<div class="main users-edit">
+  <div class="container">
+    <div class="form users-form">
+
+      <div class="form-body cont-body">
+      	<% if @member.errors.any? %>
+	          <div class="form-error">
+              以下の項目でエラーが発生いたしました。<br>
+              ※原因不明の場合は空欄でご登録ください
+	          </div>
+		<% end %>
+ 
+        <% @member.errors.full_messages.each do |message| %>
+            <div class="form-error_message">
+              ・<%= message %>
+            </div>
+        <% end %>
+
+      <%= form_for @member do |f| %>
+
+	     <div class="p_t">アカウントの編集</div>
+
+
+	    <div class="img_field_profile_wrap">
+
+			<p>アイコン画像</p>
+
+			<div id="img_field_profile" onClick="$('#file_profile').click()" >
+			    <% if @member.image_profile.present? %>
+			      <%= image_tag(@member.image_profile.url) %>
+			    <% else %>
+			      <i class="fa fa-image"></i>
+			    <% end %>
+			</div>
+			<%= f.file_field :image_profile, class: "image", style: "display:none;", id: "file_profile"%>
+
+			<div class="file_size_p">※10MB以下のjpgかpngのみ対応</div>
+
+		</div>
+
+		<div class="img_field_profile_space"></div>
+
+	    <p>ニックネーム</p>
+	    <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
+
+
+        <%= f.submit "更新する" %>
+
+      <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>

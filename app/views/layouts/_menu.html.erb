@@ -7,7 +7,16 @@
           <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
 
 
-          <% if admin_user_signed_in?  %>
+          <% if member_signed_in?  %>
+
+            <ul>
+                <li><%= link_to 'マイページ', member_path(current_member)%></li>
+                <li><%= link_to 'アカウント編集', edit_member_path(current_member)%></li>
+            </ul>
+
+
+          <% elsif admin_user_signed_in?  %>
+
             <ul>
                 <li><%= link_to 'マイページ', user_path(current_admin_user)%></li>
                 <li><%= link_to 'プロフィール編集', edit_user_path(current_admin_user)%></li>
@@ -19,9 +28,8 @@
           <% else %>
 
             <div class="menu_btn"><%= link_to 'サークル登録', new_admin_user_registration_path %></div>
-
             <div class="menu_btn"><%= link_to 'ログイン', new_admin_user_session_path %></div>
-
+            
           <% end %>
 
 
@@ -32,7 +40,14 @@
             <li><%= link_to 'プライバシーポリシー', '/privacypolicy' %></li>
           </ul>
 
-          <% if admin_user_signed_in?  %>
+
+          <% if member_signed_in?  %> 
+            <ul>
+                <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
+
+                <li><%= link_to 'ログイン情報の変更', edit_member_registration_path %></li>
+            </ul>
+          <% elsif admin_user_signed_in?  %>
             <ul>
                 <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
 

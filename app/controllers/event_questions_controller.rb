@@ -39,6 +39,7 @@ class EventQuestionsController < ApplicationController
     def set_event_question
     	@event = Event.find_by(ruby: params[:ruby])
 		@event_questions = EventQuestion.all.order(created_at: "DESC")
+		@members = Member.all
     end
 
 

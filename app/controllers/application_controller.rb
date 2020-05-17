@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
 	  		edit_user_path(current_admin_user)
 
 	  	else member_signed_in?
-	  		"/event_questions"
+	  		edit_member_path(current_member)
 	  	end	
 
 	end

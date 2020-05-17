@@ -22,22 +22,14 @@
 			</div>
 		</div>
 
-<% if member_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-  <!-- ユーザーがログインしていた時の処理 -->
-  <h2> 現在ログイン中しています </h2> <!-- ここを追加します -->
-  <h4> メールアドレス： <%= current_member.email %> </h4>
-  <%= link_to "ログアウト", destroy_member_session_path, method: :delete %> <!-- ログアウトをする -->
-<% else %>
-  <!-- ユーザーがログインしていなかった時の処理 -->
-  <h2> 現在ログインしていません </h2>
-  <%= link_to "ログイン", new_member_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
-  <%= link_to "新規登録", new_member_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
-<% end %>
 
 
 	<div class="qa_wrap">
 			
 			<div class="qa_answer_form">
+
+				<p>登録不要！匿名で<%= @event.name %>に関する質問ができます！</p>
+
 				<%= form_for ([@event, @event_question]), :url => { :controller => :event_questions, :action => :index }  do |f| %>
 
 					<%= f.text_area :question, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 

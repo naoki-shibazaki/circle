@@ -52,7 +52,33 @@
 
       <ul class="header-menus_sp">
         <!-- ログイン時の処理 -->
-        <% if admin_user_signed_in?  %>
+        <% if member_signed_in?  %>
+          <li>
+            <%= link_to(member_path(current_member)) do %>
+                <i class="fa fa-user"></i>              
+                <div class="link_txt">マイページ</div>
+            <% end %>
+          </li> 
+          <li>
+            <%= link_to("/event_questions") do %>
+              <i class="fa fa-pencil "></i> 
+              <div class="link_txt">質問コーナー</div>
+            <% end %>
+          </li> 
+          <li>
+            <%= link_to(users_path) do %>
+              <i class="fa fa-search "></i> 
+              <div class="link_txt">サークル検索</div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(blogs_path) do %>
+               <i class="fa fa-book "></i> 
+               <div class="link_txt">活動ブログ</div>
+            <% end %>
+          </li>
+
+        <% elsif admin_user_signed_in?  %>
           <li>
             <%= link_to(user_path(current_admin_user)) do %>
                 <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
@@ -82,9 +108,6 @@
             <% end %>
           </li>
 
-          <%= render "/layouts/menu" %>
-
-
         
         <!-- ログインなし -->
         <% else %>
@@ -113,11 +136,11 @@
             <% end %>
           </li>
 
+        <% end %>
 
           <%= render "/layouts/menu" %>
-
-        <% end %>
-      </ul>
+  
+    </ul>
 
 
     </header>

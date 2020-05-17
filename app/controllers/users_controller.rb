@@ -88,7 +88,7 @@ helper_method :link_count
 				@user.save
 			end
 
-			flash[:share] = 'プロフィール更新完了！'
+			flash[:notice] = 'プロフィール更新完了！'
 			redirect_to user_path
 		else
 			render "/users/edit"
