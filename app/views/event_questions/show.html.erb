@@ -51,10 +51,12 @@
 	</div>
 
 		
-		<% if @event_question.event_answers.present? %>
 
-		 	 <% @event_question.event_answers.each do |event_answer| %>
-					
+
+	 	 <% @event_question.event_answers.each do |event_answer| %>
+
+			<% if event_answer.present? %>
+
 				<div class="event_anser_card">
 
 				    <div class="user-content">
@@ -71,8 +73,7 @@
 					<%= raw Rinku.auto_link(simple_format event_answer.answer) %>
 				</div>
 
-
-		 	 <% end %>
+	 	 	<% end %>
 
 		<% end %>
 	

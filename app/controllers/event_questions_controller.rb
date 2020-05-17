@@ -4,6 +4,7 @@ class EventQuestionsController < ApplicationController
 
 	def index 
 		@event_question = @event.event_questions.build  
+		@event_questions = EventQuestion.where(event_id: @event.id).order(created_at: "DESC")
 	end	
 
 	def create
@@ -30,13 +31,14 @@ class EventQuestionsController < ApplicationController
 	end	
 
 	def event_questions
-
+		@event_questions = EventQuestion.all.order(created_at: "DESC")
+		@events = Event.all
 	end
 
 
     def set_event_question
     	@event = Event.find_by(ruby: params[:ruby])
-    	@event_questions = EventQuestion.all.order(created_at: "DESC")
+		@event_questions = EventQuestion.all.order(created_at: "DESC")
     end
 
 
