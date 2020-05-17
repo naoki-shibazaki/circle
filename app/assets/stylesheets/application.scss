@@ -3815,6 +3815,34 @@ max-width: 100%;
     margin-bottom: 10px;
 }
 
+
+.member_add_btn{
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 7px;
+    background-color: #e09a1b;
+    margin: 22px auto 0;
+    text-align: center;
+    display: block;
+    width: 60%;
+    font-weight: bold; 
+}
+
+.qa_wrap a:hover,
+.qa_wrap a:focus {
+    color: #fff;
+}
+
+.qa_answer_form p{
+    color: #545454; 
+}
+
+
+
+
+
+
+
 // --------------------------------------
 // ▼PC
 @media only screen and (min-width:768px) {

@@ -4,6 +4,10 @@
   <%= render "/layouts/breadcrumb" %>
 
     <h1 class="form-heading">メンバー登録</h1>
+    <p>
+      30秒で無料登録できます！<br>
+      メンバー登録することで、質問に答えることができます！
+    </p>
     <div class="form users-form">
       <div class="form-body cont-body">
 
@@ -12,7 +16,6 @@
 
           <div class="field">
             <%= f.label :メールアドレス %><br />
-            <span class="cautions">必ず受信できるアドレスをご登録ください</span>
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
           </div>
 

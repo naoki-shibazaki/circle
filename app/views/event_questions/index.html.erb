@@ -13,7 +13,7 @@
 
 <div class="main users-index">
   <div class="container bg_white">
-  	    <!-- <%= render "/layouts/breadcrumb" %> -->
+  	   <%= render "/layouts/breadcrumb" %>
 
 		<div class="e_header_wrap">
 			<img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
@@ -33,6 +33,7 @@
 				<%= form_for ([@event, @event_question]), :url => { :controller => :event_questions, :action => :index }  do |f| %>
 
 					<%= f.text_area :question, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 
+					<p>※絵文字や顔文字は使用できません</p>
 	
 						<input type="submit" name="commit" value="質問する！" data-disable-with="質問する！" class="submit_btn">
 

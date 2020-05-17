@@ -5,6 +5,12 @@ class EventQuestionsController < ApplicationController
 	def index 
 		@event_question = @event.event_questions.build  
 		@event_questions = EventQuestion.where(event_id: @event.id).order(created_at: "DESC")
+
+		# パンくず
+		@b1_name = @event.name
+		@b1_url = "/#{@event.ruby}"
+		@b2_name = "質問コーナー"
+		@b2_url = "/#{@event.ruby}/qa"	
 	end	
 
 	def create
@@ -20,6 +26,14 @@ class EventQuestionsController < ApplicationController
 	def show
 		@event_question = EventQuestion.find_by(id: params[:id])
 		@event_answer = @event_question.event_answers.build
+
+		# パンくず
+		@b1_name = @event.name
+		@b1_url = "/#{@event.ruby}"
+		@b2_name = "質問コーナー"
+		@b2_url = "/#{@event.ruby}/qa"	
+		@b3_name = @event_question.question
+		@b3_url = "/#{@event.ruby}/qa/#{@event_question.id}"	
 	end	
 
 	def new
@@ -33,6 +47,10 @@ class EventQuestionsController < ApplicationController
 	def event_questions
 		@event_questions = EventQuestion.all.order(created_at: "DESC")
 		@events = Event.all
+
+		# パンくず
+		@b1_name = "質問一覧"
+		@b1_url = "/event_questions"		
 	end
 
 

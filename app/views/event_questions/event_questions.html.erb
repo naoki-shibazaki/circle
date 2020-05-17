@@ -2,23 +2,9 @@
 
 <div class="main users-index">
   <div class="container bg_white">
-  	    <!-- <%= render "/layouts/breadcrumb" %> -->
+  	   <%= render "/layouts/breadcrumb" %>
 
-				<h1 class="e_header_title">質問コーナー</h1>
-
-<% if member_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-  <!-- ユーザーがログインしていた時の処理 -->
-  <h2> 現在ログイン中 </h2> <!-- ここを追加します -->
-  <h4> メールアドレス： <%= current_member.email %> </h4>
-  <%= link_to "ログアウト", destroy_member_session_path, method: :delete %> <!-- ログアウトをする -->
-<% else %>
-  <!-- ユーザーがログインしていなかった時の処理 -->
-  <h2> 現在ログインしていません </h2>
-  <%= link_to "ログイン", new_member_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
-  <%= link_to "新規登録", new_member_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
-<% end %>
-
-
+	<h1 class="e_header_title">質問コーナー</h1>
 
 	<div class="qa_card_warp">
 
