@@ -73,29 +73,29 @@
 
 						<div class="event_anser_card">
 
-						    <div class="user-content">
+
+							<%= link_to "/members/#{member.id}" do %>
+							    <div class="user-content">
+									<% if member.image_profile.present? %>
+							        	<%= image_tag member.image_profile.url , class:'image_icon' %>
+									<% else %>
+										<img class="image_icon" src="/images/default.png">
+							        <% end %>
+								
+							      <div class="list_wrapper contact_name_wrap">
+							        <div class="list_01">
+										<% if member.nickname.present? %>
+								        	<h2 class="user_name"><%= member.nickname %></h2>
+										<% else %>
+											<h2 class="user_name">ニックネームなし</h2>
+								        <% end %>
+							        </div>
+							      </div>
+
+							    </div> 
+							<% end %>
 
 
-								<% if member.image_profile.present? %>
-						        	<%= image_tag member.image_profile.url , class:'image_icon' %>
-								<% else %>
-									<img class="image_icon" src="/images/default.png">
-						        <% end %>
-							
-						      <div class="list_wrapper contact_name_wrap">
-						        <div class="list_01">
-
-								<% if member.nickname.present? %>
-						        	<h2 class="user_name"><%= member.nickname %></h2>
-								<% else %>
-									<h2 class="user_name">ニックネームなし</h2>
-						        <% end %>
-						        
-
-						        </div>
-
-						      </div>
-						    </div> 
 
 							<%= raw Rinku.auto_link(simple_format event_answer.answer) %>
 

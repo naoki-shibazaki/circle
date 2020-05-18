@@ -44,9 +44,7 @@
 
 	<div class="qa_wrap">
 			
-			<div class="qa_answer_form">
-
-				<p>登録不要！匿名で<%= @event.name %>に関する質問ができます！</p>
+			<div class="qa_answer_form event_qa_form">
 
 				<%= form_for ([@event, @event_question]), :url => { :controller => :event_questions, :action => :index }  do |f| %>
 
