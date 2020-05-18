@@ -3837,9 +3837,33 @@ max-width: 100%;
     color: #545454; 
 }
 
+.search_qa{
+    background-color: #fff;
+    padding: 18px 14px;
+    margin-bottom: 18px;  
+    margin: 0 auto 14px;
+}
 
+.search_qa .event_search {
+    width: 80%;
+    float: left;
+    height: 36px;
+    border: solid 1px #b4ced6;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    background-color: #ffffff;
+    color: #4a4a4a;
+    margin: 0;
+    border-right: 1px solid #cecece;
+    border-radius: 6px 0px 0px 6px; 
+    padding-left: 8px;       
+}
 
-
+.search_qa .search_icon{
+    height: 36px;
+    width: 20%;
+}
 
 
 

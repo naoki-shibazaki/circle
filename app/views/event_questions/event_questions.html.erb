@@ -19,14 +19,23 @@
 		<h1 class="e_header_title">質問コーナー</h1>
 
 
+	<div class="search_qa">	 
+
+			<%= search_form_for @search do |f| %>
+			  			
+			    <%= f.search_field :question_cont, placeholder: "質問を検索する（1単語のみ）", class: "event_search" %>
+
+				<div class="search_icon">
+				  	<%= button_tag type: 'submit' do %>
+				  		<i class="fa fa-search "></i>
+				  	<% end %>
+			  	</div>
+			
+			<% end %>
+
+	</div>
 
 
-	<%= search_form_for @search do |f| %>
-	  <div class="form-group">
-	    <%= f.search_field :question_cont, class: "form-control" %>
-	  </div>
-	  <div class="actions"><%= f.submit "Search" %></div>
-	<% end %>
 
 	<% if @search_questions.any? %>
 		<div class="qa_card_warp">

@@ -23,14 +23,22 @@
 		</div>
 
 
+	<div class="search_qa">	 
 
+			<%= search_form_for @search, :url => { :controller => :event_questions, :action => :index }  do |f| %>
+			  			
+			    <%= f.search_field :question_cont, placeholder: "質問を検索する（1単語のみ）", class: "event_search" %>
 
-	<%= search_form_for @search, :url => { :controller => :event_questions, :action => :index }  do |f| %>
-	  <div class="form-group">
-	    <%= f.search_field :question_cont, class: "form-control" %>
-	  </div>
-	  <div class="actions"><%= f.submit "Search" %></div>
-	<% end %>
+				<div class="search_icon">
+				  	<%= button_tag type: 'submit' do %>
+				  		<i class="fa fa-search "></i>
+				  	<% end %>
+			  	</div>
+			
+			<% end %>
+
+	</div>
+
 
 
 
