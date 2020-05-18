@@ -3902,7 +3902,8 @@ max-width: 100%;
 
 
 .member_profile_edit #img_field_profile{
-        top: 130px;
+    position: inherit;
+    margin-bottom: 12px;
 }
 
 .member_profile_edit .img_field_profile_space{
