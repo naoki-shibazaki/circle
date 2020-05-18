@@ -3865,6 +3865,51 @@ max-width: 100%;
     width: 20%;
 }
 
+.search_qa .search_icon button{
+    border: none;
+    color: #fff;
+    background: #61cec7;
+}
+
+.event_qa_profile .user_name{
+    font-size: 14px;
+}
+
+
+
+.member_edit{
+    width: 160px;
+    padding: 0px 10px;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #9c9c9c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.member_edit a{
+      color: #fff;
+}
+
+.member_edit_wrap{
+    display: block;
+    float: right;
+}
+
+
+.member_profile_edit #img_field_profile{
+        top: 130px;
+}
+
+.member_profile_edit .img_field_profile_space{
+  padding-top: 120px;
+}
+
+
 
 
 // --------------------------------------

@@ -8,7 +8,7 @@ class EventQuestionsController < ApplicationController
 		@event_question = @event.event_questions.build  
 		@event_questions = EventQuestion.where(event_id: @event.id).order(created_at: "DESC")
 
-		@search = EventQuestion.ransack(params[:q])
+		@search = EventQuestion.where(event_id: @event.id).order(created_at: "DESC").ransack(params[:q])
 		@search_questions = @search.result
 
 		# パンくず
@@ -60,9 +60,9 @@ class EventQuestionsController < ApplicationController
 		@event_questions = EventQuestion.all.order(created_at: "DESC")
 		@events = Event.all
 
-		@search = EventQuestion.ransack(params[:q])
+		@search = EventQuestion.order(created_at: "DESC").ransack(params[:q])
 		@search_questions = @search.result
-		
+
 
 		# パンくず
 		@b1_name = "質問一覧"

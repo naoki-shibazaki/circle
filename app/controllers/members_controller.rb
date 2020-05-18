@@ -4,7 +4,7 @@ class MembersController < ApplicationController
 	before_action :set_member
 
 	def index
-
+        @member = Member.find(params[:id])
 	end	
 
 	def create
@@ -28,6 +28,11 @@ class MembersController < ApplicationController
     end
 
     def show
+        @member = Member.find(params[:id])
+        @event_answers = EventAnswer.where(member_id: @member.id)
+        @events = Event.all
+
+        @event_questions = EventQuestion.all
 
     end     
 

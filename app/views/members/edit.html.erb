@@ -20,10 +20,10 @@
 
 	     <div class="p_t">アカウントの編集</div>
 
+	     <div class="member_profile_edit">
 
-	    <div class="img_field_profile_wrap">
-
-			<p>アイコン画像</p>
+			<p>アイコン画像<br>
+			※10MB以下のjpgかpngのみ対応</p>
 
 			<div id="img_field_profile" onClick="$('#file_profile').click()" >
 			    <% if @member.image_profile.present? %>
@@ -34,17 +34,16 @@
 			</div>
 			<%= f.file_field :image_profile, class: "image", style: "display:none;", id: "file_profile"%>
 
-			<div class="file_size_p">※10MB以下のjpgかpngのみ対応</div>
 
-		</div>
+			<div class="img_field_profile_space"></div>
 
-		<div class="img_field_profile_space"></div>
-
-	    <p>ニックネーム</p>
-	    <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
+		    <p>ニックネーム</p>
+		    <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
 
 
-        <%= f.submit "更新する" %>
+	        <%= f.submit "更新する" %>
+
+        </div>
 
       <% end %>
 
