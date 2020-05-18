@@ -11,7 +11,7 @@
 
 			<% set_meta_tags title: "#{@blog.title}｜#{@user.name}｜サークルブック",
 							 description: @blog.content, 
-							og: { image: image_url('/images/default.png') },
+							og: { image: @user.pic_profile.url },
 							twitter: { card: 'summary'}  
 			%>
 
