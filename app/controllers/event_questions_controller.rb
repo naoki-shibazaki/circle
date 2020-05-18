@@ -8,6 +8,9 @@ class EventQuestionsController < ApplicationController
 		@event_question = @event.event_questions.build  
 		@event_questions = EventQuestion.where(event_id: @event.id).order(created_at: "DESC")
 
+		@search = EventQuestion.ransack(params[:q])
+		@search_questions = @search.result
+
 		# パンくず
 		@b1_name = @event.name
 		@b1_url = "/#{@event.ruby}"
@@ -56,6 +59,10 @@ class EventQuestionsController < ApplicationController
 	def event_questions
 		@event_questions = EventQuestion.all.order(created_at: "DESC")
 		@events = Event.all
+
+		@search = EventQuestion.ransack(params[:q])
+		@search_questions = @search.result
+		
 
 		# パンくず
 		@b1_name = "質問一覧"

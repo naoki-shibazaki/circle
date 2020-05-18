@@ -1,40 +1,90 @@
-<% set_meta_tags title: "質問コーナ" %>
+<% set_meta_tags title: "質問コーナー",
+
+				og: { 
+					title: "登録不要！匿名で質問ができます！",
+					description: "", 
+					image: image_url('/images/qa_top.jpg')
+				},
+
+				twitter: { card: 'summary_large_image'} 
+%>
+
+
 
 <div class="main users-index">
   <div class="container bg_white">
   	   <%= render "/layouts/breadcrumb" %>
 
-	<h1 class="e_header_title">質問コーナー</h1>
 
-	<div class="qa_card_warp">
+		<h1 class="e_header_title">質問コーナー</h1>
 
-		<ul>
-			<% @event_questions.each do |event_question| %>
-			
-					<li class="ribbon-wrapper">
 
-						<% @events.each do |event| %>
-							<% if event_question.event_id == event.id %>
 
-								<%= link_to "/#{event.ruby}/qa/#{event_question.id}" do %>
 
-									<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= event_question.question %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= event_question.question %>">
-									<div class="qa_judge"></div>
+	<%= search_form_for @search do |f| %>
+	  <div class="form-group">
+	    <%= f.search_field :question_cont, class: "form-control" %>
+	  </div>
+	  <div class="actions"><%= f.submit "Search" %></div>
+	<% end %>
+
+	<% if @search_questions.any? %>
+		<div class="qa_card_warp">
+
+			<ul>
+				<% @search_questions.each do |search_question| %>
+				
+						<li class="ribbon-wrapper">
+
+							<% @events.each do |event| %>
+								<% if search_question.event_id == event.id %>
+
+									<%= link_to "/#{event.ruby}/qa/#{search_question.id}" do %>
+
+										<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= search_question.question %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= search_question.question %>">
+										<div class="qa_judge"></div>
+
+									<% end %>
 
 								<% end %>
-
 							<% end %>
-						<% end %>
 
-					</li>
+						</li>
 
-			<% end %>
-		</ul>
+				<% end %>
+			</ul>
 
-	</div>
+		</div>
+	<% end %>
 
+	<% if @search_questions.nil? %>
 
+		<div class="qa_card_warp">
+			<ul>
+				<% @event_questions.each do |event_question| %>
+				
+						<li class="ribbon-wrapper">
 
+							<% @events.each do |event| %>
+								<% if event_question.event_id == event.id %>
+
+									<%= link_to "/#{event.ruby}/qa/#{event_question.id}" do %>
+
+										<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= event_question.question %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= event_question.question %>">
+										<div class="qa_judge"></div>
+
+									<% end %>
+
+								<% end %>
+							<% end %>
+
+						</li>
+
+				<% end %>
+			</ul>
+		</div>
+
+	<% end %>
 	
 
   </div>
