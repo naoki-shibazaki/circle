@@ -1,9 +1,9 @@
-<% set_meta_tags title: "質問コーナー",
+<% set_meta_tags title: "30秒以内に「#{@difference.dummy}」を見つけられるか！？",
 
 				og: { 
-					title: "質問コーナーです！",
-					description: "", 
-					image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:#{@difference.combine},y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
+					title: "30秒以内に「#{@difference.dummy}」を見つけられたらRT",
+					description: "30秒以内に「#{@difference.dummy}」を見つけられたらRT", 
+					image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:#{@difference.combine},co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png"
 				},
 
 				twitter: { card: 'summary_large_image'} 
@@ -15,6 +15,16 @@
 
     <%= render "/layouts/breadcrumb" %>
 
+		<div class="difference_top">
+	    	<div class="p_t">間違い探しメーカー</div>
+
+		<div class="difference_txt">
+			
+		</div>
+			30秒以内に「<%= @difference.dummy %>」を見つけられるか！？
+		</div>
+
+
 	<div class="difference_image">
 		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:<%= @difference.combine %>,co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png" alt="">	
 	</div>  	
@@ -22,10 +32,17 @@
 		<div class="users-index-item">
 
 
-		<%= @difference.letter %><br>
-		<%= @difference.dummy %><br>
-		<%= @difference.order %><br>
-		<%= @difference.combine %><br>			
+			<div class="analytics_tw">
+			    <%= link_to("https://twitter.com/share?url=#{request.url}&text=30秒以内に「#{@difference.dummy}」を見つけられたらRT%20%23サークルブック%0a", target: '_blank') do %>
+			      <i class="fa fa-twitter"></i> Twitterでシェアする！
+			    <% end %>
+		    </div>
+
+			<div class="analytics_tw">
+			    <%= link_to("http://line.me/R/msg/text/?#{request.url}", target: '_blank') do %>
+			      <i class="fa fa-twitter"></i> LINEでシェアする！
+			    <% end %>
+		    </div>		    
 
 
 		</div>
