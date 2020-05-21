@@ -18,37 +18,52 @@
 		<div class="difference_top">
 	    	<div class="p_t">間違い探しメーカー</div>
 
-		<div class="difference_txt">
+			<div class="difference_txt">
+				▼30秒以内に「<%= @difference.dummy %>」を見つけられるか！？
+			</div>
 			
-		</div>
-			30秒以内に「<%= @difference.dummy %>」を見つけられるか！？
 		</div>
 
 
 	<div class="difference_image">
-		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:<%= @difference.combine %>,co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png" alt="">	
+		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:<%= @difference.combine %>,co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png" alt="30秒以内に「#{@difference.dummy}」を見つけられるか！？">	
 	</div>  	
 
 		<div class="users-index-item">
 
 
-			<div class="analytics_tw">
-			    <%= link_to("https://twitter.com/share?url=#{request.url}&text=30秒以内に「#{@difference.dummy}」を見つけられたらRT%20%23サークルブック%0a", target: '_blank') do %>
-			      <i class="fa fa-twitter"></i> Twitterでシェアする！
-			    <% end %>
-		    </div>
+			<div class="post_cta profile_cta difference_cta">
 
-			<div class="analytics_tw">
-			    <%= link_to("http://line.me/R/msg/text/?#{request.url}", target: '_blank') do %>
-			      <i class="fa fa-twitter"></i> LINEでシェアする！
-			    <% end %>
-		    </div>		    
+					<div class="blob_cta_2">
+						<div class="contact-button tw">
+							<%= link_to("https://twitter.com/share?url=#{request.url}&text=30秒以内に「#{@difference.dummy}」を見つけられたらRT%20%23サークルブック%0a", target: '_blank') do %>
+						      <i class="fa fa-twitter"></i> ツイートする
+						    <% end %>
+						</div>
+						<div class="contact-button line">
+						    <%= link_to("http://line.me/R/msg/text/?#{request.url}", target: '_blank') do %>
+						      LINEでシェアする
+						    <% end %>
+						</div>
+
+					</div>
+
+					    <%= link_to(new_difference_path) do %>
+							<div class="contact-button qa_btn qa">
+								間違い探しを作成する！
+							</div>
+					    <% end %>
+
+			</div>
+
+
+
+			<%= render "/layouts/ad_square" %>
+
 
 
 		</div>
 
-	<%= render "/layouts/ad_square" %>
-	<div class="ad_space"></div>
 
   </div>
 </div>

@@ -202,10 +202,10 @@
       document.querySelector('.copyBtn').addEventListener('click', copyText, false);
   </script>
 
-  <!-- 全角、半角変換 -->
+  <!-- 全角 => 半角　変換 -->
   <script>
     $(function(){
-        $("#change_tel , #change_address, #change_time, #change_price, #change_regular_holiday, #change_parking, #change_scale").change(function(){
+        $("#change_tel , #change_address, #change_time, #change_price, #change_regular_holiday, #change_parking, #change_scale, #change_order").change(function(){
             var str = $(this).val();
             str = str.replace( /[Ａ-Ｚａ-ｚ０-９－！”＃＄％＆’（）＝＜＞，．？＿［］｛｝＠＾￥：]/g, function(s) {
                 return String.fromCharCode(s.charCodeAt(0) - 65248);
@@ -214,6 +214,21 @@
         }).change();
     });
   </script>
+
+  <!-- 半角 => 全角　変換 -->
+  <script>
+    $(function(){
+        $("#change_letter , #change_dummy").change(function(){
+            var str = $(this).val();
+            str = str.replace(  /[A-Za-z0-9-!"#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
+                return String.fromCharCode(s.charCodeAt(0) + 65248);
+            });
+            $(this).val(str);
+        }).change();
+    });
+  </script>
+
+
 
   <!-- 文字変換 -->
   <script>

@@ -1,4 +1,13 @@
+<% set_meta_tags title: "間違い探しメーカー",
 
+				og: { 
+					title: "間違い探しメーカー",
+					description: "", 
+					image: ""
+				},
+
+				twitter: { card: 'summary_large_image'} 
+%>
 
 
 <div class="main users-index">
@@ -6,13 +15,45 @@
 
     <%= render "/layouts/breadcrumb" %>
 
-		<div class="users-index-item">
+		<div class="difference_top">
+	    	<h1 class="p_t">間違い探しメーカー</h1>
 
+			<div class="post_cta profile_cta difference_cta">
 
-	<%= link_to "間違い探しを作る！", new_difference_path %>
+			    <%= link_to(new_difference_path) do %>
+					<div class="contact-button qa_btn qa">
+						間違い探しを作成する！
+					</div>
+			    <% end %>
 
+			</div>
 
 		</div>
+
+
+
+	<div class="qa_card_warp">
+
+
+		<ul>
+			<% if @differences.any? %>
+				<% @differences.each do |difference| %>
+					<li class="ribbon-wrapper">
+
+						<%= link_to "/contents/differences/#{difference.id}" do %>
+	 							<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:<%= difference.combine %>,co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png" alt="30秒以内に「#{difference.dummy}」を見つけられるか！？">	
+
+	 						<div class="qa_judge">
+	 						</div>
+						<% end %>	
+					</li>
+				<% end %>
+			<% end %>
+
+		</ul>
+
+	</div>		
+
 
 	<%= render "/layouts/ad_square" %>
 	<div class="ad_space"></div>

@@ -38,7 +38,7 @@ before_action :set_difference
 			flash[:share] = '間違い探しを作成しました！'
 			redirect_to difference_path(@difference.id)
 		else
-			render "/contents/differences/#{@difference.id}/edit"
+			render "/differences/edit"
 		end		  	
 	  end 
 
@@ -47,6 +47,7 @@ before_action :set_difference
 	  end  
 
 	  def edit
+	  	@difference = Difference.find(params[:id])	  	
 	  end 
 
 	  def show
@@ -63,7 +64,7 @@ before_action :set_difference
 
 
     def set_difference
-    	@differences = Difference.all
+    	@differences = Difference.all.order(created_at: "DESC")
 
     end
 

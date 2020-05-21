@@ -71,6 +71,10 @@ ja:
         image_03: "『画像３』"
         image_04: "『画像４』"
         content: "『本文』"
+      difference:
+        letter: "『文字』"
+        dummy: "『偽文字』"
+        order: "『配置場所』"      
     models:
       user: "ユーザ"
   devise:
