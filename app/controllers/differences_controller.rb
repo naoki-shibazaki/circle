@@ -68,7 +68,7 @@ before_action :set_difference
 
 
     def set_difference
-    	@differences = Difference.all.order(created_at: "DESC")
+    	@differences = Difference.all.order(created_at: "DESC").page(params[:page])
 
 		# パンくず    	
 		@b1_name = "コンテンツ"

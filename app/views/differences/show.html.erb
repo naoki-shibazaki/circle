@@ -65,7 +65,7 @@
 
 			<div class="qa_card_warp">
 				<ul>
-					<% @differences.each do |difference| %>
+					<% @differences.shuffle.first(5).each do |difference| %>
 						<% if difference.id != @difference.id %>
 							<li class="ribbon-wrapper">
 
