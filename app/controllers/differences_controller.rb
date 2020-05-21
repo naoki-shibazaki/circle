@@ -52,6 +52,10 @@ before_action :set_difference
 
 	  def show
 	  	@difference = Difference.find(params[:id])
+
+		# パンくず    	
+		@b3_name = "「#{@difference.dummy}」を見つけられるか！？"
+		@b3_url = ""	  	
 	  end 
 
  
@@ -66,6 +70,11 @@ before_action :set_difference
     def set_difference
     	@differences = Difference.all.order(created_at: "DESC")
 
+		# パンくず    	
+		@b1_name = "コンテンツ"
+		@b1_url = "/contents"
+		@b2_name = "間違い探しメーカー"
+		@b2_url = "/contents/differences"	
     end
 
     private

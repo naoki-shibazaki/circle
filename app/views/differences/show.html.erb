@@ -57,12 +57,29 @@
 			</div>
 
 
-
 			<%= render "/layouts/ad_square" %>
 
-
-
 		</div>
+
+
+
+			<div class="qa_card_warp">
+				<ul>
+					<% @differences.each do |difference| %>
+						<% if difference.id != @difference.id %>
+							<li class="ribbon-wrapper">
+
+								<%= link_to "/contents/differences/#{difference.id}" do %>
+			 							<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:<%= difference.combine %>,co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png" alt="30秒以内に「#{difference.dummy}」を見つけられるか！？">	
+
+			 						<div class="qa_judge">
+			 						</div>
+								<% end %>	
+							</li>	
+						<% end %>
+					<% end %>
+				</ul>
+			</div>	
 
 
   </div>
