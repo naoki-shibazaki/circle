@@ -1,0 +1,41 @@
+<div class="main users-edit">
+  <div class="container">
+    <div class="form users-form">
+
+      <div class="form-body cont-body">
+      	<% if @difference.errors.any? %>
+	          <div class="form-error">
+              以下の項目でエラーが発生いたしました。<br>
+              ※原因不明の場合は空欄でご登録ください
+	          </div>
+		<% end %>
+ 
+        <% @difference.errors.full_messages.each do |message| %>
+            <div class="form-error_message">
+              ・<%= message %>
+            </div>
+        <% end %>
+
+      <%= form_for @difference do |f| %>
+
+	     <div class="p_t">間違い探しメーカー</div>
+	   
+	    <p>文字</p>
+	    <%= f.text_field :letter, class: 'form-control', placeholder: "田" %>
+
+	    <p>偽文字</p>
+	    <%= f.text_field :dummy, class: 'form-control', placeholder: "囲" %>
+
+	    <p>配置</p>
+	    <%= f.text_field :order, class: 'form-control' %>
+
+
+        <%= f.submit "更新する" %>
+
+      <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>

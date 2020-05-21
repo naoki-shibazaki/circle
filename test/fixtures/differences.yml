@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  letter: MyString
+  dummy: MyString
+  order: MyString
+  combine: MyText
+
+two:
+  letter: MyString
+  dummy: MyString
+  order: MyString
+  combine: MyText

@@ -1,0 +1,76 @@
+class DifferencesController < ApplicationController
+
+before_action :set_difference
+
+
+
+	  def index
+	  end 
+
+	  def new
+	  	@difference = Difference.new
+	  end   
+
+	  def create
+		@difference = Difference.new(difference_params)
+
+
+		# 計算
+			@order_first = @difference.order.to_i - 1
+			@order_second = 308 - @difference.order.to_i
+
+			@difference.combine = ""
+			(0...@order_first.to_i).each do
+			  @difference.combine << @difference.letter
+			end
+
+			@difference.combine = @difference.combine + @difference.dummy
+
+			(0...@order_second.to_i).each do
+			  @difference.combine << @difference.letter
+			end
+
+
+		@difference.save
+
+		if @difference.update(difference_params)
+			
+			flash[:share] = '間違い探しを作成しました！'
+			redirect_to difference_path(@difference.id)
+		else
+			render "/contents/differences/#{@difference.id}/edit"
+		end		  	
+	  end 
+
+
+	  def update
+	  end  
+
+	  def edit
+	  end 
+
+	  def show
+	  	@difference = Difference.find(params[:id])
+	  end 
+
+ 
+
+	  def destroy
+	  end   
+
+	  def contents
+	  end  
+
+
+    def set_difference
+    	@differences = Difference.all
+
+    end
+
+    private
+    def difference_params
+    	params.require(:difference).permit(:letter, :dummy, :order, :combine)
+    end
+
+
+end

@@ -1,0 +1,38 @@
+<% set_meta_tags title: "質問コーナー",
+
+				og: { 
+					title: "質問コーナーです！",
+					description: "", 
+					image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:#{@difference.combine},y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
+				},
+
+				twitter: { card: 'summary_large_image'} 
+%>
+
+
+<div class="main users-index">
+  <div class="container">
+
+    <%= render "/layouts/breadcrumb" %>
+
+	<div class="difference_image">
+		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:<%= @difference.combine %>,co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png" alt="">	
+	</div>  	
+
+		<div class="users-index-item">
+
+
+		<%= @difference.letter %><br>
+		<%= @difference.dummy %><br>
+		<%= @difference.order %><br>
+		<%= @difference.combine %><br>			
+
+
+		</div>
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+
+  </div>
+</div>
+

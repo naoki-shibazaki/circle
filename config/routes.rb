@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 	resources :prefectures, only: [] do
     	resources :cities, only: :index
   	end
- 	
+
+
+	scope '/contents' do
+	  resources :differences
+	end 	
  
 	root 'users#top'
 
@@ -34,6 +38,7 @@ Rails.application.routes.draw do
 	get 'admin_users' , to: 'users#admin_users'	
 	get 'questions' , to: 'questions#questions'
 	get 'event_questions' , to: 'event_questions#event_questions'	
+	get 'contents' , to: 'differences#contents'	
 	
 	get 'contact/:id', to: 'users#contact'
 	get 'users/:user_id/question' , to: 'questions#question'
