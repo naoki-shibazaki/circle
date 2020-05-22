@@ -43,6 +43,7 @@ before_action :set_difference
 	  end 
 
 
+
 	  def update
 	  end  
 
@@ -52,6 +53,9 @@ before_action :set_difference
 
 	  def show
 	  	@difference = Difference.find(params[:id])
+
+	  	@difference_new = Difference.new
+
 
 		# パンくず    	
 		@b3_name = "「#{@difference.dummy}」を見つけられるか！？"

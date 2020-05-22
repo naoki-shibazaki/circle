@@ -48,11 +48,48 @@
 
 					</div>
 
-					    <%= link_to(new_difference_path) do %>
-							<div class="contact-button qa_btn qa">
-								間違い探しを作成する！
+
+
+					<div class="difference_new">
+						<span class="difference_subtitle">新しい問題を作る！</span>
+
+					      	<% if @difference.errors.any? %>
+						          <div class="form-error">
+					              以下の項目でエラーが発生いたしました。<br>
+						          </div>
+							<% end %>
+					 
+					        <% @difference.errors.full_messages.each do |message| %>
+					            <div class="form-error_message">
+					              ・<%= message %>
+					            </div>
+					        <% end %>
+
+					      <%= form_for @difference_new, :url => { :controller => :differences, :action => :create }  do |f| %>
+
+							<div class="difference_sample">
+								<img src="/images/differences/difference_sample.png">
+								※この画像はサンプルです
 							</div>
-					    <% end %>
+
+						   
+						    <p>文字（1文字）</p>
+						    <%= f.text_field :letter, class: 'form-control form-smart', id: 'change_letter', placeholder: "田" %>
+
+						    <p>偽文字（1文字）</p>
+						    <%= f.text_field :dummy, class: 'form-control form-smart', id: 'change_dummy', placeholder: "囲" %>
+
+						    <p>偽文字の配置場所<br>1〜308までの数字を記入</p>
+						    <%= f.text_field :order, class: 'form-control form-smart', id: 'change_order', placeholder: "123" %>
+
+
+					        <%= f.submit "作成する" %>
+
+					      <% end %>
+
+					</div>
+
+					
 
 			</div>
 
