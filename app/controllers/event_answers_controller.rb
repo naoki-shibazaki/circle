@@ -1,6 +1,7 @@
 class EventAnswersController < ApplicationController
 
 	before_action :set_event_answer
+	before_action :ensure_correct_member, {only: [:edit, :update]}	
 
 	def index 
 
@@ -8,8 +9,6 @@ class EventAnswersController < ApplicationController
 
 	def create
 		if @event_question.event_answers.create(event_answer_params)
-
-			# render plain: params.inspect
 
 			flash[:notice] = '回答しました！'
 			redirect_to "/#{@event.ruby}/qa/#{@event_question.id}"
@@ -47,6 +46,17 @@ class EventAnswersController < ApplicationController
     	@event = Event.find_by(ruby: params[:ruby])
     	@event_question = EventQuestion.find_by(id: params[:id])	
     end
+
+	def ensure_correct_user
+		@event_question = EventQuestion.find_by(id: params[:id])
+
+	   		if current_member.id == 1
+
+		   	else
+		      flash[:notice] = "権限がありません"
+		      redirect_to "/event_questions"
+		    end
+	end	
 
     private
     def event_answer_params
