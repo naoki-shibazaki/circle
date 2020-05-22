@@ -1,8 +1,8 @@
-<% set_meta_tags title: "30秒以内に「#{@difference.dummy}」を見つけられるか！？",
+<% set_meta_tags title: "30秒以内に「#{@difference.dummy}」を見つけられたら天才",
 
 				og: { 
 					title: "30秒以内に「#{@difference.dummy}」を見つけられたらRT",
-					description: "30秒以内に「#{@difference.dummy}」を見つけられたらRT", 
+					description: "自分で問題が作れる間違い探しメーカー", 
 					image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:#{@difference.combine},co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png"
 				},
 
@@ -17,11 +17,9 @@
 
 		<div class="difference_top">
 	    	<div class="p_t">間違い探しメーカー</div>
-
-			<div class="difference_txt">
-				▼30秒以内に「<%= @difference.dummy %>」を見つけられるか！？
-			</div>
-			
+		</div>
+		<div class="difference_txt">
+			▼ 30秒以内に「<%= @difference.dummy %>」を見つけられたら天才 ▼
 		</div>
 
 
@@ -36,7 +34,7 @@
 
 					<div class="blob_cta_2">
 						<div class="contact-button tw">
-							<%= link_to("https://twitter.com/share?url=#{request.url}&text=30秒以内に「#{@difference.dummy}」を見つけられたらRT%20%23サークルブック%0a", target: '_blank') do %>
+							<%= link_to("https://twitter.com/share?url=#{request.url}&text=30秒以内に「#{@difference.dummy}」を見つけられたらRT%20%23間違い探しメーカー%0a", target: '_blank') do %>
 						      <i class="fa fa-twitter"></i> ツイートする
 						    <% end %>
 						</div>
@@ -89,7 +87,7 @@
 
 					</div>
 
-					
+
 
 			</div>
 

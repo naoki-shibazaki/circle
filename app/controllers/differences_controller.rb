@@ -58,7 +58,7 @@ before_action :set_difference
 
 
 		# パンくず    	
-		@b3_name = "「#{@difference.dummy}」を見つけられるか！？"
+		@b3_name = "「#{@difference.dummy}」を見つけられたら天才"
 		@b3_url = ""	  	
 	  end 
 
