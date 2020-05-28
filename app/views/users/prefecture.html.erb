@@ -1,12 +1,22 @@
-<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}で活動しているメンバー募集中のサークル！",
-                  description: "【登録不要・無料で使える！】#{@prefecture.name}で活動しているサークル！メンバー募集中です！社会人や学生、初心者、経験者など、誰でも参加可能！完全無料でサークル参加、メンバーの募集が簡単にできます！",
-                   keywords: "#{@prefecture.name},サークル,チーム,募集"
+<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}でメンバー募集中のサークルやチーム、クラブ、団体",
+                  description: "【登録不要・無料で使える！】#{@prefecture.name}で活動しているメンバー募集中のサークルやチーム、クラブ、団体！社会人や学生、初心者、経験者など、誰でも参加可能！完全無料で簡単に、メンバーの募集ができます！",
+                   keywords: "#{@prefecture.name},サークル,チーム,クラブ,団体,メンバー募集中"
  %>
 
 <div class="main users-index">
   <div class="container">
  	<%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading"><%= @prefecture.name %>のサークル一覧</h1>
+
+		<div class="e_header_wrap">
+			<img src="/images/top.png" >
+			<div class="link_txt">
+				<h1 class="e_header_title">
+		          <%= @prefecture.name %>で活動している<br>
+		          メンバー募集中の<br>
+		          サークルやチーム、クラブ、団体
+				</h1>
+			</div>
+		</div>
 
 	<% if @users.count != 0 %>
 		<div class="search_area">

@@ -1,7 +1,6 @@
-<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】メンバー募集中の#{@event.name}サークル！",
-                  description: "【登録不要・無料で使える！】メンバー募集中の#{@event.name}サークル！社会人や学生、初心者、経験者など、誰でも参加可能！完全無料でサークル参加、メンバーの募集が簡単にできます！",
-                   keywords: "#{@event.name},サークル,チーム,募集",
-
+<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】メンバー募集中の#{@event.txt}",
+                  description: "【登録不要・無料で使える！】メンバー募集中の#{@event.txt}！社会人や学生、初心者、経験者など、誰でも参加可能！完全無料で簡単に、メンバーの募集ができます！",
+                   keywords: "#{@event.name},サークル,チーム,メンバー募集中",
               og: { 
               	image:image_url("/images/events/e_ogp_#{@event.ruby}.png")
               }
@@ -16,7 +15,9 @@
 		<div class="e_header_wrap">
 			<img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
 			<div class="link_txt">
-				<h1 class="e_header_title"><%= @event.name %>の<br>サークル一覧</h1>
+				<h1 class="e_header_title">メンバー募集中の<br>
+					<%= @event.txt %>の一覧
+				</h1>
 			</div>
 		</div>
 
