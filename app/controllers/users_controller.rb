@@ -30,6 +30,9 @@ helper_method :link_count
 		@data = AdminUser.find_by(id: params[:id])
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 		@users = User.where(event_id: @user.event_id).where(prefecture_id: @user.prefecture_id).where(switch: "募集中").order(:last_post => :desc)
+
+		@user_ages = @user.users_ages.map{|user| user.age}
+		@user_groups = @user.users_groups.map{|user| user.group}
     
     	impressionist(@user, nil, unique: [:session_hash])
     	@week_imps = User.where(created_at: 7.day.ago.all_day)

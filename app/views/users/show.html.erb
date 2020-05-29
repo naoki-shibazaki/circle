@@ -166,18 +166,13 @@
 
 						<% if @user.age_ids.present? %>
 							<td class="flex_list">
-								<% @user.age_ids.sort.each do |user_age_id| %>
-									<% @ages.each do |age| %>
-										<% if age.id == user_age_id %>
-											<%= age.name %>
-										<% end %>
-									<% end %>
+								<% @user_ages.sort.each do |user_age| %>
+									<%= user_age.name %>	
 								<% end %>
 							</td>
 						<% else %>
 							<td class="flex_list"><%= @user.average_age %></td>
 						<% end %>
-
 					</tr>
 
 
@@ -186,18 +181,14 @@
 
 						<% if @user.group_ids.present? %>
 							<td class="flex_list">
-								<% @user.group_ids.sort.each do |user_group_id| %>
-									<% @groups.each do |group| %>
-										<% if group.id == user_group_id %>
-											<%= group.name %>
-										<% end %>
-									<% end %>
+								<% @user_groups.sort.each do |user_group| %>
+									<%= user_group.name %>	
 								<% end %>
 							</td>
 						<% else %>
 							<td class="flex_list"><%= @user.grouping %></td>
 						<% end %>
-						
+
 					</tr>
 					<tr class="flex_contents">
 						<th class="flex_list">費用</th>
