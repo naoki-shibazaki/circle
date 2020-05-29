@@ -183,7 +183,21 @@
 
 					<tr class="flex_contents">
 						<th class="flex_list">募集中</th>
-						<td class="flex_list"><%= @user.grouping %></td>
+
+						<% if @user.group_ids.present? %>
+							<td class="flex_list">
+								<% @user.group_ids.sort.each do |user_group_id| %>
+									<% @groups.each do |group| %>
+										<% if group.id == user_group_id %>
+											<%= group.name %>
+										<% end %>
+									<% end %>
+								<% end %>
+							</td>
+						<% else %>
+							<td class="flex_list"><%= @user.grouping %></td>
+						<% end %>
+						
 					</tr>
 					<tr class="flex_contents">
 						<th class="flex_list">費用</th>

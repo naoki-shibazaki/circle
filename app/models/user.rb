@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
 	has_many :users_ages
   	has_many :ages, through: :users_ages
-	# belongs_to :ages, optional: true
+	has_many :users_groups
+  	has_many :groups, through: :users_groups
 
 	belongs_to :prefecture, optional: true
 	belongs_to :event, optional: true

@@ -92,8 +92,7 @@
 
 	    <p>募集・歓迎</p>
 	    <div class="check_boxes">
-	   		<%= f.collection_check_boxes(:grouping, Group.all.order(:id => :asc), :name, :name, 
-	   		checked: @user.grouping,include_hidden: false) %>
+	   		<%= f.collection_check_boxes(:group_ids, Group.all.order(:id => :asc), :id, :name) %>
 	    </div>
 
 	    <p>会費・費用</p>
