@@ -166,7 +166,7 @@
 
 						<% if @user.age_ids.present? %>
 							<td class="flex_list">
-								<% @user.age_ids.each do |user_age_id| %>
+								<% @user.age_ids.sort.each do |user_age_id| %>
 									<% @ages.each do |age| %>
 										<% if age.id == user_age_id %>
 											<%= age.name %>
@@ -177,7 +177,7 @@
 						<% else %>
 							<td class="flex_list"><%= @user.average_age %></td>
 						<% end %>
-						
+
 					</tr>
 
 
