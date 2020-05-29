@@ -91,6 +91,10 @@
 	   		checked: @user.average_age,include_hidden: false) %>
 	    </div>
 
+	    <div class="check_boxes">
+	   		<%= f.collection_check_boxes(:age_ids, Age.all, :id, :name) %>
+	    </div>
+
 	    <p>募集・歓迎</p>
 	    <div class="check_boxes">
 	   		<%= f.collection_check_boxes(:grouping, Group.all.order(:id => :asc), :name, :name, 

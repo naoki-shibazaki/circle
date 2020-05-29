@@ -160,10 +160,27 @@
 						<th class="flex_list">メンバー</th>
 						<td class="flex_list"><%= @user.member %></td>
 					</tr>
+
 					<tr class="flex_contents">
 						<th class="flex_list">年齢層</th>
-						<td class="flex_list"><%= @user.average_age %></td>
+
+						<% if @user.age_ids.present? %>
+							<td class="flex_list">
+								<% @user.age_ids.each do |user_age_id| %>
+									<% @ages.each do |age| %>
+										<% if age.id == user_age_id %>
+											<%= age.name %>
+										<% end %>
+									<% end %>
+								<% end %>
+							</td>
+						<% else %>
+							<td class="flex_list"><%= @user.average_age %></td>
+						<% end %>
+						
 					</tr>
+
+
 					<tr class="flex_contents">
 						<th class="flex_list">募集中</th>
 						<td class="flex_list"><%= @user.grouping %></td>

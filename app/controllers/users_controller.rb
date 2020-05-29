@@ -45,15 +45,12 @@ helper_method :link_count
 		if @user.gallery_01.present?
 			@count += 1
 		end
-
 		if @user.gallery_02.present?
 			@count += 1
 		end
-
 		if @user.gallery_03.present?
 			@count += 1
 		end
-
 		if @user.gallery_04.present?
 			@count += 1
 		end
@@ -74,12 +71,13 @@ helper_method :link_count
 
 	def edit
 		@user = User.find(params[:id])
+
+		@user.users_ages.build
 	end
 
 	def update
 		@user = User.find(params[:id])
 		@user.user_time = Time.now
-	    # @user.last_post = Time.now.ago(3.days)
 
 		if @user.update(user_params)
 
@@ -388,11 +386,11 @@ helper_method :link_count
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
+		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
+
 		@x = "nil"
 		@category = "nil"
 		@contact_judge = ""
-		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
-
 
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)
@@ -404,7 +402,7 @@ private
 	def user_params
 		params.require(:user).permit(
 			:name, :email, :image_name, :header_image, :line_id, :switch, :item, :prefecture, :area, :schedule, :time_s, :time_e, :venue_address, :note, :age, :recruitment, :foundation, :member, :cost, :web, :appeal, :password, :goal, :user_id, :event_id, :decade, :prefecture_id, :image, :pic_profile, :pic_header, :image_01, :image_02, :gallery_01, :gallery_02, :gallery_03, :gallery_04, :requirement, :impressions_count, :line_count, :mail_count, :user_time, :last_post, :contact, :twitter, :instagram, :txt,
-			decade_age:[], average_age:[] ,grouping:[]
+			decade_age:[], average_age:[] ,grouping:[], age_ids:[]
    		)
 	end
 		
