@@ -223,7 +223,7 @@ helper_method :link_count
 		@city = City.find_by(city_kana: params[:city_kana])	 
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		@users = User.where(event_id: @event.id).where(id: @city_users).or(User.where(prefecture_id: 50)).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+		@users = User.where(id: @city_users).or(User.where(prefecture_id: 50)).where(event_id: @event.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
 
 		# パンくず
