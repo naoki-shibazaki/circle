@@ -37,10 +37,13 @@ Rails.application.routes.draw do
 	get 'link' , to: 'users#link'
 	get 'admin_users' , to: 'users#admin_users'	
 	get 'questions' , to: 'questions#questions'
-	get 'event_questions' , to: 'event_questions#event_questions'	
+	get 'event_questions' , to: 'event_questions#event_questions'
 	get 'contents' , to: 'differences#contents'	
 	
 	get 'contact/:id', to: 'users#contact'
+
+	get 'users/:id/edit2', to: 'users#edit2'
+	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:user_id/question' , to: 'questions#question'
 
 	get 'prefectures' , to: 'users#prefecture_index'

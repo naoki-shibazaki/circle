@@ -8,6 +8,8 @@ class User < ApplicationRecord
   	has_many :ages, through: :users_ages
 	has_many :users_groups
   	has_many :groups, through: :users_groups
+	has_many :users_cities
+  	has_many :cities, through: :users_cities  	
 
 	belongs_to :prefecture, optional: true
 	belongs_to :event, optional: true

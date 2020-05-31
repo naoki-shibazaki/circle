@@ -13,15 +13,19 @@
 
       replaceChildrenOptions = function() {
         var $selectChildren, childrenPath;
+        // 選択された親カテゴリのオプションから、data-children-pathの値を読み取る
         childrenPath = $(this).find('option:selected').data().childrenPath;
+        // 子カテゴリのセレクトボックスを取得する
         $selectChildren = $(this).closest('form').find('.select-children');
         if (childrenPath != null) {
           return $.ajax({
             url: childrenPath,
             dataType: "json",
             success: function(results) {
+            // サーバーから受け取った子カテゴリの一覧でセレクトボックスを置き換える
               return replaceSelectOptions($selectChildren, results);
             },
+            // 何らかのエラーが発生した場合
             error: function(XMLHttpRequest, textStatus, errorThrown) {
               console.error("Error occurred in replaceChildrenOptions");
               console.log("XMLHttpRequest: " + XMLHttpRequest.status);
@@ -30,6 +34,7 @@
             }
           });
         } else {
+          // 親カテゴリが未選択だったので、子カテゴリの選択肢をクリアする
           return replaceSelectOptions($selectChildren, []);
         }
       };

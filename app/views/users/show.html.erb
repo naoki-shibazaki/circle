@@ -127,11 +127,21 @@
 
                   <div class="user_area">
 			        <% if @user.prefecture_id.present? %>
-			         <i class="fa fa-map-marker "></i><%= @user.prefecture.name %>：<%= @user.area %>
+			         <i class="fa fa-map-marker "></i>
+			         	<%= @user.prefecture.name %>
+							<% if @user_cities.present? %>：
+								<% @user_cities.sort.each do |user_city| %>
+									<%= user_city.name %>	
+								<% end %>
+							<% else %>
+								<%= "：" if @user.area.present? %>  
+						         	<%= @user.area %>								
+							<% end %>
 			        <% end %>
                   </div>
 
 			</div>
+
 
 			<div class="content_03"><%= @user.recruitment %></div>
 
@@ -149,7 +159,6 @@
 
 
  			<%= render "/users/gallery" %>
-
 
 			<div class="border"></div>
 

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 # before_action :authenticate_user, {only: [:edit, :update]}
 # before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
-before_action :ensure_correct_user, {only: [:edit, :update]}
+before_action :ensure_correct_user, {only: [:edit, :update, :edit2, :update2]}
 before_action :set_users
 
 impressionist unique: [:session_hash]
@@ -31,8 +31,9 @@ helper_method :link_count
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 		@users = User.where(event_id: @user.event_id).where(prefecture_id: @user.prefecture_id).where(switch: "募集中").order(:last_post => :desc)
 
-		@user_ages = @user.users_ages.map{|user| user.age}
-		@user_groups = @user.users_groups.map{|user| user.group}
+		@user_ages = @user.users_ages.map{|a| a.age}
+		@user_groups = @user.users_groups.map{|g| g.group}
+		@user_cities = @user.users_cities.map{|c| c.city}	
     
     	impressionist(@user, nil, unique: [:session_hash])
     	@week_imps = User.where(created_at: 7.day.ago.all_day)
@@ -77,7 +78,16 @@ helper_method :link_count
 
 		@user.users_ages.build
 		@user.users_groups.build
+		@user.users_cities.build
 	end
+
+	def edit2
+		@user = User.find(params[:id])
+		@cities = City.where(prefecture_id: @user.prefecture.id)
+
+		@user.users_cities.build
+	end
+
 
 	def update
 		@user = User.find(params[:id])
@@ -90,12 +100,31 @@ helper_method :link_count
 				@user.save
 			end
 
-			flash[:notice] = 'プロフィール更新完了！'
-			redirect_to user_path
+			if @user.prefecture.id == 50
+				flash[:notice] = 'プロフィール更新完了！'
+				redirect_to user_path
+			else
+				flash[:notice] = 'これで最後です！'
+				redirect_to "/users/#{@user.id}/edit2"
+			end
+
 		else
 			render "/users/edit"
 		end	
 	end
+
+	def update2
+		@user = User.find(params[:id])
+
+		if @user.update(user_params)
+
+			flash[:notice] = 'プロフィール更新完了！'
+			redirect_to user_path
+		else
+			render "/users/edit2"
+		end	
+	end
+
 
 	def destroy
 		@user = User.find(params[:id])
@@ -117,13 +146,6 @@ helper_method :link_count
 		if admin_user_signed_in?
 			@data = AdminUser.find_by(id: current_admin_user.id)
 
-			
-			# @data.skip_reconfirmation! 
-			# if @data.update_with_password(user_params)
-			#   redirect_to user_path(@data), notice: 'アドレスを更新しました'
-			# else
-			#   render path
-			# end
 		end
 
 	end
@@ -372,11 +394,8 @@ helper_method :link_count
 
 		end
 
-
-
 		@mail_title = "【#{@user.name}】お問い合わせ"
 		@mail_message = "こちらにご記入ください！"
-
 
 	end
 
@@ -388,6 +407,7 @@ helper_method :link_count
 
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
+		@cities = City.all.order(:order => :asc)
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
@@ -406,7 +426,7 @@ private
 	def user_params
 		params.require(:user).permit(
 			:name, :email, :image_name, :header_image, :line_id, :switch, :item, :prefecture, :area, :schedule, :time_s, :time_e, :venue_address, :note, :age, :recruitment, :foundation, :member, :cost, :web, :appeal, :password, :goal, :user_id, :event_id, :decade, :prefecture_id, :image, :pic_profile, :pic_header, :image_01, :image_02, :gallery_01, :gallery_02, :gallery_03, :gallery_04, :requirement, :impressions_count, :line_count, :mail_count, :user_time, :last_post, :contact, :twitter, :instagram, :txt,
-			decade_age:[], average_age:[] ,grouping:[], age_ids:[], group_ids:[]
+			decade_age:[], average_age:[] ,grouping:[], age_ids:[], group_ids:[], city_ids:[]
    		)
 	end
 		
