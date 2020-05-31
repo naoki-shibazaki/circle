@@ -2,8 +2,6 @@
 
 		<div class="search_select">
 
-
-
 	        <% if @path.is('users#index', 'users#top') %>
 
 					<select name="event_select" onChange="location.href=value;">
@@ -18,6 +16,31 @@
 					    <% @prefectures.each do |prefecture| %>
 							<% if prefecture.id != 50 %>
 								<option value="/prefectures/<%= prefecture.kana %>"><%= prefecture.name %></option>
+							<% end %>
+						<% end %>
+					</select>
+
+					<div class="search_icon"><i class="fa fa-search "></i></div>
+
+
+	        <% elsif @path.is('users#event_prefecture') %>
+
+					<select name="event_select" onChange="location.href=value;">
+						<option value="#"><%= @event.name %></option>
+					    <% @events.each do |event| %>
+						    <% if event.ruby != @event.ruby %>
+								<option value="/<%= event.ruby %>"><%= event.name %></option>
+							<% end %>
+						<% end %>
+					</select>
+
+					<select name="prefecture_select" onChange="location.href=value;">
+						<option value="#"><%= @prefecture.name %></option>
+					    <% @prefectures.each do |prefecture| %>					    
+							<% if prefecture.id != 50 %>
+							    <% if prefecture.kana != @prefecture.kana %>
+									<option value="/<%= @event.ruby %>/<%= prefecture.kana %>"><%= prefecture.name %></option>
+								<% end %>
 							<% end %>
 						<% end %>
 					</select>
@@ -48,7 +71,7 @@
 					<div class="search_icon"><i class="fa fa-search "></i></div>
 
 
-	        <% elsif @path.is('users#prefecture') %>
+	        <% else @path.is('users#prefecture') %>
 
 					<select name="event_select" onChange="location.href=value;">
 						<option value="#">サークル・団体</option>
@@ -70,10 +93,12 @@
 
 					<div class="search_icon"><i class="fa fa-search "></i></div>					
 
+
+
+
 			<% end %>
 
 			
-
 
 	  	</div>
 

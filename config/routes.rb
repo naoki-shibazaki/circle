@@ -52,10 +52,8 @@ Rails.application.routes.draw do
 	get 'prefectures/:kana/:group/:decade' , to: 'users#prefecture_age'
 
 	get 'blog' , to: 'blogs#top'
-
 	get 'blog/prefectures' , to: 'blogs#prefecture_index'
 	get 'blog/prefectures/:kana' , to: 'blogs#prefecture'
-
 	get 'blog/:ruby' , to: 'blogs#event'
 	get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
 
@@ -78,13 +76,14 @@ Rails.application.routes.draw do
 	delete ':ruby/qa/:event_question_id/:id' , to: 'event_answers#delete'
 
 	get ':ruby/:kana' , to: 'users#event_prefecture'
-	# get ':ruby/:kana/group/:group' , to: 'users#group'
-	get ':ruby/:kana/beginner' , to: 'users#group_beginner'
-	get ':ruby/:kana/expert' , to: 'users#group_expert'
-	get ':ruby/:kana/student' , to: 'users#group_student'
-	get ':ruby/:kana/worker' , to: 'users#group_worker'	
+	get ':ruby/:kana/:city_kana' , to: 'users#event_prefecture_city'
 
-	get ':ruby/:kana/:decade' , to: 'users#age'
+	# get ':ruby/:kana/group/:group' , to: 'users#group'
+	# get ':ruby/:kana/beginner' , to: 'users#group_beginner'
+	# get ':ruby/:kana/expert' , to: 'users#group_expert'
+	# get ':ruby/:kana/student' , to: 'users#group_student'
+	# get ':ruby/:kana/worker' , to: 'users#group_worker'	
+	# get ':ruby/:kana/:decade' , to: 'users#age'
 
 
 end

@@ -142,25 +142,18 @@ helper_method :link_count
   	end
 
 	def update_email
-
 		if admin_user_signed_in?
 			@data = AdminUser.find_by(id: current_admin_user.id)
-
 		end
-
 	end
 
 
 	def ensure_correct_user
 	   if current_admin_user.id != params[:id].to_i
 	   		if current_admin_user.id == 1   			
-	   # if @current_user.id != params[:id].to_i
-	   # 		if @current_user.id == 1  
-
 		   	else
 		      flash[:notice] = "権限がありません"
 		      redirect_to users_path
-
 		    end
 	   end
 	end
@@ -212,6 +205,41 @@ helper_method :link_count
 	end
 
 
+	def event_prefecture
+		@event = Event.find_by(ruby: params[:ruby])
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+
+		# パンくず
+		@b1_name = @event.name
+		@b1_url = "/#{@event.ruby}"
+		@b2_name = @prefecture.name
+		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+	end
+
+	def event_prefecture_city
+		@event = Event.find_by(ruby: params[:ruby])
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@city = City.find_by(city_kana: params[:city_kana])	 
+
+		@city_users = @city.users_cities.map{|c| c.user.id}
+		@users = User.where(id: @city_users).or(User.where(prefecture_id: 50)).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+
+
+		# パンくず
+		@b1_name = @event.name
+		@b1_url = "/#{@event.ruby}"
+		@b2_name = @prefecture.name
+		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+		@b3_name = @city.name
+		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"			
+	end
+
+
+
+
+
+
 	def prefecture_group
 		@group = Group.find_by(group: params[:group])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
@@ -242,98 +270,89 @@ helper_method :link_count
 
 
 
-	def event_prefecture
-		@event = Event.find_by(ruby: params[:ruby])
-		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).order(:last_post => :desc).where.not(switch: "").page(params[:page])
-
-		# パンくず
-		@b1_name = @event.name
-		@b1_url = "/#{@event.ruby}"
-		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
-	end
-
-	def age
-		@age = Age.find_by(decade: params[:decade])
-		@event = Event.find_by(ruby: params[:ruby])
-		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('average_age like?', "%#{@age.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-
-		# パンくず
-		@b1_name = @event.name
-		@b1_url = "/#{@event.ruby}"
-		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
-		@b3_name = @age.name
-		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@age.decade}"	
-	end
 
 
-	def group_beginner
-		@group = Group.find_by(:group => "beginner")
-		@event = Event.find_by(ruby: params[:ruby])
-		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
+	# def age
+	# 	@age = Age.find_by(decade: params[:decade])
+	# 	@event = Event.find_by(ruby: params[:ruby])
+	# 	@prefecture = Prefecture.find_by(kana: params[:kana])
+	# 	@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('average_age like?', "%#{@age.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
-		# パンくず
-		@b1_name = @event.name
-		@b1_url = "/#{@event.ruby}"
-		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
-		@b3_name = @group.name
-		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@group.group}"	
-
-	end
-
-	def group_expert
-		@group = Group.find_by(:group => "expert")
-		@event = Event.find_by(ruby: params[:ruby])
-		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-
-		# パンくず
-		@b1_name = @event.name
-		@b1_url = "/#{@event.ruby}"
-		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
-		@b3_name = @group.name
-		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@group.group}"	
-
-	end
-
-	def group_student
-		@group = Group.find_by(:group => "student")
-		@event = Event.find_by(ruby: params[:ruby])
-		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
-
-		# パンくず
-		@b1_name = @event.name
-		@b1_url = "/#{@event.ruby}"
-		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
-		@b3_name = @group.name
-		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@group.group}"	
-
-	end
+	# 	# パンくず
+	# 	@b1_name = @event.name
+	# 	@b1_url = "/#{@event.ruby}"
+	# 	@b2_name = @prefecture.name
+	# 	@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+	# 	@b3_name = @age.name
+	# 	@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@age.decade}"	
+	# end
 
 
-	def group_worker
-		@group = Group.find_by(:group => "worker")
-		@event = Event.find_by(ruby: params[:ruby])
-		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
+	# def group_beginner
+	# 	@group = Group.find_by(:group => "beginner")
+	# 	@event = Event.find_by(ruby: params[:ruby])
+	# 	@prefecture = Prefecture.find_by(kana: params[:kana])
+	# 	@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
-		# パンくず
-		@b1_name = @event.name
-		@b1_url = "/#{@event.ruby}"
-		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
-		@b3_name = @group.name
-		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@group.group}"	
+	# 	# パンくず
+	# 	@b1_name = @event.name
+	# 	@b1_url = "/#{@event.ruby}"
+	# 	@b2_name = @prefecture.name
+	# 	@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+	# 	@b3_name = @group.name
+	# 	@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@group.group}"	
 
-	end
+	# end
+
+	# def group_expert
+	# 	@group = Group.find_by(:group => "expert")
+	# 	@event = Event.find_by(ruby: params[:ruby])
+	# 	@prefecture = Prefecture.find_by(kana: params[:kana])
+	# 	@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
+
+	# 	# パンくず
+	# 	@b1_name = @event.name
+	# 	@b1_url = "/#{@event.ruby}"
+	# 	@b2_name = @prefecture.name
+	# 	@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+	# 	@b3_name = @group.name
+	# 	@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@group.group}"	
+
+	# end
+
+	# def group_student
+	# 	@group = Group.find_by(:group => "student")
+	# 	@event = Event.find_by(ruby: params[:ruby])
+	# 	@prefecture = Prefecture.find_by(kana: params[:kana])
+	# 	@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
+
+	# 	# パンくず
+	# 	@b1_name = @event.name
+	# 	@b1_url = "/#{@event.ruby}"
+	# 	@b2_name = @prefecture.name
+	# 	@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+	# 	@b3_name = @group.name
+	# 	@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@group.group}"	
+
+	# end
+
+
+	# def group_worker
+	# 	@group = Group.find_by(:group => "worker")
+	# 	@event = Event.find_by(ruby: params[:ruby])
+	# 	@prefecture = Prefecture.find_by(kana: params[:kana])
+	# 	@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where('grouping like?', "%#{@group.name}%").order(:last_post => :desc).where.not(switch: "").page(params[:page])
+
+	# 	# パンくず
+	# 	@b1_name = @event.name
+	# 	@b1_url = "/#{@event.ruby}"
+	# 	@b2_name = @prefecture.name
+	# 	@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+	# 	@b3_name = @group.name
+	# 	@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@group.group}"	
+
+	# end
+
 
 
 	def contact
