@@ -129,16 +129,18 @@
 			        <% if @user.prefecture_id.present? %>
 			         <i class="fa fa-map-marker "></i>
 			         	<%= @user.prefecture.name %>
-							<% if @user_cities.present? %>：
-								<% @user_cities.sort.each do |user_city| %>
-									<%= user_city.name %>	
-								<% end %>
-							<% else %>
-								<%= "：" if @user.area.present? %>  
-						         	<%= @user.area %>								
-							<% end %>
+						<%= "：" if @user.area.present? %>  
+						<%= @user.area %>
 			        <% end %>
                   </div>
+
+	                <div class="user_area">
+						<% if @user_cities.present? %>
+							<% @user_cities.sort.each do |user_city| %>
+								<%= user_city.name %>	
+							<% end %>							
+						<% end %>
+					</div>
 
 			</div>
 

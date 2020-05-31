@@ -78,19 +78,9 @@
 
                 <div class="list_03">
                     <span class="user_area">
-                      <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %>         
-                        <%  user_cities = user.users_cities.map{|c| c.city} %>
-                        <% if user_cities.present? %>：
-                          <% user_cities.sort.each do |user_city| %>
-                            <%= user_city.name %> 
-                          <% end %>
-                        <% else %>
-                          <%= "：" if user.area.present? %>                         
-                            <%= user.area %>               
-                        <% end %>
-
+                      <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %><%= "：" if user.area.present? %><%= user.area %>
                     </span>
-                </div>              
+                </div>             
 
                 <div class="list_04">
                   <span class="user_recruitment"><%= user.recruitment.truncate(110) %></span>
