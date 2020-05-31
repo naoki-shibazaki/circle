@@ -142,6 +142,29 @@
 						<% end %>
 					</div>
 
+
+
+
+				<% if admin_user_signed_in? %>
+					<% if current_admin_user.id == 1 %>
+				      <%= form_for @user,:url => {controller: "users", action: "update2"} do |f| %>
+					    <p>活動エリア</p>
+					    <div class="check_boxes">
+					   		<%= f.collection_check_boxes(:city_ids, @cities, :id, :name) %>
+					    </div>
+				        <%= f.submit "【更新する】" %>
+				      <% end %>
+					<% end %>
+				<% end %>
+
+
+
+
+
+
+
+
+
 			</div>
 
 

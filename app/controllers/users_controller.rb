@@ -34,6 +34,10 @@ helper_method :link_count
 		@user_ages = @user.users_ages.map{|a| a.age}
 		@user_groups = @user.users_groups.map{|g| g.group}
 		@user_cities = @user.users_cities.map{|c| c.city}	
+
+		# 手作業反映用
+		@cities = City.where(prefecture_id: @user.prefecture.id)
+		@user.users_cities.build
     
     	impressionist(@user, nil, unique: [:session_hash])
     	@week_imps = User.where(created_at: 7.day.ago.all_day)
