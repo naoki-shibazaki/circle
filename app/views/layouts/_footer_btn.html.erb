@@ -3,13 +3,15 @@
 
     <% if controller.action_name != 'new' %>
       <% if controller.action_name != 'edit' %>
+        <% if controller.action_name != 'edit2' %>
 
-        <div class="footer_btn">
-          <%= link_to(new_blog_path) do %>
-            <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
-          <% end %>
-        </div>
+          <div class="footer_btn">
+            <%= link_to(new_blog_path) do %>
+              <span class="fixed_btn btn_color"><i class="fa fa-pencil "></i></span>
+            <% end %>
+          </div>
 
+        <% end %>
       <% end %>
     <% end %>
 
