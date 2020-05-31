@@ -4032,6 +4032,18 @@ max-width: 100%;
     padding-bottom: 4px;
 }
 
+.slide_content{
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    white-space: nowrap; 
+}
 
 
 

@@ -121,11 +121,11 @@
 
 			<div class="content_01"></div>
 			<div class="content_02">
-                  <div class="user_schedule">
+                  <div class="user_schedule slide_content">
                     <i class="fa fa-calendar "></i><%= @user.schedule %>
                   </div>
 
-                  <div class="user_area">
+                  <div class="user_area slide_content">
 			        <% if @user.prefecture_id.present? %>
 			         <i class="fa fa-map-marker "></i>
 			         	<%= @user.prefecture.name %>
@@ -134,11 +134,13 @@
 			        <% end %>
                   </div>
 
-	                <div class="user_area">
+	                <div class="slide_content">
 						<% if @user_cities.present? %>
+						（
 							<% @user_cities.sort.each do |user_city| %>
 								<%= user_city.name %>	
-							<% end %>							
+							<% end %>
+						）
 						<% end %>
 					</div>
 
