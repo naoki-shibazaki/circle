@@ -58,16 +58,17 @@ SitemapGenerator::Sitemap.create do
                   add "/blog/#{event.ruby}/#{event_prefecture.kana}", :lastmod => event_prefecture.updated_at, :priority => 0.3, :changefreq => 'weekly'
                   add "/places/basketball/#{event_prefecture.kana}", :lastmod => event_prefecture.updated_at, :priority => 0.5, :changefreq => 'weekly'
                
-                        Age.find_each do |age|
-                              add "/#{event.ruby}/#{event_prefecture.kana}/#{age.decade}", :lastmod => age.updated_at, :priority => 0.3, :changefreq => 'weekly'
-                        end
+                        # Age.find_each do |age|
+                        #       add "/#{event.ruby}/#{event_prefecture.kana}/#{age.decade}", :lastmod => age.updated_at, :priority => 0.3, :changefreq => 'weekly'
+                        # end
 
-                        Group.find_each do |group|
-                              add "/#{event.ruby}/#{event_prefecture.kana}/#{group.group}", :lastmod => group.updated_at, :priority => 0.3, :changefreq => 'weekly'
-                        end
+                        # Group.find_each do |group|
+                        #       add "/#{event.ruby}/#{event_prefecture.kana}/#{group.group}", :lastmod => group.updated_at, :priority => 0.3, :changefreq => 'weekly'
+                        # end
 
 
                         City.where(prefecture_id: event_prefecture.id).find_each do |city|
+                          add "/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}", :lastmod => city.updated_at, :priority => 0.8, :changefreq => 'weekly'
                           add "/places/basketball/#{event_prefecture.kana}/#{city.city_kana}", :lastmod => city.updated_at, :priority => 0.5, :changefreq => 'weekly'
 
                             Place.where(event_id: event.id).where(prefecture_id: event_prefecture.id).where(city_id: city.id).find_each do |place|
