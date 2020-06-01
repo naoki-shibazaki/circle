@@ -4095,11 +4095,63 @@ max-width: 100%;
 
 .edit_user p{
   margin-top: 14px;
+    font-size: 14px;
+    color: #353535;  
+}
+
+.edit01_warp {
+    position: relative;
+    margin: 30px auto 10px;
+    padding: 16px 0px 6px 4px;
+    color: #555555;
+    background-color: #fff;
+    border: 2px solid #d6d6d6;
+    width: 100%;
+    text-align: left;
+}
+
+
+.edit01_subtitle {
+    position: absolute;
+    padding: 0px 8px;
+    left: 10px;
+    top: -12px;
+    background-color: #fff;
+    color: #5a5a5a;
+    font-size: 14px;
 }
 
 
 
+.edit02_warp {
+    position: relative;
+    margin: 50px auto 10px;
+    padding: 1.2em;
+    color: #555555;
+    background-color: #fff;
+    border: 2px solid #61cdc7;
+    width: 100%;
+    text-align: left;
+}
 
+.edit02_subtitle {
+ position: absolute;
+ padding: 0 .5em;
+ left: 20px;
+ top: -15px;
+ font-weight: bold;
+ background-color: #fff; 
+  color: #4a4a4a;
+  font-size: 16px;
+}
+
+.edit01_warp .sns_form p{
+  margin-top: 0;
+}
+
+.file_upload_wrap{
+  margin-left: 14px;
+}
 
 
 

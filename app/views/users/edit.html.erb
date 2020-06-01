@@ -60,7 +60,7 @@
 	    <p>サークル種目<span class="must_red">(必須)</span></p>	    
 	    <%= f.collection_select :event_id, Event.all.order(:order => :asc), :id, :name, :prompt => "選択してください" %>
 
-	    <p>メインの活動エリア（例：東京都）<span class="must_red">(必須)</span></p>
+	    <p>メインの活動エリア<span class="must_red">(必須)</span>（例：東京都）</p>
 	    <%= f.collection_select :prefecture_id, Prefecture.all.order(:order => :asc), :id, :name, :prompt => "選択してください" %>
 
 	    <p>サブの活動エリア（例：神奈川県）</p>
@@ -78,15 +78,19 @@
 	    <p>構成メンバー</p>
 	    <%= f.text_field :member, class: 'form-control', placeholder: "10名程" %>
 
-	    <p>年齢層</p>
-	    <div class="check_boxes">
-	   		<%= f.collection_check_boxes(:age_ids, Age.all, :id, :name) %>
-	    </div>
+		<div class="edit01_warp">
+			<span class="edit01_subtitle">年齢層</span>
+		    <div class="check_boxes">
+		   		<%= f.collection_check_boxes(:age_ids, Age.all, :id, :name) %>
+		    </div>
+		</div>
 
-	    <p>募集・歓迎</p>
-	    <div class="check_boxes">
-	   		<%= f.collection_check_boxes(:group_ids, Group.all.order(:id => :asc), :id, :name) %>
-	    </div>
+		<div class="edit01_warp">
+			<span class="edit01_subtitle">募集内容</span>
+		    <div class="check_boxes">
+		   		<%= f.collection_check_boxes(:group_ids, Group.all.order(:id => :asc), :id, :name) %>
+		    </div>
+		</div>
 
 	    <p>会費・費用</p>
 	    <%= f.text_field :cost, class: 'form-control', placeholder: "500円" %>
@@ -103,6 +107,9 @@
 		    <%= f.select :contact, [ ['メール＆LINE','both'], ['LINEのみ','line'] , ['メールのみ','mail'] ] %>
 	    <% end %>
 
+		<div class="edit01_warp">
+			<span class="edit01_subtitle">SNS</span>
+
 		<div class="sns_form">
 		    <p>Twitter ID</p>
 		    <div class="sns_input">
@@ -117,56 +124,63 @@
 			</div>
 		</div>
 
+		</div>
+
 		<div class="reset"></div>
 
 
 	    <p>ホームページ</p>
 	    <%= f.text_field :web, class: 'form-control', placeholder: "https://www.circle-book.com/" %>
 
-	    <p>サークル画像（最大4枚）</p>
-        <span class="file_size">※10MB以下のjpgかpngのみ対応</span>
-	       	<div class="img_field_gallery_wrap">
+		<div class="edit01_warp">
+			<span class="edit01_subtitle">サークル画像（最大4枚）</span>
 
-				    <div id="img_field_01" onClick="$('#file_01').click()" >
-				        <% if @user.gallery_01.present? %>
-				          <%= image_tag(@user.gallery_01.url) %>
-				        <% else %>
-				          <i class="fa fa-image"></i>
-				        <% end %>
-				    </div>
-				    <%= f.file_field :gallery_01, class: "image", style: "display:none;", id: "file_01"%>
+			<div class="file_upload_wrap">
+	        	<span class="file_size">※10MB以下のjpgかpngのみ対応</span>
+		       	<div class="img_field_gallery_wrap">
 
-
-				    <div id="img_field_02" onClick="$('#file_02').click()" >
-				        <% if @user.gallery_02.present? %>
-				          <%= image_tag(@user.gallery_02.url) %>
-				        <% else %>
-				          <i class="fa fa-image"></i>
-				        <% end %>
-				    </div>
-				    <%= f.file_field :gallery_02, class: "image", style: "display:none;", id: "file_02"%>
+					    <div id="img_field_01" onClick="$('#file_01').click()" >
+					        <% if @user.gallery_01.present? %>
+					          <%= image_tag(@user.gallery_01.url) %>
+					        <% else %>
+					          <i class="fa fa-image"></i>
+					        <% end %>
+					    </div>
+					    <%= f.file_field :gallery_01, class: "image", style: "display:none;", id: "file_01"%>
 
 
-				    <div id="img_field_03" onClick="$('#file_03').click()" >
-				        <% if @user.gallery_03.present? %>
-				          <%= image_tag(@user.gallery_03.url) %>
-				        <% else %>
-				          <i class="fa fa-image"></i>
-				        <% end %>
-				    </div>
-				    <%= f.file_field :gallery_03, class: "image", style: "display:none;", id: "file_03"%>
+					    <div id="img_field_02" onClick="$('#file_02').click()" >
+					        <% if @user.gallery_02.present? %>
+					          <%= image_tag(@user.gallery_02.url) %>
+					        <% else %>
+					          <i class="fa fa-image"></i>
+					        <% end %>
+					    </div>
+					    <%= f.file_field :gallery_02, class: "image", style: "display:none;", id: "file_02"%>
 
 
-				    <div id="img_field_04" onClick="$('#file_04').click()" >
-				        <% if @user.gallery_04.present? %>
-				          <%= image_tag(@user.gallery_04.url) %>
-				        <% else %>
-				          <i class="fa fa-image"></i>
-				        <% end %>
-				    </div>
-				    <%= f.file_field :gallery_04, class: "image", style: "display:none;", id: "file_04"%>
+					    <div id="img_field_03" onClick="$('#file_03').click()" >
+					        <% if @user.gallery_03.present? %>
+					          <%= image_tag(@user.gallery_03.url) %>
+					        <% else %>
+					          <i class="fa fa-image"></i>
+					        <% end %>
+					    </div>
+					    <%= f.file_field :gallery_03, class: "image", style: "display:none;", id: "file_03"%>
 
-		   	</div>
+
+					    <div id="img_field_04" onClick="$('#file_04').click()" >
+					        <% if @user.gallery_04.present? %>
+					          <%= image_tag(@user.gallery_04.url) %>
+					        <% else %>
+					          <i class="fa fa-image"></i>
+					        <% end %>
+					    </div>
+					    <%= f.file_field :gallery_04, class: "image", style: "display:none;", id: "file_04"%>
+
+			   	</div>
+			</div>
+		</div>
 
 	    <p>サークルの詳細情報</p>
 	    <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！&#13;&#10;興味がある人は気軽にご連絡ください！".html_safe %>
