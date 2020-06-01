@@ -53,15 +53,6 @@
         <p>サークル名<span class="must_red">(必須)</span></p>
         <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
 
-	    <p>LINEビジネス（LINE@）／LINEのURL</p>
-	    <a href="/line" target="_blank" class="line_id"> >>30秒で作れるLINEアカウントの追加方法</a>
-	    <%= f.text_field :line_id, class: 'form-control', placeholder: "http://nav.cx/3JiS9Im" %>
-
-		<% if @user.line_id.present? %>
-		    <p>連絡方法</p>
-		    <%= f.select :contact, [ ['メール＆LINE','both'], ['LINEのみ','line'] , ['メールのみ','mail'] ] %>
-	    <% end %>
-
 	    <p>募集状況<span class="must_red">(必須)</span></p>
 	    <%= f.select :switch, [ ['募集中','募集中'], ['受付終了','受付終了'] ], 
 	    :prompt => "選択してください" %>
@@ -103,6 +94,14 @@
 	    <p>サークル目標</p>
 	    <%= f.text_field :goal, class: 'form-control', placeholder: "ゆくる、楽しく活動をする！" %>
 
+	    <p>LINEビジネス（LINE@）／LINEのURL</p>
+	    <a href="/line" target="_blank" class="line_id"> >>30秒で作れるLINEアカウントの追加方法</a>
+	    <%= f.text_field :line_id, class: 'form-control', placeholder: "http://nav.cx/3JiS9Im" %>
+
+		<% if @user.line_id.present? %>
+		    <p>連絡方法</p>
+		    <%= f.select :contact, [ ['メール＆LINE','both'], ['LINEのみ','line'] , ['メールのみ','mail'] ] %>
+	    <% end %>
 
 		<div class="sns_form">
 		    <p>Twitter ID</p>
