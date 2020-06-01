@@ -1,0 +1,11 @@
+<div class="breadcrumbs_wrapper_city">
+	<div class="breadcrumbs_city">
+	 <nav>
+	   <ul>
+		<% @user_cities.sort.each do |user_city| %>
+			<li><%= link_to user_city.name, "/#{@user.event.ruby}/#{@user.prefecture.kana}/#{user_city.city_kana}" %></li>
+    	<% end %>	
+	   </ul>
+	 </nav>
+	</div>
+</div>

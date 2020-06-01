@@ -47,6 +47,10 @@
   <div class="container">
     <%= render "/layouts/breadcrumb" %>
 
+	<% if @user_cities.present? %>
+    	<%= render "/users/breadcrumb_city" %>
+    <% end %>
+
     <%= render "/users/openchat" %>
 
     
@@ -133,17 +137,6 @@
 						<%= @user.area %>
 			        <% end %>
                   </div>
-
-	                <div class="slide_content">
-						<% if @user_cities.present? %>
-						（
-							<% @user_cities.sort.each do |user_city| %>
-								<%= user_city.name %>	
-							<% end %>
-						）
-						<% end %>
-					</div>
-
 
 
 
