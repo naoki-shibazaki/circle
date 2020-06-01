@@ -162,6 +162,22 @@ helper_method :link_count
 	   end
 	end
 
+	def webmaster
+   		if current_admin_user.id == 1   
+
+   			@users_cities = UsersCity.all
+
+
+
+
+
+	   	else
+	      flash[:notice] = "権限がありません"
+	      redirect_to users_path
+	    end
+	end
+
+
  	def line
   	end	
 

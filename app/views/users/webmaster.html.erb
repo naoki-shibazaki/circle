@@ -1,0 +1,32 @@
+<div class="main users-edit">
+  <div class="container">
+    <div class="form users-form">
+
+
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>user_id</th>
+                  <th>city_id</th>
+                  <th>ー</th>
+              </tr>
+          </thead>
+
+      <% @users_cities.sort.each do |user_city| %>
+          <tbody>
+              <tr>
+                  <th><%= user_city.id %></th>
+                  <td><%= user_city.user_id %></td>
+                  <td><%= user_city.city_id %></td>
+                  <td>ー</td>
+              </tr>
+          </tbody>
+      <% end %>
+      </table>
+
+
+      </div>
+    </div>
+  </div>
+</div>

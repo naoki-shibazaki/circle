@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 	get 'line' , to: 'users#line'
 	get 'link' , to: 'users#link'
 	get 'admin_users' , to: 'users#admin_users'	
+	get 'webmaster' , to: 'users#webmaster'	
 	get 'questions' , to: 'questions#questions'
 	get 'event_questions' , to: 'event_questions#event_questions'
 	get 'contents' , to: 'differences#contents'	
