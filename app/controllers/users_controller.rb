@@ -38,7 +38,10 @@ helper_method :link_count
 
 		# 手作業反映用
 		@cities = City.where(prefecture_id: @user.prefecture.id)
+		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
+		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id)
 		@user.users_cities.build
+		# 手作業反映用
     
     	impressionist(@user, nil, unique: [:session_hash])
     	@week_imps = User.where(created_at: 7.day.ago.all_day)
