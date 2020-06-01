@@ -26,6 +26,7 @@ helper_method :link_count
 
 	def show
 		@user = User.find(params[:id])
+		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: params[:id])
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
@@ -49,7 +50,6 @@ helper_method :link_count
 		      redirect_to users_path			
 		end
 
-
 		if @user.gallery_01.present?
 			@count += 1
 		end
@@ -64,12 +64,23 @@ helper_method :link_count
 		end
 
 		if @user.switch.present?
-		@b1_name = @user.event.name
-		@b1_url = "/#{@user.event.ruby}"
-		@b2_name = @user.prefecture.name
-		@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
-		@b3_name = @user.name
-		@b3_url = ""
+			if @user.prefecture_sub_id.present?
+				@b1_name = @user.event.name
+				@b1_url = "/#{@user.event.ruby}"
+				@b2_name = @user.prefecture.name
+				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
+				@b3_name = @sub_prefecture.name
+				@b3_url = "/#{@user.event.ruby}/#{@sub_prefecture.kana}"	
+				@b4_name = @user.name
+				@b4_url = ""
+			else
+				@b1_name = @user.event.name
+				@b1_url = "/#{@user.event.ruby}"
+				@b2_name = @user.prefecture.name
+				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
+				@b3_name = @user.name
+				@b3_url = ""
+			end
 		end
 
 		@mail_title = "【#{@user.name}】お問い合わせ"
@@ -87,7 +98,11 @@ helper_method :link_count
 
 	def edit2
 		@user = User.find(params[:id])
-		@cities = City.where(prefecture_id: @user.prefecture.id)
+		@prefecture = Prefecture.find_by(id: @user.prefecture_id)		
+		@cities = City.where(prefecture_id: @user.prefecture_id)
+		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
+		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id)
+
 
 		@user.users_cities.build
 	end
@@ -165,7 +180,6 @@ helper_method :link_count
 	def webmaster
    		if current_admin_user.id == 1   
 
-   			@users_cities = UsersCity.all
 
 
 
@@ -215,10 +229,9 @@ helper_method :link_count
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		# @users = User.where(prefecture_id: @prefecture.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
-		@users = User.where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).order(:last_post => :desc).where.not(switch: "").page(params[:page])
-
-
+		# @users = User.where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+		@users = User.where(prefecture_id: @prefecture.id).or(User.where(prefecture_sub_id: @prefecture.id)).or(User.where(prefecture_id: 50)).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+		
 		# パンくず
 		@b1_name = @prefecture.name
 		@b1_url = "/prefectures/#{@prefecture.kana}"	
@@ -228,7 +241,8 @@ helper_method :link_count
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+		# @users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+		@users = User.where(prefecture_id: @prefecture.id).or(User.where(prefecture_sub_id: @prefecture.id)).or(User.where(prefecture_id: 50)).where(event_id: @event.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
 		# パンくず
 		@b1_name = @event.name
@@ -464,7 +478,7 @@ helper_method :link_count
 private
 	def user_params
 		params.require(:user).permit(
-			:name, :email, :image_name, :header_image, :line_id, :switch, :item, :prefecture, :area, :schedule, :time_s, :time_e, :venue_address, :note, :age, :recruitment, :foundation, :member, :cost, :web, :appeal, :password, :goal, :user_id, :event_id, :decade, :prefecture_id, :image, :pic_profile, :pic_header, :image_01, :image_02, :gallery_01, :gallery_02, :gallery_03, :gallery_04, :requirement, :impressions_count, :line_count, :mail_count, :user_time, :last_post, :contact, :twitter, :instagram, :txt,
+			:name, :email, :image_name, :header_image, :line_id, :switch, :item, :prefecture, :area, :schedule, :time_s, :time_e, :venue_address, :note, :age, :recruitment, :foundation, :member, :cost, :web, :appeal, :password, :goal, :user_id, :event_id, :decade, :prefecture_id, :image, :pic_profile, :pic_header, :image_01, :image_02, :gallery_01, :gallery_02, :gallery_03, :gallery_04, :requirement, :impressions_count, :line_count, :mail_count, :user_time, :last_post, :contact, :twitter, :instagram, :txt, :prefecture_sub_id,
 			decade_age:[], average_age:[] ,grouping:[], age_ids:[], group_ids:[], city_ids:[]
    		)
 	end

@@ -132,7 +132,7 @@
                   <div class="user_area slide_content">
 			        <% if @user.prefecture_id.present? %>
 			         <i class="fa fa-map-marker "></i>
-			         	<%= @user.prefecture.name %>
+			         	<%= @user.prefecture.name %><% if @user.prefecture_sub_id.present? %>・<%= @sub_prefecture.name %><% end %>  
 						<%= "：" if @user.area.present? %>  
 						<%= @user.area %>
 			        <% end %>
@@ -151,8 +151,6 @@
 				      <% end %>
 					<% end %>
 				<% end %>
-
-
 
 
 

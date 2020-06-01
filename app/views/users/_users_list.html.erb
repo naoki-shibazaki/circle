@@ -38,23 +38,32 @@
               <%= link_to("/#{user.event.ruby}", class: "tag_btn") do %>
                 <i class="fa fa-tags tag-color"></i><%= user.event.name %>
               <% end %>
-              　
+              
               <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}", class: "tag_btn") do %>
                 <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
               <% end %>
 
+              <% if user.prefecture_sub_id.present? %>
+                <% @prefectures.each do |sub_prefecture| %>
+                  <% if user.prefecture_sub_id == sub_prefecture.id %>
+
+                    <%= link_to("/#{user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
+                      <i class="fa fa-tags tag-color"></i><%= sub_prefecture.name %>
+                    <% end %>
+
+                  <% end %>
+                <% end %>
+              <% end %>
+
+
    
     <%= link_to(user_path(user.id)) do %>  
-
 
               <%= image_tag user.pic_profile.url , class:'image_icon' %>
 
               <% if user.user_time.present? %>
                 <div class="post-bottom user_updated">更新日：<%= user.user_time.to_time.strftime("%Y年%-m月%-d日") %></div>
               <% end %>
-
-
-
 
         </div>
 
@@ -68,7 +77,6 @@
                 </div>
               </div>
 
-
               <div class="list_cnts">
                 <div class="list_02">
                     <span class="user_schedule">
@@ -78,7 +86,7 @@
 
                 <div class="list_03">
                     <span class="user_area">
-                      <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %><%= "：" if user.area.present? %><%= user.area %>
+                      <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %><% if user.prefecture_sub_id.present? %><% @prefectures.each do |sub_prefecture| %><% if user.prefecture_sub_id == sub_prefecture.id %>・<%= sub_prefecture.name %><% end %><% end %><% end %><%= "：" if user.area.present? %><%= user.area %>
                     </span>
                 </div>             
 

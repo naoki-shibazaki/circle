@@ -50,7 +50,6 @@
 		<div class="img_field_profile_space"></div>
 
 
-
         <p>サークル名<span class="must_red">(必須)</span></p>
         <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
 
@@ -70,8 +69,11 @@
 	    <p>サークル種目<span class="must_red">(必須)</span></p>	    
 	    <%= f.collection_select :event_id, Event.all.order(:order => :asc), :id, :name, :prompt => "選択してください" %>
 
-	    <p>都道府県<span class="must_red">(必須)</span></p>
+	    <p>メインの活動エリア（例：東京都）<span class="must_red">(必須)</span></p>
 	    <%= f.collection_select :prefecture_id, Prefecture.all.order(:order => :asc), :id, :name, :prompt => "選択してください" %>
+
+	    <p>サブの活動エリア（例：神奈川県）</p>
+	    <%= f.collection_select :prefecture_sub_id, Prefecture.all.order(:order => :asc), :id, :name, :include_blank => true %>	
 
 	    <p>活動時間</p>
 	    <%= f.text_field :schedule, class: 'form-control', placeholder: "月曜日 18〜20時" %>

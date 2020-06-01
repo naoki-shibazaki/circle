@@ -20,11 +20,18 @@
 
 	    <div class="p_t">サークル内容の編集</div>
 
-
-	    <p>活動エリア</p>
+	    <p>活動エリア（<%= @prefecture.name %>）</p>
 	    <div class="check_boxes">
 	   		<%= f.collection_check_boxes(:city_ids, @cities, :id, :name) %>
 	    </div>
+
+		<% if @user.prefecture_sub_id.present? %>
+		    <p>活動エリア（<%= @sub_prefecture.name %>）</p>
+		    <div class="check_boxes">
+		   		<%= f.collection_check_boxes(:city_ids, @sub_cities, :id, :name) %>
+		    </div>
+		<% end %>
+
 
         <%= f.submit "更新する" %>
 
