@@ -34,7 +34,7 @@ helper_method :link_count
 
 		@user_ages = @user.users_ages.map{|a| a.age}
 		@user_groups = @user.users_groups.map{|g| g.group}
-		@user_cities = @user.users_cities.map{|c| c.city}	
+		@user_cities = @user.users_cities.map{|c| c.city}
 
 		# 手作業反映用
 		@cities = City.where(prefecture_id: @user.prefecture.id)
@@ -253,11 +253,17 @@ helper_method :link_count
 
 	def event_prefecture_city
 		@event = Event.find_by(ruby: params[:ruby])
-		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@city = City.find_by(city_kana: params[:city_kana])	 
+		@city = City.find_by(city_kana: params[:city_kana])	
+		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
+		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
 		@users = User.where(id: @city_users).or(User.where(prefecture_id: 50)).where(event_id: @event.id).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+
+		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
+		      flash[:notice] = "URLが間違っています"
+		      redirect_to users_path		
+		end
 
 
 		# パンくず
