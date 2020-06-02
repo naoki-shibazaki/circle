@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
 	before_action :set_current_user	
+	before_action :set_imperfect_current_user
 	before_action :request_path
 	before_action :set_data
+
 
 	#herokuapp.comから独自ドメインへリダイレクト
 	before_action :ensure_domain
@@ -19,13 +21,48 @@ class ApplicationController < ActionController::Base
 	def set_current_user
     	@current_user = User.find_by(id: session[:user_id])
 
-
 		if admin_user_signed_in?
 	    	@questions_current = Question.where(user_id: current_admin_user.id)
 	    	@questions_current_nil = Question.where(user_id: current_admin_user.id).where(answer: nil)
     	end
 
   	end
+
+
+
+  	# 登録未完了時のアクション
+  	def set_imperfect_current_user
+  		if admin_user_signed_in? #ログイン判定
+			@admin_user = User.find_by(id: current_admin_user.id) #@admin_user取得
+
+			if  @admin_user.blank? #登録時のみnii（user#new 許可）
+
+
+			elsif @admin_user.name.blank? #登録未完了
+
+				if  controller_path == 'users' #users コントローラー
+
+					if action_name == 'new' || action_name == 'edit' || action_name == 'update' || action_name == 'edit2' || action_name == 'update2'
+
+					else
+						flash[:notice] = "登録を完了させてください"
+						redirect_to edit_user_path(@admin_user)			
+					end
+
+				else
+						flash[:notice] = "登録を完了させてください"
+						redirect_to edit_user_path(@admin_user)	
+				end
+
+			else #登録完了User
+
+			end 
+
+		end #ログイン判定
+
+  	end
+
+
 
   	def authenticate_user
 	    if @current_user == nil
@@ -41,16 +78,19 @@ class ApplicationController < ActionController::Base
 	    end
  	end
 
+
 	def after_sign_in_path_for(resource)
 
 		if admin_user_signed_in?
-	  		edit_user_path(current_admin_user)
+	  		# edit_user_path(current_admin_user)
+	  		new_user_path
 
 	  	else member_signed_in?
 	  		edit_member_path(current_member)
 	  	end	
 
 	end
+
 
 	def request_path
 	    @path = controller_path + '#' + action_name

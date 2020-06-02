@@ -3,6 +3,7 @@ Rails.application.routes.draw do
  :registrations => 'admin_users/registrations',
  :sessions => 'admin_users/sessions'
 }
+
   devise_for :members, :controllers => {
  :registrations => 'members/registrations',
  :sessions => 'members/sessions'

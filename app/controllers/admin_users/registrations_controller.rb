@@ -14,35 +14,24 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-  super
-    @user = User.new
-    @user.id = resource.id
-    @user.last_post = Time.now.ago(3.days)
-    @user.user_time = Time.now
-    @user.save
-    
-    # @admin_user = AdminUser.new(admin_user_params)
-    # @admin_user.build_user
-    # if @admin_user.save
-    #   @user = User.find_by(admin_user_id: @admin_user.id)
-    #   session[:user_id] =  @user.id
-    #   flash[:share] = 'アドレス登録完了！'
-    #   redirect_to edit_user_path(@admin_user.user)        
-    # end
-    
-  end
+  # def create
+  # super
+    # @user = User.new
+    # @user.id = resource.id
+    # @user.last_post = Time.now.ago(3.days)
+    # @user.user_time = Time.now
+    # @user.save
+  # end
 
   # GET /resource/edit
-  def edit
-    super
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
   def update
   super
     @data = AdminUser.find_by(id: current_admin_user.id)
-
 
     # if @data.valid_password?(params[:current_password])
 

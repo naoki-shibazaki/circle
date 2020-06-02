@@ -19,6 +19,28 @@ helper_method :link_count
 	end
 
 	def new
+	    if admin_user_signed_in?
+
+	    	if @user.blank? #未登録
+
+				@user = User.new
+				@user.id = current_admin_user.id
+				@user.last_post = Time.now.ago(3.days)
+				@user.user_time = Time.now
+				@user.save
+
+				flash[:notice] = 'プロフィールを設定してください！'
+				redirect_to edit_user_path(@user.id)
+
+			else #登録済み
+				flash[:notice] = 'ログイン成功！'
+				redirect_to edit_user_path(@user.id)
+			end
+
+    	else
+		    flash[:notice] = "登録が必要です"
+		    redirect_to root_path
+    	end	
 	end
 
 	def create
@@ -37,10 +59,14 @@ helper_method :link_count
 		@user_cities = @user.users_cities.map{|c| c.city}
 
 		# 手作業反映用
-		@cities = City.where(prefecture_id: @user.prefecture.id)
-		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
-		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id)
-		@user.users_cities.build
+		if admin_user_signed_in?		
+			if current_admin_user.id == 1  		
+				@cities = City.where(prefecture_id: @user.prefecture.id)
+				@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
+				@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id)
+				@user.users_cities.build
+			end
+		end
 		# 手作業反映用
     
     	impressionist(@user, nil, unique: [:session_hash])
@@ -182,10 +208,6 @@ helper_method :link_count
 
 	def webmaster
    		if current_admin_user.id == 1   
-
-
-
-
 
 
 	   	else
@@ -417,8 +439,6 @@ helper_method :link_count
 		  		
 		  	end
 
-
-
 		elsif params[:count] == "line_s" || params[:count] == "mail_s"
 		@schedule = Schedule.find(params[:id])
 		@user = User.find_by(id: @schedule.user_id)	
@@ -436,8 +456,6 @@ helper_method :link_count
 		  		
 		  	end			
 			
-
-
 		else
 		@user = User.find(params[:id])
 		@data = AdminUser.find_by(id: params[:id])
