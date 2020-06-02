@@ -1,4 +1,4 @@
-<% set_meta_tags title: "#{@prefecture.name}の#{@city.name}にある#{@event.name}のコート情報一覧" %>
+<% set_meta_tags title: "#{@prefecture.name}#{@city.name}にある#{@event.name}のコート情報一覧" %>
 <div class="main users-index">
   <div class="container">
 
@@ -7,7 +7,7 @@
  	  <img src="/images/places/e_p_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
       <div class="link_txt">
         <h1 class="e_header_title">
-		    <%= @prefecture.name %>の<%= @city.name %>にある<br><%= @event.name %>のコート情報一覧
+		    <%= @prefecture.name %><%= @city.name %>にある<br><%= @event.name %>のコート情報一覧
         </h1>
       </div>
     </div>

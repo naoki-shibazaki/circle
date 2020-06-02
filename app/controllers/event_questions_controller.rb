@@ -31,6 +31,14 @@ class EventQuestionsController < ApplicationController
 	def show
 		@event_question = EventQuestion.find_by(id: params[:id])
 		@event_answer = @event_question.event_answers.build
+		@event = Event.find_by(ruby: params[:ruby])
+
+
+		if @event.id != @event_question.event.id
+		      flash[:notice] = "URLが間違っています"
+		      redirect_to users_path			
+		end
+
 
 		# パンくず
 		@b1_name = @event.name

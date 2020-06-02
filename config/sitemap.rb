@@ -9,6 +9,7 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
   aws_region: ENV['AWS_S3_REGION'],
 )
 
+
 SitemapGenerator::Sitemap.create do
 
   User.find_each do |user|
@@ -20,27 +21,28 @@ SitemapGenerator::Sitemap.create do
   end
 
 
-
-
   Prefecture.find_each do |prefecture|
 
     if prefecture.kana != "nil"
-      add "/prefectures/#{prefecture.kana}", :lastmod => prefecture.updated_at, :priority => 0.8, :changefreq => 'daily' 
       add "/blog/prefectures/#{prefecture.kana}", :lastmod => prefecture.updated_at, :priority => 0.3, :changefreq => 'weekly'
+      add "/prefectures/#{prefecture.kana}", :lastmod => prefecture.updated_at, :priority => 0.8, :changefreq => 'daily' 
+      
+          City.where(prefecture_id: prefecture.id).find_each do |prefecture_city|
+            add "/prefectures/#{prefecture.kana}/#{prefecture_city.city_kana}", :lastmod => prefecture_city.updated_at, :priority => 0.8, :changefreq => 'weekly'
+          end 
 
-          Group.find_each do |prefecture_group|
-                add "/prefectures/#{prefecture.kana}/#{prefecture_group.group}", :lastmod => prefecture_group.updated_at, :priority => 0.3, :changefreq => 'weekly'
+          # Group.find_each do |prefecture_group|
+          #       add "/prefectures/#{prefecture.kana}/#{prefecture_group.group}", :lastmod => prefecture_group.updated_at, :priority => 0.3, :changefreq => 'weekly'
 
-                Age.find_each do |prefecture_age|
-                      add "/prefectures/#{prefecture.kana}/#{prefecture_group.group}/#{prefecture_age.decade}", :lastmod => prefecture_age.updated_at, :priority => 0.3, :changefreq => 'weekly'
-                end
+          #       Age.find_each do |prefecture_age|
+          #             add "/prefectures/#{prefecture.kana}/#{prefecture_group.group}/#{prefecture_age.decade}", :lastmod => prefecture_age.updated_at, :priority => 0.3, :changefreq => 'weekly'
+          #       end
 
-          end
+          # end
+
     end
 
   end
-
-
 
 
   Event.find_each do |event|
@@ -81,10 +83,23 @@ SitemapGenerator::Sitemap.create do
 
         end
 
+
+      add "/#{event.ruby}/qa", :lastmod => event.updated_at, :priority => 0.2, :changefreq => 'weekly'
+
+      EventQuestion.where(event_id: event.id).find_each do |event_question|
+        add "/#{event.ruby}/qa/#{event_question.id}", :lastmod => event_question.updated_at, :priority => 0.3, :changefreq => 'weekly'    
+      end
+
+
+
     end      
 
   end
 
+
+  Difference.find_each do |difference|
+    add "/contents/differences/#{difference.id}", :lastmod => difference.updated_at, :priority => 0.2, :changefreq => 'weekly'    
+  end
 
 
 

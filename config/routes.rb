@@ -50,8 +50,10 @@ Rails.application.routes.draw do
 
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'
-	get 'prefectures/:kana/:group' , to: 'users#prefecture_group'
-	get 'prefectures/:kana/:group/:decade' , to: 'users#prefecture_age'
+	get 'prefectures/:kana/:city_kana' , to: 'users#prefecture_city'	
+
+	# get 'prefectures/:kana/:group' , to: 'users#prefecture_group'
+	# get 'prefectures/:kana/:group/:decade' , to: 'users#prefecture_age'
 
 	get 'blog' , to: 'blogs#top'
 	get 'blog/prefectures' , to: 'blogs#prefecture_index'
