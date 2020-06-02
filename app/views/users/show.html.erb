@@ -2,7 +2,8 @@
 
 		<% if @user.pic_profile.present? %>
 
-			<% set_meta_tags title: "メンバー募集中！#{@user.prefecture.name}の#{@user.event.name}サークル【#{@user.name}】",
+
+			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
 							 description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！",
 							 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
 
@@ -17,7 +18,7 @@
 
 		<% else %>
 
-			<% set_meta_tags title: "メンバー募集中！#{@user.prefecture.name}の#{@user.event.name}サークル【#{@user.name}】",
+			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
 							 description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！", 
 							 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
 
@@ -34,7 +35,7 @@
 
 <% else %>
 
-			<% set_meta_tags title: "【#{@user.name}】",
+			<% set_meta_tags title: "未登録",
 							 description: @user.recruitment, 
 							og: { image: image_url('/images/default.png') },
 							twitter: { card: 'summary'}  

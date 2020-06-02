@@ -29,7 +29,7 @@ helper_method :link_count
 				@user.user_time = Time.now
 				@user.save
 
-				flash[:notice] = 'プロフィールを設定してください！'
+				flash[:notice] = '登録を進めてください！'
 				redirect_to edit_user_path(@user.id)
 
 			else #登録済み
