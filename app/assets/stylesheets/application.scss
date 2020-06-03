@@ -394,16 +394,19 @@ header {
 }
 
 .header-wrapper .data-box{
-  position: absolute;
-  bottom: 12px;
-  right:10px;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 245px;
+    text-align: right;    
 }
 
 .data-box .data-l,
 .data-box .data-r{
-  background-color: #fff;
-  padding: 4px 8px;
-  border: solid 1px #949494;
+    background-color: #fff;
+    padding: 4px 6px;
+    display: inline-table;
+    border: solid 1px #b1b1b1;
 }
 
 .data-box .data-l{
@@ -3519,7 +3522,7 @@ max-width: 100%;
     border: 3px solid #fff;
     background: #fff;
     left: 18px;
-    top: 40px;
+    top: 15px;
 }
 
 
@@ -4164,7 +4167,13 @@ max-width: 100%;
     border-right: 1px solid #cecece;        
 }
 
-
+.tag_btn_list{
+    width: 290px;
+    position: inherit;
+    text-align: left;
+    height: 60px;
+    left: 2px;
+}
 
 
 

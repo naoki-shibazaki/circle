@@ -35,6 +35,8 @@
               </div>
 
 
+          <div class="tag_btn_list slide_content">
+
               <%= link_to("/#{user.event.ruby}", class: "tag_btn") do %>
                 <i class="fa fa-tags tag-color"></i><%= user.event.name %>
               <% end %>
@@ -55,6 +57,7 @@
                 <% end %>
               <% end %>
 
+          </div>
 
    
     <%= link_to(user_path(user.id)) do %>  
