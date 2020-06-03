@@ -30,14 +30,16 @@
 			</div>
 
 		<% if @user.prefecture_sub_id.present? %>
-			<div class="edit02_warp">
-				<span class="edit02_subtitle">活動エリア（<%= @sub_prefecture.name %>）</span>
+			<% if @user.prefecture_sub_id != 50 %> 
+				<div class="edit02_warp">
+					<span class="edit02_subtitle">活動エリア（<%= @sub_prefecture.name %>）</span>
 
-			    <div class="check_boxes">
-			   		<%= f.collection_check_boxes(:city_ids, @sub_cities, :id, :name) %>
-			    </div>
+				    <div class="check_boxes">
+				   		<%= f.collection_check_boxes(:city_ids, @sub_cities, :id, :name) %>
+				    </div>
 
-			</div>
+				</div>
+			<% end %>
 		<% end %>
 
 

@@ -19,7 +19,7 @@ helper_method :link_count
 	end
 
 	def new
-	    if admin_user_signed_in?
+	    if admin_user_signed_in? #ログイン判定
 
 	    	if @user.blank? #未登録
 
@@ -29,7 +29,7 @@ helper_method :link_count
 				@user.user_time = Time.now
 				@user.save
 
-				flash[:notice] = '登録を進めてください！'
+				flash[:notice] = '詳細を教えてください！'
 				redirect_to edit_user_path(@user.id)
 
 			else #登録済み
@@ -148,10 +148,21 @@ helper_method :link_count
 				@user.save
 			end
 
-			if @user.prefecture.id == 50
+			if @user.prefecture.id == 50 #全国選択
+
+				@user.prefecture_sub_id = nil #サブエリアはnil
+				@user.save
+
 				flash[:notice] = 'プロフィール更新完了！'
 				redirect_to user_path
-			else
+
+			else #47都道府県
+
+				if @user.prefecture_id == @user.prefecture_sub_id #エリア重複判断
+					@user.prefecture_sub_id = nil #サブエリアはnil
+					@user.save
+				end
+
 				flash[:notice] = 'これで最後です！'
 				redirect_to "/users/#{@user.id}/edit2"
 			end
@@ -159,6 +170,7 @@ helper_method :link_count
 		else
 			render "/users/edit"
 		end	
+
 	end
 
 	def update2
