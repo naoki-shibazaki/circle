@@ -78,7 +78,7 @@
 	        	<div class="search_select_3">
 
 					<select name="event_select" onChange="location.href=value;">
-						<option value="#">サークル・団体</option>
+						<option value="#">サークル</option>
 					    <% @events.each do |event| %>
 							<option value="/<%= event.ruby %>/<%= @prefecture.kana %>/<%= @city.city_kana %>"><%= event.name %></option>
 						<% end %>
@@ -113,7 +113,7 @@
 	        	<div class="search_select_3">
 
 					<select name="event_select" onChange="location.href=value;">
-						<option value="#">サークル・団体</option>
+						<option value="#">サークル</option>
 					    <% @events.each do |event| %>
 							<option value="/<%= event.ruby %>/<%= @prefecture.kana %>"><%= event.name %></option>
 						<% end %>

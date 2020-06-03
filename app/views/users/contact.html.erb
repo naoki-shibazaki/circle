@@ -66,33 +66,40 @@
 			<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
 
 
+				<% if @user.switch == "募集中" %>
 
 
-				<div class="contact_wrap">
+					<div class="contact_wrap">
 
-					<% if params[:count] == "line" || params[:count] == "line_b" || params[:count] == "line_s" %>
+						<% if params[:count] == "line" || params[:count] == "line_b" || params[:count] == "line_s" %>
 
-						<% if @user.contact != "mail" %>
-							<a href="<%= @user.line_id %>">
-								<div class="contact-button line">LINEでお問い合わせをする！</div>
-							</a>
-						<% end %>
-						
+							<% if @user.contact != "mail" %>
+								<a href="<%= @user.line_id %>">
+									<div class="contact-button line">LINEでお問い合わせをする！</div>
+								</a>
+							<% end %>
+							
 
-				  	<% elsif params[:count] == "mail" || params[:count] == "mail_b" || params[:count] == "mail_s"%>
-						
-						<% if @user.contact != "line" %>
-							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-								<div class="contact-button mail">メールでお問い合わせをする！</div>
-							</a>
-						<% end %>
-						
-				  	<% else %>
+					  	<% elsif params[:count] == "mail" || params[:count] == "mail_b" || params[:count] == "mail_s"%>
+							
+							<% if @user.contact != "line" %>
+								<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+									<div class="contact-button mail">メールでお問い合わせをする！</div>
+								</a>
+							<% end %>
+							
+					  	<% else %>
 
 
-				  	<% end %>
+					  	<% end %>
 
-				 </div>
+					 </div>
+
+				<% else %>
+
+					<%= @user.name %>は、現在新規メンバーの募集を終了しております。
+
+				<% end %>
 
 
 				 <div class="contact_bottom"></div>
