@@ -266,6 +266,7 @@ helper_method :link_count
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@cities = City.where(prefecture_id: @prefecture.id)
 		@users = User.where(prefecture_id: @prefecture.id).or(User.where(prefecture_sub_id: @prefecture.id)).or(User.where(prefecture_id: 50)).order(:last_post => :desc).where.not(switch: "").page(params[:page])
 		
 		# パンくず
@@ -276,6 +277,7 @@ helper_method :link_count
 	def prefecture_city
 		@city = City.find_by(city_kana: params[:city_kana])	
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
+		@cities = City.where(prefecture_id: @prefecture.id)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}

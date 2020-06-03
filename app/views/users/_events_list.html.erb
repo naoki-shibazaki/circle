@@ -25,6 +25,17 @@
                 <% end %>
               </li> 
 
+          <% elsif @path.is('users#prefecture_city') %>
+              <li>
+                <%= link_to("/#{event.ruby}/#{@prefecture.kana}/#{@city.city_kana}") do %>
+                  <div class="e_icon_wrap">
+                    <img src="/images/events/s_e_icon_<%= event.ruby %>.jpg" alt="<%= event.name %>">
+                    <div class="link_txt"><%= event.name %></div>
+                  </div>
+                <% end %>
+              </li> 
+
+
           <% else %>
               <li>
                 <%= link_to("/#{event.ruby}/#{@prefecture.kana}") do %>
