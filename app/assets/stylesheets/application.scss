@@ -397,7 +397,7 @@ header {
     position: absolute;
     bottom: 12px;
     right: 12px;
-    width: 245px;
+    width: 250px;
     text-align: right;    
 }
 
@@ -3512,7 +3512,7 @@ max-width: 100%;
 
 .header_user_list .tag_btn{
     position: inherit;
-    left: 18px;
+    left: 20px;
     top: 12px;
 }
 
@@ -4042,7 +4042,7 @@ max-width: 100%;
     justify-content: flex-start;
     display: block;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overflow-scrolling: touch;
     white-space: nowrap; 
@@ -4172,10 +4172,14 @@ max-width: 100%;
     position: inherit;
     text-align: left;
     height: 60px;
-    left: 2px;
+  }
+
+.l_space{
+    display: inline-block;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0 10px;
 }
-
-
 
 
 // --------------------------------------
