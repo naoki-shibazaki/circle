@@ -2,33 +2,48 @@
   <div class="container">
     <div class="form users-form">
 
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>user_id</th>
+                  <th>group_id</th>
+              </tr>
+          </thead>
+
+
+          <% @users_groups.each do |group| %>
+          <tbody>
+              <tr>
+                  <th><%= group.id %></th>
+                  <td><%= group.user_id %></td>
+                  <td><%= group.group_id %></td>
+              </tr>
+          </tbody>
+          <% end %>
+      </table>
 
       <table class="table">
           <thead>
               <tr>
                   <th>ID</th>
-                  <th>a</th>
-                  <th>b</th>
-                  <th>ー</th>
+                  <th>user_id</th>
+                  <th>age_id</th>
               </tr>
           </thead>
 
 
-
-
-
-
+          <% @users_ages.each do |age| %>
           <tbody>
               <tr>
-                  <th>1</th>
-                  <td>aa</td>
-                  <td>bb</td>
-                  <td>ー</td>
+                  <th><%= age.id %></th>
+                  <td><%= age.user_id %></td>
+                  <td><%= age.age_id %></td>
               </tr>
           </tbody>
-
-
+          <% end %>
       </table>
+
 
 
       </div>

@@ -221,6 +221,8 @@ helper_method :link_count
 	def webmaster
    		if current_admin_user.id == 1   
 
+   			@users_groups = UsersGroup.all
+			@users_ages = UsersAge.all
 
 	   	else
 	      flash[:notice] = "権限がありません"
