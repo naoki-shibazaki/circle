@@ -71,6 +71,8 @@ Rails.application.routes.draw do
 
 	get ':ruby' , to: 'users#event'
 
+	get ':ruby/tag/:id' , to: 'tags#event'
+
 	get ':ruby/qa' , to: 'event_questions#index'
 	post ':ruby/qa' , to: 'event_questions#create'
 	get ':ruby/qa/:id' , to: 'event_questions#show'

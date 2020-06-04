@@ -1,0 +1,36 @@
+<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@tag.text}の#{@event.txt}",
+                  description: "【登録不要・無料で使える！】#{@tag.text}の#{@event.txt}！社会人や学生、初心者、経験者など、誰でも参加可能！完全無料で簡単に、メンバーの募集ができます！",
+                   keywords: "#{@event.name},#{@tag.name},サークル,チーム,メンバー募集中",
+              og: { 
+              	image:image_url("/images/events/e_ogp_#{@event.ruby}.png")
+              }
+%>
+
+
+<div class="main users-index">
+  <div class="container">
+ 	<%= render "/layouts/breadcrumb" %>
+
+		<div class="e_header_wrap">
+			<img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+			<div class="link_txt">
+				<h1 class="e_header_title">
+					<%= @tag.text %>！<br>
+					<%= @event.txt %>の一覧
+				</h1>
+			</div>
+		</div>
+
+	<% if @users.count != 0 %>
+
+		<%= render "/users/users_list.html.erb" %>
+		    
+	<% else @users.count == 0 %>
+
+		<%= render "/tags/no_hit.html.erb" %>		
+	
+	<% end %>
+
+
+  </div>
+</div>
