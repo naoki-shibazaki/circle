@@ -71,25 +71,19 @@ Rails.application.routes.draw do
 
 	get ':ruby' , to: 'users#event'
 
-	get ':ruby/tag/:id' , to: 'tags#event'
 
 	get ':ruby/qa' , to: 'event_questions#index'
 	post ':ruby/qa' , to: 'event_questions#create'
 	get ':ruby/qa/:id' , to: 'event_questions#show'
 	post ':ruby/qa/:id' , to: 'event_answers#create'
-
 	delete ':ruby/qa/:id' , to: 'event_questions#delete'
 	delete ':ruby/qa/:event_question_id/:id' , to: 'event_answers#delete'
 
+	get ':ruby/tag/:id' , to: 'tags#event'
 	get ':ruby/:kana' , to: 'users#event_prefecture'
+	get ':ruby/:kana/tag/:id' , to: 'tags#event_prefecture'	
 	get ':ruby/:kana/:city_kana' , to: 'users#event_prefecture_city'
-
-	# get ':ruby/:kana/group/:group' , to: 'users#group'
-	# get ':ruby/:kana/beginner' , to: 'users#group_beginner'
-	# get ':ruby/:kana/expert' , to: 'users#group_expert'
-	# get ':ruby/:kana/student' , to: 'users#group_student'
-	# get ':ruby/:kana/worker' , to: 'users#group_worker'	
-	# get ':ruby/:kana/:decade' , to: 'users#age'
+	get ':ruby/:kana/:city_kana/tag/:id' , to: 'tags#event_prefecture_city'
 
 
 end
