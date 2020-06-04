@@ -68,6 +68,47 @@ before_action :set_tags
 	end
 
 
+	def prefecture
+		@prefecture = Prefecture.find_by(kana: params[:kana])		
+
+		# @user.groupingやaverage_ageのOR検索は未実装
+		@users = 
+		User.where(prefecture_id: @prefecture.id).or(User.where(prefecture_sub_id: @prefecture.id)).or(User.where(prefecture_id: 50))
+			.where(id: @tag_users).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+
+		# パンくず		
+		@b1_name = @prefecture.name
+		@b1_url = "/prefectures/#{@prefecture.kana}"	
+		@b2_name = @tag.name
+		@b2_url = "/prefectures/#{@prefecture.kana}/tag/#{@tag.id}"	
+	end
+
+
+	def prefecture_city
+		@city = City.find_by(city_kana: params[:city_kana])	
+		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)	
+		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
+		@city_users = @city.users_cities.map{|c| c.user.id}
+
+		# @user.groupingやaverage_ageのOR検索は未実装
+		@users = 
+		User.where(id: @city_users).or(User.where(prefecture_id: 50))
+			.where(id: @tag_users).order(:last_post => :desc).where.not(switch: "").page(params[:page])
+
+		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
+		      flash[:notice] = "URLが間違っています"
+		      redirect_to users_path		
+		end
+
+		# パンくず		
+		@b1_name = @prefecture.name
+		@b1_url = "/prefectures/#{@prefecture.kana}"	
+		@b2_name = @city.name
+		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"	
+		@b3_name = @tag.name
+		@b3_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}/tag/#{@tag.id}"	
+	end
+
 
 	def set_tags
 		@tag = Tag.find(params[:id])

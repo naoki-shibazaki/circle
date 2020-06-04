@@ -50,10 +50,9 @@ Rails.application.routes.draw do
 
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'
-	get 'prefectures/:kana/:city_kana' , to: 'users#prefecture_city'	
-
-	# get 'prefectures/:kana/:group' , to: 'users#prefecture_group'
-	# get 'prefectures/:kana/:group/:decade' , to: 'users#prefecture_age'
+	get 'prefectures/:kana/tag/:id' , to: 'tags#prefecture'
+	get 'prefectures/:kana/:city_kana' , to: 'users#prefecture_city'
+	get 'prefectures/:kana/:city_kana/tag/:id' , to: 'tags#prefecture_city'
 
 	get 'blog' , to: 'blogs#top'
 	get 'blog/prefectures' , to: 'blogs#prefecture_index'
@@ -67,11 +66,7 @@ Rails.application.routes.draw do
 	get 'places/:ruby/:kana/:city_kana' , to: 'places#city'
 	get 'places/:ruby/:kana/:city_kana/:id' , to: 'places#show'
 
-	# post "likes/:post_id/create" => "likes#create"	
-
 	get ':ruby' , to: 'users#event'
-
-
 	get ':ruby/qa' , to: 'event_questions#index'
 	post ':ruby/qa' , to: 'event_questions#create'
 	get ':ruby/qa/:id' , to: 'event_questions#show'
