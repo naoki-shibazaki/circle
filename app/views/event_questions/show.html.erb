@@ -41,7 +41,7 @@
 
 					<%= f.hidden_field :member_id, :value => current_member.id %> 
 
-					<%= f.text_area :answer, class: 'form-control form-note', placeholder: "登録なしで回答することができます！" %>
+					<%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！" %>
 
 						<input type="submit" name="commit" value="回答する！" data-disable-with="回答する！" class="submit_btn">
 
@@ -62,6 +62,21 @@
 
 					<%= f.text_area :answer, class: 'form-control form-note', placeholder: "登録なしで回答することができます！" %>
 
+					<div class="profile_answer">
+                        <div id="img_field_icon" onClick="$('#file_icon').click()" >
+                            <% if @event_answer.icon.present? %>
+                              <%= image_tag(@event_answer.icon.url) %>
+                            <% else %>
+                              <i class="fa fa-image"></i>
+                            <% end %>
+                        </div>
+                        <%= f.file_field :icon, class: "image", style: "display:none;", id: "file_icon"%>
+
+                        <%= f.text_field :nickname, class: 'form-control answer_nickname', placeholder: "アイコン＆ニックネーム" %> 				
+					</div>
+
+					<div class="reset"></div>
+
 						<input type="submit" name="commit" value="回答する！" data-disable-with="回答する！" class="submit_btn">
 
 					<div class="reset"></div>
@@ -71,7 +86,7 @@
 
 
 			  <%= link_to "メンバー登録する", new_member_registration_path, class: 'member_add_btn' %>
-			  <div class="center">投稿時にプロフィールが表示されるようになります！</div>
+			  <div class="center">投稿時のアイコン＆ニックネーム入力が省けます！</div>
 
 		<% end %>
 
@@ -79,12 +94,9 @@
 
 
 
-
-
 	 	 <% @event_question.event_answers.reverse.each do |event_answer| %>
 
 			<% if event_answer.answer.present? %>
-
 
 				<% if event_answer.member_id != 0 %>
 
@@ -145,11 +157,20 @@
 
 
 							    <div class="user-content">
-										<img class="image_icon" src="/images/default.png">
+								        <% if event_answer.icon.present? %>
+								        	<%= image_tag event_answer.icon.url , class:'image_icon' %>
+										<% else %>
+											<img class="image_icon" src="/images/default.png">
+										<% end %>
 								
 							      <div class="list_wrapper contact_name_wrap">
 							        <div class="list_01">
-										<h2 class="user_name">名前なし</h2>
+									    <% if event_answer.nickname.present? %>
+									        <h2 class="user_name"><%= event_answer.nickname %></h2>	
+									    <% else %>
+											<h2 class="user_name">名前なし</h2>
+
+										<% end %>
 							        </div>
 							      </div>
 

@@ -60,7 +60,7 @@ class EventAnswersController < ApplicationController
 
     private
     def event_answer_params
-    	params.require(:event_answer).permit(:id, :answer, :event_question_id, :answer_member_id, :member_id)
+    	params.require(:event_answer).permit(:id, :answer, :event_question_id, :answer_member_id, :member_id, :nickname, :icon)
     end
 
 

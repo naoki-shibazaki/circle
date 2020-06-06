@@ -2766,7 +2766,8 @@ max-width: 100%;
 #img_field_01,
 #img_field_02,
 #img_field_03,
-#img_field_04 {
+#img_field_04,
+#img_field_icon{
     font-size: 15px;
     border: solid 1px #fff;
     color: #666;
@@ -2793,10 +2794,12 @@ max-width: 100%;
 #img_field_02,
 #img_field_03,
 #img_field_04,
+#img_field_icon,
 #img_field_01 img,
 #img_field_02 img,
 #img_field_03 img,
-#img_field_04 img {
+#img_field_04 img,
+#img_field_icon img {
     width: 70px;
     height: 70px;
     object-fit: cover;
@@ -2805,7 +2808,8 @@ max-width: 100%;
 #img_field_01 i,
 #img_field_02 i,
 #img_field_03 i,
-#img_field_04 i {
+#img_field_04 i,
+#img_field_icon i {
   font-size: 30px;
   color: #aaa;
   line-height: 250px;
@@ -2815,7 +2819,8 @@ max-width: 100%;
 #img_field_01:hover,
 #img_field_02:hover,
 #img_field_03:hover,
-#img_field_04:hover {
+#img_field_04:hover,
+#img_field_icon:hover {
   background-color: #6dd8d3;
   transition: 0.3s ease-out;
   opacity: 0.9;
@@ -2824,7 +2829,8 @@ max-width: 100%;
 #img_field_01:hover i,
 #img_field_02:hover i,
 #img_field_03:hover i,
-#img_field_04:hover i {
+#img_field_04:hover i,
+#img_field_icon:hover i {
   transition: 0.3s ease-out;
   display: block;
   color: #fff;
@@ -4180,6 +4186,34 @@ max-width: 100%;
     align-items: center;
     padding: 0 10px;
 }
+
+.profile_answer{
+    margin: 20px auto 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+#img_field_icon,
+#img_field_icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+#img_field_icon i {
+  font-size: 20px;
+  color: #aaa;
+  line-height: 250px;
+  transition: 0.3s ease-out;
+}
+
+.answer_nickname{
+  width: 80%;
+}
+
+
+
 
 
 // --------------------------------------
