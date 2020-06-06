@@ -1,21 +1,21 @@
 <% if @schedule.time_s.present? %>
 
 	<% if @schedule.time_e.present? %>
-		<% set_meta_tags title: "活動スケジュール｜#{@user.name}",
+		<% set_meta_tags title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
 							og: { 
 										title: "活動スケジュール｜#{@user.name}",
 										description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
-										image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_90_bold:#{@user.event.name },y_-100,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") } #{ @schedule.time_s.strftime('%H:%M') }〜#{ @schedule.time_e.strftime('%H:%M') },y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_80,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"								
+										image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60_bold:#{ @schedule_title },y_-100,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") } #{ @schedule.time_s.strftime('%H:%M') }〜#{ @schedule.time_e.strftime('%H:%M') },y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_80,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"								
 									},
 							twitter: { card: 'summary_large_image'}   				
 		 %>
 	
 	<% else %>
-		<% set_meta_tags title: "活動スケジュール｜#{@user.name}",
+		<% set_meta_tags title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
 							og: { 
-										title: "活動スケジュール｜#{@user.name}",
+										title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
 										description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
-										image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_90_bold:#{@user.event.name },y_-100,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") } #{ @schedule.time_s.strftime('%H:%M') }〜,y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_80,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"								
+										image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60_bold:#{ @schedule_title },y_-100,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") } #{ @schedule.time_s.strftime('%H:%M') }〜,y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_80,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"								
 									},
 							twitter: { card: 'summary_large_image'}   				
 		 %>
@@ -24,17 +24,16 @@
 
 
 <% else %>
-	<% set_meta_tags title: "活動スケジュール｜#{@user.name}",
+	<% set_meta_tags title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
 						og: { 
-									title: "活動スケジュール｜#{@user.name}",
+									title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
 									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
-									image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_90_bold:#{@user.event.name },y_-100,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") },y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_80,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"								
+									image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60_bold:#{ @schedule_title },y_-100,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") },y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_80,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"								
 								},
 						twitter: { card: 'summary_large_image'}   				
 	 %>
 
 <% end %>
-
 
 
 
@@ -50,14 +49,26 @@
 			  <%= link_to("/#{@user.event.ruby}", class: "tag_btn") do %>
 			    <i class="fa fa-tags tag-color"></i><%= @user.event.name %>
 			  <% end %>
-			  　
+			  
 			  <%= link_to("/#{@user.event.ruby}/#{@user.prefecture.kana}", class: "tag_btn") do %>
 			    <i class="fa fa-tags tag-color"></i><%= @user.prefecture.name %>
 			  <% end %>
 
+			  <% if @user.prefecture_sub_id.present? %>
+			    <% @prefectures.each do |sub_prefecture| %>
+			      <% if @user.prefecture_sub_id == sub_prefecture.id %>  
+
+			        <%= link_to("/#{@user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
+			        <i class="fa fa-tags tag-color"></i><%= sub_prefecture.name %>
+			        <% end %>
+
+			      <% end %>
+			    <% end %>
+			  <% end %>  
+
 				<div class="schedule_ogp_wrap">
 					<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/
-					l_text:Sawarabi%20Gothic_90_bold:<%= @user.event.name %>,y_-100,co_rgb:333,w_900,c_fit/
+					l_text:Sawarabi%20Gothic_60_bold:<%= @schedule_title %>,y_-100,co_rgb:333,w_900,c_fit/
 					l_text:Sawarabi%20Gothic_60:<%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %> <% if @schedule.time_s.present? %><%= @schedule.time_s.strftime('%H:%M') %>〜<%= @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? %><% end %>,y_10,co_rgb:333,w_900,c_fit/
 					l_text:Sawarabi%20Gothic_50:@<%= @schedule.venue %>,y_80,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg">	
 				</div>
@@ -81,17 +92,17 @@
 			</div>
 
 
-			<div class="schedule_tw_share">
-				    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の活動日です！%20%23サークルブック%0a", target: '_blank') do %>
-						<div class="share_btn_tw">
-						     <i class="fa fa-twitter"></i>活動日をTwitterで告知する！
-						</div>
-				    <% end %>
-			</div>
-
-
 			<% if admin_user_signed_in?  %>
 				<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
+
+
+					<div class="schedule_tw_share">
+						    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の活動日です！%20%23サークルブック%0a", target: '_blank') do %>
+								<div class="share_btn_tw">
+								     <i class="fa fa-twitter"></i>活動日をTwitterで告知する！
+								</div>
+						    <% end %>
+					</div>
 
 					<div class="post_share">
 				

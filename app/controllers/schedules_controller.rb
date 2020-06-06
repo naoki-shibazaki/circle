@@ -43,6 +43,12 @@ before_action :set_schedules
 	def show
 		@schedule = Schedule.find(params[:id])
 
+		if @schedule.title.present?
+			@schedule_title = @schedule.title
+		else
+			@schedule_title = @user.event.name
+		end
+
 
 		if @user.id.to_i != @schedule.user_id.to_i
 			flash[:notice] = "存在しないURLです"
@@ -83,6 +89,7 @@ before_action :set_schedules
 		@user = User.find(params[:user_id])		
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 		@data = AdminUser.find_by(id: params[:user_id])
+		@prefectures = Prefecture.all
 		@schedule_month = 0
 		@schedule_m_c = 0
 		@contact_judge = "_s"
@@ -109,7 +116,7 @@ before_action :set_schedules
 
 	private
 		def schedule_params
-			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note)
+			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note, :title)
 		end
 
 

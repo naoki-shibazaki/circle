@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_061324) do
+ActiveRecord::Schema.define(version: 2020_06_06_142028) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 2020_06_04_061324) do
     t.integer "event_question_id"
     t.integer "member_id"
     t.string "answer_member_id"
+    t.string "nickname"
+    t.string "icon"
     t.index ["event_question_id"], name: "index_event_answers_on_event_question_id"
     t.index ["member_id"], name: "index_event_answers_on_member_id"
   end
@@ -217,6 +219,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_061324) do
     t.time "time_e"
     t.string "venue_address"
     t.text "note"
+    t.string "title"
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 

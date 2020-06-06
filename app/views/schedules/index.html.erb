@@ -20,31 +20,35 @@
 
 			<% if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present? %>
 
-				<div class="schedule_share_wrap">
+				<% if admin_user_signed_in?  %>
+					<% if @user.id == current_admin_user.id %>
 
-					<div class="share_btn_tw">
-					    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の活動スケジュール%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
-					      <i class="fa fa-twitter"></i>ツイート
-					    <% end %>
+
+					<div class="schedule_share_wrap">
+
+						<div class="share_btn_tw">
+						    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の活動スケジュール%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
+						      <i class="fa fa-twitter"></i>ツイート
+						    <% end %>
+						</div>
+
+
+						<div class="share_btn_line">
+							<%= link_to 'LINEで共有する', "http://line.me/R/msg/text/?#{request.url}", title: 'LINE', target: '_blank' %>
+						</div>
+
 					</div>
 
 
-					<div class="share_btn_line">
-						<%= link_to 'LINEで共有する', "http://line.me/R/msg/text/?#{request.url}", title: 'LINE', target: '_blank' %>
-					</div>
+					<%= render "/schedules/schedule_copy" %>
 
-				</div>
+					<%= render "/schedules/post" %>
+
+
+					<% end %>
+				<% end %>
 
 			<% end %>
-
-
-			<%= render "/schedules/schedule_copy" %>
-
-	      <% if admin_user_signed_in? %>
-	        <% if @user.id == current_admin_user.id  %>
-				<%= render "/schedules/post" %>
-			<% end %>
-	      <% end %>
 
 			<% if @schedules.present? %>
 
@@ -69,10 +73,10 @@
 									<% if schedule.time_s.present? %>
 							          <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
 							        <% end %>
-
-
 						          <br>
-						          <%= schedule.venue %>
+						          @<%= schedule.venue %>
+						          <br>
+						          <%= schedule.title if schedule.title.present? %>
 						        </div>
 
 					        <% end %>  

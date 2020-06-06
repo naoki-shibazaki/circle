@@ -117,7 +117,7 @@ class QuestionsController < ApplicationController
 	def set_user
 	    @user = User.find_by(id: params[:user_id])
 
-	    @question_first = "コロナの影響はありますか？？"
+	    @question_first = "活動頻度を教えてください！"
 	    @question_second = "男女比を教えてください"
 	    @question_third = "初心者でも参加しやすいですか？"
 
