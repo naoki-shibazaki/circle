@@ -49,7 +49,7 @@ class User < ApplicationRecord
 
 
   	scope :user_hide, -> { where.not(switch: "") }
-  	scope :user_order, -> { order(prefecture_id: :asc,last_post: :desc) }
+  	scope :user_order, -> { order(sort: :asc,last_post: :desc) }
   	scope :user_sort, -> { user_hide.user_order }
 
   	scope :event, -> (event_id){ where(event_id: event_id) }
