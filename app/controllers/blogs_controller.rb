@@ -8,7 +8,7 @@ class BlogsController < ApplicationController
 
 
 	def index
-	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
+	    @blogs = Blog.all.blog_sort.page(params[:page])
 
 		# パンくず
 		@b1_name = "ブログ"
@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
 	end	
 
 	def top
-	    @blogs = Blog.all.order(created_at: "DESC").page(params[:page])
+	    @blogs = Blog.all.blog_sort.page(params[:page])
 
 		# パンくず
 		@b1_name = "ブログ"
@@ -105,7 +105,7 @@ class BlogsController < ApplicationController
 
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
-		@users = User.where(event_id: @event.id).where.not(switch: "nil")
+		@users = User.event(@event.id).user_hide
 
 		# パンくず
 		@b1_name = "ブログ"
@@ -118,7 +118,7 @@ class BlogsController < ApplicationController
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where(event_id: @event.id).where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where.not(switch: "nil")
+		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_hide
 
 		# パンくず
 		@b1_name = "ブログ"
@@ -140,7 +140,7 @@ class BlogsController < ApplicationController
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.where("(prefecture_id = ?) OR (prefecture_id = ?)", @prefecture.id, 50).where.not(switch: "nil")
+		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).user_hide
 
 		# パンくず
 		@b1_name = "ブログ"
@@ -158,9 +158,9 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-    	@users = User.all.where.not(switch: "nil")
+    	@users = User.all.user_hide
 	    @blogs = Blog.all.order(created_at: "DESC")
-    	@users_r = User.all.where.not(switch: "nil")
+    	@users_r = User.all.user_hide
 	    @blogs_r = Blog.all.order(created_at: "DESC")
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)	

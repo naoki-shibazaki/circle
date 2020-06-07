@@ -7,11 +7,10 @@ before_action :set_tags
 		@event = Event.find_by(ruby: params[:ruby])
 
 		if @tag.category == "group"
-			@users = User.where(id: @tag_users).or(User.where('grouping like?', "%#{@group.name}%")).event(@event.id).user_sort.page(params[:page])
+			@users = User.user(@tag_users).or(User.grouping(@group.name)).event(@event.id).user_sort.page(params[:page])
 		else @tag.category == "age"
-			@users = User.where(id: @tag_users).or(User.where('average_age like?', "%#{@age.name}%")).event(@event.id).user_sort.page(params[:page])
+			@users = User.user(@tag_users).or(User.average_age(@age.name)).event(@event.id).user_sort.page(params[:page])
 		end
-
 
 		# パンくず		
 		@b1_name = @event.name
@@ -27,7 +26,7 @@ before_action :set_tags
 		# @user.groupingやaverage_ageのOR検索は未実装
 		@users = 
 		User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-			.where(id: @tag_users).event(@event.id).user_sort.page(params[:page])
+			.user(@tag_users).event(@event.id).user_sort.page(params[:page])
 
 		# パンくず		
 		@b1_name = @event.name
@@ -49,7 +48,7 @@ before_action :set_tags
 		# @user.groupingやaverage_ageのOR検索は未実装
 		@users = 
 		User.city(@city_users).or(User.prefecture_50)
-			.where(id: @tag_users).event(@event.id).user_sort.page(params[:page])
+			.user(@tag_users).event(@event.id).user_sort.page(params[:page])
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
@@ -74,7 +73,7 @@ before_action :set_tags
 		# @user.groupingやaverage_ageのOR検索は未実装
 		@users = 
 		User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-			.where(id: @tag_users).user_sort.page(params[:page])
+			.user(@tag_users).user_sort.page(params[:page])
 
 		# パンくず		
 		@b1_name = @prefecture.name
@@ -93,7 +92,7 @@ before_action :set_tags
 		# @user.groupingやaverage_ageのOR検索は未実装
 		@users = 
 		User.city(@city_users).or(User.prefecture_50)
-			.where(id: @tag_users).user_sort.page(params[:page])
+			.user(@tag_users).user_sort.page(params[:page])
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
@@ -110,6 +109,9 @@ before_action :set_tags
 	end
 
 
+
+
+private
 	def set_tags
 		@tag = Tag.find(params[:id])
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
@@ -136,8 +138,6 @@ before_action :set_tags
 	end
 
 
-
-private
 	def tag_params
 		params.require(:user).permit(
 			:name, :category, :tag, :name, :text
