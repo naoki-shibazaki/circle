@@ -143,6 +143,12 @@ helper_method :link_count
 
 		if @user.update(user_params)
 
+			# like検索用
+			@user.grouping = @user.users_groups.map{|g| g.group.name}
+			@user.average_age = @user.users_ages.map{|a| a.age.name}
+			@user.save
+
+
 			if @user.switch == "受付終了"
 				@user.last_post = Time.now.ago(60.days)
 				@user.save

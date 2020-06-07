@@ -23,10 +23,13 @@ before_action :set_tags
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])		
 
-		# @user.groupingやaverage_ageのOR検索は未実装
-		@users = 
-		User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-			.user(@tag_users).event(@event.id).user_sort.page(params[:page])
+		if @tag.category == "group"		
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+				.grouping(@group.name).event(@event.id).user_sort.page(params[:page])
+		else @tag.category == "age"
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+				.average_age(@age.name).event(@event.id).user_sort.page(params[:page])
+		end
 
 		# パンくず		
 		@b1_name = @event.name
@@ -45,10 +48,30 @@ before_action :set_tags
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 		@city_users = @city.users_cities.map{|c| c.user.id}
 
+
+		if @tag.category == "group"	
+			@users = User.city(@city_users).or(User.prefecture_50)
+				.grouping(@group.name).event(@event.id).user_sort.page(params[:page])			
+		else @tag.category == "age"
+			@users = User.city(@city_users).or(User.prefecture_50)
+				.average_age(@age.name).event(@event.id).user_sort.page(params[:page])
+		end
+
+
+
 		# @user.groupingやaverage_ageのOR検索は未実装
-		@users = 
-		User.city(@city_users).or(User.prefecture_50)
+		@users = User.city(@city_users).or(User.prefecture_50)
 			.user(@tag_users).event(@event.id).user_sort.page(params[:page])
+
+		if @tag.category == "group"	
+			@users = User.city(@city_users).or(User.prefecture_50)
+				.grouping(@group.name).event(@event.id).user_sort.page(params[:page])	
+		else @tag.category == "age"
+			@users = User.city(@city_users).or(User.prefecture_50)
+				.average_age(@age.name).event(@event.id).user_sort.page(params[:page])
+		end
+
+
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
@@ -70,10 +93,13 @@ before_action :set_tags
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])		
 
-		# @user.groupingやaverage_ageのOR検索は未実装
-		@users = 
-		User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-			.user(@tag_users).user_sort.page(params[:page])
+		if @tag.category == "group"	
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+				.grouping(@group.name).user_sort.page(params[:page])
+		else @tag.category == "age"
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+				.average_age(@age.name).user_sort.page(params[:page])	
+		end
 
 		# パンくず		
 		@b1_name = @prefecture.name
@@ -89,10 +115,13 @@ before_action :set_tags
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 		@city_users = @city.users_cities.map{|c| c.user.id}
 
-		# @user.groupingやaverage_ageのOR検索は未実装
-		@users = 
-		User.city(@city_users).or(User.prefecture_50)
-			.user(@tag_users).user_sort.page(params[:page])
+		if @tag.category == "group"	
+			@users = User.city(@city_users).or(User.prefecture_50)
+				.grouping(@group.name).user_sort.page(params[:page])
+		else @tag.category == "age"
+			@users = User.city(@city_users).or(User.prefecture_50)
+				.average_age(@age.name).user_sort.page(params[:page])
+		end
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
@@ -107,8 +136,6 @@ before_action :set_tags
 		@b3_name = @tag.name
 		@b3_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}/tag/#{@tag.id}"	
 	end
-
-
 
 
 private
@@ -133,7 +160,6 @@ private
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)
 		end
-
 
 	end
 
