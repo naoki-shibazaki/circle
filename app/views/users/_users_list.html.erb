@@ -99,6 +99,9 @@
                 </div>
               </div>
 
+      <% end %>
+
+      <%= link_to(user_schedules_path(user.id)) do %>  
 
               <% if user.switch == "募集中" %>
 
@@ -126,7 +129,7 @@
                       <% end %>
                     <% end %>
 
-                <% end %>   
+                <% end %> 
 
               <% end %> 
               <% @count = 0 %>

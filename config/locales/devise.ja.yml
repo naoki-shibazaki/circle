@@ -74,7 +74,10 @@ ja:
       difference:
         letter: "『文字』"
         dummy: "『偽文字』"
-        order: "『配置場所』"      
+        order: "『配置場所』" 
+      schedule:
+        day: "『日程』"
+        venue: "『開催場所』"     
     models:
       user: "ユーザ"
   devise:

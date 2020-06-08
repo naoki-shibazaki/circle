@@ -18,10 +18,16 @@ before_action :set_schedules
 
 		@user.last_post = Time.now
 		@user.user_time = Time.now
-		@user.save
+		if @user.save
 
-		flash[:notice] = "追加しました"
-		redirect_to user_schedules_path
+			flash[:notice] = "追加しました"
+			redirect_to user_schedules_path
+
+		else
+			flash[:notice] = "必須項目が未記入です"
+			redirect_to user_schedules_path
+		end
+
 	end
 
 	def update
@@ -35,7 +41,7 @@ before_action :set_schedules
 			flash[:share] = '更新完了！'
 			redirect_to user_schedules_path
 		else
-			render "users/#{@user.id}/schedules/#{@schedule.id}/edit"
+			render "edit"
 		end	
 	end
 
