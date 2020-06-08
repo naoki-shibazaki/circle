@@ -295,7 +295,6 @@
 				<div class="profile_list_p">
 				    <% @schedules.each do |schedule| %> 
 
-
 				        <% if schedule.present? %>
 
                         <div class="text_slide">
@@ -312,7 +311,6 @@
 
 				        <% end %>                  
 				    <% end %>
-
 
 					<% if admin_user_signed_in? %>
 
@@ -332,14 +330,14 @@
 
 				</div>
 
-				<div class="border"></div>
+    			<div class="border"></div>
+	
 			<% end %>
 
 			<% if @user.appeal.present? %>
-				<div class="profile_list_t">サークルの詳細情報</div>
+				<div class="profile_list_t p_t_t"></div>
 				<div class="profile_list_p profile_list_a"><%= raw Rinku.auto_link(simple_format @user.appeal) %></div>
 
-				<div class="border"></div>
 			<% end %>
 		
 
