@@ -151,14 +151,16 @@
 						<th class="flex_list">住所</th>
 						<td class="flex_list"><%= @schedule.venue_address %></td>
 					</tr>
-					<tr class="flex_contents">
-						<th class="flex_list">備考欄</th>
-						<td class="flex_list"><%= raw Rinku.auto_link(simple_format @schedule.note) %></td>
-					</tr>
-
 
 		          </tbody>
 		        </table> 
+
+					<% if @schedule.note.present? %>
+						<div class="profile_list_t schedule_note_t"></div>
+						<div class="profile_list_p profile_list_a"><%= raw Rinku.auto_link(simple_format @schedule.note) %></div>
+					<% end %>						
+
+
 		    </div> 
 
 
