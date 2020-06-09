@@ -4222,6 +4222,62 @@ max-width: 100%;
 }
 
 
+.collection_table{
+
+}
+
+
+.collection_table table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.collection_table table th,
+.collection_table table td{
+  padding: 10px 0;
+  text-align: center;
+}
+
+.collection_table table tr:nth-child(odd){
+  background-color: #eee
+}
+
+
+.collection_table .checked,
+.collection_table .check{
+  font-size: 20px;
+  color: #e09a1b; 
+}
+
+.collection_table .text_r{
+  text-align: right;
+}
+
+.collection_table .text_c{
+  text-align: center;
+}
+
+.collection_table .w10{
+  width: 10%;
+}
+
+.collection_table .w20{
+  width: 20%;
+}
+
+.collection_table .w30{
+  width: 30%;
+}
+
+.collection_table .w40{
+  width: 40%;
+}
+
+.collection_table .w50{
+  width: 50%;
+}
+
 
 
 

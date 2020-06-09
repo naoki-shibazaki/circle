@@ -48,34 +48,43 @@
 
 			<% if @collection.items.present? %>
 
-				<div class="collection_list_wrap">
-				    <% @collection.items.each do |item| %> 
+				<div class="collection_table">
+					<table>
 
-				    	<% if item.money.present? %>
+					    <% @collection.items.each do |item| %> 
 
-							<div class="collection_list">
-					        	<%= item.name %>
-					        	<% if item.money.present? %>：<%= item.money %>円<% end %>
+					    	<% if item.money.present? %>
+								<tr>
 
-									<% if item.check == "check" %>
-										<%= item.check %>
-										<%=link_to "済", "/users/#{@user.id}/collections/#{@collection.id}/items/#{item.id}?check=", method: :put %>
+									<td class="text_c w10">
+									    <%= link_to("/users/#{@user.id}/collections/#{@collection.id}/items/#{item.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
+											<i class="fa fa-trash "></i> 									    
+										<% end %>
+									</td>
 
-									<% else item.check == "" %>
-										<%= item.check %>
-										<%=link_to "未", "/users/#{@user.id}/collections/#{@collection.id}/items/#{item.id}?check=check", method: :put %>
-						          	<% end %>
+									<td class="text_c w50"><%= item.name %></td>
 
+									<td class="text_r w20"><% if item.money.present? %><%= item.money %>円<% end %></td>
 
-								    <%= link_to("/users/#{@user.id}/collections/#{@collection.id}/items/#{item.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
-										<i class="fa fa-trash "></i> 									    
-									<% end %>
+									<td class="text_c w20">	
+										<% if item.check == "check" %>
+											<%=link_to "/users/#{@user.id}/collections/#{@collection.id}/items/#{item.id}?check=", method: :put do %>
+												<span class="checked"><i class="fa fa-check-square-o "></i></span>
+											<% end %>
 
-					        </div>
+										<% else item.check == "" %>
+											<%=link_to "/users/#{@user.id}/collections/#{@collection.id}/items/#{item.id}?check=check", method: :put do %>
+												<span class="check"><i class="fa fa-square-o "></i></span>
+											<% end %>
+							          	<% end %>
+							        </td>
 
-				        <% end %>
+						        </tr>
+					        <% end %>
 
-				    <% end %>
+					    <% end %>
+
+				    </table>
 				</div>
 
 			<% end %>
