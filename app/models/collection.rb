@@ -3,6 +3,6 @@ class Collection < ApplicationRecord
 	has_many :items, dependent: :destroy
 
 	validates :day, presence: true
-	validates :price, numericality: true
+	# validates :price, numericality: true
 
 end

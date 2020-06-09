@@ -26,7 +26,7 @@ before_action :set_items
 
 	end
 
-	def show	
+	def show
 	end
 
 	def edit
