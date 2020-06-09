@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 	resources :users do
   		resources :schedules
   		resources :questions
+	  	resources :collections do
+	  		resources :items
+	  	end
   	end
 
   	resources :members
@@ -22,10 +25,9 @@ Rails.application.routes.draw do
     	resources :cities, only: :index
   	end
 
-
 	scope '/contents' do
 	  resources :differences
-	end 	
+	end
  
 	root 'users#top'
 

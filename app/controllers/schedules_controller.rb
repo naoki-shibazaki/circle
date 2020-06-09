@@ -90,37 +90,35 @@ before_action :set_schedules
 	end
 
 
-	   	
-	def set_schedules
-		@user = User.find(params[:user_id])		
-		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
-		@data = AdminUser.find_by(id: params[:user_id])
-		@prefectures = Prefecture.all
-		@schedule_month = 0
-		@schedule_m_c = 0
-		@contact_judge = "_s"
+	private 	
+		def set_schedules
+			@user = User.find(params[:user_id])		
+			@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
+			@data = AdminUser.find_by(id: params[:user_id])
+			@prefectures = Prefecture.all
+			@schedule_month = 0
+			@schedule_m_c = 0
+			@contact_judge = "_s"
 
-		@mail_title = "【#{@user.name}】お問い合わせ"
-		@mail_message = "こちらに相談内容をご記入ください！"
-	end
-
-
-	def ensure_correct_user
-		@user = User.find(params[:user_id])		
-
-	   	if current_admin_user.id.to_i == @user.id.to_i	   		
-		
-	   	elsif current_admin_user.id == 1 
-
-		else
-		      flash[:notice] = "権限がありません"
-		      redirect_to users_path
-
+			@mail_title = "【#{@user.name}】お問い合わせ"
+			@mail_message = "こちらに相談内容をご記入ください！"
 		end
-	end	
 
 
-	private
+		def ensure_correct_user
+			@user = User.find(params[:user_id])		
+
+		   	if current_admin_user.id.to_i == @user.id.to_i	   		
+			
+		   	elsif current_admin_user.id == 1 
+
+			else
+			      flash[:notice] = "権限がありません"
+			      redirect_to users_path
+
+			end
+		end	
+
 		def schedule_params
 			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note, :title)
 		end

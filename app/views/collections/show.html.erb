@@ -1,0 +1,89 @@
+<% set_meta_tags noindex: true %>
+
+<div class="main users-index">
+  <div class="container">
+
+	<div class="users-index-item">
+
+	<h1><%= Time.parse(@collection.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@collection.day).wday]})") %></h1>
+
+
+        <div class="schedule_add_wrap">
+            <div class="schedule_input">
+
+          		<div class="form-body cont-body">
+
+	              <%= form_for ([@user, @collection]), url: "/users/#{@user.id}/collections/#{@collection.id}", method: :put do |f| %>
+	            
+					    <%= f.text_field :price, class: 'form-control',  placeholder: "500" %>円
+
+			            <input type="submit" name="commit" value="設定する" data-disable-with="設定する">
+
+			            <div class="reset"></div>
+
+	              <% end %>
+
+
+
+	              <%= form_for ([@user, @collection, @item]), url: "/users/#{@user.id}/collections/#{@collection.id}/items" do |f| %>
+	            
+					    <%= f.text_field :name, class: 'form-control', placeholder: "鈴木さん" %> 
+					    <%= f.text_field :money, class: 'form-control', value: @collection.price, placeholder: "500" %>円
+
+			            <input type="submit" name="commit" value="更新する" data-disable-with="更新する">
+
+			            <div class="reset"></div>
+
+	              <% end %>
+
+            	</div>
+        	</div>
+
+
+			<div class="sum_data">
+				合計　<%= @sum_money.sum(:money) %>円／<%= @collection.items.sum(:money) %>円
+			</div>
+
+			<div class="border"></div>
+
+			<% if @collection.items.present? %>
+
+				<div class="collection_list_wrap">
+				    <% @collection.items.each do |item| %> 
+
+				    	<% if item.money.present? %>
+
+							<div class="collection_list">
+					        	<%= item.name %>
+					        	<% if item.money.present? %>：<%= item.money %>円<% end %>
+
+									<% if item.check == "check" %>
+										<%= item.check %>
+										<%=link_to "済", "/users/#{@user.id}/collections/#{@collection.id}/items/#{item.id}?check=", method: :put %>
+
+									<% else item.check == "" %>
+										<%= item.check %>
+										<%=link_to "未", "/users/#{@user.id}/collections/#{@collection.id}/items/#{item.id}?check=check", method: :put %>
+						          	<% end %>
+
+
+								    <%= link_to("/users/#{@user.id}/collections/#{@collection.id}/items/#{item.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
+										<i class="fa fa-trash "></i> 									    
+									<% end %>
+
+					        </div>
+
+				        <% end %>
+
+				    <% end %>
+				</div>
+
+			<% end %>
+
+
+	
+		</div>
+
+  </div>
+</div>
+

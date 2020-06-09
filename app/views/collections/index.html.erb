@@ -1,0 +1,68 @@
+<% set_meta_tags noindex: true %>
+
+<div class="main users-index">
+  <div class="container">
+
+	<div class="users-index-item">
+
+
+スケジュール
+
+        <div class="schedule_add_wrap">
+            <div class="schedule_input">
+
+	          <div class="form-body cont-body">
+
+	              <%= form_for ([@user, @collection]) do |f| %>
+	            
+	                <p>日程<span class="must_red">(必須)</span></p>
+	                  <%= f.date_field :day, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control form-day' %>
+
+		            <input type="submit" name="commit" value="更新する" data-disable-with="更新する">
+
+		            <div class="reset"></div>
+
+	              <% end %>
+
+	          	</div>
+
+            </div>
+        </div>
+
+
+			<% if @collections.present? %>
+
+				<div class="collection_list_wrap">
+				    <% @collections.each do |collection| %> 
+				        <% if collection.present? %>
+
+
+							<% if @collection_month != Time.parse(collection.day).strftime("%-m") %>
+								<h2 class="collection_m">▼<%= Time.parse(collection.day).strftime("%-m") %>月</h2>
+								<% @collection_month = Time.parse(collection.day).strftime("%-m") %>
+							<% end %>							
+
+
+					        <%= link_to(user_collection_path(@user.id, collection.id)) do %>
+
+
+								<div class="collection_list">
+						          ・<%= Time.parse(collection.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(collection.day).wday]})") %>
+						        </div>
+
+					        <% end %>  
+
+				        <% end %>                  
+				    <% end %>
+				</div>
+
+			<% end %>
+
+
+
+	
+	</div>
+
+  </div>
+</div>
+

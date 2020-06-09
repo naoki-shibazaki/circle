@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_07_043918) do
+ActiveRecord::Schema.define(version: 2020_06_09_122738) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2020_06_07_043918) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "day"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price"
+    t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
   create_table "columns", force: :cascade do |t|
@@ -141,6 +150,16 @@ ActiveRecord::Schema.define(version: 2020_06_07_043918) do
     t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
     t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
     t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "collection_id"
+    t.string "name"
+    t.integer "money"
+    t.string "check"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_items_on_collection_id"
   end
 
   create_table "likes", force: :cascade do |t|
