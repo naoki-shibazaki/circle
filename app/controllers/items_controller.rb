@@ -19,7 +19,7 @@ before_action :set_items
 			redirect_to user_collection_path(@user.id, @collection.id)
 
 		else
-			flash[:notice] = "未記入です"
+			flash[:notice] = "エラーです"
 			redirect_to user_collection_path(@user.id, @collection.id)
 		end
 
