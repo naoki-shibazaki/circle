@@ -62,6 +62,11 @@ before_action :set_collections
 	end
 
 	def destroy
+		@collection = Collection.find(params[:id])
+		@collection.destroy
+		flash[:notice] = "削除しました"
+		redirect_to user_collections_path
+
 	end
 
 

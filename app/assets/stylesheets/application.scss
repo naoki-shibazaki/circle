@@ -4426,6 +4426,7 @@ max-width: 100%;
 
 
 .collection_list{
+    position: relative;
     border: 1px solid #d8dadf;
     border-bottom: 4px solid #d8dadf;
     margin: 2px 0 12px;
@@ -4438,6 +4439,11 @@ max-width: 100%;
   margin-bottom: 4px;
 }
 
+.collection_delete{
+    bottom: 8px;
+    right: 20px;
+    position: absolute;
+}
 
 
 

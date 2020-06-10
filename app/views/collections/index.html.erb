@@ -49,6 +49,14 @@
 						          	</span>
 										人数：<%= collection.items.count %>人<br>
 										金額：<%= collection.items.sum(:money) %>円
+
+									<div class="collection_delete">
+									    <%= link_to("/users/#{@user.id}/collections/#{collection.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
+											<i class="fa fa-trash "></i> 
+										<% end %>
+									</div>
+
+
 						        </div>
 
 					        <% end %>  
@@ -78,6 +86,14 @@
 						          	</span>
 										人数：<%= collection_archive.items.count %>人<br>
 										金額：<%= collection_archive.items.sum(:money) %>円
+
+									<div class="collection_delete">
+									    <%= link_to("/users/#{@user.id}/collections/#{collection_archive.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
+											<i class="fa fa-trash "></i> 
+										<% end %>
+									</div>
+
+
 						        </div>
 
 					        <% end %>  
