@@ -44,6 +44,16 @@ before_action :set_collections
 		@b3_url = "/users/#{@user.id}/collections/#{@collection.id}"				
 	end
 
+	def sample
+
+		# パンくず
+		@b2_name = "集金管理ページ"
+		@b2_url = "/users/#{@user.id}/collections"
+		@b3_name = "サンプルページ"
+		@b3_url = "/users/#{@user.id}/collections/sample"				
+	end
+
+
 	def edit
 	end
 

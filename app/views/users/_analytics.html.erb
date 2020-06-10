@@ -83,6 +83,13 @@
 					</div>
 				<% end %>
 
+	            <%= link_to(user_collections_path(current_admin_user)) do %>
+		            <div class="analytics_btn">	
+		               <i class="fa fa-money "></i>集金管理アプリ
+		           	</div>
+		        <% end %>
+
+
 				<%= link_to(user_questions_path(@user.id)) do %> 
 	                <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
 	                  <div class="analytics_btn notice_icon">

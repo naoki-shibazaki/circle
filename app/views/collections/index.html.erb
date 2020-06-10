@@ -28,6 +28,17 @@
 			<% end %>
         </div>
 
+			<%= link_to "/users/#{@user.id}/collection-sample" do %>
+				<div class="collection_list">
+
+					<span class="collection_day">
+				  		サンプルページ<br>
+				  	</span>
+						人数：6人<br>
+						金額：3500円
+				</div>
+			<% end %>
+
 
 			<% if @collections.present? %>
 

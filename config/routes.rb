@@ -49,7 +49,8 @@ Rails.application.routes.draw do
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:user_id/question' , to: 'questions#question'
-
+	get 'users/:user_id/collection-sample' , to: 'collections#sample'	
+	
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'
 	get 'prefectures/:kana/tag/:id' , to: 'tags#prefecture'
