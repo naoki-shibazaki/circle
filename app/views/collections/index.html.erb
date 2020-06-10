@@ -89,26 +89,26 @@
 				    <% @collection_archives.each do |collection_archive| %> 
 				        <% if collection_archive.present? %>
 
+							<div class="collection_content_rwap">
+					        	<%= link_to(user_collection_path(@user.id, collection_archive.id)) do %>
 
-					        <%= link_to(user_collection_path(@user.id, collection_archive.id)) do %>
+									<div class="collection_list">
+										<span class="collection_day">
+							          		<%= Time.parse(collection_archive.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(collection_archive.day).wday]})") %><br>
+							          	</span>
+											人数：<%= collection_archive.items.count %>人<br>
+											金額：<%= collection_archive.items.sum(:money) %>円
 
-								<div class="collection_list">
-									<span class="collection_day">
-						          		<%= Time.parse(collection_archive.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(collection_archive.day).wday]})") %><br>
-						          	</span>
-										人数：<%= collection_archive.items.count %>人<br>
-										金額：<%= collection_archive.items.sum(:money) %>円
+										<div class="collection_delete">
+										    <%= link_to("/users/#{@user.id}/collections/#{collection_archive.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
+												<i class="fa fa-trash "></i> 
+											<% end %>
+										</div>
 
-									<div class="collection_delete">
-									    <%= link_to("/users/#{@user.id}/collections/#{collection_archive.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
-											<i class="fa fa-trash "></i> 
-										<% end %>
-									</div>
+									</div>	
+						        <% end %>  
+						    </div>
 
-
-						        </div>
-
-					        <% end %>  
 
 				        <% end %>                  
 				    <% end %>
