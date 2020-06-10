@@ -30,6 +30,8 @@ before_action :set_collections
 		@collection = Collection.find(params[:id])
 		@item = @collection.items.build
 
+		@items = @collection.items.order(:id => :asc)
+
 		@sum_money = Item.where(collection_id: @collection.id).where(check: "check")
 	end
 
@@ -61,12 +63,11 @@ before_action :set_collections
 
 		def set_collections
 			@user = User.find(params[:user_id])
-			@collections = Collection.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)		
-
+			@collections = Collection.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)	
 		end
 
 		def ensure_correct_user
-			@user = User.find(params[:user_id])		
+			@user = User.find(params[:user_id])
 
 		   	if current_admin_user.id.to_i == @user.id.to_i	   		
 			
