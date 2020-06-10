@@ -52,25 +52,26 @@
 								<% @collection_month = Time.parse(collection.day).strftime("%-m") %>
 							<% end %>							
 
-					        <%= link_to(user_collection_path(@user.id, collection.id)) do %>
 
-								<div class="collection_list">
-									<span class="collection_day">
-						          		<%= Time.parse(collection.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(collection.day).wday]})") %><br>
-						          	</span>
-										人数：<%= collection.items.count %>人<br>
-										金額：<%= collection.items.sum(:money) %>円
+							<div class="collection_content_rwap">
+						        <%= link_to(user_collection_path(@user.id, collection.id)) do %>
 
-									<div class="collection_delete">
-									    <%= link_to("/users/#{@user.id}/collections/#{collection.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
-											<i class="fa fa-trash "></i> 
-										<% end %>
-									</div>
+									<div class="collection_list">
+										<span class="collection_day">
+							          		<%= Time.parse(collection.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(collection.day).wday]})") %><br>
+							          	</span>
+											人数：<%= collection.items.count %>人<br>
+											金額：<%= collection.items.sum(:money) %>円
+							        </div>
+						        <% end %> 
 
+				        		<div class="collection_delete">
+								    <%= link_to("/users/#{@user.id}/collections/#{collection.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
+										<i class="fa fa-trash "></i> 
+									<% end %>
+								</div>
+							</div>
 
-						        </div>
-
-					        <% end %>  
 
 				        <% end %>                  
 				    <% end %>

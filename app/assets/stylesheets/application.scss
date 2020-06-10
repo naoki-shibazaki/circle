@@ -4407,7 +4407,6 @@ max-width: 100%;
     font-weight: 300;
     width: 60px;
     border-radius: 2px;
-    margin-top: 8px;
     margin-bottom: 0;
     margin-left: 20px;
     height: 36px;
@@ -4426,12 +4425,12 @@ max-width: 100%;
 
 
 .collection_list{
-    position: relative;
     border: 1px solid #d8dadf;
     border-bottom: 4px solid #d8dadf;
     margin: 2px 0 12px;
     padding: 10px 10px;
     border-radius: 6px;
+    width: 100%;
 }
 
 .collection_day{
@@ -4439,10 +4438,21 @@ max-width: 100%;
   margin-bottom: 4px;
 }
 
+.collection_content_rwap{
+  position: relative;
+}
+
+
 .collection_delete{
-    bottom: 8px;
-    right: 20px;
     position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.collection_delete .fa-trash{
+  font-size: 18px;
 }
 
 
@@ -4477,7 +4487,7 @@ max-width: 100%;
     content: "新";
     transform: rotate(315deg);
     display: block;
-    font-size: 8px;
+    font-size: 10px;
     white-space: pre;
     color: #fff;
     top: 3px;
