@@ -73,6 +73,7 @@ before_action :set_collections
 		def set_collections
 			@user = User.find(params[:user_id])
 			@collections = Collection.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)	
+			@collection_archives = Collection.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).order(:day => :desc)	
 
 			# パンくず
 			@b1_name = @user.name

@@ -4382,13 +4382,61 @@ max-width: 100%;
   color: #484848;
 }
 
+.collection_add_wrap {
+  margin: 10px 0 20px;
+}
+
+.collection_add {
+    display: inline-block;
+}
+
+.collection_add input {
+    height: 36px;
+    border: 1px solid #d8dadf;
+    padding: 10px;
+    color: #1c1e22;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-radius: 2px;
+}
+
+.collection_add input[type="submit"] {
+    background-color: #3ecdc6;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    width: 60px;
+    border-radius: 2px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    margin-left: 20px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+}
+
+.collection_m{
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.collection_list_wrap {
+    // padding: 0px 10px 0px;
+}
 
 
+.collection_list{
+    border: 1px solid #d8dadf;
+    border-bottom: 4px solid #d8dadf;
+    margin: 2px 0 12px;
+    padding: 10px 10px;
+    border-radius: 6px;
+}
 
-
-
-
-
+.collection_day{
+  font-size: 18px;
+  margin-bottom: 4px;
+}
 
 
 
