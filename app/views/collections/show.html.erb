@@ -1,11 +1,16 @@
-<% set_meta_tags noindex: true %>
+<% set_meta_tags noindex: true,
+				title: "集金管理ページ"
+%>
+
 
 <div class="main users-index">
   <div class="container">
 
+    <%= render "/layouts/breadcrumb" %>
+
 	<div class="users-index-item">
 
-	<h1><%= Time.parse(@collection.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@collection.day).wday]})") %></h1>
+	<h1 class="collection_title"><%= Time.parse(@collection.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@collection.day).wday]})") %></h1>
 
 
 	<div class="collection_form">
@@ -22,7 +27,7 @@
 		   </div>
 
 
-			 <input type="submit" name="commit" value="設定する" data-disable-with="設定する">
+			 <input type="submit" name="commit" value="設定" data-disable-with="設定">
 
 		<% end %>
 
@@ -50,19 +55,19 @@
 				   	</div>	
 			   </div>    
 
-	            <input type="submit" name="commit" value="追加する" data-disable-with="追加する">
+	            <input type="submit" name="commit" value="追加" data-disable-with="追加">
 
 	      <% end %>
 	  	</div>
 
 
-
-
-			<div class="sum_data">
-				合計　<%= @sum_money.sum(:money) %>円／<%= @collection.items.sum(:money) %>円
+			<div class="sum_people">
+				<span class="sum_border">人数　<%= @sum_money.count %>人／<span class="sum_s"><%= @collection.items.count %>人</span></span>
 			</div>
 
-			<div class="border"></div>
+			<div class="sum_money">
+				<span class="sum_border">金額　<%= @sum_money.sum(:money) %>円／<span class="sum_s"><%= @collection.items.sum(:money) %>円</span></span>
+			</div>
 
 			<% if @items.present? %>
 

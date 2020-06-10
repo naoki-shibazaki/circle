@@ -4281,12 +4281,12 @@ max-width: 100%;
 
 
 .cp_iptxt {
-    width: 33%;
+    width: 40%;
     display: inline-block;
 }
 
 .collection_form{
-    margin: 40px 3%;
+    margin: 24px 12px 22px 0;
 }
 
 .cp_iptxt input[type='text'] {
@@ -4329,7 +4329,7 @@ max-width: 100%;
     color: white;
     cursor: pointer;
     font-weight: 300;
-    width: 100px;
+    width: 60px;
     border-radius: 2px;
     margin-bottom: 0;
     height: 36px;
@@ -4359,6 +4359,39 @@ max-width: 100%;
 .cp_iptxt .item_name input[type='text'] {
   padding-left: 30px;
 }
+
+
+.collection_title{
+  font-size: 24px;
+}
+
+.sum_people,
+.sum_money{
+    margin: 10px 0px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.sum_border{
+    padding: 0 10px 1px;
+    border-bottom: solid 1px #afafaf;
+}
+
+.sum_s{
+  font-size: 12px;
+  color: #484848;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

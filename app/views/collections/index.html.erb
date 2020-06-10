@@ -1,12 +1,17 @@
-<% set_meta_tags noindex: true %>
+<% set_meta_tags noindex: true,
+				title: "集金管理ページ"
+%>
 
 <div class="main users-index">
   <div class="container">
 
+    <%= render "/layouts/breadcrumb" %>
+
+
 	<div class="users-index-item">
 
 
-スケジュール
+	    <div class="p_t">集金管理ページ</div>
 
         <div class="schedule_add_wrap">
             <div class="schedule_input">
@@ -15,10 +20,10 @@
 
 	              <%= form_for ([@user, @collection]) do |f| %>
 	            
-	                <p>日程<span class="must_red">(必須)</span></p>
+	                <p>日程を追加する</p>
 	                  <%= f.date_field :day, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control form-day' %>
 
-		            <input type="submit" name="commit" value="追加する" data-disable-with="追加する">
+		            <input type="submit" name="commit" value="追加" data-disable-with="追加">
 
 		            <div class="reset"></div>
 
