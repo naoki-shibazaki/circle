@@ -1,7 +1,7 @@
 class CollectionsController < ApplicationController
 
-before_action :ensure_correct_user
-before_action :set_collections
+before_action :ensure_correct_user, except: [:collections]
+before_action :set_collections, except: [:collections]
 
 	def index
 		@collection = @user.collections.build	
@@ -78,6 +78,23 @@ before_action :set_collections
 		redirect_to user_collections_path
 
 	end
+
+
+	def collections
+		@collections = Collection.where("day > ?", DateTime.yesterday).order(:day => :asc)	
+		@collection_archives = Collection.where("day <= ?", DateTime.yesterday).order(:day => :desc)
+
+
+	   	if current_admin_user.id == 1 
+
+		else
+		      flash[:notice] = "権限がありません"
+		      redirect_to users_path
+		end
+
+		
+	end
+
 
 
 	private

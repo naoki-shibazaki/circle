@@ -1,0 +1,96 @@
+<% set_meta_tags noindex: true,
+				title: "集金管理ページ"
+%>
+
+<div class="main users-index">
+  <div class="container">
+
+	<div class="users-index-item">
+
+
+	    <div class="p_t">集金管理ページ</div>
+
+
+			<% if @collections.present? %>
+
+				<div class="collection_list_wrap">
+				    <% @collections.each do |collection| %> 
+				        <% if collection.present? %>
+
+
+							<% if @collection_month != Time.parse(collection.day).strftime("%-m") %>
+								<div class="collection_m">【<%= Time.parse(collection.day).strftime("%-m") %>月】</div>
+								<% @collection_month = Time.parse(collection.day).strftime("%-m") %>
+							<% end %>							
+
+
+							<div class="collection_content_rwap">
+						        <%= link_to(user_collection_path(collection.user_id, collection.id)) do %>
+
+									<div class="collection_list">
+										<span class="collection_day">
+							          		<%= Time.parse(collection.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(collection.day).wday]})") %><br>
+							          	</span>
+											人数：<%= collection.items.count %>人<br>
+											金額：<%= collection.items.sum(:money) %>円
+							        </div>
+						        <% end %> 
+
+				        		<div class="collection_delete">
+								    <%= link_to("/users/#{collection.user_id}/collections/#{collection.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
+										<i class="fa fa-trash "></i> 
+									<% end %>
+								</div>
+							</div>
+
+
+				        <% end %> 
+				    <% end %>
+				</div>
+
+			<% end %>
+
+
+
+			<% if @collection_archives.present? %>
+
+				<div class="collection_list_wrap">
+					<div class="collection_m">【アーカイブ】</div>
+
+				    <% @collection_archives.each do |collection_archive| %> 
+				        <% if collection_archive.present? %>
+
+							<div class="collection_content_rwap">
+					        	<%= link_to(user_collection_path(collection_archive.user_id, collection_archive.id)) do %>
+
+									<div class="collection_list">
+										<span class="collection_day">
+							          		<%= Time.parse(collection_archive.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(collection_archive.day).wday]})") %><br>
+							          	</span>
+											人数：<%= collection_archive.items.count %>人<br>
+											金額：<%= collection_archive.items.sum(:money) %>円
+
+										<div class="collection_delete">
+										    <%= link_to("/users/#{collection_archive.user_id}/collections/#{collection_archive.id}", method: :delete, data: {confirm: "削除しますか？"}) do %>
+												<i class="fa fa-trash "></i> 
+											<% end %>
+										</div>
+
+									</div>	
+						        <% end %>  
+						    </div>
+
+
+				        <% end %>                  
+				    <% end %>
+				</div>
+
+			<% end %>
+
+
+	
+	</div>
+
+  </div>
+</div>
+
