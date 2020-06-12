@@ -4,8 +4,6 @@
 
 		<div class="analytics_wrap">
 
-			<% if @user.impressionist_count > 20 || current_admin_user.id == 1 %>
-
 				<span class="analytics_title"><i class="fa fa-bar-chart-o "></i> アクセス数</span>
 				<div class="analytics_contents">
 
@@ -20,7 +18,7 @@
 									<% @blogs_imp = @blogs_imp + blog.impressions_count %>
 								<% end %>
 
-								<% if @blogs_imp > 20 || current_admin_user.id == 1 %>
+								<% if @blogs_imp > 1 || current_admin_user.id == 1 %>
 
 								<tr>
 									<th>ブログを見た人</th>
@@ -30,14 +28,14 @@
 								<% end %>
 							<% end %>
 
-						<% if @user.mail_count >10 || current_admin_user.id == 1 %>
+						<% if @user.mail_count > 1 || current_admin_user.id == 1 %>
 								<tr>
 									<th>クリック数（メール）</th>
 									<td><%= @user.mail_count %> 回</td>
 								</tr>								
 						<% end %>
 
-						<% if @user.line_count >10 || current_admin_user.id == 1 %>
+						<% if @user.line_count >1 || current_admin_user.id == 1 %>
 							<% if @user.line_id != "" %>
 								<tr>
 									<th>クリック数（LINE）</th>
@@ -50,61 +48,6 @@
 
 					
 				</div>
-
-				<% if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present? %>
-					<div class="analytics_tw">
-					    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
-					      <i class="fa fa-twitter"></i> Twitterでツイートする！
-					    <% end %>
-				    </div>
-				<% end %>
-
-			<% end %>
-
-
-			<span class="analytics_title"><i class="fa fa-cog "></i> 管理設定</span>
-			<div class="analytics_contents">
-
-				<%= link_to(edit_user_path) do %>
-					<div class="analytics_btn">	
-						<i class="fa fa-user "></i>プロフィール編集
-					</div>
-				<% end %>
-
-		        <%= link_to(new_blog_path) do %>
-					<div class="analytics_btn">	
-			          <i class="fa fa-pencil "></i>ブログを書く
-				    </div>
-		        <% end %>
-
-				<%= link_to(user_schedules_path(@user.id)) do %> 
-					<div class="analytics_btn">	
-						<i class="fa fa-calendar "></i>スケジュール編集
-					</div>
-				<% end %>
-
-	            <%= link_to(user_collections_path(current_admin_user)) do %>
-		            <div class="analytics_btn">	
-		               <i class="fa fa-money "></i>集金管理アプリ
-		           	</div>
-		        <% end %>
-
-
-				<%= link_to(user_questions_path(@user.id)) do %> 
-	                <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
-	                  <div class="analytics_btn notice_icon">
-	                <% else %>
-	                  <div class="analytics_btn">            
-	                <% end %>					
-						<i class="fa fa-question-circle "></i>質問コーナー
-					</div>
-				<% end %>
-
-
-
-			</div>
-
-
 
 		</div>
 

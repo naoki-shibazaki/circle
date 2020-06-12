@@ -68,11 +68,6 @@ helper_method :link_count
 			end
 		end
 		# 手作業反映用
-    
-    	impressionist(@user, nil, unique: [:session_hash])
-    	@week_imps = User.where(created_at: 7.day.ago.all_day)
-    	@blogs_imp = 0
-		@count = 0
 
 		if @user.id.to_s != params[:id]
 		      flash[:notice] = "URLが間違っています"
@@ -201,6 +196,12 @@ helper_method :link_count
 
 	def mypage
 		@user = User.find(params[:id])
+		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
+
+    	impressionist(@user, nil, unique: [:session_hash])
+    	@week_imps = User.where(created_at: 7.day.ago.all_day)
+    	@blogs_imp = 0
+		@count = 0
 
 	   	if current_admin_user.id.to_i == @user.id.to_i	   		
 		
@@ -209,7 +210,7 @@ helper_method :link_count
 		else
 		      flash[:notice] = "権限がありません"
 		      redirect_to users_path
-		end		
+		end	
 
 		# パンくず		
 		@b1_name = @user.name

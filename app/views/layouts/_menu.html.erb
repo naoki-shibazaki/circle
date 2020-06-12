@@ -18,7 +18,7 @@
           <% elsif admin_user_signed_in?  %>
 
             <ul>
-                <li><%= link_to 'マイページ', user_path(current_admin_user)%></li>
+                <li><%= link_to 'マイページ', "/users/#{current_admin_user.id}/mypage" %></li>
                 <li><%= link_to 'プロフィール編集', edit_user_path(current_admin_user)%></li>
                 <li><%= link_to 'ブログの投稿', new_blog_path %></li>
                 <li><%= link_to 'スケジュールの編集', user_schedules_path(current_admin_user) %></li>

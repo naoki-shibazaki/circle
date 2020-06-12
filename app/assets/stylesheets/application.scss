@@ -3155,7 +3155,7 @@ max-width: 100%;
 
 .analytics_wrap{
     border: 1px solid #d8dadf;
-    margin: 14px 10px 14px;
+    margin: 0px 10px 26px;
     border-radius: 4px;
     padding: 10px 10px;	
 }
@@ -3172,7 +3172,7 @@ max-width: 100%;
 
 
 .analytics_title{
-    background: linear-gradient(transparent 70%, #3ecdc6 70%);
+    // background: linear-gradient(transparent 70%, #3ecdc6 70%);
     color: #383838;
     font-size: 16px;
 }
@@ -3665,7 +3665,8 @@ max-width: 100%;
 }
 
 .header-menus_sp .notice_icon::after,
-.analytics_contents .notice_icon::after {
+.analytics_contents .notice_icon::after,
+.icon_img .notice_icon::after {
     content: "●";
     font-family: 'Courier New', Courier, monospace;
     position: relative;
@@ -4560,6 +4561,18 @@ max-width: 100%;
     z-index: 2;
     line-height: 1.2;
 }
+
+
+.icon_img .notice_icon::after {
+    top: -10px;
+    right: -3px;
+    font-size: 20px;
+    color: #f7aa30;
+}
+
+
+
+
 
 
 

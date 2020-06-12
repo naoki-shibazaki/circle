@@ -80,7 +80,7 @@
 
         <% elsif admin_user_signed_in?  %>
           <li>
-            <%= link_to(user_path(current_admin_user)) do %>
+            <%= link_to "/users/#{current_admin_user.id}/mypage" do %>
                 <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
                   <i class="fa fa-user notice_icon"></i>
                 <% else %>

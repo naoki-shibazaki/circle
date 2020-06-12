@@ -7,7 +7,12 @@
 
     <%= render "/layouts/breadcrumb" %>
 
+    <%= render "/users/openchat" %>
+
 	<div class="mypage_wrap">
+
+  		<%= render "/users/analytics" %>
+
 	
 		<div class="icon_wrap">
 
@@ -81,11 +86,17 @@
 			<%= link_to user_questions_path(@user), class: "icon_cont" do %>
 				<div class="">
 					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_06.png">
+		                <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
+		                	<div class="notice_icon">
+		                <% else %>
+		                	<div class="nil">            
+		                <% end %>	
+							<img class="icon_size" src="/images/icon/icon_06.png">
+						</div>
 					</div>
 
 					<div class="icon_txt">
-						質問コーナー
+							質問コーナー
 					</div>
 				</div>
 			<% end %>
@@ -122,14 +133,13 @@
 		</div>
 
 
-<br>
-アクセス解析<br>
-オープンチャット
-
-
-
 
 	</div>
+
+
+<%= render "/layouts/ad_square" %>
+<div class="ad_space"></div>
+
 
   </div>
 </div>
