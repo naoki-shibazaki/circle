@@ -4499,13 +4499,35 @@ max-width: 100%;
 }
 
 
+.mypage_wrap{
+  background-color: #fff;
+  padding: 20px 10px;
+}
 
+.icon_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    margin-bottom: 24px;    
+}
 
+.icon_cont {
+    width: 28%;
+    text-align: center;
+    padding: 10px 0px;
+    margin: 0px 2%;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+}
 
+.icon_img img{
+  width: 46px;
+}
 
-
-
-
+.icon_txt {
+    font-size: 12px;
+    padding-top: 4px;
+}
 
 
 

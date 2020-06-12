@@ -198,6 +198,27 @@ helper_method :link_count
 		redirect_to users_path		
 	end
 
+
+	def mypage
+		@user = User.find(params[:id])
+
+	   	if current_admin_user.id.to_i == @user.id.to_i	   		
+		
+	   	elsif current_admin_user.id == 1 
+
+		else
+		      flash[:notice] = "権限がありません"
+		      redirect_to users_path
+		end		
+
+		# パンくず		
+		@b1_name = @user.name
+		@b1_url = "/users/#{@user.id}"
+		@b2_name = "マイページ"
+		@b2_url = "/users/#{@user.id}/mypage"		
+	end
+
+
 	def login_form
 	end
 

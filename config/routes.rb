@@ -48,6 +48,7 @@ Rails.application.routes.draw do
 
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'
+	get 'users/:id/mypage' , to: 'users#mypage'
 	get 'users/:user_id/question' , to: 'questions#question'
 	get 'users/:user_id/collection-sample' , to: 'collections#sample'	
 	
