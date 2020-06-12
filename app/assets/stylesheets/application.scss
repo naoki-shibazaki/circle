@@ -865,7 +865,8 @@ header {
 
 .content_image,
 .content_image_one{
-  height: 240px;
+  // height: 240px;
+  max-height: 400px;
 }
 
 .content_image{

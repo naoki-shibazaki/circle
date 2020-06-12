@@ -3,7 +3,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   # include CarrierWave::RMagick
 
-    process resize_to_limit: [400, nil]
+    process resize_to_limit: [400, 400]
     process :fix_rotate   
 
 
