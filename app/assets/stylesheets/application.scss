@@ -4521,7 +4521,7 @@ max-width: 100%;
 }
 
 .icon_img img{
-  width: 46px;
+  width: 30px;
 }
 
 .icon_txt {
@@ -4530,7 +4530,36 @@ max-width: 100%;
     color: #5f5f5f;
 }
 
+.mark-cont{
+  position: relative;
+}
 
+.mark-cont:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: -10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 40px 0 0;
+    border-color: #e6a124 transparent transparent transparent;
+}
+
+.mark-cont:after {
+    position: absolute;
+    content: "NEW";
+    transform: rotate(315deg);
+    display: block;
+    font-size: 10px;
+    white-space: pre;
+    color: #fff;
+    top: -2px;
+    left: 0px;
+    text-align: center;
+    z-index: 2;
+    line-height: 1.2;
+}
 
 
 
