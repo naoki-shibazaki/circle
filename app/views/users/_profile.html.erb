@@ -1,13 +1,13 @@
       <% if @user.pic_header.present? %>
         <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" class="header_imege" />
       <% else %>
-        <%= image_tag @user.pic_header.url , class:'header_imege' %>
+        <%= lazysizes_image_tag @user.pic_header.url , class:'header_imege' %>
       <% end %>
 
       <% if @user.pic_profile.present? %>
         <img src="<%= @user.pic_profile.url %>" alt="プロフィール｜<%= @user.name %>" class="profile_imege" />
       <% else %>
-        <%= image_tag @user.pic_profile.url , class:'profile_imege' %>
+        <%= lazysizes_image_tag @user.pic_profile.url , class:'profile_imege' %>
       <% end %>
 
 

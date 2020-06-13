@@ -363,7 +363,7 @@
 				    <div class="form-body">
 
 					    <div class="header-post cont-width">
-							<%= image_tag @user.pic_profile.url , class:'content_icon' %>
+							<%= lazysizes_image_tag @user.pic_profile.url , class:'content_icon' %>
 
 							<div class="post-user">
 								<div class="post-top"><%= @user.name %></div>
@@ -377,17 +377,17 @@
 
                                 <% if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank? %>
 
-                                  <%= image_tag blog.image_01.url , class:'content_image_one' %>
+                                  <%= lazysizes_image_tag blog.image_01.url , class:'content_image_one' %>
 
                                 <% else %>
 
                                   <div class="swiper-container">
                                     <div class="swiper-wrapper">
 
-                                      <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
-                                      <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
-                                      <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
-                                      <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_01.present? %><div class="swiper-slide"><%= lazysizes_image_tag blog.image_01.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_02.present? %><div class="swiper-slide"><%= lazysizes_image_tag blog.image_02.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_03.present? %><div class="swiper-slide"><%= lazysizes_image_tag blog.image_03.url , class:'content_image' %></div><% end %>
+                                      <% if blog.image_04.present? %><div class="swiper-slide"><%= lazysizes_image_tag blog.image_04.url , class:'content_image' %></div><% end %>
 
                                     </div>
                                     
@@ -428,7 +428,7 @@
 		            	<div class="user_list">
 				            <div class="user-content">
 				            	<div class="user_list_header">
-					            	<%= image_tag user.pic_profile.url , class:'image_icon' %>
+					            	<%= lazysizes_image_tag user.pic_profile.url , class:'image_icon' %>
 					            	<h3 class="user_name"><%= user.name.truncate(20) %></h3>
 				            	</div>
 				
