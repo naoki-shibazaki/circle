@@ -61,7 +61,7 @@ helper_method :link_count
 		# 手作業反映用
 		if admin_user_signed_in?		
 			if current_admin_user.id == 1  		
-				@cities = City.where(prefecture_id: @user.prefecture.id)
+				@cities = City.where(prefecture_id: @user.prefecture.id).order(:id => :asc)
 				@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 				@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id)
 				@user.users_cities.build
@@ -123,7 +123,7 @@ helper_method :link_count
 	def edit2
 		@user = User.find(params[:id])
 		@prefecture = Prefecture.find_by(id: @user.prefecture_id)		
-		@cities = City.where(prefecture_id: @user.prefecture_id)
+		@cities = City.where(prefecture_id: @user.prefecture_id).order(:id => :asc)
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id)
 
@@ -296,7 +296,7 @@ helper_method :link_count
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@cities = City.where(prefecture_id: @prefecture.id)
+		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).user_sort.page(params[:page])
 		
 		# パンくず
@@ -307,11 +307,12 @@ helper_method :link_count
 	def prefecture_city
 		@city = City.find_by(city_kana: params[:city_kana])	
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
-		@cities = City.where(prefecture_id: @prefecture.id)
+		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		@users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
+		# @users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
+		@users = User.city(@city_users).user_sort.page(params[:page])		
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
