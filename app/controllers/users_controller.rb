@@ -453,7 +453,6 @@ private
 			decade_age:[], average_age:[] ,grouping:[], age_ids:[], group_ids:[], city_ids:[]
    		)
 	end
-		
 
 
 end
