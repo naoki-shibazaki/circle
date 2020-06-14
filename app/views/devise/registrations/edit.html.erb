@@ -7,9 +7,9 @@
     <div class="form users-form">
       <div class="form-body cont-body">
 
-      <div class="current_email">
+<!--       <div class="current_email">
         現在のアドレス：<%= resource.email %>
-      </div>
+      </div> -->
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
