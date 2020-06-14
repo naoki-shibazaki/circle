@@ -63,7 +63,7 @@ helper_method :link_count
 			if current_admin_user.id == 1  		
 				@cities = City.where(prefecture_id: @user.prefecture.id).order(:id => :asc)
 				@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
-				@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id)
+				@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id).order(:id => :asc)
 				@user.users_cities.build
 			end
 		end
@@ -125,7 +125,7 @@ helper_method :link_count
 		@prefecture = Prefecture.find_by(id: @user.prefecture_id)		
 		@cities = City.where(prefecture_id: @user.prefecture_id).order(:id => :asc)
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
-		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id)
+		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id).order(:id => :asc)
 
 
 		@user.users_cities.build
