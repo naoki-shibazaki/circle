@@ -2,48 +2,28 @@
   <div class="container">
     <div class="form users-form">
 
-<!--       <table class="table">
+      <table class="table">
           <thead>
               <tr>
-                  <th>ID</th>
-                  <th>user_id</th>
-                  <th>group_id</th>
+                  <th>県</th>
+                  <th>id</th>
+                  <th>市区町村郡</th>
+                  <th>カウント</th>
               </tr>
           </thead>
 
 
-          <% @users_groups.each do |group| %>
+          <% @cities.each do |city| %>
           <tbody>
               <tr>
-                  <th><%= group.id %></th>
-                  <td><%= group.user_id %></td>
-                  <td><%= group.group_id %></td>
+                  <th><%= city.prefecture.name %></th>
+                  <th><%= city.id %></th>
+                  <td><%= city.name %></td>
+                  <td><%= city.users_cities.count %></td>
               </tr>
           </tbody>
           <% end %>
       </table>
-
-      <table class="table">
-          <thead>
-              <tr>
-                  <th>ID</th>
-                  <th>user_id</th>
-                  <th>age_id</th>
-              </tr>
-          </thead>
-
-
-          <% @users_ages.each do |age| %>
-          <tbody>
-              <tr>
-                  <th><%= age.id %></th>
-                  <td><%= age.user_id %></td>
-                  <td><%= age.age_id %></td>
-              </tr>
-          </tbody>
-          <% end %>
-      </table> -->
-
 
 
       </div>

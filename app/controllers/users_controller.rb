@@ -249,8 +249,8 @@ helper_method :link_count
 	def webmaster
    		if current_admin_user.id == 1   
 
-   # 			@users_groups = UsersGroup.all
-			# @users_ages = UsersAge.all
+   			# @users_cities = UsersCity.all
+   			# @city_users = @city.users_cities.map{|c| c.user.id}
 
 	   	else
 	      flash[:notice] = "権限がありません"
