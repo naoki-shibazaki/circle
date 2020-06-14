@@ -430,7 +430,7 @@ helper_method :link_count
 
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
-		@cities = City.all.order(:order => :asc)
+		@cities = City.all.order(:id => :asc)
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
