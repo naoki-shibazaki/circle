@@ -41,6 +41,10 @@ SitemapGenerator::Sitemap.create do
           City.where(prefecture_id: prefecture.id).find_each do |prefecture_city|
             add "/prefectures/#{prefecture.kana}/#{prefecture_city.city_kana}", :lastmod => prefecture_city.updated_at, :priority => 0.8, :changefreq => 'weekly'
 
+            Station.where(city_id: prefecture_city.id).find_each do |prefecture_station|
+              add "/prefectures/#{prefecture.kana}/#{prefecture_city.city_kana}/#{prefecture_station.id}", :lastmod => prefecture.updated_at, :priority => 0.5, :changefreq => 'weekly'
+            end
+
             Tag.find_each do |prefecture_city_tag|
               add "/prefectures/#{prefecture.kana}/#{prefecture_city.city_kana}/tag/#{prefecture_city_tag.id}", :lastmod => prefecture.updated_at, :priority => 0.5, :changefreq => 'weekly'
             end
@@ -86,6 +90,10 @@ SitemapGenerator::Sitemap.create do
                         City.where(prefecture_id: event_prefecture.id).find_each do |city|
                           add "/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}", :lastmod => city.updated_at, :priority => 0.8, :changefreq => 'weekly'
                           add "/places/basketball/#{event_prefecture.kana}/#{city.city_kana}", :lastmod => city.updated_at, :priority => 0.5, :changefreq => 'weekly'
+
+                          Station.where(city_id: city.id).find_each do |event_station|
+                            add "/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}/#{event_station.id}", :lastmod => event.updated_at, :priority => 0.5, :changefreq => 'weekly'
+                          end
 
                           Tag.find_each do |event_city_tag|
                             add "/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}/tag/#{event_city_tag.id}", :lastmod => event.updated_at, :priority => 0.5, :changefreq => 'weekly'
