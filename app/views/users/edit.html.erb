@@ -51,9 +51,8 @@
 
 		<div class="img_field_profile_space"></div>
 
-
         <p>サークル名<span class="must_red">(必須)</span></p>
-        <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
+        <%= f.text_field :name, class: 'form-control change_font', placeholder: "サークルブック" %>
 
 	    <p>募集状況<span class="must_red">(必須)</span></p>
 	    <%= f.select :switch, [ ['募集中','募集中'], ['受付終了','受付終了'] ], 
