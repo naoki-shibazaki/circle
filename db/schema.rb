@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_122738) do
+ActiveRecord::Schema.define(version: 2020_06_15_074122) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -241,6 +241,13 @@ ActiveRecord::Schema.define(version: 2020_06_09_122738) do
     t.text "note"
     t.string "title"
     t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.string "city_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|

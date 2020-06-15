@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 	get 'prefectures/:kana' , to: 'users#prefecture'
 	get 'prefectures/:kana/tag/:id' , to: 'tags#prefecture'
 	get 'prefectures/:kana/:city_kana' , to: 'users#prefecture_city'
+	get 'prefectures/:kana/:city_kana/:id' , to: 'users#prefecture_city_station'
 	get 'prefectures/:kana/:city_kana/tag/:id' , to: 'tags#prefecture_city'
 
 	get 'blog' , to: 'blogs#top'
@@ -83,6 +84,7 @@ Rails.application.routes.draw do
 	get ':ruby/:kana' , to: 'users#event_prefecture'
 	get ':ruby/:kana/tag/:id' , to: 'tags#event_prefecture'	
 	get ':ruby/:kana/:city_kana' , to: 'users#event_prefecture_city'
+	get ':ruby/:kana/:city_kana/:id' , to: 'users#event_prefecture_city_station'	
 	get ':ruby/:kana/:city_kana/tag/:id' , to: 'tags#event_prefecture_city'
 
 

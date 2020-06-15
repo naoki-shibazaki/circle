@@ -1,0 +1,40 @@
+<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@station.name}周辺の#{@event.txt}！メンバー募集中",
+                  description: "【登録不要・無料で使える！】#{@station.name}周辺で活動しているメンバー募集中の#{@event.txt}！社会人や学生、初心者、経験者など、誰でも参加可能！完全無料で簡単に、メンバーの募集ができます！",
+                   keywords: "#{@event.name},#{@station.name},サークル,チーム,メンバー募集中",
+              og: {
+                image:image_url("/images/events/e_ogp_#{@event.ruby}.png")
+              }
+
+ %>
+
+<div class="main users-index">
+  <div class="container">
+    <%= render "/layouts/breadcrumb" %>
+
+    <div class="e_header_wrap">
+      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+      <div class="link_txt">
+        <h1 class="e_header_title">
+          <%= @station.name %>周辺で活動している<br>
+          メンバー募集中の<br>
+          <%= @event.txt %>の一覧
+        </h1>
+      </div>
+    </div>
+
+  <% if @users.count != 0 %>
+    <div class="search_area">
+
+      <%= render "/users/search.html.erb" %>
+
+    </div>
+
+    <%= render "/users/users_list.html.erb" %>
+
+  <% else @users.count == 0 %>
+    <%= render "/users/no_hit.html.erb" %>
+	<% end %>
+ 
+  
+  </div>
+</div>

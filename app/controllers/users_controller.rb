@@ -311,8 +311,7 @@ helper_method :link_count
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		# @users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
-		@users = User.city(@city_users).user_sort.page(params[:page])		
+		@users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
@@ -325,6 +324,32 @@ helper_method :link_count
 		@b2_name = @city.name
 		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"			
 	end
+
+	def prefecture_city_station
+		@station = Station.find(params[:id])
+		@city = City.find_by(id: @station.city_id)
+
+		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
+		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
+		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
+		@city_judge = City.find_by(city_kana: params[:city_kana])		
+
+		@city_users = @city.users_cities.map{|c| c.user.id}
+		@users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])		
+
+		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
+		      flash[:notice] = "URLが間違っています"
+		      redirect_to users_path		
+		end
+
+		# パンくず
+		@b1_name = @prefecture.name
+		@b1_url = "/prefectures/#{@prefecture.kana}"	
+		@b2_name = @city.name
+		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"	
+		@b3_name = @station.name
+		@b3_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"	
+	end	
 
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
@@ -361,6 +386,36 @@ helper_method :link_count
 		@b3_name = @city.name
 		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"			
 	end
+
+
+	def event_prefecture_city_station
+		@event = Event.find_by(ruby: params[:ruby])
+		@station = Station.find(params[:id])
+		@city = City.find_by(id: @station.city_id)
+
+		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
+		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
+		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
+		@city_judge = City.find_by(city_kana: params[:city_kana])		
+
+		@city_users = @city.users_cities.map{|c| c.user.id}
+		@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])		
+
+		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
+		      flash[:notice] = "URLが間違っています"
+		      redirect_to users_path		
+		end
+
+		# パンくず
+		@b1_name = @event.name
+		@b1_url = "/#{@event.ruby}"
+		@b2_name = @prefecture.name
+		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+		@b3_name = @city.name
+		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"	
+		@b4_name = @station.name
+		@b4_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"			
+	end	
 
 
 
