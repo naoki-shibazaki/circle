@@ -11,28 +11,80 @@
 			<div class="gallery_container">
 
 		    		<% if @user.gallery_01.present? %>
-			    		<a href="<%= @user.gallery_01.url %>" class="swipe" rel="gallery" title="ギャラリー｜<%= @user.name %>">
-			    			<img src="<%= @user.gallery_01.url %>" alt="ギャラリー｜<%= @user.name %>" class="gallery_imege" />
-			    		</a>
+						<div class="pop-box">
+						  <label for="popup-on_01"><label for="popup-on_01">
+						  	<div class="btn-open_01">
+						  		<%= lazysizes_image_tag @user.gallery_01.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}" %>
+						  	</div>
+						  </label>
+
+						  <input type="checkbox" id="popup-on_01">
+						  <div class="popup">
+						    <label for="popup-on_01" class="icon-close_01">×</label>
+						    <div class="popup-content">
+						  		<%= lazysizes_image_tag @user.gallery_01.url %>
+						    </div>
+						    <label for="popup-on_01"><div class="btn-close_01">閉じる</div></label>
+						  </div>
+						</div>
 					<% end %>
 
 		    		<% if @user.gallery_02.present? %>
-			    		<a href="<%= @user.gallery_02.url %>" class="swipe" rel="gallery" title="ギャラリー｜<%= @user.name %>">
-			    			<img src="<%= @user.gallery_02.url %>" alt="ギャラリー｜<%= @user.name %>" class="gallery_imege" />
-			    		</a>
+						<div class="pop-box">
+						  <label for="popup-on_02"><label for="popup-on_02">
+						  	<div class="btn-open_02">
+						  		<%= lazysizes_image_tag @user.gallery_02.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}" %>
+						  	</div>
+						  </label>
+
+						  <input type="checkbox" id="popup-on_02">
+						  <div class="popup">
+						    <label for="popup-on_02" class="icon-close_02">×</label>
+						    <div class="popup-content">
+						  		<%= lazysizes_image_tag @user.gallery_02.url %>
+						    </div>
+						    <label for="popup-on_02"><div class="btn-close_02">閉じる</div></label>
+						  </div>
+						</div>
 					<% end %>
 
 		    		<% if @user.gallery_03.present? %>
-			    		<a href="<%= @user.gallery_03.url %>" class="swipe" rel="gallery" title="ギャラリー｜<%= @user.name %>">
-			    			<img src="<%= @user.gallery_03.url %>" alt="ギャラリー｜<%= @user.name %>" class="gallery_imege" />
-			    		</a>
+						<div class="pop-box">
+						  <label for="popup-on_03"><label for="popup-on_03">
+						  	<div class="btn-open_03">
+						  		<%= lazysizes_image_tag @user.gallery_03.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}" %>
+						  	</div>
+						  </label>
+
+						  <input type="checkbox" id="popup-on_03">
+						  <div class="popup">
+						    <label for="popup-on_03" class="icon-close_03">×</label>
+						    <div class="popup-content">
+						  		<%= lazysizes_image_tag @user.gallery_03.url %>
+						    </div>
+						    <label for="popup-on_03"><div class="btn-close_03">閉じる</div></label>
+						  </div>
+						</div>
 					<% end %>
 
 		    		<% if @user.gallery_04.present? %>
-			    		<a href="<%= @user.gallery_04.url %>" class="swipe" rel="gallery" title="ギャラリー｜<%= @user.name %>">
-			    			<img src="<%= @user.gallery_04.url %>" alt="ギャラリー｜<%= @user.name %>" class="gallery_imege" />
-			    		</a>
-					<% end %>
+						<div class="pop-box">
+						  <label for="popup-on_04"><label for="popup-on_04">
+						  	<div class="btn-open_04">
+						  		<%= lazysizes_image_tag @user.gallery_04.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}" %>
+						  	</div>
+						  </label>
+
+						  <input type="checkbox" id="popup-on_04">
+						  <div class="popup">
+						    <label for="popup-on_04" class="icon-close_04">×</label>
+						    <div class="popup-content">
+						  		<%= lazysizes_image_tag @user.gallery_04.url %>
+						    </div>
+						    <label for="popup-on_04"><div class="btn-close_04">閉じる</div></label>
+						  </div>
+						</div>
+					<% end %>					
 
 			</div>			
 
