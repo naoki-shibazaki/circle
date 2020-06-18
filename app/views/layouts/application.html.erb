@@ -20,25 +20,16 @@
 
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+   
+    <!-- フォトスライド -->
     <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %> 
+    <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload', defer: true %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload', defer: true %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js' %>
+    
 
-
-    <!-- フォトスライド -->
-    <%= javascript_include_tag 'jquery-1.10.2.min', 'data-turbolinks-track': 'reload', defer: true %>
-    <%= javascript_include_tag 'jquery.photoswipe', 'data-turbolinks-track': 'reload', defer: true %>
-    <script>
-    ;(function($){
-      $(function(){
-        $('a.swipe').photoSwipe();
-      });
-    })(jQuery);
-    </script>  
-    <!-- フォトスライド -->
 
   </head>
 

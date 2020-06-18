@@ -4573,7 +4573,7 @@ max-width: 100%;
 
 /* ポップアップウインドウの設定 */
 .popup {
-  background-color: #efefef;
+  background-color: #fff;
   box-shadow: 0 0 0 9999px rgba(0, 0, 0, .8);
   display: none;
   position: fixed;
@@ -4583,24 +4583,28 @@ max-width: 100%;
   bottom: 0;
   margin: auto;
   width: 70vw;
-  max-height: 55vw;
+  max-height: 60vw;
   overflow-y: scroll;
   z-index: 10;
 }
 /* チェックボックスの初期設定 */
-#popup-on_01, #popup-on_02, #popup-on_03, #popup-on_04{
+#popup-on_01, #popup-on_02, #popup-on_03, #popup-on_04,
+#popup-on_header, #popup-on_profile{
   display: none;
 }
 /* チェックされたらポップアップウインドウを開く */
 #popup-on_01:checked + .popup,
 #popup-on_02:checked + .popup,
 #popup-on_03:checked + .popup,
-#popup-on_04:checked + .popup{
+#popup-on_04:checked + .popup,
+#popup-on_header:checked + .popup,
+#popup-on_profile:checked + .popup{
   display: block;
 }
 
 /* 閉じるアイコン（右上） */
-.icon-close_01, .icon-close_02, .icon-close_03, .icon-close_04{
+.icon-close_01, .icon-close_02, .icon-close_03, .icon-close_04,
+.icon-close_header, .icon-close_profile{
   background: #3ecdc6;
   color: #fff;
   font-size: 30px;
@@ -4610,7 +4614,8 @@ max-width: 100%;
 }
 
 /* 閉じるボタン */
-.btn-close_01, .btn-close_02, .btn-close_03, .btn-close_04{
+.btn-close_01, .btn-close_02, .btn-close_03, .btn-close_04,
+.btn-close_header, .btn-close_profile{
   background: #3ecdc6;
   border-radius: 10px;
   color: #fff;
@@ -4625,7 +4630,8 @@ max-width: 100%;
 }
 
 /* 開くボタン */
-.btn-open_01, .btn-open_02, .btn-open_03, .btn-open_04{
+.btn-open_01, .btn-open_02, .btn-open_03, .btn-open_04,
+.btn-open_header, .btn-open_profile{
   background: #fff;
   border-radius: 10px;
   color: #fff;
