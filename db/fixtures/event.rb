@@ -37,7 +37,7 @@ Event.seed(:id,
   { :id => 26, :category => "その他", :order => "55", :name => "ボランティア" , :ruby => "volunteer",  :openchat => "", :txt => "ボランティアサークル" },
   { :id => 15, :category => "その他", :order => "56", :name => "オールラウンド" , :ruby => "all-round",  :openchat => "", :txt => "オールラウンドサークル" },
 
-  { :id => 11, :category => "その他", :order => "57", :name => "ゲーム" , :ruby => "game",  :openchat => "", :txt => "ゲームサークル" },
+  { :id => 11, :category => "その他", :order => "57", :name => "ゲーム" , :ruby => "game",  :openchat => "", :txt => "ボードゲーム・ゲームサークル" },
   { :id => 13, :category => "その他", :order => "58", :name => "音楽" , :ruby => "music",  :openchat => "", :txt => "音楽サークル" },
   { :id => 27, :category => "その他", :order => "59", :name => "ヨガ" , :ruby => "yoga",  :openchat => "", :txt => "ヨガサークル" }
 
