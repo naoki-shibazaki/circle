@@ -52,7 +52,8 @@ helper_method :link_count
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: params[:id])
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
-		@users = User.where(event_id: @user.event_id).where(prefecture_id: @user.prefecture_id).where(switch: "募集中").order(:last_post => :desc)
+
+		@users = User.prefecture(@user.prefecture_id).or(User.prefecture_sub(@user.prefecture_id)).event(@user.event_id).where(switch: "募集中").order(:last_post => :desc)
 
 		@user_ages = @user.users_ages.map{|a| a.age}
 		@user_groups = @user.users_groups.map{|g| g.group}
