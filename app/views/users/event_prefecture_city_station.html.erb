@@ -1,10 +1,8 @@
-<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@station.name}周辺の#{@event.txt}！メンバー募集中",
-                  description: "【登録不要・無料で使える！】#{@station.name}周辺で活動しているメンバー募集中の#{@event.txt}！社会人や学生、初心者、経験者など、誰でも参加可能！完全無料で簡単に、メンバーの募集ができます！",
-                   keywords: "#{@event.name},#{@station.name},サークル,チーム,メンバー募集中",
+<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@station.name}周辺の#{@event.txt}｜メンバー募集サイト",
+                   keywords: "#{@event.name},#{@station.name},サークル,チーム",
               og: {
                 image:image_url("/images/events/e_ogp_#{@event.ruby}.png")
               }
-
  %>
 
 <div class="main users-index">

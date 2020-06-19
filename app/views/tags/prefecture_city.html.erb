@@ -1,6 +1,5 @@
-<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@tag.text}！#{@prefecture.name}#{@city.name}でメンバー募集中のサークルやチーム、クラブ、団体",
-                  description: "【登録不要・無料で使える】#{@tag.text}！#{@prefecture.name}#{@city.name}で活動しているメンバー募集中のサークルやチーム、クラブ、団体！社会人や学生、初心者、経験者など、誰でも参加可能！完全無料で簡単に、メンバーの募集ができます！",
-                   keywords: "#{@prefecture.name},#{@city.name},#{@tag.name},サークル,チーム,メンバー募集中"
+<% set_meta_tags title: "#{@tag.text}！#{@prefecture.name}#{@city.name}のサークルやチーム、団体の一覧｜メンバー募集サイト",
+                   keywords: "#{@prefecture.name},#{@city.name},#{@tag.name},サークル,チーム"
 %>
 
 <div class="main users-index">
@@ -13,7 +12,7 @@
 				<h1 class="e_header_title">
 					<%= @tag.text %>の<br>
 			        <%= @prefecture.name %><%= @city.name %>で活動している<br>
-		          	サークルやチーム、クラブ、団体
+		          	サークルやチーム、団体
 				</h1>
 			</div>
 		</div>
