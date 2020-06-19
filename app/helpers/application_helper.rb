@@ -10,8 +10,10 @@ module ApplicationHelper
         keywords: 'サークル,チーム,団体,スポーツ,趣味,社会人,学生',
         canonical: request.original_url,
         separator: '|',
-        icon: image_url('/images/icon.jpg'),
-        
+        icon: [
+          { href: image_url('/images/favicon.ico')},
+          { href: image_url('/images/icon.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
+        ],
         og: {
           site_name: :site,
           title: :title,
