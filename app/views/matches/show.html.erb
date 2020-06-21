@@ -1,0 +1,115 @@
+<% set_meta_tags title: "対戦相手募集" %>
+
+
+<div class="main user-show">
+  <div class="container bg_white">
+    <%= render "/layouts/breadcrumb" %>
+
+	<div class="user-profile matching_wrap">
+		<div class="matching_card">
+
+	      <% if @match.user.pic_profile.present? %>
+	        <img src="<%= @match.user.pic_profile.url %>" alt="プロフィール｜<%= @match.user.name %>" class="matching_icon" />
+	      <% else %>
+	        <%= lazysizes_image_tag @match.user.pic_profile.url , class:'matching_icon' %>
+	      <% end %>
+
+	      <h1 class="matching_name"><%= @match.user.name %></h1>
+
+			<div class="article_item article_padding">
+
+				<table>
+					<tbody>
+					<tr class="flex_contents">
+						<th class="flex_list">種目</th>
+						<td class="flex_list">
+					        <% if @match.user.event_id.present? %>
+					          <%= @match.user.event.name if @match.user.event_id? %><br>
+					        <% end %>
+						</td>
+					</tr>
+
+					<tr class="flex_contents">
+						<th class="flex_list">活動場所</th>
+						<td class="flex_list">
+					        <% if @match.user.prefecture_id.present? %>
+					        	<%= @match.user.prefecture.name if @match.user.prefecture_id? %>
+					        <% end %>
+					        <% if @match.user.prefecture_sub_id.present? %>
+					        	・<%= @sub_prefecture.name %>
+					        <% end %> 								
+						</td>
+					</tr>
+
+					<tr class="flex_contents">
+						<th class="flex_list">年齢層</th>
+						<td class="flex_list"><%= @match.age_group %></td>
+					</tr>
+
+					<tr class="flex_contents">
+						<th class="flex_list">メンバー</th>
+						<td class="flex_list"><%= @match.member %></td>
+					</tr>
+
+					<tr class="flex_contents">
+						<th class="flex_list">レベル</th>
+						<td class="flex_list"><%= @match.level %></td>
+					</tr>					
+
+
+					<% if @match.user.twitter.present? || @match.user.instagram.present? %>
+						<tr class="flex_contents">
+							<th class="flex_list">SNS</th>
+							<td class="flex_list">
+
+								<% if @match.user.twitter.present? %>
+									<a href="https://twitter.com/<%= @match.user.twitter %>">
+										<span class="sns_link twitter_link"><i class="fa fa-twitter-square "></i> Twitter</span>
+									</a>
+								<% end %>
+
+								<% if @match.user.instagram.present? %>
+									<a href="https://www.instagram.com/<%= @match.user.instagram %>">
+										<span class="sns_link instagram_link"><i class="fa fa-instagram "></i> Instagram</span>
+									</a>
+								<% end %>
+								
+							</td>
+						</tr>
+					<% end %>
+
+
+					</tbody>
+				</table>
+			</div>	
+
+				<div class="matching_url"><i class="fa fa-chain "></i><a href="<%= @match.user.web %>"> <%= @match.user.web %></a></div>
+
+				<div class="border"></div>
+
+				<% if @match.comment.present? %>
+					<div class="profile_list_t p_t_t"></div>
+					<div class="profile_list_p profile_list_a"><%= raw Rinku.auto_link(simple_format @match.comment) %></div>
+				<% end %>
+
+		</div>
+    </div>
+    
+
+    <%= render "/matches/matching_card" %>
+
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+	
+  
+  </div>
+</div>
+
+
+
+
+
+
+
+

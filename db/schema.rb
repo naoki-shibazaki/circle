@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_074122) do
+ActiveRecord::Schema.define(version: 2020_06_21_035143) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -167,6 +167,18 @@ ActiveRecord::Schema.define(version: 2020_06_15_074122) do
     t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "age_group"
+    t.string "member"
+    t.string "level"
+    t.string "recruit"
+    t.text "comment"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_matches_on_user_id"
   end
 
   create_table "members", force: :cascade do |t|

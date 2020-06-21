@@ -1,0 +1,52 @@
+<% set_meta_tags noindex: true %>
+
+<div class="main users-edit">
+  <div class="container">
+    <div class="form users-form">
+
+      <div class="form-body cont-body">
+	      	<% if @match.errors.any? %>
+		          <div class="form-error">
+	              以下の項目でエラーが発生いたしました。<br>
+	              ※原因不明の場合は空欄でご登録ください
+		          </div>
+			<% end %>
+	 
+	        <% @match.errors.full_messages.each do |message| %>
+	            <div class="form-error_message">
+	              ・<%= message %>
+	            </div>
+	        <% end %>
+
+	      <%= form_for @match do |f| %>
+
+		    <div class="p_t">対戦募集の内容編集</div>
+
+		    <p>対戦相手の募集</p>
+		    <%= f.select :recruit, [ ['募集中','募集中'], ['募集終了','募集終了'] ] %>
+
+
+		    <p>年齢層</p>
+		    <%= f.select :age_group, [ ['20代中心','20代中心'], ['30代中心','30代中心'], ['40代以上中心','40代以上中心'], ['幅広い年齢層','幅広い年齢層'] ], 
+		    :prompt => "選択してください" %>
+
+		    <p>男女構成</p>	    
+		    <%= f.select :member, [ ['男性メイン','男性メイン'], ['女性メイン','女性メイン'], ['男女混合','男女混合'] ], 
+		    :prompt => "選択してください" %>
+
+		    <p>レベル</p>	    
+		    <%= f.select :level, [ ['初級','初級'], ['中級','中級'], ['上級','上級'] ], 
+		    :prompt => "選択してください" %>		    
+
+		    <p>募集内容</p>
+		    <%= f.text_area :comment, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！&#13;&#10;都内で練習相手を募集しています！".html_safe %>
+
+	        <%= f.submit "登録する" %>
+
+	      <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>

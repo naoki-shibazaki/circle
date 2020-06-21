@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   	resources :members
 	resources :blogs
+	resources :matches
 	resources :places, except: :show
 
 	resources :prefectures, only: [] do
