@@ -11,7 +11,7 @@ before_action :set_matches
 
 	    if admin_user_signed_in? #ログイン判定
 
-	    	if @match.blank? #未登録
+	    	if @current_match.blank? #未登録
 				
 				@match = Match.new
 
@@ -65,12 +65,23 @@ before_action :set_matches
 	def destroy
 	end
 
+	def contact
+		@match = Match.find(params[:id])
+		@user = User.find(params[:id])
+		@data = AdminUser.find_by(id: @user.id)
+
+		@mail_title = "【#{@user.name}】練習試合のお問い合わせ"
+		@mail_message = "こちらにご記入ください！"
+
+	end
+
 
 private
 	def set_matches
 
 		if admin_user_signed_in?
 			@current_user = User.find_by(id: current_admin_user.id)
+			@current_match = Match.find_by(id: current_admin_user.id)
 		end
 	end
 

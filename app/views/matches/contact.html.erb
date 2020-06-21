@@ -1,0 +1,89 @@
+<div class="main users-index">
+  <div class="container">
+
+	  	<div class="users-index-item">
+
+	     <div class="p_t">練習試合の申し込み</div>
+
+			<div class="schedule_profile_wrap">
+
+			  <%= link_to(match_path(@match.id)) do %>  
+			    <div class="user-content">
+			      <%= image_tag @match.user.pic_profile.url , class:'image_icon' %>
+
+			      <div class="list_wrapper contact_name_wrap">
+			        <div class="list_01">
+			          <h2 class="user_name"><%= @match.user.name %></h2>
+			        </div>
+
+			      </div>
+			    </div>  
+
+			  <% end %>
+
+			  <div class="reset"></div>
+
+			</div>
+
+			<span class="contact_memo">
+				下のテンプレをコピーすると、<br>
+				お問い合わせが簡単にできます！
+			</span>
+
+
+			<div class="contact_sample_wrap">
+				
+				<div class="contact_t_wrap"><span class="contact_s_t">件名：</span>お問い合わせのテンプレ</div>
+
+				<div class="contact_sample">
+					<div class="copyTarget">
+					<p><%= @match.user.name %> さん<br></p>
+
+					<p>
+					はじめまして、<%= @current_user.name %>です。<br>
+					サークルブックを見てご連絡しました！<br>
+					</p>
+
+					<p>
+					--------------------------------------<br>
+					種　目： <%= @current_user.event.name %><br>
+					年齢層： <%= @current_user.match.age_group %><br>
+					構　成： <%= @current_user.match.member %><br>
+					レベル： <%= @current_user.match.level %><br>
+					<br>
+					▼プロフィール<br>
+					https://www.circle-book.com/matches/<%= @current_user.match.id %><br>
+					--------------------------------------<br>
+					</p>
+					
+					<p>
+					<%= @match.user.name %>さんと練習試合ができればと思い、ご連絡しました！<br>
+					どうぞよろしくお願いします。
+					</p>
+					
+					</div>
+				</div>
+
+			</div>
+
+			<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
+
+
+			<div class="post_cta schedule_cta matching_cta">
+				<% if @match.user.switch == "募集中" %>
+					<%= render "/matches/contact_btn" %>
+				<% end %>
+			</div>
+
+
+				
+
+		
+	
+	  	</div>
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>	  	
+
+  </div>
+</div>

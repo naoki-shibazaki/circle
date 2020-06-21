@@ -13,16 +13,35 @@
 		      <div class="matching_name"><%= @current_user.name %></div>
 		</div>
 
-		<div class="matching_entry">
-			練習試合を申し込む！
-		</div>
+		<% if @current_match.blank? %>
+
+			<%= link_to new_match_path do %>
+				<div class="matching_entry">
+					必要情報を入力し<br>
+					練習試合を申し込む！
+				</div>
+			<% end %>
+
+		<% else %>
+
+			<%= link_to("/matches/#{@match.id}/contact") do %>
+				<div class="matching_entry">
+					練習試合を申し込む！
+				</div>
+			<% end %>
+
+
+		<% end %>
+
 
 	<% else %>
 
-		<div class="matching_entry">
-			無料登録をして<br>
-			練習試合を申し込む！
-		</div>		
+        <%= link_to(new_admin_user_registration_path) do %>
+			<div class="matching_entry">
+				無料登録をして<br>
+				練習試合を申し込む！
+			</div>
+        <% end %>
 
 
 	<% end %>
