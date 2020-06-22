@@ -96,8 +96,9 @@
     </div>
     
 
-    <%= render "/matches/matching_card" %>
-
+	<% if @match.id != @current_match.id %>
+    	<%= render "/matches/matching_card" %>
+	<% end %>
 
 	<%= render "/layouts/ad_square" %>
 	<div class="ad_space"></div>

@@ -11,7 +11,7 @@ class User < ApplicationRecord
 	has_many :users_cities, dependent: :destroy
   	has_many :cities, through: :users_cities
 
-	has_one :match
+	has_one :match, dependent: :destroy
 
 	belongs_to :prefecture, optional: true
 	belongs_to :event, optional: true

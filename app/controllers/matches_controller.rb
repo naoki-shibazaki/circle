@@ -5,6 +5,7 @@ before_action :set_matches
 
 
 	def index
+		@matches = Match.all.order(updated_at: "DESC")
 	end	
 
 	def new
@@ -48,6 +49,9 @@ before_action :set_matches
 		@user = User.find(params[:id])
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 
+		# パンくず
+		@b2_name = @match.user.name
+		@b2_url = "/matches/#{@match.id}"
 	end
 
 	def edit
@@ -66,23 +70,33 @@ before_action :set_matches
 	end
 
 	def contact
-		@match = Match.find(params[:id])
-		@user = User.find(params[:id])
-		@data = AdminUser.find_by(id: @user.id)
 
-		@mail_title = "【#{@user.name}】練習試合のお問い合わせ"
-		@mail_message = "こちらにご記入ください！"
+		if admin_user_signed_in?
+			@match = Match.find(params[:id])
+			@user = User.find(params[:id])
+			@data = AdminUser.find_by(id: @user.id)
+
+			@mail_title = "【#{@user.name}】練習試合のお問い合わせ"
+			@mail_message = "こちらにご記入ください！"
+
+		else
+		      flash[:notice] = "会員登録を行ってください"
+		      redirect_to matches_path			
+		end
 
 	end
 
 
 private
 	def set_matches
-
 		if admin_user_signed_in?
 			@current_user = User.find_by(id: current_admin_user.id)
 			@current_match = Match.find_by(id: current_admin_user.id)
 		end
+
+		# パンくず
+		@b1_name = "対戦相手募集"
+		@b1_url = "/matches"
 	end
 
 	def ensure_correct_user
