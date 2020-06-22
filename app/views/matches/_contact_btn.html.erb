@@ -1,55 +1,47 @@
-<% if @match.user.switch == "募集中" %>
 
-		<% if @match.user.contact == "line" && @match.user.line_id != "" %>			
-			<a href="<%= @match.user.line_id %>">
-				<div class="contact-button line">
-					LINEで連絡する！
-				</div>
-			</a>		
-			
-
-
-		<% elsif @match.user.contact == "mail" %>
-			<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-				<div class="contact-button mail">
-					メールで連絡する！
-				</div>
-			</a>
-
-
-
-		<% else %>
-			<% if @match.user.line_id != "" %>
-				<div class="blob_cta_2">
-					<a href="<%= @match.user.line_id %>">
-						<div class="contact-button line">
-							LINEで連絡する
-						</div>
-					</a>		
-
-					<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-						<div class="contact-button mail">
-							メールで連絡する
-						</div>	
-					</a>
-				</div>
-			<% else %>
-				<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-					<div class="contact-button mail">
-						メールで連絡する！
-					</div>
-				</a>
-			<% end %>
-
-
-		<% end %>
+<% if @match.user.contact == "line" && @match.user.line_id != "" %>			
+	<a href="<%= @match.user.line_id %>">
+		<div class="contact-button line">
+			LINEで連絡する！
+		</div>
+	</a>		
+	
+<% elsif @match.user.contact == "mail" %>
+	<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+		<div class="contact-button mail">
+			メールで連絡する！
+		</div>
+	</a>
 
 
 <% else %>
+	<% if @match.user.line_id != "" %>
+		<div class="blob_cta_2">
+			<a href="<%= @match.user.line_id %>">
+				<div class="contact-button line">
+					LINEで連絡する
+				</div>
+			</a>		
 
-	<%= @match.user.name %>は、現在練習試合の募集を終了しております。
+			<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+				<div class="contact-button mail">
+					メールで連絡する
+				</div>	
+			</a>
+		</div>
+	<% else %>
+		<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+			<div class="contact-button mail">
+				メールで連絡する！
+			</div>
+		</a>
+	<% end %>
+
 
 <% end %>
+
+
+
 
 
  <div class="contact_bottom"></div>

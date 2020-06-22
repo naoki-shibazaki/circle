@@ -72,6 +72,8 @@
 			<div class="post_cta schedule_cta matching_cta">
 				<% if @match.recruit == "募集中" %>
 					<%= render "/matches/contact_btn" %>
+				<% else %>
+					<%= @match.user.name %>は、現在練習試合の募集を終了しております。
 				<% end %>
 			</div>
 
