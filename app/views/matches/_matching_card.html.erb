@@ -1,42 +1,41 @@
-	<div class="vs_wrap">VS</div>
-
-
 	<% if admin_user_signed_in? %>
+		<% if @match.id != @current_match.id %>
+			
+			<div class="vs_wrap">VS</div>
+			<div class="matching_card">
+			      <% if @current_user.pic_profile.present? %>
+			        <img src="<%= @current_user.pic_profile.url %>" alt="プロフィール｜<%= @current_user.name %>" class="matching_icon" />
+			      <% else %>
+			        <%= lazysizes_image_tag @current_user.pic_profile.url , class:'matching_icon' %>
+			      <% end %>
 
-		<div class="matching_card">
-		      <% if @current_user.pic_profile.present? %>
-		        <img src="<%= @current_user.pic_profile.url %>" alt="プロフィール｜<%= @current_user.name %>" class="matching_icon" />
-		      <% else %>
-		        <%= lazysizes_image_tag @current_user.pic_profile.url , class:'matching_icon' %>
-		      <% end %>
+			      <div class="matching_name"><%= @current_user.name %></div>
+			</div>
 
-		      <div class="matching_name"><%= @current_user.name %></div>
-		</div>
+			<% if @current_match.blank? %>
 
-		<% if @current_match.blank? %>
+				<%= link_to new_match_path do %>
+					<div class="matching_entry">
+						必要情報を入力し<br>
+						練習試合を申し込む！
+					</div>
+				<% end %>
 
-			<%= link_to new_match_path do %>
-				<div class="matching_entry">
-					必要情報を入力し<br>
-					練習試合を申し込む！
-				</div>
+			<% else %>
+
+				<%= link_to("/matches/#{@match.id}/contact") do %>
+					<div class="matching_entry">
+						練習試合を申し込む！
+					</div>
+				<% end %>
+
 			<% end %>
-
-		<% else %>
-
-			<%= link_to("/matches/#{@match.id}/contact") do %>
-				<div class="matching_entry">
-					練習試合を申し込む！
-				</div>
-			<% end %>
-
 
 		<% end %>
-
-
 	<% else %>
 
         <%= link_to(new_admin_user_registration_path) do %>
+        	<div class="vs_wrap">VS</div>
 			<div class="matching_entry">
 				無料登録をして<br>
 				練習試合を申し込む！
