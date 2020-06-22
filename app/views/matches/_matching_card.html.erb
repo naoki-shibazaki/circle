@@ -1,5 +1,6 @@
 	<% if admin_user_signed_in? %>
-		<% if @match.id != @current_match.id %>
+
+		<% if @match.user.id != @current_user.id %>
 			
 			<div class="vs_wrap">VS</div>
 			<div class="matching_card">
@@ -32,6 +33,9 @@
 			<% end %>
 
 		<% end %>
+
+
+
 	<% else %>
 
         <%= link_to(new_admin_user_registration_path) do %>
