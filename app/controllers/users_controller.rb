@@ -498,6 +498,7 @@ helper_method :link_count
 
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)
+			@current_match = Match.find_by(id: current_admin_user.id)
 		end
 
 	end
