@@ -14,6 +14,10 @@ before_action :set_matches
 
 	    	if @current_match.blank? #未登録
 				
+	    		if params[:count] == "new"
+	    			flash[:notice] = "必要情報を登録してください"
+	    		end
+
 				@match = Match.new
 
 			else #登録済み

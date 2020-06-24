@@ -15,7 +15,7 @@
 
 			<% if @current_match.blank? %>
 
-				<%= link_to new_match_path do %>
+				<%= link_to new_match_path(count: "new") do %>
 					<div class="matching_entry">
 						必要情報を入力し<br>
 						練習試合を申し込む！
