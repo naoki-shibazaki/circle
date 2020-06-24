@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_035143) do
+ActiveRecord::Schema.define(version: 2020_06_24_064106) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_035143) do
     t.string "category"
     t.string "openchat"
     t.string "txt"
+    t.integer "matching"
   end
 
   create_table "groups", force: :cascade do |t|
