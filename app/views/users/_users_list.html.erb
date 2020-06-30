@@ -101,12 +101,43 @@
 
       <% end %>
 
+      <%= link_to(user_schedules_path(user.id)) do %>  
 
+              <% if user.switch == "募集中" %>
 
+                <% @schedules.each do |schedule| %>
+
+                    <% if schedule.user_id == user.id %>
+                      <% if @count == 0 %>
+                        <h3 class="schedule_t"><i class="fa fa-calendar icon_c"></i> 次回の開催予定</h3>
+                      <% end %>
+
+                      <% if @count < 2 %>
+
+                        <div class="text_slide">
+                          ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+
+                          <% if schedule.time_s.present? %>
+                            <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %>
+                          <% end %>
+
+                          <%= schedule.venue %>
+                        </div>
+
+                      <% @count += 1 %>
+
+                      <% end %>
+                    <% end %>
+
+                <% end %> 
+
+              <% end %> 
+              <% @count = 0 %>
 
 
             </div>
-
+            
+    <% end %>
 
 
     <% user.blogs.last(1).each do |blog| %> 
