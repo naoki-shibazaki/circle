@@ -6,7 +6,7 @@
               <%= form_for ([@user, @schedule]) do |f| %>
             
                 <p>日程<span class="must_red">(必須)</span></p>
-                <%= f.text_field :day, id: 'datepicker', class: 'form-control form-day', placeholder: "#{@time.strftime("%Y-%m-%d")}" %>
+                <%= f.text_field :day, id: 'datepicker', class: 'form-control form-day', readonly: "readonly", placeholder: "#{@time.strftime("%Y-%m-%d")}" %>
 
                 <p>時間帯</p>
                   <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "開始時間" %> 

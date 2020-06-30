@@ -18,7 +18,7 @@
 
 			<p>日程を追加する</p>
 			<div class="collection_add">
-			  <%= f.text_field :day, id: 'datepicker', class: 'form-control form-day', placeholder: "#{@time.strftime("%Y-%m-%d")}" %>
+			  <%= f.text_field :day, id: 'datepicker', class: 'form-control form-day', readonly: "readonly", placeholder: "#{@time.strftime("%Y-%m-%d")}" %>
 			</div>
 
 			<div class="collection_add">

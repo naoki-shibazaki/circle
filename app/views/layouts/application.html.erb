@@ -257,32 +257,16 @@
   <script>
   $('#datepicker').datepicker({
    
-      dateFormat: 'yy-mm-dd',
-      minDate: 0,
-      changeMonth: true,
-      duration: 300,
-      showAnim: 'show'
+      dateFormat: 'yy-mm-dd', //日付表示
+      minDate: 0, //過去の日付選択不可
+      showOtherMonths: true,　//次月表示
+      selectOtherMonths: true, //次月選択可能
+      changeMonth: true, //月選択
+      firstDay: 1, // 月曜始まり
+      duration: 100, //表示タイミング
+      showAnim: 'slideDown' //表示アニメーション
    
   });
-
-
-  $('form').on('submit', function(){
-    picker();
-   });
-
-  function picker(){
-    $('#datepicker').each(function(){
-      if ($(this).val() != '') {
-        var inputDate = new Date($(this).val());
-        if (isNaN(inputDate.getTime())) {
-          $(this).val('');
-        }
-      }
-    });
-  }
-
-
-
   </script>
 
 

@@ -15,7 +15,7 @@ Event.seed(:id,
 
 # --------------------------------------
 
-  { :id => 3, :category => "スポーツ２", :order => "21", :name => "ランニング" , :ruby => "running",  :matching => 0 , :openchat => "", :txt => "ランニングサークル" },
+  { :id => 3, :category => "スポーツ２", :order => "21", :name => "ランニング" , :ruby => "running",  :matching => 0 , :openchat => "", :txt => "ランニング・マラソンサークル" },
   { :id => 21, :category => "スポーツ２", :order => "22", :name => "ボルダリング" , :ruby => "bouldering",  :matching => 0 , :openchat => "", :txt => "ボルダリングサークル" },
   { :id => 6, :category => "スポーツ２", :order => "23", :name => "筋トレ・合トレ" , :ruby => "work-out",  :matching => 0 , :openchat => "", :txt => "筋トレ・合トレ" },
 
