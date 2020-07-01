@@ -6,10 +6,10 @@ class EventQuestionsController < ApplicationController
 
 	def index 
 		@event_question = @event.event_questions.build  
-		@event_questions = EventQuestion.where(event_id: @event.id).order(created_at: "DESC")
+		@event_questions = EventQuestion.where(event_id: @event.id).order(created_at: "DESC").page(params[:page])
 
 		@search = EventQuestion.where(event_id: @event.id).order(created_at: "DESC").ransack(params[:q])
-		@search_questions = @search.result
+		@search_questions = @search.result.page(params[:page])
 
 		# パンくず
 		@b1_name = @event.name
@@ -32,7 +32,7 @@ class EventQuestionsController < ApplicationController
 		@event_question = EventQuestion.find_by(id: params[:id])
 		@event_answer = @event_question.event_answers.build
 		@event = Event.find_by(ruby: params[:ruby])
-
+		@event_questions = EventQuestion.where(event_id: @event.id).order(created_at: "DESC").page(params[:page])
 
 		if @event.id != @event_question.event.id
 		      flash[:notice] = "URLが間違っています"
@@ -80,7 +80,7 @@ class EventQuestionsController < ApplicationController
 
     def set_event_question
     	@event = Event.find_by(ruby: params[:ruby])
-		@event_questions = EventQuestion.all.order(created_at: "DESC")
+		@event_questions = EventQuestion.all.order(created_at: "DESC").page(params[:page])
 		@members = Member.all
     end
 

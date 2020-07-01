@@ -195,7 +195,46 @@
 	 	 	<% end %>
 
 		<% end %>
-	
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+
+
+	<% if @event_questions.count > 1 %>
+
+		<div class="qa_card_warp">
+
+			<h2 class="others-user">▼他の<%= @event.name %>に関する質問の一覧</h2>
+			<ul>
+				<% @event_questions.each do |event_question| %>
+
+					<% if event_question.id != @event_question.id %>
+				
+						<li class="ribbon-wrapper">
+
+							<div class="ribbon-content">
+								<% if event_question.event_answers.count > 0 %>
+							  		<span class="ribbon green">回答済み</span>
+								<% else %>
+									<span class="ribbon red">未回答</span>
+								<% end %>
+							</div>
+
+							<%= link_to "/#{@event.ruby}/qa/#{event_question.id}" do %>
+									<img data-src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= event_question.question %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= event_question.question %>" class="lazyload">
+									<div class="qa_judge">
+									</div>
+							<% end %>	
+						</li>
+
+					<% end %>
+
+				<% end %>
+			</ul>
+		</div>
+
+	<% end %>
+
 
 
   </div>
