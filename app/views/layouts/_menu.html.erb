@@ -4,7 +4,11 @@
         <label id="nav-open" for="nav-input"><span></span></label>
         <label class="nav-unshown" id="nav-close" for="nav-input"></label>
         <div id="nav-content">
-          <div class="logo_txt"><%= link_to 'サークルブック', root_path %></div>
+          <div class="logo_txt">
+            <%= link_to root_path do %>
+              <img class="img_logo_memu" src="/images/logo.png" alt="サークルブック">
+            <% end %>  
+          </div>
 
 
           <% if member_signed_in?  %>
