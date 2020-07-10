@@ -28,24 +28,7 @@
 								<% end %>
 							<% end %>
 
-						<% if @user.mail_count > 1 || current_admin_user.id == 1 %>
-								<tr>
-									<th>【メールで相談する】押された回数</th>
-									<td><%= @user.mail_count %> 回</td>
-								</tr>								
-						<% end %>
-
-						<% if @user.line_count >1 || current_admin_user.id == 1 %>
-							<% if @user.line_id != "" %>
-								<tr>
-									<th>【LINEで相談する】押された回数</th>
-									<td><%= @user.line_count %> 回</td>
-								</tr>
-							<% end %>
-						<% end %>
 					</table>
-
-
 					
 				</div>
 
