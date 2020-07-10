@@ -3,7 +3,6 @@
 
 
 		<div class="analytics_wrap">
-
 				<span class="analytics_title"><i class="fa fa-bar-chart-o "></i> アクセス数</span>
 				<div class="analytics_contents">
 
@@ -31,8 +30,43 @@
 					</table>
 					
 				</div>
-
 		</div>
+
+		<% if @user.pic_profile.blank? && @user.pic_header.blank? %><!-- プロフィール画像 -->
+			<div class="advice_wrap">
+			    <span class="box-title">ポイント</span>
+			    <p><span class="marker_orange">プロフィール画像</span>があると良いです！<br>
+			    	参加者が<span class="marker_orange">どんな雰囲気かイメージしやすく</span><br>
+			    	安心してお問い合わせすることができます！
+			    </p>			    	
+			    	<%= link_to ">>プロフィール画像の設定", edit_user_path(@user) %>
+			</div>
+		
+		<% elsif @user.gallery_01.blank? && @user.gallery_02.blank? && @user.gallery_03.blank? && @user.gallery_04.blank? %><!-- ギャラリー画像 -->
+			<div class="advice_wrap">
+			    <span class="box-title">ポイント</span>
+			    <p><span class="marker_orange">サークル画像(最大4枚)</span>があると良いです！<br>
+			    	参加者が<span class="marker_orange">どんな雰囲気かイメージしやすく</span><br>
+			    	安心してお問い合わせすることができます！
+			    </p>	
+			    	<%= link_to ">>サークル画像の設定", edit_user_path(@user) %>
+			</div>
+
+		<% elsif @blogs.empty? %>
+			<div class="advice_wrap">
+			    <span class="box-title">ポイント</span>
+			    <p><span class="marker_orange">ブログ投稿</span>があると良いです！<br>
+			    	どんな活動をしているのかイメージしやすく<br>
+			    	<span class="marker_orange">サークルの掲載順位も上がり</span>ます！
+			    </p>
+			    	<%= link_to ">>ブログの新規投稿", new_blog_path %>
+	
+			</div>
+
+		<% else %>
+
+		<% end %>
+
 
 	<% end %>
 <% end %>

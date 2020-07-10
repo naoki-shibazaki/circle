@@ -4763,6 +4763,44 @@ td.ui-datepicker-week-end a.ui-state-highlight{
     margin-bottom: 12px;
 }
 
+.advice_wrap {
+    position: relative;
+    margin: 2em 0;
+    padding: 1.5em 1em;
+    border: solid 2px #f7aa30;
+    border-radius: 8px;
+}
+.advice_wrap .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -10px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 16px;
+    background: #FFF;
+    color: #f7aa30;
+    font-weight: bold;
+}
+.advice_wrap p {
+    margin: 0; 
+    padding: 0 0 4px 0;
+    font-size: 14px;
+    color: #525252;
+}
+
+.advice_wrap a {
+    text-decoration: underline;
+    color: #337ab7;
+}
+
+.marker_orange {
+background: linear-gradient(transparent 60%, #f7aa30a1 60%);
+}
+
+
+
+
 
 
 // --------------------------------------
