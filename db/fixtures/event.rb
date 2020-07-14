@@ -25,7 +25,7 @@ Event.seed(:id,
 
   { :id => 25, :category => "スポーツ２", :order => "27", :name => "ハンドボール" , :ruby => "handball",  :matching => 1 , :openchat => "", :txt => "ハンドボールサークル・チーム" },
   { :id => 20, :category => "スポーツ２", :order => "28", :name => "スノーボード" , :ruby => "snow-board",  :matching => 0 , :openchat => "", :txt => "スノーボードサークル" },
-  { :id => 23, :category => "スポーツ２", :order => "29", :name => "ビーチバレー" , :ruby => "beach-volleyball",  :matching => 1 , :openchat => "", :txt => "ビーチバレーサークル・チーム" },
+  { :id => 23, :category => "スポーツ２", :order => "29", :name => "ビーチスポーツ" , :ruby => "beach-sports",  :matching => 1 , :openchat => "", :txt => "ビーチスポーツ" },
 
 # --------------------------------------
 
