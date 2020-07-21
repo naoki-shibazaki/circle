@@ -31,9 +31,11 @@
 				<%= form_for ([@user, @question]) do |f| %>
 
 					<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 
-	
-						<input type="submit" name="commit" value="質問する" data-disable-with="質問する" class="submit_btn">
 
+						<div class="actions">
+						   <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？"} %>
+						</div>					
+	
 					<div class="reset"></div>
 
 				<% end %>
