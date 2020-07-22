@@ -2,7 +2,7 @@
           <div class="pop-box">
             <label for="popup-on_header"><label for="popup-on_header">
               <div class="btn-open_header">
-                 <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" class="header_imege" />
+                  <%= lazysizes_image_tag @user.pic_header.url, class:'header_imege', alt: "ヘッダー画像｜#{@user.name}" %>
               </div>
             </label>
 
@@ -10,7 +10,7 @@
             <div class="popup">
               <label for="popup-on_header" class="icon-close_header">×</label>
               <div class="popup-content">
-                 <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" />
+                <%= lazysizes_image_tag @user.pic_header.url, alt: "ヘッダー画像｜#{@user.name}" %>
               </div>
               <label for="popup-on_header"><div class="btn-close_header">閉じる</div></label>
             </div>
@@ -23,7 +23,7 @@
           <div class="pop-box">
             <label for="popup-on_profile"><label for="popup-on_profile">
               <div class="btn-open_profile">
-                 <img src="<%= @user.pic_profile.url %>" alt="プロフィール｜<%= @user.name %>" class="profile_imege" />
+                <%= lazysizes_image_tag @user.pic_profile.url, class:'profile_imege', alt: "プロフィール画像｜#{@user.name}" %>
               </div>
             </label>
 
@@ -31,7 +31,7 @@
             <div class="popup">
               <label for="popup-on_profile" class="icon-close_profile">×</label>
               <div class="popup-content">
-                 <img src="<%= @user.pic_profile.url %>" alt="プロフィール｜<%= @user.name %>" />
+                <%= lazysizes_image_tag @user.pic_profile.url, alt: "プロフィール画像｜#{@user.name}" %>
               </div>
               <label for="popup-on_profile"><div class="btn-close_profile">閉じる</div></label>
             </div>
