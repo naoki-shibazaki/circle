@@ -121,54 +121,6 @@
 			<h1 class="user_name"><%= @user.name %></h1>
 
 
-				<% if admin_user_signed_in? %>
-					<% if current_admin_user.id == 1 %>
-					<!-- 管理人 -->
-						<div class="form">
-
-			                  <div class="user_area slide_content">
-						        <% if @user.prefecture_id.present? %>
-						         <i class="fa fa-map-marker "></i>
-						         	<%= @user.prefecture.name %><% if @user.prefecture_sub_id.present? %>・<%= @sub_prefecture.name %><% end %>  
-									<%= "：" if @user.area.present? %>  
-									<%= @user.area %>
-						        <% end %>
-			                  </div>
-
-
-						      <%= form_for @user,:url => {controller: "users", action: "update2"} do |f| %>
-
-								<div class="edit02_warp">
-									<span class="edit02_subtitle">活動エリア（<%= @user.prefecture.name %>）</span>
-
-								    <div class="check_boxes">
-								   		<%= f.collection_check_boxes(:city_ids, @cities, :id, :name) %>
-								    </div>
-
-								</div>
-
-							<% if @user.prefecture_sub_id.present? %>
-								<div class="edit02_warp">
-									<span class="edit02_subtitle">活動エリア（<%= @sub_prefecture.name %>）</span>
-
-								    <div class="check_boxes">
-								   		<%= f.collection_check_boxes(:city_ids, @sub_cities, :id, :name) %>
-								    </div>
-
-								</div>
-							<% end %>
-
-					        <%= f.submit "更新する" %>
-
-					      	<% end %>
-
-					      	<div class="space_btm"></div>
-
-				   		</div>
-				   	<!-- 管理人   -->
-					<% end %>
-				<% end %>
-
 			<div class="content_01"></div>
 			<div class="content_02">
                   <div class="user_schedule slide_content">

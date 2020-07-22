@@ -1,13 +1,43 @@
       <% if @user.pic_header.present? %>
-        <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" class="header_imege" />
+          <div class="pop-box">
+            <label for="popup-on_profile"><label for="popup-on_profile">
+              <div class="btn-open_profile">
+                 <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" class="header_imege" />
+              </div>
+            </label>
+
+            <input type="checkbox" id="popup-on_profile">
+            <div class="popup">
+              <label for="popup-on_profile" class="icon-close_profile">×</label>
+              <div class="popup-content">
+                 <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" />
+              </div>
+              <label for="popup-on_profile"><div class="btn-close_profile">閉じる</div></label>
+            </div>
+          </div>
       <% else %>
-        <%= lazysizes_image_tag @user.pic_header.url , class:'header_imege' %>
+          <%= lazysizes_image_tag @user.pic_header.url , class:'header_imege' %>
       <% end %>
 
       <% if @user.pic_profile.present? %>
-        <img src="<%= @user.pic_profile.url %>" alt="プロフィール｜<%= @user.name %>" class="profile_imege" />
+          <div class="pop-box">
+            <label for="popup-on_profile"><label for="popup-on_profile">
+              <div class="btn-open_profile">
+                 <img src="<%= @user.pic_profile.url %>" alt="プロフィール｜<%= @user.name %>" class="profile_imege" />
+              </div>
+            </label>
+
+            <input type="checkbox" id="popup-on_profile">
+            <div class="popup">
+              <label for="popup-on_profile" class="icon-close_profile">×</label>
+              <div class="popup-content">
+                 <img src="<%= @user.pic_profile.url %>" alt="プロフィール｜<%= @user.name %>" />
+              </div>
+              <label for="popup-on_profile"><div class="btn-close_profile">閉じる</div></label>
+            </div>
+          </div>
       <% else %>
-        <%= lazysizes_image_tag @user.pic_profile.url , class:'profile_imege' %>
+          <%= lazysizes_image_tag @user.pic_profile.url , class:'profile_imege' %>
       <% end %>
 
 
