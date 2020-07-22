@@ -1,18 +1,18 @@
       <% if @user.pic_header.present? %>
           <div class="pop-box">
-            <label for="popup-on_profile"><label for="popup-on_profile">
-              <div class="btn-open_profile">
+            <label for="popup-on_header"><label for="popup-on_header">
+              <div class="btn-open_header">
                  <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" class="header_imege" />
               </div>
             </label>
 
-            <input type="checkbox" id="popup-on_profile">
+            <input type="checkbox" id="popup-on_header">
             <div class="popup">
-              <label for="popup-on_profile" class="icon-close_profile">×</label>
+              <label for="popup-on_header" class="icon-close_header">×</label>
               <div class="popup-content">
                  <img src="<%= @user.pic_header.url %>" alt="プロフィール｜<%= @user.name %>" />
               </div>
-              <label for="popup-on_profile"><div class="btn-close_profile">閉じる</div></label>
+              <label for="popup-on_header"><div class="btn-close_header">閉じる</div></label>
             </div>
           </div>
       <% else %>
@@ -39,7 +39,6 @@
       <% else %>
           <%= lazysizes_image_tag @user.pic_profile.url , class:'profile_imege' %>
       <% end %>
-
 
       <div class="data-box slide_content">
         <% if @user.event_id.present? %>
