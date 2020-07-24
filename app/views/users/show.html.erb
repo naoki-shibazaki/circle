@@ -66,17 +66,6 @@
 		    <%= render "/users/profile" %>
 
 
-			<div class="admin_area">
-				<% if admin_user_signed_in? %>
-					<% if current_admin_user.id == 1 %>
-						<div class="admin_edit"><%= link_to("編集", edit_user_path) %></div>
-						<div class="admin_delete"><%= link_to( "削除", user_path, method: :delete, data: {confirm: "このサークルを削除しますか？"}) %></div>
-					<% end %>
-				<% end %>
-			</div>
-
-
-
 			<div class="contact_area">
 
 				<div class="share_btn_tw btn_tw_space">
@@ -119,6 +108,15 @@
 			<% end %>
 
 			<h1 class="user_name"><%= @user.name %></h1>
+
+			<% if admin_user_signed_in? %>
+				<% if current_admin_user.id == 1 %>
+					<div class="admin_area">
+						<div class="admin_edit"><%= link_to("編集", edit_user_path) %></div>
+						<div class="admin_delete"><%= link_to( "削除", user_path, method: :delete, data: {confirm: "このサークルを削除しますか？"}) %></div>
+					</div>
+				<% end %>
+			<% end %>
 
 
 			<div class="content_01"></div>
