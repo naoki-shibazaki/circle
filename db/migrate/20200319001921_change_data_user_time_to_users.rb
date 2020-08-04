@@ -3,12 +3,12 @@ class ChangeDataUserTimeToUsers < ActiveRecord::Migration[5.2]
   # 	change_column :users, :user_time, :date
   # end
 
-  def up
-    add_column :users, :user_time, :date
-  end
+  # def up
+  #   add_column :users, :user_time, :date
+  # end
 
-  def down
-    remove_column :users, :user_time, :date
-  end
+  # def down
+  #   remove_column :users, :user_time, :date
+  # end
 
 end
