@@ -269,6 +269,24 @@
   });
   </script>
 
+  <!-- footerボタン -->
+  <script>
+  $(function() {
+    var topBtn = $('.footer_btn');
+    //ボタンを非表示にする
+    topBtn.hide();
+    //スクロールしてページトップから***に達したらボタンを表示
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 200) {
+  　　　　　　　//フェードインで表示
+            topBtn.fadeIn();
+        } else {
+  　　　　　　　//フェードアウトで非表示
+            topBtn.fadeOut();
+        }
+    });
+  });
+  </script>
 
 
   <!-- 画像プレビュー -->
