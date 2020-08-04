@@ -14,7 +14,8 @@
 	<% set_meta_tags title: "活動スケジュール｜#{@user.name}",
 						og: { 
 									title: "活動スケジュール｜#{@user.name}",
-									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}"
+									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}",
+						        	image: image_url('/images/default.png'),
 								},
 						twitter: { card: 'summary'}  				
 	 %>
