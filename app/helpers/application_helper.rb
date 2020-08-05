@@ -11,8 +11,8 @@ module ApplicationHelper
         canonical: request.original_url,
         separator: '|',
         icon: [
-          { href: image_url('/images/favicon.ico')},
-          { href: image_url('/images/apple-touch-icon.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
+          { href: image_url('https://www.circle-book.com/images/favicon.ico')},
+          { href: image_url('https://www.circle-book.com/images/apple-touch-icon.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
         ],
         og: {
           site_name: :site,
