@@ -252,11 +252,6 @@ helper_method :link_count
    		if current_admin_user.id == 1   
    			@users = User.all.order(id: "ASC")
 
-   			@users.each do |user|
-   				user.admin_user_id = user.id
-   				user.save
-   			end
-
    			# @users_cities = UsersCity.all
    			# @city_users = @city.users_cities.map{|c| c.user.id}
 
