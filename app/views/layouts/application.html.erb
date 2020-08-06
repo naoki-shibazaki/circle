@@ -84,20 +84,6 @@
               <% end %>
             </li>  
             <li>
-              <% if @user.blogs.any? %>
-                <%= link_to(new_user_blog_path(@user)) do %>
-                  <i class="fa fa-pencil "></i> 
-                  <div class="link_txt">投稿する</div>
-                <% end %>
-              <% end %>
-            </li>       
-            <li class="mark-box_">
-              <%= link_to(user_collections_path(current_admin_user)) do %>
-                 <i class="fa fa-money "></i> 
-                 <div class="link_txt">集金管理</div>
-              <% end %>
-            </li>
-            <li>
               <%= link_to(users_path) do %>
                 <i class="fa fa-search "></i> 
                 <div class="link_txt">サークル検索</div>

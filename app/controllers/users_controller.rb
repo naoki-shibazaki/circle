@@ -225,15 +225,6 @@ helper_method :link_count
 			
 		end
 
-	 #   	if current_admin_user.id.to_i == @user.id.to_i	   		
-		
-	 #   	elsif current_admin_user.id == 1 
-
-		# else
-		#       flash[:notice] = "権限がありません"
-		#       redirect_to users_path
-		# end	
-
 		# パンくず		
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
@@ -495,7 +486,8 @@ helper_method :link_count
 		@contact_judge = ""
 
 		if admin_user_signed_in?
-			@user = User.find_by(id: current_admin_user.id)
+			@admin_user = current_admin_user
+			@user = @admin_user.users.first
 			@current_match = Match.find_by(id: current_admin_user.id)
 		end
 

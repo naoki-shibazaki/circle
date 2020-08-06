@@ -69,7 +69,7 @@ before_action :set_items
 		def ensure_correct_user
 			@user = User.find(params[:user_id])		
 
-		   	if current_admin_user.id.to_i == @user.id.to_i	   		
+		   	if current_admin_user.id.to_i == @user.admin_user_id.to_i	   		
 			
 		   	elsif current_admin_user.id == 1 
 

@@ -43,7 +43,7 @@
 
 
 			<% if admin_user_signed_in?  %>
-				<% if @user.id == current_admin_user.id %>
+				<% if @user.admin_user_id == current_admin_user.id %>
 
 
 					<div class="qa_answer_form">

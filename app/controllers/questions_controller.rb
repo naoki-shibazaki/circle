@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
 		if @user.questions.create(question_params)		
 
 			if admin_user_signed_in?
-				if current_admin_user.id == @user.id
+				if current_admin_user.id == @user.admin_user_id
 					@user.last_post = Time.now
 					@user.user_time = Time.now
 					@user.save	
@@ -119,7 +119,7 @@ class QuestionsController < ApplicationController
 
 	    @question_first = "活動頻度を教えてください！"
 	    @question_second = "男女比を教えてください"
-	    @question_third = "初心者でも参加しやすいですか？"
+	    @question_third = "参加しやすい雰囲気ですか？"
 
 
 	    if @user.present?  	

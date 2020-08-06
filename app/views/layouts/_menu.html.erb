@@ -22,13 +22,7 @@
           <% elsif admin_user_signed_in?  %>
 
             <ul>
-                <li><%= link_to 'マイページ', "/users/#{current_admin_user.id}/mypage" %></li>
-                <li><%= link_to 'プロフィール編集', edit_user_path(current_admin_user)%></li>
-                <% if @user.blogs.any? %>
-                  <li><%= link_to 'ブログの投稿', new_user_blog_path(@user) %></li>
-                <% end %>
-                <li><%= link_to 'スケジュールの編集', user_schedules_path(current_admin_user) %></li>
-                <li><%= link_to '質問コーナー', user_questions_path(current_admin_user) %></li>
+                <li><%= link_to 'マイページ', "/users/#{current_admin_user.users.first.id}/mypage" %></li>
             </ul>
 
           <% else %>
