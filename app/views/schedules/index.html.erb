@@ -37,7 +37,7 @@
 			<% if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present? %>
 
 				<% if admin_user_signed_in?  %>
-					<% if @user.id == current_admin_user.id %>
+					<% if @user.admin_user_id == current_admin_user.id %>
 
 
 					<div class="schedule_share_wrap">

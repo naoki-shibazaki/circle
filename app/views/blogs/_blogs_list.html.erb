@@ -4,7 +4,7 @@
           <%= lazysizes_image_tag @user.pic_profile.url , class:'post_image_icon' %>
          <% end %>
 
-        <%= link_to(new_blog_path) do %>      
+        <%= link_to(new_user_blog_path(@user)) do %>      
           <div class="post_link">サークル活動をつぶやく！</div>
         <% end %> 
     </div>

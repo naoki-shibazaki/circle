@@ -42,18 +42,18 @@
 					</div>
 				
 					<% if admin_user_signed_in?  %>
-						<% if @user.id == current_admin_user.id || current_admin_user.id == 1 %>
+						<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
 
 
 
 						<div class="post_edit">
-						    <%= link_to(edit_blog_path) do %>
+						    <%= link_to(edit_user_blog_path) do %>
 								<i class="fa fa-pencil-square-o "></i> 
 							<% end %>
 						</div>
 
 						<div class="post_delete">
-						    <%= link_to(blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+						    <%= link_to(user_blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
 								<i class="fa fa-trash "></i> 									    
 							<% end %>
 						</div>

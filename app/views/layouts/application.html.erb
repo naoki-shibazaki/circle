@@ -72,35 +72,38 @@
           </li>
 
         <% elsif admin_user_signed_in?  %>
-          <li>
-            <%= link_to "/users/#{current_admin_user.id}/mypage" do %>
-                <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
-                  <i class="fa fa-user notice_icon"></i>
-                <% else %>
-                  <i class="fa fa-user"></i>              
+          <% if current_admin_user.users.any? %>
+            <li>
+              <%= link_to "/users/#{current_admin_user.users.first.id}/mypage" do %>
+                  <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
+                    <i class="fa fa-user notice_icon"></i>
+                  <% else %>
+                    <i class="fa fa-user"></i>              
+                  <% end %>
+                <div class="link_txt">マイページ</div>
+              <% end %>
+            </li>  
+            <li>
+              <% if @user.blogs.any? %>
+                <%= link_to(new_user_blog_path(@user)) do %>
+                  <i class="fa fa-pencil "></i> 
+                  <div class="link_txt">投稿する</div>
                 <% end %>
-              <div class="link_txt">マイページ</div>
-            <% end %>
-          </li>  
-          <li>
-            <%= link_to(new_blog_path) do %>
-              <i class="fa fa-pencil "></i> 
-              <div class="link_txt">投稿する</div>
-            <% end %>
-          </li>       
-          <li class="mark-box_">
-            <%= link_to(user_collections_path(current_admin_user)) do %>
-               <i class="fa fa-money "></i> 
-               <div class="link_txt">集金管理</div>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to(users_path) do %>
-              <i class="fa fa-search "></i> 
-              <div class="link_txt">サークル検索</div>
-            <% end %>
-          </li>
-
+              <% end %>
+            </li>       
+            <li class="mark-box_">
+              <%= link_to(user_collections_path(current_admin_user)) do %>
+                 <i class="fa fa-money "></i> 
+                 <div class="link_txt">集金管理</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(users_path) do %>
+                <i class="fa fa-search "></i> 
+                <div class="link_txt">サークル検索</div>
+              <% end %>
+            </li>
+          <% end %>
         
         <!-- ログインなし -->
         <% else %>

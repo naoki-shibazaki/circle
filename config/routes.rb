@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 }
 
 	resources :users do
+		resources :blogs	
   		resources :schedules
   		resources :questions
 	  	resources :collections do
@@ -18,7 +19,6 @@ Rails.application.routes.draw do
   	end
 
   	resources :members
-	resources :blogs
 	resources :matches
 	resources :places, except: :show
 
@@ -46,7 +46,10 @@ Rails.application.routes.draw do
 	get 'event_questions' , to: 'event_questions#event_questions'
 	get 'contents' , to: 'differences#contents'	
 	
+	# get 'blogs/:id', to: 'blogs#show_redirect'
+
 	get 'contact/:id', to: 'users#contact'
+	get 'user/add', to: 'users#add'
 
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'

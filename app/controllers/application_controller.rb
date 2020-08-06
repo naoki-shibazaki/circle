@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 	before_action :set_current_user	
-	before_action :set_imperfect_current_user
+	# before_action :set_imperfect_current_user
 	before_action :request_path
 	before_action :set_data
 
@@ -32,33 +32,52 @@ class ApplicationController < ActionController::Base
 
   	# 登録未完了時のアクション
   	def set_imperfect_current_user
-  		if admin_user_signed_in? #ログイン判定
-			@admin_user = User.find_by(id: current_admin_user.id) #@admin_user取得
 
-			if  @admin_user.blank? #登録時のみnii（user#new 許可）
+		if admin_user_signed_in? #ログイン判定
+			@admin_user = AdminUser.find_by(id: current_admin_user.id)#@admin_user取得
 
 
-			elsif @admin_user.name.blank? #登録未完了
+			if @admin_user.users.any?
 
-				if  controller_path == 'users' #users コントローラー
+			else
+				flash[:notice] = "登録を完了させてください"
+				redirect_to "user/add"		
+				
+			end
 
-					if action_name == 'new' || action_name == 'edit' || action_name == 'update' || action_name == 'edit2' || action_name == 'update2'
 
-					else
-						flash[:notice] = "登録を完了させてください"
-						redirect_to edit_user_path(@admin_user)			
-					end
+		end
 
-				else
-						flash[:notice] = "登録を完了させてください"
-						redirect_to edit_user_path(@admin_user)	
-				end
 
-			else #登録完了User
 
-			end 
 
-		end #ログイン判定
+  # 		if admin_user_signed_in? #ログイン判定
+		# 	@admin_user = AdminUser.find_by(id: current_admin_user.id) #@admin_user取得
+
+		# 	if  @admin_user.users.first.blank? #登録時のみnii（user#new 許可）
+
+
+		# 	elsif @admin_user.users.first.name.blank? #登録未完了
+
+		# 		if  controller_path == 'users' #users コントローラー
+
+		# 			if action_name == 'new' || action_name == 'edit' || action_name == 'update' || action_name == 'edit2' || action_name == 'update2'
+
+		# 			else
+		# 				flash[:notice] = "登録を完了させてください"
+		# 				redirect_to edit_user_path(@admin_user)			
+		# 			end
+
+		# 		else
+		# 				flash[:notice] = "登録を完了させてください"
+		# 				redirect_to edit_user_path(@admin_user)	
+		# 		end
+
+		# 	else #登録完了User
+
+		# 	end 
+
+		# end #ログイン判定
 
   	end
 
@@ -82,8 +101,7 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 
 		if admin_user_signed_in?
-	  		# edit_user_path(current_admin_user)
-	  		new_user_path
+		  	new_user_path
 
 	  	else member_signed_in?
 	  		edit_member_path(current_member)

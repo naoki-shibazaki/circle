@@ -1,7 +1,7 @@
 class AdminUser < ApplicationRecord
 
-  has_one :user, dependent: :destroy  
-  accepts_nested_attributes_for :user
+  has_many :users, dependent: :destroy 
+  # accepts_nested_attributes_for :user
   	
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

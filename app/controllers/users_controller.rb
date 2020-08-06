@@ -21,21 +21,10 @@ helper_method :link_count
 	def new
 	    if admin_user_signed_in? #ログイン判定
 
-	    	if @user.blank? #未登録
-
+			if current_admin_user.users.any?
+				redirect_to "/users/#{current_admin_user.users.first.id}/mypage"
+			else
 				@user = User.new
-				@user.id = current_admin_user.id
-				@user.admin_user_id = current_admin_user.id				
-				@user.last_post = Time.now.ago(3.days)
-				@user.user_time = Time.now
-				@user.save
-
-				flash[:notice] = '詳細を教えてください！'
-				redirect_to edit_user_path(@user.id)
-
-			else #登録済み
-				flash[:notice] = 'ログイン成功！'
-				redirect_to edit_user_path(@user.id)
 			end
 
     	else
@@ -44,14 +33,37 @@ helper_method :link_count
     	end	
 	end
 
+	def add
+	    if admin_user_signed_in? #ログイン判定
+			@user = User.new
+    	else
+		    flash[:notice] = "登録が必要です"
+		    redirect_to root_path
+    	end	
+	end
+
+
 	def create
+		@user = User.new(user_params)
+		@user.admin_user_id = current_admin_user.id				
+		@user.last_post = Time.now.ago(3.days)
+		@user.user_time = Time.now
+
+		if @user.save
+			
+			flash[:notice] = '登録完了！'
+			redirect_to user_path(@user.id)
+		else
+			render "/users/edit"
+		end	
+
 	end
 
 	def show
 		@user = User.find(params[:id])
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
-		@data = AdminUser.find_by(id: params[:id])
+		@data = AdminUser.find_by(id: @user.admin_user_id)
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 
 		@users = User.prefecture(@user.prefecture_id).or(User.prefecture_sub(@user.prefecture_id)).event(@user.event_id).where(switch: "募集中").order(:last_post => :desc)
@@ -198,6 +210,7 @@ helper_method :link_count
 
 	def mypage
 		@user = User.find(params[:id])
+		@admin_user = AdminUser.find_by(id: current_admin_user.id)
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 
     	impressionist(@user, nil, unique: [:session_hash])
@@ -205,14 +218,21 @@ helper_method :link_count
     	@blogs_imp = 0
 		@count = 0
 
-	   	if current_admin_user.id.to_i == @user.id.to_i	   		
-		
-	   	elsif current_admin_user.id == 1 
+		if @admin_user.users.any?
 
 		else
-		      flash[:notice] = "権限がありません"
-		      redirect_to users_path
-		end	
+			redirect_to "/user/add"
+			
+		end
+
+	 #   	if current_admin_user.id.to_i == @user.id.to_i	   		
+		
+	 #   	elsif current_admin_user.id == 1 
+
+		# else
+		#       flash[:notice] = "権限がありません"
+		#       redirect_to users_path
+		# end	
 
 		# パンくず		
 		@b1_name = @user.name
@@ -235,30 +255,6 @@ helper_method :link_count
 		if admin_user_signed_in?
 			@data = AdminUser.find_by(id: current_admin_user.id)
 		end
-	end
-
-
-	def ensure_correct_user
-	   if current_admin_user.id != params[:id].to_i
-	   		if current_admin_user.id == 1   			
-		   	else
-		      flash[:notice] = "権限がありません"
-		      redirect_to users_path
-		    end
-	   end
-	end
-
-	def webmaster
-   		if current_admin_user.id == 1   
-   			@users = User.all.order(id: "ASC")
-
-   			# @users_cities = UsersCity.all
-   			# @city_users = @city.users_cities.map{|c| c.user.id}
-
-	   	else
-	      flash[:notice] = "権限がありません"
-	      redirect_to users_path
-	    end
 	end
 
 
@@ -460,7 +456,7 @@ helper_method :link_count
 			
 		else
 		@user = User.find(params[:id])
-		@data = AdminUser.find_by(id: params[:id])
+		@data = AdminUser.find_by(id: @user.admin_user_id)
 
 			if params[:count] == "line"
 				@user.line_count += 1
@@ -511,6 +507,35 @@ private
 			:name, :email, :image_name, :header_image, :line_id, :switch, :item, :prefecture, :area, :schedule, :time_s, :time_e, :venue_address, :note, :age, :recruitment, :foundation, :member, :cost, :web, :appeal, :password, :goal, :user_id, :event_id, :decade, :prefecture_id, :image, :pic_profile, :pic_header, :image_01, :image_02, :gallery_01, :gallery_02, :gallery_03, :gallery_04, :requirement, :impressions_count, :line_count, :mail_count, :user_time, :last_post, :contact, :twitter, :instagram, :txt, :prefecture_sub_id,
 			decade_age:[], average_age:[] ,grouping:[], age_ids:[], group_ids:[], city_ids:[]
    		)
+	end
+
+	def ensure_correct_user
+		# if admin_user_signed_in?
+		# 	@user = User.find(params[:id])
+
+		# 	if current_admin_user.id == @user.admin_user_id
+				
+		# 	else
+		#       flash[:notice] = "権限がありません"
+		#       redirect_to users_path			
+		# 	end
+
+		# end
+
+
+	end
+
+	def webmaster
+   		if current_admin_user.id == 1   
+   			@users = User.all.order(id: "ASC")
+
+   			# @users_cities = UsersCity.all
+   			# @city_users = @city.users_cities.map{|c| c.user.id}
+
+	   	else
+	      flash[:notice] = "権限がありません"
+	      redirect_to users_path
+	    end
 	end
 
 

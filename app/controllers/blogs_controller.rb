@@ -25,23 +25,24 @@ class BlogsController < ApplicationController
 
 	def new
 		@blog = Blog.new
+		@user = User.find(params[:user_id])
 		@blog_button = "投稿する"
 	end
 
 	def create
 		@blog = Blog.new(blog_params)
-		@blog.user_id = current_admin_user.id
+		@user = User.find(params[:user_id])
+		@blog.user_id = @user.id
 		@blog.save
 
 		if @blog.update(blog_params)
 
-			@user = User.find_by(id: current_admin_user.id)
 			@user.last_post = Time.now
 			@user.user_time = Time.now
 		    @user.save
 			
-			flash[:share] = 'ブログ投稿完了！'
-			redirect_to blog_path(@blog.id)
+			flash[:notice] = 'ブログ投稿完了！'
+			redirect_to user_blog_path(@user, @blog)
 		else
 			render "/blogs/edit"
 		end	
@@ -50,7 +51,7 @@ class BlogsController < ApplicationController
 
 	def show
 		@blog = Blog.find(params[:id])
-		@user = User.find_by(id: @blog.user.id)
+		@user = User.find_by(id: @blog.user_id)
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: @blog.user.id)
 
@@ -88,7 +89,7 @@ class BlogsController < ApplicationController
 			@user.user_time = Time.now
 		    @user.save
 			
-			flash[:share] = 'ブログ更新完了！'
+			flash[:notice] = 'ブログ更新完了！'
 			redirect_to blog_path
 		else
 			render "/blogs/edit"
@@ -169,9 +170,6 @@ class BlogsController < ApplicationController
 		@blog_count = 0
 		@contact_judge = "_b"
 
-		if admin_user_signed_in?
-			@user = User.find_by(id: current_admin_user.id)
-		end
 
     end
 
