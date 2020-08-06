@@ -25,6 +25,7 @@ helper_method :link_count
 
 				@user = User.new
 				@user.id = current_admin_user.id
+				@user.admin_user_id = current_admin_user.id				
 				@user.last_post = Time.now.ago(3.days)
 				@user.user_time = Time.now
 				@user.save
@@ -249,6 +250,7 @@ helper_method :link_count
 
 	def webmaster
    		if current_admin_user.id == 1   
+   			@users = User.all.order(id: "ASC")
 
    			# @users_cities = UsersCity.all
    			# @city_users = @city.users_cities.map{|c| c.user.id}

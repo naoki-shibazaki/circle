@@ -5,21 +5,17 @@
       <table class="table">
           <thead>
               <tr>
-                  <th>県</th>
                   <th>id</th>
-                  <th>市区町村郡</th>
-                  <th>カウント</th>
+                  <th>admin_id</th>
               </tr>
           </thead>
 
 
-          <% @cities.each do |city| %>
+          <% @users.each do |user| %>
           <tbody>
               <tr>
-                  <th><%= city.prefecture.name %></th>
-                  <th><%= city.id %></th>
-                  <td><%= city.name %></td>
-                  <td><%= city.users_cities.count %></td>
+                  <th><%= user.id %></th>
+                  <th><%= user.admin_user_id %></th>
               </tr>
           </tbody>
           <% end %>
