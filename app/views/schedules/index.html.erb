@@ -35,17 +35,21 @@
 
 		<% if admin_user_signed_in?  %>
 			<% if @user.admin_user_id == current_admin_user.id %>
-			      <select name="event_select" onChange="location.href=value;">
-			        <option value="#"><%= @user.id %> <%= @user.name %></option>
-			          <% @admin_user.users.each do |user| %>
-			            <% if @user.id != user.id %>
-			            <option value="/users/<%= user.id %>/schedules"><%= user.id %> <%= user.name %></option>
-			            <% end %>
-			        <% end %>
-			      </select> 
+				<% if @admin_user.users.count > 1 %>
+					<div class="user_select_wrap">
+								現在のアカウント：			
+				      <select name="user_select" onChange="location.href=value;">
+				        <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+				          <% @admin_user.users.each do |user| %>
+				            <% if @user.id != user.id %>
+				            <option value="/users/<%= user.id %>/schedules"><%= user.name %>（<%= @user.event.name %>）</option>
+				            <% end %>
+				        <% end %>
+				      </select> 
+					</div>
+				<% end %>
 			<% end %>
 	    <% end %>
-		    
 
 
 			<%= render "/schedules/profile" %>

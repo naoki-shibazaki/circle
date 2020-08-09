@@ -48,9 +48,36 @@ helper_method :link_count
 		@user.user_time = Time.now
 
 		if @user.save
-			
-			flash[:notice] = '登録完了！'
-			redirect_to user_path(@user.id)
+
+			# like検索用
+			@user.grouping = @user.users_groups.map{|g| g.group.name}
+			@user.average_age = @user.users_ages.map{|a| a.age.name}
+			@user.save
+
+			if @user.switch == "受付終了"
+				@user.last_post = Time.now.ago(60.days)
+				@user.save
+			end
+
+			if @user.prefecture.id == 50 #全国選択
+
+				@user.prefecture_sub_id = nil #サブエリアはnil
+				@user.save
+
+				flash[:notice] = 'プロフィール更新完了！'
+				redirect_to user_path
+
+			else #47都道府県
+
+				if @user.prefecture_id == @user.prefecture_sub_id #エリア重複判断
+					@user.prefecture_sub_id = nil #サブエリアはnil
+					@user.save
+				end
+
+				flash[:notice] = 'これで最後です！'
+				redirect_to "/users/#{@user.id}/edit2"
+			end
+
 		else
 			render "/users/edit"
 		end	

@@ -10,14 +10,23 @@
 
       <div class="p_t">ブログの投稿</div>
 
-      <select name="event_select" onChange="location.href=value;">
-        <option value="#"><%= @user.id %> <%= @user.name %></option>
-          <% @admin_user.users.each do |user| %>
-            <% if @user.id != user.id %>
-            <option value="/users/<%= user.id %>/blogs/new"><%= user.id %> <%= user.name %></option>
+      <% if admin_user_signed_in?  %>
+        <% if @user.admin_user_id == current_admin_user.id %>
+            <% if @admin_user.users.count > 1 %>
+              <div class="user_select_wrap">
+                    現在のアカウント：     
+                  <select name="user_select" onChange="location.href=value;">
+                    <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+                      <% @admin_user.users.each do |user| %>
+                        <% if @user.id != user.id %>
+                        <option value="/users/<%= user.id %>/blogs/new"><%= user.name %>（<%= @user.event.name %>）</option>
+                        <% end %>
+                    <% end %>
+                  </select> 
+              </div>
             <% end %>
         <% end %>
-      </select>      
+      <% end %>     
 
       <%= render "form_blog.html.erb"%>
 

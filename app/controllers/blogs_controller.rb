@@ -20,6 +20,14 @@ class BlogsController < ApplicationController
 		@blog = Blog.new
 		@user = User.find(params[:user_id])
 		@blog_button = "投稿する"
+
+		if @admin_user.users.find_by(id: params[:user_id])
+
+		else
+			flash[:notice] = 'URLが間違っています'
+			redirect_to blog_path
+		end
+
 	end
 
 	def create
@@ -94,7 +102,7 @@ class BlogsController < ApplicationController
 		    @user.save
 			
 			flash[:notice] = 'ブログ更新完了！'
-			redirect_to blog_path
+			redirect_to user_blog_path(@blog.user.id, @blog.id)
 		else
 			render "/blogs/edit"
 		end	
@@ -104,6 +112,7 @@ class BlogsController < ApplicationController
 	    @blog = Blog.find_by(id: params[:id])
    		@blog.destroy		
 
+		flash[:notice] = 'ブログ削除完了'
 		redirect_to("/")
 	end
 
@@ -176,21 +185,24 @@ class BlogsController < ApplicationController
 
 		if admin_user_signed_in?
 			@admin_user = current_admin_user
-			@user = User.find_by(id: @admin_user.id)
+			@user = User.find_by(id: @admin_user.users.first.id)
 		end
 
     end
 
 	def ensure_correct_user
 		@blog = Blog.find(params[:id])
+		@user = User.find(params[:user_id])
 		
-	   if current_admin_user.id != @blog.user_id.to_i
+	   if current_admin_user.id == @user.admin_user_id.to_i
+
+
+	   else
 	   		if current_admin_user.id == 1   			
 	   		
 		   	else
 		      flash[:notice] = "権限がありません"
-		      redirect_to blogs_path
-
+		      redirect_to blog_path
 		    end
 	   end
 	end	
