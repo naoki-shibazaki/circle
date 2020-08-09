@@ -20,10 +20,12 @@
 
 
           <% elsif admin_user_signed_in?  %>
-
-            <ul>
-                <li><%= link_to 'マイページ', "/users/#{current_admin_user.users.first.id}/mypage" %></li>
-            </ul>
+            
+            <% if current_admin_user.users.any? %>
+              <ul>
+                  <li><%= link_to 'マイページ', "/users/#{current_admin_user.users.first.id}/mypage" %></li>
+              </ul>
+            <% end %>
 
           <% else %>
 
