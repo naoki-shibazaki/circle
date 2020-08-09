@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-before_action :ensure_correct_user, {only: [:edit, :update, :edit2, :update2]}
+before_action :ensure_correct_user, {only: [:mypage, :edit, :update, :edit2, :update2]}
 before_action :set_users
 
 impressionist unique: [:session_hash]
@@ -242,6 +242,7 @@ helper_method :link_count
     	@week_imps = User.where(created_at: 7.day.ago.all_day)
     	@blogs_imp = 0
 		@count = 0
+
 
 		if @admin_user.users.any?
 
