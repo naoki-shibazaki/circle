@@ -72,7 +72,7 @@ class BlogsController < ApplicationController
 
 	end
 
-	def show_redirect
+	def show_redirect # 旧ブログ用のリダイレクト
 		@blog = Blog.find(params[:id])
 
 		redirect_to "/users/#{@blog.user_id}/blogs/#{@blog.id}"
