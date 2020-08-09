@@ -10,6 +10,15 @@
 
       <div class="p_t">ブログの投稿</div>
 
+      <select name="event_select" onChange="location.href=value;">
+        <option value="#"><%= @user.id %> <%= @user.name %></option>
+          <% @admin_user.users.each do |user| %>
+            <% if @user.id != user.id %>
+            <option value="/users/<%= user.id %>/blogs/new"><%= user.id %> <%= user.name %></option>
+            <% end %>
+        <% end %>
+      </select>      
+
       <%= render "form_blog.html.erb"%>
 
 

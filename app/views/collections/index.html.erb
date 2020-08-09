@@ -13,6 +13,15 @@
 
 	    <div class="p_t">集金管理ページ</div>
 
+	      <select name="event_select" onChange="location.href=value;">
+	        <option value="#"><%= @user.id %> <%= @user.name %></option>
+	          <% @admin_user.users.each do |user| %>
+	            <% if @user.id != user.id %>
+	            <option value="/users/<%= user.id %>/collections"><%= user.id %> <%= user.name %></option>
+	            <% end %>
+	        <% end %>
+	      </select> 	    
+
         <div class="collection_add_wrap">
 			<%= form_for ([@user, @collection]) do |f| %>
 

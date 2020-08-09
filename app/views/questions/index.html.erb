@@ -13,37 +13,56 @@
   <div class="container bg_white">
   	    <%= render "/layouts/breadcrumb" %>
 
+		<div class="qa_title_wrap">
+		    <h1 class="p_t">質問コーナー</h1>
 
-	<%= link_to user_questions_path(@user) do %>
-	    <h1 class="users-heading">質問コーナー</h1>
-	<% end %>
+			<% if admin_user_signed_in?  %>
+				<% if @user.admin_user_id == current_admin_user.id %>
+				      <select name="event_select" onChange="location.href=value;">
+				        <option value="#"><%= @user.id %> <%= @user.name %></option>
+				          <% @admin_user.users.each do |user| %>
+				            <% if @user.id != user.id %>
+				            <option value="/users/<%= user.id %>/questions"><%= user.id %> <%= user.name %></option>
+				            <% end %>
+				        <% end %>
+				      </select> 
+				<% end %>
+		    <% end %>
+	     </div>
+
 
 	<div class="qa_wrap">
 
-			<div class="qa_profile_wrap">
+			<% if admin_user_signed_in?  %>
 
-			<%= render "/questions/profile" %>
-			
-			</div>
+			<% else %>
 
-			
-			<div class="qa_answer_form">
-				<%= form_for ([@user, @question]) do |f| %>
+				<div class="qa_profile_wrap">
 
-					<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 
+				<%= render "/questions/profile" %>
+				
+				</div>
 
-						<div class="actions">
-						   <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？"} %>
-						</div>					
-	
-					<div class="reset"></div>
+				
+				<div class="qa_answer_form">
+					<%= form_for ([@user, @question]) do |f| %>
 
-				<% end %>
-		 	 </div>
+						<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 
+
+							<div class="actions">
+							   <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？"} %>
+							</div>					
+		
+						<div class="reset"></div>
+
+					<% end %>
+			 	 </div>
+
+			<% end %>
 
 
 			<% if admin_user_signed_in?  %>
-				<% if @user.id == current_admin_user.id %>
+				<% if @user.admin_user_id == current_admin_user.id %>
 					<div class="qa_tw_share">
 						<%= link_to("https://twitter.com/share?url=#{request.url}&text=質問を募集中です！%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
 							<div class="share_btn_tw">

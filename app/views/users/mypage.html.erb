@@ -11,6 +11,21 @@
 
 	<div class="p_t">マイページ</div>
 
+
+		<div class="user_select_wrap">
+			現在のアカウント：
+			<select name="user_select" onChange="location.href=value;">
+				<option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+			    <% @admin_user.users.each do |user| %>
+				    <% if @user.id != user.id %>
+						<option value="/users/<%= user.id %>/mypage"><%= user.name %>（<%= user.event.name %>）</option>
+				    <% end %>
+				<% end %>
+				<option value="/user/add">＋ サークルを追加する</option>
+			</select>
+		</div>
+
+
   		<%= render "/users/analytics" %>
 	
 		<div class="icon_wrap">
@@ -105,7 +120,7 @@
 
 	<% if @user.event.matching != 0 %>
 
-		<div class="icon_wrap">
+<!-- 		<div class="icon_wrap">
 
 			<% if @current_match.present? %>
 				<%= link_to match_path(@user.id), class: "icon_cont" do %>
@@ -145,7 +160,7 @@
 				</div>
 			<% end %>
 
-		</div>
+		</div> -->
 
 	<% end %>
 
@@ -154,6 +169,19 @@
 
 
 		<div class="icon_wrap">
+
+			<%= link_to "/user/add", class: "icon_cont" do %>
+				<div class="">
+					<div class="icon_img">
+						<img class="icon_size" src="/images/icon/icon_12.png">
+					</div>
+
+					<div class="icon_txt">
+						サークルを追加
+					</div>
+				</div>
+			<% end %>	
+
 
 			<%= link_to "/users", class: "icon_cont" do %>
 				<div class="">
@@ -167,7 +195,7 @@
 				</div>
 			<% end %>
 
-			<%= link_to "/blogs", class: "icon_cont" do %>
+			<%= link_to "/blog", class: "icon_cont" do %>
 				<div class="">
 					<div class="icon_img">
 						<img class="icon_size" src="/images/icon/icon_09.png">
@@ -179,31 +207,12 @@
 				</div>
 			<% end %>
 
-			<%= link_to "/user/add", class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_09.png">
-					</div>
-
-					<div class="icon_txt">
-						サークルを追加
-					</div>
-				</div>
-			<% end %>			
-
 		</div>
 
 		<%= render "/users/openchat" %>
 
 	</div>
 
-
-
-<% @admin_user.users.each do |user| %>
-	<%= link_to "/users/#{user.id}/mypage" do %>
-		<%= user.id %> <%= user.name %>
-	<% end %><br>
-<% end %>
 
 
 

@@ -4800,7 +4800,20 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     border-bottom: solid 1px #a2a2a2;
 }
 
+.qa_title_wrap{
+  padding: 20px 10px;
+}
 
+.user_select_wrap{
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    select{
+      width: 54%;
+    }
+
+}
 
 
 
