@@ -518,6 +518,18 @@ helper_method :link_count
 		end
 
 	end
+	
+	def webmaster
+   		if current_admin_user.id == 1   
+   			@users_search = User.all.order(id: "ASC")
+
+
+	   	else
+	      flash[:notice] = "権限がありません"
+	      redirect_to users_path
+	    end
+	end
+
 
 private
 	def user_params
@@ -545,18 +557,6 @@ private
 
 	end
 
-	def webmaster
-   		if current_admin_user.id == 1   
-   			@users = User.all.order(id: "ASC")
-
-   			# @users_cities = UsersCity.all
-   			# @city_users = @city.users_cities.map{|c| c.user.id}
-
-	   	else
-	      flash[:notice] = "権限がありません"
-	      redirect_to users_path
-	    end
-	end
 
 
 end
