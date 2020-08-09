@@ -4808,13 +4808,28 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .user_select_wrap{
-    margin: auto;
+    margin: 0 auto 14px;
     display: block;
     text-align: center;
     font-size: 12px;
     select{
-      width: 54%;
-    }
+    width: 54%;
+    height: 36px;
+    background: #fff;
+    background-color: #ffffff;
+    color: #4a4a4a;
+    border: solid 1px #4a4a4a;
+    border-radius: 4px;
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-left: 10px;
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+}
 
 }
 

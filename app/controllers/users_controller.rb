@@ -532,6 +532,8 @@ private
 			@user = User.find(params[:id])
 
 			if current_admin_user.id == @user.admin_user_id
+
+			elsif current_admin_user.id == 1
 				
 			else
 		      flash[:notice] = "権限がありません"
