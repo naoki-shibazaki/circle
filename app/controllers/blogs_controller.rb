@@ -44,9 +44,14 @@ class BlogsController < ApplicationController
 
 	def show
 		@blog = Blog.find(params[:id])
-		@user = User.find_by(id: @blog.user_id)
+		@user = User.find_by(id: params[:user_id])
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: @blog.user.id)
+
+		if @blog.user_id != @user.id
+			flash[:notice] = 'URLが間違っています'
+			redirect_to blog_path
+		end
 
 		impressionist(@blog, nil, unique: [:session_hash])
 
@@ -67,6 +72,12 @@ class BlogsController < ApplicationController
 
 	end
 
+	def show_redirect
+		@blog = Blog.find(params[:id])
+
+		redirect_to "/users/#{@blog.user_id}/blogs/#{@blog.id}"
+		
+	end
 
 
 	def edit

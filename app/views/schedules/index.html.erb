@@ -30,6 +30,24 @@
 
 		<div class="users-index-item">
 
+
+	    <h1 class="p_t">活動スケジュール</h1>
+
+		<% if admin_user_signed_in?  %>
+			<% if @user.admin_user_id == current_admin_user.id %>
+			      <select name="event_select" onChange="location.href=value;">
+			        <option value="#"><%= @user.id %> <%= @user.name %></option>
+			          <% @admin_user.users.each do |user| %>
+			            <% if @user.id != user.id %>
+			            <option value="/users/<%= user.id %>/schedules"><%= user.id %> <%= user.name %></option>
+			            <% end %>
+			        <% end %>
+			      </select> 
+			<% end %>
+	    <% end %>
+		    
+
+
 			<%= render "/schedules/profile" %>
 
 

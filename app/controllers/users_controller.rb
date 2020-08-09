@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-# before_action :authenticate_user, {only: [:edit, :update]}
-# before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
 before_action :ensure_correct_user, {only: [:edit, :update, :edit2, :update2]}
 before_action :set_users
 
@@ -502,17 +500,17 @@ private
 	end
 
 	def ensure_correct_user
-		# if admin_user_signed_in?
-		# 	@user = User.find(params[:id])
+		if admin_user_signed_in?
+			@user = User.find(params[:id])
 
-		# 	if current_admin_user.id == @user.admin_user_id
+			if current_admin_user.id == @user.admin_user_id
 				
-		# 	else
-		#       flash[:notice] = "権限がありません"
-		#       redirect_to users_path			
-		# 	end
+			else
+		      flash[:notice] = "権限がありません"
+		      redirect_to users_path			
+			end
 
-		# end
+		end
 
 
 	end

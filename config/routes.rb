@@ -46,7 +46,8 @@ Rails.application.routes.draw do
 	get 'event_questions' , to: 'event_questions#event_questions'
 	get 'contents' , to: 'differences#contents'	
 	
-	# get 'blogs/:id', to: 'blogs#show_redirect'
+	# 旧ブログ用のリダイレクト
+	get 'blogs/:id', to: 'blogs#show_redirect'
 
 	get 'contact/:id', to: 'users#contact'
 	get 'user/add', to: 'users#add'
