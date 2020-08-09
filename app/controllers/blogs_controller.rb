@@ -12,16 +12,9 @@ class BlogsController < ApplicationController
 
 		# パンくず
 		@b1_name = "ブログ"
-		@b1_url = "/blogs"
+		@b1_url = "/blog"
 	end	
 
-	def top
-	    @blogs = Blog.all.blog_sort.page(params[:page])
-
-		# パンくず
-		@b1_name = "ブログ"
-		@b1_url = "/blogs"
-	end	
 
 	def new
 		@blog = Blog.new
@@ -170,6 +163,10 @@ class BlogsController < ApplicationController
 		@blog_count = 0
 		@contact_judge = "_b"
 
+		if admin_user_signed_in?
+			@admin_user = current_admin_user
+			@user = User.find_by(id: @admin_user.id)
+		end
 
     end
 

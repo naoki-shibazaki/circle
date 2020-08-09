@@ -1,10 +1,10 @@
   <% if admin_user_signed_in?  %>
     <div class="post_message">
-        <%= link_to(user_path(current_admin_user)) do %>
+        <%= link_to(user_path(@admin_user)) do %>
           <%= lazysizes_image_tag @user.pic_profile.url , class:'post_image_icon' %>
          <% end %>
 
-        <%= link_to(new_user_blog_path(@user)) do %>      
+        <%= link_to(new_user_blog_path(@admin_user)) do %>      
           <div class="post_link">サークル活動をつぶやく！</div>
         <% end %> 
     </div>
@@ -21,7 +21,7 @@
           <div class="form users-form">
               <div class="blog-body">
 
-                <%= link_to(blog_path(blog.id)) do %>
+                <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
 
                             <div class="header-post cont-width">
 

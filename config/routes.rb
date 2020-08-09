@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 }
 
 	resources :users do
-		resources :blogs	
+		resources :blogs, except: [:index]
   		resources :schedules
   		resources :questions
 	  	resources :collections do
@@ -64,7 +64,7 @@ Rails.application.routes.draw do
 	get 'prefectures/:kana/:city_kana/:id' , to: 'users#prefecture_city_station'
 	get 'prefectures/:kana/:city_kana/tag/:id' , to: 'tags#prefecture_city'
 
-	get 'blog' , to: 'blogs#top'
+	get 'blog' , to: 'blogs#index'
 	get 'blog/prefectures' , to: 'blogs#prefecture_index'
 	get 'blog/prefectures/:kana' , to: 'blogs#prefecture'
 	get 'blog/:ruby' , to: 'blogs#event'
