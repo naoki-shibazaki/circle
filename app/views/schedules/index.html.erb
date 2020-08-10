@@ -42,7 +42,7 @@
 				        <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
 				          <% @admin_user.users.each do |user| %>
 				            <% if @user.id != user.id %>
-				            <option value="/users/<%= user.id %>/schedules"><%= user.name %>（<%= @user.event.name %>）</option>
+				            <option value="/users/<%= user.id %>/schedules"><%= user.name %>（<%= user.event.name %>）</option>
 				            <% end %>
 				        <% end %>
 				      </select> 
