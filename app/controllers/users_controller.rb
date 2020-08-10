@@ -229,6 +229,8 @@ helper_method :link_count
 	def destroy
 		@user = User.find(params[:id])
 		@user.destroy
+
+		flash[:notice] = 'サークルを削除しました'
 		redirect_to users_path		
 	end
 
@@ -518,7 +520,7 @@ helper_method :link_count
 		end
 
 	end
-	
+
 	def webmaster
    		if current_admin_user.id == 1   
    			@users_search = User.all.order(id: "ASC")

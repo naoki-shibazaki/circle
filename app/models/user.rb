@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
 	belongs_to :prefecture, optional: true
 	belongs_to :event, optional: true
-	belongs_to :admin_user, optional: true, dependent: :destroy
+	belongs_to :admin_user, optional: true
 
 
 	with_options presence: true, on: :update do
