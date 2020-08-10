@@ -4837,12 +4837,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 @media only screen and (min-width:768px) {
 
 .footer_btn{
-  display: none;
+  display: none !important;
 }
 
 
 .btn_submit {
-    border: none;
+    border: none !important;
 }
 
 
