@@ -12,7 +12,7 @@
 	<div class="p_t">マイページ</div>
 
 
-<!-- 		<div class="user_select_wrap">
+		<div class="user_select_wrap">
 			現在のアカウント：
 			<select name="user_select" onChange="location.href=value;">
 				<option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
@@ -23,7 +23,7 @@
 				<% end %>
 				<option value="/user/add">＋ サークルを追加する</option>
 			</select>
-		</div> -->
+		</div>
 
 
   		<%= render "/users/analytics" %>
@@ -65,7 +65,6 @@
 					</div>
 				</div>
 			<% end %>
-
 
 
 		</div>
@@ -170,7 +169,7 @@
 
 		<div class="icon_wrap">
 
-<!-- 			<%= link_to "/user/add", class: "icon_cont" do %>
+			<%= link_to "/user/add", class: "icon_cont" do %>
 				<div class="">
 					<div class="icon_img">
 						<img class="icon_size" src="/images/icon/icon_12.png">
@@ -180,7 +179,7 @@
 						サークルを追加
 					</div>
 				</div>
-			<% end %> -->	
+			<% end %>	
 
 
 			<%= link_to "/users", class: "icon_cont" do %>
