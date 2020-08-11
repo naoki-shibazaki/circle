@@ -18,15 +18,36 @@
 	            </div>
 	        <% end %>
 
-	      <%= form_for @match do |f| %>
-
 		    <div class="p_t">対戦募集の内容編集</div>
 
+			<% if admin_user_signed_in?  %>
+				<% if @user.admin_user_id == current_admin_user.id %>
+					<% if @admin_user.users.count > 1 %>
+						<div class="user_select_wrap">
+									現在のアカウント：			
+					      <select name="user_select" onChange="location.href=value;">
+					        <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+					        	<% @admin_user.users.each do |user| %>
+
+						            <% if @user.id != user.id %>
+							            <% if user.event.matching != 0 %>
+							            	<option value="/users/<%= user.id %>/matches/new"><%= user.name %>（<%= user.event.name %>）</option>
+							            <% else %>
+							            <% end %>
+						            <% end %>
+
+					       		<% end %>
+					      </select> 
+						</div>
+					<% end %>
+				<% end %>
+		    <% end %>
 
 
+	      <%= form_for(@match, url: user_matches_path(@user)) do |f| %>
 
 		    <dir class="your_name_txt">
-		    	<%= @current_user.name %>の追加情報をご登録ください
+		    	<%= @user.name %>の追加情報をご登録ください！
 		    </dir>
 
 		    <p>年齢層</p>

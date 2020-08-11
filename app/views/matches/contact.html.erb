@@ -40,19 +40,18 @@
 					<p><%= @match.user.name %> さん<br></p>
 
 					<p>
-					はじめまして、<%= @current_user.name %>です。<br>
-					サークルブックを見てご連絡しました！<br>
+					はじめまして、サークルブックを見てご連絡しました！<br>
 					</p>
 
 					<p>
 					--------------------------------------<br>
-					種　目： <%= @current_user.event.name %><br>
-					年齢層： <%= @current_user.match.age_group %><br>
-					構　成： <%= @current_user.match.member %><br>
-					レベル： <%= @current_user.match.level %><br>
+					種　目：<br>
+					年齢層：<br>
+					構　成：<br>
+					レベル：<br>
 					<br>
 					▼プロフィール<br>
-					https://www.circle-book.com/matches/<%= @current_user.match.id %><br>
+					https://www.circle-book.com/users/<%= @admin_user.users.first.id %><br>
 					--------------------------------------<br>
 					</p>
 					

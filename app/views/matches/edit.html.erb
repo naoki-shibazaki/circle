@@ -18,9 +18,9 @@
 	            </div>
 	        <% end %>
 
-	      <%= form_for @match do |f| %>
+		    <div class="p_t">対戦募集の内容編集</div>     
 
-		    <div class="p_t">対戦募集の内容編集</div>
+	      <%= form_for @match do |f| %>
 
 		    <p>対戦相手の募集</p>
 		    <%= f.select :recruit, [ ['募集中','募集中'], ['募集終了','募集終了'] ] %>

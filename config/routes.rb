@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
 	resources :users do
 		resources :blogs, except: [:index]
+		resources :matches, only: [:new, :create]
   		resources :schedules
   		resources :questions
 	  	resources :collections do
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   	end
 
   	resources :members
-	resources :matches
+	resources :matches, except: [:new, :create]
 	resources :places, except: :show
 
 	resources :prefectures, only: [] do

@@ -119,10 +119,10 @@
 
 	<% if @user.event.matching != 0 %>
 
-<!-- 		<div class="icon_wrap">
+		<div class="icon_wrap">
 
-			<% if @current_match.present? %>
-				<%= link_to match_path(@user.id), class: "icon_cont" do %>
+			<% if @user.match.present? %>
+				<%= link_to match_path(@user), class: "icon_cont" do %>
 					<div class="">
 						<div class="icon_img">
 							<img class="icon_size" src="/images/icon/icon_01.png">
@@ -135,7 +135,7 @@
 				<% end %>
 			<% end %>
 
-			<%= link_to new_match_path, class: "icon_cont" do %>
+			<%= link_to new_user_match_path(@user), class: "icon_cont" do %>
 				<div class="">
 					<div class="icon_img">
 						<img class="icon_size" src="/images/icon/icon_10.png">
@@ -159,7 +159,7 @@
 				</div>
 			<% end %>
 
-		</div> -->
+		</div>
 
 	<% end %>
 

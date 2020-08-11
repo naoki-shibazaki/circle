@@ -9,10 +9,11 @@ before_action :set_matches
 	end	
 
 	def new
+		@user = User.find(params[:user_id])
 
 	    if admin_user_signed_in? #ログイン判定
 
-	    	if @current_match.blank? #未登録
+	    	if @user.match.blank? #未登録
 				
 	    		if params[:count] == "new"
 	    			flash[:notice] = "必要情報を登録してください"
@@ -20,8 +21,13 @@ before_action :set_matches
 
 				@match = Match.new
 
+				if @user.event.matching == 0
+				    flash[:notice] = "#{@user.event.name}は登録できません"
+				    redirect_to root_path
+				end
+
 			else #登録済み
-				redirect_to edit_match_path(current_admin_user.id)
+				redirect_to edit_match_path(@user.id)
 			end
 
     	else
@@ -33,8 +39,9 @@ before_action :set_matches
 
 	def create
 		@match = Match.new(match_params)
-		@match.id = current_admin_user.id
-		@match.user_id = current_admin_user.id		
+		@user = User.find(params[:user_id])
+		@match.id = @user.id
+		@match.user_id = @user.id
 		@match.recruit = "募集中"
 		@match.save
 
@@ -49,8 +56,9 @@ before_action :set_matches
 	end
 
 	def show
-		@match = Match.find(params[:id])
 		@user = User.find(params[:id])
+		@match = Match.find_by(user_id: @user.id)
+
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 
 		# パンくず
@@ -78,7 +86,7 @@ before_action :set_matches
 		if admin_user_signed_in?
 			@match = Match.find(params[:id])
 			@user = User.find(params[:id])
-			@data = AdminUser.find_by(id: @user.id)
+			@data = AdminUser.find_by(id: @user.admin_user_id)
 
 			@mail_title = "【#{@user.name}】練習試合のお問い合わせ"
 			@mail_message = "こちらにご記入ください！"
@@ -106,7 +114,7 @@ private
 	def ensure_correct_user
 		@match = Match.find(params[:id])
 		
-	   if current_admin_user.id != @match.user_id.to_i
+	   if current_admin_user.id != @match.user.admin_user_id.to_i
 	   		if current_admin_user.id == 1   			
 	   		
 		   	else

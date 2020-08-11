@@ -1,28 +1,17 @@
 	<% if admin_user_signed_in? %>
 
-		<% if @match.user.id != @current_user.id %>
+		<% if @match.user.admin_user_id != @admin_user.id %>
 			
 			<div class="vs_wrap">VS</div>
 			<div class="matching_card">
-			      <% if @current_user.pic_profile.present? %>
-			        <img src="<%= @current_user.pic_profile.url %>" alt="プロフィール｜<%= @current_user.name %>" class="matching_icon" />
+			      <% if @admin_user.users.first.pic_profile.present? %>
+			        <img src="<%= @admin_user.users.first.pic_profile.url %>" alt="プロフィール｜<%= @admin_user.users.first.name %>" class="matching_icon" />
 			      <% else %>
-			        <%= lazysizes_image_tag @current_user.pic_profile.url , class:'matching_icon' %>
+			        <%= lazysizes_image_tag @admin_user.users.first.pic_profile.url , class:'matching_icon' %>
 			      <% end %>
 
-			      <div class="matching_name"><%= @current_user.name %></div>
+			      <div class="matching_name"><%= @admin_user.users.first.name %></div>
 			</div>
-
-			<% if @current_match.blank? %>
-
-				<%= link_to new_match_path(count: "new") do %>
-					<div class="matching_entry">
-						必要情報を入力し<br>
-						練習試合を申し込む！
-					</div>
-				<% end %>
-
-			<% else %>
 
 				<%= link_to("/matches/#{@match.id}/contact") do %>
 					<div class="matching_entry">
@@ -30,11 +19,8 @@
 					</div>
 				<% end %>
 
-			<% end %>
 
 		<% end %>
-
-
 
 	<% else %>
 
