@@ -287,14 +287,12 @@
 
 					<%= render "/layouts/contact_btn" %>
 
-					<%= link_to  user_questions_path(@user) do %>
-						<div class="contact-button qa_btn qa">
-							このサークルに質問する
-						</div>
-					<% end %>
-
 				<% end %>
 			</div>
+
+
+    	<%= render "/users/question_card" %>
+
 
 
 		</div>

@@ -90,6 +90,7 @@ helper_method :link_count
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: @user.admin_user_id)
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
+		@questions = Question.where(user_id: @user.id).where.not(answer: nil).order(update_at: "DESC")
 
 		@users = User.prefecture(@user.prefecture_id).or(User.prefecture_sub(@user.prefecture_id)).event(@user.event_id).where(switch: "募集中").order(:last_post => :desc)
 

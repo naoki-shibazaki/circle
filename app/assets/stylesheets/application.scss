@@ -4824,8 +4824,49 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     border-radius: 4px;
     margin: 0;
     padding-left: 10px;
+  }
+
 }
 
+.user_slide_qa{
+  display:flex;
+  overflow-x:scroll;
+  text-align:center;
+
+  img {
+    width: 220px;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+}  
+
+.user_single_qa{
+  display:block;
+  text-align:center;
+
+  img {
+    width: 280px;
+    padding: 6px;
+    border-radius: 12px;
+  }
+
+}
+
+
+.user_qa_btn{
+  .qa_btn {
+    margin: 20px auto 20px;
+    width: 76%;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    background-color: #e09a1b;
+    padding: 8px 10px;
+    border-radius: 7px;
+  }  
 }
 
 
