@@ -51,7 +51,11 @@ class QuestionsController < ApplicationController
 					@user.user_time = Time.now
 					@user.save	
 				end
+
+			else
+				UserMailer.send_when_create(@user).deliver
 			end
+
 
 			flash[:notice] = '送信しました！'
 			redirect_to user_questions_path(@user)
