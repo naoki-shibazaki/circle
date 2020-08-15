@@ -39,26 +39,27 @@
 
 	<div class="qa_wrap">
 
-			<div class="qa_profile_wrap">
+			<% if @user.switch == "募集中" %>
 
-			<%= render "/questions/profile" %>
+				<div class="qa_profile_wrap">
+					<%= render "/questions/profile" %>
+				</div>
 			
-			</div>
+				<div class="qa_answer_form">
+					<%= form_for ([@user, @question]) do |f| %>
 
-			
-			<div class="qa_answer_form">
-				<%= form_for ([@user, @question]) do |f| %>
+						<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 
 
-					<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 
+							<div class="actions">
+							   <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？"} %>
+							</div>					
+		
+						<div class="reset"></div>
 
-						<div class="actions">
-						   <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？"} %>
-						</div>					
-	
-					<div class="reset"></div>
+					<% end %>
+			 	 </div>
 
-				<% end %>
-		 	 </div>
+		 	 <% end %>
 
 
 			<% if admin_user_signed_in?  %>

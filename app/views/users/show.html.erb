@@ -282,16 +282,15 @@
 			<% end %>
 		
 
-			<div class="post_cta profile_cta">
-				<% if @user.switch == "募集中" %>
+			<% if @user.switch == "募集中" %>
 
-					<%= render "/layouts/contact_btn" %>
+				<div class="post_cta profile_cta">
+						<%= render "/layouts/contact_btn" %>
+				</div>
 
-				<% end %>
-			</div>
-
-
-    	<%= render "/users/question_card" %>
+	    		<%= render "/users/question_card" %>
+	    		
+			<% end %>
 
 
 

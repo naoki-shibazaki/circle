@@ -18,7 +18,7 @@ class User < ApplicationRecord
 	belongs_to :admin_user, optional: true
 
 
-	with_options presence: true, on: :update do
+	with_options presence: true do
 	  validates :name
 	  validates :event_id
 	  validates :prefecture_id

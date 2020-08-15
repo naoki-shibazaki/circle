@@ -100,13 +100,17 @@
 
 				<% else %>
 					
-					<div class="post_cta profile_cta">
-						<%= link_to user_questions_path(@user) do %>
-							<div class="contact-button qa_btn qa">
-								このサークルに質問する
-							</div>
-						<% end %>
-					</div>
+					<% if @user.switch == "募集中" %>
+
+						<div class="post_cta profile_cta">
+							<%= link_to user_questions_path(@user) do %>
+								<div class="contact-button qa_btn qa">
+									このサークルに質問する
+								</div>
+							<% end %>
+						</div>
+
+					<% end %>
 
 				<% end %>
 
