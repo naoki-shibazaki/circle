@@ -12,6 +12,11 @@
 							<td><%= @user.impressionist_count %> 人</td>
 						</tr>
 
+						<tr>
+							<th>ランキング</th>
+							<td><%= @ranking %> 位</td>
+						</tr>
+
 							<% if @blogs.any? %>
 								<% @blogs.each do |blog| %>
 									<% @blogs_imp = @blogs_imp + blog.impressions_count %>
@@ -31,6 +36,9 @@
 					
 				</div>
 		</div>
+			
+
+
 
 		<% if @user.pic_profile.blank? && @user.pic_header.blank? %><!-- プロフィール画像 -->
 			<div class="advice_wrap">

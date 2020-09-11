@@ -242,10 +242,16 @@ helper_method :link_count
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 
     	impressionist(@user, nil, unique: [:session_hash])
-    	@week_imps = User.where(created_at: 7.day.ago.all_day)
     	@blogs_imp = 0
 		@count = 0
 
+		# ランキング取得
+		@users = User.order(impressions_count: :desc)
+		@users.map.with_index(1){ |user,i|
+			if user.id.to_i == @user.id.to_i
+				@ranking = i
+			end
+		}
 
 		if @admin_user.users.any?
 
