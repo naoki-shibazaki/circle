@@ -12,7 +12,7 @@
 							<td><%= @user.impressionist_count %> 人</td>
 						</tr>
 
-						<% if @ranking.to_i <= 100 && @ranking.present? %>
+						<% if @ranking.to_i <= 200 && @ranking.present? %>
 							<tr>
 								<th>表示回数ランキング</th>
 								<td><%= @ranking %> 位</td>
