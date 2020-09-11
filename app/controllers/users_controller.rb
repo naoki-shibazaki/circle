@@ -504,12 +504,10 @@ helper_method :link_count
 		# ソート機能
         if params[:sort] == "1" || params[:sort] == nil
 			@users = @search.result.order(switch: :asc).order(:last_post => :desc).where.not(switch: "").page(params[:page])
-        else params[:sort] == "2"
-			# @users = User.order('impressions_count DESC')
-   #                		.where("? <= created_at", Time.now.prev_month)
-   #                		.where("created_at <= ?", Time.now).where.not(switch: "").page(params[:page])
-
+        elsif params[:sort] == "2"
 			@users = User.order(switch: :asc).order(impressions_count: :DESC).where.not(switch: "").page(params[:page])
+        else params[:sort] == "3"
+			@users = User.order(switch: :asc).order(created_at: :DESC).where.not(switch: "").page(params[:page])			
         end
 
 
