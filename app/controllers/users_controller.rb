@@ -8,10 +8,6 @@ helper_method :link_count
 
 
 	def top
-
-
-
-
 	end
 
 	def index
@@ -509,9 +505,11 @@ helper_method :link_count
         if params[:sort] == "1" || params[:sort] == nil
 			@users = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])
         else params[:sort] == "2"
-			@users = User.order('impressions_count DESC')
-                  		.where("? <= created_at", Time.now.prev_month)
-                  		.where("created_at <= ?", Time.now).where.not(switch: "").page(params[:page])
+			# @users = User.order('impressions_count DESC')
+   #                		.where("? <= created_at", Time.now.prev_month)
+   #                		.where("created_at <= ?", Time.now).where.not(switch: "").page(params[:page])
+
+			@users = User.order('impressions_count DESC').where.not(switch: "").page(params[:page])
         end
 
 
