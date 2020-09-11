@@ -54,6 +54,12 @@ class User < ApplicationRecord
   	scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
   	scope :user_sort, -> { user_hide.user_order }
 
+  	scope :pref, -> { includes(:prefecture).order("prefectures.sort asc") }
+
+  	scope :user_sort_1, -> {order(switch: :asc, last_post: :desc).where.not(switch: "") }
+  	scope :user_sort_2, -> {order(switch: :asc, impressions_count: :desc).where.not(switch: "") }
+	scope :user_sort_3, -> {order(switch: :asc, created_at: :desc).where.not(switch: "") }	
+
   	scope :user, -> (user_id){ where(id: user_id) }
   	scope :event, -> (event_id){ where(event_id: event_id) }
   	scope :prefecture, -> (prefecture_id){ where(prefecture_id: prefecture_id) }
@@ -61,9 +67,6 @@ class User < ApplicationRecord
   	scope :prefecture_50, -> { where(prefecture_id: 50).or(User.where(prefecture_sub_id: 50)) }
  	scope :city, -> (city_id){ where(id: city_id) }
 
-  	scope :user_sort_1, -> {order(switch: :asc, last_post: :desc).where.not(switch: "") }
-  	scope :user_sort_2, -> {order(switch: :asc, impressions_count: :desc).where.not(switch: "") }
-	scope :user_sort_3, -> {order(switch: :asc, created_at: :desc).where.not(switch: "") }	
 
 	scope :grouping, ->(group_id) do
 	  where("grouping LIKE ?", "%#{group_id}%")
