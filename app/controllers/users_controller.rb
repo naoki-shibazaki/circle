@@ -7,7 +7,11 @@ impressionist unique: [:session_hash]
 helper_method :link_count
 
 
-	def top 
+	def top
+
+
+
+
 	end
 
 	def index
@@ -499,8 +503,18 @@ helper_method :link_count
 
 
 	def set_users
-		@search = User.ransack(params[:q]) 
-		@users = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])	
+			@search = User.ransack(params[:q]) 
+
+		# ソート機能
+        if params[:sort] == "1" || params[:sort] == nil
+			@users = @search.result.order(:last_post => :desc).where.not(switch: "").page(params[:page])
+        else params[:sort] == "2"
+			@users = User.order('impressions_count DESC')
+                  		.where("? <= created_at", Time.now.prev_month)
+                  		.where("created_at <= ?", Time.now).where.not(switch: "").page(params[:page])
+        end
+
+
 		@user_all = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
 		@events = Event.all.where.not(id: 0).order(:order => :asc)

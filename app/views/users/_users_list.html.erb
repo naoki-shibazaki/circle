@@ -78,6 +78,13 @@
               <div class="user_list_wrapper">
                 <div class="list_01">
                   <h2 class="user_name"><%= user.name.truncate(24) %></h2>
+
+                    <% if admin_user_signed_in? %>
+                      <% if current_admin_user.id == 1 %>
+                        <!-- 調整 -->【<%= user.impressionist_count %>】
+                      <% end %>
+                    <% end %>
+                    
                 </div>
               </div>
 
