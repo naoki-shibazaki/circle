@@ -14,9 +14,9 @@ Rails.application.routes.draw do
 		resources :matches, only: [:new, :create]
   		resources :schedules
   		resources :questions
-	  	resources :collections do
-	  		resources :items
-	  	end
+	  	# resources :collections do
+	  	# 	resources :items
+	  	# end
   	end
 
   	resources :members
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 	get 'admin_users' , to: 'users#admin_users'	
 	get 'webmaster' , to: 'users#webmaster'	
 	get 'questions' , to: 'questions#questions'
-	get 'collections' , to: 'collections#collections'
+	# get 'collections' , to: 'collections#collections'
 	get 'event_questions' , to: 'event_questions#event_questions'
 	get 'contents' , to: 'differences#contents'	
 	
@@ -57,7 +57,7 @@ Rails.application.routes.draw do
 	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:id/mypage' , to: 'users#mypage'
 	get 'users/:user_id/question' , to: 'questions#question'
-	get 'users/:user_id/collection-sample' , to: 'collections#sample'	
+	# get 'users/:user_id/collection-sample' , to: 'collections#sample'	
 	
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'

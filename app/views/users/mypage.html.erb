@@ -84,18 +84,6 @@
 				</div>
 			<% end %>
 
-			<%= link_to user_collections_path(@user), class: "icon_cont" do %>
-				<div class="mark-cont_">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_05.png">
-					</div>
-
-					<div class="icon_txt">
-						集金管理ツール
-					</div>
-				</div>
-			<% end %>
-
 			<%= link_to user_questions_path(@user), class: "icon_cont" do %>
 				<div class="">
 					<div class="icon_img">
@@ -113,6 +101,20 @@
 					</div>
 				</div>
 			<% end %>
+
+
+			<%= link_to "/user/add", class: "icon_cont" do %>
+				<div class="">
+					<div class="icon_img">
+						<img class="icon_size" src="/images/icon/icon_12.png">
+					</div>
+
+					<div class="icon_txt">
+						サークルを追加
+					</div>
+				</div>
+			<% end %>	
+
 
 		</div>
 
@@ -164,22 +166,7 @@
 
 
 
-
-
 		<div class="icon_wrap">
-
-			<%= link_to "/user/add", class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_12.png">
-					</div>
-
-					<div class="icon_txt">
-						サークルを追加
-					</div>
-				</div>
-			<% end %>	
-
 
 			<%= link_to "/users", class: "icon_cont" do %>
 				<div class="">
