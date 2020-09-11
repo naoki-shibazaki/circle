@@ -246,7 +246,7 @@ helper_method :link_count
 		@count = 0
 
 		# ランキング取得
-		@users = User.order(impressions_count: :desc)
+		@users = User.user_sort_2
 		@users.map.with_index(1){ |user,i|
 			if user.id.to_i == @user.id.to_i
 				@ranking = i
