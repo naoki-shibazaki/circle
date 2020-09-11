@@ -349,7 +349,17 @@ helper_method :link_count
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		@users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
+		# @users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
+
+		# ソート機能
+       if params[:sort] == "1" || params[:sort] == nil
+        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_1.page(params[:page])
+        elsif params[:sort] == "2"
+        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
+        else params[:sort] == "3"
+        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
+        end
+
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
@@ -373,7 +383,17 @@ helper_method :link_count
 		@city_judge = City.find_by(city_kana: params[:city_kana])		
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		@users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])		
+		# @users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])	
+
+		# ソート機能
+       if params[:sort] == "1" || params[:sort] == nil
+			@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_1.page(params[:page])	
+        elsif params[:sort] == "2"
+        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
+        else params[:sort] == "3"
+        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
+        end
+
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
@@ -392,7 +412,16 @@ helper_method :link_count
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
+		# @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
+
+		# ソート機能
+       if params[:sort] == "1" || params[:sort] == nil
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
+        elsif params[:sort] == "2"
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
+        else params[:sort] == "3"
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
+        end
 
 		# パンくず
 		@b1_name = @event.name
@@ -408,7 +437,17 @@ helper_method :link_count
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
+		# @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
+
+		# ソート機能
+       if params[:sort] == "1" || params[:sort] == nil
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
+        elsif params[:sort] == "2"
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
+        else params[:sort] == "3"
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
+        end
+
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
@@ -437,7 +476,17 @@ helper_method :link_count
 		@city_judge = City.find_by(city_kana: params[:city_kana])		
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])		
+		# @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])	
+
+		# ソート機能
+       if params[:sort] == "1" || params[:sort] == nil
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
+        elsif params[:sort] == "2"
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
+        else params[:sort] == "3"
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
+        end
+
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
 		      flash[:notice] = "URLが間違っています"
