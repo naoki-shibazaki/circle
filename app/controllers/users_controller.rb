@@ -337,11 +337,11 @@ helper_method :link_count
 
 		# ソート機能
         if params[:sort] == "1" || params[:sort] == nil
-        	@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).pref.user_sort_1.page(params[:page])
+        	@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).user_sort_1.pref.page(params[:page])
         elsif params[:sort] == "2"
-        	@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
+        	@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).user_sort_2.pref.page(params[:page])
         else params[:sort] == "3"
-        	@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
+        	@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).user_sort_3.pref.page(params[:page])
         end
 		
 		# パンくず
@@ -360,11 +360,11 @@ helper_method :link_count
 
 		# ソート機能
        if params[:sort] == "1" || params[:sort] == nil
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_1.page(params[:page])
+        	@users = User.city(@city_users).or(User.prefecture_50).user_sort_1.pref.page(params[:page])
         elsif params[:sort] == "2"
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
+        	@users = User.city(@city_users).or(User.prefecture_50).user_sort_2.pref.page(params[:page])
         else params[:sort] == "3"
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
+        	@users = User.city(@city_users).or(User.prefecture_50).user_sort_3.pref.page(params[:page])
         end
 
 
@@ -394,11 +394,11 @@ helper_method :link_count
 
 		# ソート機能
        if params[:sort] == "1" || params[:sort] == nil
-			@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_1.page(params[:page])	
+			@users = User.city(@city_users).or(User.prefecture_50).user_sort_1.pref.page(params[:page])	
         elsif params[:sort] == "2"
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
+        	@users = User.city(@city_users).or(User.prefecture_50).user_sort_2.pref.page(params[:page])
         else params[:sort] == "3"
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
+        	@users = User.city(@city_users).or(User.prefecture_50).user_sort_3.pref.page(params[:page])
         end
 
 
@@ -423,11 +423,11 @@ helper_method :link_count
 
 		# ソート機能
        if params[:sort] == "1" || params[:sort] == nil
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_sort_1.pref.page(params[:page])
         elsif params[:sort] == "2"
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_sort_2.pref.page(params[:page])
         else params[:sort] == "3"
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
+			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_sort_3.pref.page(params[:page])
         end
 
 		# パンくず
@@ -448,11 +448,11 @@ helper_method :link_count
 
 		# ソート機能
        if params[:sort] == "1" || params[:sort] == nil
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort_1.pref.page(params[:page])
         elsif params[:sort] == "2"
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort_2.pref.page(params[:page])
         else params[:sort] == "3"
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort_3.pref.page(params[:page])
         end
 
 
@@ -487,11 +487,11 @@ helper_method :link_count
 
 		# ソート機能
        if params[:sort] == "1" || params[:sort] == nil
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort_1.pref.page(params[:page])
         elsif params[:sort] == "2"
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort_2.pref.page(params[:page])
         else params[:sort] == "3"
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
+   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort_3.pref.page(params[:page])
         end
 
 
