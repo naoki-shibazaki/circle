@@ -149,7 +149,7 @@
 	  	<div class="sort_select">
 		  	<% if params[:sort] == "1" || params[:sort] == nil %>
 				<span class="sort_btn selected">関連順</span>
-			  	<a href="<%= request.path %>?sort=2" ><span class="sort_btn">人気順</span></a>
+			  	<!-- <a href="<%= request.path %>?sort=2" ><span class="sort_btn">人気順</span></a> -->
 			  	<a href="<%= request.path %>?sort=3" ><span class="sort_btn">新着順</span></a>
 		  	<% elsif params[:sort] == "2" %>
 				<a href="<%= request.path %>?sort=1" ><span class="sort_btn">関連順</span></a>
@@ -157,7 +157,7 @@
 				<a href="<%= request.path %>?sort=3" ><span class="sort_btn">新着順</span></a>
 		  	<% else params[:sort] == "3" %>
 				<a href="<%= request.path %>?sort=1" ><span class="sort_btn">関連順</span></a>
-				<a href="<%= request.path %>?sort=2" ><span class="sort_btn">人気順</span></a>
+				<!-- <a href="<%= request.path %>?sort=2" ><span class="sort_btn">人気順</span></a> -->
 			  	<span class="sort_btn selected">新着順</span>
 		  	<% end %>
 	  	</div>
