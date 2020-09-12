@@ -58,6 +58,7 @@ class User < ApplicationRecord
   	scope :user_sort_2, -> {order(switch: :asc, impressions_count: :desc).where.not(switch: "") }
 	scope :user_sort_3, -> {order(switch: :asc, created_at: :desc).where.not(switch: "") }	
   	scope :pref, -> { includes(:prefecture).order("prefectures.sort asc") }
+
   	scope :user, -> (user_id){ where(id: user_id) }
   	scope :event, -> (event_id){ where(event_id: event_id) }
   	scope :prefecture, -> (prefecture_id){ where(prefecture_id: prefecture_id) }
