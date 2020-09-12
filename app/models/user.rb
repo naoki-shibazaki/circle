@@ -50,9 +50,9 @@ class User < ApplicationRecord
 	mount_uploader :gallery_04, ImageUploader
 
 
-  	scope :user_hide, -> { where.not(switch: "") }
-  	scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
-  	scope :user_sort, -> { user_hide.user_order }
+  	# scope :user_hide, -> { where.not(switch: "") }
+  	# scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
+  	# scope :user_sort, -> { user_hide.user_order }
 
   	scope :pref, -> { includes(:prefecture).order("prefectures.sort asc") }
 

@@ -309,17 +309,18 @@ helper_method :link_count
 		@b1_url = ""		
 	end
 
+
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(kana: "nil")
 
 		# ソート機能
         if params[:sort] == "1" || params[:sort] == nil
-			@users = User.event(@event.id).pref.user_sort_1.page(params[:page])
+			@users = User.event(@event.id).user_sort_1.page(params[:page])
         elsif params[:sort] == "2"
-			@users = User.event(@event.id).pref.user_sort_2.page(params[:page])
+			@users = User.event(@event.id).user_sort_2.page(params[:page])
         else params[:sort] == "3"
-			@users = User.event(@event.id).pref.user_sort_3.page(params[:page])			
+			@users = User.event(@event.id).user_sort_3.page(params[:page])			
         end
 
 		# @users = User.event(@event.id).user_sort.page(params[:page])
