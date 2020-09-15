@@ -14,7 +14,7 @@
           <% @users_search.each do |user| %>
           <tbody>
               <tr>
-                  <th><%= user.id %></th>
+                  <th><%= link_to user.id, "/users/#{user.id}" %></th>
                   <th><%= user.admin_user_id %></th>
               </tr>
           </tbody>
