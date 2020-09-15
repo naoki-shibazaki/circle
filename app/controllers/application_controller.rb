@@ -53,6 +53,9 @@ class ApplicationController < ActionController::Base
 						redirect_to new_user_path		
 					end
 
+				elsif action_name == 'destroy'
+
+
 				else
 						flash[:notice] = "登録を完了させてください"
 						redirect_to new_user_path
