@@ -7,13 +7,11 @@
 
 <% elsif @user.contact == "mail" %>
 
-	<% if @data.email != "" %>
 		<div class="contact-button">
 			<%= link_to controller: :users, action: :contact, count: "mail" do %>
 				<img src="/images/icon_mail.png" alt="" class="icon_sns" />
 			<% end %>
 		</div>
-	<% end %>
 
 <% else %>
 
@@ -25,12 +23,10 @@
 		</div>
 	<% end %>
 
-	<% if @data.email != "" %>
 		<div class="contact-button">
 			<%= link_to controller: :users, action: :contact, count: "mail" do %>
 				<img src="/images/icon_mail.png" alt="" class="icon_sns" />
 			<% end %>
 		</div>
-	<% end %>	
 
 <% end %>
