@@ -4,6 +4,7 @@ class User < ApplicationRecord
 	has_many :places
 	has_many :questions, dependent: :destroy
 	has_many :collections, dependent: :destroy
+	has_many :reviews, dependent: :destroy
 	has_many :users_ages, dependent: :destroy
   	has_many :ages, through: :users_ages
 	has_many :users_groups, dependent: :destroy
