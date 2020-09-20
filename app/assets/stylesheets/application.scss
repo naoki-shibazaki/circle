@@ -46,6 +46,24 @@ form input[type="submit"] {
   border-style: none;
 }
 
+a,input,
+.mail, .line,
+.schedule_post_btn,
+.share_btn_tw,
+.contact-button,
+.user_qa_btn,
+.user_list,
+.copy_txt{
+  &:hover,
+  &:active{
+  opacity: 0.7 ;
+  }
+}
+
+
+
+
+
 /* 共通レイアウト ================================ */
 body {
   color: #1c1e22;
@@ -4945,6 +4963,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 }
+
+
+
+
+
+
 
 
 

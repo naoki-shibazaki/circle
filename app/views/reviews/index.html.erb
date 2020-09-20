@@ -49,32 +49,12 @@
 			       <div class="modalMain">
 
 
-				        <div class="schedule_add_wrap">
-				            <div class="schedule_input">
 
-				          <div class="form-body cont-body">
+       				<%= render "/reviews/post" %>
 
-				              <%= form_for ([@user, @review]) do |f| %>
-				            
-				                <p>口コミ</p>
-				               <%= f.radio_button :review, 1, {:checked => true} %>Good <%= f.radio_button :review, 0 %>Bad
 
-				                <p>コメント</p>
-				                  <%= f.text_area :comment, class: 'form-control form-note', placeholder: "良かった！" %> 
 
-				                  <br>
 
-					            <input type="submit" name="commit" value="投稿する" data-disable-with="投稿する">
-
-					            <div class="reset"></div>
-
-				              <% end %>
-
-				            </div>
-				        </div>
-
-			              
-			       </div>
 			    </div>
 			   </div>
 			   
