@@ -4892,6 +4892,14 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 .review_contents{
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    // align-items: center;
+    overflow: hidden;
+
 
   .review_l{
     float: left;
@@ -4902,6 +4910,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       width: 40px;
       height: 40px;
       border-radius: 50%;
+      margin-top: 12px;
       margin-right: 16px;
       margin-bottom: 10px;
       border: 1px solid #e6e6e6;
@@ -4912,6 +4921,26 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
   .review_r {
       float: left;
+
+
+        .speech_bubble{
+            position: relative;
+            line-height: 1.6;
+            background-color: #effbfc;
+            padding: 10px;
+            border-radius: 6px;
+              &:before {
+                  content: "";
+                  position: absolute;
+                  top: 10%;
+                  left: -26px;
+                  margin-top: -15px;
+                  border: 15px solid transparent;
+                  border-right: 15px solid #effbfc;
+              }          
+        }
+
+
   }
 
 

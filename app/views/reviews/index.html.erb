@@ -89,24 +89,27 @@
 
 
 
---------------------------------------<br>
+<hr>
 
 		<% @reviews.reverse_each do |review| %>
 
 			<div class="review_contents">
 				<div class="review_l"><%= lazysizes_image_tag @user.pic_profile.url , class:'member_icon' %></div>
 				<div class="review_r">
-					ID：<%= review.id %><br>
-					user_id：<%= review.user_id %><br>
-					コメント：<%= review.comment %><br>
-					レビュー：
-						<% if review.review == 1 %>
-							良い！
-						<% elsif review.review == 0 %>
-							悪い！
-						<% else %>
+					<div class="speech_title">ID：<%= review.id %></div>
+					<div class="speech_bubble">
+						コメント：<%= review.comment %><br>
+						レビュー：
+							<% if review.review == 1 %>
+								良い！
+							<% elsif review.review == 0 %>
+								悪い！
+							<% else %>
 
-						<% end %>				
+							<% end %>						
+					</div>
+
+				
 
 				</div>
 			</div>
