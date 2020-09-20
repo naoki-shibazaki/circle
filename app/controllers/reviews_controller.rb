@@ -3,21 +3,55 @@ class ReviewsController < ApplicationController
 	before_action :set_user
 
 	def index
+
+		@review = @user.reviews.build
+
+		@b1_name = @user.name
+		@b1_url = "/users/#{@user.id}"
+		@b2_name = "口コミ・評価"
+		@b2_url = ""
 	end	
 
 	def new
 	end
 
 	def create
+		@user.reviews.create(review_params)
+
+		if @user.save
+			flash[:notice] = "投稿が完了しました！"
+			redirect_to user_reviews_path
+
+		else
+			flash[:notice] = "必須項目が未記入です"
+			redirect_to user_reviews_path
+		end
+
 	end
 
 	def update
+		@review = Review.find(params[:id])
+
+		if @review.update(review_params)
+
+			flash[:share] = '更新完了！'
+			redirect_to user_reviews_path
+		else
+			render "edit"
+		end	
+
 	end
 
 	def show
 	end
 
 	def edit
+		@review = Review.find(params[:id])
+
+		@b1_name = @user.name
+		@b1_url = "/users/#{@user.id}"
+		@b2_name = "活動スケジュール"
+		@b2_url = "/users/#{@user.id}/schedules"
 	end
 
 	def destroy

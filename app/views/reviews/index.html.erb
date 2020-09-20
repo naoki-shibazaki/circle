@@ -1,0 +1,97 @@
+<div class="main users-index">
+  <div class="container">
+
+    <%= render "/layouts/breadcrumb" %>
+
+		<div class="users-index-item">
+
+
+		    <h1 class="p_t">口コミ・評価</h1>
+
+			<% if admin_user_signed_in?  %>
+				<% if @user.admin_user_id == current_admin_user.id %>
+					<% if @admin_user.users.count > 1 %>
+						<div class="user_select_wrap">
+									現在のアカウント：			
+					      <select name="user_select" onChange="location.href=value;">
+					        <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+					          <% @admin_user.users.each do |user| %>
+					            <% if @user.id != user.id %>
+					            <option value="/users/<%= user.id %>/reviews"><%= user.name %>（<%= user.event.name %>）</option>
+					            <% end %>
+					        <% end %>
+					      </select> 
+						</div>
+					<% end %>
+				<% end %>
+		    <% end %>
+
+			<%= render "/schedules/profile" %>
+
+
+
+
+		<div class="schedule_post_wrap">
+
+			  <div class="popupModal1">
+
+			   <input type="radio" name="modalPop" id="pop11" />
+			   <label for="pop11"><div class="schedule_post_btn"><i class="fa fa-plus "></i>　口コミを書き込む</div></label>
+			   <input type="radio" name="modalPop" id="pop12" />
+			   <label for="pop12">CLOSE</label>
+			   <input type="radio" name="modalPop" id="pop13" />
+			   <label for="pop13">×</label>
+
+			   <div class="modalPopup2">
+			    <div class="modalPopup3">
+
+			     <h2 class="modalTitle">口コミ・評価</h2>
+			       <div class="modalMain">
+
+
+				        <div class="schedule_add_wrap">
+				            <div class="schedule_input">
+
+				          <div class="form-body cont-body">
+
+				              <%= form_for ([@user, @review]) do |f| %>
+				            
+				                <p>口コミ</p>
+				               <%= f.radio_button :review, 1 %>Good <%= f.radio_button :review, 0 %>Bad
+
+				                <p>コメント</p>
+				                  <%= f.text_area :comment, class: 'form-control form-note', placeholder: "良かった！" %> 
+
+				                  <br>
+
+					            <input type="submit" name="commit" value="投稿する" data-disable-with="投稿する">
+
+					            <div class="reset"></div>
+
+				              <% end %>
+
+				            </div>
+				        </div>
+
+			              
+			       </div>
+			    </div>
+			   </div>
+			   
+			  </div>
+			  
+			</div>
+
+		</div>
+
+
+
+ああああ
+
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+
+  </div>
+</div>
+
