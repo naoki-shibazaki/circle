@@ -3,8 +3,9 @@ class ReviewsController < ApplicationController
 	before_action :set_user
 
 	def index
-
 		@review = @user.reviews.build
+
+		@reviews = Review.where(user_id: @user.id)
 
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"

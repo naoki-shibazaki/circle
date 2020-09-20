@@ -4891,6 +4891,34 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 
+.review_contents{
+
+  .review_l{
+    float: left;
+
+    .member_icon{
+      float: left;
+      display: block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 16px;
+      margin-bottom: 10px;
+      border: 1px solid #e6e6e6;
+      object-fit: cover;
+    }
+
+  }
+
+  .review_r {
+      float: left;
+  }
+
+
+}
+
+
+
 
 // --------------------------------------
 // ▼PC
