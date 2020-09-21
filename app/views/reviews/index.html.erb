@@ -88,11 +88,11 @@
 						<% if review.member.image_profile.present? %>
 							<%= lazysizes_image_tag review.member.image_profile.url , class:'member_icon' %>
 						<% else %>
-							<img src="/images/happy.png" class="member_icon">
+							<img src="/images/icon/icon_member.png" class="member_icon">
 						<% end %>
 
 					<% else %>
-						<img src="/images/error.png" class="member_icon">
+						<img src="/images/icon/icon_member.png" class="member_icon">
 					<% end %>
 						
 				</div>
@@ -100,22 +100,19 @@
 				<div class="review_r">
 					<div class="speech_title">
 						<% if review.review == 1 %>
-							【Good】
+							<i class="fa fa-smile-o good"></i> 
 						<% elsif review.review == 0 %>
-							【Bad】
+							<i class="fa fa-frown-o bad"></i> 
 						<% else %>
 
 						<% end %>
 
-						<%= review.member.nickname if review.member.present? %>
-						<% if review.member.present? %>
-							（@<%= review.member.random_id %>）
-						<% end %>
+						<%= review.member.nickname if review.member.present? %>さん<% if review.member.present? %><span class="random_id">（@<%= review.member.random_id %>）</span><% end %>
 						
 					</div>
 
 					<div class="speech_bubble">
-						<%= review.comment %>
+						<%= simple_format review.comment %>
 					</div>				
 
 				</div>

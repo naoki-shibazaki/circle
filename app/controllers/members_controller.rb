@@ -19,7 +19,7 @@ class MembersController < ApplicationController
         @member = Member.find(params[:id])
 
         if @member.random_id.nil?
-            @member.random_id = SecureRandom.alphanumeric(8)
+            @member.random_id = SecureRandom.alphanumeric(6)
         end
 
         if @member.update(member_params)

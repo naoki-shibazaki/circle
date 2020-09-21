@@ -4912,7 +4912,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .review_contents{
     width: 100%;
-    margin: 10px auto;
+    margin: 4px auto;
     padding: 10px;
     box-sizing: border-box;
     display: flex;
@@ -4959,6 +4959,36 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
               }          
         }
   }
+
+  .good,
+   .bad{
+    font-size: 14px;
+    font-weight: 700;
+   }
+
+  .good{
+    color: #d05454;
+   }
+
+  .bad{
+    color: #137bd6;
+   }
+
+   .random_id{
+    font-size: 10px;
+   }
+
+  p {
+      margin-bottom: 10px;
+  }
+
+  p:last-child {
+      margin-bottom: 0px;
+  }
+
+
+
+
 
 
 }
