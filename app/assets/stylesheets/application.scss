@@ -4988,11 +4988,29 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 
-
-
-
 }
 
+
+.sample_review img{
+    width: 94%;
+    border: 1px solid #e6e6e6;
+    text-align: center;
+    margin: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.sample_review_txt{
+  text-align: center;
+  color: #5d5c5c;
+  margin-bottom: 10px;
+}
+
+.review_cta{
+  text-align: center;
+  color: #5d5c5c;
+  margin-top: 10px;  
+}
 
 .login_btn_wrap{
   display: block;
