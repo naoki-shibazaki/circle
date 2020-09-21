@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 
-	before_action :set_user
+	before_action :set_member
 
 	def index
 		@review = @user.reviews.build
@@ -18,8 +18,10 @@ class ReviewsController < ApplicationController
 
 	def create
 		@user.reviews.create(review_params)
+		@review = @user.reviews.last
+		@review.member_id = @member.id
 
-		if @user.save
+		if @review.save
 			flash[:notice] = "投稿が完了しました！"
 			redirect_to user_reviews_path
 
@@ -59,8 +61,12 @@ class ReviewsController < ApplicationController
 	end
 
 
-	def set_user
+	def set_member
 	    @user = User.find_by(id: params[:user_id])
+
+		if member_signed_in?
+			@member = current_member
+		end
 
 
 	    if @user.present?  	

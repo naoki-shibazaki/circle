@@ -28,7 +28,7 @@
 
 			<%= render "/schedules/profile" %>
 
-			<%= link_to "メンバー登録", new_member_session_path %>
+
 
 
 		<div class="schedule_post_wrap">
@@ -49,10 +49,19 @@
 			       <div class="modalMain">
 
 
+			       	<% if admin_user_signed_in? %>
 
-       				<%= render "/reviews/post" %>
+			       		<p>サークルの主催者はご自身で口コミを書くことができません</p>
 
+	       			<% elsif member_signed_in? %>
 
+	       				<%= render "/reviews/post" %>
+	       			
+	       			<% else %>
+
+	       				<%= render "/reviews/login" %>
+							       		
+       				<% end %>
 
 
 			    </div>
@@ -69,24 +78,44 @@
 
 
 
-<hr>
+		<hr>
 
 		<% @reviews.reverse_each do |review| %>
 
 			<div class="review_contents">
-				<div class="review_l"><%= lazysizes_image_tag @user.pic_profile.url , class:'member_icon' %></div>
-				<div class="review_r">
-					<div class="speech_title">ID：<%= review.id %></div>
-					<div class="speech_bubble">
-						コメント：<%= review.comment %><br>
-						レビュー：
-							<% if review.review == 1 %>
-								良い！
-							<% elsif review.review == 0 %>
-								悪い！
-							<% else %>
+				<div class="review_l">
+					<% if review.member.present? %>
+						<% if review.member.image_profile.present? %>
+							<%= lazysizes_image_tag review.member.image_profile.url , class:'member_icon' %>
+						<% else %>
+							<img src="/images/happy.png" class="member_icon">
+						<% end %>
 
-							<% end %>						
+					<% else %>
+						<img src="/images/error.png" class="member_icon">
+					<% end %>
+						
+				</div>
+
+				<div class="review_r">
+					<div class="speech_title">
+						<% if review.review == 1 %>
+							【Good】
+						<% elsif review.review == 0 %>
+							【Bad】
+						<% else %>
+
+						<% end %>
+
+						<%= review.member.nickname if review.member.present? %>
+						<% if review.member.present? %>
+							（@<%= review.member.random_id %>）
+						<% end %>
+						
+					</div>
+
+					<div class="speech_bubble">
+						<%= review.comment %>
 					</div>				
 
 				</div>
@@ -94,15 +123,7 @@
 
 			<div class="reset"></div>
 
-
-			<hr>	
 		<% end %>
-
-
-
-
-
-
 
 
 

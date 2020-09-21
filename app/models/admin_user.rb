@@ -8,6 +8,8 @@ class AdminUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  mount_uploader :image_profile, ImageUploader
+
   def remember_me
     true
   end 

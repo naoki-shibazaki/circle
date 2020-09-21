@@ -18,12 +18,16 @@ class MembersController < ApplicationController
     def update
         @member = Member.find(params[:id])
 
+        if @member.random_id.nil?
+            @member.random_id = SecureRandom.alphanumeric(8)
+        end
+
         if @member.update(member_params)
 
             flash[:notice] = 'アカウント更新！'
             redirect_to member_path
         else
-            render "/members/#{@member.id}/edit"
+            render "edit"
         end         
     end
 

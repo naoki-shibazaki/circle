@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   	# 登録未完了時のアクション
   	def set_imperfect_current_user
 
-		if admin_user_signed_in? #ログイン判定
+		if admin_user_signed_in? #管理人ログイン判定
 
 			if current_admin_user.users.any? # 登録1つ以上の判定
 
@@ -62,6 +62,41 @@ class ApplicationController < ActionController::Base
 				end		
 
 			end
+
+		elsif member_signed_in? #参加者ログイン判定
+
+			if current_member.nickname.present? # 登録1つ以上の判定
+
+				# OK
+
+			else
+
+
+				if  controller_path == 'members' #members コントローラー
+
+					if action_name == 'new' || action_name == 'create' || action_name == 'edit' || action_name == 'update'
+
+						# OK
+
+					else
+						flash[:notice] = "登録を完了させてください"
+						redirect_to "/members/#{current_member.id}/edit"		
+					end
+
+				elsif action_name == 'destroy'
+
+
+				else
+						flash[:notice] = "登録を完了させてください"
+						redirect_to "/members/#{current_member.id}/edit"
+				end	
+
+			end
+
+			
+		else
+
+			#一般の方
 
 		end
 

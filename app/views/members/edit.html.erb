@@ -35,8 +35,18 @@
 			<%= f.file_field :image_profile, class: "image", style: "display:none;", id: "file_profile"%>
 
 
-		    <p>ニックネーム</p>
+		    <p>ニックネーム<span class="must_red">(必須)</span></p>
 		    <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
+
+		    <p>性別</p>
+           	<%= f.radio_button :gender, 1, {:checked => true} %>男性 <%= f.radio_button :gender, 2 %>女性 <%= f.radio_button :gender, 0 %>その他
+
+		    <p>自己紹介</p>
+		    <%= f.text_area :profile, class: 'form-control', placeholder: "運動をするのが好きです！".html_safe %>
+
+
+
+
 
 
 	        <%= f.submit "更新する" %>

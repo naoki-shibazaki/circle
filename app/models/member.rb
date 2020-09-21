@@ -9,4 +9,9 @@ class Member < ApplicationRecord
 	
 	mount_uploader :image_profile, ImageUploader
 
+
+  def remember_me
+    true
+  end 
+
 end
