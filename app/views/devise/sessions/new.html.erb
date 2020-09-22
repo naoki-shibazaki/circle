@@ -3,7 +3,10 @@
 
     <%= render "/layouts/breadcrumb" %>
 
-    <h1 class="form-heading">ログイン</h1>
+    <h1 class="form-heading">ログイン（主催者用）</h1>
+    <div class="login_info_txt">
+      <%= link_to ">>参加者用のログインはコチラ",new_member_session_path %>
+    </div>
     <div class="form users-form">
       <div class="form-body cont-body">
 

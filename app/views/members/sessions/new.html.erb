@@ -3,7 +3,10 @@
 
     <%= render "/layouts/breadcrumb" %>
 
-    <h1 class="form-heading">ログイン</h1>
+    <h1 class="form-heading">ログイン（参加者用）</h1>
+    <div class="login_info_txt">
+      <%= link_to ">>サークル主催者用のログインはコチラ",new_admin_user_session_path %>
+    </div>
     <div class="form users-form">
       <div class="form-body cont-body">
 
@@ -16,7 +19,8 @@
           </div>
 
           <div class="field">
-            <%= f.label :パスワード %><br />
+            <%= f.label :パスワード %>
+            <em>(6文字以上)</em>
             <%= f.password_field :password, autocomplete: "current-password" %>
           </div>
 

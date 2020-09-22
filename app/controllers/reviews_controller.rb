@@ -63,6 +63,7 @@ class ReviewsController < ApplicationController
 
 	def set_member
 	    @user = User.find_by(id: params[:user_id])
+	    @prefectures = Prefecture.all
 
 		if member_signed_in?
 			@member = current_member
