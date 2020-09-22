@@ -21,6 +21,13 @@
 			        <% end %>
 			      </div>
 
+			      <% if @member.profile.present? %>
+				      <div class="member_profile">
+				      	<%= @member.profile %>
+				      </div>
+			      <% end %>
+
+
 			    </div>  
 			
 			</div>
@@ -29,7 +36,7 @@
 		<div class="member_edit_wrap">
 			<% if member_signed_in? %>
 				<% if @member.id == current_member.id %>
-					<div class="member_edit"><%= link_to("アカウント編集", edit_member_path) %></div>
+					<div class="member_edit"><%= link_to("プロフィール編集", edit_member_path) %></div>
 				<% end %>
 			<% end %>
 		</div>
@@ -41,6 +48,9 @@
 
 	</div>
 
+
+
+<% if @event_answers.present? %>
 
 	<div class="qa_card_warp">
 
@@ -86,9 +96,12 @@
 				</ul>
 			</div>
 
+	</div>	
 
 
-	</div>		
+<% end %>
+
+	
 
 
 

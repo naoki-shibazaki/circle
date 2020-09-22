@@ -5062,6 +5062,31 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   font-weight: 700;
 }
 
+.radio_button {
+    margin-bottom: 10px;
+}
+
+.radio_button input{
+  width: 8%;
+}
+
+.radio_button_review {
+    margin-bottom: 10px;
+}
+
+.radio_button_review input{
+  width: 10%;
+  height: auto;
+}
+
+
+.member_profile{
+    border: 1px solid #d8dadf;
+    margin: 10px 0px 20px;
+    border-radius: 4px;
+    clear: both;
+    padding: 10px;
+}
 
 
 
