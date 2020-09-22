@@ -3768,7 +3768,7 @@ max-width: 100%;
     background-color: #e09a1b;
     color: #fff;
     font-size: 14px;
-    padding: 6px 20px;
+    padding: 6px 36px;
     border-radius: 6px;
     border: none;
     margin: 10px auto 20px;
@@ -5000,6 +5000,17 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     border-radius: 4px;
 }
 
+.sample_review_img img{
+    width: 80%;
+    border: 1px solid #e6e6e6;
+    text-align: center;
+    margin: auto;
+    display: block;
+    border-radius: 4px; 
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
 .sample_review_txt{
   text-align: center;
   color: #5d5c5c;
@@ -5014,9 +5025,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .login_btn_wrap{
   display: block;
-  margin: 30px auto 30px;
+  margin: 20px auto 50px;
   text-align: center;
-  width: 400px;
 
   a{
     color: #fff;
@@ -5025,7 +5035,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
   .login_btn {
       position: relative;
-      padding: 12px 40px;
+      padding: 12px 60px;
       font-size: 16px;
       border: 1px solid #fff;
       font-weight: 700;
@@ -5033,9 +5043,9 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       width: 88%;
       margin: auto;
   }
-    .btn_p {
-        box-shadow: 0px 0px 0px 2px #e8779f;
-        background: #e8779f;
+    .btn_b {
+        box-shadow: 0px 0px 0px 2px #3ecdc6;
+        background: #3ecdc6;
     }
 }
 

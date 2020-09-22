@@ -45,9 +45,7 @@
 
 
 	       	<% if admin_user_signed_in? %>
-				<div class="review_cta">
-					＼ 無料登録、約30秒で完了します！ ／
-				</div>
+
    			<% elsif member_signed_in? %>
 
    			<% else %>
@@ -80,7 +78,28 @@
 
 			       	<% if admin_user_signed_in? %>
 
-			       		<p>サークルの主催者はご自身で口コミを書くことができません</p>
+			       		<p>サークルの主催者は<br>ご自身で口コミを書くことができません。</p>
+
+			       		<p>参加者にこのページを送って、口コミを書いてもらう！</p>
+
+						<div class="sample_review_img">
+							<img src="/images/sample_review.png" class="">
+						</div>
+
+						<div class="schedule_share_wrap">
+
+							<div class="share_btn_tw">
+							    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の口コミ・評価ページ%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
+							      <i class="fa fa-twitter"></i>ツイート
+							    <% end %>
+							</div>
+
+
+							<div class="share_btn_line">
+								<%= link_to 'LINEで共有する', "http://line.me/R/msg/text/?#{request.url}", title: 'LINE', target: '_blank' %>
+							</div>
+
+						</div>
 
 	       			<% elsif member_signed_in? %>
 
