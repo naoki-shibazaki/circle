@@ -221,7 +221,7 @@
 					<% end %>
 
 					<tr class="flex_contents">
-						<th class="flex_list">口コミ・評価</th>
+						<th class="flex_list">口コミ</th>
 						<td class="flex_list">
 							<div class="star_review">
 								<%= link_to user_reviews_path(@user) do %>
@@ -289,7 +289,7 @@
 			<% if @user.appeal.present? %>
 				<div class="profile_list_t p_t_t"></div>
 				<div class="profile_list_p profile_list_a"><%= raw Rinku.auto_link(simple_format @user.appeal) %></div>
-
+    			<div class="border"></div>
 			<% end %>
 		
 
@@ -298,6 +298,7 @@
 				<div class="post_cta profile_cta">
 						<%= render "/layouts/contact_btn" %>
 				</div>
+    			<div class="border"></div>
 
 	    		<%= render "/users/question_card" %>
 	    		
