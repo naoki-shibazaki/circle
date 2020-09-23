@@ -98,16 +98,18 @@ helper_method :link_count
 		@user_groups = @user.users_groups.map{|g| g.group}
 		@user_cities = @user.users_cities.map{|c| c.city}
 
-		# 手作業反映用
-		if admin_user_signed_in?		
-			if current_admin_user.id == 1  		
-				@cities = City.where(prefecture_id: @user.prefecture.id).order(:id => :asc)
-				@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
-				@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id).order(:id => :asc)
-				@user.users_cities.build
-			end
+
+		# レビュー合計値
+		@star_sum = @user.reviews.sum{|review| review[:review]}
+		# レビュー数
+		@star_count = @user.reviews.count
+		# レビュー値
+		if @star_count == 0 && @star_sum == 0
+			@star_review =  0
+		else
+			@star_review =  (@star_sum / @star_count.to_f)*5
 		end
-		# 手作業反映用
+
 
 		if @user.id.to_s != params[:id]
 		      flash[:notice] = "URLが間違っています"

@@ -28,105 +28,91 @@
 
 			<%= render "/schedules/profile" %>
 
+			<%= render "/layouts/star" %><div class="star_review">（<%= sprintf("%.2f", @star_review) %>）</div>
+			<div class="reset"></div>
 
 
-			<% if @reviews.blank? %>
-				<hr>
-				<div class="sample_review_txt">
-					まだ口コミはありません。<br>
-					感想を書いてみませんか？
-				</div>
-				<div class="sample_review">
-					<img src="/images/sample_review.png" class="">
-				</div>
+<hr>
+
+	<% if @reviews.blank? %>
+		<div class="sample_review_txt">
+			まだ口コミはありません。<br>
+			感想を書いてみませんか？
+		</div>
+	<% end %>
 
 
-			<% end %>
+<% if @member_reviews.blank? %>
+
+	<div class="schedule_post_wrap">
+
+		  <div class="popupModal1">
+
+		   <input type="radio" name="modalPop" id="pop11" />
+		   <label for="pop11"><div class="schedule_post_btn"><i class="fa fa-plus "></i>　口コミを書き込む</div></label>
+		   <input type="radio" name="modalPop" id="pop12" />
+		   <label for="pop12">CLOSE</label>
+		   <input type="radio" name="modalPop" id="pop13" />
+		   <label for="pop13">×</label>
+
+		   <div class="modalPopup2">
+		    <div class="modalPopup3">
+
+		     <h2 class="modalTitle">口コミ・評価</h2>
+		       <div class="modalMain">
 
 
-	       	<% if admin_user_signed_in? %>
+		       	<% if admin_user_signed_in? %>
 
-   			<% elsif member_signed_in? %>
+		       		<p>サークルの主催者は<br>ご自身で口コミを書くことができません。</p>
 
-   			<% else %>
-				<div class="review_cta">
-					＼ 無料登録、約30秒で完了します！ ／
-				</div>     		
-			<% end %>
+		       		<p>参加者にこのページを送って、口コミを書いてもらう！</p>
 
+					<div class="sample_review_img">
+						<img src="/images/sample_review.png" class="">
+					</div>
 
+					<div class="schedule_share_wrap">
 
-
-
-		<div class="schedule_post_wrap">
-
-			  <div class="popupModal1">
-
-			   <input type="radio" name="modalPop" id="pop11" />
-			   <label for="pop11"><div class="schedule_post_btn"><i class="fa fa-plus "></i>　口コミを書き込む</div></label>
-			   <input type="radio" name="modalPop" id="pop12" />
-			   <label for="pop12">CLOSE</label>
-			   <input type="radio" name="modalPop" id="pop13" />
-			   <label for="pop13">×</label>
-
-			   <div class="modalPopup2">
-			    <div class="modalPopup3">
-
-			     <h2 class="modalTitle">口コミ・評価</h2>
-			       <div class="modalMain">
-
-
-			       	<% if admin_user_signed_in? %>
-
-			       		<p>サークルの主催者は<br>ご自身で口コミを書くことができません。</p>
-
-			       		<p>参加者にこのページを送って、口コミを書いてもらう！</p>
-
-						<div class="sample_review_img">
-							<img src="/images/sample_review.png" class="">
+						<div class="share_btn_tw">
+						    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の口コミ・評価ページ%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
+						      <i class="fa fa-twitter"></i>ツイート
+						    <% end %>
 						</div>
 
-						<div class="schedule_share_wrap">
 
-							<div class="share_btn_tw">
-							    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の口コミ・評価ページ%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
-							      <i class="fa fa-twitter"></i>ツイート
-							    <% end %>
-							</div>
-
-
-							<div class="share_btn_line">
-								<%= link_to 'LINEで共有する', "http://line.me/R/msg/text/?#{request.url}", title: 'LINE', target: '_blank' %>
-							</div>
-
+						<div class="share_btn_line">
+							<%= link_to 'LINEで共有する', "http://line.me/R/msg/text/?#{request.url}", title: 'LINE', target: '_blank' %>
 						</div>
 
-	       			<% elsif member_signed_in? %>
+					</div>
 
-	       				<%= render "/reviews/post" %>
-	       			
-	       			<% else %>
-
-	       				<%= render "/reviews/login" %>
-							       		
-       				<% end %>
+       			<% elsif member_signed_in? %>
+	       			<%= render "/reviews/post" %>	       			
+       			<% else %>
+       				<%= render "/reviews/login" %>     		
+   				<% end %>
 
 
-			    </div>
-			   </div>
-			   
-			  </div>
-			  
-			</div>
-
+		    </div>
+		   </div>
+		   
+		  </div>
+		  
 		</div>
 
+	</div>
+
+<% end %>
 
 
 
+	<% if @reviews.blank? %>
+		<div class="sample_review">
+			<img src="/images/sample_review.png" class="">
+		</div>
+	<% end %>
 
-
-		<hr>
 
 		<% @reviews.reverse_each do |review| %>
 

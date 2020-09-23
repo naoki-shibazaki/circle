@@ -91,6 +91,8 @@ body {
 }
 
 
+
+
 /* ヘッダー ================================ */
 header {
   height: 64px;
@@ -144,6 +146,13 @@ header {
   border-style: none;
   margin: 0;
   font-size: 13px;
+}
+
+.star_wrap{
+
+  img{
+    width: 20px;
+  }
 }
 
 /* top ================================ */
@@ -5087,6 +5096,22 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     clear: both;
     padding: 10px;
 }
+
+.star{
+  float: left;
+}
+
+.star_review{
+  font-size: 18px;
+}
+
+.review_link{
+  .star_review a{
+    color: #1a96e0;
+    font-size: 18px;
+  }  
+}
+
 
 
 

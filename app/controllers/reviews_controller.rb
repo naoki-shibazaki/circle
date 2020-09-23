@@ -4,8 +4,9 @@ class ReviewsController < ApplicationController
 
 	def index
 		@review = @user.reviews.build
-
 		@reviews = Review.where(user_id: @user.id)
+
+
 
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
@@ -67,10 +68,10 @@ class ReviewsController < ApplicationController
 
 		if member_signed_in?
 			@member = current_member
+			@member_reviews = Review.where(user_id: @user.id, member_id: @member.id)
 		end
 
-
-	    if @user.present?  	
+	    if @user.present? 
 			if @user.switch.present?
 
 			@b1_name = @user.event.name
@@ -82,6 +83,20 @@ class ReviewsController < ApplicationController
 					
 			end
 		end
+
+		# レビュー合計値
+		@star_sum = @user.reviews.sum{|review| review[:review]}
+		# レビュー数
+		@star_count = @user.reviews.count
+		# レビュー値
+		if @star_count == 0 && @star_sum == 0
+			@star_review =  0
+		else
+			@star_review =  (@star_sum / @star_count.to_f)*5
+		end
+
+
+		
 
 
     end    
