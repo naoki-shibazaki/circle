@@ -5112,7 +5112,14 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }  
 }
 
-
+.review_edit,
+.review_slash,
+.review_delete,
+.review_edit a,
+.review_slash a,
+.review_delete a{
+  font-size: 12px;
+}
 
 
 // --------------------------------------

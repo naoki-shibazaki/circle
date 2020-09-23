@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 
+	before_action :ensure_correct_member, {only: [:edit, :update]}
 	before_action :set_member
 
 	def index
@@ -38,7 +39,7 @@ class ReviewsController < ApplicationController
 
 		if @review.update(review_params)
 
-			flash[:share] = '更新完了！'
+			flash[:notice] = "編集が完了しました！"
 			redirect_to user_reviews_path
 		else
 			render "edit"
@@ -54,11 +55,16 @@ class ReviewsController < ApplicationController
 
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
-		@b2_name = "活動スケジュール"
+		@b2_name = "口コミ・評価"
 		@b2_url = "/users/#{@user.id}/schedules"
 	end
 
 	def destroy
+		@review = Review.find(params[:id])
+		@review.destroy
+
+		flash[:notice] = "削除しました"
+		redirect_to user_reviews_path
 	end
 
 
@@ -95,10 +101,6 @@ class ReviewsController < ApplicationController
 			@star_review =  (@star_sum / @star_count.to_f)*5
 		end
 
-
-		
-
-
     end    
 
 
@@ -107,6 +109,27 @@ class ReviewsController < ApplicationController
     	params.require(:review).permit(:review, :comment)
     end
 
+	def ensure_correct_member
+		@review = Review.find(params[:id])		
+
+		if member_signed_in?
+		   	if current_member.id.to_i == @review.member_id.to_i
+			# OK
+			else
+			      flash[:notice] = "権限がありません"
+			      redirect_to user_reviews_path
+			end
+		end
+
+		if admin_user_signed_in?
+	   		if current_admin_user.id == 1
+ 			# OK
+	   		else
+		      flash[:notice] = "権限がありません"
+		      redirect_to user_reviews_path	  
+	   		end
+		end
+	end	
 
 
 end

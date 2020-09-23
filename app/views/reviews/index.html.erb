@@ -65,7 +65,7 @@
 		       	<% if admin_user_signed_in? %>
 
 		       		<p>サークル主催者は<br>ご自身で口コミを書くことができません。</p>
-
+		       		<br>
 		       		<p>参加者にこのページを送って<br>口コミを書いてもらいましょう！</p>
 
 					<div class="sample_review_img">
@@ -75,7 +75,7 @@
 					<div class="schedule_share_wrap">
 
 						<div class="share_btn_tw">
-						    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の口コミ・評価ページ%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
+						    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の口コミ投稿を募集しています！%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
 						      <i class="fa fa-twitter"></i>ツイート
 						    <% end %>
 						</div>
@@ -141,7 +141,39 @@
 
 						<% end %>
 
-						<%= review.member.nickname if review.member.present? %>さん<% if review.member.present? %><span class="random_id">（@<%= review.member.random_id %>）</span><% end %>
+						<%= review.member.nickname if review.member.present? %>さん<% if review.member.present? %><span class="random_id">（@<%= review.member.random_id %>）</span>
+							<% if member_signed_in? %>
+								<% if current_member.id == review.member_id %>
+									<span class="review_edit">
+									    <%= link_to(edit_user_review_path(@user, review)) do %>
+											<i class="fa fa-pencil-square-o "></i> 編集
+										<% end %>
+									</span>
+									<span class="review_slash">／</span>
+									<span class="review_delete">
+									    <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+											<i class="fa fa-trash "></i> 削除 									    
+										<% end %>
+									</span>
+								<% end %>
+							<% end %>
+
+							<% if admin_user_signed_in? %>
+								<% if current_admin_user.id == 1 %>
+									<span class="review_edit">
+									    <%= link_to(edit_user_review_path(@user, review)) do %>
+											<i class="fa fa-pencil-square-o "></i> 編集
+										<% end %>
+									</span>
+									<span class="review_slash">／</span>
+									<span class="review_delete">
+									    <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+											<i class="fa fa-trash "></i> 削除 									    
+										<% end %>
+									</span>
+								<% end %>
+							<% end %>
+						<% end %>
 						
 					</div>
 
