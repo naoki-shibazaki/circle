@@ -45,7 +45,7 @@
 		<% if @user.pic_profile.blank? && @user.pic_header.blank? %><!-- プロフィール画像 -->
 			<div class="advice_wrap">
 			    <span class="box-title">ポイント</span>
-			    <p><span class="marker">プロフィール画像</span>があると良いです！<br>
+			    <p><span class="marker">プロフィールと背景画像</span>があると良いです！<br>
 			    	参加者が<span class="marker">どんな雰囲気かイメージしやすく</span><br>
 			    	安心してお問い合わせすることができます！
 			    </p>			    	
@@ -72,6 +72,17 @@
 			    	<%= link_to ">>ブログの新規投稿", new_user_blog_path(@user) %>
 	
 			</div>
+
+		<% elsif @user.reviews.empty? %>
+			<div class="advice_wrap">
+			    <span class="box-title">ポイント</span>
+			    <p><span class="marker">口コミ投稿</span>を募集しませんか？<br>
+			    	<span class="marker">新しい参加者が安心して</span><br>
+			    	お問い合わせすることができます！
+			    </p>
+			    	<%= link_to ">>口コミの募集", user_reviews_path(@user) %>
+			</div>
+
 
 		<% else %>
 

@@ -1,3 +1,28 @@
+<% if @user.pic_profile.present? %>
+
+	<% set_meta_tags title: "#{@user.name}の口コミ・評価",
+						og: { 
+									title: "#{@user.name}の口コミ・評価",
+									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
+									image: @user.pic_profile.url
+								},
+						twitter: { card: 'summary'}  				
+	 %>
+
+<% else %>
+
+	<% set_meta_tags title: "#{@user.name}の口コミ・評価",
+						og: { 
+									title: "#{@user.name}の口コミ・評価",
+									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}",
+						        	image: image_url('/images/default.png'),
+								},
+						twitter: { card: 'summary'}  				
+	 %>
+
+<% end %>
+
+
 <div class="main users-index">
   <div class="container">
 
@@ -66,7 +91,7 @@
 
 		       		<p>サークル主催者は<br>ご自身で口コミを書くことができません。</p>
 		       		<br>
-		       		<p>参加者にこのページを送って<br>口コミを書いてもらいましょう！</p>
+		       		<p>参加者にこのページのURLを送って<br>口コミを書いてもらいましょう！</p>
 
 					<div class="sample_review_img">
 						<img src="/images/sample_review.png" class="">
