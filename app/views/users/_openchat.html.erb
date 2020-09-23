@@ -1,5 +1,5 @@
 <% if admin_user_signed_in? %>
-	<% if @user.id == current_admin_user.id %>
+	<% if @user.admin_user_id == current_admin_user.id %>
 		<% if @user.event_id.present? %>
 			<% if @user.event.openchat != "" %>
 				<div class="openchat_wrap">

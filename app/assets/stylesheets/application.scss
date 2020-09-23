@@ -4543,13 +4543,14 @@ max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-content: stretch;
-    margin: 0 auto 24px;   
+    margin: 0 auto 10px;   
 }
 
 .icon_cont {
     width: 30%;
     text-align: center;
     padding: 10px 0px;
+    margin-bottom: 20px;
     margin-right: 3%;
     border-radius: 10px;
     box-shadow: 1px 1px 4px #a2a2a2;

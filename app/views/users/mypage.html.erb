@@ -30,167 +30,173 @@
 	
 		<div class="icon_wrap">
 
-			<%= link_to user_path(@user), class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_01.png">
-					</div>
-
-					<div class="icon_txt">
-						サークル確認
-					</div>
-				</div>
-			<% end %>
-
-			<%= link_to edit_user_path(@user), class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_02.png">
-					</div>
-
-					<div class="icon_txt">
-						サークル編集
-					</div>
-				</div>
-			<% end %>
-
-			<%= link_to user_schedules_path(@user), class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_08.png">
-					</div>
-
-					<div class="icon_txt">
-						スケジュール管理
-					</div>
-				</div>
-			<% end %>
-
-
-		</div>
-
-
-		<div class="icon_wrap">
-
-			<%= link_to new_user_blog_path(@user), class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_03.png">
-					</div>
-
-					<div class="icon_txt">
-						ブログ投稿
-					</div>
-				</div>
-			<% end %>
-
-			<%= link_to user_questions_path(@user), class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-		                <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
-		                	<div class="notice_icon">
-		                <% else %>
-		                	<div class="nil">            
-		                <% end %>	
-							<img class="icon_size" src="/images/icon/icon_06.png">
-						</div>
-					</div>
-
-					<div class="icon_txt">
-							質問コーナー
-					</div>
-				</div>
-			<% end %>
-
-
-			<%= link_to "/user/add", class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_12.png">
-					</div>
-
-					<div class="icon_txt">
-						サークルを追加
-					</div>
-				</div>
-			<% end %>	
-
-
-		</div>
-
-	<% if @user.event.matching != 0 %>
-
-		<div class="icon_wrap">
-
-			<% if @user.match.present? %>
-				<%= link_to match_path(@user), class: "icon_cont" do %>
+				<%= link_to user_path(@user), class: "icon_cont" do %>
 					<div class="">
 						<div class="icon_img">
 							<img class="icon_size" src="/images/icon/icon_01.png">
 						</div>
 
 						<div class="icon_txt">
-							対戦募集マイページ
+							サークル確認
 						</div>
 					</div>
 				<% end %>
+
+				<%= link_to edit_user_path(@user), class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_02.png">
+						</div>
+
+						<div class="icon_txt">
+							サークル編集
+						</div>
+					</div>
+				<% end %>
+
+
+				<%= link_to new_user_blog_path(@user), class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_03.png">
+						</div>
+
+						<div class="icon_txt">
+							ブログ投稿
+						</div>
+					</div>
+				<% end %>
+
+
+				<%= link_to user_schedules_path(@user), class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_08.png">
+						</div>
+
+						<div class="icon_txt">
+							スケジュール管理
+						</div>
+					</div>
+				<% end %>
+
+
+
+				<%= link_to user_questions_path(@user), class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+			                <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
+			                	<div class="notice_icon">
+			                <% else %>
+			                	<div class="nil">            
+			                <% end %>	
+								<img class="icon_size" src="/images/icon/icon_06.png">
+							</div>
+						</div>
+
+						<div class="icon_txt">
+								質問コーナー
+						</div>
+					</div>
+				<% end %>
+
+
+				<%= link_to user_reviews_path(@user), class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_13.png">
+						</div>
+
+						<div class="icon_txt">
+							口コミ・評価
+						</div>
+					</div>
+				<% end %>
+
+
+
+				<%= link_to "/user/add", class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_12.png">
+						</div>
+
+						<div class="icon_txt">
+							サークルを追加
+						</div>
+					</div>
+				<% end %>	
+
+
+
+			<% if @user.event.matching != 0 %>
+
+
+				<% if @user.match.present? %>
+					<%= link_to match_path(@user), class: "icon_cont" do %>
+						<div class="">
+							<div class="icon_img">
+								<img class="icon_size" src="/images/icon/icon_01.png">
+							</div>
+
+							<div class="icon_txt">
+								対戦募集マイページ
+							</div>
+						</div>
+					<% end %>
+				<% end %>
+
+				<%= link_to new_user_match_path(@user), class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_10.png">
+						</div>
+
+						<div class="icon_txt">
+							対戦相手の募集
+						</div>
+					</div>
+				<% end %>
+
+				<%= link_to matches_path, class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_11.png">
+						</div>
+
+						<div class="icon_txt">
+							対戦相手の一覧
+						</div>
+					</div>
+				<% end %>
+
+
 			<% end %>
 
-			<%= link_to new_user_match_path(@user), class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_10.png">
+
+				<%= link_to "/users", class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_07.png">
+						</div>
+
+						<div class="icon_txt">
+							サークル検索
+						</div>
 					</div>
+				<% end %>
 
-					<div class="icon_txt">
-						対戦相手の募集
+				<%= link_to "/blog", class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_09.png">
+						</div>
+
+						<div class="icon_txt">
+							ブログ検索
+						</div>
 					</div>
-				</div>
-			<% end %>
-
-			<%= link_to matches_path, class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_11.png">
-					</div>
-
-					<div class="icon_txt">
-						対戦相手の一覧
-					</div>
-				</div>
-			<% end %>
-
-		</div>
-
-	<% end %>
-
-
-
-		<div class="icon_wrap">
-
-			<%= link_to "/users", class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_07.png">
-					</div>
-
-					<div class="icon_txt">
-						サークル検索
-					</div>
-				</div>
-			<% end %>
-
-			<%= link_to "/blog", class: "icon_cont" do %>
-				<div class="">
-					<div class="icon_img">
-						<img class="icon_size" src="/images/icon/icon_09.png">
-					</div>
-
-					<div class="icon_txt">
-						ブログ検索
-					</div>
-				</div>
-			<% end %>
+				<% end %>
 
 		</div>
 
