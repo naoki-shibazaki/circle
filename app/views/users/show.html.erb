@@ -133,16 +133,6 @@
 
 			</div>
 
-			<div class="review_link">
-				<div class="star_review">
-					<%= link_to user_reviews_path(@user) do %>
-					<%= render "/layouts/star" %>
-					（<%= sprintf("%.2f", @star_review) %>）
-					<% end %>
-				</div>
-				<div class="reset"></div>
-			</div>
-
 			<div class="content_03"><%= @user.recruitment %></div>
 
 
@@ -229,6 +219,18 @@
 							</td>
 						</tr>
 					<% end %>
+
+					<tr class="flex_contents">
+						<th class="flex_list">口コミ・評価</th>
+						<td class="flex_list">
+							<div class="star_review">
+								<%= link_to user_reviews_path(@user) do %>
+								<%= render "/layouts/star" %>
+								（<%= sprintf("%.2f", @star_review) %>）
+								<% end %>
+							</div>
+						</td>
+					</tr>
 
 
 					</tbody>
