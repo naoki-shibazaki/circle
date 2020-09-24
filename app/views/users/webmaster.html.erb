@@ -2,24 +2,52 @@
   <div class="container">
     <div class="form users-form">
 
-      <table class="table">
-          <thead>
-              <tr>
-                  <th>id</th>
-                  <th>admin_id</th>
-              </tr>
-          </thead>
 
 
-          <% @users_search.each do |user| %>
-          <tbody>
-              <tr>
-                  <th><%= link_to user.id, "/users/#{user.id}" %></th>
-                  <th><%= user.admin_user_id %></th>
-              </tr>
-          </tbody>
-          <% end %>
-      </table>
+      <% @reviews.each do |review| %>
+
+            <div class="review_contents">
+              <div class="review_l">
+                <% if review.member.present? %>
+                  <% if review.member.image_profile.present? %>
+                    <%= lazysizes_image_tag review.member.image_profile.url , class:'member_icon' %>
+                  <% else %>
+                    <img src="/images/icon/icon_member.png" class="member_icon">
+                  <% end %>
+
+                <% else %>
+                  <img src="/images/icon/icon_member.png" class="member_icon">
+                <% end %>
+                  
+              </div>
+
+              <div class="review_r">
+                <div class="speech_title">
+                  <% if review.review == 1 %>
+                    <i class="fa fa-smile-o good"></i> 
+                  <% elsif review.review == 0 %>
+                    <i class="fa fa-frown-o bad"></i> 
+                  <% else %>
+
+                  <% end %>
+
+                  <%= review.member.nickname if review.member.present? %>さん<% if review.member.present? %><span class="random_id">（@<%= review.member.random_id %>）</span>
+                  <% end %>
+                  
+                </div>
+
+                <div class="speech_bubble">
+                  <%= simple_format review.comment %>
+                  <%= link_to ">>#{review.user.name}", user_path(review.user_id) %>
+                </div>        
+
+              </div>
+            </div>
+
+            <div class="reset"></div>
+
+      <% end %>
+
 
 
       </div>
