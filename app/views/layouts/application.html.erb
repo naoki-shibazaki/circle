@@ -47,12 +47,6 @@
         <!-- ログイン時の処理 -->
         <% if member_signed_in?  %>
           <li>
-            <%= link_to(member_path(current_member)) do %>
-                <i class="fa fa-user"></i>              
-                <div class="link_txt">マイページ</div>
-            <% end %>
-          </li> 
-          <li>
             <%= link_to(users_path) do %>
               <i class="fa fa-search "></i> 
               <div class="link_txt">サークル検索</div>
@@ -64,7 +58,12 @@
                <div class="link_txt">活動ブログ</div>
             <% end %>
           </li>
-
+          <li>
+            <%= link_to(member_path(current_member)) do %>
+                <i class="fa fa-user"></i>              
+                <div class="link_txt">マイページ</div>
+            <% end %>
+          </li> 
         <% elsif admin_user_signed_in?  %>
           <% if current_admin_user.users.any? %>
             <li>

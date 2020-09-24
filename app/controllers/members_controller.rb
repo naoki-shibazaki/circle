@@ -24,8 +24,8 @@ class MembersController < ApplicationController
 
         if @member.update(member_params)
 
-            flash[:notice] = 'アカウント更新！'
-            redirect_to member_path
+            flash[:notice] = 'プロフィール更新完了！'
+            redirect_to users_path
         else
             render "edit"
         end         
