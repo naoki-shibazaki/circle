@@ -1,7 +1,7 @@
 <%= @user.name %> さん
 サークルブックです。
 
-新しい質問が届きました！
+新しい質問が<%= @user.name %>さん宛に届きました！
 
 以下のリンクから質問をチェックしよう！
 https://www.circle-book.com/users/<%= @user.id %>/questions

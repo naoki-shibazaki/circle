@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 		resources :matches, only: [:new, :create]
   		resources :schedules
   		resources :questions
-  		resources :reviews  		
+  		resources :reviews
+		resources :opinions, only: [:new, :create, :index]
 	  	# resources :collections do
 	  	# 	resources :items
 	  	# end

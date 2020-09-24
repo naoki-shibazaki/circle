@@ -2,6 +2,7 @@ class User < ApplicationRecord
 	has_many :blogs, dependent: :destroy
 	has_many :schedules, dependent: :destroy
 	has_many :places
+	has_many :opinions
 	has_many :questions, dependent: :destroy
 	has_many :collections, dependent: :destroy
 	has_many :reviews, dependent: :destroy

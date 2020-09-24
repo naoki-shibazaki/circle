@@ -242,6 +242,7 @@ helper_method :link_count
 		@user = User.find(params[:id])
 		@admin_user = AdminUser.find_by(id: current_admin_user.id)
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
+		@opinion = @user.opinions.build
 
     	impressionist(@user, nil, unique: [:session_hash])
     	@blogs_imp = 0

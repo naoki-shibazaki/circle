@@ -5159,6 +5159,41 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 
+.opinion_wrap{
+  .opinion_title{
+    margin-top: 20px;
+  }
+
+  .opinion_txt{
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .contact{
+    float: left;
+    margin-top: 10px;
+    color: #525252;
+    a{
+      color: $link_blue;
+    }
+  }
+
+  input[type="submit"] {
+    padding: 0 40px;
+    line-height: 40px;
+    color: white;
+    float: right;
+    border-style: none;
+    margin: 10px auto 10px;
+    font-size: 13px;
+    background-color: #3ecdc6;
+    border-radius: 6px;
+  }
+
+
+}
+
+
 // --------------------------------------
 // ▼PC
 @media only screen and (min-width:768px) {
