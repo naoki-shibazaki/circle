@@ -5145,10 +5145,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     margin-top: 18px;
 }
 
-.new_review {
+.new_review_comment {
     font-size: 12px;
     padding: 10px 40px;
-    // text-align: center;
+    text-align: center;
     display: block;
 }
 
@@ -5256,9 +5256,6 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       max-height: 78%;
   }
 
-  .new_review {
-      padding: 0;
-  }
 
 
 }
