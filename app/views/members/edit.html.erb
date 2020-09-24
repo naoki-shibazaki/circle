@@ -39,7 +39,7 @@
 
 
 			<% if @member.gender.blank? %>
-			    <p>性別（※今後変更はできません）</p>
+			    <p>性別（※登録後、変更はできません）</p>
 			    <div class="radio_button">
 	           		<%= f.radio_button :gender, 1, {:checked => true} %>男性 <%= f.radio_button :gender, 2 %>女性 <%= f.radio_button :gender, 0 %>その他
 	           	</div>
