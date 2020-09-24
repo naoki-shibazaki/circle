@@ -6,7 +6,7 @@ class OpinionsController < ApplicationController
 		@opinion = @user.opinions.last
 
 		if @opinion.save
-			# OpinionMailer.send_when_create(@user).deliver
+			OpinionMailer.send_opinion(@opinion).deliver
 			flash[:notice] = "送信ありがとうございます！"
 			redirect_to "/users/#{@user.id}/mypage"
 
