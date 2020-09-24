@@ -5148,7 +5148,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .new_review {
     font-size: 12px;
     padding: 10px 40px;
-    text-align: center;
+    // text-align: center;
     display: block;
 }
 
@@ -5198,15 +5198,14 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 // ▼PC
 @media only screen and (min-width:768px) {
 
-.footer_btn{
-  display: none !important;
-}
+  .footer_btn{
+    display: none !important;
+  }
 
 
-.btn_submit {
-    border: none !important;
-}
-
+  .btn_submit {
+      border: none !important;
+  }
 
 
 }
@@ -5219,10 +5218,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 @media only screen and (max-width:450px) {
 
-.imege_title img,
-.imege_title{
-  width: 100%;
-}
+  .imege_title img,
+  .imege_title{
+    width: 100%;
+  }
 
 }
 
@@ -5233,30 +5232,33 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 // ▼SP
 @media only screen and (max-width:767px) {
 
-header{
-  height: 60px;
-}
+  header{
+    height: 60px;
+  }
 
-.main{
-  top: 60px;
-}
-
-
-.user-profile{
-  width: 100%;
-}
+  .main{
+    top: 60px;
+  }
 
 
-.swiper-container{
-  z-index: 0 !important;
-}
+  .user-profile{
+    width: 100%;
+  }
 
 
-.popup {
-    width: 90%;
-    max-height: 78%;
-}
+  .swiper-container{
+    z-index: 0 !important;
+  }
 
+
+  .popup {
+      width: 90%;
+      max-height: 78%;
+  }
+
+  .new_review {
+      padding: 0;
+  }
 
 
 }
