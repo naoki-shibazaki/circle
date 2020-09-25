@@ -10,20 +10,25 @@
 %>
 
 <div class="main users-index">
-  <div class="container bg_white">
+  <div class="container">
     <img class="imege_title" src="/images/top.png">
-    <h1 class="users-heading">対戦相手募集</h1>
+    <h1 class="users-heading">対戦相手・練習試合の募集</h1>
 	    <div class="users-txt">
     		あなたにピッタリの<br>
-    		対戦相手が見つかる！
+    		対戦相手が見つかる！！
 		</div>
 
-	<%= render "/matches/search.html.erb" %>
-
-	<%= render "/matches/matches_list" %>
 
 
-	<%= render "/layouts/ad_square" %>
+			<%= render "/matches/search.html.erb" %>
+
+		<div class="bg_white">
+			<%= render "/matches/matches_list" %>
+
+			<%= render "/layouts/ad_square" %>
+		</div>
+
+
 	<div class="ad_space"></div>
 
   </div>
