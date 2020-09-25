@@ -1,28 +1,38 @@
-<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】練習試合や対戦相手を募集中のサークルやチーム、団体一覧",
-				 description: "【完全無料】47都道府県のサークルやチーム、団体の練習試合や対戦相手の募集サイト！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！草野球やソフトボール、フットサルなど。簡単に対戦相手の募集ができます！",
-				 keywords: '対戦相手,サークル,チーム,団体,スポーツ',
-
-				og: { 
-					image: image_url('/images/ogp.png')
-				},
-
-				twitter: { card: 'summary_large_image'} 
-%>
+<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}の練習試合や対戦相手を募集中のサークルやチーム、団体一覧",
+					description: "【完全無料】47都道府県のサークルやチーム、団体の練習試合や対戦相手の募集サイト！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！バスケや草野球、フットサルなど。簡単に対戦相手の募集ができます！",
+                 	keywords: "#{@prefecture.name},対戦相手,練習試合,サークル,チーム,団体"
+ %>
 
 <div class="main users-index">
-  <div class="container bg_white">
-    <img class="imege_title" src="/images/top.png">
-    <h1 class="users-heading">対戦相手募集</h1>
-	    <div class="users-txt">
-    		あなたにピッタリの<br>
-    		対戦相手が見つかる！
+  <div class="container">
+ 	<%= render "/layouts/breadcrumb" %>
+
+		<div class="e_header_wrap">
+			<img src="/images/top.png" >
+			<div class="link_txt">
+				<h1 class="e_header_title">
+		          <%= @prefecture.name %>で活動している<br>
+		          練習試合や対戦相手を募集中の<br>
+		          サークルやチーム、団体
+				</h1>
+			</div>
 		</div>
 
-	<%= render "/matches/search.html.erb" %>
 
-	<%= render "/matches/matches_list" %>
+	<% if @matches.count != 0 %>
 
-	<%= render "/layouts/ad_square" %>
+		<%= render "/matches/search.html.erb" %>
+
+		<div class="bg_white">
+			<%= render "/matches/matches_list" %>
+
+			<%= render "/layouts/ad_square" %>
+		</div>
+
+	<% else @matches.count == 0 %>
+		<%= render "/mat/no_hit.html.erb" %>
+	<% end %>
+
 	<div class="ad_space"></div>
 
   </div>
