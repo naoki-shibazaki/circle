@@ -19,11 +19,16 @@ SitemapGenerator::Sitemap.create do
     add user_path(user), :lastmod => user.updated_at, :priority => 0.9, :changefreq => 'daily'
   end
 
+  Match.find_each do |match|
+    add match_path(match), :lastmod => match.updated_at, :priority => 0.9, :changefreq => 'daily'
+  end 
+
+
   Prefecture.find_each do |prefecture|
 
     if prefecture.kana != "nil"
       add "/prefectures/#{prefecture.kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily' 
-
+      add "/match/prefectures/#{prefecture.kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily' 
 
       Tag.find_each do |prefecture_tag|
         add "/prefectures/#{prefecture.kana}/tag/#{prefecture_tag.id}", :lastmod => current_time, :priority => 0.5, :changefreq => 'weekly'
@@ -91,13 +96,17 @@ SitemapGenerator::Sitemap.create do
   end
 
 
-  Match.find_each do |match|
-    add match_path(match), :lastmod => match.updated_at, :priority => 0.9, :changefreq => 'daily'
+  Event.where.not(matching: 0).find_each do |m_event|
+    add "/match/#{m_event.ruby}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily' 
 
-    
+        Prefecture.find_each do |m_prefecture|
+          add "/match/#{m_event.ruby}/#{m_prefecture.kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily' 
+        end
+
+  end
 
 
-  end 
+
 
 
 end
