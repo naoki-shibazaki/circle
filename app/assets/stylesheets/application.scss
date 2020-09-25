@@ -5213,7 +5213,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   color: $link_blue;
 }
 
-
+.txt_s{
+  font-size: 12px;
+  a{
+      font-size: 12px;
+  }
+}
 
 
 // --------------------------------------
