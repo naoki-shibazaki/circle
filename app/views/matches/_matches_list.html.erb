@@ -46,7 +46,16 @@
 
 						<tr class="flex_contents">
 							<th class="flex_list">レベル</th>
-							<td class="flex_list"><%= matching.level %></td>
+							<td class="flex_list"><%= matching.level %>
+								<% if matching.level == "初級" %>
+									（★☆☆）
+								<% elsif matching.level == "中級" %>
+									（★★☆）
+								<% elsif matching.level == "中級" %>
+									（★★★）
+								<% else %>
+								<% end %>								
+							</td>
 						</tr>					
 
 						</tbody>
