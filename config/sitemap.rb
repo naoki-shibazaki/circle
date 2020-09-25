@@ -91,6 +91,13 @@ SitemapGenerator::Sitemap.create do
   end
 
 
+  Match.find_each do |match|
+    add match_path(match), :lastmod => match.updated_at, :priority => 0.9, :changefreq => 'daily'
+
+    
+
+
+  end 
 
 
 end
