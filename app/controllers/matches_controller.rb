@@ -58,12 +58,17 @@ before_action :set_matches
 	def show
 		@user = User.find(params[:id])
 		@match = Match.find_by(user_id: @user.id)
-
+		@event = Event.find_by(id: @user.event_id)
+		@prefecture = Prefecture.find_by(id: @user.prefecture_id)
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 
 		# パンくず
-		@b2_name = @match.user.name
-		@b2_url = "/matches/#{@match.id}"
+		@b2_name = @event.name
+		@b2_url = "/match/#{@event.ruby}"
+		@b3_name = @prefecture.name
+		@b3_url = "/match/#{@event.ruby}/#{@prefecture.kana}"
+		@b4_name = @match.user.name
+		@b4_url = ""
 	end
 
 	def edit
@@ -109,9 +114,9 @@ before_action :set_matches
 
 		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
  
-		# パンくず		
-		@b1_name = @event.name
-		@b1_url = "/match/#{@event.ruby}"
+		# パンくず
+		@b2_name = @event.name
+		@b2_url = "/match/#{@event.ruby}"
 	end
 
 	def prefecture
@@ -120,8 +125,8 @@ before_action :set_matches
 		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
 
 		# パンくず
-		@b1_name = @prefecture.name
-		@b1_url = "/prefectures/#{@prefecture.kana}"	
+		@b2_name = @prefecture.name
+		@b2_url = "/match/prefectures/#{@prefecture.kana}"
 	end
 
 	def event_prefecture
@@ -131,10 +136,10 @@ before_action :set_matches
 		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
 
 		# パンくず
-		@b1_name = @event.name
-		@b1_url = "/#{@event.ruby}"
-		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+		@b2_name = @event.name
+		@b2_url = "/match/#{@event.ruby}"
+		@b3_name = @prefecture.name
+		@b3_url = "/match/#{@event.ruby}/#{@prefecture.kana}"
 	end
 
 private
@@ -154,7 +159,7 @@ private
 		end
 
 		# パンくず
-		@b1_name = "対戦相手募集"
+		@b1_name = "対戦相手・練習試合の募集"
 		@b1_url = "/matches"
 	end
 
