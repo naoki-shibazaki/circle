@@ -1,47 +1,42 @@
 
 <% if @match.user.contact == "line" && @match.user.line_id != "" %>			
-	<a href="<%= @match.user.line_id %>">
-		<div class="contact-button line">
-			LINEで連絡する！
-		</div>
-	</a>		
+		<a href="<%= @match.user.line_id %>">
+			<div class="cta_100 line">
+				LINEで連絡する！
+			</div>	
+		</a>	
 	
 <% elsif @match.user.contact == "mail" %>
-	<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-		<div class="contact-button mail">
-			メールで連絡する！
-		</div>
-	</a>
+		<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+			<div class="cta_100 mail">
+				メールで連絡する！
+			</div>	
+		</a>
 
 
 <% else %>
 	<% if @match.user.line_id != "" %>
-		<div class="blob_cta_2">
-			<a href="<%= @match.user.line_id %>">
-				<div class="contact-button line">
-					LINEで連絡する
-				</div>
-			</a>		
+		<a href="<%= @match.user.line_id %>">
+			<div class="cta_50 line">
+				LINEで連絡する
+			</div>
+		</a>		
 
-			<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-				<div class="contact-button mail">
-					メールで連絡する
-				</div>	
-			</a>
-		</div>
+		<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+			<div class="cta_50 mail">
+				メールで連絡する
+			</div>	
+		</a>
+
 	<% else %>
 		<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-			<div class="contact-button mail">
+			<div class="cta_100 mail">
 				メールで連絡する！
-			</div>
+			</div>	
 		</a>
 	<% end %>
 
 
 <% end %>
-
-
-
-
 
  <div class="contact_bottom"></div>
