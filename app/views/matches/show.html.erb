@@ -82,7 +82,7 @@
 
 					<% if @match.user.switch == "募集中" %>
 						<tr class="flex_contents">
-							<th class="flex_list">新規参加者</th>
+							<th class="flex_list">新規募集</th>
 							<td class="flex_list"><%= link_to ">> 新規メンバーの募集ページ", user_path(@match.user.id) %></td>
 						</tr>
 					<% end %>
@@ -127,7 +127,7 @@
     </div>
     
 
-    <%= render "/matches/matching_card" %>
+    <%= render "/matches/contact" %>
 
 	<%= render "/layouts/ad_square" %>
 	<div class="ad_space"></div>

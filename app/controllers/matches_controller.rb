@@ -88,18 +88,13 @@ before_action :set_matches
 
 	def contact
 
-		if admin_user_signed_in?
-			@match = Match.find(params[:id])
-			@user = User.find(params[:id])
-			@data = AdminUser.find_by(id: @user.admin_user_id)
+		@match = Match.find(params[:id])
+		@user = User.find(params[:id])
+		@data = AdminUser.find_by(id: @user.admin_user_id)
 
-			@mail_title = "【#{@user.name}】練習試合のお問い合わせ"
-			@mail_message = "こちらにご記入ください！"
+		@mail_title = "【#{@user.name}】練習試合のお問い合わせ"
+		@mail_message = "こちらにご記入ください！"
 
-		else
-		      flash[:notice] = "会員登録を行ってください"
-		      redirect_to matches_path			
-		end
 
 	end
 

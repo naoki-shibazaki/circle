@@ -1,0 +1,18 @@
+<div class="vs_wrap">VS</div>
+
+
+<% if @match.recruit == "募集中" %>
+
+	<%= link_to("/matches/#{@match.id}/contact") do %>
+		<div class="matching_entry">
+			練習試合の連絡をする
+		</div>
+	<% end %>
+
+<% else %>
+	<%= @match.user.name %>は現在<br>
+	練習試合の募集を終了しております。
+
+	<%= link_to ">> 他のサークルを探す", matches_path %>
+
+<% end %>
