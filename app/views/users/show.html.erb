@@ -198,6 +198,14 @@
 						<td class="flex_list"><%= @user.goal %></td>
 					</tr>
 
+					<% if @user.match.present? %>
+						<% if @user.match.recruit == "募集中" %>
+							<tr class="flex_contents">
+								<th class="flex_list">練習試合</th>
+								<td class="flex_list"><%= link_to ">>練習試合の募集ページ", match_path(@user.match.id) %></td>
+							</tr>
+						<% end %>
+					<% end %>
 
 					<% if @user.twitter.present? || @user.instagram.present? %>
 						<tr class="flex_contents">

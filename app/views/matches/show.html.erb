@@ -74,8 +74,14 @@
 							<% else %>
 							<% end %>
 						</td>
-					</tr>					
+					</tr>
 
+					<% if @match.user.switch == "募集中" %>
+						<tr class="flex_contents">
+							<th class="flex_list">参加募集</th>
+							<td class="flex_list"><%= link_to ">>新規メンバー募集ページ", user_path(@match.user.id) %></td>
+						</tr>
+					<% end %>
 
 					<% if @match.user.twitter.present? || @match.user.instagram.present? %>
 						<tr class="flex_contents">
@@ -106,7 +112,7 @@
 				<% if @match.user.web.present? %>
 					<div class="matching_url"><i class="fa fa-chain "></i><a href="<%= @match.user.web %>"> <%= @match.user.web %></a></div>
 					<div class="border"></div>
-				<% end %>
+				<% end %>			
 
 				<% if @match.comment.present? %>
 					<div class="profile_list_t p_t_t"></div>
