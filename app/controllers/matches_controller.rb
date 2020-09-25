@@ -99,7 +99,47 @@ before_action :set_matches
 	end
 
 
+	def event
+		@event = Event.find_by(ruby: params[:ruby])
+		@users = User.where(event_id: @event.id)
+
+		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
+ 
+		# パンくず		
+		@b1_name = @event.name
+		@b1_url = "/match/#{@event.ruby}"
+	end
+
+	def prefecture
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(prefecture_id: @prefecture.id)
+		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
+
+		# パンくず
+		@b1_name = @prefecture.name
+		@b1_url = "/prefectures/#{@prefecture.kana}"	
+	end
+
+	def event_prefecture
+		@event = Event.find_by(ruby: params[:ruby])
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id)
+		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
+		
+		# パンくず
+		@b1_name = @event.name
+		@b1_url = "/#{@event.ruby}"
+		@b2_name = @prefecture.name
+		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+	end
+
 private
+	def match_params
+		params.require(:match).permit(
+			:age_group, :member, :level, :recruit, :comment
+   		)
+	end
+
 	def set_matches
 		if admin_user_signed_in?
 			@current_user = User.find_by(id: current_admin_user.id)
@@ -125,12 +165,6 @@ private
 	   end
 	end		
 
-
-	def match_params
-		params.require(:match).permit(
-			:age_group, :member, :level, :recruit, :comment
-   		)
-	end
 
 
 end

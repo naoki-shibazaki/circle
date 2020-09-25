@@ -81,6 +81,10 @@ Rails.application.routes.draw do
 	get 'places/:ruby/:kana/:city_kana/:id' , to: 'places#show'
 
 	get	'matches/:id/contact' , to: 'matches#contact'
+	get 'match/prefectures/:kana' , to: 'matches#prefecture'
+	get 'match/:ruby' , to: 'matches#event'
+	get 'match/:ruby/:kana' , to: 'matches#event_prefecture'
+
 
 	get ':ruby' , to: 'users#event'
 	get ':ruby/qa' , to: 'event_questions#index'

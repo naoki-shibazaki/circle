@@ -1,0 +1,87 @@
+<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】練習試合や対戦相手を募集中のサークルやチーム、団体一覧",
+				 description: "【完全無料】47都道府県のサークルやチーム、団体の練習試合や対戦相手の募集サイト！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！草野球やソフトボール、フットサルなど。簡単に対戦相手の募集ができます！",
+				 keywords: '対戦相手,サークル,チーム,団体,スポーツ',
+
+				og: { 
+					image: image_url('/images/ogp.png')
+				},
+
+				twitter: { card: 'summary_large_image'} 
+%>
+
+<div class="main users-index">
+  <div class="container bg_white">
+    <img class="imege_title" src="/images/top.png">
+    <h1 class="users-heading">対戦相手募集</h1>
+	    <div class="users-txt">
+    		あなたにピッタリの<br>
+    		対戦相手が見つかる！
+		</div>
+
+
+	<% @matches.each do |matching| %>
+		<div class="user-profile matching_wrap">
+
+			<%= link_to match_path(matching.id) do %>
+				<div class="matching_card">
+
+			      <% if matching.user.pic_profile.present? %>
+			        <img src="<%= matching.user.pic_profile.url %>" alt="プロフィール｜<%= matching.user.name %>" class="matching_icon" />
+			      <% else %>
+			        <%= lazysizes_image_tag matching.user.pic_profile.url , class:'matching_icon' %>
+			      <% end %>
+
+			      <h2 class="matching_name"><%= matching.user.name %></h2>
+
+					<div class="article_item article_padding">
+
+						<table>
+							<tbody>
+							<tr class="flex_contents">
+								<th class="flex_list">種目</th>
+								<td class="flex_list">
+							        <% if matching.user.event_id.present? %>
+							          <%= matching.user.event.name if matching.user.event_id? %><br>
+							        <% end %>
+								</td>
+							</tr>
+
+							<tr class="flex_contents">
+								<th class="flex_list">活動場所</th>
+								<td class="flex_list">
+							        <% if matching.user.prefecture_id.present? %>
+							        	<%= matching.user.prefecture.name if matching.user.prefecture_id? %>
+							        <% end %>							
+								</td>
+							</tr>
+
+							<tr class="flex_contents">
+								<th class="flex_list">年齢層</th>
+								<td class="flex_list"><%= matching.age_group %></td>
+							</tr>
+
+							<tr class="flex_contents">
+								<th class="flex_list">メンバー</th>
+								<td class="flex_list"><%= matching.member %></td>
+							</tr>
+
+							<tr class="flex_contents">
+								<th class="flex_list">レベル</th>
+								<td class="flex_list"><%= matching.level %></td>
+							</tr>					
+
+							</tbody>
+						</table>
+					</div>	
+
+				</div>
+			<% end %>
+
+	    </div>	
+	<% end %>
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+
+  </div>
+</div>
