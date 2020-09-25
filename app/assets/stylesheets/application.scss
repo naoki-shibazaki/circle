@@ -5198,8 +5198,20 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   width: 90%;
 }
 
+.stop_match{
+  text-align: center;
+  color: #5a5a5a;
+}
 
+.other_match{
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+}
 
+.other_match{
+  color: $link_blue;
+}
 
 
 
