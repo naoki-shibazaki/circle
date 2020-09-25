@@ -17,6 +17,10 @@
     <%= render "/layouts/breadcrumb" %>
 
 	<div class="user-profile matching_wrap">
+
+	    <div class="p_t m_t">対戦相手の募集ページ</div>     
+
+
 		<div class="matching_card">
 
 	      <% if @match.user.pic_profile.present? %>
@@ -78,8 +82,8 @@
 
 					<% if @match.user.switch == "募集中" %>
 						<tr class="flex_contents">
-							<th class="flex_list">参加募集</th>
-							<td class="flex_list"><%= link_to ">>新規メンバー募集ページ", user_path(@match.user.id) %></td>
+							<th class="flex_list">新規参加者</th>
+							<td class="flex_list"><%= link_to ">> 新規メンバーの募集ページ", user_path(@match.user.id) %></td>
 						</tr>
 					<% end %>
 
