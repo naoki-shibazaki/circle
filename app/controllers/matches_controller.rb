@@ -98,6 +98,10 @@ before_action :set_matches
 
 	end
 
+	def match
+		redirect_to matches_path
+	end
+
 
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
@@ -125,7 +129,7 @@ before_action :set_matches
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id)
 		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
-		
+
 		# パンくず
 		@b1_name = @event.name
 		@b1_url = "/#{@event.ruby}"
@@ -141,6 +145,9 @@ private
 	end
 
 	def set_matches
+		@events = Event.all.where.not(id: 0,matching: 0).order(:order => :asc)
+		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
+
 		if admin_user_signed_in?
 			@current_user = User.find_by(id: current_admin_user.id)
 			@current_match = Match.find_by(id: current_admin_user.id)
