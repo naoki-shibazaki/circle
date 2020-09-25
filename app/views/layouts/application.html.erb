@@ -94,9 +94,17 @@
         <!-- ログインなし -->
         <% else %>
           <li>
-            <%= link_to(users_path) do %>
-              <i class="fa fa-search "></i> 
-              <div class="link_txt">サークル検索</div>
+
+            <% if @path.is('matches') %>
+              <%= link_to(matches_path) do %>
+                <i class="fa fa-flag-checkered "></i> 
+                <div class="link_txt">対戦相手募集</div>
+              <% end %>   
+            <% else %>
+              <%= link_to(users_path) do %>
+                <i class="fa fa-search "></i> 
+                <div class="link_txt">サークル検索</div>
+              <% end %>            
             <% end %>
           </li>
           <li>
