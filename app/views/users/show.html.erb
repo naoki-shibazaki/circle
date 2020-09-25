@@ -237,9 +237,11 @@
 				</table>
 			</div>	
 
-			<div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></a></div>
+			<% if @user.web.present? %>
+				<div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></a></div>
+				<div class="border"></div>
+			<% end %>
 
-			<div class="border"></div>
 			
 			<% if @schedules.present? %>
 
