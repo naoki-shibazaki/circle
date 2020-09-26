@@ -15,31 +15,51 @@ SitemapGenerator::Sitemap.create do
 
   add root_path, :lastmod => current_time, changefreq: 'daily', priority: 1.0
 
+
   User.find_each do |user|
-    add user_path(user), :lastmod => user.updated_at, :priority => 0.9, :changefreq => 'daily'
+    add user_path(user), :lastmod => user.updated_at, :priority => 1.0, :changefreq => 'daily'
+
+       add "/users/#{user.id}/schedules", :lastmod => current_time, :priority => 0.5, :changefreq => 'daily' 
+       add "/users/#{user.id}/reviews", :lastmod => current_time, :priority => 0.5, :changefreq => 'daily' 
+       add "/users/#{user.id}/questions", :lastmod => current_time, :priority => 0.3, :changefreq => 'daily' 
+   
   end
 
-  Match.find_each do |match|
-    add match_path(match), :lastmod => match.updated_at, :priority => 0.9, :changefreq => 'daily'
+  Blog.find_each do |blog|
+    add user_blog_path(blog.user, blog), :lastmod => blog.updated_at, :priority => 0.8, :changefreq => 'daily'
   end 
+
+  Schedule.find_each do |schedule|
+    add user_schedule_path(schedule.user, schedule), :lastmod => schedule.updated_at, :priority => 0.5, :changefreq => 'daily'
+  end   
+
+  Match.find_each do |match|
+    add match_path(match), :lastmod => match.updated_at, :priority => 0.8, :changefreq => 'daily'
+  end 
+
+
+
 
 
   Prefecture.find_each do |prefecture|
 
     if prefecture.kana != "nil"
       add "/prefectures/#{prefecture.kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily' 
-      add "/match/prefectures/#{prefecture.kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily' 
+      add "/blog/prefectures/#{prefecture.kana}", :lastmod => current_time, :priority => 0.6, :changefreq => 'daily'       
+      add "/match/prefectures/#{prefecture.kana}", :lastmod => current_time, :priority => 0.7, :changefreq => 'daily' 
+      add "places/basketball/#{prefecture.kana}", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'
 
       Tag.find_each do |prefecture_tag|
         add "/prefectures/#{prefecture.kana}/tag/#{prefecture_tag.id}", :lastmod => current_time, :priority => 0.5, :changefreq => 'weekly'
       end
 
-      
           City.where(prefecture_id: prefecture.id).find_each do |prefecture_city|
-            add "/prefectures/#{prefecture.kana}/#{prefecture_city.city_kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'weekly'
+            add "/prefectures/#{prefecture.kana}/#{prefecture_city.city_kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily'
+            add "places/basketball/#{prefecture.kana}/#{prefecture_city.city_kana}", :lastmod => current_time, :priority => 0.5, :changefreq => 'weekly'
+
 
             Station.where(city_id: prefecture_city.id).find_each do |prefecture_station|
-              add "/prefectures/#{prefecture.kana}/#{prefecture_city.city_kana}/#{prefecture_station.id}", :lastmod => current_time, :priority => 0.5, :changefreq => 'weekly'
+              add "/prefectures/#{prefecture.kana}/#{prefecture_city.city_kana}/#{prefecture_station.id}", :lastmod => current_time, :priority => 0.5, :changefreq => 'daily'
             end
 
             Tag.find_each do |prefecture_city_tag|
@@ -60,7 +80,8 @@ SitemapGenerator::Sitemap.create do
 
     if event.ruby != "nil"
 
-      add "/#{event.ruby}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily'
+      add "/#{event.ruby}", :lastmod => current_time, :priority => 0.9, :changefreq => 'daily'
+      add "blog/#{event.ruby}", :lastmod => current_time, :priority => 0.7, :changefreq => 'daily'
 
       Tag.find_each do |event_tag|
         add "/#{event.ruby}/tag/#{event_tag.id}", :lastmod => current_time, :priority => 0.5, :changefreq => 'weekly'
@@ -71,16 +92,17 @@ SitemapGenerator::Sitemap.create do
           
                 if event_prefecture.kana != "nil"
                   add "/#{event.ruby}/#{event_prefecture.kana}", :lastmod => current_time, :priority => 1.0, :changefreq => 'daily'
+                  add "blog/#{event.ruby}/#{event_prefecture.kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily'
                
                   Tag.find_each do |event_prefecture_tag|
                     add "/#{event.ruby}/#{event_prefecture.kana}/tag/#{event_prefecture_tag.id}", :lastmod => current_time, :priority => 0.5, :changefreq => 'weekly'
                   end
 
                         City.where(prefecture_id: event_prefecture.id).find_each do |city|
-                          add "/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'weekly'
+                          add "/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily'
 
                           Station.where(city_id: city.id).find_each do |event_station|
-                            add "/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}/#{event_station.id}", :lastmod => current_time, :priority => 0.5, :changefreq => 'weekly'
+                            add "/#{event.ruby}/#{event_prefecture.kana}/#{city.city_kana}/#{event_station.id}", :lastmod => current_time, :priority => 0.5, :changefreq => 'daily'
                           end
 
                           Tag.find_each do |event_city_tag|
@@ -94,6 +116,8 @@ SitemapGenerator::Sitemap.create do
     end      
 
   end
+
+
 
 
   Event.where.not(matching: 0).find_each do |m_event|
