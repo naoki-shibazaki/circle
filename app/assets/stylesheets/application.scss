@@ -156,7 +156,6 @@ header {
 
   img{
     width: 20px;
-    margin-top: -2px;
     display: inline-block;
     vertical-align: middle;
     *zoom: 1; /* for IE6-7 */
@@ -5300,12 +5299,19 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }  
 
   .review_count{
+    font-size: 14px;
     color: #6b6b6b;
     display: inline-block;
     vertical-align: middle;
     *zoom: 1; /* for IE6-7 */
     *display: inline; /* for IE6-7 */
   }
+
+.star_wrap{
+  img{
+    margin-top: -3px;
+  }
+}  
 
 }
 
