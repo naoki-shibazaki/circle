@@ -234,7 +234,8 @@
 							<div class="star_review">
 								<%= link_to user_reviews_path(@user) do %>
 								<%= render "/layouts/star" %>
-								（<%= sprintf("%.2f", @star_review) %>）
+								<span class="review_score"><%= sprintf("%.2f", @star_review) %></span>
+								<span class="review_count"><i class="fa fa-commenting "></i>  <%= @star_count %>件</span>
 								<% end %>
 							</div>
 						</td>

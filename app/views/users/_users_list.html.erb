@@ -81,29 +81,138 @@
 
                     <% if admin_user_signed_in? %>
                       <% if current_admin_user.id == 1 %>
-                        <!-- 調整 -->【<%= user.impressionist_count %>】
+                        <%= user.impressionist_count %>】
                       <% end %>
                     <% end %>
                     
                 </div>
               </div>
 
+
               <div class="list_cnts">
-                <div class="list_02">
-                    <span class="user_schedule">
-                      <i class="fa fa-calendar icon_c"></i><%= user.schedule %>
-                    </span>
-                </div>
 
-                <div class="list_03">
-                    <span class="user_area">
-                      <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %><% if user.prefecture_sub_id.present? %><% @prefectures.each do |sub_prefecture| %><% if user.prefecture_sub_id == sub_prefecture.id %>・<%= sub_prefecture.name %><% end %><% end %><% end %><%= "：" if user.area.present? %><%= user.area %>
-                    </span>
-                </div>             
 
-                <div class="list_04">
-                  <span class="user_recruitment"><%= user.recruitment.truncate(110) %></span>
-                </div>
+                  <% if user.reviews.present? %>
+
+                  <div class="user_list_review">
+                    <div class="star_review">
+
+                      <% star_sum = user.reviews.sum{|review| review[:review]} %>
+                      <% star_count = user.reviews.count %>
+                      <% if star_count == 0 && star_sum == 0 %>
+                        <% star_review =  0 %>
+                      <% else %>
+                        <% star_review =  (star_sum / star_count.to_f)*5 %>
+                      <% end %>
+                      
+                        <div class="star_wrap">
+
+                          <% if star_review < 0.5 %>
+                            <!-- 0 -->
+                            <div class="star">
+                              <img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                            </div>
+
+                          <% elsif star_review < 1.0 %>
+                            <!-- 0.5 -->
+                            <div class="star">
+                              <img src="/images/icon/star_05.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                            </div>
+
+                          <% elsif star_review < 1.5 %>
+                            <!-- 1.0 -->
+                            <div class="star">
+                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                            </div>
+
+                          <% elsif star_review < 2.0 %>
+                            <!-- 1.5 -->
+                            <div class="star">
+                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_05.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                            </div>
+
+                          <% elsif star_review < 2.5 %>
+                            <!-- 2.0 -->
+                            <div class="star">
+                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                            </div>
+
+                          <% elsif star_review < 3.0 %>
+                            <!-- 2.5 -->
+                            <div class="star">
+                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_05.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                            </div>
+
+                          <% elsif star_review < 3.5 %>
+                            <!-- 3.0 -->
+                            <div class="star">
+                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                            </div>
+
+                          <% elsif star_review < 4.0 %>
+                            <!-- 3.5 -->
+                            <div class="star">
+                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_05.png"><img src="/images/icon/star_0.png">
+                            </div>
+
+                          <% elsif star_review < 4.5 %>
+                            <!-- 4.0 -->
+                            <div class="star">
+                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_0.png">
+                            </div>
+
+                          <% elsif star_review < 5.0 %>
+                            <!-- 4.5 -->
+                            <div class="star">
+                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_05.png">
+                            </div>  
+
+                          <% elsif star_review < 5.5 %>
+                            <!-- 5.0 -->
+                            <div class="star">  
+                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png">
+                            </div>
+
+                          <% else %>
+                            <!-- 0 -->
+                            <div class="star">
+                              <img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                            </div>
+                          <% end %>
+
+                        </div>
+        
+        
+                        <span class="review_score"><%= sprintf("%.2f", star_review) %></span>
+                        <span class="review_count"><i class="fa fa-commenting "></i>  <%= star_count %>件</span>
+        
+
+                      </div>
+                    </div>
+        
+                  <% end %>
+
+
+
+
+
+                  <div class="list_02">
+                      <span class="user_schedule">
+                        <i class="fa fa-calendar icon_c"></i><%= user.schedule %>
+                      </span>
+                  </div>
+
+                  <div class="list_03">
+                      <span class="user_area">
+                        <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %><% if user.prefecture_sub_id.present? %><% @prefectures.each do |sub_prefecture| %><% if user.prefecture_sub_id == sub_prefecture.id %>・<%= sub_prefecture.name %><% end %><% end %><% end %><%= "：" if user.area.present? %><%= user.area %>
+                      </span>
+                  </div>  
+
+                  <div class="list_04">
+                    <span class="user_recruitment"><%= user.recruitment.truncate(110) %></span>
+                  </div>
+
+                
               </div>
 
       <% end %>
