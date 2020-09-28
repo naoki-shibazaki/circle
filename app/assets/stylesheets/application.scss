@@ -156,6 +156,11 @@ header {
 
   img{
     width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    *zoom: 1; /* for IE6-7 */
+    *display: inline; /* for IE6-7 */
+
   }
 }
 
@@ -5112,6 +5117,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .star_review{
   font-size: 18px;
+
 }
 
 .review_link{
@@ -5264,8 +5270,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .review_count{
-  font-weight: 700;
-
+    font-size: 16px;
+    font-weight: 700;
  .fa {
     color: #9c9c9c;
     font-size: 18px;
@@ -5280,9 +5286,26 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .user_list_review{
   margin-left: 2px;
+  margin-top: -8px;
 
+}
 
-  
+.review_set{
+  .review_score {
+    display: inline-block;
+    vertical-align: middle;
+    *zoom: 1; /* for IE6-7 */
+    *display: inline; /* for IE6-7 */    
+  }  
+
+  .review_count{
+    color: #6b6b6b;
+    display: inline-block;
+    vertical-align: middle;
+    *zoom: 1; /* for IE6-7 */
+    *display: inline; /* for IE6-7 */
+  }
+
 }
 
 

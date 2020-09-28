@@ -95,7 +95,7 @@
                   <% if user.reviews.present? %>
 
                   <div class="user_list_review">
-                    <div class="star_review">
+                    <div class="star_review review_set">
 
                       <% star_sum = user.reviews.sum{|review| review[:review]} %>
                       <% star_count = user.reviews.count %>
@@ -212,7 +212,7 @@
                     <span class="user_recruitment"><%= user.recruitment.truncate(110) %></span>
                   </div>
 
-                
+
               </div>
 
       <% end %>

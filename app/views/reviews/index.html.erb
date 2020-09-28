@@ -53,9 +53,11 @@
 
 			<%= render "/schedules/profile" %>
 
-			<%= render "/layouts/star" %>
-			<span class="review_score"><%= sprintf("%.2f", @star_review) %></span>
-			<span class="review_count review_index"><i class="fa fa-commenting "></i>  <%= @star_count %>件</span>
+			<div class="review_set">
+				<%= render "/layouts/star" %>
+				<span class="review_score"><%= sprintf("%.2f", @star_review) %></span>
+				<span class="review_count review_index"><i class="fa fa-commenting "></i>  <%= @star_count %>件</span>
+			</div>
 
 			<div class="reset"></div>
 
