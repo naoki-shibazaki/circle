@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_063525) do
+ActiveRecord::Schema.define(version: 2020_09_29_073231) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -233,6 +233,15 @@ ActiveRecord::Schema.define(version: 2020_09_24_063525) do
     t.string "img_link"
     t.string "img_url"
     t.string "img_source"
+  end
+
+  create_table "places_events", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_places_events_on_event_id"
+    t.index ["place_id"], name: "index_places_events_on_place_id"
   end
 
   create_table "prefectures", force: :cascade do |t|

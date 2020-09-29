@@ -6,7 +6,23 @@ class PlacesController < ApplicationController
 
 
 	def index	
-		redirect_to "/places/basketball"
+		# redirect_to "/places/basketball"
+
+		@places_all = Place.all
+
+		@places_all.each do |place|
+
+				if place.places_events.empty?
+
+				@places_event = PlacesEvent.new
+				@places_event.place_id = place.id
+				@places_event.event_id = 2
+				@places_event.save
+
+				end
+		end		
+
+
 	end	
 
 
@@ -44,6 +60,9 @@ class PlacesController < ApplicationController
 	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).where(city_id: @city.id)
 	    @users = User.where(event_id: @event.id, prefecture_id: @prefecture.id, switch: "募集中").order(switch: :asc, last_post: :desc)
 
+		# @user_ages = @user.users_ages.map{|a| a.age}
+		
+		@place_events = @place.places_events.map{|e| e.event}
 
 		if @event.id.to_i != @place.event_id.to_i || @prefecture.id.to_i != @place.prefecture_id.to_i || @city.id.to_i != @place.city_id.to_i
 			redirect_to "/places"
@@ -142,8 +161,9 @@ class PlacesController < ApplicationController
 
 	def ensure_correct_user
 		@place = Place.find(params[:id])
+		@user = User.find_by(id: @place.user_id)
 		
-	   if current_admin_user.id != @place.user_id.to_i
+	   if current_admin_user.id != @user.admin_user_id.to_i
 	   		if current_admin_user.id == 1   			
 	   		
 		   	else
@@ -167,7 +187,7 @@ class PlacesController < ApplicationController
 		@b1_url = "/places"
 
 	    if admin_user_signed_in?
-	      @current_user = User.find_by(id: current_admin_user.id)
+	      @current_user = User.find_by(admin_user_id: current_admin_user.id)
 	    end
 
     end
@@ -193,7 +213,8 @@ class PlacesController < ApplicationController
 			:sns,
 			:img_link,
 			:img_url,
-			:img_source
+			:img_source,
+			event_ids:[]
 		)
 	end
 
