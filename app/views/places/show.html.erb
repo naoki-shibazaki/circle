@@ -113,20 +113,64 @@
 					    </div>
 				</div>
 
-				<div class="link_to_user_btm"><%= render "/places/link_to_user" %></div>
-
 
 				<%= render "/layouts/ad_square" %>
 
 
 			<div class="place_note">
-				本サイトでは正確な情報を掲載するよう心がけておりますが、間違いや古い情報が掲載されていることがございます。掲載情報が正しいことを保障しておりませんので、予めご了承ください。<br>
-				※掲載情報に間違いを発見した場合には、メニューのお問い合わせよりご連絡ください。	
+				本サイトでは正確な情報を掲載するよう心がけておりますが、<br>間違いや古い情報が掲載されていることがございます。<br>
+				※誤りがあった場合、メニューのお問い合わせよりご連絡ください。	
 			</div>
 
-			<div class="border"></div>
-
 	  	</div>
+
+
+
+
+
+		<% if @users.count >= 1 %>
+
+			<div class="user-list-wrap">
+				<h2 class="others-user">
+					<%= @prefecture.name %>で活動している<%= @event.txt %>					
+				</h2>
+	            <% @users.first(3).each do |user| %> 
+
+			            <%= link_to(user_path(user.id)) do %>  
+			            	<div class="user_list">
+					            <div class="user-content">
+					            	<div class="user_list_header">
+						            	<%= lazysizes_image_tag user.pic_profile.url , class:'image_icon' %>
+						            	<h3 class="user_name"><%= user.name.truncate(20) %></h3>
+					            	</div>
+					
+
+					                <div class="list_02">
+					                  <span class="user_schedule">
+					                    <i class="fa fa-calendar "></i><%= user.schedule %>
+					                  </span>
+					                </div>
+
+					                <div class="list_03">
+					                  <span class="user_area">
+					                    <i class="fa fa-map-marker "></i><%= user.area %>
+					                  </span>
+					                </div>
+					         	</div>
+						
+
+			            	</div>
+		            	<% end %>
+
+				<% end %>
+
+				<%= link_to ">>もっと見る", "/#{@event.ruby}/#{@prefecture.kana}", class: "more_text_link" %>
+		    </div>
+
+		<% end %>
+
+
+
 
 
 		<%= render "/layouts/ad_square" %>	  	

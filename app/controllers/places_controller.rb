@@ -42,6 +42,7 @@ class PlacesController < ApplicationController
 		@city = City.find_by(city_kana: params[:city_kana])	
 
 	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).where(city_id: @city.id)
+	    @users = User.where(event_id: @event.id, prefecture_id: @prefecture.id, switch: "募集中").order(switch: :asc, last_post: :desc)
 
 
 		if @event.id.to_i != @place.event_id.to_i || @prefecture.id.to_i != @place.prefecture_id.to_i || @city.id.to_i != @place.city_id.to_i
