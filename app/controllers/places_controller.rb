@@ -6,7 +6,7 @@ class PlacesController < ApplicationController
 
 
 	def index	
-
+		redirect_to "/places/basketball"
 	end	
 
 
@@ -157,7 +157,7 @@ class PlacesController < ApplicationController
     def set_place
     	@places = Place.all.order(updated_at: "DESC").page(params[:page])
 		@events = Event.all
-		@prefectures = Prefecture.all.order(:order => :asc)
+		@prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
 		@cities = City.all.order(:id => :asc)
 		@count = "nil"
 		@id = 1
