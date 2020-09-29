@@ -52,9 +52,11 @@ class User < ApplicationRecord
 	mount_uploader :gallery_04, ImageUploader
 
 
-  	# scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
-  	# scope :user_sort, -> { user_hide.user_order }
+	# Tag用
+  	scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
+  	scope :user_sort, -> { user_hide.user_order }
 
+	# User用
   	scope :user_sort_1, -> {order(switch: :asc, last_post: :desc).where.not(switch: "") }
   	scope :user_sort_2, -> {order(switch: :asc, impressions_count: :desc).where.not(switch: "") }
 	scope :user_sort_3, -> {order(switch: :asc, created_at: :desc).where.not(switch: "") }	
