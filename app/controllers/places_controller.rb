@@ -6,22 +6,7 @@ class PlacesController < ApplicationController
 
 
 	def index	
-		# redirect_to "/places/basketball"
-
-		@places_all = Place.all
-
-		@places_all.each do |place|
-
-				if place.places_events.empty?
-
-				@places_event = PlacesEvent.new
-				@places_event.place_id = place.id
-				@places_event.event_id = 2
-				@places_event.save
-
-				end
-		end		
-
+		redirect_to "/places/basketball"
 	end	
 
 
