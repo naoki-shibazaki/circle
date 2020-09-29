@@ -58,7 +58,8 @@ a,input,
 .copy_txt,
 .login_btn,
 .cta_50,
-.cta_100{
+.cta_100,
+.link_to_user_btn{
   &:hover,
   &:active{
   opacity: 0.7 ;
@@ -5291,29 +5292,38 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .review_set{
-  .review_score {
-    display: inline-block;
-    vertical-align: middle;
-    *zoom: 1; /* for IE6-7 */
-    *display: inline; /* for IE6-7 */    
-  }  
+    .review_score {
+      display: inline-block;
+      vertical-align: middle;
+      *zoom: 1; /* for IE6-7 */
+      *display: inline; /* for IE6-7 */    
+    }  
 
-  .review_count{
-    font-size: 14px;
-    color: #6b6b6b;
-    display: inline-block;
-    vertical-align: middle;
-    *zoom: 1; /* for IE6-7 */
-    *display: inline; /* for IE6-7 */
-  }
+    .review_count{
+      font-size: 14px;
+      color: #6b6b6b;
+      display: inline-block;
+      vertical-align: middle;
+      *zoom: 1; /* for IE6-7 */
+      *display: inline; /* for IE6-7 */
+    }
 
-.star_wrap{
-  img{
-    margin-top: -3px;
-  }
-}  
-
+    .star_wrap{
+      img{
+        margin-top: -3px;
+      }
+    }
 }
+
+.place_note{
+  font-size: 12px;
+  padding: 10px;
+}
+
+
+
+
+
 
 
 // --------------------------------------

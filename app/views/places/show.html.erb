@@ -1,6 +1,10 @@
-<% set_meta_tags title: "#{@place.name}の#{@place.event.name}コート情報",
-                         description: "#{@place.prefecture.name}#{@place.city.name}の#{"屋内" if @place.tag.to_i == 1}#{"屋外" if @place.tag.to_i == 2}にある#{@place.event.name}コート情報"
-%>
+<% set_meta_tags title: "#{@place.name}の#{@place.event.name}コート情報｜#{@prefecture.name}#{@city.name}",
+                 description: "#{@place.prefecture.name}#{@place.city.name}にある#{@place.name}のコート情報。体育館やアリーナ、屋外にある公園などの情報を分かりやすく掲載しています！住所やアクセス方法、駐車場情報も載っているので便利です。また、#{@place.city.name}で活動している#{@place.event.name}サークルやチーム、団体などの情報も掲載しています！",
+                og: { 
+                  image:image_url("/images/events/e_icon_#{@place.event.ruby}.jpg")
+                },
+        twitter: { card: 'summary'}  
+ %>
 
 <div class="main user-show">
   <div class="container">
@@ -95,7 +99,7 @@
 
 	          </tbody>
 	        </table> 
-	      </div>   
+	      </div>  
 
 
 		<%= render "/places/link_to_user" %>
@@ -110,6 +114,17 @@
 				</div>
 
 				<div class="link_to_user_btm"><%= render "/places/link_to_user" %></div>
+
+
+				<%= render "/layouts/ad_square" %>
+
+
+			<div class="place_note">
+				本サイトでは正確な情報を掲載するよう心がけておりますが、間違いや古い情報が掲載されていることがございます。掲載情報が正しいことを保障しておりませんので、予めご了承ください。<br>
+				※掲載情報に間違いを発見した場合には、メニューのお問い合わせよりご連絡ください。	
+			</div>
+
+			<div class="border"></div>
 
 	  	</div>
 
@@ -176,7 +191,7 @@
 
 
 
-		<% if @places.count >= 3 %>
+		<% if @places.count >= 2 %>
 			<%= render "/layouts/ad_square" %>
 		<% end %>
 
