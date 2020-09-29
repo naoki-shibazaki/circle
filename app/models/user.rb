@@ -52,10 +52,6 @@ class User < ApplicationRecord
 	mount_uploader :gallery_04, ImageUploader
 
 
-	# Tag用
-  	scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
-  	scope :user_sort, -> { user_hide.user_order }
-
 	# User用
   	scope :user_sort_1, -> {order(switch: :asc, last_post: :desc).where.not(switch: "") }
   	scope :user_sort_2, -> {order(switch: :asc, impressions_count: :desc).where.not(switch: "") }
@@ -69,6 +65,9 @@ class User < ApplicationRecord
   	scope :prefecture_50, -> { where(prefecture_id: 50).or(User.where(prefecture_sub_id: 50)) }
  	scope :city, -> (city_id){ where(id: city_id) }
 
+	# Tag用
+  	scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
+  	scope :user_sort, -> { user_hide.user_order }
 
 	scope :grouping, ->(group_id) do
 	  where("grouping LIKE ?", "%#{group_id}%")

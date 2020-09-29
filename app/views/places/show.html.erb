@@ -85,8 +85,9 @@
 					<tr class="flex_contents">
 						<th class="flex_list">用途</th>
 						<td class="flex_list">
+							バスケ
 							<% @place_events.sort.each do |event| %>
-									<%= event.name %>
+									<%= event.name if event.name != "バスケ" %>
 							<% end %>
 						</td>
 					</tr>
