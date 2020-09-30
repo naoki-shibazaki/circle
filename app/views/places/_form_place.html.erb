@@ -13,7 +13,9 @@
             <%= f.text_field :url, class: 'form-control', placeholder: "https://www.circle-book.com"  %>  
 
             <p>カテゴリー<span class="must_red">(必須)</span></p>
-            <%= f.select :tag,[ ['屋内',1], ['屋外',2] ], :prompt => "選択してください"  %>
+            <div class="radio_button">
+                  <%= f.radio_button :tag, 1, {:checked => true} %>屋内 <%= f.radio_button :tag, 2 %>屋外
+            </div>
   
             <p>住所<span class="must_red">(必須)</span></p>
             <%= f.text_field :address, class: 'form-control', id: 'change_address', placeholder: "東京都千代田区丸の内1-1-1"  %>
