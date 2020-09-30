@@ -4,9 +4,6 @@
             <p>施設名<span class="must_red">(必須)</span></p>
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック体育館" %> 
 
-            <p>種目<span class="must_red">(必須)</span></p>       
-            <%= f.collection_select :event_id, Event.where(ruby: "basketball").order(:order => :asc), :id, :name, :prompt => "選択してください" %>            
-
             <p>種目<span class="must_red">(必須)</span></p>  
             <div class="places_input">
                   <%= f.collection_check_boxes(:event_ids, Event.where(place: 1), :id, :name) %>

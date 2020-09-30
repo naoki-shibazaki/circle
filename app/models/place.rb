@@ -7,14 +7,12 @@ class Place < ApplicationRecord
   has_many :events, through: :places_events
 
   validates :prefecture_id, presence: true
-  validates :city_id, presence: true
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :tag, presence: true
   validates :address, presence: true
 
   paginates_per 20
-
 
 
 end

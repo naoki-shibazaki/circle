@@ -18,12 +18,11 @@ class PlacesController < ApplicationController
 	def create
 		@place = Place.new(place_params)
 		@place.user_id = @current_user.id
-		@place.save
+		
+		if @place.save(place_params)
 
-		@prefecture = Prefecture.find_by(id: @place.prefecture_id)
-		@city = City.find_by(id: @place.city_id)
-
-		if @place.update(place_params)
+			@prefecture = Prefecture.find_by(id: @place.prefecture_id)
+			@city = City.find_by(id: @place.city_id)			
 			
 			flash[:notice] = '登録完了！'
 			redirect_to "/places/all/#{@prefecture.kana}/#{@city.city_kana}/#{@place.id}"
