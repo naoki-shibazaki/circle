@@ -5324,6 +5324,16 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   color: $link_blue;
 }
 
+.places_input{
+  border: solid 1px #ccc;
+  border-radius: 6px;
+  margin: 2px 0 12px;
+  padding-top: 10px;
+  input {
+    width: 20px;
+    margin-left: 10px;
+  }
+}
 
 
 

@@ -43,8 +43,6 @@ class PlacesController < ApplicationController
 
 	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).where(city_id: @city.id)
 	    @users = User.where(event_id: @event.id, prefecture_id: @prefecture.id, switch: "募集中").order(switch: :asc, last_post: :desc)
-
-		# @user_ages = @user.users_ages.map{|a| a.age}
 		
 		@place_events = @place.places_events.map{|e| e.event}
 

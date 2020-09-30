@@ -17,7 +17,7 @@
 
           <h3 class="place_d">
               <%= place.prefecture.name %><%= place.city.name %>の<%= "屋内" if place.tag.to_i == 1 %><%= "屋外" if place.tag.to_i == 2 %>にある<br>
-              <%= place.event.name %>のコート情報
+              <%= @event.name %>のコート情報
           </h3>
 
       </div>
@@ -55,7 +55,7 @@
         </table> 
       </div>
       
-      <%= link_to "詳細を確認する", "/places/#{place.event.ruby}/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}", class: "place_more" %>
+      <%= link_to "詳細を確認する", "/places/#{@event.ruby}/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}", class: "place_more" %>
 
   </div> <!-- 各フレーム -->
 

@@ -5,9 +5,12 @@
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック体育館" %> 
 
             <p>種目<span class="must_red">(必須)</span></p>       
-            <%= f.collection_select :event_id, Event.where.not(id: 0).where(ruby: "basketball").order(:order => :asc), :id, :name, :prompt => "選択してください" %>            
+            <%= f.collection_select :event_id, Event.where(ruby: "basketball").order(:order => :asc), :id, :name, :prompt => "選択してください" %>            
 
-            <%= f.collection_check_boxes(:event_ids, Event.where(place: 1), :id, :name) %>
+            <p>種目<span class="must_red">(必須)</span></p>  
+            <div class="places_input">
+                  <%= f.collection_check_boxes(:event_ids, Event.where(place: 1), :id, :name) %>
+            </div>
 
             <p>参考URL</p>
             <%= f.text_field :url, class: 'form-control', placeholder: "https://www.circle-book.com"  %>  

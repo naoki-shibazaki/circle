@@ -1,5 +1,5 @@
 class Place < ApplicationRecord
-	belongs_to :event
+	# belongs_to :event
 	belongs_to :prefecture
 	belongs_to :city
 	belongs_to :user, optional: true
@@ -9,7 +9,7 @@ class Place < ApplicationRecord
 
   validates :prefecture_id, presence: true
   validates :city_id, presence: true
-  validates :event_id, presence: true
+  # validates :event_id, presence: true
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :tag, presence: true
