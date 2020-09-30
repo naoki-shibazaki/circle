@@ -20,14 +20,13 @@ class PlacesController < ApplicationController
 		@place.user_id = @current_user.id
 		@place.save
 
-		@event = Event.find_by(id: @place.event_id)
 		@prefecture = Prefecture.find_by(id: @place.prefecture_id)
 		@city = City.find_by(id: @place.city_id)
 
 		if @place.update(place_params)
 			
-			flash[:share] = '登録完了！'
-			redirect_to "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@place.id}"
+			flash[:notice] = '登録完了！'
+			redirect_to "/places/all/#{@prefecture.kana}/#{@city.city_kana}/#{@place.id}"
 		else
 			render "/places/edit"
 		end	
@@ -46,7 +45,14 @@ class PlacesController < ApplicationController
 		
 		@place_events = @place.places_events.map{|e| e.event}
 
-		if @event.id.to_i != @place.event_id.to_i || @prefecture.id.to_i != @place.prefecture_id.to_i || @city.id.to_i != @place.city_id.to_i
+		@place_events.each do |event|
+			if event.id == @event.id
+				@place_event_id = event.id
+			end
+		end
+
+		if @event.id.to_i != @place_event_id.to_i || @prefecture.id.to_i != @place.prefecture_id.to_i || @city.id.to_i != @place.city_id.to_i
+			flash[:notice] = 'URLが間違っています'
 			redirect_to "/places"
 		end
 
@@ -60,6 +66,15 @@ class PlacesController < ApplicationController
 		@b5_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@place.name}"
 	end
 
+	def show_noindex
+		@place = Place.find(params[:id])
+
+		@prefecture = Prefecture.find_by(kana: params[:kana])		
+		@city = City.find_by(city_kana: params[:city_kana])	
+		
+		@place_events = @place.places_events.map{|e| e.event}
+	end	
+
 
 	def edit
 		@place = Place.find(params[:id])
@@ -69,13 +84,12 @@ class PlacesController < ApplicationController
 	def update
 		@place = Place.find(params[:id])
 
-		@event = Event.find_by(id: @place.event_id)
 		@prefecture = Prefecture.find_by(id: @place.prefecture_id)
 		@city = City.find_by(id: @place.city_id)		
 
 		if @place.update(place_params)
-			flash[:share] = '更新完了！'
-			redirect_to "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@place.id}"
+			flash[:notice] = '更新完了！'
+			redirect_to "/places/all/#{@prefecture.kana}/#{@city.city_kana}/#{@place.id}"
 		else
 			render "/places/edit"
 		end	
@@ -95,7 +109,9 @@ class PlacesController < ApplicationController
 
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
-	    @places = Place.where(event_id: @event.id).order(updated_at: "DESC").page(params[:page])
+
+		@event_places = @event.places_events.map{|p| p.place.id}
+	    @places = Place.where(id: @event_places).order(updated_at: "DESC").page(params[:page])
 	    @places_count = Place.where(event_id: @event.id)
 
 		@b2_name = @event.name

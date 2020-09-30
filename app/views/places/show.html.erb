@@ -81,7 +81,7 @@
 					<td class="flex_list"><%= raw Rinku.auto_link(simple_format @place.regular_holiday) %></td>
 				</tr>
 
-				<% if @event_ids.present? %>
+				<% if @place_events.present? %>
 					<tr class="flex_contents">
 						<th class="flex_list">用途</th>
 						<td class="flex_list">
@@ -92,7 +92,6 @@
 						</td>
 					</tr>
 				<% end %>
-
 
 				<tr class="flex_contents">
 					<th class="flex_list">施設規模</th>
