@@ -122,7 +122,9 @@ class PlacesController < ApplicationController
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
-	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).all.order(updated_at: "DESC").page(params[:page])
+
+		@event_places = @event.places_events.map{|p| p.place.id}
+	    @places = Place.where(id: @event_places).where(prefecture_id: @prefecture.id).all.order(updated_at: "DESC").page(params[:page])
 	    @places_count = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id)
 
 		@b2_name = @event.name
@@ -134,8 +136,10 @@ class PlacesController < ApplicationController
 	def city
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])		
-		@city = City.find_by(city_kana: params[:city_kana])	
-	    @places = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).where(city_id: @city.id).all.order(updated_at: "DESC").page(params[:page])
+		@city = City.find_by(city_kana: params[:city_kana])
+
+		@event_places = @event.places_events.map{|p| p.place.id}
+	    @places = Place.where(id: @event_places).where(prefecture_id: @prefecture.id).where(city_id: @city.id).all.order(updated_at: "DESC").page(params[:page])
 	    @places_count = Place.where(event_id: @event.id).where(prefecture_id: @prefecture.id).where(city_id: @city.id)
 	    
 		@b2_name = @event.name
@@ -145,7 +149,6 @@ class PlacesController < ApplicationController
 		@b4_name = @city.name
 		@b4_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
 	end	
-
 
 	def correct_user
 	    if admin_user_signed_in?
