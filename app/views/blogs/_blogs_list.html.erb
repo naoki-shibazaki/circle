@@ -123,6 +123,4 @@
 
 <%= render "/layouts/ad_square" %>
 
-<% if @path.is('blogs#index', 'blogs#top') %>
-  <%= paginate @blogs %>
-<% end %>
+<%= paginate @blogs %>

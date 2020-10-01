@@ -121,7 +121,7 @@ class BlogsController < ApplicationController
 		@event = Event.find_by(ruby: params[:ruby])
 		@users = User.event(@event.id).user_hide
 		@users_id = @users.map{|u| u.id}
-		@blogs = Blog.where(user_id: @users_id).blog_sort
+		@blogs = Blog.where(user_id: @users_id).blog_sort.page(params[:page])
 				
 
 		# パンくず
@@ -136,7 +136,9 @@ class BlogsController < ApplicationController
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_hide
-
+		@users_id = @users.map{|u| u.id}
+		@blogs = Blog.where(user_id: @users_id).blog_sort.page(params[:page])
+		
 		# パンくず
 		@b1_name = "ブログ"
 		@b1_url = "/blog"
@@ -158,6 +160,8 @@ class BlogsController < ApplicationController
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).user_hide
+		@users_id = @users.map{|u| u.id}
+		@blogs = Blog.where(user_id: @users_id).blog_sort.page(params[:page])
 
 		# パンくず
 		@b1_name = "ブログ"
