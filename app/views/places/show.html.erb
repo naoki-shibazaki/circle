@@ -88,9 +88,12 @@
 							<span class="flex_list_line">バスケットボール</span>
 							<% @place_events.sort.each do |event| %>
 									<% if event.name != "バスケ" %>
-										<span class="flex_list_line">										
-											<%= event.name %>
-											<%= "テニス" if event.name == "硬式・軟式テニス" %>
+										<span class="flex_list_line">
+											<% if event.name == "硬式・軟式テニス" %>
+												テニス
+											<% else%>
+												<%= event.name %>
+											<% end %>
 										</span>
 									<% end %>
 							<% end %>
