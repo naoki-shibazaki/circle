@@ -138,7 +138,7 @@ class BlogsController < ApplicationController
 		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_hide
 		@users_id = @users.map{|u| u.id}
 		@blogs = Blog.where(user_id: @users_id).blog_sort.page(params[:page])
-		
+
 		# パンくず
 		@b1_name = "ブログ"
 		@b1_url = "/blog"
@@ -187,7 +187,6 @@ class BlogsController < ApplicationController
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)	
 		@x = "nil"
 		@category = "nil"
-		@blog_count = 0
 		@contact_judge = "_b"
 
 		if admin_user_signed_in?
