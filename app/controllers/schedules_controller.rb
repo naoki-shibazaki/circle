@@ -16,7 +16,6 @@ before_action :set_schedules
 	def create	
 		@user.schedules.create(schedule_params)
 
-		@user.last_post = Time.now
 		@user.user_time = Time.now
 		if @user.save
 
@@ -38,7 +37,7 @@ before_action :set_schedules
 			@user.user_time = Time.now
 		    @user.save
 			
-			flash[:share] = '更新完了！'
+			flash[:notice] = '更新完了！'
 			redirect_to user_schedules_path
 		else
 			render "edit"
