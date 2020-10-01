@@ -5335,7 +5335,9 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
-
+.flex_list_line:not(:last-child):after{
+  content:" ／";
+}
 
 
 

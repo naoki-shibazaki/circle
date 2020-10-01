@@ -85,9 +85,14 @@
 					<tr class="flex_contents">
 						<th class="flex_list">用途</th>
 						<td class="flex_list">
-							バスケ
+							<span class="flex_list_line">バスケットボール</span>
 							<% @place_events.sort.each do |event| %>
-									<%= event.name if event.name != "バスケ" %>
+									<% if event.name != "バスケ" %>
+										<span class="flex_list_line">										
+											<%= event.name %>
+											<%= "テニス" if event.name == "硬式・軟式テニス" %>
+										</span>
+									<% end %>
 							<% end %>
 						</td>
 					</tr>
