@@ -22,12 +22,13 @@ class ReviewsController < ApplicationController
 		if @review.save
 
 			# レビュー高評価
-			if @review.review = 1
+			if @review.review == 1
 				@user.last_post = Time.now
 				@user.save
-			else				
-			end
+				ReviewMailer.send_review(@user).deliver
+			else
 
+			end
 
 			flash[:notice] = "投稿が完了しました！"
 			redirect_to user_reviews_path
