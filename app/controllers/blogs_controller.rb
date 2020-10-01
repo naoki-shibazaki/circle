@@ -132,10 +132,24 @@ class BlogsController < ApplicationController
 
 	end
 
+	def prefecture
+		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).user_hide
+		@users_id = @users.map{|u| u.id}
+		@blogs = Blog.where(user_id: @users_id).blog_sort.page(params[:page])
+
+		# パンくず
+		@b1_name = "ブログ"
+		@b1_url = "/blog"
+		@b2_name = @prefecture.name
+		@b2_url = "/blog/prefectures/#{@prefecture.kana}"	
+
+	end	
+
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_hide
+		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).event(@event.id).user_hide
 		@users_id = @users.map{|u| u.id}
 		@blogs = Blog.where(user_id: @users_id).blog_sort.page(params[:page])
 
@@ -155,22 +169,6 @@ class BlogsController < ApplicationController
 		@b2_name = "47都道府県ごとの活動ブログ"
 		@b2_url = ""		
 	end
-
-
-	def prefecture
-		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).user_hide
-		@users_id = @users.map{|u| u.id}
-		@blogs = Blog.where(user_id: @users_id).blog_sort.page(params[:page])
-
-		# パンくず
-		@b1_name = "ブログ"
-		@b1_url = "/blog"
-		@b2_name = @prefecture.name
-		@b2_url = "/blog/prefectures/#{@prefecture.kana}"	
-
-	end
-
 
 	private
 	def set_user
