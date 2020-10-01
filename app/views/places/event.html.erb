@@ -39,18 +39,18 @@
 
 					<% end %>
 
-				  	<div class="cp_actab-content">
-				  		<% @prefectures.each do |prefecture_child| %>
-					  		<% if prefecture.group == prefecture_child.group %> 
-								<div class="prefecture_child_list">
+					  	<div class="cp_actab-content">
+					  		<% @prefectures.each do |prefecture_child| %>
+						  		<% if prefecture.group == prefecture_child.group %> 
+									<div class="prefecture_child_list">
 
-									<%= link_to("/places/basketball/#{prefecture_child.kana}") do %>
-						                <%= prefecture_child.name %>(<%= @places_count.where(prefecture_id: prefecture_child.id).count %>)
-					                <% end %>
-								</div>
+										<%= link_to("/places/basketball/#{prefecture_child.kana}") do %>
+							                <%= prefecture_child.name %>(<%= @places_count.where(prefecture_id: prefecture_child.id).count %>)
+						                <% end %>
+									</div>
+								<% end %>
 							<% end %>
-						<% end %>
-				   	</div>
+					   	</div>
 
 				  </div>
 
