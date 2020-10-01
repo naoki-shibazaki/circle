@@ -7,12 +7,8 @@ class ReviewsController < ApplicationController
 		@review = @user.reviews.build
 		@reviews = Review.where(user_id: @user.id)
 
-
-
-		@b1_name = @user.name
-		@b1_url = "/users/#{@user.id}"
-		@b2_name = "口コミ・評価"
-		@b2_url = ""
+		@b4_name = "口コミ・評価"
+		@b4_url = ""
 	end	
 
 	def new
@@ -24,7 +20,7 @@ class ReviewsController < ApplicationController
 		@review.member_id = @member.id
 
 		if @review.save
-			
+
 			# レビュー高評価
 			if @review.review = 1
 				@user.last_post = Time.now
@@ -61,11 +57,6 @@ class ReviewsController < ApplicationController
 
 	def edit
 		@review = Review.find(params[:id])
-
-		@b1_name = @user.name
-		@b1_url = "/users/#{@user.id}"
-		@b2_name = "口コミ・評価"
-		@b2_url = "/users/#{@user.id}/schedules"
 	end
 
 	def destroy

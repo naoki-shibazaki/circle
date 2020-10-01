@@ -5292,6 +5292,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .review_set{
+    padding-top: 4px;
+
     .review_score {
       display: inline-block;
       vertical-align: middle;
@@ -5313,6 +5315,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
         margin-top: -3px;
       }
     }
+}
+
+.review_border {
+  border-bottom: 1px solid;
 }
 
 .place_note{
