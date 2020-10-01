@@ -120,6 +120,9 @@ class BlogsController < ApplicationController
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
 		@users = User.event(@event.id).user_hide
+		@users_id = @users.map{|u| u.id}
+		@blogs = Blog.where(user_id: @users_id).blog_sort
+				
 
 		# パンくず
 		@b1_name = "ブログ"

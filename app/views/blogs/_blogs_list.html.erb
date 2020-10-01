@@ -13,11 +13,6 @@
 
   <% @blogs.each do |blog| %>
 
-    <% @users.each do |user| %>
-      <% if blog.user_id == user.id %>
-
-        <% @blog_count += 1 %>
-
           <div class="form users-form">
               <div class="blog-body">
 
@@ -78,19 +73,19 @@
 
                               <div class="blog_tag tag_bottom cont-width">
 
-                                <%= link_to("/#{user.event.ruby}", class: "tag_btn") do %>
-                                  <i class="fa fa-tags tag-color"></i><%= user.event.name %>
+                                <%= link_to("/#{blog.user.event.ruby}", class: "tag_btn") do %>
+                                  <i class="fa fa-tags tag-color"></i><%= blog.user.event.name %>
                                 <% end %>
 
-                                <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}", class: "tag_btn") do %>
-                                  <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
+                                <%= link_to("/#{blog.user.event.ruby}/#{blog.user.prefecture.kana}", class: "tag_btn") do %>
+                                  <i class="fa fa-tags tag-color"></i><%= blog.user.prefecture.name %>
                                 <% end %>
 
-                                <% if user.prefecture_sub_id.present? %>
+                                <% if blog.user.prefecture_sub_id.present? %>
                                   <% @prefectures.each do |sub_prefecture| %>
-                                    <% if user.prefecture_sub_id == sub_prefecture.id %>  
+                                    <% if blog.user.prefecture_sub_id == sub_prefecture.id %>  
 
-                                      <%= link_to("/#{user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
+                                      <%= link_to("/#{blog.user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
                                       <i class="fa fa-tags tag-color"></i><%= sub_prefecture.name %>
                                       <% end %>
 
@@ -104,15 +99,10 @@
                 </div>
             </div>
 
-
-
-      <% end %>
-    <% end %>
-
   <% end %> 
 
 
-<% if @blog_count == 0 %>
+<% if @blogs.empty? %>
 
   <div class="no_hit_wrap blog_no_hit">
 
