@@ -20,9 +20,6 @@
             <p>住所<span class="must_red">(必須)</span></p>
             <%= f.text_field :address, class: 'form-control', id: 'change_address', placeholder: "東京都千代田区丸の内1-1-1"  %>
 
-            <p>アクセス</p>
-            <%= f.text_field :access, class: 'form-control change_font', placeholder: "大手町駅／東京駅"  %>
-
 
             <p>都道府県<span class="must_red">(必須)</span></p>         
             <% prefecture_options = Prefecture.where.not(id: 0).order(:id).map { |c| [c.name, c.id, data: { children_path: prefecture_cities_path(c) }] } %>
@@ -33,6 +30,11 @@
             <% city_options = cities.map { |c| [c.name, c.id] } %>
             <%= f.select :city_id, city_options, { include_blank: true }, class: 'select-children' %>
 
+            <p>電話番号</p>
+            <%= f.text_field :tel, class: 'form-control', id: 'change_tel', placeholder: "03-1234-5678"  %>
+
+            <p>アクセス</p>
+            <%= f.text_field :access, class: 'form-control change_font', placeholder: "大手町駅／東京駅"  %>
 
             <p>駐車場情報</p>
             <%= f.text_field :parking, class: 'form-control change_font', id: 'change_parking', placeholder: "200台"  %>
@@ -49,24 +51,6 @@
             <p>利用料金</p>
             <%= f.text_area :price, class: 'form-control change_font', id: 'change_price', placeholder: "午前　1時間1,000円\n午後　1時間1,500円\n"  %>
             
-            <p>電話番号</p>
-            <%= f.text_field :tel, class: 'form-control', id: 'change_tel', placeholder: "03-1234-5678"  %>
-
-            <div class="border"></div>
-
-
-            <p>施設画像のリンク</p>
-            <div class="s_txt">１）画像を右クリック　２）画像アドレスをコピー</div>
-            <img class="img_copy" src="/images/img_copy.jpg">
-
-            <%= f.text_field :img_link, class: 'form-control', placeholder: "画像アドレスを貼り付けてください"  %>
-
-            <p>出典元（参照サイト名）</p>
-            <%= f.text_field :img_source, class: 'form-control', placeholder: "サークルブック体育館"  %>            
-
-            <p>出典元のページURL</p>
-            <%= f.text_field :img_url, class: 'form-control', placeholder: "https://www.circle-book.com"  %> 
-
 
             <%= f.submit @place_button %>
 
