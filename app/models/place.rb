@@ -7,6 +7,8 @@ class Place < ApplicationRecord
   has_many :events, through: :places_events
 
   validates :prefecture_id, presence: true
+  validates :event_ids, presence: true
+
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :tag, presence: true

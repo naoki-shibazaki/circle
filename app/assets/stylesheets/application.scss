@@ -5339,6 +5339,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     width: 20px;
     margin-left: 10px;
   }
+
+  .field_with_errors {
+    display: contents;
+  }
+
 }
 
 .flex_list_line:not(:last-child):after{
