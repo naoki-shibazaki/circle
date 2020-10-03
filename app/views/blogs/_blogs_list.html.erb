@@ -99,6 +99,12 @@
                 </div>
             </div>
 
+    <% if @count % 7 == 0 %>
+      <%= render "/layouts/ad_square" %>
+    <% end %>
+    <% @count += 1 %>
+
+
   <% end %> 
 
 
