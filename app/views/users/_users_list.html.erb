@@ -12,7 +12,7 @@
   </div>
 <% end %>
 
-<% @users.each do |user| %>
+<% @users.each.with_index(1) do |user, i| %>
 
         <div class="header_user_list ribbon-wrapper">
 
@@ -278,6 +278,12 @@
           <% end %>
 
       </div>    
+
+    <% if i == 5 || i == 10 || i == 15 %>
+      <div class="list_ad">
+        <%= render "/layouts/ad_square" %>
+      </div>
+    <% end %>
 
 <% end %>
 
