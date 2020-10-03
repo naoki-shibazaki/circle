@@ -160,6 +160,7 @@ class PlacesController < ApplicationController
 
     end
 
+	private
 	def ensure_correct_user
 		@place = Place.find(params[:id])
 		@user = User.find_by(id: @place.user_id)
@@ -193,7 +194,6 @@ class PlacesController < ApplicationController
 
     end
 
-	private
 	def place_params
 		params.require(:place).permit(
 			:user_id,
