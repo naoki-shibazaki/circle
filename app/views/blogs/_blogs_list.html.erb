@@ -11,7 +11,7 @@
   <% end %>
 
   
-  <% @blogs.each do |blog| %>
+  <% @blogs.each.with_index(1) do |blog, i| %>
 
           <div class="form users-form">
               <div class="blog-body">
@@ -99,6 +99,11 @@
                 </div>
             </div>
 
+    <% if i == 5 %>
+      <div class="list_ad">
+        <%= render "/layouts/ad_square" %>
+      </div>
+    <% end %>
 
   <% end %> 
 
