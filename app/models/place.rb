@@ -14,7 +14,7 @@ class Place < ApplicationRecord
   validates :tag, presence: true
   validates :address, presence: true
 
-  paginates_per 20
+  paginates_per 10
 
 
 end

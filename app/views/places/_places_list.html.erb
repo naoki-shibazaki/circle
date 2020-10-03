@@ -1,4 +1,4 @@
-<% @places.each do |place| %>
+<% @places.each.with_index(1) do |place, i| %>
 
 
   <div class="users-index-item ribbon-wrapper">
@@ -59,7 +59,11 @@
 
   </div> <!-- 各フレーム -->
 
-
+    <% if i == 5 %>
+      <div class="list_ad">
+        <%= render "/layouts/ad_square" %>
+      </div>
+    <% end %>
 
 <% end %>
 
