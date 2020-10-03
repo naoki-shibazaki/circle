@@ -12,8 +12,6 @@
   </div>
 <% end %>
 
-<% @count == 1 %>
-
 <% @users.each do |user| %>
 
         <div class="header_user_list ribbon-wrapper">
@@ -280,11 +278,6 @@
           <% end %>
 
       </div>    
-
-    <% if @count % 7 == 0 %>
-      <%= render "/layouts/ad_square" %>
-    <% end %>
-    <% @count = @count + 1 %>
 
 <% end %>
 
