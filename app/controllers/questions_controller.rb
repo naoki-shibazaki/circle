@@ -123,7 +123,7 @@ class QuestionsController < ApplicationController
 
 	    @question_first = "活動頻度を教えてください！"
 	    @question_second = "男女比を教えてください"
-	    @question_third = "参加しやすい雰囲気ですか？"
+	    @question_third = "メンバーの年齢層はどれくらいですか？"
 
 
 	    if @user.present?  	
