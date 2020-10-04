@@ -105,7 +105,7 @@ class PlacesController < ApplicationController
 	end		
 
 	def event_p
-	    @places = Place.where(id: @event_places).order(updated_at: "DESC").page(params[:page])
+	    @places = Place.where(event_id: @event.id).order(updated_at: "DESC").page(params[:page])
 	    
 	    @places_count = Place.where(id: @event_places)
 
@@ -181,9 +181,10 @@ class PlacesController < ApplicationController
     def set_place
 		@events = Event.all
 		@event = Event.find_by(ruby: params[:ruby])		
-		@event_places = @event.places_events.map{|p| p.place.id}
+		@event_places = @event.places_events.map{|e| e.place.id}
 		@prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
-		@cities = City.all.order(:id => :asc)
+
+		# @cities = City.all.order(:id => :asc)
 
 
     	@b1_name = "コート情報"
