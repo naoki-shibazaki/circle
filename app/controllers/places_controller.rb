@@ -107,15 +107,7 @@ class PlacesController < ApplicationController
 	end		
 
 	def event_p
-		@event = Event.find_by(ruby: params[:ruby])
-
-		@event_places = @event.places_events.map{|p| p.place.id}
-	    @places = Place.where(id: @event_places).order(updated_at: "DESC").page(params[:page])
-	    
-	    @places_count = Place.where(id: @event_places)
-
-		@b2_name = @event.name
-		@b2_url = "/places/#{@event.ruby}"	
+		    	@places = Place.all.order(updated_at: "DESC").page(params[:page])
 	end		
 
 	def event
