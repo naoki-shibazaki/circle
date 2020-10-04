@@ -611,8 +611,9 @@ helper_method :link_count
 
 	def webmaster
    		if current_admin_user.id == 1   
-   			@users_search = User.all.order(id: "ASC")
-   			@reviews = Review.all.order(created_at: "DESC")
+
+   			@places_events = PlacesEvent.all.order(place_id: :asc)
+
 
 	   	else
 	      flash[:notice] = "権限がありません"
