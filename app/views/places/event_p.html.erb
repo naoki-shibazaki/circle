@@ -10,9 +10,41 @@
 
 		<div class="coat-container">
 
-			<div class="coat_button">
-				<i class="fa fa-search search-list"></i><%= link_to "バスケットボールのコート情報", "/places/basketball/" %>
-			</div>
+	  <div class="cp_actab">
+	    <input id="tab-two" type="checkbox" name="tabs">
+	    <label for="tab-two">
+	      <i class="fa fa-search search-list"></i>47都道府県から探す
+	    </label>
+	    <div class="cp_actab-content">
+
+	      <ul class="prefectures-menus place_meus">
+	        <% @prefectures.each do |prefecture| %>
+	          <% if prefecture.id != 50 %>        
+	            
+	            <% if prefecture.group != @x %>
+	              <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+	              	<li>
+	                  <%= link_to "/places/#{@event.ruby}/#{prefecture.kana}" do %>
+	                  	<%= prefecture.name %>（<%= @places_count.where(prefecture_id: prefecture.id).count %>）
+	                  <% end %>
+	              	</li> 
+
+	              <% @x = prefecture.group %>
+	              
+	            <% else %>
+	              	<li>
+	                  <%= link_to "/places/#{@event.ruby}/#{prefecture.kana}" do %>
+	                  	<%= prefecture.name %>（<%= @places_count.where(prefecture_id: prefecture.id).count %>）
+	                  <% end %>
+	              	</li> 
+	            <% end %>
+	          
+	          <% end %>
+	        <% end %> 
+	      </ul> 
+
+	    </div>
+	  </div>
 
 		</div>
 
