@@ -3,14 +3,23 @@
     <div class="form users-form table_list">
 
 
-<table>
-  <tr><th>place_id</th><th>event_id</th></tr>
-  
-  <% @places_events.each do |place_event|%>
-    <tr><td><%= place_event.place_id %></td><td><%= place_event.event_id %></td></tr>
-  <% end %>
+    <table>
+      <tr><th>place_id</th><th>event_id</th><th>編集URL</th></tr>
 
-</table>
+      <% @check = 0 %>
+
+      <% @places_events.each do |place_event|%>
+        <tr>
+          <td><%= place_event.place_id %><%= "（重複）" if @check == place_event.place_id %></td>
+          <td><%= place_event.event_id %></td>
+          <td><%= link_to "URL", edit_place_path(place_event.place_id)%></td>
+        </tr>
+
+      <% @check =  @check + 1 %>
+
+      <% end %>
+
+    </table>
 
 
 
