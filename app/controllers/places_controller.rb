@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
 
 	before_action :correct_user, {only: [:new, :count]}
 	before_action :ensure_correct_user, {only: [:edit, :update]}
-	before_action :set_place, {only: [:event, :prefecture, :city, :show, :event_p]}
+	before_action :set_place, {only: [:event, :prefecture, :city, :show]}
 
 
 	def index	
@@ -105,6 +105,7 @@ class PlacesController < ApplicationController
 	end		
 
 	def event_p
+		@event = Event.find_by(ruby: params[:ruby])		
 	    @places = Place.where(event_id: @event.id).order(updated_at: "DESC").page(params[:page])
 	    
 		@b2_name = @event.name
