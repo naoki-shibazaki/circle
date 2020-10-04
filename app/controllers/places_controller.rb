@@ -6,7 +6,7 @@ class PlacesController < ApplicationController
 
 
 	def index	
-		redirect_to "/places/basketball"
+		# redirect_to "/places/basketball"
 	end	
 
 
@@ -150,6 +150,9 @@ class PlacesController < ApplicationController
 		@b4_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
 	end	
 
+
+
+	private
 	def correct_user
 	    if admin_user_signed_in?
 
@@ -159,8 +162,7 @@ class PlacesController < ApplicationController
 	    end
 
     end
-
-	private
+	
 	def ensure_correct_user
 		@place = Place.find(params[:id])
 		@user = User.find_by(id: @place.user_id)
