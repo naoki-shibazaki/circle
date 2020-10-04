@@ -119,6 +119,18 @@ class PlacesController < ApplicationController
 		@b2_url = "/places/#{@event.ruby}"	
 	end	
 
+	def event_p
+		@event = Event.find_by(ruby: params[:ruby])
+
+		@event_places = @event.places_events.map{|p| p.place.id}
+	    @places = Place.where(id: @event_places).order(updated_at: "DESC").page(params[:page])
+	    
+	    @places_count = Place.where(id: @event_places)
+
+		@b2_name = @event.name
+		@b2_url = "/places/#{@event.ruby}"	
+	end		
+
 	def prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
