@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   	resources :members
 	resources :matches, except: [:new, :create]
-	resources :places, except: :show
+	# resources :places, except: :show
 
 	resources :prefectures, only: [] do
     	resources :cities, only: :index
@@ -80,8 +80,6 @@ Rails.application.routes.draw do
 	get 'places/:ruby/:kana' , to: 'places#prefecture'
 	get 'places/:ruby/:kana/:city_kana' , to: 'places#city'
 	get 'places/:ruby/:kana/:city_kana/:id' , to: 'places#show'
-
-	get 'place/:ruby' , to: 'places#event_p'
 
 	get	'matches/:id/contact' , to: 'matches#contact'
 	get 'match' , to: 'matches#match'
