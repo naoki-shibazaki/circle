@@ -15,10 +15,7 @@
 
           <h2 class="place_name"><%= place.name.truncate(24) %></h2>
 
-          <h3 class="place_d">
-              <%= place.prefecture.name %><%= place.city.name %>の<%= "屋内" if place.tag.to_i == 1 %><%= "屋外" if place.tag.to_i == 2 %>にある<br>
-              <%= @event.name %>のコート情報
-          </h3>
+
 
       </div>
 
