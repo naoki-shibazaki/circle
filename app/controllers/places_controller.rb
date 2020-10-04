@@ -7,6 +7,7 @@ class PlacesController < ApplicationController
 
 	def index	
 		# redirect_to "/places/basketball"
+    	@places = Place.all.order(updated_at: "DESC").page(params[:page])
 	end	
 
 
@@ -162,7 +163,7 @@ class PlacesController < ApplicationController
 	    end
 
     end
-	
+
 	def ensure_correct_user
 		@place = Place.find(params[:id])
 		@user = User.find_by(id: @place.user_id)
@@ -180,12 +181,11 @@ class PlacesController < ApplicationController
 
 
     def set_place
-    	@places = Place.all.order(updated_at: "DESC").page(params[:page])
 		@events = Event.all
 		@prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
 		@cities = City.all.order(:id => :asc)
-		@count = "nil"
-		@id = 1
+		# @count = "nil"
+		# @id = 1
 
     	@b1_name = "コート情報"
 		@b1_url = "/places"
