@@ -23,7 +23,6 @@ Rails.application.routes.draw do
 
   	resources :members
 	resources :matches, except: [:new, :create]
-	resources :places, except: :show
 
 	resources :prefectures, only: [] do
     	resources :cities, only: :index
@@ -32,6 +31,10 @@ Rails.application.routes.draw do
 	scope '/contents' do
 	  resources :differences
 	end
+
+	scope '/coat' do
+		resources :places, except: [:index, :show]
+	end	
  
 	root 'users#top'
 
@@ -76,6 +79,7 @@ Rails.application.routes.draw do
 
 	get 'place/:ruby' , to: 'places#event_p'
 
+	get 'places' , to: 'places#index'	
 	get 'places/count' , to: 'places#count'
 	get 'places/all/:kana/:city_kana/:id' , to: 'places#show_noindex'
 	get 'places/:ruby' , to: 'places#event'
