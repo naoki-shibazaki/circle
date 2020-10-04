@@ -1,7 +1,7 @@
 <% set_meta_tags title: "【#{@time.strftime("%Y")}年版】47都道府県のサークルやチーム、団体一覧｜メンバー募集サイト" %>
 <div class="main users-index">
   <div class="container">
-    <img class="imege_title" src="/images/top.png">
+    <img data-src="/images/top.png" class="lazyload imege_title" >
     <h1 class="users-heading">サークル検索</h1>
 	    <div class="users-txt">
 		        <% if admin_user_signed_in?  %>
