@@ -1,54 +1,55 @@
 <div class="place_form">
       <%= form_for @place do |f| %>
 
-            <p>施設名<span class="must_red">(必須)</span></p>
+            <p><i class="fa fa-bank "></i> 施設名<span class="must_red">(必須)</span></p>
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック体育館" %> 
 
-            <p>種目<span class="must_red">(必須)</span></p>  
+            <p><i class="fa fa-soccer-ball-o "></i> 種目<span class="must_red">(必須)</span></p>  
             <div class="places_input">
                   <%= f.collection_check_boxes(:event_ids, Event.where(place: 1), :id, :name) %>
             </div>
 
-            <p>参考URL</p>
+            <p><i class="fa fa-desktop "></i> 参考URL</p>
             <%= f.text_field :url, class: 'form-control', placeholder: "https://www.circle-book.com"  %>  
 
-            <p>カテゴリー<span class="must_red">(必須)</span></p>
+            <p><i class="fa fa-institution "></i> カテゴリー<span class="must_red">(必須)</span></p>
             <div class="radio_button">
-                  <%= f.radio_button :tag, 1, {:checked => true} %>屋内 <%= f.radio_button :tag, 2 %>屋外
+                  <%= f.radio_button :tag, 1, {:checked => true} %>屋内（体育館） <%= f.radio_button :tag, 2 %>屋外（グランド、公園）
             </div>
   
-            <p>住所<span class="must_red">(必須)</span></p>
+            <p><i class="fa fa-map-marker "></i> 住所<span class="must_red">(必須)</span></p>
             <%= f.text_field :address, class: 'form-control', id: 'change_address', placeholder: "東京都千代田区丸の内1-1-1"  %>
 
 
-            <p>都道府県<span class="must_red">(必須)</span></p>         
+            <p><i class="fa fa-map-marker "></i> 都道府県<span class="must_red">(必須)</span></p>         
             <% prefecture_options = Prefecture.where.not(id: 0).order(:id).map { |c| [c.name, c.id, data: { children_path: prefecture_cities_path(c) }] } %>
             <%= f.select :prefecture_id, prefecture_options, { include_blank: true }, class: 'select-parent' %>
 
-            <p>市区郡<span class="must_red">(必須)</span></p>  
+            <p><i class="fa fa-map-marker "></i> 市区郡<span class="must_red">(必須)</span></p>  
             <% cities = @place.prefecture.try(:cities) || [] %>
             <% city_options = cities.map { |c| [c.name, c.id] } %>
             <%= f.select :city_id, city_options, { include_blank: true }, class: 'select-children' %>
 
-            <p>電話番号</p>
+            <p><i class="fa fa-phone "></i> 電話番号</p>
             <%= f.text_field :tel, class: 'form-control', id: 'change_tel', placeholder: "03-1234-5678"  %>
 
-            <p>アクセス</p>
+            <p><i class="fa fa-bus "></i> アクセス</p>
             <%= f.text_field :access, class: 'form-control change_font', placeholder: "大手町駅／東京駅"  %>
 
-            <p>駐車場情報</p>
+            <p><i class="fa fa-automobile "></i> 駐車場情報</p>
             <%= f.text_field :parking, class: 'form-control change_font', id: 'change_parking', placeholder: "200台"  %>
 
-            <p>利用可能時間</p>
+            <p><i class="fa fa-clock-o "></i> 利用可能時間</p>
             <%= f.text_area :time, class: 'form-control change_font', id: 'change_time', placeholder: "平日10:00-20:00\n休日9:00-19:00"  %>
 
-            <p>定休日</p>
+            <p><i class="fa fa-calendar "></i> 定休日</p>
             <%= f.text_field :regular_holiday, class: 'form-control change_font', id: 'change_regular_holiday', placeholder: "毎週火曜日"  %>
 
-            <p>施設規模</p>
-            <%= f.text_field :scale, class: 'form-control change_font', id: 'change_scale', placeholder: "コート２面"  %>
+            <p><i class="fa fa-university "></i> 施設規模</p>
+            <%= f.text_area :scale, class: 'form-control change_font', id: 'change_scale', placeholder: "バスケットボール2面\nフットサル1面\n卓球24台"  %>
 
-            <p>利用料金</p>
+
+            <p><i class="fa fa-money "></i> 利用料金（URLのみ可）</p>
             <%= f.text_area :price, class: 'form-control change_font', id: 'change_price', placeholder: "午前　1時間1,000円\n午後　1時間1,500円\n"  %>
             
 
