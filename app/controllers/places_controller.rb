@@ -75,7 +75,6 @@ class PlacesController < ApplicationController
 	    end		
 	end	
 
-
 	def edit
 		@place = Place.find(params[:id])
 		@place_button = "更新する"
@@ -174,6 +173,7 @@ class PlacesController < ApplicationController
 		@events = Event.all
 		@event = Event.find_by(ruby: params[:ruby])		
 		@prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
+		
 
 		# @event_places = @event.places_events.map{|e| e.place.id}
 
