@@ -174,10 +174,11 @@ class PlacesController < ApplicationController
 		@events = Event.all
 		@event = Event.find_by(ruby: params[:ruby])		
 		@prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
-		@event_places = @event.places_events.map{|e| e.place.id}
 
-		# @event_ids = PlacesEvent.where(event_id: @event.id)
-		# @event_places = @event_ids.map { |e| e.place_id }
+		# @event_places = @event.places_events.map{|e| e.place.id}
+
+		@event_ids = PlacesEvent.where(event_id: @event.id)
+		@event_places = @event_ids.map { |e| e.place_id }
 		
 
     	@b1_name = "コート情報"
