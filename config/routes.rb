@@ -77,8 +77,6 @@ Rails.application.routes.draw do
 	get 'blog/:ruby' , to: 'blogs#event'
 	get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
 
-	get 'test/:ruby' , to: 'places#event_p'
-
 	get 'places' , to: 'places#index'	
 	get 'places/count' , to: 'places#count'
 	get 'places/all/:kana/:city_kana/:id' , to: 'places#show_noindex'

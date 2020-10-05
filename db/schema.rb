@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_053444) do
     t.string "user_id"
     t.string "prefecture_id"
     t.string "city_id"
+    t.string "event_id"
     t.string "name"
     t.string "address"
     t.string "access"
@@ -233,7 +234,6 @@ ActiveRecord::Schema.define(version: 2020_09_30_053444) do
     t.string "img_link"
     t.string "img_url"
     t.string "img_source"
-    t.string "event_id"
   end
 
   create_table "places_events", force: :cascade do |t|

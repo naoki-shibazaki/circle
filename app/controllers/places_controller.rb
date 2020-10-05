@@ -104,20 +104,6 @@ class PlacesController < ApplicationController
 	 	@places = Place.group(:user_id).count(:user_id)
 	end		
 
-	def event_p
-		@event = Event.find_by(ruby: params[:ruby])		
-
-		# 5S
-		# @event_places = @event.places_events.map{|e| e.place.id}
-	 #    @places = Place.where(id: @event_places).order(updated_at: "DESC").page(params[:page])
-
-		# 500ms
-	    @places = Place.where(event_id: @event.id).order(updated_at: "DESC").page(params[:page])
-	    
-		@b2_name = @event.name
-		@b2_url = "/places/#{@event.ruby}"	
-	end		
-
 	def event
 	    @places = Place.where(id: @event_places).order(updated_at: "DESC").page(params[:page])
 	    
@@ -186,9 +172,9 @@ class PlacesController < ApplicationController
     def set_place
 		@events = Event.all
 		@event = Event.find_by(ruby: params[:ruby])		
-		# @event_places = @event.places_events.map{|e| e.place.id}
-		@event_ids = PlacesEvent.where(event_id: @event.id)
-		@event_places = @event_ids.map { |e| e.place_id }
+		@event_places = @event.places_events.map{|e| e.place.id}
+		# @event_ids = PlacesEvent.where(event_id: @event.id)
+		# @event_places = @event_ids.map { |e| e.place_id }
 		@prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
 
 		# @cities = City.all.order(:id => :asc)
