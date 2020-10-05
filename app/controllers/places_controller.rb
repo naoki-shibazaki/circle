@@ -22,7 +22,7 @@ class PlacesController < ApplicationController
 	    if admin_user_signed_in?
 	      @current_user = User.find_by(admin_user_id: current_admin_user.id)
 	    end
-		
+
 		@place.user_id = @current_user.id
 		
 		if @place.save(place_params)
@@ -99,8 +99,9 @@ class PlacesController < ApplicationController
 	end
 
 	def destroy
-	    @place = Place.find_by(id: params[:id])
-   		@place.destroy		
+	    @place = Place.find(params[:id])
+   		@place.destroy
+		flash[:notice] = '削除しました！'
 
 		redirect_to "/places"
 	end
