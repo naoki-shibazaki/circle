@@ -20,8 +20,7 @@
 		          <h1 class="place_name"><%= @place.name %></h1>
 
 		          <h2 class="place_d">
-		              <%= @place.prefecture.name %><%= @place.city.name %>の<%= "屋内" if @place.tag.to_i == 1 %><%= "屋外" if @place.tag.to_i == 2 %>にある<br>
-		              allのコート情報
+		              <%= @place.prefecture.name %><%= @place.city.name %>の<%= "屋内" if @place.tag.to_i == 1 %><%= "屋外" if @place.tag.to_i == 2 %>にあるコート情報
 		          </h2>
 
 		      </div>
@@ -38,14 +37,6 @@
 
 				<% end %>
 			<% end %>  
-
-
-
-	        <div class="img_source_wrap">
-		      <img src="/images/default.png" alt="all" class="img_source" >
-		      	<div class="img_url_source">※画像はイメージです</div>
-		    </div>
-
 
 
 	      <div class="border"></div>
