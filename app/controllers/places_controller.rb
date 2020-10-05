@@ -33,6 +33,7 @@ class PlacesController < ApplicationController
 
 	end
 
+
 	def show
 		@place = Place.find(params[:id])
 		@prefecture = Prefecture.find_by(kana: params[:kana])		
