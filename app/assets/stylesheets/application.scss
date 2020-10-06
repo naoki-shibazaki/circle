@@ -5398,6 +5398,35 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 
+.search_word{
+    background-color: #fff;
+    padding: 0px 0px 10px;
+
+  .search_area {
+      width: 80%;
+      float: left;
+      height: 36px;
+      border: solid 1px #b4ced6;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      background-color: #ffffff;
+      color: #4a4a4a;
+      margin: 0;
+      border-right: 1px solid #cecece;
+      border-radius: 6px 0px 0px 6px; 
+      padding-left: 8px;       
+  }
+
+  .search_icon{
+      height: 36px;
+      width: 20%;
+  }
+
+
+
+}
+
 
 // --------------------------------------
 // ▼PC

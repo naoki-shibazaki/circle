@@ -14,16 +14,17 @@
 		        <% end %>
 		</div>
 
-	<%= render "/users/search.html.erb" %>
+	<% if @users.count != 0 %>
+		<div class="search_area">
+			<%= render "/users/search.html.erb" %>
+		</div>
 
-	<div class="search_area">
-	    <%= render "events_list.html.erb" %>
+		    <%= render "users_list.html.erb" %>
+		    
+	<% else @users.count == 0 %>
+			<%= render "/users/no_hit.html.erb" %>	
 
-	    <%= render "prefectures_list.html.erb" %>
-	</div>
-  
-		<%= render "users_list.html.erb" %>
-
+	<% end %>
 
   </div>
 </div>

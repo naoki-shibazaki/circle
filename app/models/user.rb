@@ -67,18 +67,21 @@ class User < ApplicationRecord
 
  	# User_検索用
 	scope :search_word, ->(keyword) do
-	  where("name LIKE ?", "%#{keyword}%").
-	  or(where("schedule LIKE ?", "%#{keyword}%")).
-	  or(where("area LIKE ?", "%#{keyword}%")).
-	  or(where("recruitment LIKE ?", "%#{keyword}%")).
-	  or(where("member LIKE ?", "%#{keyword}%")).
-	  or(where("cost LIKE ?", "%#{keyword}%")).
-	  or(where("goal LIKE ?", "%#{keyword}%")).
-	  or(where("appeal LIKE ?", "%#{keyword}%"))
+
+		where("name LIKE ?", "%#{keyword}%").
+		or(where("schedule LIKE ?", "%#{keyword}%")).
+		or(where("area LIKE ?", "%#{keyword}%")).
+		or(where("recruitment LIKE ?", "%#{keyword}%")).
+		or(where("member LIKE ?", "%#{keyword}%")).
+		or(where("cost LIKE ?", "%#{keyword}%")).
+		or(where("goal LIKE ?", "%#{keyword}%")).
+		or(where("grouping LIKE ?", "%#{keyword}%")).
+		or(where("average_age LIKE ?", "%#{keyword}%")).	
+		or(where("appeal LIKE ?", "%#{keyword}%"))
 
 
 # event_id　prefecture_id　prefecture_sub_id　age_ids　group_ids
-	  
+
 	end
 
 	# Tag用
