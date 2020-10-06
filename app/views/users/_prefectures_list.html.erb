@@ -14,7 +14,7 @@
             <% if prefecture.group != @x %>
               <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
               <li>
-                <% if @path.is('users#index', 'users#top') %>
+                <% if @path.is('users#index', 'users#top', 'users#search') %>
                   <%= link_to prefecture.name, "/prefectures/#{prefecture.kana}" %>
                 <% else %>
                   <%= link_to prefecture.name, "/#{@event.ruby}/#{prefecture.kana}" %>
@@ -24,7 +24,7 @@
               
             <% else %>
               <li>
-                <% if @path.is('users#index', 'users#top') %>
+                <% if @path.is('users#index', 'users#top', 'users#search') %>
                   <%= link_to prefecture.name, "/prefectures/#{prefecture.kana}" %>
                 <% else %>
                   <%= link_to prefecture.name, "/#{@event.ruby}/#{prefecture.kana}" %>

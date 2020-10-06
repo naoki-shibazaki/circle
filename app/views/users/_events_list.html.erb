@@ -15,7 +15,7 @@
           <% @category = event.category %>
         <% end %>
 
-          <% if @path.is('users#index', 'users#top') %>
+          <% if @path.is('users#index', 'users#top', 'users#search') %>
               <li>
                 <%= link_to("/#{event.ruby}") do %>
                   <div class="e_icon_wrap">

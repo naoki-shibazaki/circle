@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 	  	# resources :collections do
 	  	# 	resources :items
 	  	# end
+		  collection do
+		    get 'search'
+		  end
   	end
 
   	resources :members

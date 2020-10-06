@@ -2,7 +2,7 @@
 
 		<div class="search_select">
 
-	        <% if @path.is('users#index', 'users#top') %>
+	        <% if @path.is('users#index', 'users#top', 'users#search') %>
 
 					<select name="event_select" onChange="location.href=value;">
 						<option value="#">サークル・団体</option>
@@ -108,7 +108,7 @@
 
 				</div>
 
-	        <% else @path.is('users#prefecture') %>
+	        <% elsif @path.is('users#prefecture') %>
 
 	        	<div class="search_select_3">
 
@@ -141,10 +141,26 @@
 
 				</div>
 
+			<% else %>
+
 			<% end %>
 
 		
 	  	</div>
+
+<!-- 修正 -->
+<% if admin_user_signed_in? %>
+	<% if current_admin_user.id == 1 %>
+		<div class="sort_select">
+		<%= form_tag('/users/search', method: :get) do %>
+		   <input id="page_name" name='keyword' size="30" type="text" value="<%= params[:keyword] %>"/>
+		     <%= submit_tag("Search") %>
+		<% end %>
+		</div>
+	<% end %>
+<% end %>
+<!-- 修正 -->
+
 
 	  	<div class="sort_select">
 		  	<% if params[:sort] == "1" || params[:sort] == nil %>
