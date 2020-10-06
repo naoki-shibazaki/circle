@@ -45,10 +45,8 @@
 				<% end %>
 			<% end %>  
 
-
-
 	        <div class="img_source_wrap">
-		      <img src="/images/places/e_p_<%= @event.ruby %>_<%= @place.tag.to_i %>.jpg" alt="<%= @event.name %>" class="img_source" >
+		      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" class="img_source" >
 		      	<div class="img_url_source">※画像はイメージです</div>
 		    </div>
 
@@ -83,7 +81,7 @@
 
 				<% if @place_events.present? %>
 					<tr class="flex_contents">
-						<th class="flex_list">用途</th>
+						<th class="flex_list">対応種目</th>
 						<td class="flex_list">
 							<% @place_events.sort.each do |event| %>
 										<span class="flex_list_line">
