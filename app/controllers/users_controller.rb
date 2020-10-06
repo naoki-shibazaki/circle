@@ -20,21 +20,12 @@ helper_method :link_count
 		# キーワード分割
 		keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
 
-		# 普通のキーワードとNotキーワードを分ける
-				# ↓真　　　　　　　　　↓偽
-		  negative_keywords, positive_keywords = 
-		    keywords.partition {|keyword| keyword.start_with?("-") }
-
 		# Userモデルオブジェクト作成
 		  @users = User
 
 		# 検索ワードの数だけand検索を行う
-		positive_keywords.each do |keyword|
-			@users = @users.where("name LIKE ?", "%#{keyword}%")
-		end
-
-		negative_keywords.each do |keyword|
-		 	@users.where!("name NOT LIKE ?", "%#{keyword.delete_prefix('-')}%")
+		keywords.each do |keyword|
+			@users = @users.search_word(keyword)
 		end
 
 		@users = @users.user_sort_1.page(params[:page])

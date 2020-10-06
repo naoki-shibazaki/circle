@@ -65,6 +65,22 @@ class User < ApplicationRecord
   	scope :prefecture_50, -> { where(prefecture_id: 50).or(User.where(prefecture_sub_id: 50)) }
  	scope :city, -> (city_id){ where(id: city_id) }
 
+ 	# User_検索用
+	scope :search_word, ->(keyword) do
+	  where("name LIKE ?", "%#{keyword}%").
+	  or(where("schedule LIKE ?", "%#{keyword}%")).
+	  or(where("area LIKE ?", "%#{keyword}%")).
+	  or(where("recruitment LIKE ?", "%#{keyword}%")).
+	  or(where("member LIKE ?", "%#{keyword}%")).
+	  or(where("cost LIKE ?", "%#{keyword}%")).
+	  or(where("goal LIKE ?", "%#{keyword}%")).
+	  or(where("appeal LIKE ?", "%#{keyword}%"))
+
+
+# event_id　prefecture_id　prefecture_sub_id　age_ids　group_ids
+	  
+	end
+
 	# Tag用
   	scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
   	scope :user_sort, -> { user_hide.user_order }
