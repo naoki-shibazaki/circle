@@ -17,6 +17,8 @@ before_action :set_schedules
 		@user.schedules.create(schedule_params)
 
 		@user.user_time = Time.now
+		@user.last_post = Time.now
+		
 		if @user.save
 
 			flash[:notice] = "追加しました"
@@ -35,6 +37,7 @@ before_action :set_schedules
 		if @schedule.update(schedule_params)
 
 			@user.user_time = Time.now
+			@user.last_post = Time.now
 		    @user.save
 			
 			flash[:notice] = '更新完了！'
@@ -49,7 +52,7 @@ before_action :set_schedules
 		@schedule = Schedule.find(params[:id])
 
 		if @schedule.title.present?
-			@schedule_title = @schedule.title.gsub(/[^！？!?ー0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
+			@schedule_title = @schedule.title.gsub(/[^！？!?ー〜0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
 		else
 			@schedule_title = @user.event.name
 		end

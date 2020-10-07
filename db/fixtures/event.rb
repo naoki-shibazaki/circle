@@ -8,7 +8,7 @@ Event.seed(:id,
   { :id => 8, :category => "スポーツ１", :order => "03", :name => "フットサル" , :ruby => "futsal",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/jq0AbQjRV3XsyDnmvNidtA", :txt => "フットサルサークル・チーム" },
 
   { :id => 5, :category => "スポーツ１", :order => "04", :name => "バドミントン" , :ruby => "badminton",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/9hLTdMzYeuiuO1fRinT_wQ", :txt => "バドミントンサークル" },
-  { :id => 9, :category => "スポーツ１", :order => "05", :name => "硬式・軟式テニス" , :ruby => "tennis",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/rQkRsdC0Ppg-xVTQVlQYgw", :txt => "硬式・軟式テニスサークル" },
+  { :id => 9, :category => "スポーツ１", :order => "05", :name => "テニス" , :ruby => "tennis",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/rQkRsdC0Ppg-xVTQVlQYgw", :txt => "硬式・軟式テニスサークル" },
   { :id => 10, :category => "スポーツ１", :order => "06", :name => "卓球" , :ruby => "table-tennis",  :matching => 1, :place => 1, :openchat => "", :txt => "卓球サークル" }, 
  
   { :id => 7, :category => "スポーツ１", :order => "07", :name => "草野球" , :ruby => "baseball",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/StLPRlAGJPjl9rHX9BTXug", :txt => "草野球チーム・サークル" },
