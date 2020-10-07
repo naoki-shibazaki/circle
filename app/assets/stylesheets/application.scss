@@ -5430,6 +5430,29 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     background: #fff;
 }
 
+.speech_bubble_a{
+  position: relative;
+  line-height: 1.6;
+  background-color: #effbfc;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  &:before {
+    content: "";
+    position: absolute;
+    top: -28px;
+    left: 21px;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid #effbfc;
+  } 
+    p:last-child {
+        margin-bottom: 0px;
+  }      
+}
+
+
+
 
 // --------------------------------------
 // ▼PC
