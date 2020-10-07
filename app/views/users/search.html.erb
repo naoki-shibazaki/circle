@@ -1,8 +1,8 @@
-<% set_meta_tags title: "「#{params[:keyword]}」のサークルやチーム、団体一覧｜メンバー募集サイト" %>
+<% set_meta_tags title: "「#{params[:kw]}」のサークルやチーム、団体一覧｜メンバー募集サイト" %>
 <div class="main users-index">
   <div class="container">
     <img data-src="/images/search.jpg" class="lazyload imege_title search_img" >
-    <h1 class="users-heading">「<%= params[:keyword] %>」の検索結果</h1>
+    <h1 class="users-heading">「<%= params[:kw] %>」の検索結果</h1>
 	    <div class="users-txt">
 		        <% if admin_user_signed_in?  %>
 		        	<%= link_to("活動ブログ", new_user_blog_path(@user) ) %>を投稿すると<br>

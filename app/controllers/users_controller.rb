@@ -13,13 +13,6 @@ helper_method :link_count
 
 	def index
 
-
-		# @tests = User.joins(:event).where("events.name = ?", "バレーボール")
-
-		# @tests = User.eager_load(:event, :prefecture).where("events.name = ? or prefectures.name = ?", "バスケ", "北海道")
-
-		# @tests = User.eager_load(:event, :prefecture).where("events.name LIKE ?", "%バレー%").where("prefectures.name LIKE ?", "%北海道%")
-
 		# @tests = User.eager_load(:event, :prefecture).where("events.name LIKE ?", "%バス%").where("prefectures.name LIKE ?", "%北海道%")
 
 		# パンくず
@@ -29,7 +22,7 @@ helper_method :link_count
 
 	def search
 		# キーワード分割
-		keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
+		keywords = params[:kw].split(/[[:blank:]]+/).select(&:present?)
 
 		# Userモデルオブジェクト作成
 		@users = User
