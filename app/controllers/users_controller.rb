@@ -39,7 +39,13 @@ helper_method :link_count
 			@event_ids = Event.where("name LIKE ?", "%#{keyword}%").map { |e| e.id }
 			@prefecture_ids = Prefecture.where("name LIKE ?", "%#{keyword}%").map { |p| p.id }
 
-			@users = @users.search_word(keyword).or(@users.where(event_id: @event_ids)).or(@users.where(prefecture_id: @prefecture_ids))
+			@city_ids = City.where("name LIKE ?", "%#{keyword}%").map { |c| c.id }
+			@city_user_ids = UsersCity.where(city_id: @city_ids).map { |u| u.user_id }
+
+			@users = @users.search_word(keyword).
+			or(@users.where(event_id: @event_ids)).
+			or(@users.where(prefecture_id: @prefecture_ids)).or(@users.where(prefecture_sub_id: @prefecture_ids)).
+			or(@users.where(id: @city_user_ids))
 
 		end
 

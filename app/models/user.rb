@@ -67,7 +67,6 @@ class User < ApplicationRecord
 
  	# User_検索用
 	scope :search_word, ->(keyword) do
-
 		where("name LIKE ?", "%#{keyword}%").
 		or(where("schedule LIKE ?", "%#{keyword}%")).
 		or(where("area LIKE ?", "%#{keyword}%")).
@@ -78,13 +77,7 @@ class User < ApplicationRecord
 		or(where("grouping LIKE ?", "%#{keyword}%")).
 		or(where("average_age LIKE ?", "%#{keyword}%")).
 		or(where("appeal LIKE ?", "%#{keyword}%"))
-
 	end
-
-
-# event_id　prefecture_id　prefecture_sub_id　
-# OK age_ids　group_ids
-
 
 
 	# Tag用
