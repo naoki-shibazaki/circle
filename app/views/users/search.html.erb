@@ -1,8 +1,8 @@
-<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】47都道府県のサークルやチーム、団体一覧｜メンバー募集サイト" %>
+<% set_meta_tags title: "「#{params[:keyword]}」のサークルやチーム、団体一覧｜メンバー募集サイト" %>
 <div class="main users-index">
   <div class="container">
-    <img data-src="/images/top.png" class="lazyload imege_title" >
-    <h1 class="users-heading">サークル検索</h1>
+    <img data-src="/images/search.jpg" class="lazyload imege_title search_img" >
+    <h1 class="users-heading">「<%= params[:keyword] %>」の検索結果</h1>
 	    <div class="users-txt">
 		        <% if admin_user_signed_in?  %>
 		        	<%= link_to("活動ブログ", new_user_blog_path(@user) ) %>を投稿すると<br>
@@ -13,6 +13,8 @@
 		    		サークルやチーム、団体が見つかる！！
 		        <% end %>
 		</div>
+
+
 
 	<% if @users.count != 0 %>
 		<div class="search_area">

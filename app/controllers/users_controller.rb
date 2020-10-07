@@ -8,9 +8,20 @@ helper_method :link_count
 
 
 	def top
+
 	end
 
 	def index
+
+
+		# @tests = User.joins(:event).where("events.name = ?", "バレーボール")
+
+		# @tests = User.eager_load(:event, :prefecture).where("events.name = ? or prefectures.name = ?", "バスケ", "北海道")
+
+		# @tests = User.eager_load(:event, :prefecture).where("events.name LIKE ?", "%バレー%").where("prefectures.name LIKE ?", "%北海道%")
+
+		# @tests = User.eager_load(:event, :prefecture).where("events.name LIKE ?", "%バス%").where("prefectures.name LIKE ?", "%北海道%")
+
 		# パンくず
 		@b1_name = "サークル検索"
 		@b1_url = "/users"
@@ -21,14 +32,14 @@ helper_method :link_count
 		keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
 
 		# Userモデルオブジェクト作成
-		  @users = User
+		@users = User
 
 		# 検索ワードの数だけand検索を行う
 		keywords.each do |keyword|
 			@users = @users.search_word(keyword)
 		end
 
-		@users = @users.user_sort_1.page(params[:page])
+			@users = @users.user_sort_1.page(params[:page])
 
 	end	
 

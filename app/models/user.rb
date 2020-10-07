@@ -76,13 +76,16 @@ class User < ApplicationRecord
 		or(where("cost LIKE ?", "%#{keyword}%")).
 		or(where("goal LIKE ?", "%#{keyword}%")).
 		or(where("grouping LIKE ?", "%#{keyword}%")).
-		or(where("average_age LIKE ?", "%#{keyword}%")).	
+		or(where("average_age LIKE ?", "%#{keyword}%")).
 		or(where("appeal LIKE ?", "%#{keyword}%"))
 
-
-# event_id　prefecture_id　prefecture_sub_id　age_ids　group_ids
-
 	end
+
+
+# event_id　prefecture_id　prefecture_sub_id　
+# OK age_ids　group_ids
+
+
 
 	# Tag用
   	scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
