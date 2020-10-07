@@ -149,6 +149,21 @@
 	  	</div>
 
 
+		<hr>
+
+		<div class="search_word">	
+
+			<%= form_tag('/users/search', method: :get, enforce_utf8: false) do %>
+			   <input id="page_name" name='kw' size="30" type="text" placeholder="（例）バスケ 東京" value="<%= params[:kw] %>" class="search_area"/>
+			    	<div class="search_icon">
+			    		<%= submit_tag("検索", :name => nil) %>
+			 		</div>
+			<% end %>
+
+		</div>
+
+
+
 		<% if controller.action_name != "search" %>
 
 		  	<div class="sort_select">
@@ -167,20 +182,27 @@
 			  	<% end %>
 		  	</div>
 
+		<% else controller.action_name != "search" %>
+
+		  	<div class="sort_select">
+			  	<% if params[:sort] == "1" || params[:sort] == nil %>
+					<span class="sort_btn selected">関連順</span>
+				  	<!-- <a href="<%= request.path %>?kw=<%= params[:kw] %>&sort=2" ><span class="sort_btn">人気順</span></a> -->
+				  	<a href="<%= request.path %>?kw=<%= params[:kw] %>&sort=3" ><span class="sort_btn">新着順</span></a>
+			  	<% elsif params[:sort] == "2" %>
+					<a href="<%= request.path %>?kw=<%= params[:kw] %>&sort=1" ><span class="sort_btn">関連順</span></a>
+				  	<span class="sort_btn selected">人気順</span>
+					<a href="<%= request.path %>?kw=<%= params[:kw] %>&sort=3" ><span class="sort_btn">新着順</span></a>
+			  	<% else params[:sort] == "3" %>
+					<a href="<%= request.path %>?kw=<%= params[:kw] %>&sort=1" ><span class="sort_btn">関連順</span></a>
+					<!-- <a href="<%= request.path %>?kw=<%= params[:kw] %>&sort=2" ><span class="sort_btn">人気順</span></a> -->
+				  	<span class="sort_btn selected">新着順</span>
+			  	<% end %>
+		  	</div>
+
 		<% end %>
 
-		<hr>
 
-		<div class="search_word">	
-
-			<%= form_tag('/users/search', method: :get, enforce_utf8: false) do %>
-			   <input id="page_name" name='kw' size="30" type="text" placeholder="（例）バスケ 東京" value="<%= params[:kw] %>" class="search_area"/>
-			    	<div class="search_icon">
-			    		<%= submit_tag("検索", :name => nil) %>
-			 		</div>
-			<% end %>
-
-		</div>
 
 
 

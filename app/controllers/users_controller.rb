@@ -42,7 +42,17 @@ helper_method :link_count
 
 		end
 
-			@users = @users.user_sort_1.page(params[:page])
+			# @users = @users.user_sort_1.page(params[:page])
+
+		# ソート機能
+       if params[:sort] == "1" || params[:sort] == nil
+   			@users = @users.user_sort_1.page(params[:page])
+        elsif params[:sort] == "2"
+   			@users = @users.user_sort_2.page(params[:page])
+        else params[:sort] == "3"
+   			@users = @users.user_sort_3.page(params[:page])
+        end
+
 
 	end	
 
