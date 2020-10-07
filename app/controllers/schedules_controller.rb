@@ -49,7 +49,7 @@ before_action :set_schedules
 		@schedule = Schedule.find(params[:id])
 
 		if @schedule.title.present?
-			@schedule_title = @schedule.title
+			@schedule_title = @schedule.title.gsub(/[^0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
 		else
 			@schedule_title = @user.event.name
 		end
