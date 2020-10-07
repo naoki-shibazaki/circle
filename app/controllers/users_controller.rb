@@ -36,7 +36,11 @@ helper_method :link_count
 
 		# 検索ワードの数だけand検索を行う
 		keywords.each do |keyword|
-			@users = @users.search_word(keyword)
+			@event_ids = Event.where("name LIKE ?", "%#{keyword}%").map { |e| e.id }
+			@prefecture_ids = Prefecture.where("name LIKE ?", "%#{keyword}%").map { |p| p.id }
+
+			@users = @users.search_word(keyword).or(@users.where(event_id: @event_ids)).or(@users.where(prefecture_id: @prefecture_ids))
+
 		end
 
 			@users = @users.user_sort_1.page(params[:page])
