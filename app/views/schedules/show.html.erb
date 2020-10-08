@@ -104,7 +104,7 @@
 		</div>
 
 		<div class="schedule_user_image">
-			<%= link_to user_schedules_path(@user.id) do %>
+			<%= link_to user_path(@user.id) do %>
 				<%= image_tag @user.pic_profile.url , class:'image_icon_center' %>
 			<% end %>
 		</div>
@@ -118,7 +118,7 @@
 	  	<div class="users-index-item schedule_user">
 
 			<div class="schedule_profile_wrap">
-				<%= link_to user_schedules_path(@user.id) do %>
+				<%= link_to user_path(@user.id) do %>
 		  			<h2 class="user_name"><%= @user.name %></h2>
 		  		<% end %>
 			</div>
@@ -289,63 +289,12 @@
 				<%= render "/layouts/ad_square" %>
 				<div class="ad_space"></div>
 
-
-
-			<div class="schedule_another">
-
-				<% if @schedules.present? %>
-
-					<div class="schedule_list_wrap">
-					    <% @schedules.each do |schedule| %> 
-					        <% if schedule.present? %>
-						        <% if schedule.id != @schedule.id %>
-
-					       
-
-									<% if @schedule_month != Time.parse(schedule.day).strftime("%-m") %>
-										<h2 class="schedule_m"><%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール</h2>
-										<% @schedule_month = Time.parse(schedule.day).strftime("%-m") %>
-									<% end %>							
-
-
-
-							        <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
-
-
-										<div class="schedule_list">
-								          <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
-
-											<% if schedule.time_s.present? %>
-									          <%= schedule.time_s.strftime('%H:%M') %>
-									          〜
-									          <%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
-									        <% end %>
-
-
-								          <br>
-								          <%= schedule.venue %>
-								        </div>
-
-							        <% end %>
-
-
-
-								<% end %>
-
-					        <% end %>                  
-					    <% end %>
-					</div>
-
-				<% end %>
-
-				<div class="space_bottom"></div>
-
-			</div>	
-
-
+			<div class="users-index-item">
+				<%= render "/schedules/schedule_list" %>				
+			</div>
 			
-
-
+		<%= render "/layouts/ad_square" %>
+		<div class="ad_space"></div>
 
 
   </div>

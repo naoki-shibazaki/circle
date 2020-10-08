@@ -88,44 +88,8 @@
 
 			<% end %>
 
-			<% if @schedules.present? %>
+			<%= render "/schedules/schedule_list" %>
 
-				<div class="schedule_list_wrap">
-				    <% @schedules.each do |schedule| %> 
-				        <% if schedule.present? %>
-
-
-							<% if @schedule_month != Time.parse(schedule.day).strftime("%-m") %>
-								<h2 class="schedule_m"><i class="fa fa-calendar "></i> <%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール</h2>
-								<% @schedule_month = Time.parse(schedule.day).strftime("%-m") %>
-							<% end %>							
-
-
-
-					        <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
-
-
-								<div class="schedule_list">
-									<div class="schedule_day">
-							          	<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
-
-										<% if schedule.time_s.present? %>
-								          <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
-								        <% end %>
-									</div>
-
-						          @<%= schedule.venue %>
-						          <br>
-						          <%= schedule.title if schedule.title.present? %>
-						        </div>
-
-					        <% end %>  
-
-				        <% end %>                  
-				    <% end %>
-				</div>
-
-			<% end %>
 
 
 		</div>
