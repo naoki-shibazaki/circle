@@ -1,41 +1,41 @@
-        <div class="schedule_add_wrap">
-            <div class="schedule_input">
+    <div class="schedule_add_wrap">
+        <div class="schedule_input">
 
-          <div class="form-body cont-body">
+      <div class="form-body cont-body">
 
-              <%= form_for ([@user, @schedule]) do |f| %>
-            
-                <p>日程<span class="must_red">(必須)</span></p>
-                <%= f.text_field :day, id: 'datepicker', class: 'form-control form-day', readonly: "readonly", placeholder: "#{@time.strftime("%Y-%m-%d")}" %>
+          <%= form_for ([@user, @schedule]) do |f| %>
+        
+            <p>日程<span class="must_red">(必須)</span></p>
+            <%= f.text_field :day, id: 'datepicker', class: 'form-control form-day', readonly: "readonly", placeholder: "#{@time.strftime("%Y-%m-%d")}" %>
 
-                <p>時間帯</p>
-                  <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "18:00" %> 
-                  〜
-                  <%= f.time_field :time_e, class: 'form-control form-time', placeholder: "20:00" %> 
+            <p>時間帯</p>
+              <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "18:00" %> 
+              〜
+              <%= f.time_field :time_e, class: 'form-control form-time', placeholder: "20:00" %> 
 
-                <p>開催場所<span class="must_red">(必須)</span>（18文字以内）</p>
-                  <%= f.text_field :venue, class: 'form-control form-venue', placeholder: "サークルブック体育館" %> 
+            <p>開催場所<span class="must_red">(必須)</span>（18文字以内）</p>
+              <%= f.text_field :venue, class: 'form-control form-venue', placeholder: "サークルブック体育館" %> 
 
-                <p>開催場所の住所<br>
-                  <span class="profile_list_t_a">※入力すると地図が自動で表示されます</span>
-                </p>
-                    <%= f.text_field :venue_address, class: 'form-control form-venue', placeholder: "東京都千代田区丸の内１丁目" %> 
+            <p>開催場所の住所<br>
+              <span class="profile_list_t_a">※入力すると地図が自動で表示されます</span>
+            </p>
+                <%= f.text_field :venue_address, class: 'form-control form-venue', placeholder: "東京都千代田区丸の内１丁目" %> 
 
-                <div class="border"></div>
+            <div class="border"></div>
 
-                <p>タイトル（28文字以内）</p>
-                  <%= f.text_field :title, class: 'form-control form-venue', placeholder: "初心者限定のバスケdayです！" %>  
+            <p>タイトル（28文字以内）</p>
+              <%= f.text_field :title, class: 'form-control form-venue', placeholder: "初心者限定のバスケdayです！" %>  
 
-                <p>備考欄</p>
-                  <%= f.text_area :note, class: 'form-control form-note', placeholder: "参加費500円" %> 
+            <p>備考欄</p>
+              <%= f.text_area :note, class: 'form-control form-note', placeholder: "参加費500円" %> 
 
-                  <br>
+              <br>
 
-            <input type="submit" name="commit" value="更新する" data-disable-with="更新する">
+        <input type="submit" name="commit" value="更新する" data-disable-with="更新する">
 
-            <div class="reset"></div>
+        <div class="reset"></div>
 
-              <% end %>
+          <% end %>
 
-            </div>
         </div>
+    </div>

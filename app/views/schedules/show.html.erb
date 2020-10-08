@@ -284,17 +284,16 @@
 
 	  	</div>
 
-
-
-				<%= render "/layouts/ad_square" %>
-				<div class="ad_space"></div>
-
+		<% if @schedules.where.not(id: @schedule.id).present? %>
+			<%= render "/layouts/ad_square" %>
+			
 			<div class="users-index-item">
 				<%= render "/schedules/schedule_list" %>				
 			</div>
+		<% end %>
 			
-		<%= render "/layouts/ad_square" %>
-		<div class="ad_space"></div>
+			<%= render "/layouts/ad_square" %>
+			<div class="ad_space"></div>
 
 
   </div>
