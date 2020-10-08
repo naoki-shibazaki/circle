@@ -5451,6 +5451,66 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }      
 }
 
+.schedule_show{
+  background: #9ceae7;
+  margin: 0 auto;
+  padding: 10px 20px;
+  text-align: center;
+  display: block;
+
+  .schedule_title{
+    color: #000;
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  .schedule_summary{
+    font-size: 18px;
+  }
+
+  .schedule_gallery{
+    margin: 20px 0 20px;
+    .swiper-slide img,
+    .content_image_one{
+      height: 220px;
+      border: 4px solid #fff;
+      border-radius: 4px;
+    }
+  }
+
+
+}
+
+.schedule_user_image{
+    margin-bottom: -50px;
+
+  .image_icon_center{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px solid #e6e6e6;
+    object-fit: cover;
+    margin: 0 auto 0;
+    text-align: center;
+    border: 4px solid #fff;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.8);    
+  }  
+}
+
+.schedule_user{
+  padding-top: 50px;
+  .schedule_profile_wrap{
+    margin: 0 auto 30px;
+    text-align: center;
+    display: block; 
+    .user_name{
+      margin-bottom: 10px;
+      font-size: 24px; 
+    }
+  }
+
+
+}
 
 
 

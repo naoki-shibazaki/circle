@@ -1,7 +1,7 @@
 <% if @schedule.time_s.present? %>
 
 	<% if @schedule.time_e.present? %>
-		<% set_meta_tags title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
+		<% set_meta_tags title: "#{@schedule.title}｜活動スケジュール｜#{@user.name}",
 							og: { 
 										title: "活動スケジュール｜#{@user.name}",
 										description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
@@ -11,7 +11,7 @@
 		 %>
 	
 	<% else %>
-		<% set_meta_tags title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
+		<% set_meta_tags title: "#{@schedule.title}｜活動スケジュール｜#{@user.name}",
 							og: { 
 										title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
 										description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
@@ -24,7 +24,7 @@
 
 
 <% else %>
-	<% set_meta_tags title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
+	<% set_meta_tags title: "#{@schedule.title}｜活動スケジュール｜#{@user.name}",
 						og: { 
 									title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
 									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
@@ -42,9 +42,82 @@
 
     <%= render "/layouts/breadcrumb" %>
 
-	  	<div class="users-index-item">
+
+	<div class="schedule_show">
+		<h1 class="schedule_title">
+			<% if @schedule.title.present? %>
+				<%= @schedule.title %>
+			<% else %>
+				<%= @user.event.name %>
+			<% end %>
+		</h1>
+
+		<div class="schedule_summary">
+			<%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
+			<% if @schedule.time_s.present? %>
+				<%= @schedule.time_s.strftime('%H:%M') %>
+				〜
+				<%= @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? %>
+			<% end %>	
+			
+			<br>@<%= @schedule.venue %>
+
+		</div>
+
+		<div class="schedule_gallery">
+
+
+			<% if @user.gallery_01.present? %>
+
+				<% if @user.gallery_02.blank? && @user.gallery_03.blank? && @user.gallery_04.blank? %>
+
+					<%= lazysizes_image_tag @user.gallery_01.url , class:'content_image_one' %>
+
+				<% else %>
+
+				  <div class="swiper-container">
+				    <div class="swiper-wrapper">
+
+				      <% if @user.gallery_01.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_01.url , class:'content_image' %></div><% end %>
+				      <% if @user.gallery_02.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_02.url , class:'content_image' %></div><% end %>
+				      <% if @user.gallery_03.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_03.url , class:'content_image' %></div><% end %>
+				      <% if @user.gallery_04.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_04.url , class:'content_image' %></div><% end %>
+
+				    </div>
+
+                        <!-- Add Pagination -->
+                        <div class="pagination-wrap">
+                          <div class="swiper-pagination"></div>
+                        </div>
+
+				  </div>
+			  
+
+				<% end %>
+
+			<% elsif @user.pic_header.present? %>
+				<%= lazysizes_image_tag @user.pic_header.url , class:'content_image_one' %>
+			<% else %>
+
+			<% end %>			
+
+		</div>
+
+		<div class="schedule_user_image">
+			<%= image_tag @user.pic_profile.url , class:'image_icon_center' %>
+		</div>
+
+	</div>
+
+
+
+
+
+	  	<div class="users-index-item schedule_user">
 
 			<div class="schedule_profile_wrap">
+
+	  		<h2 class="user_name"><%= @user.name %></h2>
 
 			  <%= link_to("/#{@user.event.ruby}", class: "tag_btn") do %>
 			    <i class="fa fa-tags tag-color"></i><%= @user.event.name %>
@@ -65,27 +138,6 @@
 			      <% end %>
 			    <% end %>
 			  <% end %>  
-
-				<div class="schedule_ogp_wrap">
-					<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/
-					l_text:Sawarabi%20Gothic_60_bold:<%= @schedule_title %>,y_-120,co_rgb:333,w_900,c_fit/
-					l_text:Sawarabi%20Gothic_60:<%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %> <% if @schedule.time_s.present? %><%= @schedule.time_s.strftime('%H:%M') %>〜<%= @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? %><% end %>,y_10,co_rgb:333,w_900,c_fit/
-					l_text:Sawarabi%20Gothic_50:@<%= @schedule.venue %>,y_110,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg">	
-				</div>
-
-			  <%= link_to(user_path(@user.id)) do %>  
-			    <div class="user-content">
-			      <%= image_tag @user.pic_profile.url , class:'image_icon' %>
-
-			      <div class="list_wrapper contact_name_wrap">
-			        <div class="list_01">
-			          <h2 class="user_name"><%= @user.name %></h2>
-			        </div>
-
-			      </div>
-			    </div>  
-
-			  <% end %>
 
 			  <div class="reset"></div>
 
