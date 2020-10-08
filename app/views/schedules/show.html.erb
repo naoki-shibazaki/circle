@@ -53,7 +53,7 @@
 		</h1>
 
 		<div class="schedule_summary">
-			<%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
+			<%= Time.parse(@schedule.day).strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
 			<% if @schedule.time_s.present? %>
 				<%= @schedule.time_s.strftime('%H:%M') %>
 				〜
@@ -104,7 +104,9 @@
 		</div>
 
 		<div class="schedule_user_image">
-			<%= image_tag @user.pic_profile.url , class:'image_icon_center' %>
+			<%= link_to user_schedules_path(@user.id) do %>
+				<%= image_tag @user.pic_profile.url , class:'image_icon_center' %>
+			<% end %>
 		</div>
 
 	</div>
@@ -116,64 +118,44 @@
 	  	<div class="users-index-item schedule_user">
 
 			<div class="schedule_profile_wrap">
-
-	  		<h2 class="user_name"><%= @user.name %></h2>
-
-			  <%= link_to("/#{@user.event.ruby}", class: "tag_btn") do %>
-			    <i class="fa fa-tags tag-color"></i><%= @user.event.name %>
-			  <% end %>
-			  
-			  <%= link_to("/#{@user.event.ruby}/#{@user.prefecture.kana}", class: "tag_btn") do %>
-			    <i class="fa fa-tags tag-color"></i><%= @user.prefecture.name %>
-			  <% end %>
-
-			  <% if @user.prefecture_sub_id.present? %>
-			    <% @prefectures.each do |sub_prefecture| %>
-			      <% if @user.prefecture_sub_id == sub_prefecture.id %>  
-
-			        <%= link_to("/#{@user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
-			        <i class="fa fa-tags tag-color"></i><%= sub_prefecture.name %>
-			        <% end %>
-
-			      <% end %>
-			    <% end %>
-			  <% end %>  
-
-			  <div class="reset"></div>
-
+				<%= link_to user_schedules_path(@user.id) do %>
+		  			<h2 class="user_name"><%= @user.name %></h2>
+		  		<% end %>
 			</div>
 
 
-			<% if admin_user_signed_in?  %>
-				<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
 
+				<div class="post_share schedule_share">
+					<div class="share_btn_tw">
 
-					<div class="schedule_tw_share">
 						    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の活動日です！%20%23サークルブック%0a", target: '_blank') do %>
 								<div class="share_btn_tw">
-								     <i class="fa fa-twitter"></i>活動日をTwitterで告知する！
+								     <i class="fa fa-twitter"></i>ツイートする
 								</div>
 						    <% end %>
-					</div>
 
-					<div class="post_share">
+					</div>
 				
-							<div class="post_edit">
-							    <%= link_to(edit_user_schedule_path(@user.id, @schedule.id)) do %>
-									<i class="fa fa-pencil-square-o "></i> 									
-								<% end %>
-							</div>
+					<% if admin_user_signed_in?  %>
+						<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
+					
+								<div class="post_edit">
+								    <%= link_to(edit_user_schedule_path(@user.id, @schedule.id)) do %>
+										<i class="fa fa-pencil-square-o "></i> 									
+									<% end %>
+								</div>
 
-							<div class="post_delete">
-							    <%= link_to(user_schedule_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
-									<i class="fa fa-trash "></i> 									    
-								<% end %>
-							</div>
+								<div class="post_delete">
+								    <%= link_to(user_schedule_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+										<i class="fa fa-trash "></i> 									    
+									<% end %>
+								</div>
 
-					</div>
 
-				<% end %>
-			<% end %>
+						<% end %>
+					<% end %>
+
+				</div>
 
 				<h2 class="schedule_title">
 					<%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>のスケジュール詳細
@@ -187,7 +169,7 @@
 					<tr class="flex_contents">
 						<th class="flex_list">日程</th>
 						<td class="flex_list">
-							<%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
+							<%= Time.parse(@schedule.day).strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
 							<% if @schedule.time_s.present? %>
 					          <%= @schedule.time_s.strftime('%H:%M') %>
 					          〜
@@ -233,6 +215,74 @@
 						    </div>
 					</div>
 				<% end %>
+
+
+				<% if @user.switch.present? %>
+					<div class="border"></div>
+
+					<div class="users-index-item ribbon-wrapper"> 
+
+						<%= link_to("/#{@user.event.ruby}", class: "tag_btn") do %>
+			              <i class="fa fa-tags tag-color"></i><%= @user.event.name %>
+			            <% end %>
+
+			            <%= link_to("/#{@user.event.ruby}/#{@user.prefecture.kana}", class: "tag_btn") do %>
+			              <i class="fa fa-tags tag-color"></i><%= @user.prefecture.name %>
+			            <% end %>
+
+
+                        <% if @user.prefecture_sub_id.present? %>
+                          <% @prefectures.each do |sub_prefecture| %>
+                            <% if @user.prefecture_sub_id == sub_prefecture.id %>  
+
+                              <%= link_to("/#{@user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
+                              <i class="fa fa-tags tag-color"></i><%= sub_prefecture.name %>
+                              <% end %>
+
+                            <% end %>
+                          <% end %>
+                        <% end %> 
+
+
+			            <%= link_to(user_path(@user.id)) do %>  
+			            <div class="user-content">
+			              <%= lazysizes_image_tag @user.pic_profile.url , class:'image_icon' %>
+
+			              <div class="list_wrapper">
+			                <div class="list_01">
+			                  <h2 class="user_name"><%= @user.name %></h2>
+			                </div>
+
+			              </div>
+
+
+			              <div class="list_cnts">
+
+			                <div class="list_02">
+			                    <span class="user_schedule">
+			                      <i class="fa fa-calendar icon_c"></i><%= @user.schedule %>
+			                    </span>
+			                </div>
+
+			                <div class="list_03">
+			                    <span class="user_area">
+			                      <i class="fa fa-map-marker icon_c"></i><%= @user.prefecture.name %><%= "：" if @user.area.present? %><%= @user.area %>
+			                    </span>
+			                </div>              
+
+			                <div class="list_04">
+			                  <span class="user_recruitment"><%= @user.recruitment.truncate(110) %></span>
+			                </div>
+
+			              </div>
+			   
+			            </div>
+			            <% end %>
+					</div>
+				<% end %>
+
+
+
 
 	  	</div>
 

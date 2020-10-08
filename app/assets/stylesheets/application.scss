@@ -5498,7 +5498,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .schedule_user{
-  padding-top: 50px;
+  padding-top: 54px;
   .schedule_profile_wrap{
     margin: 0 auto 30px;
     text-align: center;
@@ -5509,9 +5509,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     }
   }
 
-
 }
 
+.schedule_share{
+    margin: 0;
+    padding: 30px 20px 6px 0px;  
+}
 
 
 // --------------------------------------
