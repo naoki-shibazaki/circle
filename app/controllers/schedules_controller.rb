@@ -68,7 +68,7 @@ before_action :set_schedules
 		@b1_url = "/users/#{@user.id}"
 		@b2_name = "活動スケジュール"
 		@b2_url = "/users/#{@user.id}/schedules"
-		@b3_name = Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")
+		@b3_name = Time.parse(@schedule.day).strftime("%Y/%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")
 		@b3_url = ""			
 	end	
 
@@ -79,7 +79,7 @@ before_action :set_schedules
 		@b1_url = "/users/#{@user.id}"
 		@b2_name = "活動スケジュール"
 		@b2_url = "/users/#{@user.id}/schedules"
-		@b3_name = Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")
+		@b3_name = Time.parse(@schedule.day).strftime("%Y/%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")
 		@b3_url = ""		
 	end
 
