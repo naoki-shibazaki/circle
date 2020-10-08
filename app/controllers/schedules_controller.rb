@@ -96,6 +96,7 @@ before_action :set_schedules
 		def set_schedules
 			@user = User.find(params[:user_id])		
 			@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
+			@past_schedules = Schedule.where(user_id: @user.id).where("day < ?", DateTime.yesterday).order(:day => :desc)
 			@data = AdminUser.find_by(id: params[:user_id])
 			@prefectures = Prefecture.all
 			@schedule_month = 0

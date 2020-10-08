@@ -1,4 +1,4 @@
-<% if @schedules.present? %>
+<% if @schedules.where.not(id: @schedule.id).present? %>
 
   <div class="schedule_list_wrap">
 
@@ -6,7 +6,7 @@
           <% if schedule.present? && @schedule.id != schedule.id %>
 
             <% if @schedule_month != Time.parse(schedule.day).strftime("%-m") %>
-              <h2 class="schedule_m"><i class="fa fa-calendar "></i> <%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール</h2>
+              <h2 class="schedule_m"><i class="fa fa-calendar "></i> <%= Time.parse(schedule.day).strftime("%-m月") %>のスケジュール</h2>
               <% @schedule_month = Time.parse(schedule.day).strftime("%-m") %>
             <% end %>             
 
@@ -29,6 +29,52 @@
                       @<%= schedule.venue %>
                       <br>
                       <%= schedule.title if schedule.title.present? %>
+                </div>
+
+              <% end %>  
+
+          <% end %>                  
+      <% end %>
+
+  </div>
+
+<% end %>
+
+
+
+
+<% if @past_schedules.where.not(id: @schedule.id).present? %>
+
+  <div class="past_schedule">ーー 開催が終了したスケジュール ーー</div>
+
+  <div class="schedule_list_wrap">
+
+      <% @past_schedules.each do |past_schedule| %> 
+          <% if past_schedule.present? && @schedule.id != past_schedule.id %>
+
+            <% if @past_schedule_month != Time.parse(past_schedule.day).strftime("%-m") %>
+              <h2 class="schedule_m"><i class="fa fa-calendar "></i> <%= Time.parse(past_schedule.day).strftime("%-m月") %>のスケジュール</h2>
+              <% @past_schedule_month = Time.parse(past_schedule.day).strftime("%-m") %>
+            <% end %>             
+
+
+              <%= link_to(user_schedule_path(@user.id, past_schedule.id)) do %>
+
+                <div class="schedule_list">
+                    <div class="schedule_day">
+                            <%= Time.parse(past_schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(past_schedule.day).wday]})") %>
+
+                      <% if past_schedule.time_s.present? %>
+                            <%= past_schedule.time_s.strftime('%H:%M') %>-<%= past_schedule.time_e.strftime('%H:%M') if past_schedule.time_e.present? %>
+                          <% end %>
+
+                      <span class="schedule_mark mark_red">開催終了</span>
+                    
+                    </div>
+
+                      @<%= past_schedule.venue %>
+                      <br>
+                      <%= past_schedule.title if past_schedule.title.present? %>
                 </div>
 
               <% end %>  
