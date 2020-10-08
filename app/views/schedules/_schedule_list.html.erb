@@ -21,6 +21,9 @@
                       <% if schedule.time_s.present? %>
                             <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
                           <% end %>
+
+                      <span class="schedule_mark mark_green">開催予定</span>
+                    
                     </div>
 
                       @<%= schedule.venue %>

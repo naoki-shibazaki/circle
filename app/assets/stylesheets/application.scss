@@ -3025,6 +3025,7 @@ max-width: 100%;
 }
 
 .schedule_list{
+    position: relative;
     border: 1px solid #d8dadf;
     border-bottom: 4px solid #d8dadf;
     border-bottom: 4px solid #d8dadf;
@@ -5518,6 +5519,20 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .schedule_user_profile{
    padding: 20px 10px 6px;
+}
+
+.schedule_mark{
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+    padding: 4px 10px;
+}
+
+.mark_green{
+  background: #39bd39;
 }
 
 // --------------------------------------
