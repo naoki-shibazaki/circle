@@ -1,0 +1,115 @@
+<div class="main users-index">
+  <div class="container">
+
+	  	<div class="users-index-item">
+
+	     <div class="p_t">お問い合わせページ</div>
+
+			<div class="schedule_profile_wrap">
+
+			  <%= link_to(user_path(@user.id)) do %>  
+			    <div class="user-content">
+			      <%= image_tag @user.pic_profile.url , class:'image_icon' %>
+
+			      <div class="list_wrapper contact_name_wrap">
+			        <div class="list_01">
+			          <h2 class="user_name"><%= @user.name %></h2>
+			        </div>
+
+			      </div>
+			    </div>  
+
+			  <% end %>
+
+			  <div class="reset"></div>
+
+			</div>
+
+			<span class="contact_memo">
+				下のテンプレをコピーすると、<br>
+				お問い合わせが簡単にできます！
+			</span>
+
+
+			<div class="contact_sample_wrap">
+				
+				<div class="contact_t_wrap"><span class="contact_s_t">件名：</span>お問い合わせのテンプレ</div>
+
+				<div class="contact_sample">
+					<div class="copyTarget">
+					<p><%= @user.name %> さん<br></p>
+
+					<p>
+					はじめまして。<br>
+					サークルブックを見てご連絡しました！<br>
+					</p>
+
+					<p>
+					--------------------------------------<br>
+					名前： 例）サークルブック<br>
+					性別： 例）男<br>
+					年代： 例）30代<br>
+					経歴： 例）初心者<br>
+					--------------------------------------<br>
+					</p>
+					
+					<p>
+					<%= @user.name %>さんの活動に興味があります！<br>
+					よろしくお願いします。
+					</p>
+					
+					</div>
+				</div>
+
+			</div>
+
+			<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
+
+
+				<% if @user.switch == "募集中" %>
+
+					<div class="contact_wrap">
+
+						<% if @user.contact == "line" && @user.line_id.present? %>
+							<a href="<%= @user.line_id %>">
+								<div class="contact-button line">LINEでお問い合わせをする！</div>
+							</a>
+
+						<% elsif @user.contact == "both" && @user.line_id.present? %>
+
+							<a href="<%= @user.line_id %>">
+								<div class="contact-button line">LINEでお問い合わせをする！</div>
+							</a>
+
+							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+								<div class="contact-button mail">メールでお問い合わせをする！</div>
+							</a>
+
+						<% else %>
+
+							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+								<div class="contact-button mail">メールでお問い合わせをする！</div>
+							</a>
+
+						<% end %>
+
+					 </div>
+
+				<% else %>
+
+					<%= @user.name %>は、<br>現在新規メンバーの募集を終了しております。
+
+				<% end %>
+
+
+				 <div class="contact_bottom"></div>
+
+		
+	
+	  	</div>
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>	  	
+
+  </div>
+</div>

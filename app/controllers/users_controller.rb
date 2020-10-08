@@ -53,8 +53,8 @@ helper_method :link_count
    			@users = @users.user_sort_3.page(params[:page])
         end
 
-
 	end	
+
 
 	def new
 	    if admin_user_signed_in? #ログイン判定
@@ -609,6 +609,17 @@ helper_method :link_count
 		  	end
 
 		end
+
+		@mail_title = "【#{@user.name}】お問い合わせ"
+		@mail_message = "こちらにご記入ください！"
+
+	end
+
+
+	def contact_form
+
+		@user = User.find(params[:id])
+		@data = AdminUser.find_by(id: @user.admin_user_id)
 
 		@mail_title = "【#{@user.name}】お問い合わせ"
 		@mail_message = "こちらにご記入ください！"
