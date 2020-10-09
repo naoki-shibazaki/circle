@@ -5665,7 +5665,27 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   margin-top: 50px;
 }
 
+.bookmark_icon{
+  color: #e09a1b;
+  height: 40px;
+  font-size: 30px;
+  padding: 0 10px;
+}
 
+.new_add_content{
+  text-align: center;
+  display: block;
+  margin: 10px auto 0;
+
+  img{
+    width: 230px;
+  }
+  .content{
+    margin-top: 14px;
+    color: #545454;
+    font-size: 12px;  
+  }
+}
 
 
 // --------------------------------------

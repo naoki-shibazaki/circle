@@ -695,8 +695,6 @@ private
 			end
 
 		end
-
-
 	end
 
 

@@ -12,6 +12,7 @@ class User < ApplicationRecord
   	has_many :groups, through: :users_groups
 	has_many :users_cities, dependent: :destroy
   	has_many :cities, through: :users_cities
+	has_many :bookmarks, dependent: :destroy
 
 	has_one :match, dependent: :destroy
 
@@ -92,5 +93,8 @@ class User < ApplicationRecord
 	  where("average_age LIKE ?", "%#{age_id}%")
 	end
 
+  def bookmarked_by?(member)
+    bookmarks.where(member_id: member).exists?
+  end
 
 end

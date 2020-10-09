@@ -70,7 +70,10 @@
 
 				<div class="share_btn_tw btn_tw_space">
 					    <%= render "/users/share_tw.html.erb" %>
+
 				</div>
+
+
 
 				<% if admin_user_signed_in? %>
 
@@ -94,6 +97,20 @@
 							<div class="contact-button end">募集終了</div>
 					<% end %>
 				
+					<!-- 修正 -->
+				    <% if @user.bookmarked_by?(current_member) %>
+				      <%= link_to user_bookmarks_path(@user), method: :delete do %>
+				      		<span class="bookmark_icon"><i class="fa fa-bookmark "></i></span>
+				      <% end %>
+
+				    <% else %>
+				      <%= link_to user_bookmarks_path(@user), method: :post do %>
+				      		<span class="bookmark_icon"><i class="fa fa-bookmark-o "></i></span>
+				      <% end %>
+				    <% end %>
+				    <!-- 修正 -->
+
+
 				<% end %> 
 		
 			</div>
@@ -145,6 +162,10 @@
 
 				  <% end %>
 				<% end %>
+
+
+
+
 
  			<%= render "/users/gallery" %>
 

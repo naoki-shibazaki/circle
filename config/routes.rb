@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   		resources :questions
   		resources :reviews
 		resources :opinions, only: [:new, :create, :index]
+	    resource :bookmarks, only: [:create, :destroy]
 	  	# resources :collections do
 	  	# 	resources :items
 	  	# end

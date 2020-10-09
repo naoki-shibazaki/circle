@@ -6,8 +6,11 @@ class Member < ApplicationRecord
 
 	# has_many :event_answers
 	has_many :reviews, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 	
 	mount_uploader :image_profile, ImageUploader
+
+  
 
 
   def remember_me
