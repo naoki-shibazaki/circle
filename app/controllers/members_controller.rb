@@ -36,8 +36,18 @@ class MembersController < ApplicationController
         @event_answers = EventAnswer.where(member_id: @member.id)
         @events = Event.all
 
+        if @member.id == current_member.id
+            @bookmarks = Bookmark.where(member_id: current_member.id).map { |m| m.user_id }
+            @users = User.where(id: @bookmarks)            
+        end
+
+
         @event_questions = EventQuestion.all
 
+
+        # パンくず
+        @b1_name = @member.nickname
+        @b1_url = ""
     end     
 
     def ensure_correct_member

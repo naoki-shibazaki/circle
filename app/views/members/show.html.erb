@@ -44,9 +44,66 @@
 
 		<div class="reset"></div>
 
-
-
 	</div>
+
+
+
+<div class="user_qa_btn">
+	<a href="/users">
+		<div class="contact-button qa_btn qa">
+			<i class="fa fa-search "></i>  サークルを探す！
+		</div>
+	</a>
+</div>
+
+
+
+
+<% if @users.present? %>
+
+	<div class="user-list-wrap">
+			<h2 class="others-user">ブックマークしたサークル一覧</h2>
+            <% @users.each do |user| %> 
+
+		            <%= link_to(user_path(user.id)) do %>  
+		            	<div class="user_list">
+				            <div class="user-content">
+				            	<div class="user_list_header">
+					            	<%= lazysizes_image_tag user.pic_profile.url , class:'image_icon' %>
+					            	<h3 class="user_name"><%= user.name.truncate(20) %></h3>
+				            	</div>
+				
+
+				                <div class="list_02">
+				                  <span class="user_schedule">
+				                    <i class="fa fa-calendar "></i><%= user.schedule %>
+				                  </span>
+				                </div>
+
+				                <div class="list_03">
+				                  <span class="user_area">
+				                    <i class="fa fa-map-marker "></i><%= user.area %>
+				                  </span>
+				                </div>
+				         	</div>
+					
+
+		            	</div>
+	            	<% end %>
+
+			<% end %>
+	    </div>
+
+<% end %>
+
+
+
+
+
+
+
+
+
 
 
 
