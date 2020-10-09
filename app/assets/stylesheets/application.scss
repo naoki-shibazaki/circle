@@ -5293,30 +5293,31 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     border-radius: 0.5rem;
   }
 
-  .btn--green {
+  .btn_green {
     color: #fff;
     background-color: #45bd59;
   }
 
-  .btn--green:hover {
+  .btn_green:hover {
     color: #fff;
     background: #57b767;
   }
 
-  .btn--green.btn--cubic {
+  .btn_green.btn_cubic {
     border-bottom: 5px solid #30803e;
   }
 
-  .btn--green.btn--cubic:hover {
+  .btn_green.btn_cubic:hover {
     margin-top: 3px;
     border-bottom: 2px solid #30803e;
   }
 
-  .btn-c i.fa {
-    margin-right: 1rem;
+  .btn_c i.fa {
+    margin-right: 8px;
+    font-size: 18px;
   }
 
-  .btn-c:before {
+  .btn_c:before {
     font-size: 1.6rem;
     line-height: 1;
     position: absolute;
@@ -5329,6 +5330,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 }
 
+.contact-button,
+.schedule_index_btn{
+  .fa{
+    font-size: 18px;
+    padding-right: 4px;
+  }
+}
 
 
 
@@ -5463,8 +5471,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   font-size: 14px;
   font-weight: bold;
   color: #444;
-  padding: 4px 10px 2px;
-
+  padding: 4px 10px 6px;
 }
 
 

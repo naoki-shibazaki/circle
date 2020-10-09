@@ -42,7 +42,7 @@
 <div class="user_qa_btn">
 	<%= link_to  user_questions_path(@user) do %>
 		<div class="contact-button qa_btn qa">
-			このサークルに質問する
+			<i class="fa fa-comments "></i> このサークルに質問する
 		</div>
 	<% end %>
 </div>
@@ -50,6 +50,4 @@
 
 <div class="border"></div>
 
-<div class="post_cta profile_cta">
-		<%= render "/layouts/contact_btn" %>
-</div>
+<%= render "/users/contact_btn" %>
