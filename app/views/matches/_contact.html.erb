@@ -3,11 +3,14 @@
 
 <% if @match.recruit == "募集中" %>
 
-	<%= link_to("/matches/#{@match.id}/contact") do %>
-		<div class="matching_entry">
-			練習試合の連絡をする
-		</div>
-	<% end %>
+	<div class="contact_link">
+		<%= link_to "/matches/#{@match.id}/contact" do %>
+			<div class="btn btn_c btn_green btn_cubic">
+				<i class="fa fa-envelope"></i>練習試合の連絡をする！
+			</div>
+		<% end %>
+	</div>
+
 
 <% else %>
 	<div class="stop_match">

@@ -72,23 +72,23 @@
 
 						<% if @user.contact == "line" && @user.line_id.present? %>
 							<a href="<%= @user.line_id %>">
-								<div class="cta_100 line">LINEでお問い合わせをする！</div>
+								<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
 							</a>
 
 						<% elsif @user.contact == "both" && @user.line_id.present? %>
 
 							<a href="<%= @user.line_id %>">
-								<div class="cta_50 line">LINEで連絡する！</div>
+								<div class="cta_50 line"><i class="fa fa-comment "></i> LINEで連絡する</div>
 							</a>
 
 							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-								<div class="cta_50 mail">メールで連絡する！</div>
+								<div class="cta_50 mail"><i class="fa fa-envelope "></i> メールで連絡する</div>
 							</a>
 
 						<% else %>
 
 							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-								<div class="cta_100 mail">メールでお問い合わせをする！</div>
+								<div class="cta_100 mail"><i class="fa fa-envelope "></i> メールでお問い合わせをする！</div>
 							</a>
 
 						<% end %>
@@ -96,9 +96,11 @@
 					 </div>
 
 				<% else %>
-
-					<%= @user.name %>は、<br>現在新規メンバーの募集を終了しております。
-
+					<div class="stop_match">
+						<%= @user.name %>は現在<br>
+						新規メンバーの募集を終了しております。
+						<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
+					</div>
 				<% end %>
 
 

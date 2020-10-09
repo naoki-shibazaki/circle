@@ -5251,15 +5251,62 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       text-align: center;
       padding: 10px 0;
       border-radius: 6px;
+
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+      position: relative;
+      display: inline-block;
+      padding: 10px 26px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      text-align: center;
+      vertical-align: middle;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      color: #fff;
+      border-radius: 0.5rem;
   }
 
   .cta_50{
       width: 48%;
+      font-size: 14px;
+      padding: 10px 2px;
+    .fa {
+        margin-right: 0px;
+        font-size: 18px;
+      }
   }
 
   .cta_100 {
       width: 90%;
+    .fa {
+        margin-right: 8px;
+        font-size: 18px;
+      }      
   }
+
+  .line{
+    border-bottom: 5px solid #30803e;
+    &:hover {
+    margin-top: 3px;
+    border-bottom: 2px solid #30803e;
+    }
+  }
+
+  .mail{
+    border-bottom: 5px solid #2e908b;
+    &:hover {
+    margin-top: 3px;
+    border-bottom: 2px solid #2e908b;
+    }
+  }
+
 
 }
 
@@ -5289,7 +5336,6 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     vertical-align: middle;
     text-decoration: none;
     letter-spacing: 0.1em;
-    color: #212529;
     border-radius: 0.5rem;
   }
 
