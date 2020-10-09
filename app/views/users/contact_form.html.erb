@@ -68,27 +68,27 @@
 
 				<% if @user.switch == "募集中" %>
 
-					<div class="contact_wrap">
+					<div class="cta_wrap contact_space">
 
 						<% if @user.contact == "line" && @user.line_id.present? %>
 							<a href="<%= @user.line_id %>">
-								<div class="contact-button line">LINEでお問い合わせをする！</div>
+								<div class="cta_100 line">LINEでお問い合わせをする！</div>
 							</a>
 
 						<% elsif @user.contact == "both" && @user.line_id.present? %>
 
 							<a href="<%= @user.line_id %>">
-								<div class="contact-button line">LINEでお問い合わせをする！</div>
+								<div class="cta_50 line">LINEで連絡する！</div>
 							</a>
 
 							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-								<div class="contact-button mail">メールでお問い合わせをする！</div>
+								<div class="cta_50 mail">メールで連絡する！</div>
 							</a>
 
 						<% else %>
 
 							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-								<div class="contact-button mail">メールでお問い合わせをする！</div>
+								<div class="cta_100 mail">メールでお問い合わせをする！</div>
 							</a>
 
 						<% end %>

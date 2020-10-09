@@ -5264,6 +5264,75 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 
+.contact_link{
+  margin: 20px auto;
+  display: block;
+  text-align: center;
+
+  .btn,
+  a.btn,
+  button.btn {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 10px 26px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #212529;
+    border-radius: 0.5rem;
+  }
+
+  .btn--green {
+    color: #fff;
+    background-color: #45bd59;
+  }
+
+  .btn--green:hover {
+    color: #fff;
+    background: #57b767;
+  }
+
+  .btn--green.btn--cubic {
+    border-bottom: 5px solid #30803e;
+  }
+
+  .btn--green.btn--cubic:hover {
+    margin-top: 3px;
+    border-bottom: 2px solid #30803e;
+  }
+
+  .btn-c i.fa {
+    margin-right: 1rem;
+  }
+
+  .btn-c:before {
+    font-size: 1.6rem;
+    line-height: 1;
+    position: absolute;
+    top: calc(50% - .8rem);
+    right: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+
+
+}
+
+
+
+
+
 
 .review_score {
     color: #6b6b6b;
@@ -5544,6 +5613,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     margin-top: 40px;
     text-align: center;
 }
+
+.contact_space{
+  margin-top: 50px;
+}
+
+
+
 
 // --------------------------------------
 // ▼PC

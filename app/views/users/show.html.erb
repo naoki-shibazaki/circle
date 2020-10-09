@@ -303,10 +303,14 @@
 		
 
 			<% if @user.switch == "募集中" %>
-
-				<div class="post_cta profile_cta">
-						<%= render "/layouts/contact_btn" %>
+				<div class="contact_link">
+					<%= link_to "/users/#{@user.id}/contact" do %>
+						<div class="btn btn-c btn--green btn--cubic">
+							<i class="fa fas fa-envelope"></i>このサークルに参加する！
+						</div>
+					<% end %>
 				</div>
+
     			<div class="border"></div>
 
 				<% if @user.reviews.any? %>
