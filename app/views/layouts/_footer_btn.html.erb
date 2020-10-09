@@ -64,18 +64,41 @@
 
                   <ul class="fixed_btn_list">
                     <li class="fixed_btn_content">
-                      <a href="/users/">
-                        <i class="fa fa-bookmark-o "></i>
-                        <div class="fixed_btn_txt">保存する</div>
-                      </a>
+
+                      <% if @user.bookmarked_by?(current_member) %>
+                        <%= link_to user_bookmarks_path(@user), method: :delete do %>
+                            <i class="fa fa-bookmark orange"></i>
+                            <div class="fixed_btn_txt">解除する</div>
+                        <% end %>
+
+                      <% else %>
+                        <%= link_to user_bookmarks_path(@user), method: :post do %>
+                            <i class="fa fa-bookmark "></i>
+                            <div class="fixed_btn_txt">保存する</div>
+                        <% end %>
+                      <% end %>
+
                     </li>
 
-                    <li class="fixed_btn_content">
-                      <a href="/users/">
-                        <i class="fa fa-edit "></i>
-                        <div class="fixed_btn_txt">コメント</div>
-                      </a>
-                    </li>
+                    <% if member_signed_in? %>
+
+                      <li class="fixed_btn_content">
+                        <a href="/users/<%= @user.id %>/reviews">
+                          <i class="fa fa-edit "></i>
+                          <div class="fixed_btn_txt">コメント</div>
+                        </a>
+                      </li>
+
+                    <% else %>
+
+                      <li class="fixed_btn_content">
+                        <%= link_to new_member_registration_path do %>
+                          <i class="fa fa-edit "></i>
+                          <div class="fixed_btn_txt">コメント</div>
+                        <% end %>
+                      </li>                    
+
+                    <% end %>
 
                   </ul>
 

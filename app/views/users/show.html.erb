@@ -97,7 +97,6 @@
 							<div class="contact-button end">募集終了</div>
 					<% end %>
 				
-					<!-- 修正 -->
 				    <% if @user.bookmarked_by?(current_member) %>
 				      <%= link_to user_bookmarks_path(@user), method: :delete do %>
 				      		<span class="bookmark_icon"><i class="fa fa-bookmark "></i></span>
@@ -108,7 +107,6 @@
 				      		<span class="bookmark_icon"><i class="fa fa-bookmark-o "></i></span>
 				      <% end %>
 				    <% end %>
-				    <!-- 修正 -->
 
 
 				<% end %> 

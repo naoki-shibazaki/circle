@@ -663,7 +663,7 @@ helper_method :link_count
 	def webmaster
    		if current_admin_user.id == 1   
 
-   			@places_events = PlacesEvent.all.order(place_id: :asc)
+   			@users = User.all.order(:id => :desc)
 
 
 	   	else
