@@ -3699,6 +3699,7 @@ max-width: 100%;
 
 .qa_answer {
     margin-bottom: 40px;
+    word-break: break-all;
 }
 
 .qa_answer_form{
@@ -5703,9 +5704,32 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .past_schedule{
     font-size: 16px;
-    margin-top: 40px;
+    margin: 40px auto 0;
     text-align: center;
+    position: relative;
+    display: block;
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    top: 46%;
+    display: inline-block;
+    width: 30px;
+    height: 2px;
+    border-top: solid 1px #545454;
+    border-bottom: solid 1px #545454;
+  }
+
+  &:before {
+    left: 6%;
+  }
+  &:after {
+    right: 6%;
+  }
 }
+
+
+
 
 .contact_space{
   margin-top: 50px;

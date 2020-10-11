@@ -68,37 +68,39 @@
 
 				<% if @user.switch == "募集中" %>
 
+					<div class="cta_wrap contact_space">
 
-					<div class="contact_wrap">
+						<% if @user.contact == "line" && @user.line_id.present? %>
+							<a href="<%= @user.line_id %>">
+								<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
+							</a>
 
-						<% if params[:count] == "line" || params[:count] == "line_b" || params[:count] == "line_s" %>
+						<% elsif @user.contact == "both" && @user.line_id.present? %>
 
-							<% if @user.contact != "mail" %>
-								<a href="<%= @user.line_id %>">
-									<div class="contact-button line">LINEでお問い合わせをする！</div>
-								</a>
-							<% end %>
-							
+							<a href="<%= @user.line_id %>">
+								<div class="cta_50 line"><i class="fa fa-comment "></i> LINEで連絡する</div>
+							</a>
 
-					  	<% elsif params[:count] == "mail" || params[:count] == "mail_b" || params[:count] == "mail_s"%>
-							
-							<% if @user.contact != "line" %>
-								<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-									<div class="contact-button mail">メールでお問い合わせをする！</div>
-								</a>
-							<% end %>
-							
-					  	<% else %>
+							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+								<div class="cta_50 mail"><i class="fa fa-envelope "></i> メールで連絡する</div>
+							</a>
 
+						<% else %>
 
-					  	<% end %>
+							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
+								<div class="cta_100 mail"><i class="fa fa-envelope "></i> メールでお問い合わせをする！</div>
+							</a>
+
+						<% end %>
 
 					 </div>
 
 				<% else %>
-
-					<%= @user.name %>は、現在新規メンバーの募集を終了しております。
-
+					<div class="stop_match">
+						<%= @user.name %>は現在<br>
+						新規メンバーの募集を終了しております。
+						<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
+					</div>
 				<% end %>
 
 

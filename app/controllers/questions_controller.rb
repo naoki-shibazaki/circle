@@ -13,7 +13,6 @@ class QuestionsController < ApplicationController
 		@question = @user.questions.build
 		@questions = Question.where(user_id: @user.id).order(id: "DESC")
 
-
 		if params[:sample] == "first"
 			@question_sample = @question_first
 
@@ -40,10 +39,12 @@ class QuestionsController < ApplicationController
 
 	end
 
-
 	def create
+		if @user.questions.create(question_params)
 
-		if @user.questions.create(question_params)		
+			@question = @user.questions.last
+			@question.content = @question.content.gsub(/[^！？!?ー〜0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
+			@question.save
 
 			if admin_user_signed_in?
 				if current_admin_user.id == @user.admin_user_id
@@ -87,7 +88,7 @@ class QuestionsController < ApplicationController
 
 	def show
 		@question = Question.find(params[:id])
-	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
+		@questions = Question.where(user_id: @user.id).order(id: "DESC")
 
 		if @user.id.to_i != @question.user_id.to_i
 			flash[:notice] = "存在しないURLです"

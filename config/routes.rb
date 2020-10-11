@@ -58,18 +58,13 @@ Rails.application.routes.draw do
 	
 	# 旧ブログ用のリダイレクト
 	get 'blogs/:id', to: 'blogs#show_redirect'
-
-	# a)以降中
-	get 'contact/:id', to: 'users#contact'
 	
 	get 'user/add', to: 'users#add'
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:id/mypage' , to: 'users#mypage'
 
-	# a)準備中
-	get 'users/:id/contact' , to: 'users#contact_form'
-
+	get 'users/:id/contact' , to: 'users#contact'
 	get 'users/:user_id/question' , to: 'questions#question'
 	# get 'users/:user_id/collection-sample' , to: 'collections#sample'	
 	
