@@ -1,0 +1,37 @@
+<% set_meta_tags title: "ログインページ" %>
+
+<div class="main users-index">
+  <div class="container">
+
+    <%= render "/layouts/breadcrumb" %>
+    
+	<div class="login_wrap">
+
+		<h1 class="p_t">ログイン</h1>
+
+		<h2 class="login_title">サークル主催者はこちら</h2>
+
+		<img src="/images/admin_user.png" class="login_img">
+
+		<%= link_to "ログイン", new_admin_user_session_path, class: "login_btn" %>
+
+
+		<div class="border"></div>
+
+
+		<h2 class="login_title">参加者・メンバーはこちら</h2>
+
+		<img src="/images/member.png" class="login_img">
+
+		<%= link_to "ログイン", new_member_session_path, class: "login_btn" %>
+
+
+
+	</div>
+
+
+
+
+  </div>
+</div>
+

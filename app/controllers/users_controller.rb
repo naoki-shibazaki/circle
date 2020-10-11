@@ -565,7 +565,12 @@ helper_method :link_count
 
 	end
 
+	def login
+		@b1_name = "ログインページ"
+		@b1_url = ""		
+	end
 
+private
 	def set_users
 		@search = User.ransack(params[:q]) 
 
@@ -612,7 +617,6 @@ helper_method :link_count
 	end
 
 
-private
 	def user_params
 		params.require(:user).permit(
 			:name, :email, :image_name, :header_image, :line_id, :switch, :item, :prefecture, :area, :schedule, :time_s, :time_e, :venue_address, :note, :age, :recruitment, :foundation, :member, :cost, :web, :appeal, :password, :goal, :user_id, :event_id, :decade, :prefecture_id, :image, :pic_profile, :pic_header, :image_01, :image_02, :gallery_01, :gallery_02, :gallery_03, :gallery_04, :requirement, :impressions_count, :line_count, :mail_count, :user_time, :last_post, :contact, :twitter, :instagram, :txt, :prefecture_sub_id, :opinion,

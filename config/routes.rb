@@ -49,6 +49,7 @@ Rails.application.routes.draw do
 	get 'privacypolicy' , to: 'users#privacypolicy'
 	get 'line' , to: 'users#line'
 	get 'link' , to: 'users#link'
+	get 'login' , to: 'users#login'
 	get 'admin_users' , to: 'users#admin_users'	
 	get 'webmaster' , to: 'users#webmaster'	
 	get 'questions' , to: 'questions#questions'

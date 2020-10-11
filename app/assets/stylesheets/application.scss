@@ -4600,6 +4600,41 @@ max-width: 100%;
   padding: 20px 10px;
 }
 
+.login_wrap{
+  background-color: #fff;
+  padding: 20px 10px;
+
+  .login_title{
+    display: block;
+    text-align: center;
+    margin: 30px auto 12px;
+    font-size: 22px;
+    color: #545454;
+  }
+
+  .login_img{
+    display: block;
+    text-align: center;
+    margin: 0 auto 0;
+    width: 160px;
+  }
+
+  .login_btn{
+    display: block;
+    width: 200px;
+    margin: 6px auto 40px;
+    padding: 10px 0px;
+    border-radius: 7px;
+    text-align: center;
+    background-color: #3ecdc6;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+}
+
+
 .icon_wrap {
     display: flex;
     flex-wrap: wrap;
