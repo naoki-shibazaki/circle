@@ -106,76 +106,40 @@
                       
                         <div class="star_wrap">
 
-                          <% if star_review < 0.5 %>
-                            <!-- 0 -->
+                          <% if star_review >= 4.5 %>
+                            <!-- 5.0 -->
                             <div class="star">
-                              <img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i>
                             </div>
 
-                          <% elsif star_review < 1.0 %>
-                            <!-- 0.5 -->
-                            <div class="star">
-                              <img src="/images/icon/star_05.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
-                            </div>
-
-                          <% elsif star_review < 1.5 %>
-                            <!-- 1.0 -->
-                            <div class="star">
-                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
-                            </div>
-
-                          <% elsif star_review < 2.0 %>
-                            <!-- 1.5 -->
-                            <div class="star">
-                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_05.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
-                            </div>
-
-                          <% elsif star_review < 2.5 %>
-                            <!-- 2.0 -->
-                            <div class="star">
-                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
-                            </div>
-
-                          <% elsif star_review < 3.0 %>
-                            <!-- 2.5 -->
-                            <div class="star">
-                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_05.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
-                            </div>
-
-                          <% elsif star_review < 3.5 %>
-                            <!-- 3.0 -->
-                            <div class="star">
-                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
-                            </div>
-
-                          <% elsif star_review < 4.0 %>
-                            <!-- 3.5 -->
-                            <div class="star">
-                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_05.png"><img src="/images/icon/star_0.png">
-                            </div>
-
-                          <% elsif star_review < 4.5 %>
+                          <% elsif star_review >= 4.0 %>
                             <!-- 4.0 -->
                             <div class="star">
-                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_0.png">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i>
                             </div>
 
-                          <% elsif star_review < 5.0 %>
-                            <!-- 4.5 -->
+                          <% elsif star_review >= 3.0 %>
+                            <!-- 3.0 -->
                             <div class="star">
-                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_05.png">
-                            </div>  
-
-                          <% elsif star_review < 5.5 %>
-                            <!-- 5.0 -->
-                            <div class="star">  
-                              <img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png"><img src="/images/icon/star_1.png">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
                             </div>
+
+                          <% elsif star_review >= 2.0 %>
+                            <!-- 2.0 -->
+                            <div class="star">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
+                            </div>
+
+                          <% elsif star_review >= 1.0 %>
+                            <!-- 1.0 -->
+                            <div class="star">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
+                            </div>  
 
                           <% else %>
                             <!-- 0 -->
                             <div class="star">
-                              <img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png"><img src="/images/icon/star_0.png">
+                              <i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
                             </div>
                           <% end %>
 
@@ -268,7 +232,8 @@
                   <% else %>
                     <%= lazysizes_image_tag user.pic_profile.url , class:'post_image' %>
                   <% end %>
-                  </div>   
+                  </div>  
+                  <div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
                   <h3 class="post_title"><%= blog.title.truncate(36) %></h3>
                 </div>
               <% end %> 

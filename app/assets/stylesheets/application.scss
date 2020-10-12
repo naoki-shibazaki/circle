@@ -1553,7 +1553,7 @@ a.line_business {
     width: 50px;
     height: 50px;
     object-fit: cover;
-    border-radius: 14px;
+    border-radius: 4px;
     border: 1px solid #e6e6e6;
 }
 
@@ -1565,7 +1565,8 @@ a.line_business {
 .post_title{
     font-size: 16px;
     font-weight: 700;
-    line-height: 1.5;
+    padding-top: 4px;
+    // line-height: 1.5;
 }
 
 
@@ -5199,6 +5200,20 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .star{
   float: left;
+   display: -webkit-flex;
+   display: flex;
+   -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+   align-items: center; /* 縦方向中央揃え */
+
+  .fa{
+    font-size: 18px;
+  }
+  .orange{
+    color: #e09a1b;
+  }
+  .gray{
+    color: #aaa;
+  }
 }
 
 .star_review{
@@ -5222,6 +5237,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   font-size: 12px;
 }
 
+.review_stars{
+  .star{
+    padding-top: 5px;
+  }
+}
 
 .review_link_b{
   text-align: center;
@@ -5495,6 +5515,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .review_set{
     padding-top: 4px;
+    vertical-align: middle;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+
 
     .review_score {
       display: inline-block;
