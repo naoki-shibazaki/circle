@@ -828,8 +828,7 @@ header {
 .swiper-container {
   width: 100%;
   height: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 12px;
 }
 .swiper-slide {
   text-align: center;
@@ -1164,7 +1163,7 @@ opacity: 1; /* 要素を表示する */
 
 .blog_title{
 	font-size: 24px;
-  margin-top: 16px;
+  // margin-top: 16px;
   margin-bottom: 10px;
 }
 
@@ -3509,7 +3508,7 @@ max-width: 100%;
 
 .list_cnts{
 	clear: both;
-	margin-top: 20px;
+	margin-top: 22px;
 }
 
 .list_wrapper {
@@ -5818,6 +5817,9 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     font-size: 12px;  
   }
 }
+
+
+
 
 
 // --------------------------------------
