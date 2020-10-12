@@ -227,7 +227,7 @@
 		                <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
 		                  <div class="blog_link">
 		                    <div class="catch_image"><%= lazysizes_image_tag blog.image_01.url , class:'post_image' %></div>
-							<!-- <div class="post_time"><%= blog.created_at.strftime("%Y/%m/%d %H:%M") %> </div> -->		                    
+							<div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>	                    
 							<h3 class="post_title"><%= blog.title.truncate(36) %></h3>
 		                  </div>
 
