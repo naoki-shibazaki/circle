@@ -22,9 +22,6 @@
 
 	     <div class="member_profile_edit">
 
-		    <p>ニックネーム<span class="must_red">(必須)</span></p>
-		    <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
-
 			<p>アイコン画像<br>
 			※10MB以下のjpgかpngのみ対応</p>
 
@@ -38,6 +35,10 @@
 			<%= f.file_field :image_profile, class: "image", style: "display:none;", id: "file_profile"%>
 
 
+		    <p>ニックネーム<span class="must_red">(必須)</span></p>
+		    <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
+
+
 			<% if @member.gender.blank? %>
 			    <p>性別（※登録後、変更はできません）</p>
 			    <div class="radio_button">
@@ -45,10 +46,22 @@
 	           	</div>
 			<% end %>
 
+	    	<p>メインの活動エリア<span class="must_red">(必須)</span></p>
+	    	<%= f.collection_select :prefecture_id, Prefecture.where.not(id: 50).order(:order => :asc), :id, :name, :prompt => "選択してください" %>
+
+
+			<div class="box_warp">
+				<span class="box_subtitle">興味のある種目（複数選択OK）<span class="must_red">(必須)</span></span>
+
+			    <div class="check_boxes">
+			   		<%= f.collection_check_boxes(:event_ids, @events, :id, :name) %>
+			    </div>
+
+			</div>
 
 
 		    <p>自己紹介</p>
-		    <%= f.text_area :profile, class: 'form-control', placeholder: "運動をするのが好きです！".html_safe %>
+		    <%= f.text_area :profile, class: 'form-control text_area_s', placeholder: "運動をするのが好きです！".html_safe %>
 
 
 

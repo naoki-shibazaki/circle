@@ -4,10 +4,17 @@
             <p><i class="fa fa-bank "></i> 施設名<span class="must_red">(必須)</span></p>
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック体育館" %> 
 
-            <p><i class="fa fa-soccer-ball-o "></i> 種目<span class="must_red">(必須)</span></p>  
-            <div class="places_input">
-                  <%= f.collection_check_boxes(:event_ids, Event.where(place: 1), :id, :name) %>
+
+            <div class="box_warp">
+                  <span class="box_subtitle"><i class="fa fa-soccer-ball-o "></i> 種目<span class="must_red">(必須)</span></span>
+
+                <div class="check_boxes">
+                       <%= f.collection_check_boxes(:event_ids, Event.where(place: 1), :id, :name) %>
+                </div>
+
             </div>
+
+
 
             <p><i class="fa fa-desktop "></i> 参考URL</p>
             <%= f.text_field :url, class: 'form-control', placeholder: "https://www.circle-book.com"  %>  

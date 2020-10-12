@@ -13,6 +13,7 @@ class MembersController < ApplicationController
 
     def edit
         @member = Member.find(params[:id])
+        @events = Event.all.order(order: :asc)
     end
 
     def update
@@ -40,7 +41,6 @@ class MembersController < ApplicationController
             @bookmarks = Bookmark.where(member_id: current_member.id).map { |m| m.user_id }
             @users = User.where(id: @bookmarks)            
         end
-
 
         @event_questions = EventQuestion.all
 
@@ -71,7 +71,9 @@ class MembersController < ApplicationController
 
     private
     def member_params
-    	params.require(:member).permit(:id, :email, :event_question_id, :nickname, :image_profile, :answer, :gender, :profile)
+    	params.require(:member).permit(:id, :email, :event_question_id, :nickname, :image_profile, :answer, :gender, :profile, :prefecture_id,
+            event_ids:[]
+            )
     end
 
 

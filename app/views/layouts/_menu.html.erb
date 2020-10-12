@@ -13,11 +13,8 @@
 
           <% if member_signed_in?  %>
 
-            <ul>
-                <li><%= link_to 'マイページ', member_path(current_member)%></li>
-                <li><%= link_to 'アカウント編集', edit_member_path(current_member)%></li>
-            </ul>
-
+            <div class="menu_btn"><%= link_to 'マイページ', member_path(current_member)%></div>
+            <div class="menu_btn"><%= link_to 'アカウント編集', edit_member_path(current_member)%></div>
 
           <% elsif admin_user_signed_in?  %>
             

@@ -5,5 +5,7 @@ class Event < ApplicationRecord
 
 	has_many :places_events
   	has_many :places, through: :places_events
+	has_many :members_events
+  	has_many :members, through: :members_events
 
 end
