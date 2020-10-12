@@ -4,7 +4,7 @@ class MembersController < ApplicationController
 	before_action :set_member
 
 	def index
-        @member = Member.find(params[:id])
+        redirect_to users_path
 	end	
 
 	def create
@@ -37,10 +37,11 @@ class MembersController < ApplicationController
         @event_answers = EventAnswer.where(member_id: @member.id)
         @events = Event.all
 
-        if @member.id == current_member.id
-            @bookmarks = Bookmark.where(member_id: current_member.id).map { |m| m.user_id }
-            @users = User.where(id: @bookmarks)            
-        end
+        @event_ids = @member.members_events.map { |e| e.event_id }
+        @r_users = User.where(prefecture_id: @member.prefecture_id).or(User.where(prefecture_sub_id: @member.prefecture_id)).where(event_id: @event_ids).order("RANDOM()").limit(5)
+
+        @bookmarks = Bookmark.where(member_id: current_member.id).map { |m| m.user_id }
+        @b_users = User.where(id: @bookmarks)            
 
         @event_questions = EventQuestion.all
 
@@ -56,7 +57,7 @@ class MembersController < ApplicationController
 
             else
               flash[:notice] = "権限がありません"
-              redirect_to members_path
+              redirect_to users_path
 
             end
        end

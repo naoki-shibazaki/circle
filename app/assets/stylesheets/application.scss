@@ -55,6 +55,7 @@ a,input,
 .contact-button,
 .user_qa_btn,
 .user_list,
+.user_slide_list,
 .copy_txt,
 .login_btn,
 .cta_50,
@@ -904,6 +905,7 @@ header {
 .content_image_one{
   // height: 240px;
   max-height: 400px;
+  margin-bottom: 20px;
 }
 
 .content_image{
@@ -2957,7 +2959,7 @@ max-width: 100%;
 #img_field_profile img{
     width: 100px;
     height: 100px;
-    border-radius: 50%; 
+    border-radius: 10%; 
     border: 3px solid #fff; 
     object-fit: cover;
 }
@@ -5854,6 +5856,51 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   font-size: 18px;
   margin-bottom: 8px;
 }
+
+.user_slide_wrap{
+    display: flex;
+    overflow-x: scroll;
+    text-align: center; 
+
+  .user_slide_list{
+      width: 240px;
+      // height: 240px;
+      margin-right: 20px;
+      padding: 12px;
+      background-color: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 4px;
+      font-size: 16px;
+  }
+
+  .image_icon {
+      width: 50px;
+      height: 50px;
+      margin-right: 0;
+      margin-bottom: 0;      
+  }
+
+  .user_list_header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      margin-bottom: 4px;
+  }
+
+  .user_name {
+      font-size: 16px;
+      margin-left: 10px;
+  }
+
+  .list_02, .list_03 {
+      text-align: left;
+      font-size: 14px;
+  }
+
+}
+
+
 
 
 
