@@ -7,13 +7,13 @@ Event.seed(:id,
   { :id => 4, :category => "スポーツ１", :order => "02", :name => "バレーボール" , :ruby => "volleyball",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/J2oirsmlRsHc1QVS4sFb6Q", :txt => "バレーサークル・チーム" },
   { :id => 8, :category => "スポーツ１", :order => "03", :name => "フットサル" , :ruby => "futsal",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/jq0AbQjRV3XsyDnmvNidtA", :txt => "フットサルサークル・チーム" },
 
-  { :id => 5, :category => "スポーツ１", :order => "04", :name => "バドミントン" , :ruby => "badminton",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/9hLTdMzYeuiuO1fRinT_wQ", :txt => "バドミントンサークル" },
-  { :id => 9, :category => "スポーツ１", :order => "05", :name => "テニス" , :ruby => "tennis",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/rQkRsdC0Ppg-xVTQVlQYgw", :txt => "硬式・軟式テニスサークル" },
-  { :id => 10, :category => "スポーツ１", :order => "06", :name => "卓球" , :ruby => "table-tennis",  :matching => 1, :place => 1, :openchat => "", :txt => "卓球サークル" }, 
+  { :id => 5, :category => "スポーツ１", :order => "04", :name => "バドミントン" , :ruby => "badminton",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/9hLTdMzYeuiuO1fRinT_wQ", :txt => "バドミントンサークル・クラブ" },
+  { :id => 9, :category => "スポーツ１", :order => "05", :name => "テニス" , :ruby => "tennis",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/rQkRsdC0Ppg-xVTQVlQYgw", :txt => "テニスサークル" },
+  { :id => 10, :category => "スポーツ１", :order => "06", :name => "卓球" , :ruby => "table-tennis",  :matching => 1, :place => 1, :openchat => "", :txt => "卓球サークル・クラブ" }, 
  
   { :id => 7, :category => "スポーツ１", :order => "07", :name => "草野球" , :ruby => "baseball",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/StLPRlAGJPjl9rHX9BTXug", :txt => "草野球チーム・サークル" },
   { :id => 22, :category => "スポーツ１", :order => "08", :name => "ソフトボール" , :ruby => "softball",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/StLPRlAGJPjl9rHX9BTXug", :txt => "ソフトボールチーム・サークル" },
-  { :id => 16, :category => "スポーツ１", :order => "09", :name => "サッカー" , :ruby => "soccer",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/TuGt6TZqgewnQONxcJd7Yw", :txt => "サッカーチーム・サークル" },
+  { :id => 16, :category => "スポーツ１", :order => "09", :name => "サッカー" , :ruby => "soccer",  :matching => 1, :place => 1, :openchat => "", :txt => "サッカーチーム・サークル" },
 
 
 # --------------------------------------
