@@ -604,7 +604,8 @@ header {
   margin-top: 14px;
 }
 
-.profile-content .content_08{
+.profile-content .content_08,
+.place_list .content_08{
   margin-top: 10px;
   margin-left: 10px;
   word-break: break-all;  
@@ -1184,13 +1185,15 @@ opacity: 1; /* 要素を表示する */
 
 .post-body a,
 .flex_contents a,
+.place_list .content_08 a,
 .profile-content .content_08 a,
 .qa_answer a,
 .matching_url a{
     color: #3ecdc6;
 }
 
-.profile-content .content_08{
+.profile-content .content_08,
+.place_list .content_08{
   color: #777;
 }
 
