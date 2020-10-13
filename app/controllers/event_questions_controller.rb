@@ -20,6 +20,11 @@ class EventQuestionsController < ApplicationController
 
 	def create
 		if @event.event_questions.create(event_question_params)	
+
+			@event_question = @event.event_questions.last
+			@event_question.question = @event_question.question.gsub(/[^！？!?ー〜0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
+			@event_question.save
+
 			flash[:notice] = '投稿しました！'
 			redirect_to "/#{@event.ruby}/qa"
 		else
