@@ -97,16 +97,7 @@
 							<div class="contact-button end">募集終了</div>
 					<% end %>
 				
-				    <% if @user.bookmarked_by?(current_member) %>
-				      <%= link_to user_bookmarks_path(@user), method: :delete do %>
-				      		<span class="bookmark_icon"><i class="fa fa-bookmark "></i></span>
-				      <% end %>
-
-				    <% else %>
-				      <%= link_to user_bookmarks_path(@user), method: :post do %>
-				      		<span class="bookmark_icon"><i class="fa fa-bookmark-o "></i></span>
-				      <% end %>
-				    <% end %>
+					<%= render 'bookmarks/bookmark_area', user: @user %>
 
 
 				<% end %> 

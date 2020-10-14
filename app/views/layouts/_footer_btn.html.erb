@@ -64,20 +64,9 @@
 
                   <ul class="fixed_btn_list">
                     <li class="fixed_btn_content">
-
-                      <% if @user.bookmarked_by?(current_member) %>
-                        <%= link_to user_bookmarks_path(@user), method: :delete do %>
-                            <i class="fa fa-bookmark orange"></i>
-                            <div class="fixed_btn_txt">解除する</div>
-                        <% end %>
-
-                      <% else %>
-                        <%= link_to user_bookmarks_path(@user), method: :post do %>
-                            <i class="fa fa-bookmark "></i>
-                            <div class="fixed_btn_txt">保存する</div>
-                        <% end %>
-                      <% end %>
-
+                      
+                      <%= render 'layouts/bookmark_area', user: @user %>
+                      
                     </li>
 
                     <% if member_signed_in? %>
