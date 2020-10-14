@@ -5829,10 +5829,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .bookmark_icon{
-  color: #e09a1b;
-  height: 40px;
-  font-size: 30px;
-  padding: 0 10px;
+    color: #e09a1b;
+    font-size: 30px;
+    text-align: center;
+    margin: -6px auto 0;
+    display: block;
 }
 
 .new_add_content{
@@ -5899,6 +5900,19 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   .list_02, .list_03 {
       text-align: left;
       font-size: 14px;
+  }
+
+}
+
+.bookmark_btn_wrap{
+  height: 40px;
+  width: 40px;
+
+  .booknark_txt{
+    font-size: 12px;
+    color: #6d6d6d;
+    margin-top: -8px;
+    text-align: center;
   }
 
 }
