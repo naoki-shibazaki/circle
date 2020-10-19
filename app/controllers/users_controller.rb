@@ -580,6 +580,8 @@ helper_method :link_count
 		@user = User.find(params[:id])
 		@data = AdminUser.find_by(id: @user.admin_user_id)
 
+		@user.template = "名前： 例）サークルブック\r\n性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
+
 		@mail_title = "【#{@user.name}】お問い合わせ"
 		@mail_message = "こちらにご記入ください！"
 

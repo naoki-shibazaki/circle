@@ -25,14 +25,13 @@
 
 			</div>
 
-
 			<% if admin_user_signed_in? %>
 				<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
 					<div class="template_wrap">
 						<div class="template_title">▼ お問い合わせテンプレの内容修正</div>
 					    <%= form_for @user,:url => {controller: "users", action: "update_contact"} do |f| %>
 
-				   			<%= f.text_area :template, class: 'form-control', placeholder: "名前： 例）サークルブック&#13;&#10;性別： 例）男&#13;&#10;年代： 例）30代&#13;&#10;経歴： 例）初心者&#13;&#10;".html_safe %>
+				   			<%= f.text_area :template, class: 'form-control' %>
 
 					        <%= f.submit "更新する" %>
 
@@ -44,12 +43,10 @@
 			<% end %>
 
 
-
 			<span class="contact_memo">
 				下のテンプレをコピーすると、<br>
 				お問い合わせが簡単にできます！
 			</span>
-
 
 			<div class="contact_sample_wrap">
 				
@@ -64,18 +61,9 @@
 						サークルブックを見てご連絡しました！<br>
 						</p>
 
-						<p>
-						--------------------------------------<br>
-						<% if @user.template.present? %>
+						<p>--------------------------------------</p>
 							<%= simple_format @user.template %>
-						<% else %>
-							名前： 例）サークルブック<br>
-							性別： 例）男<br>
-							年代： 例）30代<br>
-							経歴： 例）初心者<br>
-						<% end %>
-						--------------------------------------<br>
-						</p>
+						<p>--------------------------------------</p>
 						
 						<p>
 						<%= @user.name %>さんの活動に興味があります！<br>
