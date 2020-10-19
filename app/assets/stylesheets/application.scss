@@ -5925,6 +5925,30 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 
+.template_wrap{
+  margin: 16px 0 30px;
+
+  textarea{
+      height: 110px;
+  }
+
+  input[type="submit"] {
+    background-color: #3ecdc6;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    width: 120px;
+    height: 32px;
+    border-radius: 2px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    float: right;
+  }
+
+}
+
+
+
 
 
 

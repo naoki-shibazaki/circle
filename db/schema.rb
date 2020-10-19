@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_074410) do
+ActiveRecord::Schema.define(version: 2020_10_19_050152) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -374,6 +374,7 @@ ActiveRecord::Schema.define(version: 2020_10_12_074410) do
     t.string "twitter"
     t.string "instagram"
     t.integer "prefecture_sub_id"
+    t.text "template"
     t.index ["admin_user_id"], name: "index_users_on_admin_user_id"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
