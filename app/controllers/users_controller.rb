@@ -280,27 +280,36 @@ helper_method :link_count
 
 	def mypage
 		@user = User.find(params[:id])
-		@admin_user = AdminUser.find_by(id: current_admin_user.id)
-		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
-		@opinion = @user.opinions.build
 
-    	impressionist(@user, nil, unique: [:session_hash])
-    	@blogs_imp = 0
-		@count = 0
+		# 管理者判定
+		if admin_user_signed_in?
 
-		# ランキング取得
-		@users = User.user_sort_2
-		@users.map.with_index(1){ |user,i|
-			if user.id.to_i == @user.id.to_i
-				@ranking = i
+			@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
+			@opinion = @user.opinions.build
+
+	    	impressionist(@user, nil, unique: [:session_hash])
+	    	@blogs_imp = 0
+			@count = 0
+
+			# ランキング取得
+			@users = User.user_sort_2
+			@users.map.with_index(1){ |user,i|
+				if user.id.to_i == @user.id.to_i
+					@ranking = i
+				end
+			}
+
+			if @admin_user.users.any?
+
+			else
+				redirect_to "/user/add"
+				
 			end
-		}
 
-		if @admin_user.users.any?
 
 		else
-			redirect_to "/user/add"
-			
+	      flash[:notice] = "URLが管理者専用ページです"
+	      redirect_to user_path(@user)			
 		end
 
 		# パンくず		
