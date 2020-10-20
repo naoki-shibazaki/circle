@@ -3477,23 +3477,43 @@ max-width: 100%;
 
 
 .link_to_user{
-	margin: 10px auto 10px;
+	margin: 30px auto 30px;
 	text-align: center;
 	display: block;
 }
 
 .link_to_user_btn{
-    margin: 14px auto 14px;
-    text-align: center;
-    border-radius: 6px;
     color: #fff;
     background-color: #e09a1b;
-    display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
-    width: 80%;
+    width: 96%;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 10px 26px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    border-radius: 0.5rem;
+    border-bottom: 5px solid #9c7e47;
+    &:hover {
+      margin-top: 3px;
+      border-bottom: 2px solid #9c7e47;
+    }
 }
+
+
 
 .others_place{
 	margin-top: 30px;
@@ -4025,6 +4045,7 @@ max-width: 100%;
     position: inherit;
     margin-bottom: 20px;
     border-radius: 10%;
+    border-radius: 50%;
 }
 
 .member_profile_edit .img_field_profile_space{
@@ -5010,7 +5031,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   text-align:center;
 
   img {
-    width: 300px;
+    width: 220px;
     border-radius: 6px;
   }
 
