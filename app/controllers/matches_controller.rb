@@ -62,6 +62,11 @@ before_action :set_matches
 		@prefecture = Prefecture.find_by(id: @user.prefecture_id)
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 
+		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id)
+		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
+
+
+
 		# パンくず
 		@b2_name = @event.name
 		@b2_url = "/match/#{@event.ruby}"

@@ -78,7 +78,11 @@
 				<% if admin_user_signed_in? %>
 
 						<% if @user.admin_user_id == current_admin_user.id %>
-							<div class="contact-button edit"><%= link_to("プロフィール編集", edit_user_path) %></div>
+							
+								<%= link_to edit_user_path do %>
+									<div class="contact-button edit">プロフィール編集</div>
+								<% end %>
+							
 						<% else %>
 
 							<% if @user.switch == "募集中" %>

@@ -1,23 +1,25 @@
 <div class="vs_wrap">VS</div>
 
 
-<% if @match.recruit == "募集中" %>
+<div class="match_cta_wrap">
+	<% if @match.recruit == "募集中" %>
 
-	<div class="contact_link">
-		<%= link_to "/matches/#{@match.id}/contact" do %>
-			<div class="btn btn_c btn_green btn_cubic">
-				<i class="fa fa-envelope"></i>練習試合の連絡をする！
-			</div>
-		<% end %>
-	</div>
+		<div class="contact_link">
+			<%= link_to "/matches/#{@match.id}/contact" do %>
+				<div class="btn btn_c btn_green btn_cubic">
+					<i class="fa fa-envelope"></i>練習試合の連絡をする！
+				</div>
+			<% end %>
+		</div>
 
 
-<% else %>
-	<div class="stop_match">
-	<%= @match.user.name %>は現在<br>
-	練習試合の募集を終了しております。
-	</div>
+	<% else %>
+		<div class="stop_match">
+		<%= @match.user.name %>は現在<br>
+		練習試合の募集を終了しております。
+		</div>
 
-	<%= link_to ">> 他のサークルを探す", matches_path, class: "other_match" %>
+		<%= link_to ">> 他のサークルを探す", matches_path, class: "other_match" %>
 
-<% end %>
+	<% end %>
+</div>

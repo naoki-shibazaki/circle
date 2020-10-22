@@ -5969,6 +5969,27 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 }
 
+.match_edit{
+  margin: 16px auto;
+  .edit {
+    background-color: #b0b1b1;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    border-radius: 7px;
+    margin: auto;
+  } 
+}
+
+.match_cta_wrap{
+  margin-bottom: 40px;
+}
+
+
+
+
 
 // --------------------------------------
 // ▼PC
