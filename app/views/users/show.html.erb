@@ -272,17 +272,19 @@
 
 				        <% if schedule.present? %>
 
-                        <div class="text_slide">
+	                        <%= link_to(user_schedules_path(@user.id)) do %> 
+	                        	<div class="text_slide">
 
-				          ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+						          ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
-							<% if schedule.time_s.present? %>
-					          <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
-					        <% end %>
+									<% if schedule.time_s.present? %>
+							          <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+							        <% end %>
 
-				          <%= schedule.venue %>
-				          
-				      	</div>
+						          <%= schedule.venue %>
+					          
+					      		</div>
+					      	<% end %>
 
 				        <% end %>                  
 				    <% end %>
