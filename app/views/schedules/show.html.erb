@@ -209,8 +209,7 @@
 					<% end %>
 				</div>
 
-
-				<% if @schedule.venue_address.present? %>
+				<% if @schedule.venue_address.present? && @schedule.google_map == "1" %>
 					<div class="g_map">
 						<iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@schedule.venue_address}") %>></iframe>
 							<div class="google_map_wrap">
