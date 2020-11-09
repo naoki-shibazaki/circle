@@ -9,8 +9,9 @@ class PlacesController < ApplicationController
     	@places = Place.all.order(updated_at: "DESC").page(params[:page])
 	end	
 
-	def edit_page	
-    	@places = Place.where("updated_at < ?", "2020-01-01").order(updated_at: "DESC").page(params[:page])
+	def edit_page
+    	@places = Place.where("updated_at < ?", "2020-01-01").where(tag: "1").order(updated_at: "DESC").page(params[:page])
+    	@places_count = Place.where("updated_at < ?", "2020-01-01").order(updated_at: "DESC")
 	end	
 
 	def new

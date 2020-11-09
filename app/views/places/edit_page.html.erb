@@ -3,7 +3,7 @@
   <div class="container">
 
     <%= render "/layouts/breadcrumb" %>
-    <h1 class="users-heading">残りの件数：<%= @places.count %>件</h1>
+    <h1 class="users-heading">残りの件数：<%= @places_count.count %>件</h1>
 
 
 <% @places.each.with_index(1) do |place, i| %>
