@@ -6,7 +6,10 @@ class PlacesController < ApplicationController
 
 
 	def index	
-    	@places = Place.all.order(updated_at: "DESC").page(params[:page])
+    	@events = Event.where(place: 1).order(order: "asc")
+
+    	@b1_name = "コート・施設情報"
+		@b1_url = "/places"
 	end	
 
 	def edit_page
@@ -190,7 +193,7 @@ class PlacesController < ApplicationController
 		@event_places = @event_ids.map { |e| e.place_id }
 		
 
-    	@b1_name = "コート情報"
+    	@b1_name = "コート・施設情報"
 		@b1_url = "/places"
 
 	    if admin_user_signed_in?
