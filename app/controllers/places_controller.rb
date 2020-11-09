@@ -168,7 +168,7 @@ class PlacesController < ApplicationController
 		@user = User.find_by(id: @place.user_id)
 		
 	   if current_admin_user.id != @user.admin_user_id.to_i
-	   		if current_admin_user.id == 1   			
+	   		if current_admin_user.id == 1 || current_admin_user.id	== 1659
 	   		
 		   	else
 		      flash[:notice] = "権限がありません"
