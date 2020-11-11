@@ -23,7 +23,9 @@
 					<div class="search_icon"><i class="fa fa-search "></i></div>
 
 
-	        <% elsif @path.is('users#event_prefecture') %>
+	        <% elsif @path.is('users#event_prefecture_city') %>
+
+	        	<div class="search_select_3">
 
 					<select name="event_select" onChange="location.href=value;">
 						<option value="#"><%= @event.name %></option>
@@ -45,7 +47,57 @@
 						<% end %>
 					</select>
 
+					<select name="city_select" onChange="location.href=value;">
+						<option value="#"><%= @city.name %></option>
+					    <% @cities.each do |city| %>
+							<% if city.city_kana != @city.city_kana %>
+								<option value="/<%= @event.ruby %>/<%= @prefecture.kana %>/<%= city.city_kana %>"><%= city.name %></option>
+							<% end %>
+						<% end %>
+					</select>					
+
 					<div class="search_icon"><i class="fa fa-search "></i></div>
+
+				</div>
+
+
+
+	        <% elsif @path.is('users#event_prefecture') %>
+
+	        	<div class="search_select_3">
+
+					<select name="event_select" onChange="location.href=value;">
+						<option value="#"><%= @event.name %></option>
+					    <% @events.each do |event| %>
+						    <% if event.ruby != @event.ruby %>
+								<option value="/<%= event.ruby %>"><%= event.name %></option>
+							<% end %>
+						<% end %>
+					</select>
+
+					<select name="prefecture_select" onChange="location.href=value;">
+						<option value="#"><%= @prefecture.name %></option>
+					    <% @prefectures.each do |prefecture| %>					    
+							<% if prefecture.id != 50 %>
+							    <% if prefecture.kana != @prefecture.kana %>
+									<option value="/<%= @event.ruby %>/<%= prefecture.kana %>"><%= prefecture.name %></option>
+								<% end %>
+							<% end %>
+						<% end %>
+					</select>
+
+					<select name="city_select" onChange="location.href=value;">
+						<option value="#">市区町村郡</option>
+					    <% @cities.each do |city| %>
+							<option value="/<%= @event.ruby %>/<%= @prefecture.kana %>/<%= city.city_kana %>"><%= city.name %></option>
+						<% end %>
+					</select>					
+
+					<div class="search_icon"><i class="fa fa-search "></i></div>
+
+				</div>
+
+
 
 
 	        <% elsif  @path.is('users#event') %>
@@ -135,7 +187,7 @@
 					    <% @cities.each do |city| %>
 							<option value="/prefectures/<%= @prefecture.kana %>/<%= city.city_kana %>"><%= city.name %></option>
 						<% end %>
-					</select>		
+					</select>
 
 					<div class="search_icon"><i class="fa fa-search "></i></div>
 
