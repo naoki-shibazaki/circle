@@ -119,7 +119,7 @@ class PlacesController < ApplicationController
 	def event
 	    @places = Place.where(id: @event_places).order(updated_at: "DESC").page(params[:page])
 	    
-	    @places_count = Place.where(id: @event_places)
+	    # @places_count = Place.where(id: @event_places)
 
 		@b2_name = @event.name
 		@b2_url = "/places/#{@event.ruby}"	
@@ -130,7 +130,7 @@ class PlacesController < ApplicationController
 		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 
 	    @places = Place.where(id: @event_places).where(prefecture_id: @prefecture.id).all.order(updated_at: "DESC").page(params[:page])
-	    @places_count = Place.where(id: @event_places).where(prefecture_id: @prefecture.id)
+	    # @places_count = Place.where(id: @event_places).where(prefecture_id: @prefecture.id)
 
 		@b2_name = @event.name
 		@b2_url = "/places/#{@event.ruby}"	
