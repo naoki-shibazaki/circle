@@ -483,6 +483,7 @@ helper_method :link_count
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		# @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
 
 		# ソート機能
@@ -505,6 +506,7 @@ helper_method :link_count
 		@event = Event.find_by(ruby: params[:ruby])
 		@city = City.find_by(city_kana: params[:city_kana])	
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
+		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
