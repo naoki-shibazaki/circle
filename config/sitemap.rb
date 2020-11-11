@@ -67,7 +67,6 @@ SitemapGenerator::Sitemap.create do
           end 
 
 
-
     end
 
   end
