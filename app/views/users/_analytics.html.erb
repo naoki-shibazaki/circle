@@ -42,14 +42,17 @@
 
 
 
-		<% if @user.pic_profile.blank? && @user.pic_header.blank? %><!-- プロフィール画像 -->
+		<% if @user.pic_profile.blank? || @user.pic_header.blank? %><!-- プロフィール画像 -->
 			<div class="advice_wrap">
 			    <span class="box-title">ポイント</span>
-			    <p><span class="marker">プロフィールと背景画像</span>があると良いです！<br>
+			    <p>
+			    	<span class="marker"><%= "アイコン画像" if @user.pic_profile.blank? %><%= "と" if @user.pic_profile.blank? && @user.pic_header.blank? %><%= "背景画像" if @user.pic_header.blank? %></span>を設定しよう！<br>
 			    	参加者が<span class="marker">どんな雰囲気かイメージしやすく</span><br>
 			    	安心してお問い合わせすることができます！
 			    </p>			    	
-			    	<%= link_to ">>プロフィール画像の設定", edit_user_path(@user) %>
+			    	<%= link_to edit_user_path(@user) do %>
+						>><%= "アイコン画像" if @user.pic_profile.blank? %><%= "と" if @user.pic_profile.blank? && @user.pic_header.blank? %><%= "背景画像" if @user.pic_header.blank? %>の設定
+			    	<% end %>
 			</div>
 		
 		<% elsif @user.gallery_01.blank? && @user.gallery_02.blank? && @user.gallery_03.blank? && @user.gallery_04.blank? %><!-- ギャラリー画像 -->
