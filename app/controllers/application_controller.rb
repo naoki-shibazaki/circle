@@ -22,9 +22,9 @@ class ApplicationController < ActionController::Base
     	@current_user = User.find_by(id: session[:user_id])
 
 		if admin_user_signed_in?
-			@admin_user = current_admin_user
-	    	@questions_current = Question.where(user_id: current_admin_user.id)
-	    	@questions_current_nil = Question.where(user_id: current_admin_user.id).where(answer: nil)
+			@admin_user = User.find_by(admin_user_id: current_admin_user)
+	    	@questions_current = Question.where(user_id: @admin_user.id)
+	    	@questions_current_nil = Question.where(user_id: @admin_user.id).where(answer: nil)
 		end
 
   	end

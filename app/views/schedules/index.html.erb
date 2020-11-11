@@ -35,12 +35,12 @@
 
 		<% if admin_user_signed_in?  %>
 			<% if @user.admin_user_id == current_admin_user.id %>
-				<% if @admin_user.users.count > 1 %>
+				<% if current_admin_user.users.count > 1 %>
 					<div class="user_select_wrap">
 								現在のアカウント：			
 				      <select name="user_select" onChange="location.href=value;">
 				        <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
-				          <% @admin_user.users.each do |user| %>
+				          <% current_admin_user.users.each do |user| %>
 				            <% if @user.id != user.id %>
 				            <option value="/users/<%= user.id %>/schedules"><%= user.name %>（<%= user.event.name %>）</option>
 				            <% end %>

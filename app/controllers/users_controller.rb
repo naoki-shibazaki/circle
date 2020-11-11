@@ -13,8 +13,6 @@ helper_method :link_count
 
 	def index
 
-		# @tests = User.eager_load(:event, :prefecture).where("events.name LIKE ?", "%バス%").where("prefectures.name LIKE ?", "%北海道%")
-
 		# パンくず
 		@b1_name = "サークル検索"
 		@b1_url = "/users"
@@ -291,6 +289,9 @@ helper_method :link_count
 
 	def mypage
 		@user = User.find(params[:id])
+
+    	@questions_current = Question.where(user_id: @user.id)
+    	@questions_current_nil = Question.where(user_id: @user.id).where(answer: nil)		
 
 		# 管理者判定
 		if admin_user_signed_in?
