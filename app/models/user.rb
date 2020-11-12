@@ -15,6 +15,7 @@ class User < ApplicationRecord
 	has_many :bookmarks, dependent: :destroy
 
 	has_one :match, dependent: :destroy
+	has_one :link, dependent: :destroy
 
 	belongs_to :prefecture, optional: true
 	belongs_to :event, optional: true

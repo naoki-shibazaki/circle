@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_022925) do
+ActiveRecord::Schema.define(version: 2020_11_12_031717) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -182,6 +182,25 @@ ActiveRecord::Schema.define(version: 2020_10_27_022925) do
     t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "unique_id"
+    t.string "link01_title"
+    t.string "link01_url"
+    t.string "link02_title"
+    t.string "link02_url"
+    t.string "link03_title"
+    t.string "link03_url"
+    t.string "link04_title"
+    t.string "link04_url"
+    t.string "link05_title"
+    t.string "link05_url"
+    t.index ["unique_id"], name: "index_links_on_unique_id", unique: true
+    t.index ["user_id"], name: "index_links_on_user_id"
   end
 
   create_table "matches", force: :cascade do |t|

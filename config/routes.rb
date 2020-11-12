@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   	end
 
   	resources :members
+	resources :links
 	resources :matches, except: [:new, :create]
 
 	resources :prefectures, only: [] do

@@ -68,11 +68,7 @@
           <% if current_admin_user.users.any? %>
             <li>
               <%= link_to "/users/#{current_admin_user.users.first.id}/mypage" do %>
-                  <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
-                    <i class="fa fa-user notice_icon"></i>
-                  <% else %>
-                    <i class="fa fa-user"></i>              
-                  <% end %>
+                <i class="fa fa-user"></i>              
                 <div class="link_txt">マイページ</div>
               <% end %>
             </li>  
