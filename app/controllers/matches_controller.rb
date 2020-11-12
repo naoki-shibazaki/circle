@@ -46,7 +46,7 @@ before_action :set_matches
 		@match.save
 
 		if @match.update(match_params)
-			flash[:share] = '登録完了！'
+			flash[:notice] = '登録完了！'
 			redirect_to match_path(@match.id)
 		else
 			render "edit"
@@ -81,7 +81,7 @@ before_action :set_matches
 
 	def update
 		if @match.update(match_params)
-			flash[:share] = '更新完了！'
+			flash[:notice] = '更新完了！'
 			redirect_to match_path(@match.id)
 		else
 			render "edit"

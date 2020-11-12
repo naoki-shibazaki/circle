@@ -351,8 +351,6 @@ helper_method :link_count
  	def line
   	end	
 
-  	def link
-  	end	
 
  	def rules
   	end	

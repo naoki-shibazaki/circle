@@ -1,0 +1,52 @@
+<% set_meta_tags noindex: true %>
+
+<div class="main users-edit">
+  <div class="container">
+    <div class="form users-form">
+
+ 		<%= form_for(@link) do |f| %>	    
+
+			<p>リンク01_タイトル</p>
+			<%= f.text_field :link01_title, class: 'form-control', placeholder: "circlebook" %>
+			<p>リンク01_URL</p>
+			<%= f.text_field :link01_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+
+			<hr>
+
+			<p>リンク02_タイトル</p>
+			<%= f.text_field :link02_title, class: 'form-control', placeholder: "circlebook" %>
+			<p>リンク02_URL</p>
+			<%= f.text_field :link02_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+
+			<hr>
+
+			<p>リンク03_タイトル</p>
+			<%= f.text_field :link03_title, class: 'form-control', placeholder: "circlebook" %>
+			<p>リンク03_URL</p>
+			<%= f.text_field :link03_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+
+			<hr>
+
+			<p>リンク04_タイトル</p>
+			<%= f.text_field :link04_title, class: 'form-control', placeholder: "circlebook" %>
+			<p>リンク04_URL</p>
+			<%= f.text_field :link04_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+
+			<hr>
+
+			<p>リンク05_タイトル</p>
+			<%= f.text_field :link05_title, class: 'form-control', placeholder: "circlebook" %>
+			<p>リンク05_URL</p>
+			<%= f.text_field :link05_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+
+			<hr>
+
+			<%= f.submit "登録する" %>
+
+		<% end %>   	
+
+
+      </div>
+    </div>
+  </div>
+</div>

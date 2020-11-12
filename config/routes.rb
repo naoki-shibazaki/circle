@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 	resources :users do
 		resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]
+		resources :links, only: [:new, :create]
   		resources :schedules
   		resources :questions
   		resources :reviews
@@ -26,8 +27,8 @@ Rails.application.routes.draw do
   	end
 
   	resources :members
-	resources :links
 	resources :matches, except: [:new, :create]
+	resources :links, except: [:new, :create]
 
 	resources :prefectures, only: [] do
     	resources :cities, only: :index
@@ -49,7 +50,6 @@ Rails.application.routes.draw do
 	get 'rules' , to: 'users#rules'
 	get 'privacypolicy' , to: 'users#privacypolicy'
 	get 'line' , to: 'users#line'
-	get 'link' , to: 'users#link'
 	get 'login' , to: 'users#login'
 	get 'admin_users' , to: 'users#admin_users'	
 	get 'webmaster' , to: 'users#webmaster'	

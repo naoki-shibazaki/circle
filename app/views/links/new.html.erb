@@ -4,7 +4,15 @@
   <div class="container">
 
 
-  	URLを決めてください！
+		<%= form_for([@user, @link]) do |f| %>	    
+
+			<p>ID（半角英数字：6文字以上）<br>
+	  		circle-book.com/links/******</p>
+			<%= f.text_field :unique_id, class: 'form-control', placeholder: "circlebook" %>
+
+			<%= f.submit "登録する" %>
+
+		<% end %>
 
 
   </div>

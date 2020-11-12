@@ -6,10 +6,19 @@ class LinksController < ApplicationController
 
 
 	def index
+
 	end	
 
 	def new
+		@user = User.find(params[:user_id])
+
 		if admin_user_signed_in?
+			if @user.link.present?
+				@link = @user.link
+				redirect_to link_path(@link)
+			else
+				@link = Link.new				
+			end
 
 	    else
 		  flash[:notice] = "ログインをしてください"
@@ -18,19 +27,50 @@ class LinksController < ApplicationController
 	end
 
 	def create
+		@link = Link.new(link_params)
+		@user = User.find(params[:user_id])
+		@link.id = @user.id
+		@link.user_id = @user.id
+
+		@link.link01_title = @user.name
+		@link.link01_url = "https://www.circle-book.com/users/#{@user.id}"
+
+		@link.save
+
+		if @link.update(link_params)
+			flash[:notice] = 'ID設定完了しました！'
+			redirect_to link_path(@link)
+		else
+			render "edit"
+		end	
 
 	end
 
 	def show
+		@link = Link.find(params[:id])
+		@user = User.find(params[:id])
+		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 
+		@users = User.prefecture(@user.prefecture_id).or(User.prefecture_sub(@user.prefecture_id)).event(@user.event_id).where(switch: "募集中").order(:last_post => :desc)
+
+		@user_ages = @user.users_ages.map{|a| a.age}
+		@user_groups = @user.users_groups.map{|g| g.group}
+		@user_cities = @user.users_cities.map{|c| c.city}
 	end
 
 	def edit
+		@link = Link.find(params[:id])
 
 	end
 
 	def update
-
+		@link = Link.find(params[:id])
+		if @link.update(link_params)
+			flash[:notice] = '更新完了！'
+			redirect_to link_path(@link)
+		else
+			render "edit"
+		end	
 	end
 
 	def destroy
