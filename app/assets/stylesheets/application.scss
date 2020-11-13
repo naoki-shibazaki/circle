@@ -6091,7 +6091,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .links_content {
     margin-top: 0px;
-    padding: 0px 15px 80px;
+    padding: 0px 15px 0px;
     a{
       display: block;
       width: 96%;
@@ -6103,6 +6103,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       color: #fff;
       font-size: 16px;
     }
+}
+
+.links_content_edit{
+    padding: 0px 15px 80px;  
 }
 
 .edit_link_wrap{
@@ -6190,6 +6194,34 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .text_s{
   font-size: 12px;
+}
+
+.circle_link_footer{
+  margin: 60px auto 10px;
+  padding-bottom: 40px;
+  display: block;
+  text-align: center;
+  a{
+    font-size: 18px;
+    font-weight: 700;
+    color: #777777;
+  }
+
+  .fa{
+    color: #2196F3;
+    font-size: 20px;
+  }
+
+  .link_sub_txt{
+    font-size: 12px;
+    padding-top: 4px;
+    color: #aaa;
+  }
+
+}
+
+.red_text{
+  color: #d41919;
 }
 
 
