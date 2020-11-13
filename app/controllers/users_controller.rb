@@ -103,7 +103,7 @@ helper_method :link_count
 				@user.save
 
 				flash[:notice] = 'プロフィール更新完了！'
-				redirect_to user_path
+				redirect_to user_path(@user)
 
 			else #47都道府県
 
@@ -235,7 +235,7 @@ helper_method :link_count
 				@user.save
 
 				flash[:notice] = 'プロフィール更新完了！'
-				redirect_to user_path
+				redirect_to user_path(@user)
 
 			else #47都道府県
 
@@ -260,7 +260,7 @@ helper_method :link_count
 		if @user.update(user_params)
 
 			flash[:notice] = 'プロフィール更新完了！'
-			redirect_to user_path
+			redirect_to user_path(@user)
 		else
 			render "/users/edit2"
 		end	

@@ -4,46 +4,50 @@
   <div class="container">
     <div class="form users-form">
 
- 		<%= form_for(@link) do |f| %>	    
+    <%= render "/layouts/breadcrumb" %>
 
-			<p>リンク01_タイトル</p>
-			<%= f.text_field :link01_title, class: 'form-control', placeholder: "circlebook" %>
-			<p>リンク01_URL</p>
-			<%= f.text_field :link01_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+   
 
-			<hr>
+		<div class="links_content">
+	 		<%= form_for(@link) do |f| %>	    
 
-			<p>リンク02_タイトル</p>
-			<%= f.text_field :link02_title, class: 'form-control', placeholder: "circlebook" %>
-			<p>リンク02_URL</p>
-			<%= f.text_field :link02_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+				<p>1.タイトル</p>
+				<%= f.text_field :link01_title, class: 'form-control', placeholder: "circlebook" %>
+				<p>1.URL</p>
+				<%= f.text_field :link01_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
 
-			<hr>
+				<hr>
 
-			<p>リンク03_タイトル</p>
-			<%= f.text_field :link03_title, class: 'form-control', placeholder: "circlebook" %>
-			<p>リンク03_URL</p>
-			<%= f.text_field :link03_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+				<p>2.タイトル</p>
+				<%= f.text_field :link02_title, class: 'form-control', placeholder: "circlebook" %>
+				<p>2.URL</p>
+				<%= f.text_field :link02_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
 
-			<hr>
+				<hr>
 
-			<p>リンク04_タイトル</p>
-			<%= f.text_field :link04_title, class: 'form-control', placeholder: "circlebook" %>
-			<p>リンク04_URL</p>
-			<%= f.text_field :link04_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+				<p>3.タイトル</p>
+				<%= f.text_field :link03_title, class: 'form-control', placeholder: "circlebook" %>
+				<p>3.URL</p>
+				<%= f.text_field :link03_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
 
-			<hr>
+				<hr>
 
-			<p>リンク05_タイトル</p>
-			<%= f.text_field :link05_title, class: 'form-control', placeholder: "circlebook" %>
-			<p>リンク05_URL</p>
-			<%= f.text_field :link05_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
+				<p>4.タイトル</p>
+				<%= f.text_field :link04_title, class: 'form-control', placeholder: "circlebook" %>
+				<p>4.URL</p>
+				<%= f.text_field :link04_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
 
-			<hr>
+				<hr>
 
-			<%= f.submit "登録する" %>
+				<p>5.タイトル</p>
+				<%= f.text_field :link05_title, class: 'form-control', placeholder: "circlebook" %>
+				<p>5.URL</p>
+				<%= f.text_field :link05_url, class: 'form-control', placeholder: "https://www.circle-book.com" %>
 
-		<% end %>   	
+				<%= f.submit "登録する" %>
+
+			<% end %>   	
+		</div>
 
 
       </div>

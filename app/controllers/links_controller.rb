@@ -13,12 +13,17 @@ class LinksController < ApplicationController
 		@user = User.find(params[:user_id])
 
 		if admin_user_signed_in?
-			if @user.link.present?
-				@link = @user.link
-				redirect_to link_path(@link)
+			if current_admin_user.id == @user.admin_user_id.to_i
+				if @user.link.present?
+					@link = @user.link
+					redirect_to "/link/#{@link.unique_id}"
+				else
+					@link = Link.new
+				end
 			else
-				@link = Link.new				
-			end
+				flash[:notice] = "権限がありません"
+			    redirect_to links_path			
+			end			
 
 	    else
 		  flash[:notice] = "ログインをしてください"
@@ -35,13 +40,12 @@ class LinksController < ApplicationController
 		@link.link01_title = @user.name
 		@link.link01_url = "https://www.circle-book.com/users/#{@user.id}"
 
-		@link.save
-
 		if @link.update(link_params)
 			flash[:notice] = 'ID設定完了しました！'
-			redirect_to link_path(@link)
+			redirect_to "/link/#{@link.unique_id}"
 		else
-			render "edit"
+			flash[:notice] = '他のIDをご入力ください'
+			render "new"
 		end	
 
 	end
@@ -51,15 +55,34 @@ class LinksController < ApplicationController
 		@user = User.find(params[:id])
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 
-		@users = User.prefecture(@user.prefecture_id).or(User.prefecture_sub(@user.prefecture_id)).event(@user.event_id).where(switch: "募集中").order(:last_post => :desc)
+	end
 
-		@user_ages = @user.users_ages.map{|a| a.age}
-		@user_groups = @user.users_groups.map{|g| g.group}
-		@user_cities = @user.users_cities.map{|c| c.city}
+	def link
+		@link = Link.find_by(unique_id: params[:unique_id])
+		@user = User.find(@link.id)
+		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)		
 	end
 
 	def edit
 		@link = Link.find(params[:id])
+		@user = @link.user
+
+		if admin_user_signed_in?
+
+			if current_admin_user.id != @link.user.admin_user_id.to_i
+				if current_admin_user.id == 1   			
+					
+			   	else
+			      flash[:notice] = "権限がありません"
+			      redirect_to links_path
+
+			    end
+			end
+
+		else
+	      flash[:notice] = "権限がありません"
+	      redirect_to links_path
+		end
 
 	end
 
@@ -67,8 +90,9 @@ class LinksController < ApplicationController
 		@link = Link.find(params[:id])
 		if @link.update(link_params)
 			flash[:notice] = '更新完了！'
-			redirect_to link_path(@link)
+			redirect_to "/link/#{@link.unique_id}"
 		else
+			flash[:notice] = '入力エラー'
 			render "edit"
 		end	
 	end
@@ -85,28 +109,9 @@ private
 	end
 
 	def set_linkes
-
-
-		# if admin_user_signed_in?
-		# 	@current_user = User.find_by(id: current_admin_user.id)
-		# 	@current_link = Link.find_by(id: current_admin_user.id)
-		# end
-
-
 	end
 
 	def ensure_correct_user
-		# @link = Link.find(params[:id])
-		
-	 #   if current_admin_user.id != @link.user.admin_user_id.to_i
-	 #   		if current_admin_user.id == 1   			
-	   		
-		#    	else
-		#       flash[:notice] = "権限がありません"
-		#       redirect_to linkes_path
-
-		#     end
-	 #   end
 	end		
 
 

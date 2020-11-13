@@ -1,19 +1,63 @@
 <% set_meta_tags title: "サークルリンク"%>
 
+
 <div class="main users-index">
   <div class="container">
 
+    <%= render "/layouts/breadcrumb" %>
 
-		<%= form_for([@user, @link]) do |f| %>	    
+		<div class="users-index-item">
 
-			<p>ID（半角英数字：6文字以上）<br>
-	  		circle-book.com/links/******</p>
-			<%= f.text_field :unique_id, class: 'form-control', placeholder: "circlebook" %>
+		    <h1 class="p_t">リンク集の作成</h1>
 
-			<%= f.submit "登録する" %>
+			<% if admin_user_signed_in?  %>
+				<% if @user.admin_user_id == current_admin_user.id %>
+					<% if current_admin_user.users.count > 1 %>
+						<div class="user_select_wrap">
+									現在のアカウント：			
+					      <select name="user_select" onChange="location.href=value;">
+					        <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+					          <% current_admin_user.users.each do |user| %>
+					            <% if @user.id != user.id %>
+					            <option value="/users/<%= user.id %>/links/new"><%= user.name %>（<%= user.event.name %>）</option>
+					            <% end %>
+					        <% end %>
+					      </select> 
+						</div>
+					<% end %>
+				<% end %>
+		    <% end %>
 
-		<% end %>
 
+		    <div class="border"></div>
+
+
+		    <div class="form users-form">
+
+				<%= form_for([@user, @link]) do |f| %>	    
+
+					<p>https://circle-book.com/link/******</p>
+
+					<div class="border"></div>
+
+					<p>アカウントID（半角英数字：4文字〜10文字以内）</p>
+					<%= f.text_field :unique_id, class: 'form-control', placeholder: "circlebook" %>
+					<p>アカウントIDはURLに使用されます。<br>
+					あとで変更はできません。</p>
+
+					<%= f.submit "登録する" %>
+
+				<% end %>
+
+			</div>
+
+
+
+
+		</div>
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
 
   </div>
 </div>

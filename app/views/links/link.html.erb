@@ -1,0 +1,56 @@
+<% set_meta_tags noindex: true %>
+
+<div class="main user-show">
+  <div class="container bg_white">
+    <%= render "/layouts/breadcrumb" %>
+
+	<% if @user_cities.present? %>
+    	<%= render "/users/breadcrumb_city" %>
+    <% end %>
+
+    
+		<div class="user-profile">
+			<div class="header-wrapper ribbon-wrapper">
+
+			    <%= render "/users/profile" %>
+
+
+				<div class="contact_area">
+
+					<% if admin_user_signed_in? %>
+
+							<% if @user.admin_user_id == current_admin_user.id %>
+								
+									<%= link_to edit_link_path(@link) do %>
+										<div class="contact-button edit">リンクを編集</div>
+									<% end %>
+								
+							<% else %>
+
+
+							<% end %>
+
+					<% else %>
+
+
+
+					<% end %> 
+			
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="links_content">
+			@<%= @link.unique_id %>
+
+			<%= link_to @link.link01_title, "#{@link.link01_url}" if @link.link01_title.present? && @link.link01_url.present? %>
+			<%= link_to @link.link02_title, "#{@link.link02_url}" if @link.link02_title.present? && @link.link02_url.present? %>
+			<%= link_to @link.link03_title, "#{@link.link03_url}" if @link.link03_title.present? && @link.link03_url.present? %>
+			<%= link_to @link.link04_title, "#{@link.link04_url}" if @link.link04_title.present? && @link.link04_url.present? %>
+			<%= link_to @link.link05_title, "#{@link.link05_url}" if @link.link05_title.present? && @link.link05_url.present? %>	
+		</div>
+
+	</div>
+</div>
