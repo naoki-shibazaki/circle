@@ -10,19 +10,18 @@
 
     
 		<div class="user-profile">
-			<div class="header-wrapper ribbon-wrapper">
 
-			    <%= render "/users/profile" %>
+			    <%= render "/links/profile" %>
 
 
-				<div class="contact_area">
+				<div class="edit_link_wrap">
 
 					<% if admin_user_signed_in? %>
 
 							<% if @user.admin_user_id == current_admin_user.id %>
 								
 									<%= link_to edit_link_path(@link) do %>
-										<div class="contact-button edit">リンクを編集</div>
+										<div class="edit_link_txt"><i class="fa fa-link "></i> リンクを編集</div>
 									<% end %>
 								
 							<% else %>
@@ -32,18 +31,16 @@
 
 					<% else %>
 
-
-
 					<% end %> 
 			
 				</div>
 
-			</div>
 
 		</div>
 
+		<div class="reset"></div>
+
 		<div class="links_content">
-			@<%= @link.unique_id %>
 
 			<%= link_to @link.link01_title, "#{@link.link01_url}" if @link.link01_title.present? && @link.link01_url.present? %>
 			<%= link_to @link.link02_title, "#{@link.link02_url}" if @link.link02_title.present? && @link.link02_url.present? %>

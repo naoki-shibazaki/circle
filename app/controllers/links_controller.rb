@@ -60,7 +60,15 @@ class LinksController < ApplicationController
 	def link
 		@link = Link.find_by(unique_id: params[:unique_id])
 		@user = User.find(@link.id)
-		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)		
+		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
+
+		# パンくず
+		@b2_name = "サークルリンク"
+		@b2_url = "/links"		
+		@b3_name = @user.name
+		@b3_url = "/users/#{@user.id}"		
+		@b4_name = "リンク集"
+		@b4_url = ""
 	end
 
 	def edit

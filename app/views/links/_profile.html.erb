@@ -1,0 +1,26 @@
+<div class="link_profile">
+
+      <% if @link.user.pic_header.present? %>
+        <div class="link_img_header">
+            <%= lazysizes_image_tag @link.user.pic_header.url, class:'header_link_imege', alt: "ヘッダー画像｜#{@link.user.name}" %>
+        </div>
+      <% else %>
+          <%= lazysizes_image_tag @link.user.pic_header.url , class:'header_link_imege' %>
+      <% end %>
+
+      <% if @link.user.pic_profile.present? %>
+          <div class="link_img_profile">
+            <%= lazysizes_image_tag @link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{@link.user.name}" %>
+          </div>
+      <% else %>
+          <%= lazysizes_image_tag @link.user.pic_profile.url , class:'profile_link_imege' %>
+      <% end %>
+
+      <div class="link_name">
+        <%= @link.user.name %>
+        <br>@<%= @link.unique_id %>
+      </div>
+
+</div>
+
+<div class="reset"></div>
