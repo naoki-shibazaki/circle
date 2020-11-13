@@ -6109,7 +6109,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   width: 60%;
   text-align: center;
   display: block;
-  margin: 10px auto 10px;
+  margin: 16px auto 10px;
 
   .edit_link_txt{
     background-color: #b0b1b1;
@@ -6120,6 +6120,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     padding: 0px 12px; 
     color: #fff;
     border-radius: 6px; 
+    font-weight: 700;
   }
 
 
@@ -6152,9 +6153,18 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     }  
   }
 
-  .link_name{
+  .link_name_wrap{
     text-align: center;
-    font-size: 16px;
+    .link_name {
+        font-size: 18px;
+        padding-top: 8px;
+    }
+    .link_unique_id {
+        font-size: 14px;
+        a {
+            color: #868686;
+        }        
+    }
   }
 
 

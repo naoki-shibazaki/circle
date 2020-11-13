@@ -10,19 +10,30 @@
         </div>
       <% end %>
 
+
+
+
       <% if @link.user.pic_profile.present? %>
           <div class="link_img_profile">
-            <%= lazysizes_image_tag @link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{@link.user.name}" %>
+            <%= link_to user_path(@link.user.id) do %>
+              <%= lazysizes_image_tag @link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{@link.user.name}" %>
+            <% end %>
           </div>
       <% else %>
-          <div class="link_img_profile">      
-            <%= lazysizes_image_tag @link.user.pic_profile.url , class:'profile_link_imege' %>
+          <div class="link_img_profile">
+            <%= link_to user_path(@link.user.id) do %>            
+              <%= lazysizes_image_tag @link.user.pic_profile.url , class:'profile_link_imege' %>
+            <% end %>
           </div>
       <% end %>
 
-      <div class="link_name">
-        <%= @link.user.name %>
-        <br>@<%= @link.unique_id %>
+
+
+      <div class="link_name_wrap">
+        <%= link_to user_path(@link.user.id) do %>            
+                <div class="link_name"><%= @link.user.name %></div>
+                <div class="link_unique_id">@<%= @link.unique_id %>
+        <% end %>
       </div>
 
 </div>

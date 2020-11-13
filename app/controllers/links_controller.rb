@@ -92,6 +92,13 @@ class LinksController < ApplicationController
 	      redirect_to links_path
 		end
 
+		# パンくず
+		@b2_name = "サークルリンク"
+		@b2_url = "/links"		
+		@b3_name = @user.name
+		@b3_url = "/users/#{@user.id}"		
+		@b4_name = "リンク集"
+		@b4_url = "/link/#{@link.unique_id}"
 	end
 
 	def update
