@@ -1,9 +1,21 @@
 <% set_meta_tags title: "サークルリンク"%>
 
 <div class="main user-show">
-  <div class="container bg_white">
+  <div class="container bg_white link_index">
+
+	<h1 class="p_t">サークルリンク</h1>
 
     <img data-src="/images/circle_link01.jpg" class="lazyload link_content_img" >
  	<img data-src="/images/circle_link02.jpg" class="lazyload link_content_img" >
+
+	<div class="contact_link circle_link_btm">
+        <%= link_to(new_admin_user_registration_path) do %>
+			<div class="btn btn_c btn_green btn_cubic">
+				無料登録をして<br>
+				サークルリンクを利用する！
+			</div>
+		<% end %>
+	</div>
+
   </div>
 </div>

@@ -29,6 +29,15 @@ class LinksController < ApplicationController
 		  flash[:notice] = "ログインをしてください"
 	      redirect_to "/admin_users/sign_in"
 		end
+
+		# パンくず
+		@b2_name = "サークルリンク"
+		@b2_url = "/links"		
+		@b3_name = @user.name
+		@b3_url = "/users/#{@user.id}"		
+		@b4_name = "新規作成"
+		@b4_url = ""
+
 	end
 
 	def create

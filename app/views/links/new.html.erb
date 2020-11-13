@@ -31,6 +31,18 @@
 
 		    <div class="border"></div>
 
+			<div class="swiper-container">
+
+			    <div class="swiper-wrapper">
+				    <img data-src="/images/circle_link01.jpg" class="lazyload swiper-slide" >
+				 	<img data-src="/images/circle_link02.jpg" class="lazyload swiper-slide" >	
+			    </div>
+
+			    <div class="pagination-wrap">
+			      <div class="swiper-pagination"></div>
+			    </div>
+
+			</div>
 
 		    <div class="form users-form">
 
@@ -40,7 +52,7 @@
 
 					<div class="border"></div>
 
-					<p>アカウントID（半角英数字：4文字〜10文字以内）</p>
+					<p class="text_s">アカウントID（半角英数字：4文字〜10文字以内）</p>
 					<%= f.text_field :unique_id, class: 'form-control', placeholder: "circlebook" %>
 					<p>アカウントIDはURLに使用されます。<br>
 					あとで変更はできません。</p>
