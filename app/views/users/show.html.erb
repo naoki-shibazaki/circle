@@ -258,10 +258,23 @@
 				</table>
 			</div>	
 
-			<% if @user.web.present? %>
+			<% if @user.web.present? && @user.link.present? %>
+				<div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></a></div>
+				<div class="txt_s more_link_txt"><%= link_to ">>リンクをもっと見る", "/link/#{@user.link.unique_id}" %></div>
+				<div class="border"></div>
+
+			<% elsif @user.web.present? %>
 				<div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></a></div>
 				<div class="border"></div>
+
+			<% elsif @user.link.present? %>
+				<div class="content_08"><i class="fa fa-chain "></i><a href="https://www.circle-book.com/link/<%= @user.link.unique_id %>"> circle-book.com/link/<%= @user.link.unique_id %></a></div>
+				<div class="border"></div>
+
+			<% else %>			
+
 			<% end %>
+
 
 			
 			<% if @schedules.present? %>
