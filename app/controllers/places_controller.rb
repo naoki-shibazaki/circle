@@ -12,11 +12,6 @@ class PlacesController < ApplicationController
 		@b1_url = "/places"
 	end	
 
-	def edit_page
-    	@places = Place.where("updated_at < ?", "2020-01-01").order(updated_at: "DESC").page(params[:page])
-    	@places_count = Place.where("updated_at < ?", "2020-01-01").order(updated_at: "DESC")
-	end	
-
 	def new
 		@place = Place.new
 		@place_button = "登録する"
@@ -171,7 +166,7 @@ class PlacesController < ApplicationController
 		@user = User.find_by(id: @place.user_id)
 		
 	   if current_admin_user.id != @user.admin_user_id.to_i
-	   		if current_admin_user.id == 1 || current_admin_user.id	== 1659
+	   		if current_admin_user.id == 1
 	   		
 		   	else
 		      flash[:notice] = "権限がありません"

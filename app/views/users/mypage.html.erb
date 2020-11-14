@@ -103,7 +103,13 @@
 				<%= link_to new_user_link_path(@user), class: "icon_cont" do %>
 					<div class="">
 						<div class="icon_img">
-							<img class="icon_size" src="/images/icon/icon_15.png">
+							<% if @user.link.present? %>
+									<img class="icon_size" src="/images/icon/icon_15.png">
+							<% else %>
+								<div class="notice_icon">
+									<img class="icon_size" src="/images/icon/icon_15.png">
+								</div>
+							<% end %>
 						</div>
 
 						<div class="icon_txt">
