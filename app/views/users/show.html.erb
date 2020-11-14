@@ -13,7 +13,7 @@
 								image: @user.pic_profile.url
 							},
 
-							twitter: { card: 'summary'} 
+							twitter: { card: 'summary_large_image'} 
 			%>
 
 		<% else %>
@@ -28,7 +28,7 @@
 								image: image_url("/images/events/e_icon_#{@user.event.ruby}.jpg") 
 							},
 
-							twitter: { card: 'summary'}  
+							twitter: { card: 'summary_large_image'}  
 			%>	
 
 		<% end %>
@@ -42,7 +42,6 @@
 			%>	
 
 <% end %>
-
 
 <div class="main user-show">
   <div class="container">
