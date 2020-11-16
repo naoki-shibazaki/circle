@@ -2,17 +2,17 @@
 
 		<% if @blog.image_01.present? %>
 
-			<% set_meta_tags title: "#{@blog.title}｜#{@user.name}｜サークルブック",
+			<% set_meta_tags title: "#{@blog.title}｜#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}｜サークルブック",
 							 description: @blog.content, 
 							og: { image: @blog.image_01.url }
 			%>
 
 		<% else %>
 
-			<% set_meta_tags title: "#{@blog.title}｜#{@user.name}｜サークルブック",
+			<% set_meta_tags title: "#{@blog.title}｜#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}｜サークルブック",
 							 description: @blog.content, 
 							og: { image: @user.pic_profile.url },
-							twitter: { card: 'summary'}  
+							twitter: { card: 'summary_large_image'}  
 			%>
 
 		<% end %>
@@ -22,7 +22,7 @@
 			<% set_meta_tags title: @blog.title,
 							 description: @blog.content, 
 							og: { image: image_url('/images/default.png') },
-							twitter: { card: 'summary'}  
+							twitter: { card: 'summary_large_image'}  
 			%>
 
 <% end %>

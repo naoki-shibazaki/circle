@@ -2,14 +2,13 @@
 
 		<% if @user.pic_profile.present? %>
 
-
 			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
-							 description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、サークルやチームメンバーを募集するサイトです！",
+							 description: "#{@user.prefecture.name}で活動している#{@user.event.txt}【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、サークルやチームメンバーを募集するサイトです！",
 							 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
 
 							og: { 
-								title: "#{@user.name}｜サークルブック",
-								description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
+								title: "#{@user.name}｜#{@user.prefecture.name}で活動している#{@user.event.txt}｜サークルブック",
+								description: "#{@user.prefecture.name}で活動している#{@user.event.txt}｜#{@user.name}", 
 								image: @user.pic_profile.url
 							},
 
@@ -19,12 +18,12 @@
 		<% else %>
 
 			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
-							 description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！", 
+							 description: "#{@user.prefecture.name}で活動している#{@user.event.txt}【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！", 
 							 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
 
 							og: { 
-								title: "#{@user.name}｜サークルブック",
-								description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
+								title: "#{@user.name}｜#{@user.prefecture.name}で活動している#{@user.event.txt}｜サークルブック",
+								description: "#{@user.prefecture.name}で活動している#{@user.event.txt}｜#{@user.name}", 
 								image: image_url("/images/events/e_icon_#{@user.event.ruby}.jpg") 
 							},
 
