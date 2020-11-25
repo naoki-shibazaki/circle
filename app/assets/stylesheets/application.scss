@@ -6233,6 +6233,22 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 
+.sns_links{
+  display: block;
+  margin: auto;
+  text-align: center;
+
+  a{
+    margin: 0 8px;
+  }
+
+  .twitter_link,
+  .instagram_link{
+    font-size: 40px;
+  }
+
+}
+
 
 
 // --------------------------------------

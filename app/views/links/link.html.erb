@@ -13,29 +13,51 @@
 			    <%= render "/links/profile" %>
 
 
-				<div class="edit_link_wrap">
 
-					<% if admin_user_signed_in? %>
+				<% if admin_user_signed_in? %>
 
-							<% if @user.admin_user_id == current_admin_user.id %>
-								
-									<%= link_to edit_link_path(@link) do %>
-										<div class="edit_link_txt"><i class="fa fa-link "></i> リンクを編集</div>
-									<% end %>
-								
-							<% else %>
+						<% if @user.admin_user_id == current_admin_user.id %>
+							<div class="edit_link_wrap">
+								<%= link_to edit_link_path(@link) do %>
+									<div class="edit_link_txt"><i class="fa fa-link "></i> リンクを編集</div>
+								<% end %>
+							</div>
+
+						<% else %>
 
 
-							<% end %>
+						<% end %>
 
-					<% else %>
+				<% else %>
 
-					<% end %> 
+				<% end %> 
 			
-				</div>
 
 
 		</div>
+
+
+		<% if @user.twitter.present? || @user.instagram.present? %>
+
+			<div class="sns_links">
+
+					<% if @user.twitter.present? %>
+						<a href="https://twitter.com/<%= @user.twitter %>">
+							<span class="twitter_link"><i class="fa fa-twitter-square"></i></span>
+						</a>
+					<% end %>
+
+					<% if @user.instagram.present? %>
+						<a href="https://www.instagram.com/<%= @user.instagram %>">
+							<span class="instagram_link"><i class="fa fa-instagram"></i></span>
+						</a>
+					<% end %>
+				
+			</div>
+
+		<% end %>
+
+
 
 		<div class="reset"></div>
 
