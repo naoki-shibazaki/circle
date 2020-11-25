@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
 		if @user.questions.create(question_params)
 
 			@question = @user.questions.last
-			@question.content = @question.content.gsub(/[^！？!?ー〜0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
+			@question.content = @question.content.gsub(/[^！？ー〜0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
 			@question.save
 
 			if admin_user_signed_in?
