@@ -362,7 +362,7 @@
 <div class="ad_space"></div>
 
 	<% if @blogs.any? %>
-		<% @blogs.each do |blog| %>
+		<% @blogs.first(5).each do |blog| %>
 			<%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
 				<div class="form users-form">
 				    <div class="form-body">
@@ -427,7 +427,7 @@
 
 		<div class="user-list-wrap">
 			<h2 class="others-user">条件が似ている<%= @user.event.name if @user.event_id? %>サークル</h2>
-            <% @users.each do |user| %> 
+            <% @users.first(5).each do |user| %> 
 				<% if user.id != @user.id %>
 
 		            <%= link_to(user_path(user.id)) do %>  
@@ -458,6 +458,15 @@
 
 				<% end %>
 			<% end %>
+
+            <% if @users.count > 5 %>
+            	<div class="more_link">
+            		<%= link_to "/#{@user.event.ruby}/#{@user.prefecture.kana}" do %>
+            			>> 他のサークルをもっと見る
+            		<% end %>
+            	</div>
+            <% end %>
+
 	    </div>
 
 	<% end %>

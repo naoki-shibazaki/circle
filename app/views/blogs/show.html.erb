@@ -216,7 +216,7 @@
 
 		<div class="blog-list-wrap">
 			<h2 class="others-blog"><%= @user.name %>のブログ一覧</h2>
-            <% @blogs.last(5).each do |blog| %> 
+            <% @blogs.first(5).each do |blog| %> 
              
               <% if blog.title.present? %>
 
