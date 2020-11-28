@@ -257,17 +257,14 @@
 
 		<div class="ad_space"></div>
 
-		<%= render "/layouts/ad_square" %>
-		<div class="ad_space"></div>
-
+		<% if @blogs.count >= 3 %>
+			<%= render "/layouts/ad_square" %>
+			<div class="ad_space"></div>
+		<% end %>
 
      <% end %>
 
-
-
-			<% if @user.switch == "募集中" %>
-				<div class="space_btm"></div>
-			<% end %>
+			<div class="space_btm"></div>
 
   </div>
 </div>
