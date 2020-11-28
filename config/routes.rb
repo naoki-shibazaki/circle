@@ -69,6 +69,8 @@ Rails.application.routes.draw do
 
 	get 'users/:id/contact' , to: 'users#contact'
 	get 'users/:user_id/question' , to: 'questions#question'
+	get '/users/:user_id/blogs' , to: 'blogs#user_blogs'
+
 	# get 'users/:user_id/collection-sample' , to: 'collections#sample'	
 	
 	get 'prefectures' , to: 'users#prefecture_index'

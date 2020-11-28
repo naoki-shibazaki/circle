@@ -75,10 +75,22 @@ class BlogsController < ApplicationController
 			@b4_url = ""
 		end		
 	
-		@mail_title = "【#{@user.name}】お問い合わせ"
-		@mail_message = "#{@user.name}%20さん%0d%0a%0d%0aサークルブックより、お問い合わせです。%0d%0a%0d%0a--------------------------------------%0d%0a内容：参加希望／質問／その他%0d%0a名前：%0d%0a年齢：%0d%0aメッセージ：%0d%0a%0d%0a--------------------------------------%0d%0a%0d%0aこのメールに直接ご返信をお願いします。"
-
 	end
+
+
+	def user_blogs
+		@user = User.find_by(id: params[:user_id])
+		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
+
+
+		# パンくず
+			@b1_name = "#{@user.name}"
+			@b1_url = "/users/#{@user.id}"
+			@b2_name = "ブログ一覧"
+			@b2_url = ""
+	
+	end
+
 
 	def show_redirect # 旧ブログ用のリダイレクト
 		@blog = Blog.find(params[:id])

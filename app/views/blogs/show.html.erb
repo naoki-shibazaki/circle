@@ -212,11 +212,11 @@
 <div class="ad_space"></div>			
 
 
-	<% if @blogs.each.count >= 2 %>
+	<% if @blogs.count >= 2 %>
 
 		<div class="blog-list-wrap">
-			<h2 class="others-blog">その他の活動ブログ</h2>
-            <% @blogs.each do |blog| %> 
+			<h2 class="others-blog"><%= @user.name %>のブログ一覧</h2>
+            <% @blogs.last(5).each do |blog| %> 
              
               <% if blog.title.present? %>
 
@@ -244,7 +244,21 @@
               <% end %> 
                       
             <% end %>
+
+            <% if @blogs.count > 5 %>
+            	<div class="more_link">
+            		<%= link_to "/users/#{@user.id}/blogs" do %>
+            			>> ブログをもっと見る
+            		<% end %>
+            	</div>
+            <% end %>
+
          </div>
+
+
+		<%= render "/layouts/ad_square" %>
+		<div class="ad_space"></div>
+
 
      <% end %>
 
