@@ -80,7 +80,7 @@ class BlogsController < ApplicationController
 
 	def user_blogs
 		@user = User.find_by(id: params[:user_id])
-		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
+		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC").page(params[:page])
 
 
 		# パンくず
