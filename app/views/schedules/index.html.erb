@@ -1,26 +1,12 @@
-<% if @user.pic_profile.present? %>
 
-	<% set_meta_tags title: "活動スケジュール｜#{@user.name}",
-						og: { 
-									title: "活動スケジュール｜#{@user.name}",
-									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
-									image: @user.pic_profile.url
-								},
-						twitter: { card: 'summary'}  				
-	 %>
+<% set_meta_tags title: "活動スケジュール｜#{@user.name}",
+					og: { 
+								title: "活動スケジュール｜#{@user.name}",
+								description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
+								image:image_url("/images/schedule_ogp.jpg")
+							}
+ %>
 
-<% else %>
-
-	<% set_meta_tags title: "活動スケジュール｜#{@user.name}",
-						og: { 
-									title: "活動スケジュール｜#{@user.name}",
-									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}",
-						        	image: image_url('/images/default.png'),
-								},
-						twitter: { card: 'summary'}  				
-	 %>
-
-<% end %>
 
 
 <div class="main users-index">
