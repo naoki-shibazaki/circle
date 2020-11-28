@@ -49,6 +49,14 @@ class LinksController < ApplicationController
 		@link.link01_title = @user.name
 		@link.link01_url = "https://www.circle-book.com/users/#{@user.id}"
 
+		if @user.match.present?
+			if @user.match.recruit = "募集中"
+				@link.link02_title = "対戦相手の募集ページ"
+				@link.link02_url = "https://www.circle-book.com/matches/#{@user.id}"
+			end
+		end
+
+
 		if @link.update(link_params)
 			flash[:notice] = 'ID設定完了しました！'
 			redirect_to "/link/#{@link.unique_id}"

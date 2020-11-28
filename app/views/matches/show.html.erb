@@ -151,12 +151,11 @@
 
 
 
-	<% if @matches.count >= 2 %>
+	<% if @matches.count >= 1 %>
 
 		<div class="user-list-wrap">
 			<h2 class="others-user">条件が似ている<%= @user.event.name if @user.event_id? %>サークル</h2>
             <% @matches.each do |match| %> 
-				<% if match.id != @user.id %>
 
 		            <%= link_to(match_path(match.id)) do %>  
 		            	<div class="user_list">
@@ -223,7 +222,6 @@
 		            	</div>
 	            	<% end %>
 
-				<% end %>
 			<% end %>
 	    </div>
 

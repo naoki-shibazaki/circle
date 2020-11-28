@@ -119,19 +119,6 @@
 				<% end %>
 
 
-				<%= link_to "/user/add", class: "icon_cont" do %>
-					<div class="">
-						<div class="icon_img">
-							<img class="icon_size" src="/images/icon/icon_12.png">
-						</div>
-
-						<div class="icon_txt">
-							サークル新規追加
-						</div>
-					</div>
-				<% end %>	
-
-
 
 			<% if @user.event.matching != 0 %>
 
@@ -182,6 +169,19 @@
 
 
 			<% end %>
+			
+
+				<%= link_to "/user/add", class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_12.png">
+						</div>
+
+						<div class="icon_txt">
+							サークル新規追加
+						</div>
+					</div>
+				<% end %>
 
 
 		</div>
