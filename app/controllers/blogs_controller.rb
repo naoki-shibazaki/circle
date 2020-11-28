@@ -53,7 +53,7 @@ class BlogsController < ApplicationController
 	def show
 		@blog = Blog.find(params[:id])
 		@user = User.find_by(id: params[:user_id])
-		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
+		@blogs = Blog.where(user_id: @user.id).where.not(id: @blog.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: @blog.user.id)
 
 		if @blog.user_id != @user.id

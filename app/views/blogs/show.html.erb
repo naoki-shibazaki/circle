@@ -212,15 +212,13 @@
 <div class="ad_space"></div>			
 
 
-	<% if @blogs.count >= 2 %>
+	<% if @blogs.count >= 1 %>
 
 		<div class="blog-list-wrap">
 			<h2 class="others-blog"><%= @user.name %>のブログ一覧</h2>
             <% @blogs.first(5).each do |blog| %> 
              
               <% if blog.title.present? %>
-
-              	<% if blog.id != @blog.id %>
 
 	            	<div class="blog_list">
 
@@ -238,8 +236,6 @@
 		                <% end %> 
 
 	            	</div>
-
-            	<% end %>
 
               <% end %> 
                       

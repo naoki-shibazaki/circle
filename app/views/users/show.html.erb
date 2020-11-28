@@ -423,12 +423,11 @@
 
 
 
-	<% if @users.count >= 2 %>
+	<% if @users.count >= 1 %>
 
 		<div class="user-list-wrap">
 			<h2 class="others-user">条件が似ている<%= @user.event.name if @user.event_id? %>サークル</h2>
             <% @users.first(5).each do |user| %> 
-				<% if user.id != @user.id %>
 
 		            <%= link_to(user_path(user.id)) do %>  
 		            	<div class="user_list">
@@ -456,7 +455,6 @@
 		            	</div>
 	            	<% end %>
 
-				<% end %>
 			<% end %>
 
             <% if @users.count > 5 %>
@@ -472,7 +470,7 @@
 	<% end %>
 
 
-	<% if @blogs.count >= 3 || @users.count >= 4 %>
+	<% if @blogs.count >= 3 || @users.count >= 3 %>
 		<%= render "/layouts/ad_square" %>
 		<div class="ad_space"></div>
 	<% end %>
