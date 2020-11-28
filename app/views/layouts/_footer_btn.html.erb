@@ -57,7 +57,8 @@
 
   <!-- other -->
     <% if @path.is('users') || @path.is('blogs') || @path.is('schedules') %>
-      <% if @path.is('#show') && @user.switch == "募集中" %>
+      <% if @user.switch == "募集中" %>
+        <% if @path.is('#show') || @path.is('#user_blogs') %>
 
 
                 <div class="footer_btn bg_btn footer_btn_2">
@@ -97,7 +98,7 @@
 
                 </div>
 
-
+        <% end %>
       <% end %>
     <% end %>
 
