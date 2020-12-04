@@ -135,7 +135,8 @@ helper_method :link_count
 		@user_groups = @user.users_groups.map{|g| g.group}
 		@user_cities = @user.users_cities.map{|c| c.city}
 
-	
+		impressionist(@user, nil, unique: [:session_hash])
+
 
 
 		# レビュー合計値
