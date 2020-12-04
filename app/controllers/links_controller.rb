@@ -6,7 +6,7 @@ class LinksController < ApplicationController
 
 
 	def index
-
+		@links = Link.where.not(link02_title: "nil", link03_title: "nil").order("RANDOM()").limit(5)
 	end	
 
 	def new

@@ -6257,6 +6257,74 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 
+.sample_link_slide{
+    display: flex;
+    overflow-x: scroll;
+    text-align: center;
+    margin: 30px auto 30px;
+
+    .sample_link_child{
+      width: 220px;
+      height: 360px;
+      display: inline-table;
+      margin: 0 10px 0;
+      border: 1px solid #d8dadf;
+      border-radius: 6px;
+
+      .link_profile .link_img_header .header_link_imege {
+          height: 90px;
+      }
+
+      .link_profile .link_img_profile .profile_link_imege {
+          width: 70px;
+          height: 70px;
+      }
+
+      .link_profile .link_name_wrap .link_unique_id{
+          color: #868686;
+          font-size: 12px;
+      }
+
+
+      .sample_link_title_wrap{
+        margin-top: 20px;
+
+        .sample_link_title{
+          display: block;
+          width: 90%;
+          text-align: center;
+          margin: 10px auto 0;
+          padding: 10px 0;
+          border-radius: 6px;
+          background-color: #3ecdc6;
+          color: #fff;
+          font-size: 12px;          
+        }     
+           
+      }
+
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // --------------------------------------
 // ▼PC
