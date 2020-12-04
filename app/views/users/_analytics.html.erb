@@ -12,13 +12,6 @@
 							<td><%= @user.impressionist_count %> 人</td>
 						</tr>
 
-						<% if @ranking.to_i <= 200 && @ranking.present? %>
-							<tr>
-								<th>表示回数ランキング</th>
-								<td><%= @ranking %> 位</td>
-							</tr>
-						<% end%>
-
 						<% if @blogs.any? %>
 							<% @blogs.each do |blog| %>
 								<% @blogs_imp = @blogs_imp + blog.impressions_count %>

@@ -8,7 +8,6 @@ helper_method :link_count
 
 
 	def top
-
 	end
 
 	def index
@@ -135,6 +134,8 @@ helper_method :link_count
 		@user_ages = @user.users_ages.map{|a| a.age}
 		@user_groups = @user.users_groups.map{|g| g.group}
 		@user_cities = @user.users_cities.map{|c| c.city}
+
+	
 
 
 		# レビュー合計値
@@ -299,7 +300,6 @@ helper_method :link_count
 			@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 			@opinion = @user.opinions.build
 
-	    	impressionist(@user, nil, unique: [:session_hash])
 	    	@blogs_imp = 0
 			@count = 0
 
