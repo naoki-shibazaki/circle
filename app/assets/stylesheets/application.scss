@@ -6273,6 +6273,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
       .link_profile .link_img_header .header_link_imege {
           height: 90px;
+          border-radius: 5px 5px 0 0;
       }
 
       .link_profile .link_img_profile .profile_link_imege {
@@ -6284,6 +6285,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
           color: #868686;
           font-size: 12px;
       }
+
+      .link_profile .link_name_wrap .link_name {
+          font-size: 16px;
+          padding: 8px 8px 0;
+      }
+      
 
 
       .sample_link_title_wrap{
