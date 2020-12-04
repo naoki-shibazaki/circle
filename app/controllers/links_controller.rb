@@ -11,6 +11,7 @@ class LinksController < ApplicationController
 
 	def new
 		@user = User.find(params[:user_id])
+		@links = Link.where.not(link03_title: "").order("RANDOM()").limit(5)
 
 		if admin_user_signed_in?
 			if current_admin_user.id == @user.admin_user_id.to_i

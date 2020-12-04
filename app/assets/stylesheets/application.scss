@@ -6263,18 +6263,18 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 .sample_link_slide{
-    display: flex;
-    overflow-x: scroll;
-    text-align: center;
-    margin: 0px auto 40px;
+  display: flex;
+  overflow-x: scroll;
+  text-align: center;
+  margin: 0px auto 40px;
 
-    .sample_link_child{
-      width: 220px;
-      height: 360px;
-      display: inline-table;
-      margin: 0 10px 16px;
-      border: 1px solid #d8dadf;
-      border-radius: 6px;
+  .sample_link_child{
+    width: 220px;
+    height: 360px;
+    display: inline-table;
+    margin: 0 10px 16px;
+    border: 1px solid #d8dadf;
+    border-radius: 6px;
 
       .link_profile .link_img_header .header_link_imege {
           height: 90px;
@@ -6319,6 +6319,15 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 }
 
+.sample_link_slide_s{
+  margin: 0px auto 20px;
+  
+  .sample_link_child_s{
+     height: 300px;   
+  }
+
+}
+
 .links_sub_title {
     font-size: 16px;
     font-weight: bold;
@@ -6327,9 +6336,17 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     margin-top: 30px;
 }
 
+.links_form_sub_title{
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+    padding: 4px 0 4px;
+    margin-top: 30px;  
+}
 
-
-
+.url_link_txt{
+  margin: 6px 0 6px;
+}
 
 
 
