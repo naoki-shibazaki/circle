@@ -4,8 +4,6 @@ class BlogsController < ApplicationController
 	before_action :ensure_correct_user, {only: [:edit, :update]}
 	before_action :set_blog
 
-	impressionist unique: [:session_hash]
-
 
 	def index
 	    @blogs = Blog.all.blog_sort.page(params[:page])
@@ -61,7 +59,10 @@ class BlogsController < ApplicationController
 			redirect_to blog_path
 		end
 
-		impressionist(@blog, nil, unique: [:session_hash])
+		if admin_user_signed_in?
+		else
+			impressionist(@blog, nil, unique: [:session_hash])
+		end
 
 		# パンくず
 		if @user.switch.present?

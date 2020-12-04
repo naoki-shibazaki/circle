@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 before_action :ensure_correct_user, {only: [:mypage, :edit, :update, :edit2, :update2, :update_contact]}
 before_action :set_users
 
-impressionist unique: [:session_hash]
 helper_method :link_count
 
 
@@ -135,8 +134,10 @@ helper_method :link_count
 		@user_groups = @user.users_groups.map{|g| g.group}
 		@user_cities = @user.users_cities.map{|c| c.city}
 
-		impressionist(@user, nil, unique: [:session_hash])
-
+		if admin_user_signed_in?
+		else
+			impressionist(@user, nil, unique: [:session_hash])
+		end
 
 
 		# レビュー合計値
