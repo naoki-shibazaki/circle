@@ -5,9 +5,18 @@
 
 	<h1 class="p_t">サークルリンク</h1>
 
-    <img data-src="/images/circle_link01.jpg" class="lazyload link_content_img" >
+	<div class="swiper-container">
 
- 	<img data-src="/images/circle_link02.jpg" class="lazyload link_content_img" >
+	    <div class="swiper-wrapper">
+		    <img data-src="/images/circle_link01.jpg" class="lazyload swiper-slide" >
+		 	<img data-src="/images/circle_link02.jpg" class="lazyload swiper-slide" >	
+	    </div>
+
+	    <div class="pagination-wrap">
+	      <div class="swiper-pagination"></div>
+	    </div>
+
+	</div>
 
 
 	<h2 class="links_sub_title">他の人のサークルリンク</h2>
@@ -45,7 +54,7 @@
 
 
 					      <div class="link_name_wrap">
-				                <div class="link_name"><%= link.user.name %></div>
+				                <div class="link_name"><%= link.user.name.truncate(10) %></div>
 				                <div class="link_unique_id">@<%= link.unique_id %>
 					      </div>
 
@@ -57,19 +66,19 @@
 
 						<% if link.link01_title.present? %>
 							<div class="sample_link_title">
-								<%= link.link01_title %>
+								<%= link.link01_title.truncate(14) %>
 							</div>
 						<% end %>
 
 						<% if link.link02_title.present? %>
 							<div class="sample_link_title">
-								<%= link.link02_title %>
+								<%= link.link02_title.truncate(14) %>
 							</div>
 						<% end %>
 
 						<% if link.link03_title.present? %>
 							<div class="sample_link_title">
-								<%= link.link03_title %>
+								<%= link.link03_title.truncate(14) %>
 							</div>
 						<% end %>
 
