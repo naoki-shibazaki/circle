@@ -1,46 +1,46 @@
-<% if @user.event_id.present? && @user.prefecture_id.present? && @user.event_id != 0 && @user.prefecture_id != 0 %>
 
-		<% if @user.pic_profile.present? %>
+<% if @user.pic_profile.present? %>
 
-			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
-							 description: "#{@user.prefecture.name}で活動している#{@user.event.txt}の【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、サークルやチームメンバーを募集するサイトです！",
-							 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
+	<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
+					 description: "#{@user.prefecture.name}で活動している#{@user.event.txt}の【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、サークルやチームメンバーを募集するサイトです！",
+					 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
 
-							og: { 
-								title: "#{@user.name}｜#{@user.prefecture.name}で活動している#{@user.event.txt}｜サークルブック",
-								description: "#{@user.prefecture.name}で活動している#{@user.event.txt}｜#{@user.name}", 
-								image: @user.pic_profile.url
-							},
+					og: { 
+						title: "#{@user.name}｜#{@user.prefecture.name}で活動している#{@user.event.txt}｜サークルブック",
+						description: "#{@user.prefecture.name}で活動している#{@user.event.txt}｜#{@user.name}", 
+						image: @user.pic_profile.url
+					}
+	%>
 
-							twitter: { card: 'summary_large_image'} 
-			%>
+<% elsif @user.pic_header.present? %>
 
-		<% else %>
+	<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
+					 description: "#{@user.prefecture.name}で活動している#{@user.event.txt}の【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、サークルやチームメンバーを募集するサイトです！",
+					 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
 
-			<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
-							 description: "#{@user.prefecture.name}で活動している#{@user.event.txt}の【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！", 
-							 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
-
-							og: { 
-								title: "#{@user.name}｜#{@user.prefecture.name}で活動している#{@user.event.txt}｜サークルブック",
-								description: "#{@user.prefecture.name}で活動している#{@user.event.txt}｜#{@user.name}", 
-								image: image_url("/images/events/e_icon_#{@user.event.ruby}.jpg") 
-							},
-
-							twitter: { card: 'summary_large_image'}  
-			%>	
-
-		<% end %>
+					og: { 
+						title: "#{@user.name}｜#{@user.prefecture.name}で活動している#{@user.event.txt}｜サークルブック",
+						description: "#{@user.prefecture.name}で活動している#{@user.event.txt}｜#{@user.name}", 
+						image: @user.pic_header.url
+					}
+	%>
 
 <% else %>
 
-			<% set_meta_tags title: "未登録",
-							 description: @user.recruitment, 
-							og: { image: image_url('/images/default.png') },
-							twitter: { card: 'summary'}  
-			%>	
+	<% set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
+					 description: "#{@user.prefecture.name}で活動している#{@user.event.txt}の【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！", 
+					 keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
+
+					og: { 
+						title: "#{@user.name}｜#{@user.prefecture.name}で活動している#{@user.event.txt}｜サークルブック",
+						description: "#{@user.prefecture.name}で活動している#{@user.event.txt}｜#{@user.name}", 
+						image: image_url("/images/events/e_icon_#{@user.event.ruby}.jpg") 
+					} 
+	%>	
 
 <% end %>
+
+
 
 <div class="main user-show">
   <div class="container">

@@ -139,7 +139,7 @@ helper_method :link_count
 			impressionist(@user, nil, unique: [:session_hash])
 		end
 
-
+	
 		# レビュー合計値
 		@star_sum = @user.reviews.sum{|review| review[:review]}
 		# レビュー数
