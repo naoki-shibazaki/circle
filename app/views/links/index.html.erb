@@ -7,69 +7,76 @@
 
     <img data-src="/images/circle_link01.jpg" class="lazyload link_content_img" >
 
+ 	<img data-src="/images/circle_link02.jpg" class="lazyload link_content_img" >
 
 
+	<h2 class="links_sub_title">他の人のサークルリンク</h2>
 
     <ul class="sample_link_slide">
 	    <% @links.each do |link| %>
 			<li class="sample_link_child">
 
-				<div class="link_profile">
+				<%= link_to "/link/#{link.unique_id}" do %>
 
-				      <% if link.user.pic_header.present? %>
-				        <div class="link_img_header">
-				          <%= lazysizes_image_tag link.user.pic_header.url, class:'header_link_imege', alt: "ヘッダー画像｜#{link.user.name}" %>
-				        </div>
-				      <% else %>
-				        <div class="link_img_header">      
-				          <%= lazysizes_image_tag link.user.pic_header.url , class:'header_link_imege' %>
-				        </div>
-				      <% end %>
+					<div class="link_profile">
 
-
-
-
-				      <% if link.user.pic_profile.present? %>
-				          <div class="link_img_profile">
-				              <%= lazysizes_image_tag link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{link.user.name}" %>
-				          </div>
-				      <% else %>
-				          <div class="link_img_profile">
-				              <%= lazysizes_image_tag link.user.pic_profile.url , class:'profile_link_imege' %>
-				          </div>
-				      <% end %>
+					      <% if link.user.pic_header.present? %>
+					        <div class="link_img_header">
+					          <%= lazysizes_image_tag link.user.pic_header.url, class:'header_link_imege', alt: "ヘッダー画像｜#{link.user.name}" %>
+					        </div>
+					      <% else %>
+					        <div class="link_img_header">      
+					          <%= lazysizes_image_tag link.user.pic_header.url , class:'header_link_imege' %>
+					        </div>
+					      <% end %>
 
 
-				      <div class="link_name_wrap">
-			                <div class="link_name"><%= link.user.name %></div>
-			                <div class="link_unique_id">@<%= link.unique_id %>
-				      </div>
 
-				</div>
 
-				<div class="reset"></div>
+					      <% if link.user.pic_profile.present? %>
+					          <div class="link_img_profile">
+					              <%= lazysizes_image_tag link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{link.user.name}" %>
+					          </div>
+					      <% else %>
+					          <div class="link_img_profile">
+					              <%= lazysizes_image_tag link.user.pic_profile.url , class:'profile_link_imege' %>
+					          </div>
+					      <% end %>
 
-				<div class="sample_link_title_wrap">
 
-					<% if link.link01_title.present? %>
-						<div class="sample_link_title">
-							<%= link.link01_title %>
-						</div>
-					<% end %>
+					      <div class="link_name_wrap">
+				                <div class="link_name"><%= link.user.name %></div>
+				                <div class="link_unique_id">@<%= link.unique_id %>
+					      </div>
 
-					<% if link.link02_title.present? %>
-						<div class="sample_link_title">
-							<%= link.link02_title %>
-						</div>
-					<% end %>
+					</div>
 
-					<% if link.link03_title.present? %>
-						<div class="sample_link_title">
-							<%= link.link03_title %>
-						</div>
-					<% end %>
+					<div class="reset"></div>
 
-				</div>
+					<div class="sample_link_title_wrap">
+
+						<% if link.link01_title.present? %>
+							<div class="sample_link_title">
+								<%= link.link01_title %>
+							</div>
+						<% end %>
+
+						<% if link.link02_title.present? %>
+							<div class="sample_link_title">
+								<%= link.link02_title %>
+							</div>
+						<% end %>
+
+						<% if link.link03_title.present? %>
+							<div class="sample_link_title">
+								<%= link.link03_title %>
+							</div>
+						<% end %>
+
+					</div>
+
+
+				<% end %>
 
 
 			</li>
@@ -77,11 +84,6 @@
     </ul>
 
 
-
-
-
-
- 	<img data-src="/images/circle_link02.jpg" class="lazyload link_content_img" >
 
 	<div class="contact_link circle_link_btm">
         <%= link_to(new_admin_user_registration_path) do %>

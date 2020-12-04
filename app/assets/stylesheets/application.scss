@@ -6261,7 +6261,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     display: flex;
     overflow-x: scroll;
     text-align: center;
-    margin: 30px auto 30px;
+    margin: 0px auto 40px;
 
     .sample_link_child{
       width: 220px;
@@ -6303,12 +6303,17 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
            
       }
 
-
-
     }
+
 }
 
-
+.links_sub_title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+    padding: 4px 10px 8px;
+    margin-top: 30px;
+}
 
 
 
