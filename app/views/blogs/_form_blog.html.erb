@@ -51,5 +51,5 @@
             <p>本文</p>
             <%= f.text_area :content, class: 'form-control', placeholder: "○月○日に△△で、サークルブックの活動をしましたー！！今回はこんなことをしました！"  %>       
 
-            <%= f.submit @blog_button %>
+            <%= f.submit @blog_button, data: { disable_with: '更新中...' } %>
       <% end %>

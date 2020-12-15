@@ -130,7 +130,7 @@
 					<p>アカウントIDはURLに使用されます。<br>
 					あとで変更はできません。</p>
 
-					<%= f.submit "登録する" %>
+					<%= f.submit "登録する", data: { disable_with: '更新中...' } %>
 
 				<% end %>
 

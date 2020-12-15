@@ -51,7 +51,7 @@
 						<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 
 
 							<div class="actions">
-							   <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？"} %>
+							   <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
 							</div>					
 		
 						<div class="reset"></div>

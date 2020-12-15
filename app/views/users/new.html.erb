@@ -187,7 +187,7 @@
 	    <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！&#13;&#10;興味がある人は気軽にご連絡ください！".html_safe %>
 
 
-        <%= f.submit "更新する" %>
+        <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
 
       <% end %>
 

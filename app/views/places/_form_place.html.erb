@@ -60,7 +60,7 @@
             <%= f.text_area :price, class: 'form-control change_font', id: 'change_price', placeholder: "午前　1時間1,000円\n午後　1時間1,500円\n"  %>
             
 
-            <%= f.submit @place_button %>
+            <%= f.submit @place_button, data: { disable_with: '更新中...' } %>
 
       <% end %>
 </div>

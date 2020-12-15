@@ -45,7 +45,7 @@
 				<p>5.URL</p>
 				<%= f.text_field :link05_url, class: 'form-control', placeholder: "例）https://www.circle-book.com" %>
 
-				<%= f.submit "登録する" %>
+				<%= f.submit "登録する", data: { disable_with: '更新中...' } %>
 
 			<% end %>   	
 		</div>
