@@ -44,22 +44,28 @@ class QuestionsController < ApplicationController
 
 			@question = @user.questions.last
 			@question.content = @question.content.gsub(/[^！？ー〜0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
-			@question.save
+			
+			if @question.save
 
-			if admin_user_signed_in?
-				if current_admin_user.id == @user.admin_user_id
-					@user.last_post = Time.now
-					@user.user_time = Time.now
-					@user.save	
+				if admin_user_signed_in?
+					if current_admin_user.id == @user.admin_user_id
+						@user.last_post = Time.now
+						@user.user_time = Time.now
+						@user.save	
+					end
+
+				else
+					UserMailer.send_when_create(@user).deliver
 				end
 
+
+				flash[:notice] = '送信しました！'
+				redirect_to user_questions_path(@user)
+
 			else
-				UserMailer.send_when_create(@user).deliver
+				flash[:notice] = 'NGワードが含まれています'
+				redirect_to user_questions_path(@user)
 			end
-
-
-			flash[:notice] = '送信しました！'
-			redirect_to user_questions_path(@user)
 
 		else
 
