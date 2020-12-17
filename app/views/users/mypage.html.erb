@@ -183,7 +183,6 @@
 					</div>
 				<% end %>
 
-
 		</div>
 
 		<%= render "/users/openchat" %>
@@ -208,7 +207,7 @@
 			        	>>返信が必要な場合は<a href="mailto:circlebook47@gmail.com?subject=【お問い合わせ】サークルブック｜<%= @user.id %>" >コチラ</a>から
 			        </div>
 
-	           		<input type="submit" name="commit" value="送信する" data-disable-with="送信する">
+	           		<%= f.submit "送信する", data: { disable_with: '送信中...' } %>
 
 	            	<div class="reset"></div>
 
