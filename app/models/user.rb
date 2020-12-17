@@ -13,6 +13,7 @@ class User < ApplicationRecord
 	has_many :users_cities, dependent: :destroy
   	has_many :cities, through: :users_cities
 	has_many :bookmarks, dependent: :destroy
+	has_many :user_contacts, dependent: :destroy
 
 	has_one :match, dependent: :destroy
 	has_one :link, dependent: :destroy
