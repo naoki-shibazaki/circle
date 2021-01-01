@@ -22,7 +22,11 @@
                             <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
                           <% end %>
 
-                      <span class="schedule_mark mark_green">開催予定</span>
+                       <% if schedule.recruitment == "募集終了" %>
+                          <span class="schedule_mark mark_red">満員</span>                       
+                       <% else %>
+                          <span class="schedule_mark mark_green">開催予定</span>
+                       <% end %>      
                     
                     </div>
 

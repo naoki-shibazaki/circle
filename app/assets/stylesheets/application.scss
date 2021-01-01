@@ -2249,7 +2249,8 @@ max-width: 100%;
   display: block;
 }
 
-.schedule_input input{
+.schedule_input input,
+.schedule_input select{
     height: 36px;
     border: 1px solid #d8dadf;
     padding: 10px;
@@ -5811,11 +5812,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .schedule_mark{
     position: absolute;
     top: 6px;
+    width: 78px;
+    text-align: center;
     right: 8px;
     color: #fff;
     font-size: 12px;
     border-radius: 4px;
-    padding: 4px 10px;
+    padding: 4px 0px;
 }
 
 .mark_green{

@@ -10,7 +10,7 @@
 			<%= render "/schedules/profile" %>
 
 			    <div class="schedule_title">
-			    	<%= Time.parse(@schedule.day).strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>の活動内容の修正
+			    	<%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>の活動内容の修正
 				</div>
 
 	            <% if @schedule.errors.any? %>
@@ -31,6 +31,9 @@
 
 		              <%= form_for ([@user, @schedule]) do |f| %>
 
+						<p>募集状況</p>
+		                  <%= f.select  :recruitment,  [ ['募集中','募集中'], ['募集終了','募集終了'] ], class: 'form-control form-venue' %> 
+		                  
 		                <p>時間帯</p>
 		                  <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "開始時間" %> 
 		                  〜

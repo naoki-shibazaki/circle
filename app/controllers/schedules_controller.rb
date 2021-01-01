@@ -123,7 +123,7 @@ before_action :set_schedules
 		end	
 
 		def schedule_params
-			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note, :title, :google_map)
+			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note, :title, :google_map, :recruitment)
 		end
 
 
