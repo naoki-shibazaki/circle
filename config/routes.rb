@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   		resources :questions
   		resources :reviews
 		resources :opinions, only: [:new, :create, :index]
+		resources :user_contacts, only: [:new, :create, :index]
 	    resource :bookmarks, only: [:create, :destroy]
 	  	# resources :collections do
 	  	# 	resources :items
@@ -68,6 +69,9 @@ Rails.application.routes.draw do
 	patch 'users/:id/mypage', to: 'users#update_contact'
 
 	get 'users/:id/contact' , to: 'users#contact'
+
+	get 'users/:id/contact_test' , to: 'users#contact_test'
+
 	get 'users/:user_id/question' , to: 'questions#question'
 	get '/users/:user_id/blogs' , to: 'blogs#user_blogs'
 
