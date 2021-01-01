@@ -8,6 +8,14 @@ class UserContactsController < ApplicationController
 
 		if @user_contact.save
 			# user_contactMailer.send_user_contact(@user_contact).deliver
+
+			if @user.sent_count.present?
+				@user.sent_count = @user.sent_count + 1
+			else
+				@user.sent_count = 1
+			end
+			@user.save
+
 			flash[:notice] = "お問い合わせありがとうございます！"
 			redirect_to "/users/#{@user.id}"
 
