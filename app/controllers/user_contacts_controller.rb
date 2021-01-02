@@ -20,8 +20,8 @@ class UserContactsController < ApplicationController
 			redirect_to "/users/#{@user.id}"
 
 		else
-			flash[:notice] = "必須項目が未記入です"
-			redirect_to "/users/#{@user.id}"
+			flash[:notice] = "メールアドレスに誤りがあります"
+			redirect_to "/users/#{@user.id}/contact_test"
 		end
 
 	end

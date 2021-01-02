@@ -3,7 +3,7 @@
 
 	  	<div class="users-index-item">
 
-	     <div class="p_t">お問い合わせページ</div>
+	     	<div class="p_t">お問い合わせページ</div>
 
 			<div class="schedule_profile_wrap">
 
@@ -26,38 +26,6 @@
 			</div>
 
 
-
-
-
-<!-- 修正中 -->
-
-<div class="tab_wrap">
-
-	<div class="tab-wrap">
-	    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
-	    <div class="tab-content">
-
-	        <%= form_for ([@user, @user_contact]) do |f| %>
-
-
-			    <p>メールアドレス</p>
-		    	<%= f.text_field :mail, class: 'form-control', placeholder: "circlebook47@gmail.com" %>
-
-			    <p>お問い合わせ内容</p>
-	            <%= f.text_area :message, class: 'form-control form-note', placeholder: "「こんな機能があると便利！」「ここをこうして欲しい！」など。気軽にお書きください！" %> 
-
-	       		<%= f.submit "送信する", data: { disable_with: '送信中...' } %>
-
-	        	<div class="reset"></div>
-
-	        <% end %>
-
-
-
-	    </div>
-	    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
-	    <div class="tab-content">
-
 			<% if admin_user_signed_in? %>
 				<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
 					<div class="template_wrap">
@@ -76,228 +44,198 @@
 			<% end %>
 
 
-			<span class="contact_memo">
-				下のテンプレをコピーすると、<br>
-				お問い合わせが簡単にできます！
-			</span>
-
-			<div class="contact_sample_wrap">
-				
-				<div class="contact_t_wrap"><span class="contact_s_t">件名：</span>お問い合わせのテンプレ</div>
-
-				<div class="contact_sample">
-					<div class="copyTarget">
-						<p><%= @user.name %> さん<br></p>
-
-						<p>
-						はじめまして。<br>
-						サークルブックを見てご連絡しました！<br>
-						</p>
-
-						--------------------------------------<br>
-						▼ ご回答いただきお問い合わせください
-						<%= simple_format @user.template %>
-						--------------------------------------
-						
-						<p>
-						<%= @user.name %>さんの活動に興味があります！<br>
-						よろしくお願いします。
-						</p>
-					
-					</div>
-				</div>
-
-			</div>
-
-			<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
 
 
-				<% if @user.switch == "募集中" %>
+				<!-- LINE -->
+				<% if @user.contact == "line" && @user.line_id.present? %>
 
-					<div class="cta_wrap contact_space">
+						<span class="contact_memo">
+							下のテンプレをコピーすると、<br>
+							お問い合わせが簡単にできます！
+						</span>
 
-						<% if @user.contact == "line" && @user.line_id.present? %>
-							<a href="<%= @user.line_id %>">
-								<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
-							</a>
+						<div class="contact_sample_wrap">
+							
+							<div class="contact_t_wrap"><span class="contact_s_t">件名：</span>お問い合わせのテンプレ</div>
 
-						<% elsif @user.contact == "both" && @user.line_id.present? %>
+							<div class="contact_sample">
+								<div class="copyTarget">
+									<p><%= @user.name %> さん<br></p>
 
-							<a href="<%= @user.line_id %>">
-								<div class="cta_50 line"><i class="fa fa-comment "></i> LINEで連絡する</div>
-							</a>
+									<p>
+									はじめまして。<br>
+									サークルブックを見てご連絡しました！<br>
+									</p>
 
-							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-								<div class="cta_50 mail"><i class="fa fa-envelope "></i> メールで連絡する</div>
-							</a>
+									--------------------------------------<br>
+									▼ ご回答いただきお問い合わせください
+									<%= simple_format @user.template %>
+									--------------------------------------
+									
+									<p>
+									<%= @user.name %>さんの活動に興味があります！<br>
+									よろしくお願いします。
+									</p>
+								
+								</div>
+							</div>
+
+						</div>
+
+						<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
+
+						<% if @user.switch == "募集中" %>
+
+							<div class="cta_wrap contact_space">
+								<a href="<%= @user.line_id %>">
+									<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
+								</a>
+							</div>
 
 						<% else %>
-
-							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-								<div class="cta_100 mail"><i class="fa fa-envelope "></i> メールでお問い合わせをする！</div>
-							</a>
-
+							<div class="stop_match">
+								<%= @user.name %>は現在<br>
+								新規メンバーの募集を終了しております。
+								<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
+							</div>
 						<% end %>
 
-					 </div>
 
+
+				<!-- LINE + mail -->
+				<% elsif @user.contact == "both" && @user.line_id.present? %>
+
+
+					<div class="tab_wrap">
+
+						<div class="tab-wrap">
+						    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
+						    <div class="tab-content">
+
+							    <div class="contact_form form">
+
+							        <%= form_for ([@user, @user_contact]) do |f| %>
+
+							        	<div class="field">
+									    	<p>メールアドレス<span class="must_red">(必須)</span></p>
+								    		<%= f.text_field :mail, class: 'form-control', placeholder: "circlebook47@gmail.com" %>
+										</div>
+
+							        	<div class="field">
+									    <p>お問い合わせ内容</p>
+								            <%= f.text_area :message, class: 'form-control form-note', placeholder: "お名前などをご記入ください" %> 
+								        </div>
+
+							       		<%= f.submit "送信する", data: { disable_with: '送信中...' } %>
+
+							        	<div class="reset"></div>
+
+							        <% end %>
+
+							    </div>
+
+
+
+						    </div>
+						    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
+						    <div class="tab-content">
+
+
+								<span class="contact_memo">
+									下のテンプレをコピーすると、<br>
+									お問い合わせが簡単にできます！
+								</span>
+
+								<div class="contact_sample_wrap">
+									
+									<div class="contact_t_wrap"><span class="contact_s_t">件名：</span>お問い合わせのテンプレ</div>
+
+									<div class="contact_sample">
+										<div class="copyTarget">
+											<p><%= @user.name %> さん<br></p>
+
+											<p>
+											はじめまして。<br>
+											サークルブックを見てご連絡しました！<br>
+											</p>
+
+											--------------------------------------<br>
+											▼ ご回答いただきお問い合わせください
+											<%= simple_format @user.template %>
+											--------------------------------------
+											
+											<p>
+											<%= @user.name %>さんの活動に興味があります！<br>
+											よろしくお願いします。
+											</p>
+										
+										</div>
+									</div>
+
+								</div>
+
+								<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
+
+								<% if @user.switch == "募集中" %>
+
+									<div class="cta_wrap contact_space">
+										<a href="<%= @user.line_id %>">
+											<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
+										</a>
+									</div>
+
+								<% else %>
+									<div class="stop_match">
+										<%= @user.name %>は現在<br>
+										新規メンバーの募集を終了しております。
+										<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
+									</div>
+								<% end %>
+
+
+
+						    </div>
+						</div>
+
+					</div>
+
+
+				<!-- mail -->
 				<% else %>
-					<div class="stop_match">
-						<%= @user.name %>は現在<br>
-						新規メンバーの募集を終了しております。
-						<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
-					</div>
+
+				    <div class="contact_form form">
+
+				        <%= form_for ([@user, @user_contact]) do |f| %>
+
+				        	<div class="field">
+						    	<p>メールアドレス<span class="must_red">(必須)</span></p>
+					    		<%= f.text_field :mail, class: 'form-control', placeholder: "circlebook47@gmail.com" %>
+							</div>
+
+				        	<div class="field">
+						    <p>お問い合わせ内容</p>
+					            <%= f.text_area :message, class: 'form-control form-note', placeholder: "お名前などをご記入ください" %> 
+					        </div>
+
+				       		<%= f.submit "送信する", data: { disable_with: '送信中...' } %>
+
+				        	<div class="reset"></div>
+
+				        <% end %>
+
+				    </div>
+
 				<% end %>
 
 
 
 
 
-	    </div>
-	</div>
-
-</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-	<div class="border"></div>
-
-        <%= form_for ([@user, @user_contact]) do |f| %>
-
-
-		    <p>メールアドレス</p>
-	    	<%= f.text_field :mail, class: 'form-control', placeholder: "circlebook47@gmail.com" %>
-
-		    <p>お問い合わせ内容</p>
-            <%= f.text_area :message, class: 'form-control form-note', placeholder: "「こんな機能があると便利！」「ここをこうして欲しい！」など。気軽にお書きください！" %> 
-
-       		<%= f.submit "送信する", data: { disable_with: '送信中...' } %>
-
-        	<div class="reset"></div>
-
-        <% end %>
-
-	<div class="border"></div>
-<!-- 修正中 -->
-
-
-
-
-
-
-
-
-
-
-
-			<% if admin_user_signed_in? %>
-				<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
-					<div class="template_wrap">
-						<div class="template_title">▼ お問い合わせテンプレの内容修正</div>
-					    <%= form_for @user,:url => {controller: "users", action: "update_contact"} do |f| %>
-
-				   			<%= f.text_area :template, class: 'form-control' %>
-
-					        <%= f.submit "更新する" %>
-
-					        <div class="reset"></div>
-
-					    <% end %>
-					</div>
-				<% end %>
-			<% end %>
-
-
-			<span class="contact_memo">
-				下のテンプレをコピーすると、<br>
-				お問い合わせが簡単にできます！
-			</span>
-
-			<div class="contact_sample_wrap">
-				
-				<div class="contact_t_wrap"><span class="contact_s_t">件名：</span>お問い合わせのテンプレ</div>
-
-				<div class="contact_sample">
-					<div class="copyTarget">
-						<p><%= @user.name %> さん<br></p>
-
-						<p>
-						はじめまして。<br>
-						サークルブックを見てご連絡しました！<br>
-						</p>
-
-						--------------------------------------<br>
-						▼ ご回答いただきお問い合わせください
-						<%= simple_format @user.template %>
-						--------------------------------------
-						
-						<p>
-						<%= @user.name %>さんの活動に興味があります！<br>
-						よろしくお願いします。
-						</p>
-					
-					</div>
-				</div>
-
-			</div>
-
-			<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
-
-
-				<% if @user.switch == "募集中" %>
-
-					<div class="cta_wrap contact_space">
-
-						<% if @user.contact == "line" && @user.line_id.present? %>
-							<a href="<%= @user.line_id %>">
-								<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
-							</a>
-
-						<% elsif @user.contact == "both" && @user.line_id.present? %>
-
-							<a href="<%= @user.line_id %>">
-								<div class="cta_50 line"><i class="fa fa-comment "></i> LINEで連絡する</div>
-							</a>
-
-							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-								<div class="cta_50 mail"><i class="fa fa-envelope "></i> メールで連絡する</div>
-							</a>
-
-						<% else %>
-
-							<a href="mailto:<%= @data.email %>?subject=<%= @mail_title %>&amp;body=<%= @mail_message %>">
-								<div class="cta_100 mail"><i class="fa fa-envelope "></i> メールでお問い合わせをする！</div>
-							</a>
-
-						<% end %>
-
-					 </div>
-
-				<% else %>
-					<div class="stop_match">
-						<%= @user.name %>は現在<br>
-						新規メンバーの募集を終了しております。
-						<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
-					</div>
-				<% end %>
-
-
-				 <div class="contact_bottom"></div>
-
-		
+			<div class="contact_bottom"></div>
 	
-	  	</div>
+		</div>
 
 	<%= render "/layouts/ad_square" %>
 	<div class="ad_space"></div>	  	
