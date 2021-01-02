@@ -44,6 +44,7 @@
 			<% end %>
 
 
+			<% if @user.switch == "募集中" %>
 
 
 				<!-- LINE -->
@@ -84,21 +85,12 @@
 
 						<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
 
-						<% if @user.switch == "募集中" %>
 
-							<div class="cta_wrap contact_space">
-								<a href="<%= @user.line_id %>">
-									<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
-								</a>
-							</div>
-
-						<% else %>
-							<div class="stop_match">
-								<%= @user.name %>は現在<br>
-								新規メンバーの募集を終了しております。
-								<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
-							</div>
-						<% end %>
+						<div class="cta_wrap contact_space">
+							<a href="<%= @user.line_id %>">
+								<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
+							</a>
+						</div>
 
 
 
@@ -178,22 +170,11 @@
 
 								<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
 
-								<% if @user.switch == "募集中" %>
-
 									<div class="cta_wrap contact_space">
 										<a href="<%= @user.line_id %>">
 											<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
 										</a>
 									</div>
-
-								<% else %>
-									<div class="stop_match">
-										<%= @user.name %>は現在<br>
-										新規メンバーの募集を終了しております。
-										<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
-									</div>
-								<% end %>
-
 
 
 						    </div>
@@ -232,7 +213,13 @@
 				<% end %>
 
 
-
+			<% else %>
+				<div class="stop_match">
+					<%= @user.name %>は現在<br>
+					新規メンバーの募集を終了しております。
+					<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
+				</div>
+			<% end %>
 
 
 
