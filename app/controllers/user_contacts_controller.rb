@@ -21,7 +21,7 @@ class UserContactsController < ApplicationController
 
 		else
 			flash[:notice] = "メールアドレスに誤りがあります"
-			redirect_to "/users/#{@user.id}/contact_test"
+			redirect_to "/users/#{@user.id}/contact"
 		end
 
 	end
