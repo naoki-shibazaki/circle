@@ -118,6 +118,7 @@
 
 							        	<div class="field">
 									    	<p>メールアドレス<span class="must_red">(必須)</span></p>
+									    	<span class="cautions">必ず受信できるアドレスをご記入ください</span>
 								    		<%= f.text_field :mail, class: 'form-control', placeholder: "circlebook47@gmail.com" %>
 										</div>
 
@@ -125,6 +126,7 @@
 									    <p>お問い合わせ内容</p>
 								            <%= f.text_area :message, class: 'form-control form-note', placeholder: "お名前などをご記入ください" %> 
 								        </div>
+								        <div class="warning_txt">※送信完了に少し時間がかかります</div>
 
 							       		<%= f.submit "送信する", data: { disable_with: '送信中...' } %>
 
@@ -209,6 +211,7 @@
 
 				        	<div class="field">
 						    	<p>メールアドレス<span class="must_red">(必須)</span></p>
+						    	<span class="cautions">必ず受信できるアドレスをご記入ください</span>   	
 					    		<%= f.text_field :mail, class: 'form-control', placeholder: "circlebook47@gmail.com" %>
 							</div>
 
@@ -216,6 +219,7 @@
 						    <p>お問い合わせ内容</p>
 					            <%= f.text_area :message, class: 'form-control form-note', placeholder: "お名前などをご記入ください" %> 
 					        </div>
+					        <div class="warning_txt">※送信完了に少し時間がかかります</div>
 
 				       		<%= f.submit "送信する", data: { disable_with: '送信中...' } %>
 
