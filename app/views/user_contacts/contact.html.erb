@@ -72,6 +72,25 @@
 
 					</div>
 
+				<% elsif @user.contact == nil && @user.line_id.present? %>
+
+
+					<div class="tab_wrap">
+
+						<div class="tab-wrap">
+						    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
+						    <div class="tab-content">
+					    		<%= render "/user_contacts/mail" %>
+						    </div>
+
+						    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
+						    <div class="tab-content">
+								<%= render "/user_contacts/line" %>
+						    </div>
+						</div>
+
+					</div>
+
 
 				<!-- mail -->
 				<% else %>
