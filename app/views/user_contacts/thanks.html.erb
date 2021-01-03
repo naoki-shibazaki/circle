@@ -1,0 +1,47 @@
+<div class="main users-index">
+  <div class="container">
+
+	  	<div class="users-index-item">
+
+	     	<div class="p_t">サンクスページ</div>
+
+			<div class="schedule_profile_wrap">
+
+			  <%= link_to(user_path(@user.id)) do %>  
+			    <div class="user-content">
+			      <%= image_tag @user.pic_profile.url , class:'image_icon' %>
+
+			      <div class="list_wrapper contact_name_wrap">
+			        <div class="list_01">
+			          <h2 class="user_name"><%= @user.name %></h2>
+			        </div>
+
+			      </div>
+			    </div>  
+
+			  <% end %>
+
+			  <div class="reset"></div>
+
+			</div>
+
+			<div class="thanks_txt">
+				<p>
+					お問い合わせありがとうございます！<br>
+					主催者から返信が届くまで、お待ちください。
+				</p>
+
+				<div class="stop_match">
+					<%= link_to ">> トップページに戻る", users_path, class: "other_match" %>
+				</div>
+
+			</div>
+	
+	
+		</div>
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>	  	
+
+  </div>
+</div>

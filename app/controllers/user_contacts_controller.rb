@@ -1,6 +1,19 @@
 class UserContactsController < ApplicationController
 
 
+	def contact
+		@user = User.find(params[:id])
+		@data = AdminUser.find_by(id: @user.admin_user_id)
+		@user_contact = @user.user_contacts.build
+
+		@user.template = "名前： 例）サークルブック\r\n性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
+		@user_contact.message = @user.template
+
+		@mail_title = "【#{@user.name}】お問い合わせ"
+		@mail_message = "こちらにご記入ください！"
+
+	end	
+
 	def create	
 		@user = User.find_by(id: params[:user_id])
 		@user.user_contacts.create(user_contact_params)
@@ -17,7 +30,7 @@ class UserContactsController < ApplicationController
 			@user.save
 
 			flash[:notice] = "お問い合わせありがとうございます！"
-			redirect_to "/users/#{@user.id}"
+			redirect_to "/users/#{@user.id}/thanks"
 
 		else
 			flash[:notice] = "メールアドレスに誤りがあります"
@@ -25,6 +38,11 @@ class UserContactsController < ApplicationController
 		end
 
 	end
+
+	def thanks
+		@user = User.find(params[:id])
+	end	
+
 
 private
 	def user_contact_params

@@ -577,19 +577,6 @@ helper_method :link_count
 		@b4_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"			
 	end	
 
-	def contact
-		@user = User.find(params[:id])
-		@data = AdminUser.find_by(id: @user.admin_user_id)
-		@user_contact = @user.user_contacts.build
-
-		@user.template = "名前： 例）サークルブック\r\n性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
-		@user_contact.message = @user.template
-
-		@mail_title = "【#{@user.name}】お問い合わせ"
-		@mail_message = "こちらにご記入ください！"
-
-	end	
-
 	def login
 		@b1_name = "ログインページ"
 		@b1_url = ""		

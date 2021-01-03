@@ -68,9 +68,8 @@ Rails.application.routes.draw do
 	get 'users/:id/mypage' , to: 'users#mypage'
 	patch 'users/:id/mypage', to: 'users#update_contact'
 
-	get 'users/:id/contact' , to: 'users#contact'
-
-	get 'users/:id/contact_test' , to: 'users#contact_test'
+	get 'users/:id/contact' , to: 'user_contacts#contact'
+	get 'users/:id/thanks' , to: 'user_contacts#thanks'
 
 	get 'users/:user_id/question' , to: 'questions#question'
 	get '/users/:user_id/blogs' , to: 'blogs#user_blogs'

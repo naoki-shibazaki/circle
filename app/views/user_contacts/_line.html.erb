@@ -1,0 +1,41 @@
+	<span class="contact_memo">
+		下のテンプレをコピーすると、<br>
+		お問い合わせが簡単にできます！
+	</span>
+
+	<div class="contact_sample_wrap">
+		
+		<div class="contact_t_wrap"><span class="contact_s_t">件名：</span>お問い合わせのテンプレ</div>
+
+		<div class="contact_sample">
+			<div class="copyTarget">
+				<p><%= @user.name %> さん<br></p>
+
+				<p>
+				はじめまして。<br>
+				サークルブックを見てご連絡しました！<br>
+				</p>
+
+				--------------------------------------<br>
+				▼ ご回答ください
+				<%= simple_format @user.template %>
+				--------------------------------------
+				
+				<p>
+				<%= @user.name %>さんの活動に興味があります！<br>
+				よろしくお願いします。
+				</p>
+			
+			</div>
+		</div>
+
+	</div>
+
+	<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
+
+
+	<div class="cta_wrap contact_space">
+		<a href="<%= @user.line_id %>">
+			<div class="cta_100 line"><i class="fa fa-comment "></i> LINEでお問い合わせをする！</div>
+		</a>
+	</div>
