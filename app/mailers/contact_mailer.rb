@@ -5,7 +5,7 @@ class ContactMailer < ApplicationMailer
     @user_contact = user_contact
     mail to:      user.admin_user.email,
 	     reply_to: user_contact.mail,
-         subject: "【サークルブック】お問い合わせが届きました！"
+         subject: "【サークルブック】新規のお問い合わせが届きました！"
   end
 
 end
