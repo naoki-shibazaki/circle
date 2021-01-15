@@ -1,27 +1,26 @@
 <div class="main users-index">
   <div class="container">
 
-	  	<div class="users-index-item">
+      <div class="users-index-item">
 
-	     	<div class="p_t">お問い合わせページ</div>
+        <div class="p_t">お問い合わせページ</div>
 
 			<div class="schedule_profile_wrap">
 
-			  <%= link_to(user_path(@user.id)) do %>  
-			    <div class="user-content">
-			      <%= image_tag @user.pic_profile.url , class:'image_icon' %>
+      <%= link_to(user_path(@user.id)) do %>  
+          <div class="user-content">
+            <%= image_tag @user.pic_profile.url , class:'image_icon' %>
 
-			      <div class="list_wrapper contact_name_wrap">
-			        <div class="list_01">
-			          <h2 class="user_name"><%= @user.name %></h2>
-			        </div>
+            <div class="list_wrapper contact_name_wrap">
+              <div class="list_01">
+                <h2 class="user_name"><%= @user.name %></h2>
+              </div>
+            </div>
+          </div>
 
-			      </div>
-			    </div>  
+			<% end %>
 
-			  <% end %>
-
-			  <div class="reset"></div>
+			<div class="reset"></div>
 
 			</div>
 
@@ -30,15 +29,14 @@
 				<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
 					<div class="template_wrap">
 						<div class="template_title">▼ お問い合わせテンプレの内容修正</div>
-					    <%= form_for @user,:url => {controller: "users", action: "update_contact"} do |f| %>
+              <%= form_for @user,:url => {controller: "users", action: "update_contact"} do |f| %>
 
-				   			<%= f.text_area :template, class: 'form-control' %>
+                  <%= f.text_area :template, class: 'form-control' %>
+                  <%= f.submit "更新する" %>
 
-					        <%= f.submit "更新する" %>
+                  <div class="reset"></div>
 
-					        <div class="reset"></div>
-
-					    <% end %>
+              <% end %>
 					</div>
 				<% end %>
 			<% end %>
@@ -49,25 +47,23 @@
 
 				<!-- LINE -->
 				<% if @user.contact == "line" && @user.line_id.present? %>
-
-				    <%= render "/user_contacts/line" %>
+          <%= render "/user_contacts/line" %>
 
 				<!-- LINE + mail -->
 				<% elsif @user.contact == "both" && @user.line_id.present? %>
 
-
 					<div class="tab_wrap">
 
 						<div class="tab-wrap">
-						    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
-						    <div class="tab-content">
-					    		<%= render "/user_contacts/mail" %>
-						    </div>
+                <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
+                <div class="tab-content">
+                  <%= render "/user_contacts/mail" %>
+                </div>
 
-						    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
-						    <div class="tab-content">
+                <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
+                <div class="tab-content">
 								<%= render "/user_contacts/line" %>
-						    </div>
+                </div>
 						</div>
 
 					</div>
@@ -78,15 +74,15 @@
 					<div class="tab_wrap">
 
 						<div class="tab-wrap">
-						    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
-						    <div class="tab-content">
-					    		<%= render "/user_contacts/mail" %>
-						    </div>
+              <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
+              <div class="tab-content">
+                <%= render "/user_contacts/mail" %>
+              </div>
 
-						    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
-						    <div class="tab-content">
+                <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
+                <div class="tab-content">
 								<%= render "/user_contacts/line" %>
-						    </div>
+                </div>
 						</div>
 
 					</div>
@@ -112,11 +108,11 @@
 
 
 			<div class="contact_bottom"></div>
-	
+
 		</div>
 
 	<%= render "/layouts/ad_square" %>
-	<div class="ad_space"></div>	  	
+	<div class="ad_space"></div>
 
   </div>
 </div>

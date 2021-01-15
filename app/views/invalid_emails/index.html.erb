@@ -1,0 +1,38 @@
+<% set_meta_tags noindex: true %>
+
+<div class="main users-index">
+  <div class="container">
+
+    <div class="schedule_add_wrap schedule_new_wrap">
+        <div class="schedule_input">
+          <div class="form-body cont-body">
+
+              <%= form_for ([@invalid_email]) do |f| %>
+
+                <p>無効なメールアドレス</p>
+                <%= f.text_field :email, class: 'form-control form-venue' %>
+
+                <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
+
+              <div class="reset"></div>
+
+              <% end %>
+
+          </div>
+        </div>
+    </div>
+
+  <table>
+    <% @invalid_emails.each.with_index(1) do |invalid_email, i| %>
+      <tr>
+        <td><%= i %>：</td>
+        <td><%= invalid_email.email %></td>
+      </tr>
+    <% end %>
+  </table>
+
+
+
+  </div>
+</div>
+

@@ -1,48 +1,49 @@
 Rails.application.routes.draw do
   devise_for :admin_users, :controllers => {
- :registrations => 'admin_users/registrations',
- :sessions => 'admin_users/sessions'
-}
+    :registrations => 'admin_users/registrations',
+    :sessions => 'admin_users/sessions'
+  }
 
   devise_for :members, :controllers => {
- :registrations => 'members/registrations',
- :sessions => 'members/sessions'
-}
+    :registrations => 'members/registrations',
+    :sessions => 'members/sessions'
+  }
 
 	resources :users do
 		resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]
 		resources :links, only: [:new, :create]
-  		resources :schedules
-  		resources :questions
-  		resources :reviews
+    resources :schedules
+    resources :questions
+    resources :reviews
 		resources :opinions, only: [:new, :create, :index]
 		resources :user_contacts, only: [:new, :create, :index]
-	    resource :bookmarks, only: [:create, :destroy]
-	  	# resources :collections do
-	  	# 	resources :items
-	  	# end
-		  collection do
-		    get 'search'
-		  end
-  	end
+    resource :bookmarks, only: [:create, :destroy]
+    # resources :collections do
+    # 	resources :items
+    # end
+      collection do
+        get 'search'
+      end
+  end
 
-  	resources :members
+  resources :members
 	resources :matches, except: [:new, :create]
 	resources :links, except: [:new, :create, :show]
+  resources :invalid_emails, only: [:index, :create, :destroy]
 
 	resources :prefectures, only: [] do
-    	resources :cities, only: :index
-  	end
+    resources :cities, only: :index
+  end
 
 	scope '/contents' do
-	  resources :differences
+    resources :differences
 	end
 
 	scope '/coat' do
 		resources :places, except: [:index, :show]
-	end	
- 
+	end
+
 	root 'users#top'
 
 	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
@@ -52,16 +53,16 @@ Rails.application.routes.draw do
 	get 'privacypolicy' , to: 'users#privacypolicy'
 	get 'line' , to: 'users#line'
 	get 'login' , to: 'users#login'
-	get 'admin_users' , to: 'users#admin_users'	
-	get 'webmaster' , to: 'users#webmaster'	
+	get 'admin_users' , to: 'users#admin_users'
+	get 'webmaster' , to: 'users#webmaster'
 	get 'questions' , to: 'questions#questions'
 	# get 'collections' , to: 'collections#collections'
 	get 'event_questions' , to: 'event_questions#event_questions'
-	get 'contents' , to: 'differences#contents'	
-	
+	get 'contents' , to: 'differences#contents'
+
 	# 旧ブログ用のリダイレクト
 	get 'blogs/:id', to: 'blogs#show_redirect'
-	
+
 	get 'user/add', to: 'users#add'
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'
@@ -74,8 +75,8 @@ Rails.application.routes.draw do
 	get 'users/:user_id/question' , to: 'questions#question'
 	get '/users/:user_id/blogs' , to: 'blogs#user_blogs'
 
-	# get 'users/:user_id/collection-sample' , to: 'collections#sample'	
-	
+	# get 'users/:user_id/collection-sample' , to: 'collections#sample'
+
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'
 	get 'prefectures/:kana/tag/:id' , to: 'tags#prefecture'
@@ -116,9 +117,9 @@ Rails.application.routes.draw do
 
 	get ':ruby/tag/:id' , to: 'tags#event'
 	get ':ruby/:kana' , to: 'users#event_prefecture'
-	get ':ruby/:kana/tag/:id' , to: 'tags#event_prefecture'	
+	get ':ruby/:kana/tag/:id' , to: 'tags#event_prefecture'
 	get ':ruby/:kana/:city_kana' , to: 'users#event_prefecture_city'
-	get ':ruby/:kana/:city_kana/:id' , to: 'users#event_prefecture_city_station'	
+	get ':ruby/:kana/:city_kana/:id' , to: 'users#event_prefecture_city_station'
 	get ':ruby/:kana/:city_kana/tag/:id' , to: 'tags#event_prefecture_city'
 
 

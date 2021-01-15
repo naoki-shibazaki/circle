@@ -3,18 +3,24 @@ class UserContactsController < ApplicationController
 
 	def contact
 		@user = User.find(params[:id])
-		@data = AdminUser.find_by(id: @user.admin_user_id)
+    @data = AdminUser.find_by(id: @user.admin_user_id)
 		@user_contact = @user.user_contacts.build
 
 		@user.template = "名前： 例）サークルブック\r\n性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
 		@user_contact.message = @user.template
 
 		@mail_title = "【#{@user.name}】お問い合わせ"
-		@mail_message = "こちらにご記入ください！"
+    @mail_message = "こちらにご記入ください！"
 
-	end	
+    if InvalidEmail.find_by(email: @data.email)
+      @invalid = "無効"
+    else
+      @invalid = "有効"
+    end
 
-	def create	
+	end
+
+	def create
 		@user = User.find_by(id: params[:user_id])
 		@user.user_contacts.create(user_contact_params)
 		@user_contact = @user.user_contacts.last
@@ -41,7 +47,7 @@ class UserContactsController < ApplicationController
 
 	def thanks
 		@user = User.find(params[:id])
-	end	
+	end
 
 
 private
