@@ -1,28 +1,33 @@
-<div class="main users-edit">
+<% set_meta_tags noindex: true %>
+
+<div class="main users-index">
   <div class="container">
-    <div class="form users-form table_list">
+
+    <%= render "/layouts/breadcrumb" %>
+
+	<div class="mypage_wrap">
+
+	<div class="p_t">管理ページ</div>
+
+		<div class="icon_wrap">
+
+				<%= link_to invalid_emails_path, class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_01.png">
+						</div>
+
+						<div class="icon_txt">
+							無効メール
+						</div>
+					</div>
+				<% end %>
+
+		</div>
+
+	</div>
 
 
-    <table>
-      <tr><th>user_id</th><th>admin_user_id</th><th>URL</th></tr>
-
-      <% @users.each do |user|%>
-
-        <tr>
-          <td><%= user.id %></td>
-          <td><%= user.admin_user_id %></td>
-          <td><%= link_to user.name, user_path(user) %></td>
-        </tr>
-
-
-      <% end %>
-
-    </table>
-
-
-
-
-      </div>
-    </div>
   </div>
 </div>
+

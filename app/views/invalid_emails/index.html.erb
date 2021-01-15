@@ -22,14 +22,20 @@
         </div>
     </div>
 
-  <table>
-    <% @invalid_emails.each.with_index(1) do |invalid_email, i| %>
-      <tr>
-        <td><%= i %>：</td>
-        <td><%= invalid_email.email %></td>
-      </tr>
-    <% end %>
-  </table>
+  <div class="table_list">
+    <table>
+      <tr><th>No.</th><th>無効アドレス</th><th>削除</th></tr>
+      <% @invalid_emails.each.with_index(1) do |invalid_email, i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= invalid_email.email %></td>
+          <td><%= link_to "削除", invalid_email_path(invalid_email.id), method: :delete, data: {confirm: "アドレスを削除しますか？"} %>
+</td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
 
 
 

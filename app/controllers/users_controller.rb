@@ -579,8 +579,19 @@ helper_method :link_count
 
 	def login
 		@b1_name = "ログインページ"
-		@b1_url = ""		
+		@b1_url = ""
+  end
+
+
+	def webmaster
+    if current_admin_user.id == 1
+
+    else
+        flash[:notice] = "権限がありません"
+        redirect_to users_path
+    end
 	end
+
 
 private
 	def set_users
@@ -615,19 +626,6 @@ private
 		end
 
 	end
-
-	def webmaster
-   		if current_admin_user.id == 1   
-
-   			@users = User.all.order(:id => :desc)
-
-
-	   	else
-	      flash[:notice] = "権限がありません"
-	      redirect_to users_path
-	    end
-	end
-
 
 	def user_params
 		params.require(:user).permit(

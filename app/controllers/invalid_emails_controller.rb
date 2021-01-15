@@ -19,7 +19,11 @@ class InvalidEmailsController < ApplicationController
   end
 
   def destroy
+		@invalid_email = InvalidEmail.find(params[:id])
+		@invalid_email.destroy
 
+		flash[:notice] = "削除しました"
+		redirect_to invalid_emails_path
   end
 
 
