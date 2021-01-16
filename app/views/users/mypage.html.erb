@@ -6,28 +6,29 @@
   <div class="container">
 
     <%= render "/layouts/breadcrumb" %>
-    
+
 	<div class="mypage_wrap">
 
 	<div class="p_t">マイページ</div>
 
+  <%= render "/users/alert" %>
 
 		<div class="user_select_wrap">
 			現在のアカウント：
 			<select name="user_select" onChange="location.href=value;">
 				<option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
-			    <% @admin_user.users.each do |user| %>
-				    <% if @user.id != user.id %>
-						<option value="/users/<%= user.id %>/mypage"><%= user.name %>（<%= user.event.name %>）</option>
-				    <% end %>
+        <% @admin_user.users.each do |user| %>
+          <% if @user.id != user.id %>
+            <option value="/users/<%= user.id %>/mypage"><%= user.name %>（<%= user.event.name %>）</option>
+          <% end %>
 				<% end %>
 				<option value="/user/add">＋ サークルを追加する</option>
 			</select>
 		</div>
 
 
-  		<%= render "/users/analytics" %>
-	
+  <%= render "/users/analytics" %>
+
 		<div class="icon_wrap">
 
 				<%= link_to user_path(@user), class: "icon_cont" do %>
@@ -72,11 +73,11 @@
 				<%= link_to user_questions_path(@user), class: "icon_cont" do %>
 					<div class="">
 						<div class="icon_img">
-			                <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
-			                	<div class="notice_icon">
-			                <% else %>
-			                	<div class="nil">            
-			                <% end %>	
+                <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
+                  <div class="notice_icon">
+                <% else %>
+                  <div class="nil">
+                <% end %>
 								<img class="icon_size" src="/images/icon/icon_06.png">
 							</div>
 						</div>
@@ -199,19 +200,19 @@
 			</div>
 
 
-	            <%= form_for ([@user, @opinion]) do |f| %>
+          <%= form_for ([@user, @opinion]) do |f| %>
 
-	                <%= f.text_area :opinion, class: 'form-control form-note', placeholder: "「こんな機能があると便利！」「ここをこうして欲しい！」など。気軽にお書きください！" %> 
+              <%= f.text_area :opinion, class: 'form-control form-note', placeholder: "「こんな機能があると便利！」「ここをこうして欲しい！」など。気軽にお書きください！" %> 
 
-			        <div class="contact">
-			        	>>返信が必要な場合は<a href="mailto:circlebook47@gmail.com?subject=【お問い合わせ】サークルブック｜<%= @user.id %>" >コチラ</a>から
-			        </div>
+          <div class="contact">
+            >>返信が必要な場合は<a href="mailto:circlebook47@gmail.com?subject=【お問い合わせ】サークルブック｜<%= @user.id %>" >コチラ</a>から
+          </div>
 
-	           		<%= f.submit "送信する", data: { disable_with: '送信中...' } %>
+            <%= f.submit "送信する", data: { disable_with: '送信中...' } %>
 
-	            	<div class="reset"></div>
+            <div class="reset"></div>
 
-	            <% end %>
+          <% end %>
 
 
 		</div>

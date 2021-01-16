@@ -41,45 +41,45 @@ helper_method :link_count
 			# @users = @users.user_sort_1.page(params[:page])
 
 		# ソート機能
-       if params[:sort] == "1" || params[:sort] == nil
-   			@users = @users.user_sort_1.page(params[:page])
-        elsif params[:sort] == "2"
-   			@users = @users.user_sort_2.page(params[:page])
-        else params[:sort] == "3"
-   			@users = @users.user_sort_3.page(params[:page])
-        end
+      if params[:sort] == "1" || params[:sort] == nil
+      @users = @users.user_sort_1.page(params[:page])
+      elsif params[:sort] == "2"
+      @users = @users.user_sort_2.page(params[:page])
+      else params[:sort] == "3"
+      @users = @users.user_sort_3.page(params[:page])
+      end
 
-	end	
+	end
 
 
 	def new
-	    if admin_user_signed_in? #ログイン判定
+    if admin_user_signed_in? #ログイン判定
 
-			if current_admin_user.users.any?
-				redirect_to "/users/#{current_admin_user.users.first.id}/mypage"
-			else
-				@user = User.new
-			end
+    if current_admin_user.users.any?
+      redirect_to "/users/#{current_admin_user.users.first.id}/mypage"
+    else
+      @user = User.new
+    end
 
-    	else
-		    flash[:notice] = "登録が必要です"
-		    redirect_to root_path
-    	end	
+    else
+      flash[:notice] = "登録が必要です"
+      redirect_to root_path
+    end
 	end
 
 	def add
-	    if admin_user_signed_in? #ログイン判定
-			@user = User.new
-    	else
-		    flash[:notice] = "登録が必要です"
-		    redirect_to root_path
-    	end	
+    if admin_user_signed_in? #ログイン判定
+    @user = User.new
+    else
+      flash[:notice] = "登録が必要です"
+      redirect_to root_path
+    end
 	end
 
 
 	def create
 		@user = User.new(user_params)
-		@user.admin_user_id = current_admin_user.id				
+		@user.admin_user_id = current_admin_user.id
 		@user.last_post = Time.now.ago(3.days)
 		@user.user_time = Time.now
 
@@ -139,7 +139,7 @@ helper_method :link_count
 			impressionist(@user, nil, unique: [:session_hash])
 		end
 
-	
+
 		# レビュー合計値
 		@star_sum = @user.reviews.sum{|review| review[:review]}
 		# レビュー数
@@ -153,8 +153,8 @@ helper_method :link_count
 
 
 		if @user.id.to_s != params[:id]
-		      flash[:notice] = "URLが間違っています"
-		      redirect_to users_path			
+        flash[:notice] = "URLが間違っています"
+        redirect_to users_path
 		end
 
 		if @user.gallery_01.present?
@@ -175,16 +175,16 @@ helper_method :link_count
 				@b1_name = @user.event.name
 				@b1_url = "/#{@user.event.ruby}"
 				@b2_name = @user.prefecture.name
-				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
+				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"
 				@b3_name = @sub_prefecture.name
-				@b3_url = "/#{@user.event.ruby}/#{@sub_prefecture.kana}"	
+				@b3_url = "/#{@user.event.ruby}/#{@sub_prefecture.kana}"
 				@b4_name = @user.name
 				@b4_url = ""
 			else
 				@b1_name = @user.event.name
 				@b1_url = "/#{@user.event.ruby}"
 				@b2_name = @user.prefecture.name
-				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
+				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"
 				@b3_name = @user.name
 				@b3_url = ""
 			end
@@ -205,7 +205,7 @@ helper_method :link_count
 
 	def edit2
 		@user = User.find(params[:id])
-		@prefecture = Prefecture.find_by(id: @user.prefecture_id)		
+		@prefecture = Prefecture.find_by(id: @user.prefecture_id)
 		@cities = City.where(prefecture_id: @user.prefecture_id).order(:id => :asc)
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id).order(:id => :asc)
@@ -253,7 +253,7 @@ helper_method :link_count
 
 		else
 			render "/users/edit"
-		end	
+		end
 
 	end
 
@@ -266,7 +266,7 @@ helper_method :link_count
 			redirect_to user_path(@user)
 		else
 			render "/users/edit2"
-		end	
+		end
 	end
 
 	def update_contact
@@ -277,8 +277,8 @@ helper_method :link_count
 			redirect_to "/users/#{@user.id}/contact"
 		else
 			flash[:notice] = 'エラーが発生しました'
-		end	
-	end	
+		end
+	end
 
 
 	def destroy
@@ -286,15 +286,15 @@ helper_method :link_count
 		@user.destroy
 
 		flash[:notice] = 'サークルを削除しました'
-		redirect_to users_path		
+		redirect_to users_path
 	end
 
 
 	def mypage
 		@user = User.find(params[:id])
 
-    	@questions_current = Question.where(user_id: @user.id)
-    	@questions_current_nil = Question.where(user_id: @user.id).where(answer: nil)		
+    @questions_current = Question.where(user_id: @user.id)
+    @questions_current_nil = Question.where(user_id: @user.id).where(answer: nil)
 
 		# 管理者判定
 		if admin_user_signed_in?
@@ -302,7 +302,7 @@ helper_method :link_count
 			@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 			@opinion = @user.opinions.build
 
-	    	@blogs_imp = 0
+      @blogs_imp = 0
 			@count = 0
 
 			# ランキング取得
@@ -314,23 +314,27 @@ helper_method :link_count
 			}
 
 			if @admin_user.users.any?
-
 			else
 				redirect_to "/user/add"
-				
 			end
 
-
 		else
-	      flash[:notice] = "URLが管理者専用ページです"
-	      redirect_to user_path(@user)			
-		end
+      flash[:notice] = "URLが管理者専用ページです"
+      redirect_to user_path(@user)
+    end
 
-		# パンくず		
+    #無効メール
+    if InvalidEmail.find_by(email: @user.admin_user.email)
+      @invalid = "無効"
+    else
+      @invalid = "有効"
+    end
+
+		# パンくず
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
 		@b2_name = "マイページ"
-		@b2_url = "/users/#{@user.id}/mypage"		
+		@b2_url = "/users/#{@user.id}/mypage"
 	end
 
 
@@ -338,10 +342,10 @@ helper_method :link_count
 	end
 
 	def login
- 	end
+  end
 
- 	def logout
-  	end
+  def logout
+  end
 
 	def update_email
 		if admin_user_signed_in?
@@ -350,27 +354,27 @@ helper_method :link_count
 	end
 
 
- 	def line
-  	end	
+  def line
+  end
 
 
- 	def rules
-  	end	
+  def rules
+  end
 
- 	def privacypolicy
-  	end	
+  def privacypolicy
+  end
 
- 	def faq
-  	end	
+  def faq
+  end
 
- 	def admin_users
-  	end	
+  def admin_users
+  end
 
 
 	def prefecture_index
 		# パンくず
 		@b1_name = "47都道府県ごとのサークル"
-		@b1_url = ""		
+		@b1_url = ""
 	end
 
 
@@ -384,12 +388,12 @@ helper_method :link_count
         elsif params[:sort] == "2"
 			@users = User.event(@event.id).user_sort_2.page(params[:page])
         else params[:sort] == "3"
-			@users = User.event(@event.id).user_sort_3.page(params[:page])			
+			@users = User.event(@event.id).user_sort_3.page(params[:page])
         end
 
 		# @users = User.event(@event.id).user_sort.page(params[:page])
 
-		# パンくず		
+		# パンくず
 		@b1_name = @event.name
 		@b1_url = "/#{@event.ruby}"
 	end
@@ -400,21 +404,21 @@ helper_method :link_count
 		# @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).user_sort.page(params[:page])
 
 		# ソート機能
-        if params[:sort] == "1" || params[:sort] == nil
-        	@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).pref.user_sort_1.page(params[:page])
-        elsif params[:sort] == "2"
-        	@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
-        else params[:sort] == "3"
-        	@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
-        end
-		
+      if params[:sort] == "1" || params[:sort] == nil
+        @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).pref.user_sort_1.page(params[:page])
+      elsif params[:sort] == "2"
+        @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
+      else params[:sort] == "3"
+        @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
+      end
+
 		# パンくず
 		@b1_name = @prefecture.name
-		@b1_url = "/prefectures/#{@prefecture.kana}"	
+		@b1_url = "/prefectures/#{@prefecture.kana}"
 	end
 
 	def prefecture_city
-		@city = City.find_by(city_kana: params[:city_kana])	
+		@city = City.find_by(city_kana: params[:city_kana])
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
 		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
@@ -423,25 +427,25 @@ helper_method :link_count
 		# @users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
 
 		# ソート機能
-       if params[:sort] == "1" || params[:sort] == nil
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_1.page(params[:page])
-        elsif params[:sort] == "2"
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
-        else params[:sort] == "3"
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
-        end
+      if params[:sort] == "1" || params[:sort] == nil
+        @users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_1.page(params[:page])
+      elsif params[:sort] == "2"
+        @users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
+      else params[:sort] == "3"
+        @users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
+      end
 
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
-		      flash[:notice] = "URLが間違っています"
-		      redirect_to users_path		
+        flash[:notice] = "URLが間違っています"
+        redirect_to users_path
 		end
 
 		# パンくず
 		@b1_name = @prefecture.name
-		@b1_url = "/prefectures/#{@prefecture.kana}"	
+		@b1_url = "/prefectures/#{@prefecture.kana}"
 		@b2_name = @city.name
-		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"			
+		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"
 	end
 
 	def prefecture_city_station
@@ -451,34 +455,34 @@ helper_method :link_count
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
 		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
-		@city_judge = City.find_by(city_kana: params[:city_kana])		
+		@city_judge = City.find_by(city_kana: params[:city_kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		# @users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])	
+		# @users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
 
 		# ソート機能
-       if params[:sort] == "1" || params[:sort] == nil
-			@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_1.page(params[:page])	
-        elsif params[:sort] == "2"
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
-        else params[:sort] == "3"
-        	@users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
-        end
+      if params[:sort] == "1" || params[:sort] == nil
+        @users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_1.page(params[:page])
+      elsif params[:sort] == "2"
+        @users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_2.page(params[:page])
+      else params[:sort] == "3"
+        @users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
+      end
 
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
-		      flash[:notice] = "URLが間違っています"
-		      redirect_to users_path		
+        flash[:notice] = "URLが間違っています"
+        redirect_to users_path
 		end
 
 		# パンくず
 		@b1_name = @prefecture.name
-		@b1_url = "/prefectures/#{@prefecture.kana}"	
+		@b1_url = "/prefectures/#{@prefecture.kana}"
 		@b2_name = @city.name
-		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"	
+		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"
 		@b3_name = @station.name
-		@b3_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"	
-	end	
+		@b3_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"
+	end
 
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
@@ -487,13 +491,13 @@ helper_method :link_count
 		# @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
 
 		# ソート機能
-       if params[:sort] == "1" || params[:sort] == nil
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
-        elsif params[:sort] == "2"
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
-        else params[:sort] == "3"
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
-        end
+      if params[:sort] == "1" || params[:sort] == nil
+        @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
+      elsif params[:sort] == "2"
+        @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
+      else params[:sort] == "3"
+        @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
+      end
 
 		# パンくず
 		@b1_name = @event.name
@@ -513,18 +517,18 @@ helper_method :link_count
 		# @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
 
 		# ソート機能
-       if params[:sort] == "1" || params[:sort] == nil
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
-        elsif params[:sort] == "2"
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
-        else params[:sort] == "3"
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
-        end
+      if params[:sort] == "1" || params[:sort] == nil
+        @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
+      elsif params[:sort] == "2"
+        @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
+      else params[:sort] == "3"
+        @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
+      end
 
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
-		      flash[:notice] = "URLが間違っています"
-		      redirect_to users_path		
+      flash[:notice] = "URLが間違っています"
+      redirect_to users_path
 		end
 
 
@@ -532,9 +536,9 @@ helper_method :link_count
 		@b1_name = @event.name
 		@b1_url = "/#{@event.ruby}"
 		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"
 		@b3_name = @city.name
-		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"			
+		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
 	end
 
 
@@ -546,36 +550,36 @@ helper_method :link_count
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
 		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
-		@city_judge = City.find_by(city_kana: params[:city_kana])		
+		@city_judge = City.find_by(city_kana: params[:city_kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		# @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])	
+		# @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
 
 		# ソート機能
-       if params[:sort] == "1" || params[:sort] == nil
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
-        elsif params[:sort] == "2"
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
-        else params[:sort] == "3"
-   			@users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
-        end
+    if params[:sort] == "1" || params[:sort] == nil
+      @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_1.page(params[:page])
+    elsif params[:sort] == "2"
+      @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_2.page(params[:page])
+    else params[:sort] == "3"
+      @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
+    end
 
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
-		      flash[:notice] = "URLが間違っています"
-		      redirect_to users_path		
+      flash[:notice] = "URLが間違っています"
+      redirect_to users_path
 		end
 
 		# パンくず
 		@b1_name = @event.name
 		@b1_url = "/#{@event.ruby}"
 		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"
 		@b3_name = @city.name
-		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"	
+		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
 		@b4_name = @station.name
-		@b4_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"			
-	end	
+		@b4_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"
+	end
 
 	def login
 		@b1_name = "ログインページ"
@@ -595,7 +599,7 @@ helper_method :link_count
 
 private
 	def set_users
-		@search = User.ransack(params[:q]) 
+		@search = User.ransack(params[:q])
 
 		# ソート機能
         if params[:sort] == "1" || params[:sort] == nil
@@ -603,7 +607,7 @@ private
         elsif params[:sort] == "2"
 			@users = User.user_sort_2.page(params[:page])
         else params[:sort] == "3"
-			@users = User.user_sort_3.page(params[:page])			
+			@users = User.user_sort_3.page(params[:page])
         end
 
 
@@ -631,7 +635,7 @@ private
 		params.require(:user).permit(
 			:name, :email, :image_name, :header_image, :line_id, :switch, :item, :prefecture, :area, :schedule, :time_s, :time_e, :venue_address, :note, :age, :recruitment, :foundation, :member, :cost, :web, :appeal, :password, :goal, :user_id, :event_id, :decade, :prefecture_id, :image, :pic_profile, :pic_header, :image_01, :image_02, :gallery_01, :gallery_02, :gallery_03, :gallery_04, :requirement, :impressions_count, :line_count, :mail_count, :user_time, :last_post, :contact, :twitter, :instagram, :txt, :prefecture_sub_id, :opinion, :template, :sent_count,
 			decade_age:[], average_age:[] ,grouping:[], age_ids:[], group_ids:[], city_ids:[]
-   		)
+    )
 	end
 
 	def ensure_correct_user
@@ -643,8 +647,8 @@ private
 			elsif current_admin_user.id == 1
 				#OK
 			else
-		      flash[:notice] = "権限がありません"
-		      redirect_to users_path			
+        flash[:notice] = "権限がありません"
+        redirect_to users_path
 			end
 
 		end

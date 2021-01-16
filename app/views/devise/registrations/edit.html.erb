@@ -7,21 +7,17 @@
     <div class="form users-form">
       <div class="form-body cont-body">
 
-<!--       <div class="current_email">
-        現在のアドレス：<%= resource.email %>
-      </div> -->
-
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
 
         <div class="field">
           <%= f.label :メールアドレスの変更 %>（変更しない場合はそのまま）<br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: @current_admin_user.email %>
         </div>
 
         <div class="field">
-          <%= f.label :現在のパスワード %><br />
+          <%= f.label :現在のパスワード %>※
           <em>(6文字以上)</em>
           <%= f.password_field :current_password, autocomplete: "current-password" %>
         </div>

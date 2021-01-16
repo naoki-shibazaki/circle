@@ -4978,10 +4978,11 @@ td.ui-datepicker-week-end a.ui-state-highlight{
     font-weight: bold;
 }
 .advice_wrap p {
-    margin: 0; 
+    margin: 0;
     padding: 0 0 4px 0;
     font-size: 14px;
     color: #525252;
+    line-height: 1.8;
 }
 
 .advice_wrap a {
@@ -6439,6 +6440,23 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   text-align: center;
   margin: 20px auto 30px;
 }
+
+.alert_wrap{
+  background-color: #ffe6de;
+  border: 1px solid #ff9191;
+  border-radius: 4px;
+  margin: 10px auto 20px;
+  padding: 1.5em 1em;
+  line-height: 1.6;
+  .email_change{
+    margin-top: 10px;
+  }
+  a {
+    text-decoration: underline;
+    color: #337ab7;
+  }
+}
+
 
 
 // --------------------------------------

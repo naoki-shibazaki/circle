@@ -1,0 +1,13 @@
+<% if @invalid == "無効" %>
+
+  <div class="alert_wrap">
+    参加者からお問い合わせがありましたが、<br>
+    メールアドレスが無効です。<br>
+
+    <div class="email_change">
+      <%= @user.admin_user.email %><br>
+      <%= link_to '>>メールアドレスを変更する', edit_admin_user_registration_path %>
+    </div>
+  </div>
+
+<% end %>
