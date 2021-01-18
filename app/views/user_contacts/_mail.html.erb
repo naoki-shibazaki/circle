@@ -10,7 +10,7 @@
           </div>
 
           <div class="field">
-            <p>お問い合わせ内容</p>
+            <p>お問い合わせ内容<span class="must_red">(必須)</span></p>
             <%= f.text_area :message, class: 'form-control form-note', placeholder: "お名前などをご記入ください" %>
           </div>
 
@@ -30,8 +30,5 @@
 					<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
 				</div>
     <% end %>
-
-
-
 
     </div>
