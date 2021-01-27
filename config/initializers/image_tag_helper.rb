@@ -26,3 +26,4 @@ module ActionView
       alias_method_chain :image_tag, :amp
     end
   end
+end
