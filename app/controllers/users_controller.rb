@@ -377,7 +377,7 @@ helper_method :link_count
 		@b1_url = ""
 	end
 
-
+# 種目別ページ
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(kana: "nil")
@@ -391,17 +391,15 @@ helper_method :link_count
 			@users = User.event(@event.id).user_sort_3.page(params[:page])
         end
 
-		# @users = User.event(@event.id).user_sort.page(params[:page])
-
 		# パンくず
 		@b1_name = @event.name
-		@b1_url = "/#{@event.ruby}"
+    @b1_url = "/#{@event.ruby}"
+
 	end
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
-		# @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).user_sort.page(params[:page])
 
 		# ソート機能
       if params[:sort] == "1" || params[:sort] == nil
@@ -595,6 +593,22 @@ helper_method :link_count
         redirect_to users_path
     end
 	end
+
+
+def amp_test
+    # amp対応
+    respond_to do |format|
+      format.html
+      @amp_ready = true
+      format.amp do
+        lookup_context.formats = [:amp, :html]
+        render
+      end
+    end
+end
+
+
+
 
 
 private

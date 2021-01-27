@@ -21,7 +21,8 @@ module Circle
       end
     end
 
-
+    amp_css_paths = Dir.entries("#{config.root}/app/assets/stylesheets/amp").select { |name| name =~ /css$/ }.map { |name| "amp/#{name}" }
+    config.assets.precompile += amp_css_paths
 
 
   end

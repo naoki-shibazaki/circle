@@ -1,296 +1,305 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<% if request.format == :amp %>
+  <%= render "/layouts/amp" %>
+<% else %>
+  <!DOCTYPE html>
+  <html>
+    <head>
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WZ5RS5L');</script>
-    <!-- End Google Tag Manager -->
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WZ5RS5L');</script>
+      <!-- End Google Tag Manager -->
 
-    <%= csrf_meta_tag %>
+      <%= csrf_meta_tag %>
 
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <%= csp_meta_tag %>
-    <%= display_meta_tags(default_meta_tags) %>
+      <%= csp_meta_tag %>
+      <%= display_meta_tags(default_meta_tags) %>
 
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css' %> 
-   
-    <!-- フォトスライド -->
-    <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %> 
-    <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload', defer: true %>
-
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js' %>    
-    <%= javascript_include_tag 'https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js' %>
+      <% if amp_ready? %>
+        <% amp_uri = URI.parse(request.url) %>
+        <% amp_uri.path = "#{amp_uri.path}.amp" %>
+        <% amp_uri.query = h(amp_uri.query) if amp_uri.query.present? %>
+        <link rel="amphtml" href = "<%= amp_uri.to_s.html_safe %>"/>
+      <% end %>
 
 
-  </head>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css' %> 
 
-  <body>
+      <!-- フォトスライド -->
+      <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %> 
+      <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload', defer: true %>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ5RS5L"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js' %>
+      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js' %>    
+      <%= javascript_include_tag 'https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js' %>
 
-    <header>
 
-      <ul class="header-menus_sp">
-        <!-- ログイン時の処理 -->
-        <% if member_signed_in?  %>
-          <li>
-            <%= link_to(users_path) do %>
-              <i class="fa fa-search "></i> 
-              <div class="link_txt">サークル検索</div>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to("/blog") do %>
-               <i class="fa fa-book "></i> 
-               <div class="link_txt">活動ブログ</div>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to(member_path(current_member)) do %>
-                <i class="fa fa-user"></i>              
-                <div class="link_txt">マイページ</div>
-            <% end %>
-          </li> 
-        <% elsif admin_user_signed_in?  %>
-          <% if current_admin_user.users.any? %>
-            <li>
-              <%= link_to "/users/#{current_admin_user.users.first.id}/mypage" do %>
-                <i class="fa fa-user notice_icon"></i>              
-                <div class="link_txt">マイページ</div>
-              <% end %>
-            </li>  
-          <% end %>
-          
+    </head>
+
+    <body>
+
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ5RS5L"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+
+      <header>
+
+        <ul class="header-menus_sp">
+          <!-- ログイン時の処理 -->
+          <% if member_signed_in?  %>
             <li>
               <%= link_to(users_path) do %>
-                <i class="fa fa-search "></i> 
+                <i class="fa fa-search "></i>
                 <div class="link_txt">サークル検索</div>
               <% end %>
             </li>
             <li>
               <%= link_to("/blog") do %>
-                 <i class="fa fa-book "></i> 
-                 <div class="link_txt">活動ブログ</div>
+                <i class="fa fa-book "></i>
+                <div class="link_txt">活動ブログ</div>
               <% end %>
             </li>
-        
-        <!-- ログインなし -->
-        <% else %>
-          <li>
-
-            <% if @path.is('matches') %>
-              <%= link_to(matches_path) do %>
-                <i class="fa fa-flag-checkered "></i> 
-                <div class="link_txt">対戦相手募集</div>
-              <% end %>   
-            <% else %>
-              <%= link_to(users_path) do %>
-                <i class="fa fa-search "></i> 
-                <div class="link_txt">サークル検索</div>
-              <% end %>            
+            <li>
+              <%= link_to(member_path(current_member)) do %>
+                  <i class="fa fa-user"></i>
+                  <div class="link_txt">マイページ</div>
+              <% end %>
+            </li>
+          <% elsif admin_user_signed_in?  %>
+            <% if current_admin_user.users.any? %>
+              <li>
+                <%= link_to "/users/#{current_admin_user.users.first.id}/mypage" do %>
+                  <i class="fa fa-user notice_icon"></i>
+                  <div class="link_txt">マイページ</div>
+                <% end %>
+              </li>
             <% end %>
-          </li>
-          <li>
-            <%= link_to("/blog") do %>
-               <i class="fa fa-book "></i> 
-               <div class="link_txt">活動ブログ</div>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to(new_admin_user_registration_path) do %>
-               <i class="fa fa-user-plus "></i>
-               <div class="link_txt">サークル登録</div>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to(login_path) do %>
-               <i class="fa fa-sign-in "></i> 
-               <div class="link_txt">ログイン</div>
-            <% end %>
-          </li>
+            
+              <li>
+                <%= link_to(users_path) do %>
+                  <i class="fa fa-search "></i> 
+                  <div class="link_txt">サークル検索</div>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to("/blog") do %>
+                  <i class="fa fa-book "></i> 
+                  <div class="link_txt">活動ブログ</div>
+                <% end %>
+              </li>
+          
+          <!-- ログインなし -->
+          <% else %>
+            <li>
 
-        <% end %>
+              <% if @path.is('matches') %>
+                <%= link_to(matches_path) do %>
+                  <i class="fa fa-flag-checkered "></i> 
+                  <div class="link_txt">対戦相手募集</div>
+                <% end %>   
+              <% else %>
+                <%= link_to(users_path) do %>
+                  <i class="fa fa-search "></i> 
+                  <div class="link_txt">サークル検索</div>
+                <% end %>            
+              <% end %>
+            </li>
+            <li>
+              <%= link_to("/blog") do %>
+                <i class="fa fa-book "></i> 
+                <div class="link_txt">活動ブログ</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(new_admin_user_registration_path) do %>
+                <i class="fa fa-user-plus "></i>
+                <div class="link_txt">サークル登録</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(login_path) do %>
+                <i class="fa fa-sign-in "></i> 
+                <div class="link_txt">ログイン</div>
+              <% end %>
+            </li>
 
-          <%= render "/layouts/menu" %>
-  
-    </ul>
+          <% end %>
 
-
-    </header>
-
-    <% if flash[:notice] %>
-      <div class="flash time-limit">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-
-    <% if flash[:alert] %>
-      <div class="alert time-limit">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
-
-     <!-- render 'layouts/flash_messages'  -->
+            <%= render "/layouts/menu" %>
     
-    
-    <%= yield %>
+      </ul>
 
 
-    <%= render "/layouts/footer_btn" %>
+      </header>
+
+      <% if flash[:notice] %>
+        <div class="flash time-limit">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="alert time-limit">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <!-- render 'layouts/flash_messages'  -->
+      
+      
+      <%= yield %>
+
+
+      <%= render "/layouts/footer_btn" %>
 
 
 
-  <!-- Initialize Swiper -->
-  <script>
-    var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-  </script>
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    </script>
 
-  <!-- text copy -->
-  <script>
-    function copyText () {
-      var $target = document.querySelector('.copyTarget');
-      if (!$target) {
+    <!-- text copy -->
+    <script>
+      function copyText () {
+        var $target = document.querySelector('.copyTarget');
+        if (!$target) {
+          return false;
+        }
+        var range = document.createRange();
+        range.selectNode($target);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        alert('コピーしました！');
         return false;
       }
-      var range = document.createRange();
-      range.selectNode($target);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
-      document.execCommand('copy');
-      alert('コピーしました！');
-      return false;
-    }
-      document.querySelector('.copyBtn').addEventListener('click', copyText, false);
-  </script>
+        document.querySelector('.copyBtn').addEventListener('click', copyText, false);
+    </script>
 
-  <!-- 全角 => 半角　変換 -->
-  <script>
+    <!-- 全角 => 半角　変換 -->
+    <script>
+      $(function(){
+          $("#change_tel , #change_address, #change_time, #change_price, #change_regular_holiday, #change_parking, #change_scale, #change_order").change(function(){
+              var str = $(this).val();
+              str = str.replace( /[Ａ-Ｚａ-ｚ０-９－！”＃＄％＆’（）＝＜＞，．？＿［］｛｝＠＾￥：]/g, function(s) {
+                  return String.fromCharCode(s.charCodeAt(0) - 65248);
+              });
+              $(this).val(str);
+          }).change();
+      });
+    </script>
+
+    <!-- 半角 => 全角　変換 -->
+    <script>
+      $(function(){
+          $("#change_letter , #change_dummy").change(function(){
+              var str = $(this).val();
+              str = str.replace(  /[A-Za-z0-9-!"#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
+                  return String.fromCharCode(s.charCodeAt(0) + 65248);
+              });
+              $(this).val(str);
+          }).change();
+      });
+    </script>
+
+    <!-- 文字変換 -->
+    <script>
+      // 変換前
+      var beforeStr = new Array('<','>','＜','＞','&');
+      // 変換後
+      var afterStr = new Array('【','】','【','】','＆');
+      
+      function convertStr(str) {
+          var fullStr = str;
+          for(var i = 0; i < beforeStr.length; i++) {
+              fullStr = fullStr.replace(new RegExp(beforeStr[i], 'g'), afterStr[i]);
+          }
+          return fullStr;
+      }
+      $(function() {
+          $('.change_font').on('blur', function() {
+              var str = $(this).val();
+              $(this).val(convertStr(str));
+          });
+      
+      });    
+    </script>
+
+    <!-- flashメッセージ -->
+    <script>
     $(function(){
-        $("#change_tel , #change_address, #change_time, #change_price, #change_regular_holiday, #change_parking, #change_scale, #change_order").change(function(){
-            var str = $(this).val();
-            str = str.replace( /[Ａ-Ｚａ-ｚ０-９－！”＃＄％＆’（）＝＜＞，．？＿［］｛｝＠＾￥：]/g, function(s) {
-                return String.fromCharCode(s.charCodeAt(0) - 65248);
-            });
-            $(this).val(str);
-        }).change();
-    });
-  </script>
+      setTimeout("$('.time-limit').fadeOut('slow')", 1000) 
+    })  
+    </script>
 
-  <!-- 半角 => 全角　変換 -->
-  <script>
-    $(function(){
-        $("#change_letter , #change_dummy").change(function(){
-            var str = $(this).val();
-            str = str.replace(  /[A-Za-z0-9-!"#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
-                return String.fromCharCode(s.charCodeAt(0) + 65248);
-            });
-            $(this).val(str);
-        }).change();
+    <!-- カレンダー -->
+    <script>
+    $('#datepicker').datepicker({
+    
+        dateFormat: 'yy-mm-dd', //日付表示
+        minDate: 0, //過去の日付選択不可
+        showOtherMonths: true,　//次月表示
+        selectOtherMonths: true, //次月選択可能
+        changeMonth: true, //月選択
+        firstDay: 1, // 月曜始まり
+        duration: 100, //表示タイミング
+        showAnim: 'slideDown' //表示アニメーション
+    
     });
-  </script>
+    </script>
 
-  <!-- 文字変換 -->
-  <script>
-    // 変換前
-    var beforeStr = new Array('<','>','＜','＞','&');
-    // 変換後
-    var afterStr = new Array('【','】','【','】','＆');
-     
-    function convertStr(str) {
-        var fullStr = str;
-        for(var i = 0; i < beforeStr.length; i++) {
-            fullStr = fullStr.replace(new RegExp(beforeStr[i], 'g'), afterStr[i]);
-        }
-        return fullStr;
-    }
+    <!-- footerボタン -->
+    <script>
     $(function() {
-        $('.change_font').on('blur', function() {
-            var str = $(this).val();
-            $(this).val(convertStr(str));
-        });
-     
-    });    
-  </script>
-
-  <!-- flashメッセージ -->
-  <script>
-  $(function(){
-    setTimeout("$('.time-limit').fadeOut('slow')", 1000) 
-  })  
-  </script>
-
-  <!-- カレンダー -->
-  <script>
-  $('#datepicker').datepicker({
-   
-      dateFormat: 'yy-mm-dd', //日付表示
-      minDate: 0, //過去の日付選択不可
-      showOtherMonths: true,　//次月表示
-      selectOtherMonths: true, //次月選択可能
-      changeMonth: true, //月選択
-      firstDay: 1, // 月曜始まり
-      duration: 100, //表示タイミング
-      showAnim: 'slideDown' //表示アニメーション
-   
-  });
-  </script>
-
-  <!-- footerボタン -->
-  <script>
-  $(function() {
-    var topBtn = $('.footer_btn');
-    //ボタンを非表示にする
-    topBtn.hide();
-    //スクロールしてページトップから***に達したらボタンを表示
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 200) {
-  　　　　　　　//フェードインで表示
-            topBtn.fadeIn();
-        } else {
-  　　　　　　　//フェードアウトで非表示
-            topBtn.fadeOut();
-        }
+      var topBtn = $('.footer_btn');
+      //ボタンを非表示にする
+      topBtn.hide();
+      //スクロールしてページトップから***に達したらボタンを表示
+      $(window).scroll(function () {
+          if ($(this).scrollTop() > 200) {
+    　　　　　　　//フェードインで表示
+              topBtn.fadeIn();
+          } else {
+    　　　　　　　//フェードアウトで非表示
+              topBtn.fadeOut();
+          }
+      });
     });
-  });
-  </script>
+    </script>
 
 
-  <!-- 画像プレビュー -->
-  <%= render "/layouts/image_preview" %>
+    <!-- 画像プレビュー -->
+    <%= render "/layouts/image_preview" %>
 
 
 
 
-  </body>
+    </body>
 
-</html>
-
-
+  </html>
+<% end %>
 
 
 

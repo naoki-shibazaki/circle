@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
 	before_action :set_current_user	
 	before_action :set_imperfect_current_user
 	before_action :request_path
-	before_action :set_data
+  before_action :set_data
+  before_action :set_format
 
 
 	#herokuapp.comから独自ドメインへリダイレクト
@@ -28,7 +29,7 @@ class ApplicationController < ActionController::Base
 	  #   		@questions_current = Question.where(user_id: @admin_user.id)
 	  #   		@questions_current_nil = Question.where(user_id: @admin_user.id).where(answer: nil)
 	  #   	end
-	    	
+
 		end
 
   	end
@@ -109,45 +110,51 @@ class ApplicationController < ActionController::Base
 
 
 
-  	def authenticate_user
-	    if @current_user == nil
-	      flash[:notice] = "ログインが必要です"
-	      redirect_to login_path
-	    end
+  def authenticate_user
+    if @current_user == nil
+      flash[:notice] = "ログインが必要です"
+      redirect_to login_path
     end
+  end
 
-    def forbid_login_user
-	    if @current_user
-	      flash[:notice] = "すでにログインしています"
-	      redirect_to users_path
-	    end
- 	end
+  def forbid_login_user
+    if @current_user
+      flash[:notice] = "すでにログインしています"
+      redirect_to users_path
+    end
+  end
 
 
 	def after_sign_in_path_for(resource)
 
-		if admin_user_signed_in?
-		  	new_user_path
+  if admin_user_signed_in?
+      new_user_path
 
-	  	else member_signed_in?
-	  		edit_member_path(current_member)
-	  	end	
+    else member_signed_in?
+      edit_member_path(current_member)
+    end
 
 	end
 
 
 	def request_path
-	    @path = controller_path + '#' + action_name
-	    def @path.is(*str)
-	        str.map{|s| self.include?(s)}.include?(true)
-	    end
-	end	
+    @path = controller_path + '#' + action_name
+    def @path.is(*str)
+        str.map{|s| self.include?(s)}.include?(true)
+    end
+	end
 
 	def set_data
 		@time = Time.now
 		@url = request.url
 		@count = 0
 
-	end
+  end
+
+  # amp
+  def set_format
+    Thread.current[:format] = request[:format]
+  end
+
 
 end
