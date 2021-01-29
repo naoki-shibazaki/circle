@@ -7,7 +7,19 @@ helper_method :link_count
 
 
 	def top
-	end
+  end
+
+  def amp_test
+    # amp対応
+    respond_to do |format|
+      format.html
+      @amp_ready = true
+      format.amp do
+        lookup_context.formats = [:amp, :html]
+        render
+      end
+    end
+  end
 
 	def index
 
@@ -594,18 +606,6 @@ helper_method :link_count
     end
 	end
 
-
-def amp_test
-    # amp対応
-    respond_to do |format|
-      format.html
-      @amp_ready = true
-      format.amp do
-        lookup_context.formats = [:amp, :html]
-        render
-      end
-    end
-end
 
 
 

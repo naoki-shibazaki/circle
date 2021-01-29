@@ -30,31 +30,8 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
-input {
-  background-color: transparent;
-  outline-width: 0;
-}
 
-form input[type="submit"] {
-  border: none;
-  cursor: pointer;
-  border-style: none;
-}
-
-a,input,
-.mail, .line,
-.schedule_post_btn,
-.share_btn_tw,
-.contact-button,
-.user_qa_btn,
-.user_list,
-.user_slide_list,
-.copy_txt,
-.login_btn,
-.cta_50,
-.cta_100,
-.edit_link_txt,
-.link_to_user_btn{
+a{
   &:hover,
   &:active{
   opacity: 0.7 ;
@@ -71,7 +48,7 @@ body {
   background-color: #3ecdc6;
   margin: 0;
   min-height: 1vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
 }
 
 .main {
@@ -86,7 +63,7 @@ body {
 .container {
   max-width: 450px;
   margin: auto;
-  padding:0 !important;
+  padding:0;
   clear: both;
 }
 
@@ -102,41 +79,6 @@ header {
   width: 100%;
 }
 
-.header-logo {
-  float: left;
-  line-height: 64px;
-  padding-left: 20px;
-  color: white;
-  font-size: 22px;
-}
-
-.header-logo a{
-  color: white;
-  font-size: 22px;
-}
-
-.header-menus {
-  float: right;
-  padding-right: 20px;
-}
-
-.header-menus li {
-  float: left;
-  line-height: 64px;
-  font-size: 13px;
-  color: white;
-  padding-left: 15px;
-}
-
-.header-menus a {
-  float: left;
-  font-size: 13px;
-  color: white;
-}
-
-.header-menus .fa {
-  padding-right: 5px;
-}
 
 .header-menus input[type="submit"] {
   padding: 0 20px;
@@ -177,8 +119,35 @@ header {
   font-size: 10px;
 }
 
+.imege_title {
+  width: 450px;
+  height: 130px;
+  position: absolute;
+  object-fit: cover;
+}
 
-#nav-drawer {
-    position: relative;
-    margin-bottom: 2px;
+.users-heading{
+  font-weight: bold;
+  margin-bottom: 16px;
+  padding-top: 16px;
+  text-align: center;
+  line-height: 1.8rem;
+  font-size: 18px;
+  color: #696969;
+  position: relative;
+}
+
+.img_logo_title {
+  width: 170px;
+  margin-bottom: -10px;
+}
+
+.users-txt {
+  width: 90%;
+  font-size: 16px;
+  font-weight: bold;
+  color: #4a4949;
+  margin: 0 auto 46px;
+  text-align: center;
+  position: relative;
 }

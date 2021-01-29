@@ -1,27 +1,30 @@
 <% set_meta_tags noindex: true %>
-<div class="main users-index">
+<div class="main">
   <div class="container">
-    <h1 class="users-heading">LINEのURLコピーのやり方</h1>
+  <img class="imege_title" src="/images/top.png">
+  <h1 class="users-heading"><img class="img_logo_title" src="/images/logo.png" alt="サークルブック"></h1>
+    <div class="users-txt">
+      あなたにピッタリの<br>
+      サークルやチーム、団体が見つかる！！
+		</div>
 
-	<div class="line_link_wrap">
-		<a class="link_button" href="#line_a">
-			▼【iPhone／Android】LINEのURLコピー
-		</a>
+	<%
+=begin%>
+ <%= render "/users/search.html.erb" %>
+
+	<div class="search_area">
+    <%= render "events_list.html.erb" %>
+
+    <%= render "prefectures_list.html.erb" %>
 	</div>
+<%
+=end%>
 
-	<a class="link_button" href="#line_b">
-		▼【Androidのみ】LINE@の登録とURLコピー
-	</a>
-
-
-<amp-img
-	src="/line/line_a_1.jpg"
-	width="200"
-	height="200"
-	layout="fixed">
-</amp-img>
-
-
+    <% if amp_ready? %>
+      <%= render "users_list.html.erb" %>
+    <% else %>
+      <%= render "amp_users_list.html.erb" %>
+    <% end %>
 
   </div>
 </div>

@@ -1,0 +1,244 @@
+<% @users.each.with_index(1) do |user, i| %>
+
+        <div class="header_user_list ribbon-wrapper">
+
+           <div class="header_img_wrap">
+              <% if user.pic_header.present? %>
+                <%= image_tag user.pic_header.url , class:'header_imege_user_list', alt: "プロフィール｜#{user.name}" %>         
+              <% else %>
+                <%= image_tag user.pic_header.url , class:'header_imege_user_list' %>
+              <% end %>
+            </div>
+
+
+              <div class="ribbon-content">
+                <% if user.switch == "募集中" %>
+                  <span class="ribbon green"><%= user.switch %></span>
+                <% else %>
+                  <span class="ribbon red"><%= user.switch %></span>
+                <% end %>
+              </div>
+
+
+          <div class="tag_btn_list slide_content">
+
+              <%= link_to("/#{user.event.ruby}", class: "tag_btn") do %>
+                <i class="fa fa-tags tag-color"></i><%= user.event.name %>
+              <% end %>
+              
+              <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}", class: "tag_btn") do %>
+                <i class="fa fa-tags tag-color"></i><%= user.prefecture.name %>
+              <% end %>
+
+              <% if user.prefecture_sub_id.present? %>
+                <% @prefectures.each do |sub_prefecture| %>
+                  <% if user.prefecture_sub_id == sub_prefecture.id %>
+
+                    <%= link_to("/#{user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
+                      <i class="fa fa-tags tag-color"></i><%= sub_prefecture.name %>
+                    <% end %>
+
+                  <% end %>
+                <% end %>
+              <% end %>
+
+            <div class="l_space"></div>
+          </div>
+
+   
+    <%= link_to(user_path(user.id)) do %>  
+
+              <%= image_tag user.pic_profile.url , class:'image_icon' %>
+
+              <% if user.user_time.present? %>
+                <div class="post-bottom user_updated">更新日：<%= user.user_time.to_time.strftime("%Y年%-m月%-d日") %></div>
+              <% end %>
+
+        </div>
+
+          <div class="users-index-item user_list_wrap">
+
+            <div class="user-content">
+
+              <div class="user_list_wrapper">
+                <div class="list_01">
+                  <h2 class="user_name"><%= user.name.truncate(24) %></h2>
+
+                    <% if admin_user_signed_in? %>
+                      <% if current_admin_user.id == 1 %>
+                        【<%= user.impressionist_count %>】
+                      <% end %>
+                    <% end %>
+                    
+                </div>
+              </div>
+
+
+              <div class="list_cnts">
+
+
+                  <% if user.reviews.present? %>
+
+                  <div class="user_list_review">
+                    <div class="star_review review_set">
+
+                      <% star_sum = user.reviews.sum{|review| review[:review]} %>
+                      <% star_count = user.reviews.count %>
+                      <% if star_count == 0 && star_sum == 0 %>
+                        <% star_review =  0 %>
+                      <% else %>
+                        <% star_review =  (star_sum / star_count.to_f)*5 %>
+                      <% end %>
+                      
+                        <div class="star_wrap">
+
+                          <% if star_review >= 4.5 %>
+                            <!-- 5.0 -->
+                            <div class="star">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i>
+                            </div>
+
+                          <% elsif star_review >= 4.0 %>
+                            <!-- 4.0 -->
+                            <div class="star">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i>
+                            </div>
+
+                          <% elsif star_review >= 3.0 %>
+                            <!-- 3.0 -->
+                            <div class="star">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
+                            </div>
+
+                          <% elsif star_review >= 2.0 %>
+                            <!-- 2.0 -->
+                            <div class="star">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
+                            </div>
+
+                          <% elsif star_review >= 1.0 %>
+                            <!-- 1.0 -->
+                            <div class="star">
+                              <i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
+                            </div>  
+
+                          <% else %>
+                            <!-- 0 -->
+                            <div class="star">
+                              <i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
+                            </div>
+                          <% end %>
+
+                        </div>
+        
+        
+                        <span class="review_score"><%= sprintf("%.2f", star_review) %></span>
+                        <span class="review_count"><i class="fa fa-commenting "></i>  <%= star_count %>件</span>
+        
+
+                      </div>
+                    </div>
+        
+                  <% end %>
+
+
+
+
+
+                  <div class="list_02">
+                      <span class="user_schedule">
+                        <i class="fa fa-calendar icon_c"></i><%= user.schedule %>
+                      </span>
+                  </div>
+
+                  <div class="list_03">
+                      <span class="user_area">
+                        <i class="fa fa-map-marker icon_c"></i><%= user.prefecture.name %><% if user.prefecture_sub_id.present? %><% @prefectures.each do |sub_prefecture| %><% if user.prefecture_sub_id == sub_prefecture.id %>・<%= sub_prefecture.name %><% end %><% end %><% end %><%= "：" if user.area.present? %><%= user.area %>
+                      </span>
+                  </div>  
+
+                  <div class="list_04">
+                    <span class="user_recruitment"><%= user.recruitment.truncate(110) %></span>
+                  </div>
+
+
+              </div>
+
+      <% end %>
+
+            <%= link_to(user_schedules_path(user.id)) do %>  
+
+                    <% if user.switch == "募集中" %>
+
+                      <% @schedules.each do |schedule| %>
+
+                          <% if schedule.user_id == user.id %>
+                            <% if @count == 0 %>
+                              <h3 class="schedule_t"><i class="fa fa-calendar icon_c"></i> 次回の開催予定</h3>
+                            <% end %>
+
+                            <% if @count < 2 %>
+
+                              <div class="text_slide">
+                                ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+
+                                <% if schedule.time_s.present? %>
+                                  <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %>
+                                <% end %>
+
+                                <%= schedule.venue %>
+                              </div>
+
+                            <% @count += 1 %>
+
+                            <% end %>
+                          <% end %>
+
+                      <% end %> 
+
+                    <% end %> 
+                    <% @count = 0 %>
+
+
+                  </div>
+                  
+          <% end %>
+
+
+          <% user.blogs.last(1).each do |blog| %> 
+           
+            <% if blog.title.present? %>
+              <div class="border"></div>
+
+              <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
+                <div class="blog_link">
+                  <div class="catch_image">
+                  <% if blog.image_01.present? %>
+                    <%= image_tag blog.image_01.url , class:'post_image' %>
+                  <% else %>
+                    <%= image_tag user.pic_profile.url , class:'post_image' %>
+                  <% end %>
+                  </div>  
+                  <div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
+                  <h3 class="post_title"><%= blog.title.truncate(36) %></h3>
+                </div>
+              <% end %> 
+
+            <% end %>            
+                    
+          <% end %>
+
+      </div>    
+
+    <% if i == 5 || i == 10 || i == 15 %>
+      <div class="list_ad">
+        <%= render "/layouts/ad_square" %>
+      </div>
+    <% end %>
+
+<% end %>
+
+
+<%= render "/layouts/ad_square" %>
+
+<%= paginate @users %>
