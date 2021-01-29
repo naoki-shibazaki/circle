@@ -1,30 +1,36 @@
 <!doctype html>
 <html amp="">
-  <meta charset="utf-8" />
-  <meta content="width=device-width,minimum-scale=1,initial-scale=1" name="viewport" />
-  <link rel='canonical' href = "<%= request.url.gsub('.amp', '') %>" />
-  <style amp-boilerplate="">
-    body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}} 
-  </style>
+  <head>
 
-  <noscript>
-  <style amp-boilerplate="">
-    body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}
-  </style>
-  </noscript>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,minimum-scale=1,initial-scale=1" name="viewport" />
+    <link rel='canonical' href = "<%= request.url.gsub('.amp', '') %>" />
+    <style amp-boilerplate="">
+      body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}} 
+    </style>
 
-  <style amp-custom="">
-  <% controller = params[:controller] %>
-  <% if Rails.application.assets && Rails.application.assets["amp/amp_#{controller}"] %>
-    <%= Rails.application.assets["amp/amp_#{controller}"].to_s.html_safe %>
-  <% else %>
-    <%= File.read "#{Rails.root}/public#{stylesheet_path("amp/amp_#{controller}", host: nil)}" %>
-  <% end %>
-  </style>
+    <noscript>
+    <style amp-boilerplate="">
+      body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}
+    </style>
+    </noscript>
 
-  <script async="" src="https://cdn.ampproject.org/v0.js"></script>
+    <style amp-custom="">
+    <% controller = params[:controller] %>
+    <% if Rails.application.assets && Rails.application.assets["amp/amp_#{controller}"] %>
+      <%= Rails.application.assets["amp/amp_#{controller}"].to_s.html_safe %>
+    <% else %>
+      <%= File.read "#{Rails.root}/public#{stylesheet_path("amp/amp_#{controller}", host: nil)}" %>
+    <% end %>
+    </style>
+
+    <script async="" src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+
+  </head>
+
   <body>
-    <head>
+
       <ul class="header-menus_sp">
         <li>
           <%= link_to(users_path) do %>
@@ -51,7 +57,6 @@
           <% end %>
         </li>
       </ul>
-    </head>
 
 
     <%= yield %>

@@ -145,7 +145,7 @@
 
 
           <% user.blogs.last(1).each do |blog| %> 
-           
+
             <% if blog.title.present? %>
               <div class="border"></div>
 
@@ -180,21 +180,15 @@
 
     <% if i == 5 || i == 10 || i == 15 %>
       <div class="list_ad">
-        <%
-=begin%>
- <%= render "/layouts/ad_square" %> 
-<%
-=end%>
+        <%= render "/layouts/ad_square" %> 
       </div>
     <% end %>
 
 <% end %>
 
 
-<%
-=begin%>
- <%= render "/layouts/ad_square" %> 
-<%
-=end%>
+<%= render "/layouts/ad_square" %>
 
-<%= paginate @users %>
+<div class="pagination_wrap">
+  <%= paginate @users %>
+</div>
