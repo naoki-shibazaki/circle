@@ -763,6 +763,12 @@ header {
 }
 
 
+.search_word {
+  background-color: #fff;
+  padding: 0;
+  height: 36px;
+}
+
 .search_result {
     border-style: none;
     padding: 0px 10px;
@@ -780,7 +786,7 @@ header {
 .search_word .search_area {
   width: 70%;
   float: left;
-  height: 36px;
+  height: 34px;
   border: solid 1px #b4ced6;
   justify-content: center;
   align-items: center;
