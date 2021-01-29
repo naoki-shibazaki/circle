@@ -1,29 +1,62 @@
 <% set_meta_tags title: "【#{@time.strftime("%Y")}年版】47都道府県のサークルやチーム、団体一覧｜メンバー募集サイト" %>
-<div class="main users-index">
-  <div class="container">
-  	<img class="imege_title" src="/images/top.png">
-    <h1 class="users-heading"><img class="img_logo_title" src="/images/logo.png" alt="サークルブック"></h1>
-	    <div class="users-txt">
-		        <% if admin_user_signed_in?  %>
-		        	<%= link_to("活動ブログ", new_user_blog_path(@user) ) %>を投稿すると<br>
-		        	あなたの掲載順位が上がります！
-		        
-		        <% else %>
-		    		あなたにピッタリの<br>
-		    		サークルやチーム、団体が見つかる！！
-		        <% end %>
-		</div>
 
-	<%= render "/users/search.html.erb" %>		
+<% if request.format == :amp %>
+  <div class="main">
+    <div class="container">
+      <amp-img class="imege_title"
+        src="/images/top.png"
+        width="450px"
+        height="130px"
+        layout="responsive"
+        object-fit="cover">
+      </amp-img>
+    <h1 class="users-heading">
+      <amp-img class="img_logo_title"
+        src="/images/logo.png"
+        alt="サークルブック"
+        width="170"
+        height="35"
+        object-fit="cover">
+      </amp-img>
+    </h1>
+      <div class="users-txt">
+        あなたにピッタリの<br>
+        サークルやチーム、団体が見つかる！！
+      </div>
 
-	<div class="search_area">
-	    <%= render "events_list.html.erb" %>
+      <%= render "/users/amp_search.html.erb" %>
+      <%= render "amp_users_list.html.erb" %>
 
-	    <%= render "prefectures_list.html.erb" %>
-	</div>
-  
-		<%= render "users_list.html.erb" %>
-    
-
+    </div>
   </div>
-</div>
+
+<% else %>
+  <div class="main users-index">
+    <div class="container">
+      <img class="imege_title" src="/images/top.png">
+      <h1 class="users-heading"><img class="img_logo_title" src="/images/logo.png" alt="サークルブック"></h1>
+      <div class="users-txt">
+            <% if admin_user_signed_in?  %>
+              <%= link_to("活動ブログ", new_user_blog_path(@user) ) %>を投稿すると<br>
+              あなたの掲載順位が上がります！
+
+            <% else %>
+            あなたにピッタリの<br>
+            サークルやチーム、団体が見つかる！！
+            <% end %>
+      </div>
+
+    <%= render "/users/search.html.erb" %>
+
+    <div class="search_area">
+      <%= render "events_list.html.erb" %>
+
+      <%= render "prefectures_list.html.erb" %>
+    </div>
+
+      <%= render "users_list.html.erb" %>
+
+
+    </div>
+  </div>
+<% end %>

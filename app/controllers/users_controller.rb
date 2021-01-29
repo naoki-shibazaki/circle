@@ -6,7 +6,16 @@ before_action :set_users
 helper_method :link_count
 
 
-	def top
+  def top
+    # amp対応
+    respond_to do |format|
+      format.html
+      @amp_ready = true
+      format.amp do
+        lookup_context.formats = [:amp, :html]
+        render
+      end
+    end
   end
 
   def amp_test
@@ -22,10 +31,19 @@ helper_method :link_count
   end
 
 	def index
-
 		# パンくず
 		@b1_name = "サークル検索"
-		@b1_url = "/users"
+    @b1_url = "/users"
+
+    # amp対応
+    respond_to do |format|
+      format.html
+      @amp_ready = true
+      format.amp do
+        lookup_context.formats = [:amp, :html]
+        render
+      end
+    end
 	end
 
 	def search
