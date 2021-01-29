@@ -23,7 +23,9 @@ module ActionView
       def amp?
         Thread.current[:format] == 'amp'
       end
-      alias_method_chain :image_tag, :amp
+      alias_method:image_tag_without_amp,:image_tag
+      alias_method:image_tag,:image_tag_with_amp
+      # alias_method_chain :image_tag, :amp
     end
   end
 end
