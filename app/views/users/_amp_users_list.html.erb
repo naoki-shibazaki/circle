@@ -54,8 +54,9 @@
               <amp-img alt="プロフィール｜<%= user.name %>"
                 src="<%= user.pic_profile.url %>"
                 class="image_icon"
-                width="50"
-                height="50">
+                width="90"
+                height="90"
+                object-fit="cover">>
               </amp-img>
 
               <% if user.user_time.present? %>
@@ -102,7 +103,7 @@
 
               </div>
 
-      <% end %>
+    <% end %>
 
 <%= link_to(user_schedules_path(user.id)) do %>  
 
@@ -155,13 +156,15 @@
                     <amp-img src="<%= blog.image_01.url %>"
                       width="50"
                       height="50"
-                      class="post_image">
+                      class="post_image"
+                      object-fit="cover">>
                     </amp-img>
                   <% else %>
                     <amp-img src="<%= user.pic_profile.url %>"
                       width="50"
                       height="50"
-                      class="post_image">
+                      class="post_image"
+                      object-fit="cover">>
                     </amp-img>
                   <% end %>
                   </div>
