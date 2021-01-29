@@ -68,7 +68,7 @@ body {
 }
 
 .pagination {
-  margin: 20px 0 70px !important;
+  margin: 20px 0 70px;
 }
 
 .pagination>li {
@@ -316,9 +316,6 @@ header {
   word-break: break-all;
 }
 
-.icon_c{
-	// color: #469246 !important;
-}
 
 .list_cnts{
 	clear: both;
@@ -490,6 +487,5 @@ header {
   padding: 0 20px 20px;
   background-color: #fff;
   overflow: hidden;
-  width: 100%;
   margin-bottom: 20px;
 }
