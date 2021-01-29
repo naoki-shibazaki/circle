@@ -2,22 +2,25 @@
 
         <div class="header_user_list ribbon-wrapper">
 
-            <div class="header_img_wrap">
-              <amp-img alt="プロフィール｜<%= user.name %>"
-                src="<%= user.pic_header.url %>"
-                width="50"
-                height="50">
-              </amp-img>
-            </div>
+          <div class="header_img_wrap">
+            <amp-img alt="プロフィール｜<%= user.name %>"
+              src="<%= user.pic_header.url %>"
+              class="header_imege_user_list"
+              width="450"
+              height="120"
+              layout="responsive"
+              object-fit="cover">
+            </amp-img>
+          </div>
 
 
-              <div class="ribbon-content">
-                <% if user.switch == "募集中" %>
-                  <span class="ribbon green"><%= user.switch %></span>
-                <% else %>
-                  <span class="ribbon red"><%= user.switch %></span>
-                <% end %>
-              </div>
+          <div class="ribbon-content">
+            <% if user.switch == "募集中" %>
+              <span class="ribbon green"><%= user.switch %></span>
+            <% else %>
+              <span class="ribbon red"><%= user.switch %></span>
+            <% end %>
+          </div>
 
 
           <div class="tag_btn_list slide_content">
