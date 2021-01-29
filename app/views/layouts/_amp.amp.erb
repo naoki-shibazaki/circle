@@ -1,6 +1,5 @@
 <!doctype html>
 <html amp="">
-  <head>
   <meta charset="utf-8" />
   <meta content="width=device-width,minimum-scale=1,initial-scale=1" name="viewport" />
   <link rel='canonical' href = "<%= request.url.gsub('.amp', '') %>" />
@@ -25,7 +24,37 @@
 
   <script async="" src="https://cdn.ampproject.org/v0.js"></script>
   <body>
+    <head>
+      <ul class="header-menus_sp">
+        <li>
+          <%= link_to(users_path) do %>
+              <i class="fa fa-search"></i> 
+              <div class="link_txt">サークル検索</div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to("/blog") do %>
+            <i class="fa fa-book "></i> 
+            <div class="link_txt">活動ブログ</div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to(new_admin_user_registration_path) do %>
+            <i class="fa fa-user-plus "></i>
+            <div class="link_txt">サークル登録</div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to(login_path) do %>
+            <i class="fa fa-sign-in "></i> 
+            <div class="link_txt">ログイン</div>
+          <% end %>
+        </li>
+      </ul>
+    </head>
+
+
     <%= yield %>
   </body>
-  </head>
+
 </html>
