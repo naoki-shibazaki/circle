@@ -683,7 +683,7 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    border-radius: 6px !important;
+    border-radius: 6px;
 }
 
 .search_select select{
@@ -705,7 +705,7 @@ header {
 
 .search_select select:first-child{
     border-right: 1px solid #cecece;
-    border-radius: 6px 0px 0px 6px !important;
+    border-radius: 6px 0px 0px 6px;
 }
 
 .search_wrap .search-text{
@@ -754,7 +754,7 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    border-radius: 0px 5px 5px 0px !important;
+    border-radius: 0px 5px 5px 0px;
 }
 
 .search_icon i{
@@ -778,7 +778,7 @@ header {
 }
 
 .search_word .search_area {
-  width: 80%;
+  width: 70%;
   float: left;
   height: 36px;
   border: solid 1px #b4ced6;
@@ -788,6 +788,7 @@ header {
   background-color: #ffffff;
   color: #4a4a4a;
   margin: 0;
+  padding: 0;
   border-right: 1px solid #cecece;
   border-radius: 6px 0px 0px 6px;
   padding-left: 8px;
