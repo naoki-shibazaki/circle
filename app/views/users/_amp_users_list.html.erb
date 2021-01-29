@@ -2,12 +2,12 @@
 
         <div class="header_user_list ribbon-wrapper">
 
-           <div class="header_img_wrap">
-              <% if user.pic_header.present? %>
-                <%= image_tag user.pic_header.url , class:'header_imege_user_list', alt: "プロフィール｜#{user.name}" %>         
-              <% else %>
-                <%= image_tag user.pic_header.url , class:'header_imege_user_list' %>
-              <% end %>
+            <div class="header_img_wrap">
+              <amp-img alt="プロフィール｜<%= user.name %>"
+                src="<%= user.pic_header.url %>"
+                width="50"
+                height="50">
+              </amp-img>
             </div>
 
 
@@ -48,7 +48,12 @@
    
     <%= link_to(user_path(user.id)) do %>  
 
-              <%= image_tag user.pic_profile.url , class:'image_icon' %>
+              <amp-img alt="プロフィール｜<%= user.name %>"
+                src="<%= user.pic_profile.url %>"
+                class="image_icon"
+                width="50"
+                height="50">
+              </amp-img>
 
               <% if user.user_time.present? %>
                 <div class="post-bottom user_updated">更新日：<%= user.user_time.to_time.strftime("%Y年%-m月%-d日") %></div>
@@ -69,81 +74,11 @@
                         【<%= user.impressionist_count %>】
                       <% end %>
                     <% end %>
-                    
                 </div>
               </div>
 
 
               <div class="list_cnts">
-
-
-                  <% if user.reviews.present? %>
-
-                  <div class="user_list_review">
-                    <div class="star_review review_set">
-
-                      <% star_sum = user.reviews.sum{|review| review[:review]} %>
-                      <% star_count = user.reviews.count %>
-                      <% if star_count == 0 && star_sum == 0 %>
-                        <% star_review =  0 %>
-                      <% else %>
-                        <% star_review =  (star_sum / star_count.to_f)*5 %>
-                      <% end %>
-                      
-                        <div class="star_wrap">
-
-                          <% if star_review >= 4.5 %>
-                            <!-- 5.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i>
-                            </div>
-
-                          <% elsif star_review >= 4.0 %>
-                            <!-- 4.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i>
-                            </div>
-
-                          <% elsif star_review >= 3.0 %>
-                            <!-- 3.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
-                            </div>
-
-                          <% elsif star_review >= 2.0 %>
-                            <!-- 2.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
-                            </div>
-
-                          <% elsif star_review >= 1.0 %>
-                            <!-- 1.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
-                            </div>  
-
-                          <% else %>
-                            <!-- 0 -->
-                            <div class="star">
-                              <i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
-                            </div>
-                          <% end %>
-
-                        </div>
-        
-        
-                        <span class="review_score"><%= sprintf("%.2f", star_review) %></span>
-                        <span class="review_count"><i class="fa fa-commenting "></i>  <%= star_count %>件</span>
-        
-
-                      </div>
-                    </div>
-        
-                  <% end %>
-
-
-
-
 
                   <div class="list_02">
                       <span class="user_schedule">
@@ -166,43 +101,43 @@
 
       <% end %>
 
-            <%= link_to(user_schedules_path(user.id)) do %>  
+<%= link_to(user_schedules_path(user.id)) do %>  
 
-                    <% if user.switch == "募集中" %>
+          <% if user.switch == "募集中" %>
 
-                      <% @schedules.each do |schedule| %>
+            <% @schedules.each do |schedule| %>
 
-                          <% if schedule.user_id == user.id %>
-                            <% if @count == 0 %>
-                              <h3 class="schedule_t"><i class="fa fa-calendar icon_c"></i> 次回の開催予定</h3>
-                            <% end %>
+                <% if schedule.user_id == user.id %>
+                  <% if @count == 0 %>
+                    <h3 class="schedule_t"><i class="fa fa-calendar icon_c"></i> 次回の開催予定</h3>
+                  <% end %>
 
-                            <% if @count < 2 %>
+                  <% if @count < 2 %>
 
-                              <div class="text_slide">
-                                ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                    <div class="text_slide">
+                      ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
-                                <% if schedule.time_s.present? %>
-                                  <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %>
-                                <% end %>
+                      <% if schedule.time_s.present? %>
+                        <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %>
+                      <% end %>
 
-                                <%= schedule.venue %>
-                              </div>
+                      <%= schedule.venue %>
+                    </div>
 
-                            <% @count += 1 %>
+                  <% @count += 1 %>
 
-                            <% end %>
-                          <% end %>
+                  <% end %>
+                <% end %>
 
-                      <% end %> 
+            <% end %> 
 
-                    <% end %> 
-                    <% @count = 0 %>
+          <% end %> 
+          <% @count = 0 %>
 
 
-                  </div>
-                  
-          <% end %>
+        </div>
+
+<% end %>
 
 
           <% user.blogs.last(1).each do |blog| %> 

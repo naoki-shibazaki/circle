@@ -20,11 +20,12 @@
 <%
 =end%>
 
-    <% if amp_ready? %>
-      <%= render "users_list.html.erb" %>
-    <% else %>
-      <%= render "amp_users_list.html.erb" %>
-    <% end %>
+<% if request.format == :amp %>
+    <%= render "amp_users_list.html.erb" %>
+<% else %>
+    <%= render "users_list.html.erb" %>
+<% end %>
+
 
   </div>
 </div>
