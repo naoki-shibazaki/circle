@@ -12,8 +12,8 @@
     <amp-img class="img_logo_title"
       src="/images/logo.png"
       alt="サークルブック"
-      width="200"
-      height="41"
+      width="170"
+      height="35"
       object-fit="cover">
     </amp-img>
   </h1>
@@ -22,19 +22,10 @@
       サークルやチーム、団体が見つかる！！
 		</div>
 
-	<%
-=begin%>
- <%= render "/users/search.html.erb" %>
 
-	<div class="search_area">
-    <%= render "events_list.html.erb" %>
-
-    <%= render "prefectures_list.html.erb" %>
-	</div>
-<%
-=end%>
 
 <% if request.format == :amp %>
+    <%= render "/users/amp_search.html.erb" %>
     <%= render "amp_users_list.html.erb" %>
 <% else %>
     <%= render "users_list.html.erb" %>

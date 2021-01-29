@@ -1,0 +1,12 @@
+<div class="search_wrap">	 
+		<div class="search_word">	
+
+    <%= form_tag('/users/search', method: :get, enforce_utf8: false) do %>
+        <input id="page_name" name='kw' size="30" type="text" placeholder="（例）バスケ 東京" value="<%= params[:kw] %>" class="search_area"/>
+          <div class="search_icon">
+            <%= submit_tag("検索", :name => nil) %>
+        </div>
+    <% end %>
+
+		</div>
+</div>
