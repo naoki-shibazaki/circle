@@ -8,7 +8,6 @@ module ApplicationHelper
         charset: 'utf-8',
         description: '【完全無料／登録不要】47都道府県のサークルやチーム、団体のメンバー募集サイト！スポーツや趣味など豊富に掲載！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！バスケやバレー、フットサルなど。簡単に無料でメンバー募集ができます！',
         keywords: 'サークル,チーム,団体,スポーツ,趣味,社会人,学生',
-        canonical: request.original_url,
         separator: '|',
         icon: [
           { href: image_url('https://www.circle-book.com/images/favicon.ico')},
