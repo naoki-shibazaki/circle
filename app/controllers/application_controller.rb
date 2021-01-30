@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	before_action :set_current_user	
+	before_action :set_current_user
 	before_action :set_imperfect_current_user
 	before_action :request_path
   before_action :set_data
@@ -12,101 +12,65 @@ class ApplicationController < ActionController::Base
 
 	# redirect correct server from herokuapp domain for SEO
 	def ensure_domain
-	 return unless /\.herokuapp.com/ =~ request.host
-
-	 # 主にlocalテスト用の対策80と443以外でアクセスされた場合ポート番号をURLに含める 
-	 port = ":#{request.port}" unless [80, 443].include?(request.port)
-	 redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
+    return unless /\.herokuapp.com/ =~ request.host
+    # 主にlocalテスト用の対策80と443以外でアクセスされた場合ポート番号をURLに含める
+    port = ":#{request.port}" unless [80, 443].include?(request.port)
+    redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
 	end
 
 	def set_current_user
-    	@current_user = User.find_by(id: session[:user_id])
-
+    @current_user = User.find_by(id: session[:user_id])
 		if admin_user_signed_in?
 			@admin_user = User.find_by(admin_user_id: current_admin_user.id)
-
-			# if action_name != 'new'
-	  #   		@questions_current = Question.where(user_id: @admin_user.id)
-	  #   		@questions_current_nil = Question.where(user_id: @admin_user.id).where(answer: nil)
-	  #   	end
-
 		end
-
-  	end
-
+  end
 
 
-  	# 登録未完了時のアクション
-  	def set_imperfect_current_user
 
-		if admin_user_signed_in? #管理人ログイン判定
+  # 登録未完了時のアクション
+  def set_imperfect_current_user
+    if admin_user_signed_in? #管理人ログイン判定
+      if current_admin_user.users.any? # 登録1つ以上の判定
+        # OK
+      else
+        if  controller_path == 'users' #users コントローラー
+          if action_name == 'new' || action_name == 'create' || action_name == 'edit' || action_name == 'update' || action_name == 'edit2' || action_name == 'update2'
+            # OK
+          else
+            flash[:notice] = "登録を完了させてください"
+            redirect_to new_user_path
+          end
+        elsif action_name == 'destroy'
 
-			if current_admin_user.users.any? # 登録1つ以上の判定
+        else
+            flash[:notice] = "登録を完了させてください"
+            redirect_to new_user_path
+        end
+      end
 
-				# OK
+    elsif member_signed_in? #参加者ログイン判定
+      if current_member.nickname.present? # 登録1つ以上の判定
+        # OK
+      else
+        if  controller_path == 'members' #members コントローラー
+          if action_name == 'new' || action_name == 'create' || action_name == 'edit' || action_name == 'update'
+            # OK
+          else
+            flash[:notice] = "登録を完了させてください"
+            redirect_to "/members/#{current_member.id}/edit"
+          end
+        elsif action_name == 'destroy'
 
-			else
+        else
+            flash[:notice] = "登録を完了させてください"
+            redirect_to "/members/#{current_member.id}/edit"
+        end
+      end
 
-				if  controller_path == 'users' #users コントローラー
-
-					if action_name == 'new' || action_name == 'create' || action_name == 'edit' || action_name == 'update' || action_name == 'edit2' || action_name == 'update2'
-
-						# OK
-
-					else
-						flash[:notice] = "登録を完了させてください"
-						redirect_to new_user_path		
-					end
-
-				elsif action_name == 'destroy'
-
-
-				else
-						flash[:notice] = "登録を完了させてください"
-						redirect_to new_user_path
-				end		
-
-			end
-
-		elsif member_signed_in? #参加者ログイン判定
-
-			if current_member.nickname.present? # 登録1つ以上の判定
-
-				# OK
-
-			else
-
-
-				if  controller_path == 'members' #members コントローラー
-
-					if action_name == 'new' || action_name == 'create' || action_name == 'edit' || action_name == 'update'
-
-						# OK
-
-					else
-						flash[:notice] = "登録を完了させてください"
-						redirect_to "/members/#{current_member.id}/edit"		
-					end
-
-				elsif action_name == 'destroy'
-
-
-				else
-						flash[:notice] = "登録を完了させてください"
-						redirect_to "/members/#{current_member.id}/edit"
-				end	
-
-			end
-
-			
-		else
-
-			#一般の方
-
-		end
-
-
-  	end
+    else
+      #一般の方
+    end
+  end
 
 
 

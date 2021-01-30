@@ -361,7 +361,6 @@ helper_method :link_count
   def line
   end
 
-
   def rules
   end
 
@@ -431,7 +430,6 @@ helper_method :link_count
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		# @users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
 
 		# ソート機能
       if params[:sort] == "1" || params[:sort] == nil
@@ -467,7 +465,6 @@ helper_method :link_count
 		@city_judge = City.find_by(city_kana: params[:city_kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		# @users = User.city(@city_users).or(User.prefecture_50).user_sort.page(params[:page])
 
 		# ソート機能
       if params[:sort] == "1" || params[:sort] == nil
@@ -499,7 +496,6 @@ helper_method :link_count
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
-		# @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
 
 		# ソート機能
       if params[:sort] == "1" || params[:sort] == nil
@@ -514,18 +510,20 @@ helper_method :link_count
 		@b1_name = @event.name
 		@b1_url = "/#{@event.ruby}"
 		@b2_name = @prefecture.name
-		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"	
+    @b2_url = "/#{@event.ruby}/#{@prefecture.kana}"
+
+    # amp対応
+    amp_set
 	end
 
 	def event_prefecture_city
 		@event = Event.find_by(ruby: params[:ruby])
-		@city = City.find_by(city_kana: params[:city_kana])	
+		@city = City.find_by(city_kana: params[:city_kana])
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
 		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		# @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
 
 		# ソート機能
       if params[:sort] == "1" || params[:sort] == nil
@@ -536,12 +534,10 @@ helper_method :link_count
         @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
       end
 
-
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
       flash[:notice] = "URLが間違っています"
       redirect_to users_path
 		end
-
 
 		# パンくず
 		@b1_name = @event.name
@@ -549,7 +545,10 @@ helper_method :link_count
 		@b2_name = @prefecture.name
 		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"
 		@b3_name = @city.name
-		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
+    @b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
+
+    # amp対応
+    amp_set
 	end
 
 
@@ -564,7 +563,6 @@ helper_method :link_count
 		@city_judge = City.find_by(city_kana: params[:city_kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
-		# @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).user_sort.page(params[:page])
 
 		# ソート機能
     if params[:sort] == "1" || params[:sort] == nil
@@ -574,7 +572,6 @@ helper_method :link_count
     else params[:sort] == "3"
       @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
     end
-
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
       flash[:notice] = "URLが間違っています"
@@ -589,7 +586,10 @@ helper_method :link_count
 		@b3_name = @city.name
 		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
 		@b4_name = @station.name
-		@b4_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"
+    @b4_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"
+
+    # amp対応
+    amp_set
 	end
 
 	def login
@@ -600,15 +600,11 @@ helper_method :link_count
 
 	def webmaster
     if current_admin_user.id == 1
-
     else
         flash[:notice] = "権限がありません"
         redirect_to users_path
     end
 	end
-
-
-
 
 
 
