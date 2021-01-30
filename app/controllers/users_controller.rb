@@ -16,6 +16,7 @@ helper_method :link_count
 		@b1_name = "サークル検索"
     @b1_url = "/users"
 
+    # amp対応
     amp_set
 	end
 
@@ -386,18 +387,20 @@ helper_method :link_count
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(kana: "nil")
 
 		# ソート機能
-        if params[:sort] == "1" || params[:sort] == nil
-			@users = User.event(@event.id).user_sort_1.page(params[:page])
-        elsif params[:sort] == "2"
-			@users = User.event(@event.id).user_sort_2.page(params[:page])
-        else params[:sort] == "3"
-			@users = User.event(@event.id).user_sort_3.page(params[:page])
-        end
+    if params[:sort] == "1" || params[:sort] == nil
+      @users = User.event(@event.id).user_sort_1.page(params[:page])
+    elsif params[:sort] == "2"
+      @users = User.event(@event.id).user_sort_2.page(params[:page])
+    else params[:sort] == "3"
+      @users = User.event(@event.id).user_sort_3.page(params[:page])
+    end
 
 		# パンくず
 		@b1_name = @event.name
     @b1_url = "/#{@event.ruby}"
 
+    # amp対応
+    amp_set
 	end
 
 	def prefecture
