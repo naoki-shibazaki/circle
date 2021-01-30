@@ -442,7 +442,6 @@ helper_method :link_count
         @users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
       end
 
-
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
         flash[:notice] = "URLが間違っています"
         redirect_to users_path
@@ -452,7 +451,10 @@ helper_method :link_count
 		@b1_name = @prefecture.name
 		@b1_url = "/prefectures/#{@prefecture.kana}"
 		@b2_name = @city.name
-		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"
+    @b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"
+
+    # amp対応
+    amp_set
 	end
 
 	def prefecture_city_station
@@ -476,7 +478,6 @@ helper_method :link_count
         @users = User.city(@city_users).or(User.prefecture_50).pref.user_sort_3.page(params[:page])
       end
 
-
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
         flash[:notice] = "URLが間違っています"
         redirect_to users_path
@@ -488,7 +489,10 @@ helper_method :link_count
 		@b2_name = @city.name
 		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"
 		@b3_name = @station.name
-		@b3_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"
+    @b3_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"
+
+    # amp対応
+    amp_set
 	end
 
 	def event_prefecture
