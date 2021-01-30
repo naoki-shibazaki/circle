@@ -418,7 +418,10 @@ helper_method :link_count
 
 		# パンくず
 		@b1_name = @prefecture.name
-		@b1_url = "/prefectures/#{@prefecture.kana}"
+    @b1_url = "/prefectures/#{@prefecture.kana}"
+
+    # amp対応
+    amp_set
 	end
 
 	def prefecture_city

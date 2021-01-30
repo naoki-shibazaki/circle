@@ -26,7 +26,6 @@
           </div>
       </div>
 
-
       <%= render "/users/amp_search.html.erb" %>
 
       <% if @users.count != 0 %>
@@ -39,39 +38,33 @@
   </div>
 
 <% else %>
-<div class="main users-index">
-  <div class="container">
-  <%= render "/layouts/breadcrumb" %>
+  <div class="main users-index">
+    <div class="container">
+    <%= render "/layouts/breadcrumb" %>
 
-		<div class="e_header_wrap">
-			<img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
-			<div class="link_txt">
-				<h1 class="e_header_title">
-					メンバー募集中の<br>
-					<%= @event.txt %>の一覧
-				</h1>
-			</div>
-		</div>
-
-    <% if @users.count != 0 %>
-      <div class="search_area">
-        <%= render "/users/search.html.erb" %>
-
-        <%= render "/users/prefectures_list.html.erb" %>
+      <div class="e_header_wrap">
+        <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+        <div class="link_txt">
+          <h1 class="e_header_title">
+            メンバー募集中の<br>
+            <%= @event.txt %>の一覧
+          </h1>
+        </div>
       </div>
 
-        <%= render "/users/users_list.html.erb" %>
+      <% if @users.count != 0 %>
+        <div class="search_area">
+          <%= render "/users/search.html.erb" %>
 
-    <% else @users.count == 0 %>
-      <%= render "/users/no_hit.html.erb" %>
-    <% end %>
+          <%= render "/users/prefectures_list.html.erb" %>
+        </div>
 
+          <%= render "/users/users_list.html.erb" %>
+
+      <% else @users.count == 0 %>
+        <%= render "/users/no_hit.html.erb" %>
+      <% end %>
+
+    </div>
   </div>
-</div>
 <% end %>
-
-
-
-
-
-
