@@ -143,7 +143,6 @@ helper_method :link_count
 			impressionist(@user, nil, unique: [:session_hash])
 		end
 
-
 		# レビュー合計値
 		@star_sum = @user.reviews.sum{|review| review[:review]}
 		# レビュー数
@@ -154,7 +153,6 @@ helper_method :link_count
 		else
 			@star_review =  (@star_sum / @star_count.to_f)*5
 		end
-
 
 		if @user.id.to_s != params[:id]
         flash[:notice] = "URLが間違っています"
@@ -194,9 +192,8 @@ helper_method :link_count
 			end
 		end
 
-		@mail_title = "【#{@user.name}】お問い合わせ"
-		@mail_message = "こちらに相談内容をご記入ください！"
-
+    # amp対応
+    amp_set
 	end
 
 	def edit
