@@ -1523,6 +1523,16 @@ width: 90%;
   width: 220px;
   border-radius: 6px;
 }
+.profile_list_p p {
+  font-size: 13px;
+}
+.post-body p, .user-profile p, .qa_answer p, .event_anser_card p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+.post-body p:last-child, .user-profile p:last-child {
+  margin-bottom: 0px;
+}
 @media only screen and (max-width:450px) {
 
   .imege_title img,
