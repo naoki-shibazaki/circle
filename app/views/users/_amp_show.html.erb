@@ -147,40 +147,6 @@
 	</div>
 <% end %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div class="border"></div>
       <div class="article_item article_padding">
         <table>
@@ -337,7 +303,59 @@
           <div class="review_link_b"><%= link_to ">>口コミ投稿",user_reviews_path(@user) %></div>
           <div class="border"></div>
         <% end %>
-        <%= render "/users/question_card" %>
+
+        <% if @questions.any? %>
+        <h2 class="user_sub_title">質問コーナー</h2>
+
+          <% if @questions.count > 1 %>
+            <ul class="user_slide_qa">
+              <% @questions.first(5).each do |question| %>
+                <li>
+                  <%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
+                    <amp-img alt="<%= question.content %>"
+                      src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
+                      width="220"
+                      height="115"
+                      object-fit="cover">>
+                    </amp-img>
+                    <div class="qa_judge">
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <ul class="user_single_qa">
+              <% @questions.first(1).each do |question| %>
+                <li>
+                  <%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
+                    <amp-img alt="<%= question.content %>"
+                      src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
+                      width="220"
+                      height="115"
+                      object-fit="cover">>
+                    </amp-img>
+                    <div class="qa_judge">
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+
+
+        <div class="user_qa_btn">
+          <%= link_to  user_questions_path(@user) do %>
+            <div class="contact-button qa_btn qa">
+              <i class="fa fa-comments "></i> このサークルに質問する
+            </div>
+          <% end %>
+        </div>
+
+        <div class="border"></div>
+        <%= render "/users/contact_btn" %>
+
       <% end %>
     </div>
   </div>
