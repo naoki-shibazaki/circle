@@ -1,28 +1,49 @@
 <% set_meta_tags title: "【#{Time.now.strftime("%Y")}年版】#{@prefecture.name}#{@city.name}にある#{@event.name}コートや体育館の情報一覧ページ",
-                 description: "#{@prefecture.name}#{@city.name}にある#{@event.name}コートの情報一覧ページです。体育館やアリーナ、屋外にある公園などの情報を分かりやすく掲載しています！住所やアクセス方法、駐車場情報も載っているので便利です。また、#{@city.name}で活動している#{@event.name}サークルやチーム、団体などの情報も掲載しています！",
-                og: { 
-                  image:image_url("/images/events/e_icon_#{@event.ruby}.jpg")
-                },
-        twitter: { card: 'summary'}  
- %>
+  description: "#{@prefecture.name}#{@city.name}にある#{@event.name}コートの情報一覧ページです。体育館やアリーナ、屋外にある公園などの情報を分かりやすく掲載しています！住所やアクセス方法、駐車場情報も載っているので便利です。また、#{@city.name}で活動している#{@event.name}サークルやチーム、団体などの情報も掲載しています！",
+  og: {
+    image:image_url("/images/events/e_icon_#{@event.ruby}.jpg")
+  },
+  twitter: { card: 'summary'}
+%>
 
-
-
-<div class="main users-index">
-  <div class="container">
-
-    <%= render "/layouts/breadcrumb" %>
-    <div class="e_header_wrap">
-    <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
-      <div class="link_txt">
-        <h1 class="e_header_title">
-		    <%= @prefecture.name %><%= @city.name %>にある<br><%= @event.name %>のコートや体育館の情報一覧
-        </h1>
+<% if request.format == :amp %>
+  <div class="main users-index">
+    <div class="container">
+      <%= render "/layouts/breadcrumb" %>
+      <div class="e_header_wrap">
+        <amp-img alt="<%= @event.name %>"
+          src="/images/events/e_icon_<%= @event.ruby %>.jpg"
+          width="450px"
+          height="130px"
+          layout="responsive"
+          object-fit="cover">
+        </amp-img>
+        <div class="link_txt">
+          <h1 class="e_header_title">
+            <%= @prefecture.name %><%= @city.name %>にある<br><%= @event.name %>のコートや体育館の情報一覧
+          </h1>
+        </div>
       </div>
+
+      <%= render "/places/amp_search.html.erb" %>
+
+      <%= render "/places/places_list" %>
     </div>
-
-    <%= render "/places/places_list" %>
-
-
   </div>
-</div>
+
+<% else %>
+  <div class="main users-index">
+    <div class="container">
+      <%= render "/layouts/breadcrumb" %>
+      <div class="e_header_wrap">
+      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+        <div class="link_txt">
+          <h1 class="e_header_title">
+            <%= @prefecture.name %><%= @city.name %>にある<br><%= @event.name %>のコートや体育館の情報一覧
+          </h1>
+        </div>
+      </div>
+      <%= render "/places/places_list" %>
+    </div>
+  </div>
+<% end %>
