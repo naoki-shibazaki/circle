@@ -1,33 +1,60 @@
 <% set_meta_tags title: "#{@tag.text}！#{@prefecture.name}のサークルやチーム、団体の一覧｜メンバー募集サイト",
-                   keywords: "#{@prefecture.name},#{@tag.name},サークル,チーム"
+  keywords: "#{@prefecture.name},#{@tag.name},サークル,チーム"
 %>
 
-<div class="main users-index">
-  <div class="container">
- 	<%= render "/layouts/breadcrumb" %>
+<% if request.format == :amp %>
+  <div class="main">
+    <div class="container">
+      <%= render "/layouts/breadcrumb" %>
 
-		<div class="e_header_wrap">
-			<img src="/images/top.png" >
-			<div class="link_txt">
-				<h1 class="e_header_title">
-					<%= @tag.text %>の<br>
-			        <%= @prefecture.name %>で活動している<br>
-		          	サークルやチーム、団体
-				</h1>
-			</div>
-		</div>
+      <div class="e_header_wrap">
+        <amp-img src="/images/top.png"
+          width="450px"
+          height="130px"
+          layout="responsive"
+          object-fit="cover">
+        </amp-img>
+          <div class="link_txt">
+          <h1 class="e_header_title">
+            <%= @tag.text %>の<br>
+            <%= @prefecture.name %>で活動している<br>
+            サークルやチーム、団体
+          </h1>
+          </div>
+      </div>
 
+      <%= render "/users/amp_search.html.erb" %>
 
-	<% if @users.count != 0 %>
+      <% if @users.count != 0 %>
+        <%= render "/users/amp_users_list.html.erb" %>
+      <% else @users.count == 0 %>
+        <%= render "/tags/no_hit.html.erb" %>
+      <% end %>
 
-		<%= render "/users/users_list.html.erb" %>
-		    
-	<% else @users.count == 0 %>
-
-		<%= render "/tags/no_hit.html.erb" %>		
-	
-	<% end %>
-
-
+    </div>
   </div>
-</div>
+
+<% else %>
+  <div class="main users-index">
+    <div class="container">
+    <%= render "/layouts/breadcrumb" %>
+      <div class="e_header_wrap">
+        <img src="/images/top.png" >
+        <div class="link_txt">
+          <h1 class="e_header_title">
+            <%= @tag.text %>の<br>
+            <%= @prefecture.name %>で活動している<br>
+            サークルやチーム、団体
+          </h1>
+        </div>
+      </div>
+
+    <% if @users.count != 0 %>
+      <%= render "/users/users_list.html.erb" %>
+    <% else @users.count == 0 %>
+      <%= render "/tags/no_hit.html.erb" %>
+    <% end %>
+
+    </div>
+  </div>
+<% end %>

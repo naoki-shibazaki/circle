@@ -1125,6 +1125,7 @@ input {
 .img_url_source{
   text-align: right;
   margin-top: 2px;
+  font-size: 13px;
 }
 
 .img_url_source,
@@ -1314,4 +1315,13 @@ width: 26%;
 
 a:hover, a:focus {
   text-decoration: none;
+}
+
+.sorry_message {
+  text-align: center;
+  color: #777;
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }

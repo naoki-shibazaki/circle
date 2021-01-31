@@ -3,7 +3,7 @@
   <div class="container">
 
     <%= render "/layouts/breadcrumb" %>
-    
+
     <h1 class="users-heading">全国のコートや体育館の情報</h1>
 
 
@@ -11,9 +11,8 @@
 
         <ul class="events-menus">
           <% @events.each do |event| %>
-
             <li>
-              <%= link_to("places/#{event.ruby}") do %>
+              <%= link_to("/places/#{event.ruby}") do %>
                 <div class="e_icon_wrap">
                   <img data-src="/images/events/s_e_icon_<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
                   <div class="link_txt"><%= event.name %>の<br>コートや体育館の情報</div>
@@ -22,10 +21,9 @@
             </li>
 
           <% end %>
-        </ul> 
+        </ul>
 
       </div>
-
 
   <%= render "/layouts/ad_square" %>
 

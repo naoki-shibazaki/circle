@@ -72,7 +72,18 @@
   <div class="no_hit_wrap">
 
     <div class="sorry_message">該当するコート情報がございません</div>
-    <img class="imege_sorry" src="/images/sorry_cat.png">
+
+    <% if request.format == :amp %>
+      <amp-img class="imege_sorry"
+        src="/images/sorry_cat.png"
+        width="150px"
+        height="150px"
+        layout="responsive"
+        object-fit="cover">
+      </amp-img>
+    <% else %>
+      <img class="imege_sorry" src="/images/sorry_cat.png">
+    <% end %>
 
     <%= link_to "/places" do %>
       <div class="no_hit_top">コート・施設情報ページに戻る</div>

@@ -1,36 +1,64 @@
 <% set_meta_tags title: "#{@tag.text}！#{@prefecture.name}の#{@event.txt}｜メンバー募集サイト",
-                   keywords: "#{@event.name},#{@prefecture.name},#{@tag.name},サークル,チーム",
-              og: { 
-              	image:image_url("/images/events/e_ogp_#{@event.ruby}.png")
-              }
+  keywords: "#{@event.name},#{@prefecture.name},#{@tag.name},サークル,チーム",
+  og: {
+    image:image_url("/images/events/e_ogp_#{@event.ruby}.png")
+  }
 %>
 
-<div class="main users-index">
-  <div class="container">
- 	<%= render "/layouts/breadcrumb" %>
+<% if request.format == :amp %>
+  <div class="main">
+    <div class="container">
+      <%= render "/layouts/breadcrumb" %>
 
-		<div class="e_header_wrap">
-			<img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
-			<div class="link_txt">
-				<h1 class="e_header_title">
-					<%= @tag.text %>の<br>
-					<%= @prefecture.name %>で活動している<br>
-					<%= @event.txt %>一覧
-				</h1>
-			</div>
-		</div>
+      <div class="e_header_wrap">
+        <amp-img alt="<%= @event.name %>"
+          src="/images/events/e_icon_<%= @event.ruby %>.jpg"
+          width="450px"
+          height="130px"
+          layout="responsive"
+          object-fit="cover">
+        </amp-img>
+          <div class="link_txt">
+          <h1 class="e_header_title">
+            <%= @tag.text %>の<br>
+            <%= @prefecture.name %>で活動している<br>
+            <%= @event.txt %>一覧
+          </h1>
+          </div>
+      </div>
 
+      <%= render "/users/amp_search.html.erb" %>
 
-	<% if @users.count != 0 %>
+      <% if @users.count != 0 %>
+        <%= render "/users/amp_users_list.html.erb" %>
+      <% else @users.count == 0 %>
+        <%= render "/tags/no_hit.html.erb" %>
+      <% end %>
 
-		<%= render "/users/users_list.html.erb" %>
-		    
-	<% else @users.count == 0 %>
-
-		<%= render "/tags/no_hit.html.erb" %>		
-	
-	<% end %>
-
-
+    </div>
   </div>
-</div>
+
+<% else %>
+  <div class="main users-index">
+    <div class="container">
+    <%= render "/layouts/breadcrumb" %>
+      <div class="e_header_wrap">
+        <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+        <div class="link_txt">
+          <h1 class="e_header_title">
+            <%= @tag.text %>の<br>
+            <%= @prefecture.name %>で活動している<br>
+            <%= @event.txt %>一覧
+          </h1>
+        </div>
+      </div>
+
+    <% if @users.count != 0 %>
+      <%= render "/users/users_list.html.erb" %>
+    <% else @users.count == 0 %>
+      <%= render "/tags/no_hit.html.erb" %>
+    <% end %>
+
+    </div>
+  </div>
+<% end %>

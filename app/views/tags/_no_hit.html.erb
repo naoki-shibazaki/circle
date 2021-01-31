@@ -1,14 +1,23 @@
 <div class="no_hit_wrap">
 
-	<img class="imege_sorry" src="/images/sorry.png">
+  <% if request.format == :amp %>
+    <amp-img class="imege_sorry"
+      src="/images/sorry.png"
+      width="150px"
+      height="150px"
+      layout="responsive">
+    </amp-img>
+  <% else %>
+    <img class="imege_sorry" src="/images/sorry.png">
+  <% end %>
 
-	<%= link_to(root_path) do %> 
+	<%= link_to(root_path) do %>
 		<div class="no_hit_top">トップページに戻る</div>	
 	<% end %>
 
 	<%= link_to(new_admin_user_registration_path) do %> 
 		<div class="no_hit_new">新しくサークルを登録する</div>	
-	<% end %>	
+	<% end %>
 
 </div>
 

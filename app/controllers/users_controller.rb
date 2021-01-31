@@ -120,7 +120,7 @@ helper_method :link_count
 
 		else
 			render "/users/edit"
-		end	
+		end
 
 	end
 
