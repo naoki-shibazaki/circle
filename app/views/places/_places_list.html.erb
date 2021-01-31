@@ -24,8 +24,6 @@
 
           </div>
 
-       
-
           <div class="border"></div>
 
           <div class="article_item article_padding place_list ">
@@ -54,9 +52,8 @@
                 </tr>
 
               </tbody>
-            </table> 
+            </table>
           </div>
-          
           <%= link_to "詳細を確認する", "/places/#{@event.ruby}/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}", class: "place_more" %>
 
       </div> <!-- 各フレーム -->
@@ -77,8 +74,8 @@
     <div class="sorry_message">該当するコート情報がございません</div>
     <img class="imege_sorry" src="/images/sorry_cat.png">
 
-    <%= link_to "/places" do %> 
-      <div class="no_hit_top">コート・施設情報ページに戻る</div> 
+    <%= link_to "/places" do %>
+      <div class="no_hit_top">コート・施設情報ページに戻る</div>
     <% end %>
 
   </div>
