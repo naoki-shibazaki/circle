@@ -5086,9 +5086,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     padding: 10px;
     box-sizing: border-box;
     display: flex;
-    // align-items: center;
     overflow: hidden;
-
 
   .review_l{
     float: left;
@@ -5109,44 +5107,42 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 
   .review_r {
-      float: left;
+    float: left;
 
-
-        .speech_bubble{
-            position: relative;
-            line-height: 1.6;
-            background-color: #effbfc;
-            padding: 10px;
-            border-radius: 6px;
-              &:before {
-                  content: "";
-                  position: absolute;
-                  top: 20px;
-                  left: -26px;
-                  margin-top: -15px;
-                  border: 15px solid transparent;
-                  border-right: 15px solid #effbfc;
-              }          
-        }
+    .speech_bubble{
+      position: relative;
+      line-height: 1.6;
+      background-color: #effbfc;
+      padding: 10px;
+      border-radius: 6px;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: -26px;
+        margin-top: -15px;
+        border: 15px solid transparent;
+        border-right: 15px solid #effbfc;
+      }
+    }
   }
 
-  .good,
-   .bad{
+  .good,.bad{
     font-size: 14px;
     font-weight: 700;
-   }
+  }
 
   .good{
     color: #d05454;
-   }
+  }
 
   .bad{
     color: #137bd6;
-   }
+  }
 
-   .random_id{
+  .random_id{
     font-size: 10px;
-   }
+  }
 
   p {
       margin-bottom: 10px;
@@ -5155,8 +5151,6 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   p:last-child {
       margin-bottom: 0px;
   }
-
-
 
 }
 

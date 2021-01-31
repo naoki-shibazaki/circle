@@ -317,7 +317,7 @@ header {
 
 .list_cnts{
 	clear: both;
-	margin-top: 22px;
+	margin-top: 2px;
 }
 
 .list_wrapper {
@@ -1610,6 +1610,121 @@ width: 90%;
   color: #337ab7;
   text-decoration: underline;
 }
+
+.review_set{
+  padding-top: 4px;
+  vertical-align: middle;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+
+
+  .review_score {
+    display: inline-block;
+    vertical-align: middle;
+    *zoom: 1; /* for IE6-7 */
+    *display: inline; /* for IE6-7 */    
+  } 
+
+  .review_count{
+    font-size: 14px;
+    color: #6b6b6b;
+    display: inline-block;
+    vertical-align: middle;
+    *zoom: 1; /* for IE6-7 */
+    *display: inline; /* for IE6-7 */
+  }
+
+  .star_wrap{
+    img{
+      margin-top: -3px;
+    }
+  }
+}
+
+.review_border {
+border-bottom: 1px solid;
+}
+
+.review_contents{
+  width: 100%;
+  margin: 4px auto;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+
+  .review_l{
+    float: left;
+
+    .member_icon{
+      float: left;
+      display: block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-top: 12px;
+      margin-right: 16px;
+      margin-bottom: 10px;
+      border: 1px solid #e6e6e6;
+      object-fit: cover;
+    }
+  }
+
+  .review_r {
+    float: left;
+
+    .speech_bubble{
+      position: relative;
+      line-height: 1.6;
+      background-color: #effbfc;
+      padding: 10px;
+      border-radius: 6px;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: -26px;
+        margin-top: -15px;
+        border: 15px solid transparent;
+        border-right: 15px solid #effbfc;
+      }
+    }
+  }
+
+  .good,.bad{
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .good{
+    color: #d05454;
+  }
+
+  .bad{
+    color: #137bd6;
+  }
+
+  .random_id{
+    font-size: 10px;
+  }
+
+  p {
+      margin-bottom: 10px;
+  }
+
+  p:last-child {
+      margin-bottom: 0px;
+  }
+
+}
+
+
+
+
+
+
 @media only screen and (max-width:450px) {
   .imege_title img,
   .imege_title{
