@@ -1619,21 +1619,16 @@ width: 90%;
   -webkit-align-items: center;
   align-items: center;
 
-
   .review_score {
     display: inline-block;
     vertical-align: middle;
-    *zoom: 1; /* for IE6-7 */
-    *display: inline; /* for IE6-7 */    
-  } 
+  }
 
   .review_count{
     font-size: 14px;
     color: #6b6b6b;
     display: inline-block;
     vertical-align: middle;
-    *zoom: 1; /* for IE6-7 */
-    *display: inline; /* for IE6-7 */
   }
 
   .star_wrap{
@@ -1720,7 +1715,9 @@ border-bottom: 1px solid;
 
 }
 
-
+.profile-content .content_03 {
+  margin-top: 10px;
+}
 
 
 
