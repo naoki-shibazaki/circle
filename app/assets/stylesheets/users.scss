@@ -1612,7 +1612,10 @@ width: 90%;
 .user-content .list_02 .user_schedule, .user-content .list_03 .user_area {
   font-size: 1rem;
 }
-
+.more_link a {
+  color: #337ab7;
+  text-decoration: underline;
+}
 @media only screen and (max-width:450px) {
   .imege_title img,
   .imege_title{

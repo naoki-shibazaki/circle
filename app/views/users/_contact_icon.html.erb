@@ -6,7 +6,6 @@
 		</div>
 
 <% elsif @user.contact == "mail" %>
-
 		<div class="contact-button">
 			<%= link_to "/users/#{@user.id}/contact" do %>
 				<img src="/images/icon_mail.png" alt="" class="icon_sns" />
@@ -14,7 +13,6 @@
 		</div>
 
 <% else %>
-
 	<% if @user.line_id != "" %>
 		<div class="contact-button">
 			<%= link_to "/users/#{@user.id}/contact" do %>
@@ -22,11 +20,9 @@
 			<% end %>
 		</div>
 	<% end %>
-
 		<div class="contact-button">
 			<%= link_to "/users/#{@user.id}/contact" do %>
 				<img src="/images/icon_mail.png" alt="" class="icon_sns" />
 			<% end %>
 		</div>
-
 <% end %>

@@ -56,7 +56,50 @@
           <% end %>
         </div>
         <% if @user.switch == "募集中" %>
-          <%= render "/users/contact_icon" %>
+          <% if @user.contact == "line" && @user.line_id != "" %>
+              <div class="contact-button">
+                <%= link_to "/users/#{@user.id}/contact" do %>
+                  <amp-img src="/images/icon_line.png"
+                    class="icon_sns"
+                    width="40"
+                    height="40">
+                  </amp-img>
+                <% end %>
+              </div>
+
+          <% elsif @user.contact == "mail" %>
+              <div class="contact-button">
+                <%= link_to "/users/#{@user.id}/contact" do %>
+                  <amp-img src="/images/icon_mail.png"
+                    class="icon_sns"
+                    width="40"
+                    height="40">
+                  </amp-img>
+                <% end %>
+              </div>
+
+          <% else %>
+            <% if @user.line_id != "" %>
+              <div class="contact-button">
+                <%= link_to "/users/#{@user.id}/contact" do %>
+                  <amp-img src="/images/icon_line.png"
+                    class="icon_sns"
+                    width="40"
+                    height="40">
+                  </amp-img>
+                <% end %>
+              </div>
+            <% end %>
+              <div class="contact-button">
+                <%= link_to "/users/#{@user.id}/contact" do %>
+                  <amp-img src="/images/icon_mail.png"
+                    class="icon_sns"
+                    width="40"
+                    height="40">
+                  </amp-img>
+                <% end %>
+              </div>
+          <% end %>
         <% else %>
           <div class="contact-button end">募集終了</div>
         <% end %>
