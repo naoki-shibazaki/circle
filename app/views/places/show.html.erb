@@ -118,7 +118,12 @@
 
       <div class="g_map">
         <% if request.format == :amp %>
-          <amp-iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></amp-iframe>
+          <amp-iframe width="300" height="200"
+            sandbox="allow-scripts allow-same-origin"
+            layout="responsive"
+            frameborder="0"
+            src="<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>">
+          </amp-iframe>
         <% else %>
           <iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></iframe>
         <%end %>
