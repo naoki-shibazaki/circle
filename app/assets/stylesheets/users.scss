@@ -613,7 +613,7 @@ header {
 
 .profile-content .user_goal,
 .profile-content .user_appeal {
-    font-size: 1rem;
+    font-size: 14px;
     margin-top: 10px;
 }
 
@@ -629,7 +629,7 @@ header {
 
 .user-content .list_02 .user_schedule,
 .user-content .list_03 .user_area{
-    font-size: 1rem;
+    font-size: 14px;
 }
 
 .user-content .list_02,
@@ -644,7 +644,7 @@ header {
 
 .user-content .list_04 .recruitment_title,
 .user-content .list_04 .user_recruitment{
-    font-size: 1rem;
+    font-size: 14px;
 }
 
 .user_schedule .fa, .user_area .fa {
@@ -1068,7 +1068,7 @@ input {
 }
 .header-wrapper .contact-button a, .post_cta .contact-button a {
   color: #fff;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -1487,7 +1487,7 @@ width: 90%;
     line-height: 1;
     position: absolute;
     top: calc(50% - .8rem);
-    right: 1rem;
+    right: 14px;
     margin: 0;
     padding: 0;
   }
@@ -1528,7 +1528,7 @@ width: 90%;
 }
 .post-body p, .user-profile p, .qa_answer p, .event_anser_card p {
   margin-bottom: 20px;
-  font-size: 1rem;
+  font-size: 14px;
 }
 .post-body p:last-child, .user-profile p:last-child {
   margin-bottom: 0px;
@@ -1578,6 +1578,10 @@ width: 90%;
   background: #f7f9f9;
   padding: 20px 20px;
 }
+.blog_title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
 .others-blog, .others-user {
   font-size: 14px;
   margin-bottom: 16px;
@@ -1610,7 +1614,7 @@ width: 90%;
   margin-top: 4px;
 }
 .user-content .list_02 .user_schedule, .user-content .list_03 .user_area {
-  font-size: 1rem;
+  font-size: 14px;
 }
 .more_link a {
   color: #337ab7;
