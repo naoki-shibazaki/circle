@@ -1107,27 +1107,21 @@ input {
   vertical-align: top;
   width: 90%;
 }
-
 .gallery_imege{
   width: 49%;
   margin: 0.8px;
   height: 100px;
   object-fit: cover;
 }
-
 .gallery_even .gallery_imege{
   float: left;
 }
-
 .gallery_odd .gallery_imege{
   border-radius: 12px;
 }
-
-
 .search_area{
   margin: 0 0 20px;
 }
-
 .user_schedule .fa,
 .user_area .fa{
     width: 24px;
