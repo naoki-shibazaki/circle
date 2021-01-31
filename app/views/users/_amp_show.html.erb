@@ -369,7 +369,12 @@
         <div class="form users-form">
             <div class="form-body">
               <div class="header-post cont-width">
-              <%= lazysizes_image_tag @user.pic_profile.url , class:'content_icon' %>
+                <amp-img src="<%= @user.pic_profile.url  %>"
+                  class="content_icon"
+                  width="45"
+                  height="45"
+                  object-fit="cover">>
+                </amp-img>
               <div class="post-user">
                 <div class="post-top"><%= @user.name %></div>
                 <div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %H:%M") %></div>
@@ -377,22 +382,13 @@
             </div>
             <div class="">
               <% if blog.image_01.present? %>
-                <% if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank? %>
-                  <%= lazysizes_image_tag blog.image_01.url , class:'content_image_one' %>
-                <% else %>
-                  <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                      <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
-                      <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
-                      <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
-                      <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="pagination-wrap">
-                      <div class="swiper-pagination"></div>
-                    </div>
-                  </div>
-                <% end %>
+                <amp-img src="<%= blog.image_01.url %>"
+                  class="content_image_one"
+                  width="450"
+                  height="400"
+                  layout="responsive"
+                  object-fit="cover">
+                </amp-img>
               <% end %>
               <div class="cont-width">
                 <h3 class="blog_title"><%= blog.title %></h3>
@@ -414,7 +410,12 @@
               <div class="user_list">
                 <div class="user-content">
                   <div class="user_list_header">
-                    <%= lazysizes_image_tag user.pic_profile.url , class:'image_icon' %>
+                    <amp-img src="<%= user.pic_profile.url  %>"
+                      class="image_icon"
+                      width="60"
+                      height="60"
+                      object-fit="cover">>
+                    </amp-img>
                     <h3 class="user_name"><%= user.name.truncate(20) %></h3>
                   </div>
                     <div class="list_02">
