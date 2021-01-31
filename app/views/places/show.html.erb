@@ -117,7 +117,11 @@
       <%= render "/places/link_to_user" %>
 
       <div class="g_map">
-        <iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></iframe>
+        <% if request.format == :amp %>
+          <amp-iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></amp-iframe>
+        <% else %>
+          <iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></iframe>
+        <%end %>
           <div class="google_map_wrap">
               <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@place.address}" do %>  
                 <div class="google_map">Google MAP</div>
