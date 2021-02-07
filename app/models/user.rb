@@ -7,11 +7,11 @@ class User < ApplicationRecord
 	has_many :collections, dependent: :destroy
 	has_many :reviews, dependent: :destroy
 	has_many :users_ages, dependent: :destroy
-  	has_many :ages, through: :users_ages
+  has_many :ages, through: :users_ages
 	has_many :users_groups, dependent: :destroy
-  	has_many :groups, through: :users_groups
+  has_many :groups, through: :users_groups
 	has_many :users_cities, dependent: :destroy
-  	has_many :cities, through: :users_cities
+  has_many :cities, through: :users_cities
 	has_many :bookmarks, dependent: :destroy
 	has_many :user_contacts, dependent: :destroy
 
@@ -24,21 +24,20 @@ class User < ApplicationRecord
 
 
 	with_options presence: true do
-	  validates :name
-	  validates :event_id
-	  validates :prefecture_id
+    validates :name
+    validates :event_id
+    validates :prefecture_id
 	end
 
 	validates :line_id, {
-	  	:allow_blank => true,
-	  	:format => /\A#{URI::regexp(%w(http https))}\z/
+    :allow_blank => true,
+    :format => /\A#{URI::regexp(%w(http https))}\z/
 	}
 
 	validates :web, {
-	  	:allow_blank => true,
-	  	:format => /\A#{URI::regexp(%w(http https))}\z/
+    :allow_blank => true,
+    :format => /\A#{URI::regexp(%w(http https))}\z/
 	}
-
 	paginates_per 20
 	is_impressionable counter_cache: true
 	
@@ -54,21 +53,21 @@ class User < ApplicationRecord
 	mount_uploader :gallery_03, ImageUploader
 	mount_uploader :gallery_04, ImageUploader
 
-
 	# User用
-  	scope :user_sort_1, -> {order(switch: :asc, last_post: :desc).where.not(switch: "") }
-  	scope :user_sort_2, -> {order(switch: :asc, impressions_count: :desc).where.not(switch: "") }
-	scope :user_sort_3, -> {order(switch: :asc, created_at: :desc).where.not(switch: "") }	
-  	scope :pref, -> { includes(:prefecture).order("prefectures.sort asc") }
-  	scope :user_hide, -> { where.not(switch: "") }
-  	scope :user, -> (user_id){ where(id: user_id) }
-  	scope :event, -> (event_id){ where(event_id: event_id) }
-  	scope :prefecture, -> (prefecture_id){ where(prefecture_id: prefecture_id) }
-  	scope :prefecture_sub, -> (prefecture_sub_id){ where(prefecture_sub_id: prefecture_sub_id) }
-  	scope :prefecture_50, -> { where(prefecture_id: 50).or(User.where(prefecture_sub_id: 50)) }
- 	scope :city, -> (city_id){ where(id: city_id) }
+  scope :ng_account, -> {where(ng_account: nil).or(User.where(ng_account: "OK"))}
+  scope :user_sort_1, -> {ng_account.order(switch: :asc, last_post: :desc).where.not(switch: "") }
+  scope :user_sort_2, -> {ng_account.order(switch: :asc, impressions_count: :desc).where.not(switch: "") }
+  scope :user_sort_3, -> {ng_account.order(switch: :asc, created_at: :desc).where.not(switch: "") }
+  scope :pref, -> { includes(:prefecture).order("prefectures.sort asc") }
+  scope :user_hide, -> { where.not(switch: "") }
+  scope :user, -> (user_id){ where(id: user_id) }
+  scope :event, -> (event_id){ where(event_id: event_id) }
+  scope :prefecture, -> (prefecture_id){ where(prefecture_id: prefecture_id) }
+  scope :prefecture_sub, -> (prefecture_sub_id){ where(prefecture_sub_id: prefecture_sub_id) }
+  scope :prefecture_50, -> { where(prefecture_id: 50).or(User.where(prefecture_sub_id: 50)) }
+  scope :city, -> (city_id){ where(id: city_id) }
 
- 	# User_検索用
+  # User_検索用
 	scope :search_word, ->(keyword) do
 		where("name LIKE ?", "%#{keyword}%").
 		or(where("schedule LIKE ?", "%#{keyword}%")).
@@ -82,18 +81,17 @@ class User < ApplicationRecord
 		or(where("appeal LIKE ?", "%#{keyword}%"))
 	end
 
-
 	# Tag用
-  	scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
-  	scope :user_sort, -> { user_hide.user_order }
+  scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
+  scope :user_sort, -> { user_hide.user_order }
 
-	scope :grouping, ->(group_id) do
-	  where("grouping LIKE ?", "%#{group_id}%")
-	end
+  scope :grouping, ->(group_id) do
+    where("grouping LIKE ?", "%#{group_id}%")
+  end
 
-	scope :average_age, ->(age_id) do
-	  where("average_age LIKE ?", "%#{age_id}%")
-	end
+  scope :average_age, ->(age_id) do
+    where("average_age LIKE ?", "%#{age_id}%")
+  end
 
   def bookmarked_by?(member)
     bookmarks.where(member_id: member).exists?
