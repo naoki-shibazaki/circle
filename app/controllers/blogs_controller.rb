@@ -6,12 +6,12 @@ class BlogsController < ApplicationController
 
 
 	def index
-	    @blogs = Blog.all.blog_sort.page(params[:page])
+    @blogs = Blog.all.blog_sort.page(params[:page])
 
 		# パンくず
 		@b1_name = "ブログ"
 		@b1_url = "/blog"
-	end	
+	end
 
 
 	def new
@@ -38,13 +38,13 @@ class BlogsController < ApplicationController
 
 			@user.last_post = Time.now
 			@user.user_time = Time.now
-		    @user.save
-			
+      @user.save
+
 			flash[:notice] = 'ブログ投稿完了！'
 			redirect_to user_blog_path(@user, @blog)
 		else
 			render "/blogs/edit"
-		end	
+		end
 
 	end
 
@@ -71,11 +71,11 @@ class BlogsController < ApplicationController
 			@b2_name = "#{@user.event.name}"
 			@b2_url = "/blog/#{@user.event.ruby}"
 			@b3_name = "#{@user.prefecture.name}"
-			@b3_url = "/blog/#{@user.event.ruby}/#{@user.prefecture.kana}"	
+			@b3_url = "/blog/#{@user.event.ruby}/#{@user.prefecture.kana}"
 			@b4_name = "#{@blog.title}"
 			@b4_url = ""
-		end		
-	
+		end
+
 	end
 
 
@@ -83,21 +83,18 @@ class BlogsController < ApplicationController
 		@user = User.find_by(id: params[:user_id])
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC").page(params[:page])
 
-
 		# パンくず
 			@b1_name = "#{@user.name}"
 			@b1_url = "/users/#{@user.id}"
 			@b2_name = "ブログ一覧"
 			@b2_url = ""
-	
+
 	end
 
 
 	def show_redirect # 旧ブログ用のリダイレクト
 		@blog = Blog.find(params[:id])
-
 		redirect_to "/users/#{@blog.user_id}/blogs/#{@blog.id}"
-		
 	end
 
 
@@ -112,18 +109,17 @@ class BlogsController < ApplicationController
 		if @blog.update(blog_params)
 
 			@user.user_time = Time.now
-		    @user.save
-			
+      @user.save
 			flash[:notice] = 'ブログ更新完了！'
 			redirect_to user_blog_path(@blog.user.id, @blog.id)
 		else
 			render "/blogs/edit"
-		end	
+		end
 	end
 
 	def destroy
-	    @blog = Blog.find_by(id: params[:id])
-   		@blog.destroy		
+    @blog = Blog.find_by(id: params[:id])
+    @blog.destroy
 
 		flash[:notice] = 'ブログ削除完了'
 		redirect_to("/")
@@ -135,13 +131,12 @@ class BlogsController < ApplicationController
 		@users = User.event(@event.id).user_hide
 		@users_id = @users.map{|u| u.id}
 		@blogs = Blog.where(user_id: @users_id).blog_sort.page(params[:page])
-				
 
 		# パンくず
 		@b1_name = "ブログ"
 		@b1_url = "/blog"
 		@b2_name = @event.name
-		@b2_url = "/blog/#{@event.ruby}"	
+		@b2_url = "/blog/#{@event.ruby}"
 
 	end
 
@@ -155,9 +150,9 @@ class BlogsController < ApplicationController
 		@b1_name = "ブログ"
 		@b1_url = "/blog"
 		@b2_name = @prefecture.name
-		@b2_url = "/blog/prefectures/#{@prefecture.kana}"	
+		@b2_url = "/blog/prefectures/#{@prefecture.kana}"
 
-	end	
+	end
 
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
@@ -172,7 +167,7 @@ class BlogsController < ApplicationController
 		@b2_name = @event.name
 		@b2_url = "/blog/#{@event.ruby}"
 		@b3_name = @prefecture.name
-		@b3_url = "/blog/#{@event.ruby}/#{@prefecture.kana}"		
+		@b3_url = "/blog/#{@event.ruby}/#{@prefecture.kana}"
 	end
 
 	def prefecture_index
@@ -180,54 +175,52 @@ class BlogsController < ApplicationController
 		@b1_name = "ブログ"
 		@b1_url = "/blog"
 		@b2_name = "47都道府県ごとの活動ブログ"
-		@b2_url = ""		
+		@b2_url = ""
 	end
 
 	private
 	def set_user
-	    @user = User.where(:id => params[:user_id]).first
-	    @blog = Blog.where(:id => params[:id]).first
-    end
+    @user = User.where(:id => params[:user_id]).first
+    @blog = Blog.where(:id => params[:id]).first
+  end
 
-    def set_blog
-    	@users = User.all.user_hide
-	    @blogs = Blog.all.order(created_at: "DESC")
-    	@users_r = User.all.user_hide
-	    @blogs_r = Blog.all.order(created_at: "DESC")
-		@events = Event.all.where.not(id: 0).order(:order => :asc)
-		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)	
-		@x = "nil"
-		@category = "nil"
-		@contact_judge = "_b"
+  def set_blog
+  @users = User.all.user_hide
+  @blogs = Blog.all.order(created_at: "DESC")
+  @users_r = User.all.user_hide
+  @blogs_r = Blog.all.order(created_at: "DESC")
+  @events = Event.all.where.not(id: 0).order(:order => :asc)
+  @prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
+  @x = "nil"
+  @category = "nil"
+  @contact_judge = "_b"
 
 		if admin_user_signed_in?
 			@admin_user = current_admin_user
 			@user = User.find_by(id: @admin_user.users.first.id)
 		end
 
-    end
+  end
 
 	def ensure_correct_user
 		@blog = Blog.find(params[:id])
 		@user = User.find(params[:user_id])
-		
-	   if current_admin_user.id == @user.admin_user_id.to_i
 
+    if current_admin_user.id == @user.admin_user_id.to_i
 
-	   else
-	   		if current_admin_user.id == 1   			
-	   		
-		   	else
-		      flash[:notice] = "権限がありません"
-		      redirect_to blog_path
-		    end
-	   end
-	end	
-    
+    else
+      if current_admin_user.id == 1
+        else
+          flash[:notice] = "権限がありません"
+          redirect_to blog_path
+        end
+      end
+	end
+
 	def blog_params
 		params.require(:blog).permit(
-			:title, 
-			:content,	
+			:title,
+			:content,
 			:image_01,
 			:image_02,
 			:image_03,
@@ -235,7 +228,7 @@ class BlogsController < ApplicationController
 			:image_name,
 			:name,
 			:requirement,
-		    :impressions_count
+      :impressions_count
 		)
 	end
 

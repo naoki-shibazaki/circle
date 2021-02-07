@@ -12,7 +12,7 @@ class Blog < ApplicationRecord
 	is_impressionable counter_cache: true
 
 
-  	scope :blog_sort, -> { order(created_at: "DESC") }
+  scope :blog_sort, -> { order(created_at: "DESC") }
 
 
 end

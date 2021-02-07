@@ -58,13 +58,15 @@ class User < ApplicationRecord
   scope :user_sort_2, -> {ng_account.order(switch: :asc, impressions_count: :desc).where.not(switch: "") }
   scope :user_sort_3, -> {ng_account.order(switch: :asc, created_at: :desc).where.not(switch: "") }
   scope :pref, -> { includes(:prefecture).order("prefectures.sort asc") }
-  scope :user_hide, -> { where.not(switch: "") }
   scope :user, -> (user_id){ where(id: user_id) }
   scope :event, -> (event_id){ where(event_id: event_id) }
   scope :prefecture, -> (prefecture_id){ where(prefecture_id: prefecture_id) }
   scope :prefecture_sub, -> (prefecture_sub_id){ where(prefecture_sub_id: prefecture_sub_id) }
   scope :prefecture_50, -> { where(prefecture_id: 50).or(User.where(prefecture_sub_id: 50)) }
   scope :city, -> (city_id){ where(id: city_id) }
+
+  # Blog用
+  scope :user_hide, -> { ng_account.where.not(switch: "") }
 
   # User_検索用
 	scope :search_word, ->(keyword) do
