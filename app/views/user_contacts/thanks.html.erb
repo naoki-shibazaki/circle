@@ -1,7 +1,7 @@
 <div class="main users-index">
   <div class="container">
 
-    <div class="users-index-item">
+    <div class="contents_wrap">
       <div class="p_t">サンクスページ</div>
       <div class="schedule_profile_wrap">
         <%= link_to(user_path(@user.id)) do %>  
@@ -25,13 +25,14 @@
           <%= link_to ">> トップページに戻る", users_path, class: "other_match" %>
         </div>
       </div>
-      <% if @users.present? %>
-        <div class="user-list-wrap">
-          <h2 class="others-user">あなたにオススメのサークル</h2>
-          <%= render "users/users_list_slide", users: @users %>
-        </div>
-      <% end %>
     </div>
+
+    <% if @users.present? %>
+      <div class="user-list-wrap">
+        <h2 class="others-user">あなたにオススメのサークル</h2>
+        <%= render "users/users_list_slide", users: @users %>
+      </div>
+    <% end %>
 
 	<%= render "/layouts/ad_square" %>
 	<div class="ad_space"></div>
