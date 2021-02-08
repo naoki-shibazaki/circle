@@ -65,7 +65,7 @@ class ReviewsController < ApplicationController
   def all_reviews
     @reviews = Review.all
 
-    @b1_name = "口コミ・評価"
+    @b1_name = "サークルブック内の口コミ・評価"
     @b1_url = ""
   end
 

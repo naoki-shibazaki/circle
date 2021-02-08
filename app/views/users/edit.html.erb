@@ -55,10 +55,13 @@
         <p>NGアカウント判定<span class="must_red">(管理権限)</span></p>
         <%= f.select :ng_account, [ ['OK', 'OK'], ['NG','NG'] ],
         :prompt => "選択してください" %>
+
+        <p>サークル名<span class="must_red">(管理権限)</span></p>
+        <%= f.text_field :review_score, class: 'form-control change_font', placeholder: "5.00" %>
       <% end %>
 
-        <p>サークル名<span class="must_red">(必須)</span></p>
-        <%= f.text_field :name, class: 'form-control change_font', placeholder: "サークルブック" %>
+      <p>サークル名<span class="must_red">(必須)</span></p>
+      <%= f.text_field :name, class: 'form-control change_font', placeholder: "サークルブック" %>
 
       <p>新規メンバーの募集<span class="must_red">(必須)</span></p>
       <%= f.select :switch, [ ['募集中','募集中'], ['受付終了','受付終了'] ],
