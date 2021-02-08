@@ -1,48 +1,67 @@
-<% set_meta_tags title: "サークブック内の口コミ・評価一覧" %>
+<% set_meta_tags title: "サークブック内の口コミ・評価一覧",
+  description: "サークルブックをご利用された参加者から、サークル主催者に対する口コミや評判の一覧ページです！【完全無料／登録不要】47都道府県のサークルやチーム、団体のメンバー募集サイト！スポーツや趣味など豊富に掲載！"
+%>
 
 <div class="main users-index">
   <div class="container">
     <%= render "/layouts/breadcrumb" %>
 		<div class="users-index-item">
-		<h1 class="p_t">サークブック内の口コミ・評価</h1>
+      <h1 class="p_t">サークブック内の口コミ・評価</h1>
+    </div>
 
+    <ul class="reviews_all_wrap">
       <% @reviews.reverse_each do |review| %>
+        <li class="reviews_all_contents">
+        <%= link_to(user_path(review.user.id)) do %>
+          <div class="schedule_profile_wrap">
+              <div class="user-content">
+                <%= lazysizes_image_tag review.user.pic_profile.url , class:'image_icon' %>
+                <div class="list_wrapper contact_name_wrap">
+                  <div class="list_01">
+                    <h2 class="user_name"><%= review.user.name %></h2>
+                  </div>
+                </div>
+              </div>
+            <div class="reset"></div>
+          </div>
 
-        <div class="review_contents">
-          <div class="review_l">
-            <% if review.member.present? %>
-              <% if review.member.image_profile.present? %>
-                <%= lazysizes_image_tag review.member.image_profile.url , class:'member_icon' %>
+          <div class="review_contents">
+            <div class="review_l">
+              <% if review.member.present? %>
+                <% if review.member.image_profile.present? %>
+                  <%= lazysizes_image_tag review.member.image_profile.url , class:'member_icon' %>
+                <% else %>
+                  <img src="/images/icon/icon_member.png" class="member_icon">
+                <% end %>
               <% else %>
                 <img src="/images/icon/icon_member.png" class="member_icon">
               <% end %>
-            <% else %>
-              <img src="/images/icon/icon_member.png" class="member_icon">
-            <% end %>
-          </div>
-
-          <div class="review_r">
-            <div class="speech_title">
-              <% if review.review == 1 %>
-                <i class="fa fa-smile-o good"></i>
-              <% elsif review.review == 0 %>
-                <i class="fa fa-frown-o bad"></i>
-              <% else %>
-              <% end %>
-              <%= review.member.nickname if review.member.present? %>さん<% if review.member.present? %><span class="random_id">（@<%= review.member.random_id %>）</span><% end %>
             </div>
 
-            <div class="speech_bubble">
-              <%= simple_format review.comment %>
+            <div class="review_r">
+              <div class="speech_title">
+                <% if review.review == 1 %>
+                  <i class="fa fa-smile-o good"></i>
+                <% elsif review.review == 0 %>
+                  <i class="fa fa-frown-o bad"></i>
+                <% else %>
+                <% end %>
+                <%= review.member.nickname if review.member.present? %>さん<% if review.member.present? %><span class="random_id">（@<%= review.member.random_id %>）</span><% end %>
+              </div>
+
+              <div class="speech_bubble">
+                <%= simple_format review.comment %>
+              </div>
             </div>
+
           </div>
 
-        </div>
-
-        <div class="reset"></div>
+          <div class="reset"></div>
+        <% end %>
+        </li>
       <% end %>
+    </ul>
 
-    </div>
   </div>
 </div>
 
