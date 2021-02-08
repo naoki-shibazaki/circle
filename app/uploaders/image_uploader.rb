@@ -4,26 +4,25 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
 
     process resize_to_limit: [400, 400]
-    process :fix_rotate   
+    process :fix_rotate
 
 
   #   version :thumb do
   #       process resize_to_limit: [480, 360]
-  #   end  
+  #   end
 
   # Choose what kind of storage to use for this uploader:
 
 
-# アップロードした写真が回転してしまう問題に対応
+  # アップロードした写真が回転してしまう問題に対応
   def fix_rotate
-      manipulate! do |img|
-          img = img.auto_orient
-          img = yield(img) if block_given?
-          img
-      end
+    manipulate! do |img|
+      img = img.auto_orient
+      img = yield(img) if block_given?
+      img
+    end
   end
 
-  
   if Rails.env.development?
     storage :file
   elsif Rails.env.test?
@@ -73,7 +72,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # 10MB以下
   def size_range
     1..10.megabytes
-  end  
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
