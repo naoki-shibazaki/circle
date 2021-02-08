@@ -1,35 +1,34 @@
 <div class="star_wrap">
 
-	<% if @star_review >= 4.5 %>
+	<% if review_score >= 4 %>
 		<!-- 5.0 -->
 		<div class="star">
 			<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i>
 		</div>
 
-	<% elsif @star_review >= 4.0 %>
+	<% elsif review_score >= 3 %>
 		<!-- 4.0 -->
 		<div class="star">
 			<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i>
 		</div>
 
-	<% elsif @star_review >= 3.0 %>
+	<% elsif review_score >= 2 %>
 		<!-- 3.0 -->
 		<div class="star">
 			<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
 		</div>
 
-	<% elsif @star_review >= 2.0 %>
+	<% elsif review_score >= 1 %>
 		<!-- 2.0 -->
 		<div class="star">
 			<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
 		</div>
 
-	<% elsif @star_review >= 1.0 %>
+	<% elsif review_score >= 0.5 %>
 		<!-- 1.0 -->
 		<div class="star">
 			<i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
-		</div>	
-
+		</div>
 
 	<% else %>
 		<!-- 0 -->

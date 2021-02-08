@@ -87,50 +87,11 @@
                 <% if user.reviews.present? %>
                   <div class="user_list_review">
                     <div class="star_review review_set">
-                      <% star_sum = user.reviews.sum{|review| review[:review]} %>
-                      <% star_count = user.reviews.count %>
-                      <% if star_count == 0 && star_sum == 0 %>
-                        <% star_review =  0 %>
-                      <% else %>
-                        <% star_review =  (star_sum / star_count.to_f)*5 %>
-                      <% end %>
-                        <div class="star_wrap">
-                          <% if star_review >= 4.5 %>
-                            <!-- 5.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i>
-                            </div>
-                          <% elsif star_review >= 4.0 %>
-                            <!-- 4.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i>
-                            </div>
-                          <% elsif star_review >= 3.0 %>
-                            <!-- 3.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
-                            </div>
-                          <% elsif star_review >= 2.0 %>
-                            <!-- 2.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
-                            </div>
-                          <% elsif star_review >= 1.0 %>
-                            <!-- 1.0 -->
-                            <div class="star">
-                              <i class="fa fa-star orange"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
-                            </div>
-                          <% else %>
-                            <!-- 0 -->
-                            <div class="star">
-                              <i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i><i class="fa fa-star gray"></i>
-                            </div>
-                          <% end %>
-                        </div>
-                        <span class="review_score"><%= sprintf("%.2f", star_review) %></span>
-                        <span class="review_count"><i class="fa fa-commenting "></i>  <%= star_count %>件</span>
-                      </div>
+                      <%= render "layouts/review_star", review_score: user.review_score.to_i %>
+                      <span class="review_score"><%= user.review_score %></span>
+                      <span class="review_count"><i class="fa fa-commenting "></i>  <span class="review_border"><%= user.reviews.count %>件</span></span>
                     </div>
+                  </div>
                 <% end %>
 
                 <div class="list_02">

@@ -1,24 +1,22 @@
 <% if @user.pic_profile.present? %>
-
-	<% set_meta_tags title: "#{@user.name}の口コミ・評価",
-						og: { 
-									title: "#{@user.name}の口コミ・評価",
-									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
-									image: @user.pic_profile.url
-								},
-						twitter: { card: 'summary'}  				
-	 %>
+  <% set_meta_tags title: "#{@user.name}の口コミ・評価",
+    og: {
+      title: "#{@user.name}の口コミ・評価",
+      description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
+      image: @user.pic_profile.url
+    },
+    twitter: { card: 'summary'}
+  %>
 
 <% else %>
-
-	<% set_meta_tags title: "#{@user.name}の口コミ・評価",
-						og: { 
-									title: "#{@user.name}の口コミ・評価",
-									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}",
-						        	image: image_url('/images/default.png'),
-								},
-						twitter: { card: 'summary'}  				
-	 %>
+  <% set_meta_tags title: "#{@user.name}の口コミ・評価",
+    og: {
+      title: "#{@user.name}の口コミ・評価",
+      description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}",
+      image: image_url('/images/default.png'),
+      },
+    twitter: { card: 'summary'}
+  %>
 
 <% end %>
 
@@ -31,32 +29,32 @@
 		<div class="users-index-item">
 
 
-		    <h1 class="p_t">口コミ・評価</h1>
+    <h1 class="p_t">口コミ・評価</h1>
 
 			<% if admin_user_signed_in?  %>
 				<% if @user.admin_user_id == current_admin_user.id %>
 					<% if current_admin_user.users.count > 1 %>
 						<div class="user_select_wrap">
-									現在のアカウント：			
-					      <select name="user_select" onChange="location.href=value;">
-					        <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
-					          <% current_admin_user.users.each do |user| %>
-					            <% if @user.id != user.id %>
-					            <option value="/users/<%= user.id %>/reviews"><%= user.name %>（<%= user.event.name %>）</option>
-					            <% end %>
-					        <% end %>
-					      </select> 
+              現在のアカウント：
+              <select name="user_select" onChange="location.href=value;">
+                <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+                  <% current_admin_user.users.each do |user| %>
+                    <% if @user.id != user.id %>
+                    <option value="/users/<%= user.id %>/reviews"><%= user.name %>（<%= user.event.name %>）</option>
+                    <% end %>
+                <% end %>
+              </select>
 						</div>
 					<% end %>
 				<% end %>
-		    <% end %>
+      <% end %>
 
 			<%= render "/schedules/profile" %>
 
 			<div class="review_set">
-				<%= render "/layouts/star" %>
-				<span class="review_score"><%= sprintf("%.2f", @star_review) %></span>
-				<span class="review_count review_index"><i class="fa fa-commenting "></i>  <%= @star_count %>件</span>
+        <%= render "layouts/review_star", review_score: @user.review_score.to_i %>
+        <span class="review_score"><%= @user.review_score %></span>
+        <span class="review_count"><i class="fa fa-commenting "></i>  <span class="review_border"><%= @user.reviews.count %>件</span></span>
 			</div>
 
 			<div class="reset"></div>
@@ -73,14 +71,13 @@
         <div class="review_txt">このサークルにコメントする</div>
 
           <%= form_for ([@user, @review]) do |f| %>
-        
-              <p>口コミ・評価</p>
-              <div class="radio_button_review">              
-                <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
-              </div>
+            <p>口コミ・評価</p>
+            <div class="radio_button_review">
+              <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
+            </div>
 
-              <p>コメント<span class="must_red">(必須)</span></p>
-              <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %> 
+            <p>コメント<span class="must_red">(必須)</span></p>
+            <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %> 
 
           <input type="submit" name="commit" value="投稿する" data-disable-with="投稿する">
 
@@ -107,24 +104,24 @@
 
 		<div class="schedule_post_wrap">
 
-			  <div class="popupModal1">
+      <div class="popupModal1">
 
-			   <input type="radio" name="modalPop" id="pop11" />
-			   <label for="pop11"><div class="schedule_post_btn"><i class="fa fa-plus "></i>　口コミを投稿する</div></label>
-			   <input type="radio" name="modalPop" id="pop12" />
-			   <label for="pop12">CLOSE</label>
-			   <input type="radio" name="modalPop" id="pop13" />
-			   <label for="pop13">×</label>
+        <input type="radio" name="modalPop" id="pop11" />
+        <label for="pop11"><div class="schedule_post_btn"><i class="fa fa-plus "></i>　口コミを投稿する</div></label>
+        <input type="radio" name="modalPop" id="pop12" />
+        <label for="pop12">CLOSE</label>
+        <input type="radio" name="modalPop" id="pop13" />
+        <label for="pop13">×</label>
 
-			   <div class="modalPopup2">
-			    <div class="modalPopup3">
+        <div class="modalPopup2">
+          <div class="modalPopup3">
 
-			     <h2 class="modalTitle">口コミ・評価</h2>
-			       <div class="modalMain">
+            <h2 class="modalTitle">口コミ・評価</h2>
+            <div class="modalMain">
 
-			       		<p>サークル主催者は<br>ご自身で口コミを書くことができません。</p>
-			       		<br>
-			       		<p>参加者にこのページのURLを送って<br>口コミを書いてもらいましょう！</p>
+            <p>サークル主催者は<br>ご自身で口コミを書くことができません。</p>
+            <br>
+            <p>参加者にこのページのURLを送って<br>口コミを書いてもらいましょう！</p>
 
 						<div class="sample_review_img">
 							<img src="/images/sample_review.png" class="">
@@ -133,9 +130,9 @@
 						<div class="schedule_share_wrap">
 
 							<div class="share_btn_tw">
-							    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の口コミ投稿を募集しています！%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
-							      <i class="fa fa-twitter"></i>ツイート
-							    <% end %>
+                <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の口コミ投稿を募集しています！%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
+                  <i class="fa fa-twitter"></i>ツイート
+                <% end %>
 							</div>
 
 
@@ -145,12 +142,12 @@
 
 						</div>
 
-			    	</div>
-			   </div>
-			   
-			  </div>
-			  
-			</div>
+            </div>
+          </div>
+
+      </div>
+
+    </div>
 
 		</div>
 
@@ -160,30 +157,24 @@
 
 		<div class="schedule_post_wrap">
 
-			  <div class="popupModal1">
+      <div class="popupModal1">
 
-			   <input type="radio" name="modalPop" id="pop11" />
-			   <label for="pop11"><div class="schedule_post_btn"><i class="fa fa-plus "></i>　口コミを投稿する</div></label>
-			   <input type="radio" name="modalPop" id="pop12" />
-			   <label for="pop12">CLOSE</label>
-			   <input type="radio" name="modalPop" id="pop13" />
-			   <label for="pop13">×</label>
+        <input type="radio" name="modalPop" id="pop11" />
+        <label for="pop11"><div class="schedule_post_btn"><i class="fa fa-plus "></i>　口コミを投稿する</div></label>
+        <input type="radio" name="modalPop" id="pop12" />
+        <label for="pop12">CLOSE</label>
+        <input type="radio" name="modalPop" id="pop13" />
+        <label for="pop13">×</label>
 
-			   <div class="modalPopup2">
-			    <div class="modalPopup3">
-
-			     <h2 class="modalTitle">口コミ・評価</h2>
-			       <div class="modalMain">
-
-	       			<%= render "/reviews/login" %>
-
-			    	</div>
-			   </div>
-			   
-			  </div>
-			  
+        <div class="modalPopup2">
+          <div class="modalPopup3">
+          <h2 class="modalTitle">口コミ・評価</h2>
+            <div class="modalMain">
+              <%= render "/reviews/login" %>
+            </div>
+          </div>
+        </div>
 			</div>
-
 		</div>
 
 

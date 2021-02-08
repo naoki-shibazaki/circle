@@ -185,9 +185,9 @@
                 <td class="flex_list">
                   <div class="star_review">
                     <%= link_to user_reviews_path(@user) do %>
-                    <span class="review_stars"><%= render "/layouts/star" %></span>
-                    <span class="review_score"><%= sprintf("%.2f", @star_review) %></span>
-                    <span class="review_count"><i class="fa fa-commenting "></i>  <span class="review_border"><%= @star_count %>件</span></span>
+                    <%= render "layouts/review_star", review_score: @user.review_score.to_i %>
+                    <span class="review_score"><%= @user.review_score %></span>
+                    <span class="review_count"><i class="fa fa-commenting "></i>  <span class="review_border"><%= @user.reviews.count %>件</span></span>
                     <% end %>
                   </div>
                 </td>

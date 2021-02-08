@@ -53,11 +53,7 @@
 
       <% if current_admin_user.id == 1 %>
         <p>NGアカウント判定<span class="must_red">(管理権限)</span></p>
-        <%= f.select :ng_account, [ ['OK', 'OK'], ['NG','NG'] ],
-        :prompt => "選択してください" %>
-
-        <p>サークル名<span class="must_red">(管理権限)</span></p>
-        <%= f.text_field :review_score, class: 'form-control change_font', placeholder: "5.00" %>
+        <%= f.select :ng_account, [ ['OK', 'OK'], ['NG','NG'] ] %>
       <% end %>
 
       <p>サークル名<span class="must_red">(必須)</span></p>

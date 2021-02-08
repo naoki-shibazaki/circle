@@ -19,6 +19,19 @@ class ReviewsController < ApplicationController
 		@review = @user.reviews.last
 		@review.member_id = @member.id
 
+		# レビュー合計値
+		star_sum = @user.reviews.sum{|review| review[:review]}
+		# レビュー数
+		star_count = @user.reviews.count
+		# レビュー値
+		if star_count == 0 && star_sum == 0
+			@user.review_score =  0
+      @user.save
+		else
+			@user.review_score =  (star_sum / star_count.to_f)*5
+      @user.save
+		end
+
 		if @review.save
 			# レビュー高評価
 			if @review.review == 1
