@@ -47,6 +47,7 @@ class UserContactsController < ApplicationController
 
 	def thanks
 		@user = User.find(params[:id])
+    @users = User.ng_account.prefecture(@user.prefecture_id).or(User.prefecture_sub(@user.prefecture_id)).event(@user.event_id).where(switch: "募集中").where.not(id: @user.id).order(:last_post => :desc)
 	end
 
 

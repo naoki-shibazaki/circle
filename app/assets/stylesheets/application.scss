@@ -5542,13 +5542,14 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .review_score {
     color: #6b6b6b;
     font-weight: 700;
-    margin-left: 8px;
+    margin-left: 10px;
     font-size: 16px;
 }
 
 .review_count{
     font-size: 16px;
     font-weight: 700;
+    margin-left: 6px;
  .fa {
     color: #9c9c9c;
     font-size: 18px;
@@ -5890,7 +5891,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .user_slide_wrap{
     display: flex;
     overflow-x: scroll;
-    text-align: center; 
+    text-align: center;
+    padding-bottom: 14px;
 
   .user_slide_list{
       width: 240px;
@@ -6459,9 +6461,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     margin: 10px auto;
     padding: 0;
   }
-
 }
 
+.flex_list{
+  .star .fa{
+    margin-top: 5px;
+  }
+}
 
 
 
