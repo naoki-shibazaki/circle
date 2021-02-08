@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
 	before_action :ensure_correct_member, {only: [:edit, :update]}
-	before_action :set_member
+	before_action :set_member, {except: [:all_reviews]}
 
 	def index
 		@review = @user.reviews.build
@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
 
 		@b4_name = "口コミ・評価"
 		@b4_url = ""
-	end	
+	end
 
 	def new
 	end
@@ -20,19 +20,15 @@ class ReviewsController < ApplicationController
 		@review.member_id = @member.id
 
 		if @review.save
-
 			# レビュー高評価
 			if @review.review == 1
 				@user.last_post = Time.now
 				@user.save
 				ReviewMailer.send_review(@user).deliver
 			else
-
 			end
-
 			flash[:notice] = "投稿が完了しました！"
 			redirect_to user_reviews_path
-
 		else
 			flash[:notice] = "必須項目が未記入です"
 			redirect_to user_reviews_path
@@ -44,13 +40,11 @@ class ReviewsController < ApplicationController
 		@review = Review.find(params[:id])
 
 		if @review.update(review_params)
-
 			flash[:notice] = "編集が完了しました！"
 			redirect_to user_reviews_path
 		else
 			render "edit"
-		end	
-
+		end
 	end
 
 	def show
@@ -68,27 +62,33 @@ class ReviewsController < ApplicationController
 		redirect_to user_reviews_path
 	end
 
+  def all_reviews
+    @reviews = Review.all
 
+    @b1_name = "口コミ・評価"
+    @b1_url = ""
+  end
+
+
+  private
 	def set_member
-	    @user = User.find_by(id: params[:user_id])
-	    @prefectures = Prefecture.all
+    @user = User.find_by(id: params[:user_id])
+    @prefectures = Prefecture.all
 
 		if member_signed_in?
 			@member = current_member
 			@member_reviews = Review.where(user_id: @user.id, member_id: @member.id)
 		end
 
-	    if @user.present? 
-			if @user.switch.present?
-
-			@b1_name = @user.event.name
-			@b1_url = "/#{@user.event.ruby}"
-			@b2_name = @user.prefecture.name
-			@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"	
-			@b3_name = @user.name
-			@b3_url = "/users/#{@user.id}"
-					
-			end
+    if @user.present?
+      if @user.switch.present?
+      @b1_name = @user.event.name
+      @b1_url = "/#{@user.event.ruby}"
+      @b2_name = @user.prefecture.name
+      @b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"
+      @b3_name = @user.name
+      @b3_url = "/users/#{@user.id}"
+      end
 		end
 
 		# レビュー合計値
@@ -102,35 +102,34 @@ class ReviewsController < ApplicationController
 			@star_review =  (@star_sum / @star_count.to_f)*5
 		end
 
-    end    
+  end
 
 
-    private
-    def review_params
-    	params.require(:review).permit(:review, :comment)
-    end
+  def review_params
+    params.require(:review).permit(:review, :comment)
+  end
 
 	def ensure_correct_member
-		@review = Review.find(params[:id])		
+		@review = Review.find(params[:id])
 
 		if member_signed_in?
-		   	if current_member.id.to_i == @review.member_id.to_i
+      if current_member.id.to_i == @review.member_id.to_i
 			# OK
 			else
-			      flash[:notice] = "権限がありません"
-			      redirect_to user_reviews_path
+        flash[:notice] = "権限がありません"
+        redirect_to user_reviews_path
 			end
 		end
 
 		if admin_user_signed_in?
-	   		if current_admin_user.id == 1
- 			# OK
-	   		else
-		      flash[:notice] = "権限がありません"
-		      redirect_to user_reviews_path	  
-	   		end
+      if current_admin_user.id == 1
+      # OK
+      else
+        flash[:notice] = "権限がありません"
+        redirect_to user_reviews_path
+      end
 		end
-	end	
+	end
 
 
 end

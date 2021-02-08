@@ -59,6 +59,7 @@ Rails.application.routes.draw do
 	# get 'collections' , to: 'collections#collections'
 	get 'event_questions' , to: 'event_questions#event_questions'
   get 'contents' , to: 'differences#contents'
+  get 'reviews' , to: 'reviews#all_reviews'
 
 	# 旧ブログ用のリダイレクト
 	get 'blogs/:id', to: 'blogs#show_redirect'
