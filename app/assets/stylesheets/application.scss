@@ -3423,6 +3423,7 @@ max-width: 100%;
 .analytics_contents table{
 	line-height: 2.2;
 	margin: 8px auto 10px;
+  width: 100%;
 }
 
 .analytics_contents th{
@@ -6475,6 +6476,23 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   overflow: hidden;
   width: 100%;
 }
+
+.small_icon_contents{
+  display: flex;
+  margin-bottom: 8px;
+  .small_icon{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    bottom: -50px;
+    left: 10px;
+    border: 1px solid #e2e2e2;
+    object-fit: cover;
+    background-color: #fff;
+    margin-right: 4px;
+  }
+}
+
 
 
 
