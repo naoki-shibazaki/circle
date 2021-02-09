@@ -88,7 +88,7 @@
                   <div class="user_list_review">
                     <div class="star_review review_set">
                       <%= render "layouts/review_star", review_score: user.review_score.to_i %>
-                      <span class="review_score"><%= user.review_score %></span>
+                      <span class="review_score"><%= sprintf("%.2f", user.review_score.to_i) %></span>
                       <span class="review_count"><i class="fa fa-commenting "></i>  <span class="review_border"><%= user.reviews.count %>件</span></span>
                     </div>
                   </div>

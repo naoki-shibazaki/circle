@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
 	def index
 		@review = @user.reviews.build
 		@reviews = Review.where(user_id: @user.id)
-
+    @ip = Review.where(user_id: @user.id, ip: request.remote_ip)
 		@b4_name = "口コミ・評価"
 		@b4_url = ""
 	end
@@ -17,13 +17,15 @@ class ReviewsController < ApplicationController
 	def create
 		@user.reviews.create(review_params)
 		@review = @user.reviews.last
-		@review.member_id = @member.id
+    if member_signed_in?
+      @review.member_id = @member.id
+    else
+      @review.ip = request.remote_ip
+    end
 
-		# レビュー合計値
+		# レビュースコア
 		star_sum = @user.reviews.sum{|review| review[:review]}
-		# レビュー数
 		star_count = @user.reviews.count
-		# レビュー値
 		if star_count == 0 && star_sum == 0
 			@user.review_score =  0
       @user.save
@@ -58,9 +60,6 @@ class ReviewsController < ApplicationController
 		else
 			render "edit"
 		end
-	end
-
-	def show
 	end
 
 	def edit
@@ -103,23 +102,11 @@ class ReviewsController < ApplicationController
       @b3_url = "/users/#{@user.id}"
       end
 		end
-
-		# レビュー合計値
-		@star_sum = @user.reviews.sum{|review| review[:review]}
-		# レビュー数
-		@star_count = @user.reviews.count
-		# レビュー値
-		if @star_count == 0 && @star_sum == 0
-			@star_review =  0
-		else
-			@star_review =  (@star_sum / @star_count.to_f)*5
-		end
-
   end
 
 
   def review_params
-    params.require(:review).permit(:review, :comment)
+    params.require(:review).permit(:review, :comment, :ip)
   end
 
 	def ensure_correct_member

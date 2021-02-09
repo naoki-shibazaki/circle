@@ -7,7 +7,18 @@
 
       <h1 class="p_t">口コミ・評価の編集</h1>
 
-			<%= render "/reviews/post" %>
+      <div class="schedule_input">
+        <%= form_for ([@user, @review]) do |f| %>
+          <p>口コミ・評価</p>
+          <div class="radio_button_review">
+            <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
+          </div>
+          <p>コメント<span class="must_red">(必須)</span></p>
+          <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
+          <%= f.submit "修正する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
+          <div class="reset"></div>
+        <% end %>
+      </div>
 
 		</div>
 

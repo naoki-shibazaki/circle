@@ -20,15 +20,11 @@
 
 <% end %>
 
-
 <div class="main users-index">
   <div class="container">
 
     <%= render "/layouts/breadcrumb" %>
-
 		<div class="users-index-item">
-
-
     <h1 class="p_t">口コミ・評価</h1>
 
 			<% if admin_user_signed_in?  %>
@@ -53,7 +49,7 @@
 
 			<div class="review_set">
         <%= render "layouts/review_star", review_score: @user.review_score.to_i %>
-        <span class="review_score"><%= @user.review_score %></span>
+        <span class="review_score"><%= sprintf("%.2f", @user.review_score.to_i) %></span>
         <span class="review_count"><i class="fa fa-commenting "></i>  <span class="review_border"><%= @user.reviews.count %>件</span></span>
 			</div>
 
@@ -63,7 +59,180 @@
 <hr>
 
 
-<% if member_signed_in? && @member_reviews.blank? %>
+<% if admin_user_signed_in? %>
+  <p>サークル主催者は<br>ご自身で口コミを書くことができません。</p>
+  <br>
+  <p>参加者にこのページのURLを送って<br>口コミを書いてもらいましょう！</p>
+
+  <div class="sample_review_img">
+    <img src="/images/sample_review.png" class="">
+  </div>
+
+  <div class="schedule_share_wrap">
+    <div class="share_btn_tw">
+      <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の口コミ投稿を募集しています！%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do %>
+        <i class="fa fa-twitter"></i>ツイート
+      <% end %>
+    </div>
+    <div class="share_btn_line">
+      <%= link_to 'LINEで共有する', "http://line.me/R/msg/text/?#{request.url}", title: 'LINE', target: '_blank' %>
+    </div>
+  </div>
+
+<% elsif member_signed_in? && @member_reviews.blank? %>
+
+	<% if @reviews.blank? %>
+		<div class="review_sub_title">口コミがまだ投稿されていません。</div>
+		<div class="new_review_comment">
+			このサークルに参加されたことがある方は<br>
+			最初の口コミを投稿してみませんか？
+		</div>
+    <hr>
+	<% end %>
+
+  <div class="schedule_input">
+    <%= form_for ([@user, @review]) do |f| %>
+      <p>口コミ・評価</p>
+      <div class="radio_button_review">
+        <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
+      </div>
+      <p>コメント<span class="must_red">(必須)</span></p>
+      <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
+      <%= f.submit "投稿する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
+      <div class="reset"></div>
+    <% end %>
+  </div>
+
+  <% if @reviews.blank? %>
+    <hr>
+    <div class="sample_review">
+      <img src="/images/sample_review.png" class="">
+    </div>
+  <% end %>
+
+
+<% elsif @ip.blank? %>
+
+	<% if @reviews.blank? %>
+		<div class="review_sub_title">口コミがまだ投稿されていません。</div>
+		<div class="new_review_comment">
+			このサークルに参加されたことがある方は<br>
+			最初の口コミを投稿してみませんか？
+		</div>
+    <hr>
+	<% end %>
+
+  <div class="schedule_input">
+    <%= form_for ([@user, @review]) do |f| %>
+      <p>口コミ・評価</p>
+      <div class="radio_button_review">
+        <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
+      </div>
+      <p>コメント<span class="must_red">(必須)</span></p>
+      <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
+      <%= f.submit "投稿する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
+      <div class="reset"></div>
+    <% end %>
+  </div>
+
+  <% if @reviews.blank? %>
+    <hr>
+    <div class="sample_review">
+      <img src="/images/sample_review.png" class="">
+    </div>
+  <% end %>
+
+<% else %>
+
+<% end %>
+
+
+
+
+
+  <% @reviews.reverse_each do |review| %>
+    <div class="review_contents">
+      <div class="review_l">
+        <% if review.member.present? %>
+          <% if review.member.image_profile.present? %>
+            <%= lazysizes_image_tag review.member.image_profile.url , class:'member_icon' %>
+          <% else %>
+            <img src="/images/icon/icon_member.png" class="member_icon">
+          <% end %>
+        <% else %>
+          <img src="/images/icon/icon_member.png" class="member_icon">
+        <% end %>
+      </div>
+
+      <div class="review_r">
+        <div class="speech_title">
+          <% if review.review == 1 %>
+            <i class="fa fa-smile-o good"></i>
+          <% elsif review.review == 0 %>
+            <i class="fa fa-frown-o bad"></i>
+          <% else %>
+
+          <% end %>
+
+          <%= review.member.nickname if review.member.present? %>さん<% if review.member.present? %><span class="random_id">（@<%= review.member.random_id %>）</span>
+            <% if member_signed_in? %>
+              <% if current_member.id == review.member_id %>
+                <span class="review_edit">
+                    <%= link_to(edit_user_review_path(@user, review)) do %>
+                    <i class="fa fa-pencil-square-o "></i> 編集
+                  <% end %>
+                </span>
+                <span class="review_slash">／</span>
+                <span class="review_delete">
+                    <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+                    <i class="fa fa-trash "></i> 削除
+                  <% end %>
+                </span>
+              <% end %>
+            <% end %>
+
+            <% if admin_user_signed_in? %>
+              <% if current_admin_user.id == 1 %>
+                <span class="review_edit">
+                    <%= link_to(edit_user_review_path(@user, review)) do %>
+                    <i class="fa fa-pencil-square-o "></i> 編集
+                  <% end %>
+                </span>
+                <span class="review_slash">／</span>
+                <span class="review_delete">
+                    <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+                    <i class="fa fa-trash "></i> 削除
+                  <% end %>
+                </span>
+              <% end %>
+            <% end %>
+
+          <% end %>
+
+        </div>
+
+        <div class="speech_bubble">
+          <%= simple_format review.comment %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="reset"></div>
+
+  <% end %>
+
+<hr>
+
+      <%= render "/layouts/ad_square" %>
+      <div class="ad_space"></div>
+    </div>
+  </div>
+</div>
+
+<%
+=begin%>
+ <% if member_signed_in? && @member_reviews.blank? %>
 
     <div class="schedule_input">
         <div class="form-body review-body">
@@ -75,14 +244,10 @@
             <div class="radio_button_review">
               <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
             </div>
-
             <p>コメント<span class="must_red">(必須)</span></p>
-            <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %> 
-
-          <input type="submit" name="commit" value="投稿する" data-disable-with="投稿する">
-
-          <div class="reset"></div>
-
+            <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
+            <input type="submit" name="commit" value="投稿する" data-disable-with="投稿する">
+            <div class="reset"></div>
           <% end %>
 
         </div>
@@ -191,89 +356,6 @@
 		<div class="sample_review">
 			<img src="/images/sample_review.png" class="">
 		</div>
-	<% end %>
-
-
-		<% @reviews.reverse_each do |review| %>
-
-			<div class="review_contents">
-				<div class="review_l">
-					<% if review.member.present? %>
-						<% if review.member.image_profile.present? %>
-							<%= lazysizes_image_tag review.member.image_profile.url , class:'member_icon' %>
-						<% else %>
-							<img src="/images/icon/icon_member.png" class="member_icon">
-						<% end %>
-
-					<% else %>
-						<img src="/images/icon/icon_member.png" class="member_icon">
-					<% end %>
-						
-				</div>
-
-				<div class="review_r">
-					<div class="speech_title">
-						<% if review.review == 1 %>
-							<i class="fa fa-smile-o good"></i> 
-						<% elsif review.review == 0 %>
-							<i class="fa fa-frown-o bad"></i> 
-						<% else %>
-
-						<% end %>
-
-						<%= review.member.nickname if review.member.present? %>さん<% if review.member.present? %><span class="random_id">（@<%= review.member.random_id %>）</span>
-							<% if member_signed_in? %>
-								<% if current_member.id == review.member_id %>
-									<span class="review_edit">
-									    <%= link_to(edit_user_review_path(@user, review)) do %>
-											<i class="fa fa-pencil-square-o "></i> 編集
-										<% end %>
-									</span>
-									<span class="review_slash">／</span>
-									<span class="review_delete">
-									    <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
-											<i class="fa fa-trash "></i> 削除 									    
-										<% end %>
-									</span>
-								<% end %>
-							<% end %>
-
-							<% if admin_user_signed_in? %>
-								<% if current_admin_user.id == 1 %>
-									<span class="review_edit">
-									    <%= link_to(edit_user_review_path(@user, review)) do %>
-											<i class="fa fa-pencil-square-o "></i> 編集
-										<% end %>
-									</span>
-									<span class="review_slash">／</span>
-									<span class="review_delete">
-									    <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
-											<i class="fa fa-trash "></i> 削除 									    
-										<% end %>
-									</span>
-								<% end %>
-							<% end %>
-						<% end %>
-						
-					</div>
-
-					<div class="speech_bubble">
-						<%= simple_format review.comment %>
-					</div>				
-
-				</div>
-			</div>
-
-			<div class="reset"></div>
-
-		<% end %>
-
-
-<hr>
-
-	<%= render "/layouts/ad_square" %>
-	<div class="ad_space"></div>
-
-  </div>
-</div>
-
+	<% end %> 
+<%
+=end%>
