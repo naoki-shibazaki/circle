@@ -106,10 +106,21 @@
 						<div class="post_cta profile_cta">
 							<%= link_to user_questions_path(@user) do %>
 								<div class="contact-button qa_btn qa">
-									<i class="fa fa-comments "></i> このサークルに質問する
+									<i class="fa fa-comments "></i> このサークルに質問する！
 								</div>
 							<% end %>
 						</div>
+
+            <div class="post_cta">
+              <div class="contact_link">
+                <%= link_to "/users/#{@user.id}/contact" do %>
+                  <div class="btn btn_c btn_green btn_cubic">
+                    <i class="fa fa-envelope"></i>このサークルに直接質問する！
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
 
 					<% end %>
 

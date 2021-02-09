@@ -26,7 +26,9 @@
               <td><%= @user.user_contacts.count %> 件</td>
             </tr>
             <% end %>
-            <% if @user.bookmarks.count >= 2 %>
+            <%
+=begin%>
+ <% if @user.bookmarks.count >= 2 %>
             <tr>
               <th>
                 ブックマークされている数
@@ -39,6 +41,8 @@
               <td><%= @user.bookmarks.count %> 人</td>
             </tr>
             <% end %>
+<%
+=end%>
 					</table>
 				</div>
 		</div>

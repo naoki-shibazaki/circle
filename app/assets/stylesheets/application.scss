@@ -3814,14 +3814,15 @@ max-width: 100%;
 
 
 .post_cta .qa_btn{
-    display: block;
-    margin: 20px auto 0;
-    width: 76%;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;    
+  display: flex;
+  margin: 20px auto 30px;
+  width: 76%;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 .qa_card_txt {
