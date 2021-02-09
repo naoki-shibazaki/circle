@@ -26,8 +26,8 @@
 
             <% if review.user.review_score.present? %>
               <div class="review_set">
-                <%= render "layouts/review_star", review_score: review.user.review_score.to_i %>
-                <span class="review_score"><%= review.user.review_score %></span>
+                <%= render "layouts/review_star", review_score: review.user.review_score.to_f %>
+                <span class="review_score"><%= sprintf("%.2f", review.user.review_score.to_f) %></span>
                 <span class="review_count review_index"><i class="fa fa-commenting "></i>  <%= review.user.reviews.count %>件</span>
               </div>
             <% end %>
