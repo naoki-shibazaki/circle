@@ -20,6 +20,12 @@
 							</tr>
 							<% end %>
 						<% end %>
+            <% if @user.user_contacts.count >= 2 %>
+            <tr>
+              <th>お問い合わせ件数（メール）<br>2021年〜</th>
+              <td><%= @user.user_contacts.count %> 件</td>
+            </tr>
+            <% end %>
             <% if @user.bookmarks.count >= 2 %>
             <tr>
               <th>
