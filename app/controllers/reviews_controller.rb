@@ -70,6 +70,17 @@ class ReviewsController < ApplicationController
 		@review = Review.find(params[:id])
 		@review.destroy
 
+		# レビュースコア
+		star_sum = @user.reviews.sum{|review| review[:review]}
+		star_count = @user.reviews.count
+		if star_count == 0 && star_sum == 0
+			@user.review_score =  0
+      @user.save
+		else
+			@user.review_score =  (star_sum / star_count.to_f)*5
+      @user.save
+		end
+
 		flash[:notice] = "削除しました"
 		redirect_to user_reviews_path
 	end

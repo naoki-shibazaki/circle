@@ -44,13 +44,23 @@
     <div class="review_r">
       <div class="speech_title">
         <% if review.review == 1 %>
-          <i class="fa fa-smile-o good"></i> 
+          <i class="fa fa-smile-o good"></i>
         <% elsif review.review == 0 %>
-          <i class="fa fa-frown-o bad"></i> 
+          <i class="fa fa-frown-o bad"></i>
         <% else %>
 
         <% end %>
-        <%= review.member.nickname if review.member.present? %>さん<% if review.member.present? %><span class="random_id">（@<%= review.member.random_id %>）</span><% end %>
+
+        <% if review.member.present? %>
+          <%= review.member.nickname  %>さん
+        <% else %>
+          名前なしさん
+        <% end %>
+
+        <% if review.member.present? %>
+          <span class="random_id">（@<%= review.member.random_id %>）</span>
+        <% end %>
+
       </div>
       <div class="speech_bubble">
         <%= simple_format review.comment.truncate(120) %>
