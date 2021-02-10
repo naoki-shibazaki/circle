@@ -6456,7 +6456,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   .reviews_all_contents{
     background: #fff;
     padding: 20px 10px;
-    margin: 0px 12px 20px;
+    margin: 0px auto 20px;
     border-radius: 4px;
   }
   .review_contents{
@@ -6570,12 +6570,16 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
   .popup {
-      width: 90%;
-      max-height: 78%;
+    width: 90%;
+    max-height: 78%;
   }
 
 .link_content_img{
   width: 100%;
+}
+
+.reviews_all_wrap .reviews_all_contents {
+  margin: 0px 12px 20px;
 }
 
 
