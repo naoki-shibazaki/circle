@@ -1728,9 +1728,18 @@ border-bottom: 1px solid;
   text-align: center;
 }
 
-.flex_list .star .fa {
-  margin-top: 5px;
+.flex_list{
+  .reviews_count{
+    border-bottom: 1px solid;
+    color: #3ecdc6;
+    font-weight: 700;
+    font-size: 16px;
+    a{
+      color: #3ecdc6;
+    }
+  }
 }
+
 
 @media only screen and (max-width:450px) {
   .imege_title img,

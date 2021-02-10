@@ -5256,10 +5256,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .star{
   float: left;
-   display: -webkit-flex;
-   display: flex;
-   -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-   align-items: center; /* 縦方向中央揃え */
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+  align-items: center; /* 縦方向中央揃え */
 
   .fa{
     font-size: 18px;
@@ -6465,12 +6465,6 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
-.flex_list{
-  .star .fa{
-    margin-top: 5px;
-  }
-}
-
 .contents_wrap {
   padding: 20px 20px;
   background-color: #fff;
@@ -6503,6 +6497,15 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   margin: 18px auto 18px;
 }
 
+.flex_list{
+  .reviews_count{
+    border-bottom: 1px solid;
+    color: #3ecdc6;
+    a{
+      color: #3ecdc6;
+    }
+  }
+}
 
 
 

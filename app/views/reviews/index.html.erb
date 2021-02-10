@@ -47,11 +47,7 @@
 
 			<%= render "/schedules/profile" %>
 
-			<div class="review_set">
-        <%= render "layouts/review_star", review_score: @user.review_score.to_f %>
-        <span class="review_score"><%= sprintf("%.2f", @user.review_score.to_f) %></span>
-        <span class="review_count"><i class="fa fa-commenting "></i>  <span class="review_border"><%= @user.reviews.count %>件</span></span>
-			</div>
+      <%= render "layouts/review_score", review_score: @user.review_score.to_f, reviews_count: @user.reviews.count %>
 
 			<div class="reset"></div>
 
