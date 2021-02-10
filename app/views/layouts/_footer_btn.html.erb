@@ -1,104 +1,73 @@
 <!-- ログインあり -->
 <% if admin_user_signed_in? %>
 
-
-
-
 <!-- ログインなし -->
 <% else %>
 
   <!-- home -->
-    <% if @path.is('users#top') || @path.is('users#index') %>
+  <% if @path.is('users#top') || @path.is('users#index') %>
+    <div class="footer_btn bg_btn">
+      <%= link_to(new_admin_user_registration_path) do %>
+        <span class="fixed_btn_b pickup">無料でメンバーを募集する！</span>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!-- places -->
+  <% if @path.is('places') %>
+
+    <% if @path.is('places#index, places#show') %>
+      <div class="footer_btn bg_btn">
+        <a href="/">
+          <span class="fixed_btn_b mail">メンバーを募集する！</span>
+        </a>
+      </div>
+    <% end %>
+
+  <% end %>
+
+  <!-- questions -->
+  <% if @path.is('questions') %>
+
+    <% if @path.is('questions#questions') %>
+
+    <!-- event_questions -->
+    <% elsif @path.is('event_questions') %>
+
+    <% else %>
 
       <div class="footer_btn bg_btn">
-        <%= link_to(new_admin_user_registration_path) do %>
-          <span class="fixed_btn_b pickup">無料でメンバーを募集する！</span>
+        <%= link_to user_questions_path do %>
+            <span class="fixed_btn_b mail">このサークルに質問する！</span>
         <% end %>
       </div>
 
     <% end %>
 
-
-  <!-- places -->
-    <% if @path.is('places') %>
-
-      <% if @path.is('places#index, places#show') %>
-        <div class="footer_btn bg_btn">
-          <a href="/">
-            <span class="fixed_btn_b mail">メンバーを募集する！</span>
-          </a>
-        </div>
-      <% end %>
-
-    <% end %>
-
-  <!-- questions -->
-    <% if @path.is('questions') %>
-
-      <% if @path.is('questions#questions') %>
-
-      <!-- event_questions -->
-      <% elsif @path.is('event_questions') %> 
-
-
-      <% else %>
-
-          <div class="footer_btn bg_btn">
-            <%= link_to user_questions_path do %>
-               <span class="fixed_btn_b mail">このサークルに質問する！</span>
-            <% end %>
-          </div>
-
-      <% end %>
-
-    <% end %>
-
-
+  <% end %>
 
   <!-- other -->
-    <% if @path.is('users') || @path.is('blogs') || @path.is('schedules') %>
-        <% if @path.is('#show') || @path.is('#user_blogs') %>
+  <% if @path.is('users') || @path.is('blogs') || @path.is('schedules') %>
+      <% if @path.is('#show') || @path.is('#user_blogs') %>
 
+        <div class="footer_btn bg_btn footer_btn_2">
+          <ul class="fixed_btn_list">
+            <li class="fixed_btn_content">
+              <%= render 'layouts/bookmark_area', user: @user %>
+            </li>
+            <li class="fixed_btn_content">
+              <a href="/users/<%= @user.id %>/reviews">
+                <i class="fa fa-edit "></i>
+                <div class="fixed_btn_txt">コメント</div>
+              </a>
+            </li>
+          </ul>
+          <%= link_to "/users/#{@user.id}/contact" do %>
+            <span class="fixed_btn_b line">サークルに参加する</span>
+          <% end %>
+        </div>
 
-                <div class="footer_btn bg_btn footer_btn_2">
-
-                  <ul class="fixed_btn_list">
-                    <li class="fixed_btn_content">
-                      
-                      <%= render 'layouts/bookmark_area', user: @user %>
-                      
-                    </li>
-
-                    <% if member_signed_in? %>
-
-                      <li class="fixed_btn_content">
-                        <a href="/users/<%= @user.id %>/reviews">
-                          <i class="fa fa-edit "></i>
-                          <div class="fixed_btn_txt">コメント</div>
-                        </a>
-                      </li>
-
-                    <% else %>
-
-                      <li class="fixed_btn_content">
-                        <%= link_to new_member_registration_path do %>
-                          <i class="fa fa-edit "></i>
-                          <div class="fixed_btn_txt">コメント</div>
-                        <% end %>
-                      </li>                    
-
-                    <% end %>
-
-                  </ul>
-
-                  <%= link_to "/users/#{@user.id}/contact" do %>
-                    <span class="fixed_btn_b line">サークルに参加する</span>
-                  <% end %>
-
-                </div>
-
-        <% end %>
-    <% end %>
-
+      <% end %>
+  <% end %>
 
 <% end %>
