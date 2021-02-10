@@ -48,23 +48,25 @@
               <% end %>
             <% end %>
 
-            <% if admin_user_signed_in? %>
-              <% if current_admin_user.id == 1 %>
-                <span class="review_edit">
-                    <%= link_to(edit_user_review_path(@user, review)) do %>
-                    <i class="fa fa-pencil-square-o "></i> 編集
-                  <% end %>
-                </span>
-                <span class="review_slash">／</span>
-                <span class="review_delete">
-                    <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
-                    <i class="fa fa-trash "></i> 削除
-                  <% end %>
-                </span>
-              <% end %>
-            <% end %>
-
           <% end %>
+
+          <% if admin_user_signed_in? %>
+            <% if current_admin_user.id == 1 %>
+              <span class="review_edit">
+                  <%= link_to(edit_user_review_path(@user, review)) do %>
+                  <i class="fa fa-pencil-square-o "></i> 編集
+                <% end %>
+              </span>
+              <span class="review_slash">／</span>
+              <span class="review_delete">
+                  <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+                  <i class="fa fa-trash "></i> 削除
+                <% end %>
+              </span>
+            <% end %>
+          <% end %>
+
+
 
         </div>
 
