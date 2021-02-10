@@ -1386,13 +1386,14 @@ width: 90%;
 
 .post-body a,
 .flex_contents a,
-.place_list
-.profile-content
-.content_08 a,
+.place_list .content_08 a,
+.profile-content .content_08 a,
 .qa_answer a,
-.matching_url a {
+.matching_url a,
+.more_link_txt a {
   color: #3ecdc6;
 }
+
 .profile-content .content_08, .place_list .content_08 {
   color: #777;
 }
@@ -1426,7 +1427,6 @@ width: 90%;
 }
 .profile_list_frame, .profile_list_a {
   border: 1px solid #d8dadf;
-  margin: 0px 10px 2px;
   border-radius: 4px;
 }
 
@@ -1728,7 +1728,9 @@ border-bottom: 1px solid;
   text-align: center;
 }
 
-
+.flex_list .star .fa {
+  margin-top: 5px;
+}
 
 @media only screen and (max-width:450px) {
   .imege_title img,
