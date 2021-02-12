@@ -37,14 +37,16 @@
 <% else %>
   <div class="user_main user-show">
     <div class="container">
+
       <%
 =begin%>
  <%= render "/layouts/breadcrumb" %>
     <% if @user_cities.present? %>
       <%= render "/users/breadcrumb_city" %>
-    <% end %> 
+    <% end %>
 <%
 =end%>
+
     <div class="user-profile">
       <div class="header-wrapper ribbon-wrapper">
         <div class="ribbon-content">

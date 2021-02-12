@@ -1908,12 +1908,12 @@ padding:0 10px;
     border-right: 1px solid #fff;
     display: table-cell;
     vertical-align: middle;
+    &:last-child{
+      border-right: 0px none;
+    }
     .back_btn a{
       color: #fff;
       font-size: 22px;
-    }
-    &:last-child{
-      border: none;
     }
   }
 
@@ -1926,6 +1926,7 @@ padding:0 10px;
   text-align: center;
   background: #fdfdfd;
   height: 50px;
+  font-size: 20px;
   a {
     color: #505050;
     display: block;
@@ -6688,6 +6689,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 .header_menue_btm {
   height: 42px;
+  font-size: 12px;
   a {
     font-size: 12px;
   }

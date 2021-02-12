@@ -3,7 +3,15 @@
     <ul class="user_header_menue">
       <li class="w10per"><span class="back_btn"><%= link_to "←", :back %></span></li>
       <li class="w10per"><span class="back_btn"><%= link_to(users_path) do %><i class="fa fa-home"></i><% end %></span></li>
-      <li><span><%= link_to @user.name.truncate(24), user_path(@user) %></span><li>
+      <li><span><%= link_to @user.name.truncate(20), user_path(@user) %></span></li>
+      <% if member_signed_in?  %>
+          <li class="w10per"><span class="back_btn"><%= link_to member_path(current_member) do %><i class="fa fa-user"></i><% end %></span></li>
+        <% elsif admin_user_signed_in?  %>
+          <% if current_admin_user.users.any? %>
+            <li class="w10per"><span class="back_btn"><%= link_to "/users/#{current_admin_user.users.first.id}/mypage" do %><i class="fa fa-user"></i><% end %></span></li>
+          <% end %>
+        <% else %>
+        <% end %>
     </ul>
     <ul class="header_menue_btm">
       <% if @path.is('users') %>
