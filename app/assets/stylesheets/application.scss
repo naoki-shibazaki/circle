@@ -1912,9 +1912,15 @@ padding:0 10px;
 
 }
 
-.current_page{
-  
+
+li.current_page{
+  border-bottom: 4px solid #337ab7;
+  a{
+    color: #337ab7;
+  }
 }
+
+
 
 
 

@@ -33,40 +33,40 @@
                 <% end %> 
 
 
-	            <%= link_to(user_path(@user.id)) do %>  
-	            <div class="user-content">
-	              <%= lazysizes_image_tag @user.pic_profile.url , class:'image_icon' %>
+            <%= link_to(user_path(@user.id)) do %>  
+            <div class="user-content">
+              <%= lazysizes_image_tag @user.pic_profile.url , class:'image_icon' %>
 
-	              <div class="list_wrapper">
-	                <div class="list_01">
-	                  <h2 class="user_name"><%= @user.name %></h2>
-	                </div>
+              <div class="list_wrapper">
+                <div class="list_01">
+                  <h2 class="user_name"><%= @user.name %></h2>
+                </div>
 
-	              </div>
+              </div>
 
 
-	              <div class="list_cnts">
+              <div class="list_cnts">
 
-	                <div class="list_02">
-	                    <span class="user_schedule">
-	                      <i class="fa fa-calendar icon_c"></i><%= @user.schedule %>
-	                    </span>
-	                </div>
+                <div class="list_02">
+                    <span class="user_schedule">
+                      <i class="fa fa-calendar icon_c"></i><%= @user.schedule %>
+                    </span>
+                </div>
 
-	                <div class="list_03">
-	                    <span class="user_area">
-	                      <i class="fa fa-map-marker icon_c"></i><%= @user.prefecture.name %><%= "：" if @user.area.present? %><%= @user.area %>
-	                    </span>
-	                </div>              
+                <div class="list_03">
+                    <span class="user_area">
+                      <i class="fa fa-map-marker icon_c"></i><%= @user.prefecture.name %><%= "：" if @user.area.present? %><%= @user.area %>
+                    </span>
+                </div>
 
-	                <div class="list_04">
-	                  <span class="user_recruitment"><%= @user.recruitment.truncate(110) %></span>
-	                </div>
+                <div class="list_04">
+                  <span class="user_recruitment"><%= @user.recruitment.truncate(110) %></span>
+                </div>
 
-	              </div>
-	   
-	            </div>
-	            <% end %>
+              </div>
+
+            </div>
+            <% end %>
 			</div>
 		<% end %>
 
