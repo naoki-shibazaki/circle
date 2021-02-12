@@ -15,9 +15,9 @@
     </ul>
     <ul class="header_menue_btm">
       <% if @path.is('users') %>
-        <li class="current_page"><span><%= link_to "トップ", user_path(@user) %></span></li>
+        <li class="current_page"><span><%= link_to "プロフィール", user_path(@user) %></span></li>
       <% else %>
-        <li><span><%= link_to "トップ", user_path(@user) %></span></li>
+        <li><span><%= link_to "プロフィール", user_path(@user) %></span></li>
       <% end %>
 
       <% if @path.is('blogs') %>
