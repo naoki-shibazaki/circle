@@ -75,19 +75,24 @@ a,input,
 /* 共通レイアウト ================================ */
 body {
   color: #1c1e22;
-  background-color: #3ecdc6;
+  background-color: #e8e8e8;
   margin: 0;
+  padding: 0;
   min-height: 1vh;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif !important;
 }
 
-.main {
+.main,
+.user_main {
   position: absolute;
   top: 64px;
   width: 100%;
   height: auto;
   min-height: 100%;
   background-color: #e8e8e8;
+}
+.user_main {
+  top: 100px;
 }
 
 .container {
@@ -101,7 +106,7 @@ body {
 
 
 /* ヘッダー ================================ */
-header {
+.header_wrap{
   height: 64px;
   position: fixed;
   background-color: #3ecdc6;
@@ -1854,6 +1859,64 @@ padding:0 10px;
     display: block;
     font-size: 10px;
 }
+
+.user_header_wrap{
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  // height: 60px;
+  -webkit-box-shadow: 1px 1px 5px color;
+  box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+}
+
+.user_header_menue {
+  width: 100%;
+  display: table;
+  text-align: center;
+  background: #fdfdfd;
+  border-bottom: 1px solid #bbb;
+  height: 50px;
+  a {
+    color: #505050;
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  li {
+    // border-right: 1px solid #bbb;
+    display: table-cell;
+    vertical-align: middle;
+    .back_btn a{
+      color: #8c8c8c;
+    }
+  }
+
+}
+
+.header_menue_btm{
+  width: 100%;
+  display: table;
+  text-align: center;
+  background: #fdfdfd;
+  height: 50px;
+  a {
+    color: #505050;
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  li {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+}
+
+.current_page{
+  
+}
+
+
 
 
 .post_message{
@@ -6580,6 +6643,22 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .reviews_all_wrap .reviews_all_contents {
   margin: 0px 12px 20px;
+}
+
+.user_header_menue {
+  height: 36px;
+  a {
+    font-size: 16px;
+  }
+}
+.header_menue_btm {
+  height: 30px;
+  a {
+    font-size: 12px;
+  }
+}
+.user_main {
+  top: 64px;
 }
 
 

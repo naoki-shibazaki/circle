@@ -7,7 +7,7 @@
           <div class="logo_txt">
             <%= link_to root_path do %>
               <img class="img_logo_memu" src="/images/logo.png" alt="サークルブック">
-            <% end %>  
+            <% end %>
           </div>
 
 
@@ -16,7 +16,7 @@
             <div class="menu_btn"><%= link_to 'マイページ', member_path(current_member)%></div>
 
           <% elsif admin_user_signed_in?  %>
-            
+
             <% if current_admin_user.users.any? %>
               <div class="menu_btn"><%= link_to 'マイページ', "/users/#{current_admin_user.users.first.id}/mypage" %></div>
             <% end %>
@@ -25,12 +25,12 @@
 
             <div class="menu_btn"><%= link_to 'サークル登録', new_admin_user_registration_path %></div>
             <div class="menu_btn"><%= link_to 'ログイン', login_path %></div>
-            
+
           <% end %>
 
 
           <ul>
-            <li><%= link_to 'サークル検索', users_path %></li>            
+            <li><%= link_to 'サークル検索', users_path %></li>
             <li><%= link_to '対戦相手・練習試合の募集', matches_path %></li>
             <li><%= link_to 'コート・施設情報', '/places' %></li>
             <li><%= link_to 'よくある質問', '/faq' %></li>
@@ -39,7 +39,7 @@
           </ul>
 
 
-          <% if member_signed_in?  %> 
+          <% if member_signed_in?  %>
             <ul>
                 <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
 
@@ -51,7 +51,7 @@
 
                 <li><%= link_to 'ログイン情報の変更', edit_admin_user_registration_path %></li>
             </ul>
-          <% end %>          
+          <% end %>
 
           <ul>
             <li><a href="http://nav.cx/3JiS9Im">お問い合わせ（LINE@）</a></li>

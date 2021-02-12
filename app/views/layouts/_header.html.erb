@@ -1,0 +1,106 @@
+<% if @path.is('users#show') %>
+  <div class="user_header_wrap">
+    <ul class="user_header_menue">
+      <li><span class="back_btn"><%= link_to "←", :back %></span></li>
+      <li><span><%= link_to @user.name, user_path(@user) %></span><li>
+    </ul>
+    <ul class="header_menue_btm">
+      <li>
+        <% if @path.is('users') %>
+          <span class="current_page"><%= link_to "トップ", user_path(@user) %></span>
+        <%else%>
+          <span><%= link_to "トップ", user_path(@user) %></span>
+        <% end %>
+      </li>
+      <li><span><%= link_to "活動ブログ", user_blogs_path(@user) %></span></li>
+      <li><span><%= link_to "スケジュール", user_schedules_path(@user) %></span></li>
+      <li><span><%= link_to "口コミ", user_reviews_path(@user) %></span></li>
+    </ul>
+  </div>
+
+<% else %>
+  <div class="header_wrap">
+    <ul class="header-menus_sp">
+      <!-- ログイン時の処理 -->
+      <% if member_signed_in?  %>
+        <li>
+          <%= link_to(users_path) do %>
+            <i class="fa fa-search "></i>
+            <div class="link_txt">サークル検索</div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to("/blog") do %>
+            <i class="fa fa-book "></i>
+            <div class="link_txt">活動ブログ</div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to(member_path(current_member)) do %>
+              <i class="fa fa-user"></i>
+              <div class="link_txt">マイページ</div>
+          <% end %>
+        </li>
+      <% elsif admin_user_signed_in?  %>
+        <% if current_admin_user.users.any? %>
+          <li>
+            <%= link_to "/users/#{current_admin_user.users.first.id}/mypage" do %>
+              <i class="fa fa-user notice_icon"></i>
+              <div class="link_txt">マイページ</div>
+            <% end %>
+          </li>
+        <% end %>
+
+          <li>
+            <%= link_to(users_path) do %>
+              <i class="fa fa-search "></i>
+              <div class="link_txt">サークル検索</div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to("/blog") do %>
+              <i class="fa fa-book "></i>
+              <div class="link_txt">活動ブログ</div>
+            <% end %>
+          </li>
+
+      <!-- ログインなし -->
+      <% else %>
+        <li>
+
+          <% if @path.is('matches') %>
+            <%= link_to(matches_path) do %>
+              <i class="fa fa-flag-checkered "></i>
+              <div class="link_txt">対戦相手募集</div>
+            <% end %>
+          <% else %>
+            <%= link_to(users_path) do %>
+              <i class="fa fa-search "></i>
+              <div class="link_txt">サークル検索</div>
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to("/blog") do %>
+            <i class="fa fa-book "></i>
+            <div class="link_txt">活動ブログ</div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to(new_admin_user_registration_path) do %>
+            <i class="fa fa-user-plus "></i>
+            <div class="link_txt">サークル登録</div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to(login_path) do %>
+            <i class="fa fa-sign-in "></i>
+            <div class="link_txt">ログイン</div>
+          <% end %>
+        </li>
+
+      <% end %>
+      <%= render "/layouts/menu" %>
+    </ul>
+  <div>
+<% end %>
