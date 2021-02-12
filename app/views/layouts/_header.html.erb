@@ -1,7 +1,7 @@
 <% if @path.is('users#show') || @path.is('blogs#show') || @path.is('blogs#user_blogs') || @path.is('schedules') || @path.is('reviews#index') %>
   <div class="user_header_wrap">
     <ul class="user_header_menue">
-      <li class="w10per"><span class="back_btn"><%= link_to "←", :back %></span></li>
+      <li class="w10per"><span class="back_btn"><%= link_to "←", "javascript:history.back()" %></span></li>
       <li class="w10per"><span class="back_btn"><%= link_to(users_path) do %><i class="fa fa-home"></i><% end %></span></li>
       <li><span><%= link_to @user.name.truncate(20), user_path(@user) %></span></li>
       <% if member_signed_in?  %>
