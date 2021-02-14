@@ -6,7 +6,7 @@
       <% @questions.first(5).each do |question| %>
         <li>
           <%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
-              <img data-src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= question.content %>" class="lazyload">
+              <h3><img data-src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= question.content %>" class="lazyload"></h3>
               <div class="qa_judge">
               </div>
           <% end %>
@@ -18,7 +18,7 @@
       <% @questions.first(1).each do |question| %>
         <li>
           <%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
-              <img data-src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= question.content %>" class="lazyload">
+              <h3><img data-src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= question.content %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= question.content %>" class="lazyload"></h3>
               <div class="qa_judge">
               </div>
           <% end %>

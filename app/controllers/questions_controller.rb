@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 		@question = @user.questions.build
 	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
     
-	end	
+	end
 
 	def question
 		@question = @user.questions.build
@@ -26,10 +26,9 @@ class QuestionsController < ApplicationController
 
 		end
 
-
 		if @user.switch.present?
 		@b5_name = @question_sample
-		@b5_url = ""		
+		@b5_url = ""
 		end
 
 	end

@@ -55,7 +55,7 @@ Rails.application.routes.draw do
 	get 'login' , to: 'users#login'
 	get 'admin_users' , to: 'users#admin_users'
 	get 'webmaster' , to: 'users#webmaster'
-	get 'questions' , to: 'questions#questions'
+	# get 'questions' , to: 'questions#questions'
 	# get 'collections' , to: 'collections#collections'
 	get 'event_questions' , to: 'event_questions#event_questions'
   get 'contents' , to: 'differences#contents'
@@ -73,6 +73,7 @@ Rails.application.routes.draw do
 	get 'users/:id/contact' , to: 'user_contacts#contact'
 	get 'users/:id/thanks' , to: 'user_contacts#thanks'
 
+  # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'
 	get '/users/:user_id/blogs' , to: 'blogs#user_blogs'
 
