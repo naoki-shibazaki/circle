@@ -36,35 +36,41 @@
   <body>
   <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-W4646BG&gtm.url=SOURCE_URL" data-credentials="include"></amp-analytics>
 
-      <ul class="header-menus_sp">
-        <li>
-          <%= link_to(users_path) do %>
-              <i class="fa fa-search"></i> 
-              <div class="link_txt">サークル検索</div>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to("/blog") do %>
-            <i class="fa fa-book "></i> 
-            <div class="link_txt">活動ブログ</div>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to(new_admin_user_registration_path) do %>
-            <i class="fa fa-user-plus "></i>
-            <div class="link_txt">サークル登録</div>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to(login_path) do %>
-            <i class="fa fa-sign-in "></i> 
-            <div class="link_txt">ログイン</div>
-          <% end %>
-        </li>
-      </ul>
-
+  <div class="header_wrap">
+    <ul class="header-menus_sp">
+      <li>
+        <%= link_to(users_path) do %>
+          <i class="fa fa-search"></i> 
+          <div class="link_txt">サークル検索</div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to("/blog") do %>
+          <i class="fa fa-book "></i> 
+          <div class="link_txt">活動ブログ</div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to(new_admin_user_registration_path) do %>
+          <i class="fa fa-user-plus "></i>
+          <div class="link_txt">サークル登録</div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to(login_path) do %>
+          <i class="fa fa-sign-in "></i> 
+          <div class="link_txt">ログイン</div>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 
     <%= yield %>
+
+    <footer>
+      <%= render "/layouts/footer" %>
+    </footer>
+
   </body>
 
 </html>

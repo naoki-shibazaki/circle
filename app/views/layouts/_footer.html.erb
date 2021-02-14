@@ -1,0 +1,26 @@
+<div class="footer_wrap">
+
+  <div class="footer_copyright">
+    <div class="footer_logo">
+      <%= link_to root_path do %>
+        <% if request.format == :amp %>
+          <amp-img alt="サークルブック"
+            src="/images/logo.png"
+            class="footer_logo_img"
+            width="160"
+            height="33"
+            layout="responsive"
+            object-fit="cover">
+          </amp-img>
+        <% else %>
+          <img class="footer_logo_img" src="/images/logo.png" alt="サークルブック">
+        <% end %>
+      <% end %>
+    </div>
+
+    <address class="footer_copyright_address">
+      Copyright (c) <%= link_to "サークルブック", root_path %>
+    </address>
+  </div>
+
+</div>

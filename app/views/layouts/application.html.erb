@@ -67,9 +67,11 @@
         </div>
       <% end %>
 
-      <!-- render 'layouts/flash_messages'  -->
-
       <%= yield %>
+
+      <footer>
+        <%= render "/layouts/footer" %>
+      </footer>
 
       <%= render "/layouts/footer_btn" %>
 
@@ -142,7 +144,7 @@
       var beforeStr = new Array('<','>','＜','＞','&');
       // 変換後
       var afterStr = new Array('【','】','【','】','＆');
-      
+
       function convertStr(str) {
           var fullStr = str;
           for(var i = 0; i < beforeStr.length; i++) {
@@ -155,21 +157,20 @@
               var str = $(this).val();
               $(this).val(convertStr(str));
           });
-      
-      });    
+
+      });
     </script>
 
     <!-- flashメッセージ -->
     <script>
     $(function(){
-      setTimeout("$('.time-limit').fadeOut('slow')", 1000) 
-    })  
+      setTimeout("$('.time-limit').fadeOut('slow')", 1000)
+    })
     </script>
 
     <!-- カレンダー -->
     <script>
     $('#datepicker').datepicker({
-    
         dateFormat: 'yy-mm-dd', //日付表示
         minDate: 0, //過去の日付選択不可
         showOtherMonths: true,　//次月表示
@@ -178,7 +179,6 @@
         firstDay: 1, // 月曜始まり
         duration: 100, //表示タイミング
         showAnim: 'slideDown' //表示アニメーション
-    
     });
     </script>
 
