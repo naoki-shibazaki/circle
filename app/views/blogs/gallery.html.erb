@@ -36,6 +36,39 @@
         <% end %>
 
       <% end %>
+
+      <% if @user.gallery_01.present? %>
+        <div class="photo">
+          <div class="inner">
+            <%= lazysizes_image_tag @user.gallery_01.url %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @user.gallery_02.present? %>
+        <div class="photo">
+          <div class="inner">
+            <%= lazysizes_image_tag @user.gallery_02.url %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @user.gallery_03.present? %>
+        <div class="photo">
+          <div class="inner">
+            <%= lazysizes_image_tag @user.gallery_03.url %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @user.gallery_04.present? %>
+        <div class="photo">
+          <div class="inner">
+            <%= lazysizes_image_tag @user.gallery_04.url %>
+          </div>
+        </div>
+      <% end %>
+
     </div>
 
     <%= render "/layouts/ad_square" %>

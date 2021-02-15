@@ -180,6 +180,7 @@ class BlogsController < ApplicationController
 
   def gallery
     @blogs = Blog.where(user_id: params[:user_id]).order(created_at: "DESC")
+    @user = User.find(params[:user_id])
   end
 
 
