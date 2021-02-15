@@ -6702,6 +6702,44 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 
+
+.photogallery{
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  .photo {
+    position: relative;
+    width: 31%;
+    height: auto;
+    margin: 1%;
+    overflow: hidden;
+  }
+  .photo:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+  .inner {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .inner img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 100%;
+  }
+}
+
+
+
 // --------------------------------------
 // ▼PC
 @media only screen and (min-width:768px) {
