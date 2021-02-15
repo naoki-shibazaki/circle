@@ -3,29 +3,37 @@
 
     <div class="photogallery">
       <% @blogs.each do |blog| %>
-        <div class="photo">
-          <div class="inner">
-            <%= image_tag blog.image_01.url if blog.image_01.present? %>
+        <% if blog.image_01.present? %>
+          <div class="photo">
+            <div class="inner">
+              <%= lazysizes_image_tag blog.image_01.url %>
+            </div>
           </div>
-        </div>
+        <% end %>
 
-        <div class="photo">
-          <div class="inner">
-            <%= image_tag blog.image_02.url if blog.image_02.present? %>
+        <% if blog.image_02.present? %>
+          <div class="photo">
+            <div class="inner">
+              <%= lazysizes_image_tag blog.image_02.url %>
+            </div>
           </div>
-        </div>
+        <% end %>
 
-        <div class="photo">
-          <div class="inner">
-            <%= image_tag blog.image_03.url if blog.image_03.present? %>
+        <% if blog.image_03.present? %>
+          <div class="photo">
+            <div class="inner">
+              <%= lazysizes_image_tag blog.image_03.url %>
+            </div>
           </div>
-        </div>
+        <% end %>
 
-        <div class="photo">
-          <div class="inner">
-            <%= image_tag blog.image_04.url if blog.image_04.present? %>
+        <% if blog.image_04.present? %>
+          <div class="photo">
+            <div class="inner">
+              <%= lazysizes_image_tag blog.image_04.url %>
+            </div>
           </div>
-        </div>
+        <% end %>
 
       <% end %>
     </div>
