@@ -178,6 +178,11 @@ class BlogsController < ApplicationController
 		@b2_url = ""
 	end
 
+  def gallery
+    @blogs = Blog.where(user_id: params[:user_id]).order(created_at: "DESC")
+  end
+
+
 	private
 	def set_user
     @user = User.where(:id => params[:user_id]).first

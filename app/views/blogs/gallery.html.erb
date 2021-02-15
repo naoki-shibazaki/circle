@@ -1,0 +1,23 @@
+<div class="user_main user-show">
+  <div class="container">
+
+    <% @blogs.each do |blog| %>
+      <%= image_tag blog.image_01.url if blog.image_01.present? %>
+      <%= image_tag blog.image_02.url if blog.image_02.present? %>
+      <%= image_tag blog.image_03.url if blog.image_03.present? %>
+      <%= image_tag blog.image_04.url if blog.image_04.present? %>
+    <% end %>
+
+
+    <%= render "/layouts/ad_square" %>
+    <div class="ad_space"></div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
