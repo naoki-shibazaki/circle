@@ -4318,7 +4318,7 @@ max-width: 100%;
 .breadcrumbs_city {
     margin: auto;
     max-width: 1180px;  
-    line-height: 22px;
+    line-height: 12px;
     padding: 0px 10px 0 25px;
 }
 
@@ -6704,13 +6704,16 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 .photogallery{
-  display: flex;
-  display: -webkit-flex;
-  flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
+  // display: flex;
+  // display: -webkit-flex;
+  // flex-wrap: wrap;
+  // -webkit-flex-wrap: wrap;
   .photo {
     position: relative;
-    width: 31%;
+    // ▼追加
+    display: inline-block;
+    width: 30%;
+    // width: 31%;
     height: auto;
     margin: 1%;
     overflow: hidden;
@@ -6738,6 +6741,137 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+
+
+.modal_trigger {
+  // margin: 100px auto;
+  // display: -webkit-box;
+  // display: -ms-flexbox;
+  // display: flex;
+  // -webkit-box-pack: center;
+  // -ms-flex-pack: center;
+  // justify-content: center;
+  li {
+    // border: 1px solid;
+    // border-radius: 5px;
+    // cursor: pointer;
+    // padding: 10px;
+    // color: #216518;
+    // max-width: 100px;
+    // text-align: center;
+    // position: relative;
+    // overflow: hidden;
+  }
+  li::before {
+    // content: '';
+    // display: inline-block;
+    // width: 100%;
+    // height: 100%;
+    // background: #216518;
+    // -webkit-transform: translateY(-100%);
+    // transform: translateY(-100%);
+    // position: absolute;
+    // left: -20px;
+    // top: 100%;
+    // z-index: -1;
+    // opacity: 0;
+  }
+  li:hover {
+    color: #fff;
+  }
+  li:hover::before {
+    -webkit-animation: slideRightBg ease .2s forwards;
+    animation: slideRightBg ease .2s forwards;
+  }
+  li + li {
+    // margin-left: 20px;
+  }
+}
+
+@-webkit-keyframes slideRightBg {
+  0% {
+    opacity: 0;
+    left: -50%;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+@keyframes slideRightBg {
+  0% {
+    opacity: 0;
+    left: -50%;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+.modal_box {
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.modal_bg {
+  background-color: rgba(30, 30, 30, 0.9);
+  height: 100%;
+  width: 100%;
+}
+
+.modal_inner {
+  background-color: #fff;
+  left: 50%;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: 900px;
+}
+
+.modal_close {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-size: 2rem;
+}
+
+
+// ▼モーダル用
+@media screen and (max-width: 480px) {
+  .modal_trigger {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .modal_trigger li {
+    width: 47.5%;
+    margin-top: 20px;
+    max-width: inherit;
+  }
+  .modal_trigger li + li {
+    margin-left: 0;
+  }
+  .modal_inner {
+    width: 90%;
+    padding: 25px;
+  }
+  .modal_close {
+    top: 5px;
+    font-size: 2.2rem;
+  }
+}
 
 
 // --------------------------------------

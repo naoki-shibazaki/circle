@@ -2,7 +2,39 @@
   <div class="container">
 
     <div class="photogallery">
+      <ul class="modal_trigger">
+        <% @blogs.each do |blog| %>
+          <% if blog.image_01.present? %>
+            <li class="modal_btn"><%= lazysizes_image_tag blog.image_01.url %></li>
+          <% end %>
+        <% end %>
+      <ul>
+
+      <div class="modal_area">
+        <% @blogs.each do |blog| %>
+          <% if blog.image_01.present? %>
+              <div class="modal_box">
+                <div class="modal_bg"></div>
+                <div class="modal_inner">
+                  <div class="modal_block">
+                    <%= lazysizes_image_tag blog.image_01.url %>
+                  </div>
+                  <div class="modal_close">×</div>
+                </div>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+
+
+--------------------------------------
+
+
+    <div class="photogallery">
       <% @blogs.each do |blog| %>
+
         <% if blog.image_01.present? %>
           <div class="photo">
             <div class="inner">
@@ -78,7 +110,20 @@
   </div>
 </div>
 
+<script>
+$(function () {
+  // モーダルのボタンをクリックした時
+  $('.modal_trigger .modal_btn').on('click', function() {
+    var btnIndex = $(this).index(); // 何番目のモーダルボタンかを取得
+    $('.modal_area .modal_box').eq(btnIndex).fadeIn(); // クリックしたモーダルボタンと同じ番目のモーダルを表示する
+  });
 
+  // ×やモーダルの背景をクリックした時
+  $('.modal_close , .modal_bg').click(function(){
+    $('.modal_box').fadeOut(); // モーダルを非表示にする
+  });
+});
+</script>
 
 
 
