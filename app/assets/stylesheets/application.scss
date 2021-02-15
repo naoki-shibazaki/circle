@@ -6744,6 +6744,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 .modal_trigger {
+  width: 100%;
   // margin: 100px auto;
   // display: -webkit-box;
   // display: -ms-flexbox;
@@ -6751,6 +6752,19 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   // -webkit-box-pack: center;
   // -ms-flex-pack: center;
   // justify-content: center;
+  .modal_btn{
+    display: inline-block;
+    width: 32%;
+    margin: auto;
+    img{
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      margin: auto;
+      text-align: center;
+      display: block;
+    }
+  }
   li {
     // border: 1px solid;
     // border-radius: 5px;
