@@ -24,27 +24,9 @@
   <div class="container">
 
 		<div class="users-index-item">
-    <h1 class="p_t">口コミ・評価</h1>
-
-			<% if admin_user_signed_in?  %>
-				<% if @user.admin_user_id == current_admin_user.id %>
-					<% if current_admin_user.users.count > 1 %>
-						<div class="user_select_wrap">
-              現在のアカウント：
-              <select name="user_select" onChange="location.href=value;">
-                <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
-                  <% current_admin_user.users.each do |user| %>
-                    <% if @user.id != user.id %>
-                    <option value="/users/<%= user.id %>/reviews"><%= user.name %>（<%= user.event.name %>）</option>
-                    <% end %>
-                <% end %>
-              </select>
-						</div>
-					<% end %>
-				<% end %>
-      <% end %>
-
-			<%= render "/schedules/profile" %>
+      <h1 class="top_title">口コミ・評価</h1>
+      <%= render "/users/parts/user_switching", user: @user, url_path: "reviews" %>
+      <%= render "/users/parts/user_profile", user: @user %>
 
       <%= render "layouts/review_score", review_score: @user.review_score.to_f, reviews_count: @user.reviews.count %>
 

@@ -1,12 +1,10 @@
 <% set_meta_tags title: "#{@question_sample}｜#{@user.name}の質問コーナー",
-
-				og: { 
-					title: "#{@user.name}の質問コーナーです！",
-					description: "", 
-					image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:#{@question_sample},y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
-				},
-
-				twitter: { card: 'summary_large_image'} 
+  og: {
+    title: "#{@user.name}の質問コーナーです！",
+    description: "",
+    image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:#{@question_sample},y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
+  },
+  twitter: { card: 'summary_large_image'} 
 %>
 
 
@@ -34,7 +32,7 @@
 
 			<div class="qa_profile_wrap">
 
-			<%= render "/questions/profile" %>
+      <%= render "/users/parts/user_name", user: @user %>
 
 
 				<div class="reset"></div>

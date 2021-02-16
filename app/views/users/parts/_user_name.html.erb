@@ -1,0 +1,10 @@
+<div class="user_profile_wrap">
+  <%= link_to(user_path(user.id)) do %>
+    <%= lazysizes_image_tag user.pic_profile.url , class:'image_icon' %>
+    <div class="user_profile">
+      <h2 class="user_name"><%= user.name %></h2>
+    </div>
+  <% end %>
+
+  <div class="reset"></div>
+</div>

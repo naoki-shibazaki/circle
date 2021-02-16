@@ -1,6 +1,33 @@
+<% if @user.pic_profile.present? %>
+	<% set_meta_tags title: "#{@user.name}のギャラリーページ",
+    og: {
+      image: @user.pic_profile.url
+    }
+	%>
+
+<% elsif @user.pic_header.present? %>
+	<% set_meta_tags title: "#{@user.name}のギャラリーページ",
+    og: {
+      image: @user.pic_header.url
+    }
+	%>
+
+<% else %>
+	<% set_meta_tags title: "#{@user.name}のギャラリーページ",
+    og: {
+      image: image_url("/images/events/e_icon_#{@user.event.ruby}.jpg")
+    }
+	%>
+<% end %>
+
+
 <div class="user_main user-show">
   <div class="container">
     <div class="users-index-item">
+
+      <h1 class="top_title">ギャラリーページ</h1>
+      <%= render "/users/parts/user_switching", user: @user, url_path: "gallery" %>
+      <%= render "/users/parts/user_profile", user: @user %>
 
       <div class="photogallery">
         <ul class="modal_trigger">

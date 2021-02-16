@@ -1,29 +1,26 @@
 <% if @user.event_id.present? && @user.prefecture_id.present? && @user.event_id != 0 && @user.prefecture_id != 0 %>
 
-		<% if @blog.image_01.present? %>
+  <% if @blog.image_01.present? %>
+    <% set_meta_tags title: "#{@blog.title}｜#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}｜サークルブック",
+      description: @blog.content,
+      og: { image: @blog.image_01.url }
+    %>
 
-			<% set_meta_tags title: "#{@blog.title}｜#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}｜サークルブック",
-							 description: @blog.content, 
-							og: { image: @blog.image_01.url }
-			%>
+  <% else %>
+    <% set_meta_tags title: "#{@blog.title}｜#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}｜サークルブック",
+      description: @blog.content,
+      og: { image: @user.pic_profile.url },
+      twitter: { card: 'summary_large_image'}
+    %>
 
-		<% else %>
-
-			<% set_meta_tags title: "#{@blog.title}｜#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}｜サークルブック",
-							 description: @blog.content, 
-							og: { image: @user.pic_profile.url },
-							twitter: { card: 'summary_large_image'}  
-			%>
-
-		<% end %>
+  <% end %>
 
 <% else %>
-
-			<% set_meta_tags title: @blog.title,
-							 description: @blog.content, 
-							og: { image: image_url('/images/default.png') },
-							twitter: { card: 'summary_large_image'}  
-			%>
+  <% set_meta_tags title: @blog.title,
+    description: @blog.content,
+    og: { image: image_url('/images/default.png') },
+    twitter: { card: 'summary_large_image'}
+  %>
 
 <% end %>
 

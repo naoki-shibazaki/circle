@@ -3216,7 +3216,7 @@ max-width: 100%;
   clear: both;
 }
 
-.schedule_profile_wrap .image_icon {
+.schedule_profile_wrap .image_icon{
     width: 50px;
     height: 50px;
 }
@@ -3345,6 +3345,7 @@ max-width: 100%;
     color: #5d5c5c;
     border-radius: 2px;
     margin: 24px auto 0px;
+    font-size: 12px;
 }
 
 .schedule_list_copy::-webkit-scrollbar{
@@ -5119,7 +5120,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .qa_title_wrap{
-  padding: 20px 10px;
+  padding: 20px 10px 0;
 }
 
 .user_select_wrap{
@@ -6610,7 +6611,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .question_notes_wrap{
-  margin: 18px auto 12px;
+  margin: 0px auto 12px;
   color: #464646;
 }
 
@@ -6746,7 +6747,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   margin: 10px auto 30px;
   .modal_btn{
     display: inline-block;
-    width: 32%;
+    width: 31%;
     margin: 4px auto;
     img{
       width: 130px;
@@ -6833,7 +6834,44 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   font-size: 30px;
 }
 
+.top_title{
+  border: 2px solid #61cdc7;
+  border-radius: 4px;
+  font-size: 16px;
+  text-align: center;
+  display: block;
+  padding: 6px 10px;
+  margin: 0 auto 14px;
+  color: #4a4a4a;
+}
 
+.user_profile_wrap{
+  width: 100%;
+  margin-bottom: 16px;
+  .image_icon{
+    width: 50px;
+    height: 50px;
+  }
+  .user_profile{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 50px;
+    .user_name {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+  }
+  .user_about{
+    .fa {
+      width: 24px;
+      color: #777;
+      margin: auto;
+      text-align: center;
+    }
+  }
+}
 
 // --------------------------------------
 // ▼PC

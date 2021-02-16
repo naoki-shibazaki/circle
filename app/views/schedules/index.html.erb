@@ -1,44 +1,19 @@
 
 <% set_meta_tags title: "活動スケジュール｜#{@user.name}",
-					og: { 
-								title: "活動スケジュール｜#{@user.name}",
-								description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
-								image:image_url("/images/schedule_ogp.jpg")
-							}
- %>
-
-
+  og: {
+    title: "活動スケジュール｜#{@user.name}",
+    description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
+    image:image_url("/images/schedule_ogp.jpg")
+  }
+%>
 
 <div class="user_main users-index">
   <div class="container">
-
-
 		<div class="users-index-item">
 
-
-	    <h1 class="p_t">活動スケジュール</h1>
-
-		<% if admin_user_signed_in?  %>
-			<% if @user.admin_user_id == current_admin_user.id %>
-				<% if current_admin_user.users.count > 1 %>
-					<div class="user_select_wrap">
-								現在のアカウント：			
-				      <select name="user_select" onChange="location.href=value;">
-				        <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
-				          <% current_admin_user.users.each do |user| %>
-				            <% if @user.id != user.id %>
-				            <option value="/users/<%= user.id %>/schedules"><%= user.name %>（<%= user.event.name %>）</option>
-				            <% end %>
-				        <% end %>
-				      </select> 
-					</div>
-				<% end %>
-			<% end %>
-	    <% end %>
-
-
-			<%= render "/schedules/profile" %>
-
+      <h1 class="top_title">活動スケジュール</h1>
+      <%= render "/users/parts/user_switching", user: @user, url_path: "schedules" %>
+      <%= render "/users/parts/user_profile", user: @user %>
 
 
 			<% if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present? %>

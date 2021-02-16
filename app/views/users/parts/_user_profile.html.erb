@@ -1,0 +1,28 @@
+<div class="user_profile_wrap">
+
+  <%= link_to(user_path(user.id)) do %>
+    <%= lazysizes_image_tag user.pic_profile.url , class:'image_icon' %>
+    <div class="user_profile">
+      <h2 class="user_name"><%= user.name %></h2>
+    </div>
+    <div class="reset"></div>
+    <div class="user_about">
+      <div class="slide_content">
+        <i class="fa fa-tags "></i><%= user.event.txt %>
+      </div>
+      <% if user.schedule.present? %>
+        <div class="slide_content">
+          <i class="fa fa-calendar "></i><%= user.schedule %>
+        </div>
+      <% end %>
+      <% if user.prefecture_id.present? %>
+        <div class="slide_content">
+          <i class="fa fa-map-marker "></i><%= user.prefecture.name %><%= "・#{Prefecture.find(user.prefecture_sub_id).name}" if user.prefecture_sub_id.present? %><%= "：#{user.area}" if user.area.present? %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="reset"></div>
+
+</div>
