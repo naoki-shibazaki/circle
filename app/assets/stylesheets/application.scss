@@ -4918,7 +4918,8 @@ max-width: 100%;
 
 /* 閉じるアイコン（右上） */
 .icon-close_01, .icon-close_02, .icon-close_03, .icon-close_04,
-.icon-close_header, .icon-close_profile{
+.icon-close_header, .icon-close_profile,
+.modal_close{
   background: #3ecdc6;
   color: #fff;
   font-size: 30px;
@@ -6745,50 +6746,23 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .modal_trigger {
   width: 100%;
-  // margin: 100px auto;
-  // display: -webkit-box;
-  // display: -ms-flexbox;
-  // display: flex;
-  // -webkit-box-pack: center;
-  // -ms-flex-pack: center;
-  // justify-content: center;
   .modal_btn{
     display: inline-block;
     width: 32%;
-    margin: auto;
+    margin: 4px auto;
     img{
       width: 140px;
       height: 140px;
       object-fit: cover;
       margin: auto;
       text-align: center;
-      display: block;
     }
   }
-  li {
-    // border: 1px solid;
-    // border-radius: 5px;
-    // cursor: pointer;
-    // padding: 10px;
-    // color: #216518;
-    // max-width: 100px;
-    // text-align: center;
-    // position: relative;
-    // overflow: hidden;
-  }
-  li::before {
-    // content: '';
-    // display: inline-block;
-    // width: 100%;
-    // height: 100%;
-    // background: #216518;
-    // -webkit-transform: translateY(-100%);
-    // transform: translateY(-100%);
-    // position: absolute;
-    // left: -20px;
-    // top: 100%;
-    // z-index: -1;
-    // opacity: 0;
+  .modal_block{
+    img{
+      width: 100%;
+      margin: 30px auto 20px;
+    }
   }
   li:hover {
     color: #fff;
@@ -6796,9 +6770,6 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   li:hover::before {
     -webkit-animation: slideRightBg ease .2s forwards;
     animation: slideRightBg ease .2s forwards;
-  }
-  li + li {
-    // margin-left: 20px;
   }
 }
 
@@ -6854,37 +6825,9 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .modal_close {
   cursor: pointer;
   position: absolute;
-  right: 10px;
+  right: 0;
   top: 0;
-  font-size: 2rem;
-}
-
-
-// ▼モーダル用
-@media screen and (max-width: 480px) {
-  .modal_trigger {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-  }
-  .modal_trigger li {
-    width: 47.5%;
-    margin-top: 20px;
-    max-width: inherit;
-  }
-  .modal_trigger li + li {
-    margin-left: 0;
-  }
-  .modal_inner {
-    width: 90%;
-    padding: 25px;
-  }
-  .modal_close {
-    top: 5px;
-    font-size: 2.2rem;
-  }
+  font-size: 30px;
 }
 
 
@@ -7000,6 +6943,17 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   font-size: 10px;
 }
 
+.modal_trigger .modal_btn img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin: auto;
+  text-align: center;
+}
+.modal_inner {
+  width: 90%;
+  padding: 25px;
+}
 
 
 

@@ -7,6 +7,15 @@
           <% if blog.image_01.present? %>
             <li class="modal_btn"><%= lazysizes_image_tag blog.image_01.url %></li>
           <% end %>
+          <% if blog.image_02.present? %>
+            <li class="modal_btn"><%= lazysizes_image_tag blog.image_02.url %></li>
+          <% end %>
+          <% if blog.image_03.present? %>
+            <li class="modal_btn"><%= lazysizes_image_tag blog.image_03.url %></li>
+          <% end %>
+          <% if blog.image_04.present? %>
+            <li class="modal_btn"><%= lazysizes_image_tag blog.image_04.url %></li>
+          <% end %>
         <% end %>
       <ul>
 
@@ -23,83 +32,41 @@
                 </div>
               </div>
           <% end %>
+          <% if blog.image_02.present? %>
+              <div class="modal_box">
+                <div class="modal_bg"></div>
+                <div class="modal_inner">
+                  <div class="modal_block">
+                    <%= lazysizes_image_tag blog.image_02.url %>
+                  </div>
+                  <div class="modal_close">×</div>
+                </div>
+              </div>
+          <% end %>
+          <% if blog.image_03.present? %>
+              <div class="modal_box">
+                <div class="modal_bg"></div>
+                <div class="modal_inner">
+                  <div class="modal_block">
+                    <%= lazysizes_image_tag blog.image_03.url %>
+                  </div>
+                  <div class="modal_close">×</div>
+                </div>
+              </div>
+          <% end %>
+          <% if blog.image_04.present? %>
+              <div class="modal_box">
+                <div class="modal_bg"></div>
+                <div class="modal_inner">
+                  <div class="modal_block">
+                    <%= lazysizes_image_tag blog.image_04.url %>
+                  </div>
+                  <div class="modal_close">×</div>
+                </div>
+              </div>
+          <% end %>
         <% end %>
       </div>
-
-    </div>
-
-
---------------------------------------
-
-
-    <div class="photogallery">
-      <% @blogs.each do |blog| %>
-
-        <% if blog.image_01.present? %>
-          <div class="photo">
-            <div class="inner">
-              <%= lazysizes_image_tag blog.image_01.url %>
-            </div>
-          </div>
-        <% end %>
-
-        <% if blog.image_02.present? %>
-          <div class="photo">
-            <div class="inner">
-              <%= lazysizes_image_tag blog.image_02.url %>
-            </div>
-          </div>
-        <% end %>
-
-        <% if blog.image_03.present? %>
-          <div class="photo">
-            <div class="inner">
-              <%= lazysizes_image_tag blog.image_03.url %>
-            </div>
-          </div>
-        <% end %>
-
-        <% if blog.image_04.present? %>
-          <div class="photo">
-            <div class="inner">
-              <%= lazysizes_image_tag blog.image_04.url %>
-            </div>
-          </div>
-        <% end %>
-
-      <% end %>
-
-      <% if @user.gallery_01.present? %>
-        <div class="photo">
-          <div class="inner">
-            <%= lazysizes_image_tag @user.gallery_01.url %>
-          </div>
-        </div>
-      <% end %>
-
-      <% if @user.gallery_02.present? %>
-        <div class="photo">
-          <div class="inner">
-            <%= lazysizes_image_tag @user.gallery_02.url %>
-          </div>
-        </div>
-      <% end %>
-
-      <% if @user.gallery_03.present? %>
-        <div class="photo">
-          <div class="inner">
-            <%= lazysizes_image_tag @user.gallery_03.url %>
-          </div>
-        </div>
-      <% end %>
-
-      <% if @user.gallery_04.present? %>
-        <div class="photo">
-          <div class="inner">
-            <%= lazysizes_image_tag @user.gallery_04.url %>
-          </div>
-        </div>
-      <% end %>
 
     </div>
 
