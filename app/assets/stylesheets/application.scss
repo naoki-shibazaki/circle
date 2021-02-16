@@ -6705,6 +6705,9 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 .photogallery{
+  text-align: center;
+  display: block;
+  margin: auto;
   .photo {
     position: relative;
     display: inline-block;
