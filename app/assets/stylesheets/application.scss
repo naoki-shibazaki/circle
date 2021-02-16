@@ -6705,16 +6705,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 .photogallery{
-  // display: flex;
-  // display: -webkit-flex;
-  // flex-wrap: wrap;
-  // -webkit-flex-wrap: wrap;
   .photo {
     position: relative;
-    // ▼追加
     display: inline-block;
     width: 30%;
-    // width: 31%;
     height: auto;
     margin: 1%;
     overflow: hidden;
@@ -6751,8 +6745,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     width: 32%;
     margin: 4px auto;
     img{
-      width: 140px;
-      height: 140px;
+      width: 130px;
+      height: 130px;
       object-fit: cover;
       margin: auto;
       text-align: center;
@@ -6820,6 +6814,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   max-width: 900px;
+  .gallery_comment a{
+    color: #337ab7;
+    text-decoration: underline;
+  }
+
 }
 
 .modal_close {
@@ -6829,6 +6828,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   top: 0;
   font-size: 30px;
 }
+
 
 
 // --------------------------------------
@@ -6944,12 +6944,17 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .modal_trigger .modal_btn img {
-  width: 120px;
-  height: 120px;
+  width: 108px;
+  height: 108px;
   object-fit: cover;
   margin: auto;
   text-align: center;
 }
+
+.modal_trigger .modal_btn {
+  margin: 2px auto;
+}
+
 .modal_inner {
   width: 90%;
   padding: 25px;
