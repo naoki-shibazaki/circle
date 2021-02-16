@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta content="text/html; charset=UTF-8" />
+</head>
+<body>
+	サークルブックです。<br>
+  <br>
+	<%= @user.name %>へのお問い合わせありがとうございます！<br>
+  主催者からのご返信をお待ちください。<br>
+	<br>
+	--------------------------------------<br>
+	▼お問い合わせ内容<br>
+	<%= simple_format @user_contact.message %>
+  URL： https://www.circle-book.com/users/<%= @user.id %><br>
+	--------------------------------------<br>
+  ※こちらは送信専用のメールアドレスのため、お返事はできかねます。
+  <br>
+  <br>
+  こちらのサークルもよろしければご覧ください！
+  --------------------------------------
+  ▼あなたにオススメのサークルです
+  https://www.circle-book.com/<%= @user.event.ruby %>/<%= @user.prefecture.kana %>
+  --------------------------------------
+	<br>
+</body>
+</html>

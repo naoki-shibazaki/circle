@@ -27,6 +27,7 @@ class UserContactsController < ApplicationController
 
 		if @user_contact.save
 			ContactMailer.send_contact(@user, @user_contact).deliver
+			ContactMailer.send_member(@user, @user_contact).deliver
 
 			if @user.sent_count.present?
 				@user.sent_count = @user.sent_count + 1
