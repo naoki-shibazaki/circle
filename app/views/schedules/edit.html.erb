@@ -5,7 +5,7 @@
 
 		<div class="users-index-item">
 
-      <%= render "/users/parts/user_profile", user: @user %>
+      <%= render "/users/parts/user_name", user: @user %>
 
       <div class="schedule_title">
         <%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>の活動内容の修正
