@@ -27,7 +27,7 @@
     og: {
       title: "#{@user.name}｜#{@user.prefecture.name}で活動している#{@user.event.txt}｜サークルブック",
       description: "#{@user.prefecture.name}で活動している#{@user.event.txt}｜#{@user.name}",
-      image: image_url("/images/events/e_icon_#{@user.event.ruby}.jpg")
+      image: image_url("/images/events/#{@user.event.ruby}.jpg")
     }
 	%>
 <% end %>
@@ -38,14 +38,6 @@
   <div class="user_main user-show">
     <div class="container">
 
-      <%
-=begin%>
- <%= render "/layouts/breadcrumb" %>
-    <% if @user_cities.present? %>
-      <%= render "/users/breadcrumb_city" %>
-    <% end %>
-<%
-=end%>
 
     <div class="user-profile">
       <div class="header-wrapper ribbon-wrapper">

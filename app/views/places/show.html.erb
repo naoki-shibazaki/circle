@@ -1,7 +1,7 @@
 <% set_meta_tags title: "#{@place.name}の#{@event.name}コート情報｜#{@prefecture.name}#{@city.name}",
   description: "#{@place.prefecture.name}#{@place.city.name}にある#{@place.name}のコート情報。体育館やアリーナ、屋外にある公園などの情報を分かりやすく掲載しています！住所やアクセス方法、駐車場情報も載っているので便利です。また、#{@place.city.name}で活動している#{@event.name}サークルやチーム、団体などの情報も掲載しています！",
   og: {
-    image:image_url("/images/events/e_icon_#{@event.ruby}.jpg")
+    image:image_url("/images/events/#{@event.ruby}.jpg")
   },
   twitter: { card: 'summary'}
 %>
@@ -38,14 +38,14 @@
 
       <div class="img_source_wrap">
         <% if request.format == :amp %>
-          <amp-img src="/images/events/e_icon_<%= @event.ruby %>.jpg"
+          <amp-img src="/images/events/<%= @event.ruby %>.jpg"
             class="img_source"
             width="235"
             height="157"
             object-fit="cover">>
           </amp-img>
         <% else %>
-          <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" class="img_source" >
+          <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" class="img_source" >
         <% end %>
         <div class="img_url_source">※画像はイメージです</div>
       </div>

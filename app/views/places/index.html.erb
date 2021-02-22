@@ -14,7 +14,7 @@
             <li>
               <%= link_to("/places/#{event.ruby}") do %>
                 <div class="e_icon_wrap">
-                  <img data-src="/images/events/s_e_icon_<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
+                  <img data-src="/images/events/<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
                   <div class="link_txt"><%= event.name %>の<br>コートや体育館の情報</div>
                 </div>
               <% end %>

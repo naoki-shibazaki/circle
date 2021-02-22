@@ -1,7 +1,7 @@
 <% set_meta_tags title: "【#{Time.now.strftime("%Y")}年版】#{@event.name}のコートや体育館の情報一覧ページ",
   description: "#{@event.name}のコート情報一覧ページです。体育館やアリーナ、屋外にある公園などの情報を分かりやすく掲載しています！住所やアクセス方法、駐車場情報も載っているので便利です。また、#{@event.name}のサークルやチーム、団体などの情報も掲載しています！",
   og: {
-    image:image_url("/images/events/e_icon_#{@event.ruby}.jpg")
+    image:image_url("/images/events/#{@event.ruby}.jpg")
   },
   twitter: { card: 'summary'}
 %>
@@ -12,7 +12,7 @@
       <%= render "/layouts/breadcrumb" %>
       <div class="e_header_wrap">
         <amp-img alt="<%= @event.name %>"
-          src="/images/events/e_icon_<%= @event.ruby %>.jpg"
+          src="/images/events/<%= @event.ruby %>.jpg"
           width="450px"
           height="130px"
           layout="responsive"
@@ -37,7 +37,7 @@
 
       <%= render "/layouts/breadcrumb" %>
       <div class="e_header_wrap">
-        <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+        <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
         <div class="link_txt">
           <h1 class="e_header_title">
             <%= @event.name %>の<br>コートや体育館の情報一覧

@@ -1,10 +1,10 @@
 <% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}の#{@event.txt}｜練習試合や対戦相手の募集サイト",
-          description: "【完全無料】47都道府県のサークルやチーム、団体の練習試合や対戦相手の募集サイト！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！バスケや草野球、フットサルなど。簡単に対戦相手の募集ができます！",
-                  keywords: "#{@event.name},#{@prefecture.name},対戦相手,練習試合,サークル,チーム,団体",
-                og: { 
-                  image:image_url("/images/events/e_ogp_#{@event.ruby}.png")
-                }                   
- %>
+  description: "【完全無料】47都道府県のサークルやチーム、団体の練習試合や対戦相手の募集サイト！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！バスケや草野球、フットサルなど。簡単に対戦相手の募集ができます！",
+  keywords: "#{@event.name},#{@prefecture.name},対戦相手,練習試合,サークル,チーム,団体",
+  og: {
+  image:image_url("/images/events/#{@event.ruby}.jpg")
+  }
+%>
 
 
 <div class="main users-index">
@@ -12,7 +12,7 @@
     <%= render "/layouts/breadcrumb" %>
 
     <div class="e_header_wrap">
-      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+      <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
       <div class="link_txt">
         <h1 class="e_header_title">
           <%= @prefecture.name %>で活動している<br>

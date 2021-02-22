@@ -1,7 +1,7 @@
 <% set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@event.txt}｜メンバー募集サイト",
     keywords: "#{@event.name},サークル,チーム",
     og: {
-      image:image_url("/images/events/e_ogp_#{@event.ruby}.png")
+      image:image_url("/images/events/#{@event.ruby}.jpg")
     }
 %>
 
@@ -12,7 +12,7 @@
 
       <div class="e_header_wrap">
         <amp-img alt="<%= @event.name %>"
-          src="/images/events/e_icon_<%= @event.ruby %>.jpg"
+          src="/images/events/<%= @event.ruby %>.jpg"
           width="450px"
           height="130px"
           layout="responsive"
@@ -43,7 +43,7 @@
     <%= render "/layouts/breadcrumb" %>
 
       <div class="e_header_wrap">
-        <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+        <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
         <div class="link_txt">
           <h1 class="e_header_title">
             メンバー募集中の<br>
@@ -56,7 +56,6 @@
         <div class="search_area">
           <%= render "/users/search.html.erb" %>
 
-          <%= render "/users/prefectures_list.html.erb" %>
         </div>
 
           <%= render "/users/users_list.html.erb" %>
