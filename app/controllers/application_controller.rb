@@ -32,6 +32,8 @@ class ApplicationController < ActionController::Base
     if admin_user_signed_in? #管理人ログイン判定
       if current_admin_user.users.any? # 登録1つ以上の判定
         # OK
+      elsif controller_path == 'events'
+        # OK（Ajax用）
       else
         if  controller_path == 'users' #users コントローラー
           if action_name == 'new' || action_name == 'create' || action_name == 'edit' || action_name == 'update' || action_name == 'edit2' || action_name == 'update2'

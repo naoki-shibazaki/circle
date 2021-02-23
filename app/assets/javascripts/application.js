@@ -14,10 +14,8 @@
 //= require activestorage
 //= require turbolinks
 
-
 //= require jquery
 //= require moment
 //= require moment/ja.js
 //= require bootstrap-sprockets
-//= require common.coffee.js
 //= require_tree .

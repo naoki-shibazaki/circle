@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_053228) do
+ActiveRecord::Schema.define(version: 2021_02_22_072016) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -62,6 +62,13 @@ ActiveRecord::Schema.define(version: 2021_02_09_053228) do
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_bookmarks_on_member_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "kana"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -132,6 +139,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_053228) do
     t.string "txt"
     t.integer "matching"
     t.integer "place"
+    t.string "category_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -415,6 +423,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_053228) do
     t.integer "sent_count"
     t.string "review_score"
     t.string "ng_account"
+    t.string "category_id"
     t.index ["admin_user_id"], name: "index_users_on_admin_user_id"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true

@@ -19,6 +19,7 @@ class User < ApplicationRecord
 	has_one :link, dependent: :destroy
 
 	belongs_to :prefecture, optional: true
+	belongs_to :category, optional: true
 	belongs_to :event, optional: true
 	belongs_to :admin_user, optional: true
 

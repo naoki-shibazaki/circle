@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     :sessions => 'members/sessions'
   }
 
+  resources :categories, only: [] do
+    resources :events, only: :index
+  end
+
 	resources :users do
 		resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]
@@ -19,9 +23,6 @@ Rails.application.routes.draw do
 		resources :opinions, only: [:new, :create, :index]
 		resources :user_contacts, only: [:new, :create, :index]
     resource :bookmarks, only: [:create, :destroy]
-    # resources :collections do
-    # 	resources :items
-    # end
       collection do
         get 'search'
       end
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
 	resources :matches, except: [:new, :create]
 	resources :links, except: [:new, :create, :show]
   resources :invalid_emails, only: [:index, :create, :destroy]
+
+
 
 	resources :prefectures, only: [] do
     resources :cities, only: :index
