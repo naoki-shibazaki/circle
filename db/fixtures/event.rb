@@ -12,6 +12,7 @@ Event.seed(:id,
   { :id => 16, :category_id => 1, :order => "0106", :name => "サッカー" , :ruby => "soccer",  :matching => 1, :place => 1, :openchat => "", :txt => "サッカーチーム・サークル" },
   { :id => 25, :category_id => 1, :order => "0107", :name => "ハンドボール" , :ruby => "handball",  :matching => 1, :place => 1, :openchat => "", :txt => "ハンドボールサークル・チーム" },
   { :id => 23, :category_id => 1, :order => "0108", :name => "ドッジボール" , :ruby => "dodgeball",  :matching => 0, :place => 0, :openchat => "", :txt => "ドッジボールサークル" },
+  { :id => 43, :category_id => 1, :order => "0109", :name => "ラグビー・アメフト" , :ruby => "rugby",  :matching => 0, :place => 0, :openchat => "", :txt => "ラグビー・アメフトサークル" },
 
   # ラケットスポーツ
   { :id => 5, :category_id => 2, :order => "0201", :name => "バドミントン" , :ruby => "badminton",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/9hLTdMzYeuiuO1fRinT_wQ", :txt => "バドミントンサークル・クラブ" },
