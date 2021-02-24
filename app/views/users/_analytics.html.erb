@@ -55,7 +55,7 @@
             参加者が<span class="marker">どんな雰囲気かイメージしやすく</span><br>
             安心してお問い合わせすることができます！
           </p>
-            <%= link_to edit_user_path(@user) do %>
+            <%= link_to edit_user_path(@user), data: {"turbolinks" => false} do %>
             >><%= "アイコン画像" if @user.pic_profile.blank? %><%= "と" if @user.pic_profile.blank? && @user.pic_header.blank? %><%= "背景画像" if @user.pic_header.blank? %>の設定
             <% end %>
       </div>
@@ -67,7 +67,7 @@
             参加者が<span class="marker">どんな雰囲気かイメージしやすく</span><br>
             安心してお問い合わせすることができます！
           </p>
-            <%= link_to ">>サークル画像の設定", edit_user_path(@user) %>
+            <%= link_to ">>サークル画像の設定", edit_user_path(@user), data: {"turbolinks" => false} %>
       </div>
 
     <% elsif @blogs.empty? %>
