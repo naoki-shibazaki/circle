@@ -2,6 +2,8 @@ Event.seed(:id,
 
 # matching => Match 1:連携/2:複数連携/0:非掲載
 # place => Place 1:連携/0:非連携
+# { :id => 99, :category_id => 9, :order => "9999", :name => "99" , :ruby => "99",  :matching => 0, :place => 0, :openchat => "", :txt => "99" },
+
 
   # 球技スポーツ
   { :id => 2, :category_id => 1, :order => "0101", :name => "バスケ" , :ruby => "basketball", :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/28860kzjimldNe2P9MOsqg", :txt => "バスケサークル・チーム" },
@@ -27,6 +29,7 @@ Event.seed(:id,
   { :id => 30, :category_id => 3, :order => "0305", :name => "水泳" , :ruby => "swimming",  :matching => 0, :place => 0, :openchat => "", :txt => "水泳サークル・チーム" },
   { :id => 31, :category_id => 3, :order => "0306", :name => "カバディ" , :ruby => "kabaddi",  :matching => 0, :place => 0, :openchat => "", :txt => "カバディサークル・チーム" },
   { :id => 15, :category_id => 3, :order => "0307", :name => "オールラウンド" , :ruby => "all-round",  :matching => 2, :place => 0, :openchat => "", :txt => "オールラウンドサークル" },
+  { :id => 99, :category_id => 3, :order => "0308", :name => "その他のスポーツ" , :ruby => "other-sports",  :matching => 0, :place => 0, :openchat => "", :txt => "その他のスポーツサークル" },
 
   # ウィンタースポーツ
   { :id => 20, :category_id => 4, :order => "0401", :name => "スノーボード" , :ruby => "snow-board",  :matching => 0, :place => 0, :openchat => "", :txt => "スノーボードサークル" },
@@ -36,17 +39,20 @@ Event.seed(:id,
   { :id => 27, :category_id => 5, :order => "0501", :name => "ヨガ" , :ruby => "yoga",  :matching => 0, :place => 0, :openchat => "", :txt => "ヨガサークル" },
   { :id => 6, :category_id => 5, :order => "0502", :name => "筋トレ・合トレ" , :ruby => "work-out",  :matching => 0, :place => 0, :openchat => "", :txt => "筋トレ・合トレ" },
 
-  # 写真・カメラ
+  # 写真・動画
   { :id => 1, :category_id => 6, :order => "0601", :name => "写真・カメラ" , :ruby => "camera",  :matching => 0, :place => 0, :openchat => "https://line.me/ti/g2/MrGVZOgwkBEGzRpvagL-Cw", :txt => "写真・カメラサークル" },
+  { :id => 45, :category_id => 6, :order => "0602", :name => "動画・映画" , :ruby => "movie",  :matching => 0, :place => 0, :openchat => "", :txt => "動画・映画サークル" },
 
   # 趣味・交流
-  { :id => 33, :category_id => 7, :order => "0701", :name => "読書会" , :ruby => "reading",  :matching => 0, :place => 0, :openchat => "", :txt => "読書会・読書サークル" },
-  { :id => 34, :category_id => 7, :order => "0702", :name => "英会話" , :ruby => "english",  :matching => 0, :place => 0, :openchat => "", :txt => "英会話サークル" },
-  { :id => 35, :category_id => 7, :order => "0703", :name => "飲み会" , :ruby => "drinking",  :matching => 0, :place => 0, :openchat => "", :txt => "飲み会サークル" },
-  { :id => 36, :category_id => 7, :order => "0704", :name => "交流会" , :ruby => "gathering",  :matching => 0, :place => 0, :openchat => "", :txt => "交流会サークル" },
-  { :id => 37, :category_id => 7, :order => "0705", :name => "散歩" , :ruby => "walk",  :matching => 0, :place => 0, :openchat => "", :txt => "散歩サークル" },
-  { :id => 38, :category_id => 7, :order => "0706", :name => "イラスト" , :ruby => "illustration",  :matching => 0, :place => 0, :openchat => "", :txt => "イラストサークル" },
-  { :id => 12, :category_id => 7, :order => "0707", :name => "イベント" , :ruby => "event",  :matching => 0, :place => 0, :openchat => "", :txt => "イベントサークル" },
+  { :id => 38, :category_id => 7, :order => "0701", :name => "イラスト" , :ruby => "illustration",  :matching => 0, :place => 0, :openchat => "", :txt => "イラストサークル" },
+  { :id => 33, :category_id => 7, :order => "0702", :name => "読書会" , :ruby => "reading",  :matching => 0, :place => 0, :openchat => "", :txt => "読書会・読書サークル" },
+  { :id => 34, :category_id => 7, :order => "0703", :name => "英会話" , :ruby => "english",  :matching => 0, :place => 0, :openchat => "", :txt => "英会話サークル" },
+  { :id => 44, :category_id => 7, :order => "0704", :name => "勉強会・研究" , :ruby => "study",  :matching => 0, :place => 0, :openchat => "", :txt => "勉強会・研究サークル" },
+  { :id => 37, :category_id => 7, :order => "0705", :name => "旅行・お出かけ" , :ruby => "go-out",  :matching => 0, :place => 0, :openchat => "", :txt => "旅行・お出かけサークル" },
+  { :id => 36, :category_id => 7, :order => "0706", :name => "交流会" , :ruby => "gathering",  :matching => 0, :place => 0, :openchat => "", :txt => "交流会サークル" },
+  { :id => 35, :category_id => 7, :order => "0707", :name => "街コン・オフ会" , :ruby => "meet-up",  :matching => 0, :place => 0, :openchat => "", :txt => "街コン・オフ会サークル" },
+  { :id => 12, :category_id => 7, :order => "0708", :name => "イベント" , :ruby => "event",  :matching => 0, :place => 0, :openchat => "", :txt => "イベントサークル" },
+
 
   # アウトドア
   { :id => 18, :category_id => 8, :order => "0801", :name => "登山" , :ruby => "mountain",  :matching => 0, :place => 0, :openchat => "", :txt => "登山サークル" },
