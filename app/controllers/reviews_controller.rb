@@ -45,7 +45,7 @@ class ReviewsController < ApplicationController
 			flash[:notice] = "投稿が完了しました！"
 			redirect_to user_reviews_path
 		else
-			flash[:notice] = "必須項目が未記入です"
+			flash[:notice] = "NGワードが含まれています"
 			redirect_to user_reviews_path
 		end
 

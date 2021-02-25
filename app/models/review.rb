@@ -4,8 +4,12 @@ class Review < ApplicationRecord
 
 
 	with_options presence: true do
-	  validates :comment
+    validates :comment
 	end
+
+	NGWORD = %w(http 死ね)
+	NGWORD_REGEX = %r(#{NGWORD.join('|')})
+	validates :comment, format: { without: NGWORD_REGEX }
 
 
 end
