@@ -40,7 +40,7 @@ class UserContactsController < ApplicationController
 			redirect_to "/users/#{@user.id}/thanks"
 
 		else
-			flash[:notice] = "メールアドレスに誤りがあるか、メッセージに必ず日本語を含めてください"
+			flash[:notice] = "メールアドレスに誤りがあるか、NGワードが含まれています"
 			redirect_to "/users/#{@user.id}/contact"
 		end
 
