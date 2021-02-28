@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_072016) do
+ActiveRecord::Schema.define(version: 2021_02_28_063229) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -368,6 +368,9 @@ ActiveRecord::Schema.define(version: 2021_02_22_072016) do
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "entry"
+    t.string "respond_check"
+    t.string "random_id"
     t.index ["user_id"], name: "index_user_contacts_on_user_id"
   end
 

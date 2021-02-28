@@ -6,8 +6,14 @@ class UserContactsController < ApplicationController
     @data = AdminUser.find_by(id: @user.admin_user_id)
 		@user_contact = @user.user_contacts.build
 
-		@user.template = "名前： 例）サークルブック\r\n性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
-		@user_contact.message = @user.template
+    if params[:entry] == "1"
+      @user_contact_entry = "見学"
+    else
+      @user_contact_entry = "参加"
+    end
+
+    @user.template = "名前： 例）サークルブック\r\n性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
+    @user_contact.message = @user.template
 
 		@mail_title = "【#{@user.name}】お問い合わせ"
     @mail_message = "こちらにご記入ください！"
@@ -24,6 +30,7 @@ class UserContactsController < ApplicationController
 		@user = User.find_by(id: params[:user_id])
 		@user.user_contacts.create(user_contact_params)
 		@user_contact = @user.user_contacts.last
+    @user_contact.random_id = SecureRandom.alphanumeric(16)
 
 		if @user_contact.save
 			ContactMailer.send_contact(@user, @user_contact).deliver
@@ -54,6 +61,6 @@ class UserContactsController < ApplicationController
 
 private
 	def user_contact_params
-		params.require(:user_contact).permit(:mail, :message)
+		params.require(:user_contact).permit(:mail, :message, :entry, :respond_check, :random_id)
 	end
 end

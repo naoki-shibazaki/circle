@@ -14,6 +14,8 @@
             <%= f.text_area :message, class: 'form-control form-note', placeholder: "お名前などをご記入ください" %>
           </div>
 
+          <%= f.hidden_field :entry, value: @user_contact_entry %>
+
           <div class="warning_txt">※送信完了に少し時間がかかります</div>
 
           <%= f.submit "送信する", data: { disable_with: '送信中...' } %>
