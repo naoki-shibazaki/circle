@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_063229) do
+ActiveRecord::Schema.define(version: 2021_03_01_054055) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -371,6 +371,7 @@ ActiveRecord::Schema.define(version: 2021_02_28_063229) do
     t.string "entry"
     t.string "respond_check"
     t.string "random_id"
+    t.string "name"
     t.index ["user_id"], name: "index_user_contacts_on_user_id"
   end
 

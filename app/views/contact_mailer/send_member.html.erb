@@ -4,6 +4,7 @@
   <meta content="text/html; charset=UTF-8" />
 </head>
 <body>
+  <%= @user_contact.name %>さん
 	サークルブックです。<br>
   <br>
 	<%= @user.name %>へのお問い合わせありがとうございます！<br>
@@ -11,6 +12,7 @@
   <br>
 	--------------------------------------<br>
 	▼<%= @user_contact.entry %>のお問い合わせ内容<br>
+  名前：<%= @user_contact.name %>さん
 	<%= simple_format @user_contact.message %>
   URL： https://www.circle-book.com/users/<%= @user.id %><br>
 	--------------------------------------<br>
