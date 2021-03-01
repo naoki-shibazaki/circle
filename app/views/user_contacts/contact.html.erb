@@ -28,7 +28,8 @@
 			<% if admin_user_signed_in? %>
 				<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
 					<div class="template_wrap">
-						<div class="template_title">▼ お問い合わせテンプレの内容修正</div>
+						<div class="template_title">【サークル主催者専用】<br>「お問い合わせ内容」の修正</div>
+            <span class="cautions">※名前・メールアドレス以外の内容変更ができます</span>
               <%= form_for @user,:url => {controller: "users", action: "update_contact"} do |f| %>
 
                   <%= f.text_area :template, class: 'form-control' %>
