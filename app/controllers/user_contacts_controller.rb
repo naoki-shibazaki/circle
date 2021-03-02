@@ -55,6 +55,37 @@ class UserContactsController < ApplicationController
     @users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中").where.not(id: @user.id).order(:last_post => :desc)
 	end
 
+  def respond_check
+    if UserContact.find_by(random_id: params[:random_id])
+      @user_contact = UserContact.find_by(random_id: params[:random_id])
+
+      if @user.id != @user_contact.user_id
+        flash[:notice] = "URLが間違っています"
+        redirect_to user_path(@user.id)
+      end
+
+    else
+      flash[:notice] = "URLが間違っています"
+			redirect_to user_path(@user.id)
+    end
+
+  end
+
+  def update
+    @user_contact = UserContact.find_by(id: params[:id])
+
+		if @user_contact.update(user_contact_params)
+			flash[:notice] = 'ご報告ありがとうございます！'
+			redirect_to users_path
+		else
+      flash[:notice] = 'エラーです'
+      redirect_to "/users/#{@user.id}/respond_check/#{@user_contact.random_id}"
+		end
+
+  end
+
+
+
 
 private
 	def user_contact_params

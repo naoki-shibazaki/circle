@@ -1,43 +1,25 @@
   <div class="users-index-item">
 
-  <div class="p_t"><%= @user_contact.entry %>のお問い合わせ</div>
+    <div class="p_t"><%= @user_contact.entry %>のお問い合わせ</div>
 
-  <div class="schedule_profile_wrap">
+    <%= render "users/parts/user_name", user: @user%>
 
-  <%= link_to(user_path(@user.id)) do %> 
-      <div class="user-content">
-        <%= image_tag @user.pic_profile.url , class:'image_icon' %>
+    <% if admin_user_signed_in? %>
+      <% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
+        <div class="template_wrap">
+          <div class="template_title">【サークル主催者専用】<br>「お問い合わせ内容」の修正</div>
+          <span class="cautions">※名前・メールアドレス以外の内容変更ができます</span>
+            <%= form_for @user,:url => {controller: "users", action: "update_contact"} do |f| %>
 
-        <div class="list_wrapper contact_name_wrap">
-          <div class="list_01">
-            <h2 class="user_name"><%= @user.name %></h2>
-          </div>
+                <%= f.text_area :template, class: 'form-control' %>
+                <%= f.submit "更新する" %>
+
+                <div class="reset"></div>
+
+            <% end %>
         </div>
-      </div>
-
-  <% end %>
-
-  <div class="reset"></div>
-
-  </div>
-
-
-  <% if admin_user_signed_in? %>
-    <% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
-      <div class="template_wrap">
-        <div class="template_title">【サークル主催者専用】<br>「お問い合わせ内容」の修正</div>
-        <span class="cautions">※名前・メールアドレス以外の内容変更ができます</span>
-          <%= form_for @user,:url => {controller: "users", action: "update_contact"} do |f| %>
-
-              <%= f.text_area :template, class: 'form-control' %>
-              <%= f.submit "更新する" %>
-
-              <div class="reset"></div>
-
-          <% end %>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
 
 
   <% if @user.switch == "募集中" %>

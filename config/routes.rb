@@ -72,13 +72,15 @@ Rails.application.routes.draw do
 	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:id/mypage' , to: 'users#mypage'
 	patch 'users/:id/mypage', to: 'users#update_contact'
-	get 'users/:user_id/thanks' , to: 'user_contacts#thanks'
 
   # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'
 	get 'users/:user_id/blogs' , to: 'blogs#user_blogs'
   get 'users/:user_id/gallery' , to: 'blogs#gallery'
 
+  # お問い合わせフォーム
+  get 'users/:user_id/thanks' , to: 'user_contacts#thanks'
+  get 'users/:user_id/respond_check/:random_id' , to: 'user_contacts#respond_check'
 
 	# get 'users/:user_id/collection-sample' , to: 'collections#sample'
 
