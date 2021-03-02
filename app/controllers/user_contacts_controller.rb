@@ -5,9 +5,9 @@ class UserContactsController < ApplicationController
     @user_contact = @user.user_contacts.build
 
     if params[:entry] == "1"
-      @user_contact_entry = "見学"
+      @user_contact.entry = "見学"
     else
-      @user_contact_entry = "参加"
+      @user_contact.entry = "参加"
     end
 
     @user.template = "性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
