@@ -23,3 +23,12 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %Z"
     am: "午前"
     pm: "午後"
+
+  activerecord:
+    models:
+      user_contact: お問い合わせ
+    attributes:
+      user_contact:
+        mail: メールアドレス
+        name: 名前
+        message: お問い合わせ内容

@@ -54,7 +54,7 @@ ja:
         schedule: "『活動時間』"
         recruitment: "『こんな人を探しています』"
         member: "『構成メンバー』"
-        average_age: "『年齢層』" 
+        average_age: "『年齢層』"
         grouping: "『募集・歓迎』"
         cost: "『会費・費用』"
         goal: "『サークル目標』"
@@ -74,10 +74,10 @@ ja:
       difference:
         letter: "『文字』"
         dummy: "『偽文字』"
-        order: "『配置場所』" 
+        order: "『配置場所』"
       schedule:
         day: "『日程』"
-        venue: "『開催場所』"     
+        venue: "『開催場所』"
     models:
       user: "ユーザ"
   devise:

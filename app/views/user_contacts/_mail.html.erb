@@ -2,6 +2,7 @@
 
     <% if @invalid == "有効" %>
         <%= form_for ([@user, @user_contact]) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
 
           <div class="field">
             <p>お名前*</p>
@@ -17,7 +18,7 @@
 
           <div class="field">
             <p>お問い合わせ内容*</p>
-            <%= f.text_area :message, class: 'form-control form-note', placeholder: "お名前などをご記入ください" %>
+            <%= f.text_area :message, class: 'form-control form-note', placeholder: "性別や年代などをお書きください！" %>
           </div>
 
           <%= f.hidden_field :entry, value: @user_contact.entry %>

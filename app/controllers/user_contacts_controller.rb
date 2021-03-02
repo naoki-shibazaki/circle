@@ -46,7 +46,6 @@ class UserContactsController < ApplicationController
 			redirect_to "/users/#{@user.id}/thanks"
 
 		else
-			flash[:notice] = "メールアドレスに誤りがあるか、NGワードが含まれています"
       render "/user_contacts/edit"
 		end
 
