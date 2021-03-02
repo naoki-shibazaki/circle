@@ -2,6 +2,14 @@
 
     <div class="p_t"><%= @user_contact.entry %>のお問い合わせ</div>
 
+    <% if @respond_check_count >= 1%>
+      <div class="attention_content">
+        <div class="attention_title">＜注意＞</div>
+        過去に <span class="attention_count"><%= @respond_check_count %>人</span>のお問い合わせ者が<br>
+        主催者から返信がなかったと言っています。
+      </div>
+    <% end %>
+
     <%= render "users/parts/user_name", user: @user%>
 
     <% if admin_user_signed_in? %>

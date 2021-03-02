@@ -9,9 +9,8 @@
   <br>
 	<%= @user.name %>へのお問い合わせありがとうございます！<br>
   主催者からの返信をお待ちください。<br>
-  ※こちらは送信専用のメールアドレスのため、お返事はできかねます。<br>
   <br>
-  ＼こちらのサークルもオススメです／<br>
+  ＼こちらも<%= @user_contact.name %>さんにオススメです！／<br>
   https://www.circle-book.com/<%= @user.event.ruby %>/<%= @user.prefecture.kana %><br>
   <br>
 	--------------------------------------<br>
@@ -23,7 +22,7 @@
   <br>
   <br>
   【主催者から返信がない場合】<br>
-  3日以上返信がない場合は、下記のURLよりご報告ください。<br>
+  3日以上返信がない場合は、下記よりご報告ください。<br>
   サービス向上のため、ご協力いただけると幸いです。<br>
   https://www.circle-book.com/users/<%= @user.id %>/respond_check/<%= @user_contact.random_id %><br>
 	<br>

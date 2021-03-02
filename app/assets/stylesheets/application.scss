@@ -6879,6 +6879,21 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   margin-top: 14px;
 }
 
+.attention_content{
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+  padding: 15px 10px;
+  margin-bottom: 12px;
+  .attention_title{
+    color: #313131;
+    font-size: 14px;
+  }
+  .attention_count{
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
 
 
 

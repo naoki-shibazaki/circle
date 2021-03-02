@@ -94,6 +94,7 @@ private
 
 	def set_users
     @user = User.find_by(id: params[:user_id])
+    @respond_check_count = UserContact.where(user_id: @user.id, respond_check: "NG").count
     if InvalidEmail.find_by(email: @user.admin_user.email)
       @invalid = "無効"
     else

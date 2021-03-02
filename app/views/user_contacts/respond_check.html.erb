@@ -10,7 +10,7 @@
         <%= form_for ([@user, @user_contact]) do |f| %>
 
           <p>主催者からの返信はありましたか？</p>
-          <%= f.select :respond_check, [ ['返信あり','OK'], ['返信なし','NG'] ],
+          <%= f.select :respond_check, [ ['○ 返信あり','OK'], ['× 返信なし','NG'] ],
           :prompt => "選択してください" %>
 
           <div class="reset"></div>
