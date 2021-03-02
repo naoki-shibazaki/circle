@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :questions
     resources :reviews
 		resources :opinions, only: [:new, :create, :index]
-		resources :user_contacts, only: [:new, :create, :index]
+		resources :user_contacts
     resource :bookmarks, only: [:create, :destroy]
       collection do
         get 'search'
@@ -72,7 +72,7 @@ Rails.application.routes.draw do
 	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:id/mypage' , to: 'users#mypage'
 	patch 'users/:id/mypage', to: 'users#update_contact'
-	get 'users/:id/contact' , to: 'user_contacts#contact'
+	# get 'users/:id/contact' , to: 'user_contacts#contact'
 	get 'users/:id/thanks' , to: 'user_contacts#thanks'
 
   # サンプルの質問

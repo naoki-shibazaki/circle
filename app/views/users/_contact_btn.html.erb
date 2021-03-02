@@ -1,5 +1,5 @@
 <div class="contact_link">
-	<%= link_to "/users/#{@user.id}/contact" do %>
+	<%= link_to new_user_user_contact_path(@user) do %>
 		<div class="btn btn_c btn_green btn_cubic">
 			<i class="fa fa-envelope"></i>このサークルに参加する！
 		</div>
@@ -7,7 +7,7 @@
 </div>
 
 <div class="contact_link">
-	<%= link_to "/users/#{@user.id}/contact?entry=1" do %>
+	<%= link_to new_user_user_contact_path(@user, entry: "1") do %>
 		<div class="btn btn_c btn_green btn_cubic">
 			<i class="fa fa-star"></i>見学してみる！
 		</div>
