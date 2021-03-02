@@ -5,7 +5,7 @@
     <% if @respond_check_count >= 1%>
       <div class="attention_content">
         <div class="attention_title">＜注意＞</div>
-        過去に <span class="attention_count"><%= @respond_check_count %>人</span>のお問い合わせ者が<br>
+        過去に<span class="attention_count"><%= @respond_check_count %>人</span>の応募者が<br>
         主催者から返信がなかったと言っています。
       </div>
     <% end %>
@@ -17,7 +17,7 @@
         <div class="template_wrap">
           <div class="template_title">【サークル主催者専用】<br>「お問い合わせ内容」の修正</div>
           <span class="cautions">※名前・メールアドレス以外の内容変更ができます</span>
-            <%= form_for @user,:url => {controller: "users", action: "update_contact"} do |f| %>
+            <%= form_for @user,url: "/users/#{@user.id}/mypage" do |f| %>
 
                 <%= f.text_area :template, class: 'form-control' %>
                 <%= f.submit "更新する" %>
