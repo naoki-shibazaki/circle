@@ -5,8 +5,8 @@ class UserContact < ApplicationRecord
   validates :name, presence: true,
             format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'は日本語で入力してください' }
 
-  validates :message, presence: true
-	NGWORD = %w(http 株式会社)
+  validates :message, presence: true, length: { maximum: 500, message: 'は500文字以内でお願いします' }
+	NGWORD = %w(http 株式会社 弊社)
 	NGWORD_REGEX = %r(#{NGWORD.join('|')})
 	validates :message, format: { without: NGWORD_REGEX, message: 'にNGワードが含まれています' }
 
