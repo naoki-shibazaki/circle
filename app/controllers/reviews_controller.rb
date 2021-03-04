@@ -45,10 +45,10 @@ class ReviewsController < ApplicationController
 			redirect_to user_reviews_path
 		else
       # バリデーションエラー値の保存
-      @db_validation_error = DbValidationError.new
-      @db_validation_error.name = "Review"
-      @db_validation_error.content_01 = @review.comment
-      @db_validation_error.save
+      # @db_validation_error = DbValidationError.new
+      # @db_validation_error.name = "Review"
+      # @db_validation_error.content_01 = @review.comment
+      # @db_validation_error.save
 
 			flash[:notice] = "NGワードが含まれています"
 			redirect_to user_reviews_path
