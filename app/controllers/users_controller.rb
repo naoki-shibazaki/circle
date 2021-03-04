@@ -24,6 +24,11 @@ helper_method :link_count
 		# キーワード分割
 		keywords = params[:kw].split(/[[:blank:]]+/).select(&:present?)
 
+    # 検索ワードの保存
+    @db_search = DbSearch.new
+    @db_search.keyword = params[:kw]
+    @db_search.save
+
 		# Userモデルオブジェクト作成
 		@users = User
 

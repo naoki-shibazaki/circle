@@ -31,8 +31,10 @@ Rails.application.routes.draw do
   resources :members
 	resources :matches, except: [:new, :create]
 	resources :links, except: [:new, :create, :show]
-  resources :invalid_emails, only: [:index, :create, :destroy]
 
+  # Webmaster
+  resources :invalid_emails, only: [:index, :create, :destroy]
+  resources :db_searches, only: [:index]
 
 
 	resources :prefectures, only: [] do

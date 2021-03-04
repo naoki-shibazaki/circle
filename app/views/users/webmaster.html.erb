@@ -11,14 +11,26 @@
 
 		<div class="icon_wrap">
 
-				<%= link_to invalid_emails_path, class: "icon_cont" do %>
+      <%= link_to invalid_emails_path, class: "icon_cont" do %>
+        <div class="">
+          <div class="icon_img">
+            <img class="icon_size" src="/images/icon/icon_01.png">
+          </div>
+
+          <div class="icon_txt">
+            無効メール
+          </div>
+        </div>
+      <% end %>
+
+				<%= link_to db_searches_path, class: "icon_cont" do %>
 					<div class="">
 						<div class="icon_img">
 							<img class="icon_size" src="/images/icon/icon_01.png">
 						</div>
 
 						<div class="icon_txt">
-							無効メール
+							検索キーワード
 						</div>
 					</div>
 				<% end %>
@@ -30,4 +42,3 @@
 
   </div>
 </div>
-

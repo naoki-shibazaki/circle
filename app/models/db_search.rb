@@ -1,0 +1,2 @@
+class DbSearch < ApplicationRecord
+end

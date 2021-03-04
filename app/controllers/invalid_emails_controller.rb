@@ -43,5 +43,4 @@ class InvalidEmailsController < ApplicationController
 
   end
 
-
 end
