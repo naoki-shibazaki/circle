@@ -6,7 +6,7 @@
   <div class="table_list">
     <table>
       <tr><th>No.</th><th>キーワード</th></tr>
-      <% @db_searches.each.with_index(1) do |db_search, i| %>
+      <% @db_searches.reverse_each.with_index(1) do |db_search, i| %>
         <tr>
           <td><%= i %></td>
           <td><%= db_search.keyword %></td>

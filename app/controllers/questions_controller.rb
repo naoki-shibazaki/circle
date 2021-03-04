@@ -5,8 +5,7 @@ class QuestionsController < ApplicationController
 
 	def index
 		@question = @user.questions.build
-	    @questions = Question.where(user_id: @user.id).order(id: "DESC")
-    
+    @questions = Question.where(user_id: @user.id).order(id: "DESC")
 	end
 
 	def question
@@ -43,14 +42,14 @@ class QuestionsController < ApplicationController
 
 			@question = @user.questions.last
 			@question.content = @question.content.gsub(/[^！？ー〜0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
-			
+
 			if @question.save
 
 				if admin_user_signed_in?
 					if current_admin_user.id == @user.admin_user_id
 						@user.last_post = Time.now
 						@user.user_time = Time.now
-						@user.save	
+						@user.save
 					end
 
 				else
@@ -62,13 +61,19 @@ class QuestionsController < ApplicationController
 				redirect_to user_questions_path(@user)
 
 			else
+        # バリデーションエラー値の保存
+        @db_validation_error = DbValidationError.new
+        @db_validation_error.name = "Question"
+        @db_validation_error.content_01 = @question.content
+        @db_validation_error.save
+
 				flash[:notice] = 'NGワードが含まれています'
 				redirect_to user_questions_path(@user)
 			end
 
 		else
 
-			flash[:notice] = '質問が空欄です'			
+			flash[:notice] = '質問が空欄です'
 			render user_questions_path(@user)
 		end
 
