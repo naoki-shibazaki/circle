@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
 	before_action :ensure_correct_member, {only: [:edit, :update]}
 	before_action :set_member, {except: [:all_reviews]}
 
