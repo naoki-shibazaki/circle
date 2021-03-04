@@ -6895,6 +6895,19 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+.announce{
+  margin: 0 0 20px;
+  .cp_actab label {
+    background: #fdb243;
+    border-radius: 2px;
+  }
+  .cp_actab input:checked ~ .cp_actab-content {
+    background: #ffefd9;
+    padding: 10px;
+    color: #383838;
+  }
+}
+
 
 
 // --------------------------------------
