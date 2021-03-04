@@ -25,9 +25,12 @@ helper_method :link_count
 		keywords = params[:kw].split(/[[:blank:]]+/).select(&:present?)
 
     # 検索ワードの保存
+    last_search = DbSearch.last
     @db_search = DbSearch.new
     @db_search.keyword = params[:kw]
-    @db_search.save
+    if last_search.keyword != @db_search.keyword
+      @db_search.save
+    end
 
 		# Userモデルオブジェクト作成
 		@users = User
@@ -46,8 +49,6 @@ helper_method :link_count
 			or(@users.where(id: @city_user_ids))
 
 		end
-
-			# @users = @users.user_sort_1.page(params[:page])
 
 		# ソート機能
       if params[:sort] == "1" || params[:sort] == nil
