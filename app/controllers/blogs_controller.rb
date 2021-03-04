@@ -171,11 +171,7 @@ class BlogsController < ApplicationController
 	end
 
 	def prefecture_index
-		# パンくず
-		@b1_name = "ブログ"
-		@b1_url = "/blog"
-		@b2_name = "47都道府県ごとの活動ブログ"
-		@b2_url = ""
+	redirect_to blog_path
 	end
 
   def gallery

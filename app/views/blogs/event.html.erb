@@ -5,7 +5,7 @@
     <%= render "/layouts/breadcrumb" %>
 
     <div class="e_header_wrap">
-      <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+      <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
       <div class="link_txt">
         <h1 class="e_header_title">
           <%= @event.name %>の<br>サークル活動ブログ
@@ -13,9 +13,9 @@
       </div>
     </div>
 
-		<div class="search_area">
-		    <%= render "/blogs/prefectures_list" %>
-		</div>
+    <div class="search_area">
+      <%= render "/blogs/search.html.erb" %>
+    </div>
 
     <%= render "/blogs/blogs_list" %>
 
