@@ -5,7 +5,7 @@
         <% if @path.is('users#index', 'users#top', 'users#search') %>
 
         <select name="event_select" onChange="location.href=value;">
-          <option value="#">サークル・団体</option>
+          <option value="#">サークル・チーム</option>
             <% @events.each do |event| %>
             <option value="/<%= event.ruby %>"><%= event.name %></option>
           <% end %>
@@ -38,7 +38,7 @@
 
         <select name="prefecture_select" onChange="location.href=value;">
           <option value="#"><%= @prefecture.name %></option>
-            <% @prefectures.each do |prefecture| %>					    
+            <% @prefectures.each do |prefecture| %>
             <% if prefecture.id != 50 %>
                 <% if prefecture.kana != @prefecture.kana %>
                 <option value="/<%= @event.ruby %>/<%= prefecture.kana %>"><%= prefecture.name %></option>
@@ -54,7 +54,7 @@
               <option value="/<%= @event.ruby %>/<%= @prefecture.kana %>/<%= city.city_kana %>"><%= city.name %></option>
             <% end %>
           <% end %>
-        </select>					
+        </select>
 
         <div class="search_icon"><i class="fa fa-search "></i></div>
 
@@ -77,7 +77,7 @@
 
         <select name="prefecture_select" onChange="location.href=value;">
           <option value="#"><%= @prefecture.name %></option>
-            <% @prefectures.each do |prefecture| %>					    
+            <% @prefectures.each do |prefecture| %>
             <% if prefecture.id != 50 %>
                 <% if prefecture.kana != @prefecture.kana %>
                 <option value="/<%= @event.ruby %>/<%= prefecture.kana %>"><%= prefecture.name %></option>
@@ -91,7 +91,7 @@
             <% @cities.each do |city| %>
             <option value="/<%= @event.ruby %>/<%= @prefecture.kana %>/<%= city.city_kana %>"><%= city.name %></option>
           <% end %>
-        </select>					
+        </select>
 
         <div class="search_icon"><i class="fa fa-search "></i></div>
 
@@ -123,7 +123,7 @@
         <div class="search_icon"><i class="fa fa-search "></i></div>
 
 
-    
+
     <% elsif @path.is('users#prefecture_city') %>
 
 
@@ -154,7 +154,7 @@
               <option value="/prefectures/<%= @prefecture.kana %>/<%= city.city_kana %>"><%= city.name %></option>
             <% end %>
           <% end %>
-        </select>		
+        </select>
 
         <div class="search_icon"><i class="fa fa-search "></i></div>
 
@@ -206,11 +206,12 @@
   <div class="search_word">
 
     <%= form_tag('/users/search', method: :get, enforce_utf8: false) do %>
-        <input id="page_name" name='kw' size="30" type="text" placeholder="（例）バスケ 東京" value="<%= params[:kw] %>" class="search_area"/>
+        <input id="page_name" name='kw' size="30" type="text" placeholder="例）バスケ　東京" value="<%= params[:kw] %>" class="search_area"/>
           <div class="search_icon">
             <%= submit_tag("検索", :name => nil) %>
         </div>
     <% end %>
+    <div class="search_word_announce">※複数の単語はスペースで区切ってください</div>
 
   </div>
 
