@@ -633,7 +633,7 @@ private
 		@groups = Group.all.order(:id => :asc)
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
 
-		@x = "nil"
+    @search_word = "例）バスケ　東京"
 		@category = "nil"
 		@contact_judge = ""
 
