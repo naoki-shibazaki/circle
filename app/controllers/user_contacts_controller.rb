@@ -12,7 +12,6 @@ class UserContactsController < ApplicationController
 
     @user.template = "性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
     @user_contact.message = @user.template
-
     @mail_title = "【#{@user.name}】お問い合わせ"
     @mail_message = "こちらにご記入ください！"
 
