@@ -5,10 +5,11 @@
 
   <div class="table_list">
     <table>
-      <tr><th>No.</th><th>キーワード</th></tr>
+      <tr><th>No.</th><th>create</th><th>キーワード</th></tr>
       <% @db_searches.reverse_each.with_index(1) do |db_search, i| %>
         <tr>
           <td><%= i %></td>
+          <td><%= db_search.created_at.strftime("%-m/%-d %-H:%M") %></td>
           <td><%= db_search.keyword %></td>
         </tr>
       <% end %>

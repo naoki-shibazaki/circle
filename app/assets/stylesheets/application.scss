@@ -6558,6 +6558,16 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .thanks_txt{
   text-align: center;
   margin: 20px auto 30px;
+  p{
+    margin-bottom: 10px;
+  }
+}
+
+.imege_thanks {
+  width: 150px;
+  margin: auto;
+  display: block;
+  margin-bottom: 12px;
 }
 
 .alert_wrap{
@@ -6914,6 +6924,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   padding-top: 2px;
   padding-left: 2px;
 }
+
+
 
 
 

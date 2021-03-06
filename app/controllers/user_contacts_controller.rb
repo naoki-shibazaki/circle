@@ -4,6 +4,18 @@ class UserContactsController < ApplicationController
   def new
     @user_contact = @user.user_contacts.build
 
+    # 荒らし対応
+    @account_block = UserContact.where(ip_address: request.remote_ip, account_block: "block")
+    if @account_block.present?
+      @db_validation_error = DbValidationError.new
+      @db_validation_error.name = "UserContact_block"
+      @db_validation_error.content_01 = request.remote_ip
+      @db_validation_error.save
+
+      flash[:notice] = "アカウントをブロックしました"
+      redirect_to users_path
+    end
+
     if params[:entry] == "1"
       @user_contact.entry = "見学"
     else
@@ -31,43 +43,36 @@ class UserContactsController < ApplicationController
     @user_contact.random_id = SecureRandom.alphanumeric(16)
     @user_contact.ip_address = request.remote_ip
 
-    # 荒らし判定
+    # 荒らし対応
     @same_contacts = UserContact.where(ip_address: @user_contact.ip_address, message: @user_contact.message)
     if @same_contacts.count >= 3
+      @user_contact.account_block = "block"
+    end
+
+    if @user_contact.save
+      ContactMailer.send_contact(@user, @user_contact).deliver
+      ContactMailer.send_member(@user, @user_contact).deliver
+      if @user.sent_count.present?
+        @user.sent_count = @user.sent_count + 1
+      else
+        @user.sent_count = 1
+      end
+      @user.save
+
+      flash[:notice] = "お問い合わせありがとうございます！"
+      redirect_to "/users/#{@user.id}/thanks"
+
+    else
+      # バリデーションエラー値の保存
       @db_validation_error = DbValidationError.new
-      @db_validation_error.name = "UserContact_Block"
+      @db_validation_error.name = "UserContact"
       @db_validation_error.content_01 = @user_contact.name
       @db_validation_error.content_02 = @user_contact.mail
       @db_validation_error.content_03 = @user_contact.message
       @db_validation_error.save
-      flash[:notice] = 'アカウントをブロックしました'
-      redirect_to users_path
-
-    else
-      if @user_contact.save
-        ContactMailer.send_contact(@user, @user_contact).deliver
-        ContactMailer.send_member(@user, @user_contact).deliver
-        if @user.sent_count.present?
-          @user.sent_count = @user.sent_count + 1
-        else
-          @user.sent_count = 1
-        end
-        @user.save
-        flash[:notice] = "お問い合わせありがとうございます！"
-        redirect_to "/users/#{@user.id}/thanks"
-
-      else
-        # バリデーションエラー値の保存
-        @db_validation_error = DbValidationError.new
-        @db_validation_error.name = "UserContact"
-        @db_validation_error.content_01 = @user_contact.name
-        @db_validation_error.content_02 = @user_contact.mail
-        @db_validation_error.content_03 = @user_contact.message
-        @db_validation_error.save
-        render "/user_contacts/edit"
-      end
-
+      render "/user_contacts/edit"
     end
+
 
 	end
 
