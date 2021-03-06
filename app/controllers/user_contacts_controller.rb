@@ -33,7 +33,7 @@ class UserContactsController < ApplicationController
 
     # 荒らし判定
     @same_contacts = UserContact.where(ip_address: @user_contact.ip_address, message: @user_contact.message)
-    if @same_contacts.count > 3
+    if @same_contacts.count >= 3
       @db_validation_error = DbValidationError.new
       @db_validation_error.name = "UserContact_Block"
       @db_validation_error.content_01 = @user_contact.name

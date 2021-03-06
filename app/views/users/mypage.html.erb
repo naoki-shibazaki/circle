@@ -186,7 +186,18 @@
 
 
 			<% end %>
-			
+
+				<%= link_to "/users/#{@user.id}/user_contacts/new", class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+              <img class="icon_size" src="/images/icon/icon_14.png">
+						</div>
+
+						<div class="icon_txt">
+							お問い合わせ項目
+						</div>
+					</div>
+				<% end %>
 
 				<%= link_to "/user/add", class: "icon_cont" do %>
 					<div class="">
