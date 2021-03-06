@@ -1,5 +1,5 @@
 class UserContactsController < ApplicationController
-  before_action :set_users
+  before_action :set_users, except: [:account_block]
 
   def new
     @user_contact = @user.user_contacts.build
@@ -13,7 +13,7 @@ class UserContactsController < ApplicationController
       @db_validation_error.save
 
       flash[:notice] = "アカウントをブロックしました"
-      redirect_to users_path
+      redirect_to account_block_path
     end
 
     if params[:entry] == "1"
@@ -45,7 +45,7 @@ class UserContactsController < ApplicationController
 
     # 荒らし対応
     @same_contacts = UserContact.where(ip_address: @user_contact.ip_address, message: @user_contact.message)
-    if @same_contacts.count >= 3
+    if @same_contacts.count >= 6 # 7回目からブロック
       @user_contact.account_block = "block"
     end
 
@@ -106,6 +106,10 @@ class UserContactsController < ApplicationController
       flash[:notice] = 'エラーです'
       redirect_to "/users/#{@user.id}/respond_check/#{@user_contact.random_id}"
 		end
+
+  end
+
+  def account_block
 
   end
 
