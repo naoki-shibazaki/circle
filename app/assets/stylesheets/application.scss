@@ -2421,7 +2421,7 @@ max-width: 100%;
 .search_wrap{
     background-color: #fff;
     padding: 18px 14px;
-    margin-bottom: 18px;
+    // margin-bottom: 18px;
 }
 
 .search_select{
@@ -5186,7 +5186,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 
 .sort_select{
-  margin-top: 18px;
+  // margin-top: 18px;
 
   .sort_btn{
     padding: 6px 10px;
@@ -5809,7 +5809,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .search_word{
     background-color: #fff;
-    padding: 0px 0px 10px;
+    // padding: 0px 0px 10px;
 
   .search_area {
       width: 80%;
@@ -6925,8 +6925,44 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   padding-left: 2px;
 }
 
+.tag_list{
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  display: block;
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  padding: 10px 14px;
+  li{
+    display: inline-block;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 6px 8px;
+    background: #fff;
+    border: 1px solid #519851;
+    border-radius: 4px;
+    margin-right: 14px;
+    a{
+      color: #545454;
+    }
+  }
+  .hash_tag{
+    color: #519851;
+    font-weight: bold;
+    padding-right: 4px;
+  }
+}
 
-
+.sort_wrap {
+  background-color: #fff;
+  padding: 18px 14px;
+  margin-bottom: 18px;
+}
 
 
 // --------------------------------------

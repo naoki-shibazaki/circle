@@ -216,6 +216,18 @@
   </div>
 
 
+</div>
+
+
+  <ul class="tag_list">
+    <% @tags.each do |tag| %>
+      <li>
+        <a href="/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a>
+      </li>
+    <% end %>
+  </ul>
+
+<div class="sort_wrap">
 
   <% if controller.action_name != "search" %>
 
@@ -255,9 +267,7 @@
 
   <% end %>
 
-
-
-
-
-
 </div>
+
+
+

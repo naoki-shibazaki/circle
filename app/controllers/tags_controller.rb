@@ -3,6 +3,22 @@ include ApplicationHelper
 
 before_action :set_tags
 
+def index
+
+  if @tag.category == "group"
+    @users = User.user(@tag_users).or(User.grouping(@group.name)).user_sort.page(params[:page])
+  else @tag.category == "age"
+    @users = User.user(@tag_users).or(User.average_age(@age.name)).user_sort.page(params[:page])
+  end
+
+  # パンくず
+  @b1_name = @tag.name
+  @b1_url = "tag/#{@tag.id}"
+
+  # amp対応
+  amp_set
+end
+
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
 

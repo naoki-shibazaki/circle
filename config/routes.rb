@@ -87,6 +87,7 @@ Rails.application.routes.draw do
 
 	# get 'users/:user_id/collection-sample' , to: 'collections#sample'
 
+  # エリア別
 	get 'prefectures' , to: 'users#prefecture_index'
 	get 'prefectures/:kana' , to: 'users#prefecture'
 	get 'prefectures/:kana/tag/:id' , to: 'tags#prefecture'
@@ -94,12 +95,14 @@ Rails.application.routes.draw do
 	get 'prefectures/:kana/:city_kana/:id' , to: 'users#prefecture_city_station'
 	get 'prefectures/:kana/:city_kana/tag/:id' , to: 'tags#prefecture_city'
 
+  # ブログ
 	get 'blog' , to: 'blogs#index'
 	get 'blog/prefectures' , to: 'blogs#prefecture_index'
 	get 'blog/prefectures/:kana' , to: 'blogs#prefecture'
 	get 'blog/:ruby' , to: 'blogs#event'
 	get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
 
+  # コート情報
 	get 'places' , to: 'places#index'
 	get 'places/count' , to: 'places#count'
 	get 'places/all/:kana/:city_kana/:id' , to: 'places#show_noindex'
@@ -108,6 +111,7 @@ Rails.application.routes.draw do
 	get 'places/:ruby/:kana/:city_kana' , to: 'places#city'
 	get 'places/:ruby/:kana/:city_kana/:id' , to: 'places#show'
 
+  # 練習試合
 	get	'matches/:id/contact' , to: 'matches#contact'
 	get 'match' , to: 'matches#match'
 	get 'match/prefectures/:kana' , to: 'matches#prefecture'
@@ -116,7 +120,10 @@ Rails.application.routes.draw do
 
 	get 'link/:unique_id', to: 'links#link'
 
+  # タグ検索
+	get 'tag/:id' , to: 'tags#index'
 
+  # 種目別
 	get ':ruby' , to: 'users#event'
 	get ':ruby/qa' , to: 'event_questions#index'
 	post ':ruby/qa' , to: 'event_questions#create'

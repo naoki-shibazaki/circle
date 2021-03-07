@@ -632,6 +632,7 @@ private
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
+    @tags = Tag.all
 
     @search_word = "例）バスケ　東京"
 		@category = "nil"
