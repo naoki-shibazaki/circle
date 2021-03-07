@@ -85,56 +85,58 @@
 
     <% end %>
 
-  <% elsif @user.match.recruit == "募集中" && params[:entry] == "2" %>
+  <% elsif @user.match.present? %>
+    <% if @user.match.recruit == "募集中" && params[:entry] == "2" %>
 
-    <!-- LINE -->
-    <% if @user.contact == "line" && @user.line_id.present? %>
-      <%= render "/user_contacts/line" %>
+        <!-- LINE -->
+        <% if @user.contact == "line" && @user.line_id.present? %>
+          <%= render "/user_contacts/line" %>
 
-    <!-- LINE + mail -->
-    <% elsif @user.contact == "both" && @user.line_id.present? %>
+        <!-- LINE + mail -->
+        <% elsif @user.contact == "both" && @user.line_id.present? %>
 
-      <div class="tab_wrap">
+          <div class="tab_wrap">
 
-        <div class="tab-wrap">
-            <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
-            <div class="tab-content">
-              <%= render "/user_contacts/mail" %>
+            <div class="tab-wrap">
+                <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
+                <div class="tab-content">
+                  <%= render "/user_contacts/mail" %>
+                </div>
+
+                <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
+                <div class="tab-content">
+                <%= render "/user_contacts/line" %>
+                </div>
             </div>
 
-            <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
-            <div class="tab-content">
-            <%= render "/user_contacts/line" %>
-            </div>
-        </div>
-
-      </div>
-
-    <% elsif @user.contact == nil && @user.line_id.present? %>
-
-
-      <div class="tab_wrap">
-
-        <div class="tab-wrap">
-          <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
-          <div class="tab-content">
-            <%= render "/user_contacts/mail" %>
           </div>
 
-            <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
-            <div class="tab-content">
-            <%= render "/user_contacts/line" %>
+        <% elsif @user.contact == nil && @user.line_id.present? %>
+
+
+          <div class="tab_wrap">
+
+            <div class="tab-wrap">
+              <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">メール</label>
+              <div class="tab-content">
+                <%= render "/user_contacts/mail" %>
+              </div>
+
+                <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">LINE</label>
+                <div class="tab-content">
+                <%= render "/user_contacts/line" %>
+                </div>
             </div>
-        </div>
 
-      </div>
+          </div>
 
 
-    <!-- mail -->
-    <% else %>
+        <!-- mail -->
+        <% else %>
 
-      <%= render "/user_contacts/mail" %>
+          <%= render "/user_contacts/mail" %>
 
+        <% end %>
     <% end %>
 
   <% else %>
