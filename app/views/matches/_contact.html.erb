@@ -5,13 +5,11 @@
 	<% if @match.recruit == "募集中" %>
 
 		<div class="contact_link">
-			<%= link_to "/matches/#{@match.id}/contact" do %>
-				<div class="btn btn_c btn_green btn_cubic">
-					<i class="fa fa-envelope"></i>練習試合の連絡をする！
-				</div>
-			<% end %>
-		</div>
-
+      <%= link_to new_user_user_contact_path(@match.id, entry: "2") do %>
+        <div class="btn btn_c btn_green btn_cubic">
+          <i class="fa fa-envelope"></i>練習試合の連絡をする！
+        </div>
+      <% end %>
 
 	<% else %>
 		<div class="stop_match">

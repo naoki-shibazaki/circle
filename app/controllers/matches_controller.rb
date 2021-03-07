@@ -91,18 +91,6 @@ before_action :set_matches
 	def destroy
 	end
 
-	def contact
-
-		@match = Match.find(params[:id])
-		@user = User.find(params[:id])
-		@data = AdminUser.find_by(id: @user.admin_user_id)
-
-		@mail_title = "【#{@user.name}】練習試合のお問い合わせ"
-		@mail_message = "こちらにご記入ください！"
-
-
-	end
-
 	def match
 		redirect_to matches_path
 	end

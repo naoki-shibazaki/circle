@@ -12,20 +12,22 @@ class UserContactsController < ApplicationController
       @db_validation_error.content_01 = request.remote_ip
       @db_validation_error.save
 
-      flash[:notice] = "アカウントをブロックしました"
+      flash[:notice] = "アカウントをロックしました"
       redirect_to account_block_path
     end
 
     if params[:entry] == "1"
       @user_contact.entry = "見学"
+      @user.template = "性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
+    elsif params[:entry] == "2"
+      @user_contact.entry = "練習試合"
+      @user.template = "種　目：例）バスケ\r\nエリア：例）東京都\r\n年齢層：例）30代中心\r\n構　成：例）10名程度\r\nレベル：例）初心者多め\r\n"
     else
       @user_contact.entry = "参加"
+      @user.template = "性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
     end
 
-    @user.template = "性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
     @user_contact.message = @user.template
-    @mail_title = "【#{@user.name}】お問い合わせ"
-    @mail_message = "こちらにご記入ください！"
 
   end
 

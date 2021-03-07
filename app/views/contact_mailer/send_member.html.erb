@@ -10,8 +10,10 @@
 	<%= @user.name %>へのお問い合わせありがとうございます！<br>
   主催者からの返信をお待ちください。<br>
   <br>
-  ＼こちらも<%= @user_contact.name %>さんにオススメです！／<br>
-  https://www.circle-book.com/<%= @user.event.ruby %>/<%= @user.prefecture.kana %><br>
+  <% if @user_contact.entry != "練習試合" %>
+    ＼こちらも<%= @user_contact.name %>さんにオススメです！／<br>
+    https://www.circle-book.com/<%= @user.event.ruby %>/<%= @user.prefecture.kana %><br>
+  <% end %>
   <br>
 	--------------------------------------<br>
 	▼<%= @user_contact.entry %>のお問い合わせ内容<br>
