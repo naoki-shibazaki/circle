@@ -67,6 +67,7 @@ end
 		@event = Event.find_by(ruby: params[:ruby])
 		@city = City.find_by(city_kana: params[:city_kana])
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
+    @cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 		@city_users = @city.users_cities.map{|c| c.user.id}
 
@@ -100,6 +101,7 @@ end
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
+    @cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 
 		if @tag.category == "group"
 			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
@@ -123,6 +125,7 @@ end
 	def prefecture_city
 		@city = City.find_by(city_kana: params[:city_kana])
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
+    @cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 		@city_users = @city.users_cities.map{|c| c.user.id}
 
