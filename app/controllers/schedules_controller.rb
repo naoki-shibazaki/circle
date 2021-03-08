@@ -10,15 +10,19 @@ before_action :set_schedules
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
 		@b2_name = "活動スケジュール"
-		@b2_url = ""		
+		@b2_url = ""
 	end
 
-	def create	
+	def create
 		@user.schedules.create(schedule_params)
+
+    @schedule = Schedule.where(user_id: @user.id).last
+    @schedule.date = Time.parse(@schedule.day).strftime("%Y年%-m月%-d日(#{%w(日曜日 月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)[Time.parse(@schedule.day).wday]})")
+    @schedule.save
 
 		@user.user_time = Time.now
 		@user.last_post = Time.now
-		
+
 		if @user.save
 
 			flash[:notice] = "追加しました"
@@ -38,13 +42,13 @@ before_action :set_schedules
 
 			@user.user_time = Time.now
 			@user.last_post = Time.now
-		    @user.save
-			
+      @user.save
+
 			flash[:notice] = '更新完了！'
 			redirect_to user_schedules_path
 		else
 			render "edit"
-		end	
+		end
 	end
 
 
@@ -69,8 +73,8 @@ before_action :set_schedules
 		@b2_name = "活動スケジュール"
 		@b2_url = "/users/#{@user.id}/schedules"
 		@b3_name = Time.parse(@schedule.day).strftime("%Y/%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")
-		@b3_url = ""			
-	end	
+		@b3_url = ""
+	end
 
 	def edit
 		@schedule = Schedule.find(params[:id])
@@ -80,7 +84,7 @@ before_action :set_schedules
 		@b2_name = "活動スケジュール"
 		@b2_url = "/users/#{@user.id}/schedules"
 		@b3_name = Time.parse(@schedule.day).strftime("%Y/%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")
-		@b3_url = ""		
+		@b3_url = ""
 	end
 
 	def destroy
@@ -92,9 +96,9 @@ before_action :set_schedules
 	end
 
 
-	private 	
+	private
 		def set_schedules
-			@user = User.find(params[:user_id])		
+			@user = User.find(params[:user_id])
 			@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 			@past_schedules = Schedule.where(user_id: @user.id).where("day < ?", DateTime.yesterday).order(:day => :desc)
 			@data = AdminUser.find_by(id: params[:user_id])
@@ -109,18 +113,18 @@ before_action :set_schedules
 
 
 		def ensure_correct_user
-			@user = User.find(params[:user_id])		
+			@user = User.find(params[:user_id])
 
-		   	if current_admin_user.id.to_i == @user.admin_user_id.to_i
-			
-		   	elsif current_admin_user.id == 1 
+      if current_admin_user.id.to_i == @user.admin_user_id.to_i
+
+      elsif current_admin_user.id == 1
 
 			else
-			      flash[:notice] = "権限がありません"
-			      redirect_to users_path
+        flash[:notice] = "権限がありません"
+        redirect_to users_path
 
 			end
-		end	
+		end
 
 		def schedule_params
 			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note, :title, :google_map, :recruitment)
