@@ -125,7 +125,7 @@ end
 	def prefecture_city
 		@city = City.find_by(city_kana: params[:city_kana])
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
-    @cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
+		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 		@city_users = @city.users_cities.map{|c| c.user.id}
 
