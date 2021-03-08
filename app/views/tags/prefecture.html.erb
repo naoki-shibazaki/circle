@@ -1,4 +1,4 @@
-<% set_meta_tags title: "#{@tag.text}！#{@prefecture.name}のサークルやチーム、団体の一覧｜メンバー募集サイト",
+<% set_meta_tags title: "【#{@tag.text}】#{@prefecture.name}のサークルやチーム、団体の一覧｜メンバー募集サイト",
   keywords: "#{@prefecture.name},#{@tag.name},サークル,チーム"
 %>
 
@@ -48,6 +48,8 @@
           </h1>
         </div>
       </div>
+
+    <%= render "/users/search.html.erb" %>
 
     <% if @users.count != 0 %>
       <%= render "/users/users_list.html.erb" %>

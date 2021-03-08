@@ -6956,6 +6956,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     font-weight: bold;
     padding-right: 4px;
   }
+  .click_tag{
+    color: #fff;
+    background: #629e62;
+    a, .hash_tag{
+      color: #fff;
+    }
+  }
 }
 
 .sort_wrap {

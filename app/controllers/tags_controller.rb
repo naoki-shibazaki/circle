@@ -13,7 +13,7 @@ def index
 
   # パンくず
   @b1_name = @tag.name
-  @b1_url = "tag/#{@tag.id}"
+  @b1_url = "/tag/#{@tag.id}"
 
   # amp対応
   amp_set
@@ -173,6 +173,9 @@ private
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
+    @tags = Tag.all
+
+    @search_word = "例）バスケ　東京"
 
 		if @tag.category == "group"
 			@group = Group.find_by(group: @tag.tag)

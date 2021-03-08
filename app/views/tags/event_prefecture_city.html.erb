@@ -1,7 +1,7 @@
-<% set_meta_tags title: "#{@tag.text}！#{@prefecture.name}#{@city.name}の#{@event.txt}｜メンバー募集サイト",
+<% set_meta_tags title: "【#{@tag.text}】#{@prefecture.name}#{@city.name}の#{@event.txt}｜メンバー募集サイト",
   keywords: "#{@event.name},#{@prefecture.name},#{@city.name},#{@tag.name},サークル,チーム",
   og: {
-    image:image_url("/images/events/e_ogp_#{@event.ruby}.png")
+    image:image_url("/images/events/#{@event.ruby}.jpg")
   }
 %>
 
@@ -12,7 +12,7 @@
 
       <div class="e_header_wrap">
         <amp-img alt="<%= @event.name %>"
-          src="/images/events/e_icon_<%= @event.ruby %>.jpg"
+          src="/images/events/<%= @event.ruby %>.jpg"
           width="450px"
           height="130px"
           layout="responsive"
@@ -43,15 +43,17 @@
     <div class="container">
     <%= render "/layouts/breadcrumb" %>
       <div class="e_header_wrap">
-        <img src="/images/events/e_icon_<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+        <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
         <div class="link_txt">
           <h1 class="e_header_title">
-            <%= @tag.text %>の<br>
+            <%= @tag.text %>！<br>
             <%= @prefecture.name %><%= @city.name %>で活動している<br>
             <%= @event.txt %>一覧
           </h1>
         </div>
       </div>
+
+    <%= render "/users/search.html.erb" %>
 
     <% if @users.count != 0 %>
       <%= render "/users/users_list.html.erb" %>

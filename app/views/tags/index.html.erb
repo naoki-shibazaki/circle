@@ -48,6 +48,9 @@
         </div>
       </div>
 
+    <%= render "/users/search.html.erb" %>
+
+
     <% if @users.count != 0 %>
       <%= render "/users/users_list.html.erb" %>
     <% else @users.count == 0 %>

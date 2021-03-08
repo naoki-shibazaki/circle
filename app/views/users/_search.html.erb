@@ -2,7 +2,7 @@
 
   <div class="search_select">
 
-        <% if @path.is('users#index', 'users#top', 'users#search') %>
+        <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index') %>
 
         <select name="event_select" onChange="location.href=value;">
           <option value="#">サークル・チーム</option>
@@ -23,7 +23,7 @@
         <div class="search_icon"><i class="fa fa-search "></i></div>
 
 
-        <% elsif @path.is('users#event_prefecture_city') %>
+        <% elsif @path.is('users#event_prefecture_city', 'tags#event_prefecture_city') %>
 
           <div class="search_select_3">
 
@@ -62,7 +62,7 @@
 
 
 
-        <% elsif @path.is('users#event_prefecture') %>
+        <% elsif @path.is('users#event_prefecture', 'tags#event_prefecture') %>
 
           <div class="search_select_3">
 
@@ -100,7 +100,7 @@
 
 
 
-        <% elsif  @path.is('users#event') %>
+        <% elsif  @path.is('users#event', 'tags#event') %>
 
         <select name="event_select" onChange="location.href=value;">
           <option value="#"><%= @event.name %></option>
@@ -124,7 +124,7 @@
 
 
 
-    <% elsif @path.is('users#prefecture_city') %>
+    <% elsif @path.is('users#prefecture_city', 'tags#prefecture_city') %>
 
 
           <div class="search_select_3">
@@ -160,7 +160,7 @@
 
       </div>
 
-        <% elsif @path.is('users#prefecture') %>
+        <% elsif @path.is('users#prefecture', 'tags#prefecture') %>
 
           <div class="search_select_3">
 
@@ -220,29 +220,53 @@
 
 
   <ul class="tag_list">
-    <% if @path.is('users#index', 'users#top', 'users#search') %>
+    <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index') %>
       <% @tags.each do |tag| %>
-        <li><a href="/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% if tag.id == params[:id].to_i %>
+          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
+        <% else %>
+          <li><a href="/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% end %>
       <% end %>
-    <% elsif @path.is('users#event_prefecture_city') %>
+    <% elsif @path.is('users#event_prefecture_city', 'tags#event_prefecture_city') %>
       <% @tags.each do |tag| %>
-        <li><a href="/<%= @event.ruby %>/<%= @prefecture.kana %>/<%= @city.city_kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% if tag.id == params[:id].to_i %>
+          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
+        <% else %>
+          <li><a href="/<%= @event.ruby %>/<%= @prefecture.kana %>/<%= @city.city_kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% end %>
       <% end %>
-    <% elsif @path.is('users#event_prefecture') %>
+    <% elsif @path.is('users#event_prefecture', 'tags#event_prefecture') %>
       <% @tags.each do |tag| %>
-        <li><a href="/<%= @event.ruby %>/<%= @prefecture.kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% if tag.id == params[:id].to_i %>
+          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
+        <% else %>
+          <li><a href="/<%= @event.ruby %>/<%= @prefecture.kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% end %>
       <% end %>
-    <% elsif  @path.is('users#event') %>
+    <% elsif  @path.is('users#event', 'tags#event') %>
       <% @tags.each do |tag| %>
-        <li><a href="/<%= @event.ruby %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% if tag.id == params[:id].to_i %>
+          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
+        <% else %>
+          <li><a href="/<%= @event.ruby %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% end %>
       <% end %>
-    <% elsif @path.is('users#prefecture_city') %>
+    <% elsif @path.is('users#prefecture_city', 'tags#prefecture_city') %>
       <% @tags.each do |tag| %>
-        <li><a href="/prefectures/<%= @prefecture.kana %>/<%= @city.city_kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% if tag.id == params[:id].to_i %>
+          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
+        <% else %>
+          <li><a href="/prefectures/<%= @prefecture.kana %>/<%= @city.city_kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% end %>
       <% end %>
-    <% elsif @path.is('users#prefecture') %>
+    <% elsif @path.is('users#prefecture', 'tags#prefecture') %>
       <% @tags.each do |tag| %>
-        <li><a href="/prefectures/<%= @prefecture.kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% if tag.id == params[:id].to_i %>
+          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
+        <% else %>
+          <li><a href="/prefectures/<%= @prefecture.kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
+        <% end %>
       <% end %>
     <% else %>
 
