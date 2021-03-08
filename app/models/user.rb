@@ -87,12 +87,12 @@ class User < ApplicationRecord
   scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
   scope :user_sort, -> { user_hide.user_order }
 
-  scope :grouping, ->(group_id) do
-    where("grouping LIKE ?", "%#{group_id}%")
+  scope :grouping, ->(group_name) do
+    where("grouping LIKE ?", "%#{group_name}%")
   end
 
-  scope :average_age, ->(age_id) do
-    where("average_age LIKE ?", "%#{age_id}%")
+  scope :average_age, ->(age_name) do
+    where("average_age LIKE ?", "%#{age_name}%")
   end
 
   def bookmarked_by?(member)

@@ -1,9 +1,11 @@
+#name 変更禁止
+
 Tag.seed(:id,
 
   { :id => 1, :category => "group" , :tag => "beginner", :name => "初心者", :text => "初心者歓迎のサークル" },
   { :id => 2, :category => "group" , :tag => "expert", :name => "経験者", :text => "経験者歓迎のサークル" },
   { :id => 3, :category => "group" , :tag => "student", :name => "学生", :text => "学生を募集中のサークル" },
-  { :id => 4, :category => "group" , :tag => "worker", :name => "社会人サークル", :text => "社会人サークル" },
+  { :id => 4, :category => "group" , :tag => "worker", :name => "社会人", :text => "社会人サークル" },
 
   { :id => 5, :category => "age" , :tag => 10, :name => "10代", :text => "10代を募集中のサークル" },
   { :id => 6, :category => "age" , :tag => 20, :name => "20代", :text => "20代を募集中のサークル" },

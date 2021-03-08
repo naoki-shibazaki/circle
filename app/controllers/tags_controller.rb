@@ -6,9 +6,9 @@ before_action :set_tags
 def index
 
   if @tag.category == "group"
-    @users = User.user(@tag_users).or(User.grouping(@group.name)).user_sort.page(params[:page])
+    @users = User.grouping(@tag.name).user_sort.page(params[:page])
   else @tag.category == "age"
-    @users = User.user(@tag_users).or(User.average_age(@age.name)).user_sort.page(params[:page])
+    @users = User.average_age(@tag.name).user_sort.page(params[:page])
   end
 
   # パンくず
@@ -23,9 +23,9 @@ end
 		@event = Event.find_by(ruby: params[:ruby])
 
 		if @tag.category == "group"
-			@users = User.user(@tag_users).or(User.grouping(@group.name)).event(@event.id).user_sort.page(params[:page])
+			@users = User.grouping(@tag.name).event(@event.id).user_sort.page(params[:page])
 		else @tag.category == "age"
-			@users = User.user(@tag_users).or(User.average_age(@age.name)).event(@event.id).user_sort.page(params[:page])
+			@users = User.average_age(@tag.name).event(@event.id).user_sort.page(params[:page])
 		end
 
 		# パンくず
@@ -44,10 +44,10 @@ end
 
 		if @tag.category == "group"
 			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-				.grouping(@group.name).event(@event.id).user_sort.page(params[:page])
+				.grouping(@tag.name).event(@event.id).user_sort.page(params[:page])
 		else @tag.category == "age"
 			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-				.average_age(@age.name).event(@event.id).user_sort.page(params[:page])
+				.average_age(@tag.name).event(@event.id).user_sort.page(params[:page])
 		end
 
 		# パンくず
@@ -72,22 +72,10 @@ end
 
 		if @tag.category == "group"
 			@users = User.city(@city_users).or(User.prefecture_50)
-				.grouping(@group.name).event(@event.id).user_sort.page(params[:page])
+				.grouping(@tag.name).event(@event.id).user_sort.page(params[:page])
 		else @tag.category == "age"
 			@users = User.city(@city_users).or(User.prefecture_50)
-				.average_age(@age.name).event(@event.id).user_sort.page(params[:page])
-		end
-
-		# @user.groupingやaverage_ageのOR検索は未実装
-		@users = User.city(@city_users).or(User.prefecture_50)
-			.user(@tag_users).event(@event.id).user_sort.page(params[:page])
-
-		if @tag.category == "group"
-			@users = User.city(@city_users).or(User.prefecture_50)
-				.grouping(@group.name).event(@event.id).user_sort.page(params[:page])
-		else @tag.category == "age"
-			@users = User.city(@city_users).or(User.prefecture_50)
-				.average_age(@age.name).event(@event.id).user_sort.page(params[:page])
+				.average_age(@tag.name).event(@event.id).user_sort.page(params[:page])
 		end
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
@@ -115,10 +103,10 @@ end
 
 		if @tag.category == "group"
 			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-				.grouping(@group.name).user_sort.page(params[:page])
+				.grouping(@tag.name).user_sort.page(params[:page])
 		else @tag.category == "age"
 			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-				.average_age(@age.name).user_sort.page(params[:page])
+				.average_age(@tag.name).user_sort.page(params[:page])
 		end
 
 		# パンくず
@@ -140,10 +128,10 @@ end
 
 		if @tag.category == "group"
 			@users = User.city(@city_users).or(User.prefecture_50)
-				.grouping(@group.name).user_sort.page(params[:page])
+				.grouping(@tag.name).user_sort.page(params[:page])
 		else @tag.category == "age"
 			@users = User.city(@city_users).or(User.prefecture_50)
-				.average_age(@age.name).user_sort.page(params[:page])
+				.average_age(@tag.name).user_sort.page(params[:page])
 		end
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
@@ -176,15 +164,6 @@ private
     @tags = Tag.all
 
     @search_word = "例）バスケ　東京"
-
-		if @tag.category == "group"
-			@group = Group.find_by(group: @tag.tag)
-			@tag_users = @group.users_groups.map{|g| g.user.id}
-
-		else @tag.category == "age"
-			@age = Age.find_by(decade: @tag.tag)
-			@tag_users = @age.users_ages.map{|a| a.user.id}
-		end
 
 		if admin_user_signed_in?
 			@user = User.find_by(id: current_admin_user.id)
