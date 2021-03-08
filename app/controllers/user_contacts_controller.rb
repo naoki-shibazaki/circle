@@ -67,7 +67,7 @@ class UserContactsController < ApplicationController
     else
       # バリデーションエラー値の保存
       @db_validation_error = DbValidationError.new
-      @db_validation_error.name = "UserContact"
+      @db_validation_error.name = "UserContact" + "_#{@user_contact.entry}"
       @db_validation_error.content_01 = @user_contact.name
       @db_validation_error.content_02 = @user_contact.mail
       @db_validation_error.content_03 = @user_contact.message

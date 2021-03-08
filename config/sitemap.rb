@@ -33,6 +33,10 @@ SitemapGenerator::Sitemap.create do
     add match_path(match), :lastmod => match.updated_at, :priority => 0.8, :changefreq => 'daily'
   end
 
+  Tag.find_each do |tag|
+    add "/tag/#{tag.id}", :lastmod => current_time, :priority => 0.5, :changefreq => 'weekly'
+  end
+
   Prefecture.find_each do |prefecture|
     if prefecture.kana != "nil"
       add "/prefectures/#{prefecture.kana}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily'
