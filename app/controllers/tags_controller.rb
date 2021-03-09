@@ -3,30 +3,35 @@ include ApplicationHelper
 
 before_action :set_tags
 
-def index
+  def index
+    # ソート機能
+    if params[:sort] == "1" || params[:sort] == nil
+      @users = User.tag_word(@tag.name).user_sort_1.page(params[:page])
+    elsif params[:sort] == "2"
+      @users = User.tag_word(@tag.name).user_sort_2.page(params[:page])
+    else params[:sort] == "3"
+      @users = User.tag_word(@tag.name).user_sort_3.page(params[:page])
+    end
 
-  if @tag.category == "group"
-    @users = User.grouping(@tag.name).user_sort.page(params[:page])
-  else @tag.category == "age"
-    @users = User.average_age(@tag.name).user_sort.page(params[:page])
+    # パンくず
+    @b1_name = @tag.name
+    @b1_url = "/tag/#{@tag.id}"
+
+    # amp対応
+    amp_set
   end
 
-  # パンくず
-  @b1_name = @tag.name
-  @b1_url = "/tag/#{@tag.id}"
-
-  # amp対応
-  amp_set
-end
-
 	def event
-		@event = Event.find_by(ruby: params[:ruby])
+    @event = Event.find_by(ruby: params[:ruby])
 
-		if @tag.category == "group"
-			@users = User.grouping(@tag.name).event(@event.id).user_sort.page(params[:page])
-		else @tag.category == "age"
-			@users = User.average_age(@tag.name).event(@event.id).user_sort.page(params[:page])
-		end
+    # ソート機能
+    if params[:sort] == "1" || params[:sort] == nil
+      @users = User.tag_word(@tag.name).event(@event.id).user_sort_1.page(params[:page])
+    elsif params[:sort] == "2"
+      @users = User.tag_word(@tag.name).event(@event.id).user_sort_2.page(params[:page])
+    else params[:sort] == "3"
+      @users = User.tag_word(@tag.name).event(@event.id).user_sort_3.page(params[:page])
+    end
 
 		# パンくず
 		@b1_name = @event.name
@@ -42,13 +47,17 @@ end
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 
-		if @tag.category == "group"
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-				.grouping(@tag.name).event(@event.id).user_sort.page(params[:page])
-		else @tag.category == "age"
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-				.average_age(@tag.name).event(@event.id).user_sort.page(params[:page])
-		end
+    # ソート機能
+    if params[:sort] == "1" || params[:sort] == nil
+      @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+      .tag_word(@tag.name).event(@event.id).user_sort_1.page(params[:page])
+    elsif params[:sort] == "2"
+      @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+      .tag_word(@tag.name).event(@event.id).user_sort_2.page(params[:page])
+    else params[:sort] == "3"
+      @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+      .tag_word(@tag.name).event(@event.id).user_sort_3.page(params[:page])
+    end
 
 		# パンくず
 		@b1_name = @event.name
@@ -71,13 +80,17 @@ end
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 		@city_users = @city.users_cities.map{|c| c.user.id}
 
-		if @tag.category == "group"
-			@users = User.city(@city_users).or(User.prefecture_50)
-				.grouping(@tag.name).event(@event.id).user_sort.page(params[:page])
-		else @tag.category == "age"
-			@users = User.city(@city_users).or(User.prefecture_50)
-				.average_age(@tag.name).event(@event.id).user_sort.page(params[:page])
-		end
+    # ソート機能
+    if params[:sort] == "1" || params[:sort] == nil
+      @users = User.city(@city_users).or(User.prefecture_50)
+      .tag_word(@tag.name).event(@event.id).user_sort_1.page(params[:page])
+    elsif params[:sort] == "2"
+      @users = User.city(@city_users).or(User.prefecture_50)
+      .tag_word(@tag.name).event(@event.id).user_sort_2.page(params[:page])
+    else params[:sort] == "3"
+      @users = User.city(@city_users).or(User.prefecture_50)
+      .tag_word(@tag.name).event(@event.id).user_sort_3.page(params[:page])
+    end
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
       flash[:notice] = "URLが間違っています"
@@ -103,13 +116,17 @@ end
 		@prefecture = Prefecture.find_by(kana: params[:kana])
     @cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 
-		if @tag.category == "group"
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-				.grouping(@tag.name).user_sort.page(params[:page])
-		else @tag.category == "age"
-			@users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-				.average_age(@tag.name).user_sort.page(params[:page])
-		end
+    # ソート機能
+    if params[:sort] == "1" || params[:sort] == nil
+      @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+      .tag_word(@tag.name).user_sort_1.page(params[:page])
+    elsif params[:sort] == "2"
+      @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+      .tag_word(@tag.name).user_sort_2.page(params[:page])
+    else params[:sort] == "3"
+      @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
+      .tag_word(@tag.name).user_sort_3.page(params[:page])
+    end
 
 		# パンくず
 		@b1_name = @prefecture.name
@@ -129,13 +146,17 @@ end
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 		@city_users = @city.users_cities.map{|c| c.user.id}
 
-		if @tag.category == "group"
-			@users = User.city(@city_users).or(User.prefecture_50)
-				.grouping(@tag.name).user_sort.page(params[:page])
-		else @tag.category == "age"
-			@users = User.city(@city_users).or(User.prefecture_50)
-				.average_age(@tag.name).user_sort.page(params[:page])
-		end
+    # ソート機能
+    if params[:sort] == "1" || params[:sort] == nil
+      @users = User.city(@city_users).or(User.prefecture_50)
+      .tag_word(@tag.name).user_sort_1.page(params[:page])
+    elsif params[:sort] == "2"
+      @users = User.city(@city_users).or(User.prefecture_50)
+      .tag_word(@tag.name).user_sort_2.page(params[:page])
+    else params[:sort] == "3"
+      @users = User.city(@city_users).or(User.prefecture_50)
+      .tag_word(@tag.name).user_sort_3.page(params[:page])
+    end
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
       flash[:notice] = "URLが間違っています"

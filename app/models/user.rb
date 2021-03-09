@@ -86,14 +86,27 @@ class User < ApplicationRecord
 	# Tag用
   scope :user_order, -> { includes(:prefecture).order("prefectures.sort asc", switch: :asc, last_post: :desc) }
   scope :user_sort, -> { user_hide.user_order }
-
   scope :grouping, ->(group_name) do
     where("grouping LIKE ?", "%#{group_name}%")
   end
-
   scope :average_age, ->(age_name) do
     where("average_age LIKE ?", "%#{age_name}%")
   end
+	scope :tag_word, ->(tag_keyword) do
+		where("name LIKE ?", "%#{tag_keyword}%").
+		or(where("schedule LIKE ?", "%#{tag_keyword}%")).
+		or(where("area LIKE ?", "%#{tag_keyword}%")).
+		or(where("recruitment LIKE ?", "%#{tag_keyword}%")).
+		or(where("member LIKE ?", "%#{tag_keyword}%")).
+		or(where("cost LIKE ?", "%#{tag_keyword}%")).
+		or(where("goal LIKE ?", "%#{tag_keyword}%")).
+		or(where("grouping LIKE ?", "%#{tag_keyword}%")).
+		or(where("average_age LIKE ?", "%#{tag_keyword}%")).
+		or(where("appeal LIKE ?", "%#{tag_keyword}%"))
+	end
+
+
+
 
   def bookmarked_by?(member)
     bookmarks.where(member_id: member).exists?
