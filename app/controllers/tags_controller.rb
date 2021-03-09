@@ -185,7 +185,7 @@ private
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
-    @tags = Tag.all.order(:id => :asc)
+    @tags = Tag.all.order(:order => :asc)
 
     @search_word = "例）バスケ　東京"
 
@@ -198,7 +198,7 @@ private
 
 	def tag_params
 		params.require(:user).permit(
-			:name, :category, :tag, :name, :text
+			:name, :category, :tag, :name, :text, :order
     )
 	end
 
