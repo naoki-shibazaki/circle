@@ -53,7 +53,7 @@ class QuestionsController < ApplicationController
 					end
 
 				else
-					UserMailer.send_when_create(@user).deliver
+					UserMailer.send_when_create(@user, @question).deliver
 				end
 
 
@@ -88,7 +88,7 @@ class QuestionsController < ApplicationController
 
 			@user.last_post = Time.now
 			@user.user_time = Time.now
-			@user.save	
+			@user.save
 
 			flash[:notice] = '更新しました！'
 			redirect_to user_question_path
@@ -130,16 +130,14 @@ class QuestionsController < ApplicationController
 	end
 
 	def set_user
-	    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:user_id])
 
-	    @question_first = "活動頻度を教えてください！"
-	    @question_second = "男女比を教えてください"
-	    @question_third = "メンバーの年齢層はどれくらいですか？"
+    @question_first = "活動頻度を教えてください！"
+    @question_second = "男女比を教えてください"
+    @question_third = "メンバーの年齢層はどれくらいですか？"
 
-
-	    if @user.present?  	
+    if @user.present?
 			if @user.switch.present?
-
 			@b1_name = @user.event.name
 			@b1_url = "/#{@user.event.ruby}"
 			@b2_name = @user.prefecture.name
@@ -148,17 +146,16 @@ class QuestionsController < ApplicationController
 			@b3_url = "/users/#{@user.id}"
 			@b4_name = "質問コーナー"
 			@b4_url = "/users/#{@user.id}/questions"
-					
 			end
 		end
 
 
-    end    
+    end
 
 
     private
     def question_params
-    	params.require(:question).permit(:id, :content, :answer)
+      params.require(:question).permit(:id, :content, :answer)
     end
 
 
