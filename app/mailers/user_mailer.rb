@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
 
-  def send_when_create(user question)
+  def send_when_create(user, question)
     @user = user
     @question = question
     mail to:      user.admin_user.email,
