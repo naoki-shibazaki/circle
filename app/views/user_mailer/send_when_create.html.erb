@@ -10,13 +10,13 @@
 	新しい質問が<%= @user.name %>さん宛に届きました！<br>
   --------------------------------------<br>
   ▼質問内容<br>
-  <%= @question.content %>
+  <%= simple_format @question.content %>
 	<br>
 	以下のリンクから質問に回答しよう！<br>
 	https://www.circle-book.com/users/<%= @user.id %>/questions
   --------------------------------------<br>
 	<br>
 	<br>
-	※このメールに返信しても送信先には届きません   
+	※このメールに返信しても送信先には届きません
 </body>
 </html>
