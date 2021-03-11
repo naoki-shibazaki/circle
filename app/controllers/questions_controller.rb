@@ -56,7 +56,6 @@ class QuestionsController < ApplicationController
 					UserMailer.send_when_create(@user, @question).deliver
 				end
 
-
 				flash[:notice] = '送信しました！'
 				redirect_to user_questions_path(@user)
 
