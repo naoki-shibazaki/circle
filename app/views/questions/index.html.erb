@@ -60,14 +60,13 @@
 	</div>
 
 
-	<div class="qa_card_warp">
+  <div class="qa_card_warp">
 
-	<% if @questions.present? %>
-		<div class="qa_card_txt">
-			▼ <%= @user.name %>さんに寄せられた質問です！
-		</div>
-  <% end %>
-
+    <% if @questions.present? %>
+      <div class="qa_card_txt">
+        ▼ <%= @user.name %>さんに寄せられた質問です！
+      </div>
+    <% end %>
 
 		<ul>
 			<% if @questions.any? %>
@@ -144,6 +143,8 @@
 
 	</div>
 
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
 
   </div>
 </div>
