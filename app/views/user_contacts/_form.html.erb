@@ -12,7 +12,7 @@
 
     <%= render "users/parts/user_name", user: @user%>
 
-    <% if params[:entry] != "2" %>
+    <% if params[:entry] != "2" && params[:entry] != "3" %>
       <% if admin_user_signed_in? %>
         <% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
           <div class="template_wrap">
