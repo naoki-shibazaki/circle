@@ -18,7 +18,7 @@
 
           <div class="field">
             <p>お問い合わせ内容（必須）</p>
-            <%= f.text_area :message, class: 'form-control form-note', placeholder: "#{@user.template}" %>
+            <%= f.text_area :message, class: 'form-control form-note', placeholder: "#{@place_holder}" %>
           </div>
 
           <%= f.hidden_field :entry, value: @user_contact.entry %>
