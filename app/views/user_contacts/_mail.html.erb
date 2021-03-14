@@ -5,20 +5,20 @@
         <%= render 'layouts/error_messages', model: f.object %>
 
           <div class="field">
-            <p>お名前*</p>
+            <p>お名前（必須）</p>
             <span class="cautions">※英語表記はNGです</span>
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
           </div>
 
           <div class="field">
-            <p>メールアドレス*</p>
+            <p>メールアドレス（必須）</p>
             <span class="cautions">※必ず受信できるアドレスをご記入ください</span>
             <%= f.text_field :mail, class: 'form-control', placeholder: "circlebook47@gmail.com" %>
           </div>
 
           <div class="field">
-            <p>お問い合わせ内容*</p>
-            <%= f.text_area :message, class: 'form-control form-note', placeholder: "性別や年代などをお書きください！" %>
+            <p>お問い合わせ内容（必須）</p>
+            <%= f.text_area :message, class: 'form-control form-note', placeholder: "#{@user.template}" %>
           </div>
 
           <%= f.hidden_field :entry, value: @user_contact.entry %>

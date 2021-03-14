@@ -62,9 +62,11 @@
 
 	<div class="qa_card_warp">
 
+	<% if @questions.present? %>
 		<div class="qa_card_txt">
 			▼ <%= @user.name %>さんに寄せられた質問です！
 		</div>
+  <% end %>
 
 
 		<ul>
