@@ -6972,6 +6972,56 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   margin-bottom: 18px;
 }
 
+.warning_icon{
+  padding-top: 30px;
+  text-align: center;
+  font-size: 40px;
+  color: #d22324;
+}
+
+.warning_text{
+  line-height: 1.6;
+  color: #d22324;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.del_text{
+  line-height: 1.6;
+  .red{
+    color: #d22324;
+    font-weight: bold;
+  }
+  .blue{
+    color: #204ccc;
+    font-weight: bold;
+  }
+}
+
+.del_btn_wrap{
+  margin-top: 40px;
+  a{
+    color: #fff;
+  }
+  .del_btn{
+    margin: 26px auto 26px;
+    text-align: center;
+    border-radius: 2px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 70%;
+  }
+  .red{
+    background-color: #d22324;
+  }
+  .gray{
+    background-color: gray;
+  }
+}
 
 // --------------------------------------
 // ▼PC

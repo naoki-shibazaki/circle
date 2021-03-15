@@ -1,0 +1,51 @@
+<% set_meta_tags noindex: true,
+	title: "アカウントの削除"
+%>
+
+<div class="main users-new">
+  <div class="container">
+    <div class="form users-form">
+      <div class="form-body cont-body center">
+
+        <div class="p_t">アカウントの削除</div>
+
+        <div class="user_select_wrap">
+          現在のアカウント：
+          <select name="user_select" onChange="location.href=value;">
+            <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+            <% @admin_user.users.each do |user| %>
+              <% if @user.id != user.id %>
+                <option value="/users/<%= user.id %>/account_del"><%= user.name %>（<%= user.event.name %>）</option>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+
+        <%= render "users/parts/user_name", user: @user %>
+
+
+        <div class="warning_icon"><i class="fa fa-warning "></i></div>
+        <div class="warning_text">
+          アカウントを削除します。<br>
+          復元できませんので、ご注意ください。
+        </div>
+
+        <div class="del_text">
+          下記ボタンを押すと削除を実行します。<br>
+          <span class="blue"><%= @user.name %></span>に関する内容が<br>
+          <span class="red">すべて削除</span>されますが、よろしいでしょうか？
+        </div>
+
+        <div class="del_btn_wrap">
+          <%= link_to(user_path, method: :delete, data: {confirm: "本当に削除してよろしいでしょうか？"}) do %>
+            <div class="del_btn red">はい、削除します</div>
+          <% end %>
+          <%= link_to(users_path) do %>
+            <div class="del_btn gray">いいえ、削除しません</div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

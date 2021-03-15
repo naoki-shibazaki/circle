@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 include ApplicationHelper
 
-before_action :ensure_correct_user, {only: [:mypage, :edit, :update, :edit2, :update2, :update_contact]}
+before_action :ensure_correct_user, {only: [:mypage, :edit, :update, :edit2, :update2, :update_contact, :account_del]}
 before_action :set_users
 
 helper_method :link_count
@@ -289,12 +289,20 @@ helper_method :link_count
 
 	def destroy
 		@user = User.find(params[:id])
+
+    # 削除データの保存
+    @db_validation_error = DbValidationError.new
+    @db_validation_error.name = "UserDelete" + "_#{@user.id}"
+    @db_validation_error.content_01 = @user.name
+    @db_validation_error.content_02 = @user.event.name
+    @db_validation_error.content_03 = @user.prefecture.name
+    @db_validation_error.save
+
 		@user.destroy
 
 		flash[:notice] = 'サークルを削除しました'
 		redirect_to users_path
 	end
-
 
 	def mypage
 		@user = User.find(params[:id])
@@ -607,6 +615,20 @@ helper_method :link_count
         redirect_to users_path
     end
 	end
+
+  def user_del
+		if admin_user_signed_in?
+      redirect_to "/users/#{current_admin_user.users.first.id}/account_del"
+    else
+      flash[:notice] = "ログインしてください"
+      redirect_to new_admin_user_session_path
+		end
+  end
+
+  def account_del
+    @user = User.find(params[:id])
+
+  end
 
 
 

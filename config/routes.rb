@@ -66,6 +66,8 @@ Rails.application.routes.draw do
   get 'contents' , to: 'differences#contents'
   get 'reviews' , to: 'reviews#all_reviews'
   get 'account_block' , to: 'user_contacts#account_block'
+	get 'user_del' , to: 'users#user_del'
+	get 'member_del' , to: 'members#member_del'
 
 	# 旧ブログ用のリダイレクト
 	get 'blogs/:id', to: 'blogs#show_redirect'
@@ -75,6 +77,7 @@ Rails.application.routes.draw do
 	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:id/mypage' , to: 'users#mypage'
 	patch 'users/:id/mypage', to: 'users#update_contact'
+	get 'users/:id/account_del' , to: 'users#account_del'
 
   # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'
