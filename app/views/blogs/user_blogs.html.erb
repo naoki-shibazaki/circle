@@ -7,8 +7,8 @@
       <%= render "/users/parts/user_profile", user: @user %>
     </div>
 
-    <% if @user.blogs.any? %>
-      <% @user.blogs.each do |blog| %>
+    <% if @blogs.any? %>
+      <% @blogs.each do |blog| %>
         <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
           <div class="form users-form">
               <div class="form-body">
