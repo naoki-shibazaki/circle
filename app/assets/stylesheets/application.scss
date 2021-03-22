@@ -6999,6 +6999,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+.del_text_ts{
+  margin-top: 30px;
+}
+
 .del_btn_wrap{
   margin-top: 40px;
   a{
@@ -7020,6 +7024,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
   .gray{
     background-color: gray;
+  }
+  .green{
+    background-color: #45bd59;
+    font-weight: 700;
   }
 }
 

@@ -29,8 +29,19 @@
           アカウントを削除します。<br>
           復元できませんので、ご注意ください。
         </div>
-
+        <hr>
         <div class="del_text">
+          もし<span class="red">サークルを再開する可能性がある場合</span>は<br>
+          ステータスを<span class="blue">【募集終了】</span>に変更すれば<br>
+          お問い合わせが届かなくなり便利です！
+        </div>
+        <div class="del_btn_wrap">
+          <%= link_to(edit_user_path(@user.id)) do %>
+            <div class="del_btn green">募集終了に変更する！</div>
+          <% end %>
+        </div>
+        <hr>
+        <div class="del_text del_text_ts">
           下記ボタンを押すと削除を実行します。<br>
           <span class="blue"><%= @user.name %></span>に関する内容が<br>
           <span class="red">すべて削除</span>されますが、よろしいでしょうか？
