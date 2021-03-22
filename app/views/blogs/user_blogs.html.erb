@@ -7,30 +7,50 @@
       <%= render "/users/parts/user_profile", user: @user %>
     </div>
 
-		<div class="blog-list-wrap">
-			<h2 class="others-blog"><%= @user.name %>のブログ一覧</h2>
-            <% @blogs.each do |blog| %> 
-             
-              <% if blog.title.present? %>
-	            	<div class="blog_list">
+    <% if @user.blogs.any? %>
+      <% @user.blogs.each do |blog| %>
+        <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
+          <div class="form users-form">
+              <div class="form-body">
+                <div class="header-post cont-width">
+                <%= lazysizes_image_tag @user.pic_profile.url , class:'content_icon' %>
+                <div class="post-user_wrap">
+                  <div class="post-user">
+                    <div class="post-top"><%= @user.name.truncate(40) %></div>
+                    <div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %H:%M") %></div>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <% if blog.image_01.present? %>
+                  <% if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank? %>
+                    <%= lazysizes_image_tag blog.image_01.url , class:'content_image_one' %>
+                  <% else %>
+                    <div class="swiper-container">
+                      <div class="swiper-wrapper">
+                        <% if blog.image_01.present? %><div class="swiper-slide"><%= lazysizes_image_tag blog.image_01.url , class:'content_image' %></div><% end %>
+                        <% if blog.image_02.present? %><div class="swiper-slide"><%= lazysizes_image_tag blog.image_02.url , class:'content_image' %></div><% end %>
+                        <% if blog.image_03.present? %><div class="swiper-slide"><%= lazysizes_image_tag blog.image_03.url , class:'content_image' %></div><% end %>
+                        <% if blog.image_04.present? %><div class="swiper-slide"><%= lazysizes_image_tag blog.image_04.url , class:'content_image' %></div><% end %>
+                      </div>
+                      <!-- Add Pagination -->
+                      <div class="pagination-wrap">
+                        <div class="swiper-pagination"></div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+                <div class="cont-width">
+                  <h3 class="blog_title"><%= blog.title %></h3>
+                  <%= simple_format blog.content.truncate(140) %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
 
-		                <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
-		                  <div class="blog_link">
-		                    <div class="catch_image"><%= lazysizes_image_tag blog.image_01.url , class:'post_image' %></div>
-							<div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>	                    
-							<h3 class="post_title"><%= blog.title.truncate(36) %></h3>
-		                  </div>
-
-		                <% end %> 
-
-	            	</div>
-
-              <% end %> 
-                      
-            <% end %>
-
-
-         </div>
 
 		<div class="ad_space"></div>
 
