@@ -82,7 +82,7 @@
           <div class="post-bottom u_right">更新日：<%= @user.user_time.to_time.strftime("%Y年%-m月%-d日") %></div>
         <% end %>
 
-        <% if @user.user_time.to_time <= Time.current.ago(1.years) || @user.user_time.nil? %>
+        <% if @user.user_time.to_time <= Time.current.ago(1.years) || @user.user_time.blank? %>
           <div class="attention_content"><i class="fa fa-warning "></i> このサークルは1年以上更新されていません。</div>
         <% end %>
 
