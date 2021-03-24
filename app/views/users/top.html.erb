@@ -1,6 +1,6 @@
 <% set_meta_tags title: "【#{@time.strftime("%Y")}年版】47都道府県のサークルやチーム、団体一覧｜メンバー募集サイト" %>
 <div class="main users-index">
-  <div class="container">
+  <div class="container top_page">
     <img class="imege_title" src="/images/top.png">
     <h1 class="users-heading"><img class="img_logo_title" src="/images/logo.png" alt="サークルブック"></h1>
     <div class="users-txt">
@@ -14,9 +14,48 @@
           <% end %>
     </div>
 
-	<%= render "/users/search.html.erb" %>
+    <div class="search_wrap">
+      <div class="search_word">
+        <%= form_tag('/users/search', method: :get, enforce_utf8: false) do %>
+            <input id="page_name" name='kw' size="30" type="text" placeholder="<%= @search_word %>" value="<%= params[:kw] %>" class="search_area"/>
+              <div class="search_icon">
+                <%= submit_tag("検索", :name => nil) %>
+            </div>
+        <% end %>
+        <div class="search_word_announce">※複数の単語はスペースで区切ってください</div>
+      </div>
+    </div>
 
-  <%= render "users_list.html.erb" %>
+    <div class="top_contents bg_blue">
+      <div class="top_heading">
+          <h2 class="sub_title">サークルをジャンルから探す</h2>
+          <a class="" href="">
+            ジャンル一覧
+          </a>
+      </div>
+
+      <div class="readmore">
+          <input id="check1" class="readmore-check" type="checkbox">
+          <div class="readmore-content">
+            <ul class="events-menus">
+              <% @events.each do |event| %>
+                <li>
+                  <%= link_to("/#{event.ruby}") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/events/<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
+                      <div class="link_txt"><%= event.name %></div>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <label class="readmore-label" for="check1"></label>
+      </div>
+
+    </div>
+
+
 
 
   </div>

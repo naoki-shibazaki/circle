@@ -2135,16 +2135,16 @@ li.current_page{
 }
 @media (min-width: 768px) {/* PCのときはページの真ん中の600x600領域 */
 .popupModal1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .modalPopup2{
-         width: 600px;
-         height: 600px;
-         padding: 30px;
+  width: 600px;
+  height: 600px;
+  padding: 30px;
 
     }
 .popupModal1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label {
-     left: 50% !important;
-     top: 50% !important;
-     margin-left: 270px !important;
-     margin-top: -310px !important;
+  left: 50% !important;
+  top: 50% !important;
+  margin-left: 270px !important;
+  margin-top: -310px !important;
 }
 }
 
@@ -7030,6 +7030,110 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     font-weight: 700;
   }
 }
+
+
+.top_page{
+  .top_contents{
+    margin-top: 0.8rem;
+    padding: 18px 14px 60px;
+    border-top: 1px solid #eeece4;
+    border-bottom: 1px solid #eeece4;
+    .top_heading{
+      display: flex;
+      margin-bottom: 16px;
+      color: #13131e;
+      align-items: baseline;
+      justify-content: space-between;
+      .sub_title{
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+    .readmore{
+      position: relative;
+      box-sizing: border-box;
+    }
+    .readmore-content{
+        position: relative;
+        overflow: hidden;
+        height: 284px;
+    }
+    .readmore-content::before {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        content: "";
+        /*以下お好み グラデーションの色と高さ 高さはreadmoreのheight以下にすること*/
+        height: 50px;
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.8) 50%, #fff 100%);
+        background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.8) 50%, #fff 100%);
+    }
+    /* もっと見るボタン */
+    .readmore-label{
+      display: table;
+      bottom: -30px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      margin: 0 auto;
+      z-index: 2;
+      padding: 0 10px;
+      border-radius: 10px;
+      color: #686a6a;
+    }
+    .readmore-label:before{
+        content: '＋ もっと見る';
+    }
+    .readmore-check{
+        display: none;
+    }
+    /*チェック時にボタンを非表示*/
+    .readmore-check:checked ~ .readmore-label{
+        position: static;
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+    .readmore-check:checked ~ .readmore-label:before{
+        content: '− 閉じる';
+    }
+    /*チェック時に高さを自動に戻す*/
+    .readmore-check:checked ~ .readmore-content{
+        height: auto;
+    }
+    /*チェック時グラデーション等を削除*/
+    .readmore-check:checked ~ .readmore-content::before {
+        display: none;
+    }
+  }
+
+  .events-menus {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .bg_blue{
+    background-color: #f2fbff;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // --------------------------------------
 // ▼PC
