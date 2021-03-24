@@ -60,6 +60,7 @@ Rails.application.routes.draw do
 	get 'login' , to: 'users#login'
 	get 'admin_users' , to: 'users#admin_users'
 	get 'webmaster' , to: 'users#webmaster'
+  get 'admin_user_list' , to: 'users#admin_user_list'
 	# get 'questions' , to: 'questions#questions'
 	# get 'collections' , to: 'collections#collections'
 	get 'event_questions' , to: 'event_questions#event_questions'
