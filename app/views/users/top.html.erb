@@ -31,9 +31,7 @@
 
       <div class="top_heading">
           <h2 class="sub_title">サークルをジャンルから探す</h2>
-          <a class="" href="">
-            ジャンル一覧
-          </a>
+
       </div>
 
       <div class="readmore">
@@ -56,6 +54,8 @@
       </div>
 
     </div>
+
+
 
     <div class="top_contents bg_blue">
 
@@ -146,6 +146,39 @@
       </div>
 
     </div>
+
+    <div class="top_contents bg_green">
+
+      <div class="top_heading">
+          <h2 class="sub_title">対戦相手をジャンルから探す</h2>
+
+      </div>
+
+      <div class="readmore">
+          <input id="check2-1" class="readmore-check" type="checkbox">
+          <div class="readmore-content">
+            <ul class="events-menus">
+              <% @match_events.each do |match_event| %>
+                <li>
+                  <%= link_to("/match/#{match_event.ruby}") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/events/<%= match_event.ruby %>.jpg" alt="<%= match_event.name %>" class="lazyload">
+                      <div class="link_txt"><%= match_event.name %></div>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <label class="readmore-label" for="check2-1"></label>
+      </div>
+
+    </div>
+
+
+
+
+
 
 
   </div>
