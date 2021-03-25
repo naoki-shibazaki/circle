@@ -16,6 +16,7 @@
 
     <div class="search_wrap">
       <div class="search_word">
+        <h2 class="search_title">キーワードからサークルを探す</h2>
         <%= form_tag('/users/search', method: :get, enforce_utf8: false) do %>
             <input id="page_name" name='kw' size="30" type="text" placeholder="<%= @search_word %>" value="<%= params[:kw] %>" class="search_area"/>
               <div class="search_icon">
@@ -27,6 +28,7 @@
     </div>
 
     <div class="top_contents bg_blue">
+
       <div class="top_heading">
           <h2 class="sub_title">サークルをジャンルから探す</h2>
           <a class="" href="">
@@ -55,7 +57,73 @@
 
     </div>
 
+    <div class="top_contents bg_blue">
 
+      <div class="top_heading">
+          <h2 class="sub_title">サークルをエリアから探す</h2>
+          <a class="" href="">
+            エリア一覧
+          </a>
+      </div>
+
+      <div class="readmore">
+          <input id="check2" class="readmore-check" type="checkbox">
+          <div class="readmore-content">
+            <ul class="events-menus">
+                <li>
+                  <%= link_to("/prefectures/tokyo") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/tokyo.jpg" alt="東京" class="lazyload">
+                      <div class="link_txt">東京</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/prefectures/tokyo") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/tokyo.jpg" alt="東京" class="lazyload">
+                      <div class="link_txt">東京</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/prefectures/tokyo") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/tokyo.jpg" alt="東京" class="lazyload">
+                      <div class="link_txt">東京</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/prefectures/tokyo") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/tokyo.jpg" alt="東京" class="lazyload">
+                      <div class="link_txt">東京</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/prefectures/tokyo") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/tokyo.jpg" alt="東京" class="lazyload">
+                      <div class="link_txt">東京</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/prefectures/tokyo") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/tokyo.jpg" alt="東京" class="lazyload">
+                      <div class="link_txt">東京</div>
+                    </div>
+                  <% end %>
+                </li>
+            </ul>
+          </div>
+          <label class="readmore-label" for="check2"></label>
+      </div>
+
+    </div>
 
 
   </div>
