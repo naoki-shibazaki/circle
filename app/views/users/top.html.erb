@@ -61,9 +61,7 @@
 
       <div class="top_heading">
           <h2 class="sub_title">サークルをエリアから探す</h2>
-          <a class="" href="">
-            エリア一覧
-          </a>
+
       </div>
 
       <div class="readmore">
@@ -176,8 +174,122 @@
     </div>
 
 
+  <div class="top_contents bg_green">
+
+      <div class="top_heading">
+          <h2 class="sub_title">対戦相手をエリアから探す</h2>
+
+      </div>
+
+      <div class="readmore">
+          <input id="check2-2" class="readmore-check" type="checkbox">
+          <div class="readmore-content pref-menus">
+            <ul class="events-menus">
+                <li>
+                  <%= link_to("/match/prefectures/tokyo") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/tokyo.jpg" alt="東京" class="lazyload">
+                      <div class="link_txt">東京</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/match/prefectures/kanagawa") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/kanagawa.jpg" alt="神奈川" class="lazyload">
+                      <div class="link_txt">神奈川</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/match/prefectures/aichi") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/aichi.jpg" alt="愛知" class="lazyload">
+                      <div class="link_txt">愛知</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/match/prefectures/osaka") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/osaka.jpg" alt="大阪" class="lazyload">
+                      <div class="link_txt">大阪</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/match/prefectures/kyoto") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/kyoto.jpg" alt="京都" class="lazyload">
+                      <div class="link_txt">京都</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/match/prefectures/fukuoka") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/fukuoka.jpg" alt="福岡" class="lazyload">
+                      <div class="link_txt">福岡</div>
+                    </div>
+                  <% end %>
+                </li>
+            </ul>
+
+            <ul class="prefectures-menus place_meus">
+              <% @prefectures.each do |prefecture| %>
+                  <% if prefecture.group != @x %>
+                    <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+                      <li>
+                        <%= link_to "/match/prefectures/#{prefecture.kana}" do %>
+                          <%= prefecture.name %>
+                        <% end %>
+                      </li>
+                    <% @x = prefecture.group %>
+                  <% else %>
+                      <li>
+                        <%= link_to "/match/prefectures/#{prefecture.kana}" do %>
+                          <%= prefecture.name %>
+                        <% end %>
+                      </li>
+                  <% end %>
+              <% end %>
+            </ul>
 
 
+          </div>
+          <label class="readmore-label" for="check2-2"></label>
+      </div>
+
+    </div>
+
+
+    <div class="top_contents bg_yellow">
+
+      <div class="top_heading">
+          <h2 class="sub_title">コートや体育館、施設を探す</h2>
+
+      </div>
+
+      <div class="readmore">
+          <input id="check3-1" class="readmore-check" type="checkbox">
+          <div class="readmore-content">
+            <ul class="events-menus">
+              <% @place_events.each do |place_event| %>
+                <li>
+                  <%= link_to("/places/#{place_event.ruby}") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/events/<%= place_event.ruby %>.jpg" alt="<%= place_event.name %>" class="lazyload">
+                      <div class="link_txt"><%= place_event.name %></div>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <label class="readmore-label" for="check3-1"></label>
+      </div>
+
+    </div>
 
 
 
