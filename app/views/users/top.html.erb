@@ -37,7 +37,7 @@
       </div>
 
       <div class="readmore">
-          <input id="check1" class="readmore-check" type="checkbox">
+          <input id="check1-1" class="readmore-check" type="checkbox">
           <div class="readmore-content">
             <ul class="events-menus">
               <% @events.each do |event| %>
@@ -52,7 +52,7 @@
               <% end %>
             </ul>
           </div>
-          <label class="readmore-label" for="check1"></label>
+          <label class="readmore-label" for="check1-1"></label>
       </div>
 
     </div>
@@ -67,7 +67,7 @@
       </div>
 
       <div class="readmore">
-          <input id="check2" class="readmore-check" type="checkbox">
+          <input id="check1-2" class="readmore-check" type="checkbox">
           <div class="readmore-content pref-menus">
             <ul class="events-menus">
                 <li>
@@ -119,8 +119,30 @@
                   <% end %>
                 </li>
             </ul>
+
+            <ul class="prefectures-menus place_meus">
+              <% @prefectures.each do |prefecture| %>
+                  <% if prefecture.group != @x %>
+                    <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+                      <li>
+                        <%= link_to "/prefectures/#{prefecture.kana}" do %>
+                          <%= prefecture.name %>
+                        <% end %>
+                      </li>
+                    <% @x = prefecture.group %>
+                  <% else %>
+                      <li>
+                        <%= link_to "/prefectures/#{prefecture.kana}" do %>
+                          <%= prefecture.name %>
+                        <% end %>
+                      </li>
+                  <% end %>
+              <% end %>
+            </ul>
+
+
           </div>
-          <label class="readmore-label" for="check2"></label>
+          <label class="readmore-label" for="check1-2"></label>
       </div>
 
     </div>
