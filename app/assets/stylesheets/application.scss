@@ -6380,10 +6380,14 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .more_link{
+    color: #337ab7;
+    text-decoration: underline;
+    font-weight: 700;
   a {
-      color: #337ab7;
-      text-decoration: underline;
-  }  
+    color: #337ab7;
+    text-decoration: underline;
+    font-weight: 700;
+  }
 }
 
 
@@ -7121,10 +7125,16 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     }
   }
 
+  .top_contents_btm{
+    padding-bottom: 20px;
+  }
+
   .events-menus {
     width: 100%;
     margin: 0 auto;
   }
+
+
 
   .bg_blue{
     background-color: #f2fbff;

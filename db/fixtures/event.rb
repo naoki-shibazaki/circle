@@ -68,7 +68,7 @@ Event.seed(:id,
   { :id => 40, :category_id => 10, :order => "1002", :name => "演劇" , :ruby => "theater",  :matching => 0, :place => 0, :openchat => "", :txt => "演劇サークル" },
 
   # ゲーム
-  { :id => 11, :category_id => 11, :order => "1101", :name => "ボードゲーム" , :ruby => "game",  :matching => 1, :place => 0, :openchat => "", :txt => "ボードゲームサークル" },
+  { :id => 11, :category_id => 11, :order => "1101", :name => "ゲーム" , :ruby => "game",  :matching => 1, :place => 0, :openchat => "", :txt => "ボードゲームサークル" },
   { :id => 41, :category_id => 11, :order => "1102", :name => "ダーツ・ビリヤード" , :ruby => "darts",  :matching => 0, :place => 0, :openchat => "", :txt => "ダーツ・ビリヤードサークル" },
   { :id => 42, :category_id => 11, :order => "1103", :name => "麻雀" , :ruby => "mahjong",  :matching => 0, :place => 0, :openchat => "", :txt => "麻雀サークル" },
 
