@@ -45,10 +45,6 @@ Rails.application.routes.draw do
     resources :differences
 	end
 
-	scope '/coat' do
-		resources :places, except: [:index, :show]
-	end
-
 	root 'users#top'
 
 	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
@@ -107,6 +103,9 @@ Rails.application.routes.draw do
 	get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
 
   # コート情報
+	scope 'coat' do
+		resources :places, except: [:index, :show]
+	end
 	get 'places' , to: 'places#index'
 	get 'places/count' , to: 'places#count'
 	get 'places/all/:kana/:city_kana/:id' , to: 'places#show_noindex'

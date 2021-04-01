@@ -147,10 +147,10 @@ class PlacesController < ApplicationController
 
 	private
 	def correct_user
-    if admin_user_signed_in?
+    if current_admin_user.id == 1 || current_admin_user.id == 2197
     else
         flash[:notice] = "権限がありません"
-        redirect_to places_path
+        redirect_to "/places"
     end
   end
 
@@ -161,7 +161,7 @@ class PlacesController < ApplicationController
       if current_admin_user.id == 1
       else
         flash[:notice] = "権限がありません"
-        redirect_to places_path
+        redirect_to "/places"
       end
     end
 	end
