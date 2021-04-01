@@ -1,12 +1,12 @@
 class OpinionsController < ApplicationController
 
-	def create	
+	def create
 		@user = User.find_by(id: params[:user_id])
 		@user.opinions.create(opinion_params)
 		@opinion = @user.opinions.last
 
 		if @opinion.save
-			OpinionMailer.send_opinion(@opinion).deliver
+			OpinionMailer.send_opinion(@opinion, @user).deliver
 			flash[:notice] = "送信ありがとうございます！"
 			redirect_to "/users/#{@user.id}/mypage"
 

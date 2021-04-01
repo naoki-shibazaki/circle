@@ -2,7 +2,7 @@
   og: {
     title: "#{@user.name}の質問コーナーです！",
     description: "",
-    image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:#{@question_sample},y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
+    image: image_url('/images/qa_top.jpg')
   },
   twitter: { card: 'summary_large_image'} 
 %>
@@ -21,10 +21,10 @@
 			  <span class="ribbon red">未回答</span>
 			<% else %>
 		  		<span class="ribbon green">回答済み</span>
-			<% end %>						
+			<% end %>
 		</div>
 
-		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question_sample %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question_sample %>">	
+		<img src="https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60:<%= @question_sample %>,y_-35,co_rgb:333333,w_900,c_fit/v1586676520/qa_vipkmx.jpg" alt="<%= @question_sample %>">
 	</div>
 
 
@@ -46,15 +46,15 @@
 
 						<%= form_for ([@user, @question]) do |f| %>
 
-						    <%= f.hidden_field :content, :value => @question_sample %>
+              <%= f.hidden_field :content, :value => @question_sample %>
 
-							<%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！" %> 
-			
-							<div class="submit_btn">
-								<input type="submit" name="commit" value="回答する" data-disable-with="回答する">
-							</div>
+              <%= f.text_area :answer, class: 'form-control form-note', placeholder: "回答を書いてください！" %> 
 
-							<div class="reset"></div>
+              <div class="submit_btn">
+                <input type="submit" name="commit" value="回答する" data-disable-with="回答する">
+              </div>
+
+              <div class="reset"></div>
 
 						<% end %>
 
@@ -62,15 +62,6 @@
 
 				<% end %>
 			<% end %>
-
-
-				<div class="qa_tw_share">
-					<div class="share_btn_tw">
-					    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@question.answer}%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
-					      <i class="fa fa-twitter"></i>回答をTwitterでシェアする！
-					    <% end %>
-					</div>
-				</div>
 
 			</div>
 
