@@ -67,6 +67,11 @@ class PlacesController < ApplicationController
     amp_set
 	end
 
+	def no_index
+    @places = Place.all.includes(:prefecture).order("prefectures.sort asc")
+  end
+
+
 	def show_noindex
 		@place = Place.find(params[:id])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
@@ -104,7 +109,7 @@ class PlacesController < ApplicationController
 	end
 
 	def count
-  @places = Place.group(:user_id).count(:user_id)
+    @places = Place.group(:user_id).count(:user_id)
 	end
 
 	def event

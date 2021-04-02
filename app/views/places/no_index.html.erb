@@ -1,0 +1,17 @@
+<% set_meta_tags noindex: true, nofollow: true %>
+
+<div class="main user-show">
+  <div class="container">
+
+    <h1 class="users-heading">コート情報一覧</h1>
+
+    <div class="users-index-item">
+      <% @places.each do |place| %>
+        <%= place.prefecture.name %>：
+        <%= link_to place.name, "/places/all/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}" %><br>
+      <% end %>
+		</div>
+
+  </div>
+</div>
+
