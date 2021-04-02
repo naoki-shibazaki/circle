@@ -68,7 +68,7 @@ class PlacesController < ApplicationController
 	end
 
 	def no_index
-    @places = Place.all.includes(:prefecture).order("prefectures.sort asc")
+    @places = Place.all
   end
 
 
