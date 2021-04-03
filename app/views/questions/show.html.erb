@@ -84,14 +84,14 @@
 
 
 				<% if admin_user_signed_in?  %>
-					<% if @user.admin_user_id == current_admin_user.id %>
+					<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
 
 						<div class="qa_tw_share">
-							    <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@question.answer}%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
-									<div class="share_btn_tw">
-									     <i class="fa fa-twitter"></i>回答をTwitterでシェアする！
-									</div>
-							    <% end %>
+              <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@question.answer}%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
+              <div class="share_btn_tw">
+                    <i class="fa fa-twitter"></i>回答をTwitterでシェアする！
+              </div>
+              <% end %>
 						</div>
 
 					<% end %>
