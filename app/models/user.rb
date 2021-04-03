@@ -71,7 +71,7 @@ class User < ApplicationRecord
 
   # User_検索用
 	scope :search_word, ->(keyword) do
-		where("name LIKE ?", "%#{keyword}%").
+    where("LOWER(name) LIKE ?", "%#{keyword.downcase}%").
 		or(where("schedule LIKE ?", "%#{keyword}%")).
 		or(where("area LIKE ?", "%#{keyword}%")).
 		or(where("recruitment LIKE ?", "%#{keyword}%")).
