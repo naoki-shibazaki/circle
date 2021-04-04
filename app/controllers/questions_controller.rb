@@ -132,7 +132,7 @@ class QuestionsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
 
     @question_first = "活動頻度を教えてください！"
-    @question_second = "男女比を教えてください"
+    @question_second = "１人でも参加しやすいですか？"
     @question_third = "メンバーの年齢層はどれくらいですか？"
 
     if @user.present?
