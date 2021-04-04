@@ -80,7 +80,7 @@ class User < ApplicationRecord
 		or(where("goal LIKE ?", "%#{keyword}%")).
 		or(where("grouping LIKE ?", "%#{keyword}%")).
 		or(where("average_age LIKE ?", "%#{keyword}%")).
-		or(where("appeal LIKE ?", "%#{keyword}%"))
+		or(where("LOWER(appeal) LIKE ?", "%#{keyword.downcase}%"))
 	end
 
 	# Tag用
