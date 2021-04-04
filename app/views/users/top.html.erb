@@ -172,7 +172,7 @@
               </div>
               <div class="list_03">
                 <span class="user_area">
-                  <i class="fa fa-map-marker "></i><%= user.area %>
+                  <i class="fa fa-map-marker "></i><%= user.prefecture.name %><% if user.area.present? %>：<%= user.area %><% end %>
                 </span>
               </div>
             </li>
@@ -301,6 +301,54 @@
           </div>
           <label class="readmore-label" for="check2-2"></label>
       </div>
+
+    </div>
+
+
+    <div class="top_contents top_contents_btm bg_green">
+
+      <div class="top_heading">
+          <h2 class="sub_title"><i class="fa fa-flag-checkered "></i> 対戦相手を募集中のサークル</h2>
+      </div>
+
+      <ul class="user_slide_wrap">
+        <% @match_users.first(7).each do |m_user| %>
+          <%= link_to(match_path(m_user.id)) do %>
+            <li class="user_slide_list">
+              <div class="user_list_header">
+                <%= lazysizes_image_tag m_user.user.pic_profile.url , class:'image_icon' %>
+                <h3 class="user_name"><%= m_user.user.name.truncate(20) %></h3>
+              </div>
+              <div class="clear"></div>
+              <div class="list_02">
+                <span class="user_area">
+                  <i class="fa fa-users "></i><%= m_user.user.event.name %>
+                </span>
+              </div>
+              <div class="list_02">
+                <span class="user_area">
+                  <i class="fa fa-map-marker"></i><%= m_user.user.prefecture.name %>
+                </span>
+              </div>
+              <div class="list_03">
+                <span class="user_area">
+                  <i class="fa fa-trophy"></i><%= m_user.level %>
+                    <% if m_user.level == "初級" %>
+                      （★☆☆）
+                    <% elsif m_user.level == "中級" %>
+                      （★★☆）
+                    <% elsif m_user.level == "上級" %>
+                      （★★★）
+                    <% else %>
+                    <% end %>
+                </span>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+
+      <%= link_to ">>もっと見る", "/matches", class: "more_link" %>
 
     </div>
 

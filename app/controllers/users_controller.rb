@@ -12,6 +12,7 @@ helper_method :link_count
 		@prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
 		@match_events = Event.where(matching: 1).order(:order => :asc)
 		@place_events = Event.where(place: 1).order(:order => :asc)
+    @match_users = Match.where(recruit: "募集中").order(updated_at: "DESC")
   end
 
 	def index

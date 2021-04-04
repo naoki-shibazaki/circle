@@ -11,29 +11,27 @@ before_action :set_matches
 	def new
 		@user = User.find(params[:user_id])
 
-	    if admin_user_signed_in? #ログイン判定
+    if admin_user_signed_in? #ログイン判定
 
-	    	if @user.match.blank? #未登録
-				
-	    		if params[:count] == "new"
-	    			flash[:notice] = "必要情報を登録してください"
-	    		end
+      if @user.match.blank? #未登録
+        if params[:count] == "new"
+          flash[:notice] = "必要情報を登録してください"
+        end
+        @match = Match.new
 
-				@match = Match.new
+        if @user.event.matching == 0
+            flash[:notice] = "#{@user.event.name}は登録できません"
+            redirect_to root_path
+        end
 
-				if @user.event.matching == 0
-				    flash[:notice] = "#{@user.event.name}は登録できません"
-				    redirect_to root_path
-				end
+      else #登録済み
+        redirect_to edit_match_path(@user.id)
+      end
 
-			else #登録済み
-				redirect_to edit_match_path(@user.id)
-			end
-
-    	else
-		    flash[:notice] = "登録が必要です"
-		    redirect_to root_path
-    	end	
+    else
+      flash[:notice] = "登録が必要です"
+      redirect_to root_path
+    end
 
 	end
 
@@ -50,7 +48,7 @@ before_action :set_matches
 			redirect_to match_path(@match.id)
 		else
 			render "edit"
-		end	
+		end
 
 
 	end
