@@ -128,7 +128,7 @@
     <!-- 半角 => 全角　変換 -->
     <script>
       $(function(){
-          $("#change_letter , #change_dummy").change(function(){
+          $("#change_letter , #change_dummy, #change_qa").change(function(){
               var str = $(this).val();
               str = str.replace(  /[A-Za-z0-9-!"#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
                   return String.fromCharCode(s.charCodeAt(0) + 65248);

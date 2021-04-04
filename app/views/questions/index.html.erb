@@ -30,7 +30,7 @@
 				<div class="qa_answer_form">
 					<%= form_for ([@user, @question]) do |f| %>
 
-						<%= f.text_area :content, class: 'form-control form-note', placeholder: "質問を書いてください！（80文字以内）" %> 
+						<%= f.text_area :content, class: 'form-control form-note', id: 'change_qa', placeholder: "質問を書いてください！（80文字以内）" %>
 
 							<div class="actions">
                 <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
@@ -39,9 +39,9 @@
 						<div class="reset"></div>
 
 					<% end %>
-			 	 </div>
+        </div>
 
-		 	 <% end %>
+      <% end %>
 
 
 			<% if admin_user_signed_in?  %>
