@@ -66,7 +66,7 @@
 						<div class="qa_answer_form">
               <%= form_for ([@user,@question]) do |f| %>
 
-                <%= f.text_area :answer, class: 'form-control form-note', id: 'change_question' ,placeholder: "回答を書いてください！" %>
+                <%= f.text_area :answer, class: 'form-control form-note change_question' ,placeholder: "回答を書いてください！" %>
 
                 <% if @question.answer.present? %>
                       <input type="submit" name="commit" value="編集する" data-disable-with="編集する" class="submit_btn">
@@ -174,7 +174,7 @@
 <!-- 半角 => 全角　変換 -->
 <script>
   $(function(){
-      $("#change_question").change(function(){
+      $(".change_question").change(function(){
           var str = $(this).val();
           str = str.replace(  /["#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
               return String.fromCharCode(s.charCodeAt(0) + 65248);
