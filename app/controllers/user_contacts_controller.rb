@@ -55,7 +55,7 @@ class UserContactsController < ApplicationController
 
     # 荒らし対応
     @same_contacts = UserContact.where(ip_address: @user_contact.ip_address, message: @user_contact.message)
-    if @same_contacts.count >= 9 # 10回目からブロック
+    if @same_contacts.count >= 6 # 7回目からブロック
       @user_contact.account_block = "block"
     end
 
