@@ -30,7 +30,7 @@
 				<div class="qa_answer_form">
 					<%= form_for ([@user, @question]) do |f| %>
             <%= render 'layouts/error_messages', model: f.object %>
-						<%= f.text_area :content, class: 'form-control form-note', id: 'change_qa', placeholder: "質問を書いてください！（80文字以内）" %>
+						<%= f.text_area :content, class: 'form-control form-note change_question', placeholder: "質問を書いてください！（80文字以内）" %>
 
 							<div class="actions">
                 <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
@@ -148,3 +148,16 @@
 
   </div>
 </div>
+
+<!-- 半角 => 全角　変換 -->
+<script>
+  $(function(){
+      $(".change_question").change(function(){
+          var str = $(this).val();
+          str = str.replace(  /["#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
+              return String.fromCharCode(s.charCodeAt(0) + 65248);
+          });
+          $(this).val(str);
+      }).change();
+  });
+</script>
