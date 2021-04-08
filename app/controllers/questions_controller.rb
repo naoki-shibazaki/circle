@@ -37,7 +37,13 @@ class QuestionsController < ApplicationController
 
 	end
 
+	def edit
+    @questions = Question.where(user_id: params[:user_id]).order(id: "DESC")
+	end
+
 	def create
+    @questions = Question.where(user_id: params[:user_id]).order(id: "DESC")
+
 		if @user.questions.create(question_params)
 
 			@question = @user.questions.last
@@ -66,8 +72,7 @@ class QuestionsController < ApplicationController
         @db_validation_error.content_01 = @question.content
         @db_validation_error.save
 
-				flash[:notice] = 'NGワードが含まれています'
-				redirect_to user_questions_path(@user)
+				render "/questions/edit"
 			end
 
 		else
@@ -111,9 +116,7 @@ class QuestionsController < ApplicationController
 
 	end
 
-	def edit
 
-	end
 
 	def destroy
 		@question = @user.questions.find(params[:id])
