@@ -77,7 +77,7 @@ class UserContactsController < ApplicationController
       @db_validation_error = DbValidationError.new
       @db_validation_error.name = "UserContact" + "_#{@user_contact.entry}"
       @db_validation_error.content_01 = @user_contact.name
-      @db_validation_error.content_02 = @user_contact.mail
+      @db_validation_error.content_02 = @user_contact.mail + "/" + @user_contact.mail_confirmation
       @db_validation_error.content_03 = @user_contact.message
       @db_validation_error.save
       render "/user_contacts/edit"
@@ -128,7 +128,7 @@ class UserContactsController < ApplicationController
 
 private
 	def user_contact_params
-		params.require(:user_contact).permit(:mail, :name, :message, :entry, :respond_check, :random_id, :ip_address, :account_block)
+		params.require(:user_contact).permit(:mail, :mail_confirmation, :name, :message, :entry, :respond_check, :random_id, :ip_address, :account_block)
 	end
 
 	def set_users

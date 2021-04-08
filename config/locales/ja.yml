@@ -30,5 +30,6 @@ ja:
     attributes:
       user_contact:
         mail: メールアドレス
+        mail_confirmation: 確認用メールアドレス
         name: 名前
         message: お問い合わせ内容

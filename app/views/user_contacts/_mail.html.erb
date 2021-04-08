@@ -17,6 +17,12 @@
           </div>
 
           <div class="field">
+            <p>確認用メールアドレス（必須）</p>
+            <span class="cautions">※同じアドレスをご記入ください</span>
+            <%= f.text_field :mail_confirmation, class: 'form-control', id: 'change_mail', placeholder: "circlebook47@gmail.com" %>
+          </div>
+
+          <div class="field">
             <p>お問い合わせ内容（必須）</p>
             <%= f.text_area :message, class: 'form-control form-note', placeholder: "#{@place_holder}" %>
           </div>
