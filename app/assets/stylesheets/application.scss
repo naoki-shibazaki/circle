@@ -7157,6 +7157,15 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 }
 
+.ad_center{
+  display: block;
+  margin: 6px auto 18px;
+  text-align: center;
+  .ad_300_250{
+    width: 300px;
+    height: 250px;
+  }
+}
 
 
 

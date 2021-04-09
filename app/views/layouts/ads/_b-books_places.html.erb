@@ -1,0 +1,44 @@
+<% if request.format == :amp %>
+
+
+<% else %>
+  <% if @event.ruby == "basketball" %>
+
+    <% case @prefecture.kana %>
+    <% when "tokyo" %>
+      <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
+      <div class="ad_center ">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13">
+          <img class="" src="/images/ads/b-books_300_250.jpg">
+        </a>
+      </div>
+    <% when "kanagawa" %>
+      <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
+      <div class="ad_center ">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13">
+          <img class="" src="/images/ads/b-books_300_250.jpg">
+        </a>
+      </div>
+
+    <% when "chiba" %>
+      <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
+      <div class="ad_center ">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13">
+          <img class="" src="/images/ads/b-books_300_250.jpg">
+        </a>
+      </div>
+
+    <% when "fukuoka" %>
+      <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
+      <div class="ad_center ">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13">
+          <img class="" src="/images/ads/b-books_300_250.jpg">
+        </a>
+      </div>
+
+    <% else %>
+
+    <% end %>
+
+  <% end %>
+<% end %>
