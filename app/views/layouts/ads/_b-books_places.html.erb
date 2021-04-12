@@ -1,5 +1,62 @@
 <% if request.format == :amp %>
 
+    <% case @prefecture.kana %>
+    <% when "tokyo" %>
+      <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
+      <div class="ad_center ">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13&utm_source=circle-book&utm_medium=affi&utm_campaign=court_facility">
+          <amp-img class=""
+            src="/images/ads/b-books_300_250.jpg"
+            width="300px"
+            height="250px"
+            object-fit="cover">
+          </amp-img>
+        </a>
+      </div>
+    <% when "kanagawa" %>
+      <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
+      <div class="ad_center ">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=14&utm_source=circle-book&utm_medium=affi&utm_campaign=court_facility">
+          <amp-img class=""
+            src="/images/ads/b-books_300_250.jpg"
+            width="300px"
+            height="250px"
+            object-fit="cover">
+          </amp-img>
+        </a>
+      </div>
+
+    <% when "chiba" %>
+      <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
+      <div class="ad_center ">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=12&utm_source=circle-book&utm_medium=affi&utm_campaign=court_facility">
+          <amp-img class=""
+            src="/images/ads/b-books_300_250.jpg"
+            width="300px"
+            height="250px"
+            object-fit="cover">
+          </amp-img>
+        </a>
+      </div>
+
+    <% when "fukuoka" %>
+      <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
+      <div class="ad_center ">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=40&utm_source=circle-book&utm_medium=affi&utm_campaign=court_facility">
+          <amp-img class=""
+            src="/images/ads/b-books_300_250.jpg"
+            width="300px"
+            height="250px"
+            object-fit="cover">
+          </amp-img>
+        </a>
+      </div>
+
+    <% else %>
+
+    <% end %>
+
+
 
 <% else %>
   <% if @event.ruby == "basketball" %>
@@ -8,14 +65,14 @@
     <% when "tokyo" %>
       <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
       <div class="ad_center ">
-        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13&utm_source=circle-book&utm_medium=affi&utm_campaign=court_facility">
           <img class="" src="/images/ads/b-books_300_250.jpg">
         </a>
       </div>
     <% when "kanagawa" %>
       <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
       <div class="ad_center ">
-        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=14&utm_source=circle-book&utm_medium=affi&utm_campaign=court_facility">
           <img class="" src="/images/ads/b-books_300_250.jpg">
         </a>
       </div>
@@ -23,7 +80,7 @@
     <% when "chiba" %>
       <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
       <div class="ad_center ">
-        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=12&utm_source=circle-book&utm_medium=affi&utm_campaign=court_facility">
           <img class="" src="/images/ads/b-books_300_250.jpg">
         </a>
       </div>
@@ -31,7 +88,7 @@
     <% when "fukuoka" %>
       <div class="center">＼ <%= @prefecture.name %>で開催される<%= @event.name %>大会はコチラ ／</div>
       <div class="ad_center ">
-        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=13">
+        <a class="ad_300_250" href="https://b-books.jp/game/search.php?ym=&level=&pref=40&utm_source=circle-book&utm_medium=affi&utm_campaign=court_facility">
           <img class="" src="/images/ads/b-books_300_250.jpg">
         </a>
       </div>
