@@ -100,7 +100,13 @@
 
 <%= render "/layouts/ad_square" %>
 
-<%= paginate @places %>
+<% if request.format == :amp %>
+  <div class="pagination_wrap">
+    <%= paginate @places %>
+  </div>
 
+<% else %>
+  <%= paginate @places %>
 
+<% end %>
 
