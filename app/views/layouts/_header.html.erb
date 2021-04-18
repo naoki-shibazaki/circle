@@ -83,92 +83,97 @@
   </ul>
 
   <% if @path.is('users#show') || @path.is('users#mypage') || @path.is('blogs#show') || @path.is('blogs#user_blogs') || @path.is('blogs#gallery') || @path.is('schedules') || @path.is('questions') || @path.is('reviews#index') %>
-    <ul class="header_menue_btm">
-      <% if @path.is('users') %>
-        <li class="current_page"><span><%= link_to "トップ", user_path(@user) %></span></li>
-      <% else %>
-        <li><span><%= link_to "トップ", user_path(@user) %></span></li>
-      <% end %>
+    <% if @path.is('event_questions') %>
 
-      <% if @path.is('blogs#show') || @path.is('blogs#user_blogs') %>
-        <li class="current_page">
-          <span><%= link_to "ブログ", user_blogs_path(@user) %></span>
-          <div class="header_count"><%= @user.blogs.count %></div>
-        </li>
-      <% elsif @user.blogs.present? %>
-        <li>
-          <span><%= link_to "ブログ", user_blogs_path(@user) %></span>
-          <div class="header_count"><%= @user.blogs.count %></div>
-        </li>
-      <% else %>
-        <li class="none_page"><span>ブログ</span></li>
-      <% end %>
+    <% else %>
+      <ul class="header_menue_btm">
+        <% if @path.is('users') %>
+          <li class="current_page"><span><%= link_to "トップ", user_path(@user) %></span></li>
+        <% else %>
+          <li><span><%= link_to "トップ", user_path(@user) %></span></li>
+        <% end %>
 
-      <% @gallery_count = 0 %>
-      <% @user.blogs.each do |blog| %>
-        <% @gallery_count += 1 if blog.image_01.present? %>
-        <% @gallery_count += 1 if blog.image_02.present? %>
-        <% @gallery_count += 1 if blog.image_03.present? %>
-        <% @gallery_count += 1 if blog.image_04.present? %>
-      <% end %>
+        <% if @path.is('blogs#show') || @path.is('blogs#user_blogs') %>
+          <li class="current_page">
+            <span><%= link_to "ブログ", user_blogs_path(@user) %></span>
+            <div class="header_count"><%= @user.blogs.count %></div>
+          </li>
+        <% elsif @user.blogs.present? %>
+          <li>
+            <span><%= link_to "ブログ", user_blogs_path(@user) %></span>
+            <div class="header_count"><%= @user.blogs.count %></div>
+          </li>
+        <% else %>
+          <li class="none_page"><span>ブログ</span></li>
+        <% end %>
 
-      <% if @path.is('blogs#gallery') %>
-        <li class="current_page">
-          <span><%= link_to "写真", "/users/#{@user.id}/gallery" %></span>
-          <div class="header_count"><%= @gallery_count %></div>
-        </li>
-      <% elsif @gallery_count > 0 %>
-        <li>
-          <span><%= link_to "写真", "/users/#{@user.id}/gallery" %></span>
-          <div class="header_count"><%= @gallery_count %></div>
-        </li>
-      <% else %>
-        <li class="none_page"><span>写真</span></li>
-      <% end %>
+        <% @gallery_count = 0 %>
+        <% @user.blogs.each do |blog| %>
+          <% @gallery_count += 1 if blog.image_01.present? %>
+          <% @gallery_count += 1 if blog.image_02.present? %>
+          <% @gallery_count += 1 if blog.image_03.present? %>
+          <% @gallery_count += 1 if blog.image_04.present? %>
+        <% end %>
 
-      <% if @path.is('schedules') %>
-        <li class="current_page">
-          <span><%= link_to "活動日", user_schedules_path(@user) %></span>
-          <div class="header_count"><%= @user.schedules.count %></div>
-        </li>
-      <% elsif @user.schedules.present? %>
-        <li>
-          <span><%= link_to "活動日", user_schedules_path(@user) %></span>
-          <div class="header_count"><%= @user.schedules.count %></div>
-        </li>
-      <% else %>
-        <li class="none_page"><span>活動日</span></li>
-      <% end %>
+        <% if @path.is('blogs#gallery') %>
+          <li class="current_page">
+            <span><%= link_to "写真", "/users/#{@user.id}/gallery" %></span>
+            <div class="header_count"><%= @gallery_count %></div>
+          </li>
+        <% elsif @gallery_count > 0 %>
+          <li>
+            <span><%= link_to "写真", "/users/#{@user.id}/gallery" %></span>
+            <div class="header_count"><%= @gallery_count %></div>
+          </li>
+        <% else %>
+          <li class="none_page"><span>写真</span></li>
+        <% end %>
 
-      <% if @path.is('questions') %>
-        <li class="current_page">
-          <span><%= link_to "Ｑ＆Ａ", user_questions_path(@user) %></span>
-          <div class="header_count"><%= @user.questions.count %></div>
-        </li>
-      <% elsif @user.questions.present? %>
-        <li>
-          <span><%= link_to "Ｑ＆Ａ", user_questions_path(@user) %></span>
-          <div class="header_count"><%= @user.questions.count %></div>
-        </li>
-      <% else %>
-        <li class="none_page"><span>Ｑ＆Ａ</span></li>
-      <% end %>
+        <% if @path.is('schedules') %>
+          <li class="current_page">
+            <span><%= link_to "活動日", user_schedules_path(@user) %></span>
+            <div class="header_count"><%= @user.schedules.count %></div>
+          </li>
+        <% elsif @user.schedules.present? %>
+          <li>
+            <span><%= link_to "活動日", user_schedules_path(@user) %></span>
+            <div class="header_count"><%= @user.schedules.count %></div>
+          </li>
+        <% else %>
+          <li class="none_page"><span>活動日</span></li>
+        <% end %>
 
-      <% if @path.is('reviews') %>
-        <li class="current_page">
-          <span><%= link_to "口コミ", user_reviews_path(@user) %></span>
-          <div class="header_count"><%= @user.reviews.count %></div>
-        </li>
-      <% elsif @user.reviews.present? %>
-        <li>
-          <span><%= link_to "口コミ", user_reviews_path(@user) %></span>
-          <div class="header_count"><%= @user.reviews.count %></div>
-        </li>
-      <% else %>
-        <li class="none_page"><span>口コミ</span></li>
-      <% end %>
+        <% if @path.is('questions') %>
+          <li class="current_page">
+            <span><%= link_to "Ｑ＆Ａ", user_questions_path(@user) %></span>
+            <div class="header_count"><%= @user.questions.count %></div>
+          </li>
+        <% elsif @user.questions.present? %>
+          <li>
+            <span><%= link_to "Ｑ＆Ａ", user_questions_path(@user) %></span>
+            <div class="header_count"><%= @user.questions.count %></div>
+          </li>
+        <% else %>
+          <li class="none_page"><span>Ｑ＆Ａ</span></li>
+        <% end %>
 
-    </ul>
+        <% if @path.is('reviews') %>
+          <li class="current_page">
+            <span><%= link_to "口コミ", user_reviews_path(@user) %></span>
+            <div class="header_count"><%= @user.reviews.count %></div>
+          </li>
+        <% elsif @user.reviews.present? %>
+          <li>
+            <span><%= link_to "口コミ", user_reviews_path(@user) %></span>
+            <div class="header_count"><%= @user.reviews.count %></div>
+          </li>
+        <% else %>
+          <li class="none_page"><span>口コミ</span></li>
+        <% end %>
+
+      </ul>
+
+    <% end %>
   <% end %>
 
 <div>
