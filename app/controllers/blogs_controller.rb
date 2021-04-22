@@ -6,7 +6,9 @@ class BlogsController < ApplicationController
 
 
 	def index
-    @blogs = Blog.all.blog_sort.page(params[:page])
+		@users = User.user_hide
+		@users_id = @users.map{|u| u.id}
+		@blogs = Blog.where(user_id: @users_id).blog_sort.page(params[:page])
 
 		# パンくず
 		@b1_name = "ブログ"
