@@ -104,7 +104,9 @@ Rails.application.routes.draw do
 
   # コート情報
 	scope 'coat' do
-		resources :places, except: [:index, :show]
+		resources :places, except: [:index, :show] do
+      resources :place_reviews
+    end
 	end
 	get 'places' , to: 'places#index'
 	get 'places/count' , to: 'places#count'

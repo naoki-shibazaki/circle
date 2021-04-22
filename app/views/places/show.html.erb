@@ -118,6 +118,23 @@
         </table>
       </div>
 
+      <% if @place_reviews.present? %>
+        <% @place_reviews.reverse_each do |review| %>
+          <%= review.comment %><br>
+        <% end %>
+      <% end %>
+
+
+      <div class="schedule_input">
+        <%= form_for ([@place, @place_review]) do |f| %>
+          <p>コメント</p>
+          <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
+          <%= f.submit "投稿する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
+          <div class="reset"></div>
+        <% end %>
+      </div>
+
+
       <%= render "/places/link_to_user" %>
 
       <div class="g_map">

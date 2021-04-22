@@ -3,6 +3,7 @@ class Place < ApplicationRecord
 	belongs_to :city
 	belongs_to :user, optional: true
 
+  has_many :place_reviews, dependent: :destroy
   has_many :places_events, dependent: :destroy
   has_many :events, through: :places_events
 
