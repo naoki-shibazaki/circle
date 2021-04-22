@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_074340) do
+ActiveRecord::Schema.define(version: 2021_04_22_134559) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -281,16 +281,17 @@ ActiveRecord::Schema.define(version: 2021_04_22_074340) do
   end
 
   create_table "place_reviews", force: :cascade do |t|
-    t.string "facility"
-    t.string "reservation"
-    t.string "price"
-    t.string "access"
+    t.float "facility"
+    t.float "reservation"
+    t.float "price"
+    t.float "access"
     t.integer "event_id"
     t.string "ip_address"
     t.text "comment"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "average_score"
     t.index ["place_id"], name: "index_place_reviews_on_place_id"
   end
 

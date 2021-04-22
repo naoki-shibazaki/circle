@@ -7177,11 +7177,65 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   color: #a2a2a2;
 }
 
+.place_review_form{
+  display: block;
+
+  select {
+    width: 100%;
+    height: 30px;
+    margin: 0;
+  }
+
+  .select_review{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    word-break: break-all;
+    margin-bottom: 10px;
+    .item_left{
+      margin-right: 14px;
+      font-weight: 700;
+    }
+    .item_right{
+      height: 30px;
+    }
+  }
 
 
-
-
-
+  input{
+    height: 36px;
+    border: 1px solid #d8dadf;
+    padding: 10px;
+    color: #1c1e22;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-radius: 2px;
+  }
+  input[type="submit"] {
+    background-color: #3ecdc6;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    width: 120px;
+    border-radius: 2px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    float: right;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 
 

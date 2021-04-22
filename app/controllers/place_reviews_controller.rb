@@ -10,6 +10,8 @@ class PlaceReviewsController < ApplicationController
 	def create
 		@place.place_reviews.create(place_review_params)
 		@place_review = @place.place_reviews.last
+    @place_review.average_score = (@place_review.facility + @place_review.reservation + @place_review.price + @place_review.access)/4
+
     if @place_review.save
       flash[:notice] = "保存完了"
       redirect_back(fallback_location: root_path)
@@ -36,6 +38,7 @@ class PlaceReviewsController < ApplicationController
       :reservation,
       :price,
       :access,
+      :average_score,
       :event_id,
       :ip_address,
       :comment
