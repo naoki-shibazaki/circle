@@ -176,10 +176,11 @@
   $(function(){
       $(".change_question").change(function(){
           var str = $(this).val();
-          str = str.replace(  /["#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
-              return String.fromCharCode(s.charCodeAt(0) + 65248);
+          str = str.replace( /[!-~]/g, function(s) {
+              return String.fromCharCode(input.charCodeAt(0)+0xFEE0);
           });
           $(this).val(str);
       }).change();
   });
+
 </script>
