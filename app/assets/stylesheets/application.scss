@@ -7210,7 +7210,6 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     }
   }
 
-
   input{
     height: 36px;
     border: 1px solid #d8dadf;
@@ -7234,6 +7233,14 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.place_review_lists{
+  margin-bottom: 10px;
+  .place_review_updated{
+    font-size: 14px;
+    color: #a2a2a2;
   }
 }
 

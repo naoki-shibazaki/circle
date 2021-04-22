@@ -120,12 +120,18 @@
 
       <% if @place_reviews.present? %>
         <% @place_reviews.reverse_each do |review| %>
-          スコア：<%= review.average_score %><br>
-          <%= review.comment %><br>
+          <div class="place_review_lists">
+            <%= render "place_reviews/review_score", review_score: review.average_score.to_f %>
+            <div class="place_review_updated">
+              <%= review.updated_at.to_time.strftime("%Y年%-m月%-d日") %>にレビュー済み
+            </div>
+            <%= simple_format review.comment %>
+          </div>
         <% end %>
-      <% end %>
-
       <hr>
+      <% else %>
+
+      <% end %>
 
       <div class="place_review_form">
         <%= form_for ([@place, @place_review]) do |f| %>
