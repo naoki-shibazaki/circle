@@ -16,7 +16,7 @@
 
            <div class="header_img_wrap">
               <% if user.pic_header.present? %>
-                <%= lazysizes_image_tag user.pic_header.url , class:'header_imege_user_list', alt: "プロフィール｜#{user.name}" %>         
+                <%= lazysizes_image_tag user.pic_header.url , class:'header_imege_user_list', alt: "プロフィール｜#{user.name}" %>
               <% else %>
                 <%= lazysizes_image_tag user.pic_header.url , class:'header_imege_user_list' %>
               <% end %>
@@ -57,7 +57,7 @@
             <div class="l_space"></div>
           </div>
 
-   
+
     <%= link_to(user_path(user.id)) do %>  
 
               <%= lazysizes_image_tag user.pic_profile.url , class:'image_icon' %>

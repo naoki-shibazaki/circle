@@ -25,6 +25,10 @@
         </h2>
       </div>
 
+      <div class="place_updated">
+        更新日：<%= @place.updated_at.to_time.strftime("%Y年%-m月%-d日") %>
+      </div>
+
 			<% if admin_user_signed_in?  %>
 				<% if @place.user_id.to_i == @current_user.id.to_i || @current_user.id.to_i == 1 %>
           <div class="place_edit">
