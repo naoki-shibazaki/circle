@@ -208,6 +208,11 @@ class PlacesController < ApplicationController
 			:img_link,
 			:img_url,
 			:img_source,
+      :average_facility,
+      :average_reservation,
+      :average_price,
+      :average_access,
+      :average_score,
 			event_ids:[]
 		)
 	end

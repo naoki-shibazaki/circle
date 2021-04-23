@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_134559) do
+ActiveRecord::Schema.define(version: 2021_04_23_061011) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -317,6 +317,11 @@ ActiveRecord::Schema.define(version: 2021_04_22_134559) do
     t.string "img_link"
     t.string "img_url"
     t.string "img_source"
+    t.float "average_facility"
+    t.float "average_reservation"
+    t.float "average_price"
+    t.float "average_access"
+    t.float "average_score"
   end
 
   create_table "places_events", force: :cascade do |t|
