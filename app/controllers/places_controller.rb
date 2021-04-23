@@ -51,6 +51,8 @@ class PlacesController < ApplicationController
 
     @place_review = @place.place_reviews.build
     @place_reviews = PlaceReview.where(place_id: @place.id)
+    @ip = PlaceReview.where(place_id: @place.id, ip_address: request.remote_ip)
+
 
 		if @event.id.to_i != @place_event_id.to_i || @prefecture.id.to_i != @place.prefecture_id.to_i || @city.id.to_i != @place.city_id.to_i
 			flash[:notice] = 'URLが間違っています'

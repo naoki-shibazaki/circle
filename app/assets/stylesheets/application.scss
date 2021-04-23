@@ -7203,7 +7203,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     margin-bottom: 10px;
     .item_left{
       margin-right: 14px;
-      font-weight: 700;
+      font-weight: normal;
     }
     .item_right{
       height: 30px;
@@ -7244,6 +7244,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+.place_sub_title{
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  padding: 10px 0px 8px;
+}
 
 
 

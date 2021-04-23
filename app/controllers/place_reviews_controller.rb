@@ -24,6 +24,7 @@ class PlaceReviewsController < ApplicationController
     @place.average_price =  (sum_price / count_reviews.to_f)
     @place.average_access =  (sum_access / count_reviews.to_f)
     @place.average_reservation =  (sum_reservation / count_reviews.to_f)
+    @place.average_score = (sum_facility + sum_price + sum_access + sum_reservation)/(count_reviews * 4)
     @place.save
 
 
