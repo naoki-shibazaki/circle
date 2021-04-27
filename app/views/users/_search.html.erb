@@ -3,7 +3,7 @@
   <div class="search_word">
 
     <%= form_tag('/users/search', method: :get, enforce_utf8: false) do %>
-        <input id="page_name" name='kw' size="30" type="text" placeholder="<%= @search_word %>" value="<%= params[:kw] %>" class="search_area"/>
+        <input name='kw' size="30" type="text" placeholder="<%= @search_word %>" value="<%= params[:kw] %>" class="search_area change_font"/>
           <div class="search_icon">
             <%= submit_tag("検索", :name => nil) %>
         </div>
