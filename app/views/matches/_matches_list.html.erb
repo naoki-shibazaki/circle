@@ -4,13 +4,13 @@
 		<%= link_to match_path(matching.id) do %>
 			<div class="matching_card">
 
-		      <% if matching.user.pic_profile.present? %>
-		        <img src="<%= matching.user.pic_profile.url %>" alt="プロフィール｜<%= matching.user.name %>" class="matching_icon" />
-		      <% else %>
-		        <%= lazysizes_image_tag matching.user.pic_profile.url , class:'matching_icon' %>
-		      <% end %>
+        <% if matching.user.pic_profile.present? %>
+          <img src="<%= matching.user.pic_profile.url %>" alt="プロフィール｜<%= matching.user.name %>" class="matching_icon" />
+        <% else %>
+          <%= lazysizes_image_tag matching.user.pic_profile.url , class:'matching_icon' %>
+        <% end %>
 
-		      <h2 class="matching_name"><%= matching.user.name %></h2>
+        <h2 class="matching_name"><%= matching.user.name %></h2>
 
 				<div class="article_item article_padding">
 
@@ -19,18 +19,18 @@
 						<tr class="flex_contents">
 							<th class="flex_list">種目</th>
 							<td class="flex_list">
-						        <% if matching.user.event_id.present? %>
-						          <%= matching.user.event.name if matching.user.event_id? %><br>
-						        <% end %>
+                <% if matching.user.event_id.present? %>
+                  <%= matching.user.event.name if matching.user.event_id? %><br>
+                <% end %>
 							</td>
 						</tr>
 
 						<tr class="flex_contents">
 							<th class="flex_list">活動場所</th>
 							<td class="flex_list">
-						        <% if matching.user.prefecture_id.present? %>
-						        	<%= matching.user.prefecture.name if matching.user.prefecture_id? %>
-						        <% end %>							
+                <% if matching.user.prefecture_id.present? %>
+                  <%= matching.user.prefecture.name if matching.user.prefecture_id? %>
+                <% end %>
 							</td>
 						</tr>
 
@@ -51,7 +51,7 @@
 									（★☆☆）
 								<% elsif matching.level == "中級" %>
 									（★★☆）
-								<% elsif matching.level == "中級" %>
+								<% elsif matching.level == "上級" %>
 									（★★★）
 								<% else %>
 								<% end %>
@@ -60,10 +60,10 @@
 
 						</tbody>
 					</table>
-				</div>	
+				</div>
 
 			</div>
 		<% end %>
 
-    </div>	
+    </div>
 <% end %>
