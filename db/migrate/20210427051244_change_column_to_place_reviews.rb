@@ -1,8 +1,12 @@
 class ChangeColumnToPlaceReviews < ActiveRecord::Migration[5.2]
-  def up
-    change_column :place_reviews, :facility, :float
-    change_column :place_reviews, :reservation, :float
-    change_column :place_reviews, :price, :float
-    change_column :place_reviews, :access, :float
+  def change
+    remove_column :place_reviews, :facility, :float
+    remove_column :place_reviews, :reservation, :float
+    remove_column :place_reviews, :price, :float
+    remove_column :place_reviews, :access, :float
+    remove_column :place_reviews, :facility, :string
+    remove_column :place_reviews, :reservation, :string
+    remove_column :place_reviews, :price, :string
+    remove_column :place_reviews, :access, :string
   end
 end

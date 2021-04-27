@@ -281,10 +281,6 @@ ActiveRecord::Schema.define(version: 2021_04_27_051244) do
   end
 
   create_table "place_reviews", force: :cascade do |t|
-    t.float "facility"
-    t.float "reservation"
-    t.float "price"
-    t.float "access"
     t.integer "event_id"
     t.string "ip_address"
     t.text "comment"
