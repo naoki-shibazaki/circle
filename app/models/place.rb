@@ -17,9 +17,13 @@ class Place < ApplicationRecord
 
   paginates_per 10
 
-    # Place_検索用
+  # Place_検索用
 	scope :place_search_word, ->(keyword) do
-    where("LOWER(name) LIKE ?", "%#{keyword.downcase}%")
+    where("LOWER(name) LIKE ?", "%#{keyword.downcase}%").
+		or(where("address LIKE ?", "%#{keyword}%")).
+		or(where("parking LIKE ?", "%#{keyword}%")).
+		or(where("scale LIKE ?", "%#{keyword}%")).
+		or(where("access LIKE ?", "%#{keyword}%"))
 	end
 
 end

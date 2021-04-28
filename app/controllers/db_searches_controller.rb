@@ -2,7 +2,7 @@ class DbSearchesController < ApplicationController
   before_action :webmaster
 
   def index
-    @db_searches = DbSearch.all.page(params[:page])
+    @db_searches = DbSearch.all.order(id: "DESC").page(params[:page])
   end
 
   private

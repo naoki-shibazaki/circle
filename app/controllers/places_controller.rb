@@ -24,12 +24,20 @@ class PlacesController < ApplicationController
     #   @db_search.save
     # end
 
-		# Userモデルオブジェクト作成
+		# Placeモデルオブジェクト作成
 		@places = Place
 
 		# 検索ワードの数だけand検索を行う
 		keywords.each do |keyword|
-			@places = @places.place_search_word(keyword).page(params[:page])
+      @event_ids = Event.where("name LIKE ?", "%#{keyword}%").map { |e| e.id }
+			@place_event_ids = PlacesEvent.where(event_id: @event_ids).map { |u| u.place_id }
+      @prefecture_ids = Prefecture.where("name LIKE ?", "%#{keyword}%").map { |p| p.id }
+			@city_ids = City.where("name LIKE ?", "%#{keyword}%").map { |c| c.id }
+
+			@places = @places.place_search_word(keyword).
+      or(@places.where(id: @place_event_ids)).
+			or(@places.where(prefecture_id: @prefecture_ids)).
+			or(@places.where(id: @city_ids)).page(params[:page])
 		end
 
 	end
