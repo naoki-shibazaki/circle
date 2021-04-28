@@ -113,6 +113,7 @@ Rails.application.routes.draw do
 	get 'places/all' , to: 'places#no_index'
   get 'places/all/:kana/:city_kana/:id' , to: 'places#show_noindex'
 	get 'places/:ruby' , to: 'places#event'
+	get 'places/:ruby/search' , to: 'places#search'
 	get 'places/:ruby/:kana' , to: 'places#prefecture'
 	get 'places/:ruby/:kana/:city_kana' , to: 'places#city'
 	get 'places/:ruby/:kana/:city_kana/:id' , to: 'places#show'

@@ -2,7 +2,7 @@ class DbValidationErrorsController < ApplicationController
   before_action :webmaster
 
   def index
-    @db_validation_errors = DbValidationError.all
+    @db_validation_errors = DbValidationError.all.page(params[:page])
   end
 
   private

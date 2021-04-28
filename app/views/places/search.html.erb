@@ -1,5 +1,4 @@
-<% set_meta_tags title: "【#{Time.now.strftime("%Y")}年版】#{@event.name}のコートや体育館の情報一覧ページ",
-  description: "#{@event.name}のコート情報一覧ページです。体育館やアリーナ、屋外にある公園などの情報を分かりやすく掲載しています！住所やアクセス方法、駐車場情報も載っているので便利です。また、#{@event.name}のサークルやチーム、団体などの情報も掲載しています！",
+<% set_meta_tags title: "#{@event.name}の「#{params[:kw].truncate(30)}」コートや体育館の情報一覧ページ",
   og: {
     image:image_url("/images/events/#{@event.ruby}.jpg")
   },

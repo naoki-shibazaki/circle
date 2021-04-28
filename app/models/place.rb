@@ -17,5 +17,9 @@ class Place < ApplicationRecord
 
   paginates_per 10
 
+    # Place_検索用
+	scope :place_search_word, ->(keyword) do
+    where("LOWER(name) LIKE ?", "%#{keyword.downcase}%")
+	end
 
 end

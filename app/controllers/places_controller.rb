@@ -3,13 +3,38 @@ class PlacesController < ApplicationController
 
 	before_action :correct_user, {only: [:new, :count]}
 	before_action :ensure_correct_user, {only: [:edit, :update]}
-	before_action :set_place, {only: [:event, :prefecture, :city, :show]}
+	before_action :set_place, {only: [:event, :prefecture, :city, :show, :search]}
 
 	def index
     @events = Event.where(place: 1).order(order: "asc")
     @b1_name = "コート・施設情報"
 		@b1_url = "/places"
 	end
+
+	def search
+		# キーワード分割
+		keywords = params[:kw].split(/[[:blank:]]+/).select(&:present?)
+
+    # 検索ワードの保存
+    last_search = DbSearch.last
+    @db_search = DbSearch.new
+    @db_search.keyword = params[:kw]
+    @db_search.save
+    # if last_search.keyword != @db_search.keyword
+    #   @db_search.save
+    # end
+
+		# Userモデルオブジェクト作成
+		@places = Place
+
+		# 検索ワードの数だけand検索を行う
+		keywords.each do |keyword|
+			@places = @places.place_search_word(keyword).page(params[:page])
+		end
+
+	end
+
+
 
 	def new
 		@place = Place.new
@@ -182,6 +207,7 @@ class PlacesController < ApplicationController
     @prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
     @event_ids = PlacesEvent.where(event_id: @event.id)
     @event_places = @event_ids.map { |e| e.place_id }
+    @search_word = "例）サークルブック体育館"
     @b1_name = "コート・施設情報"
     @b1_url = "/places"
     if admin_user_signed_in?
