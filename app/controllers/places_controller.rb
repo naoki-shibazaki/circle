@@ -37,7 +37,7 @@ class PlacesController < ApplicationController
 			@places = @places.place_search_word(keyword).
       or(@places.where(id: @place_event_ids)).
 			or(@places.where(prefecture_id: @prefecture_ids)).
-			or(@places.where(id: @city_ids)).page(params[:page])
+			or(@places.where(id: @city_ids)).order(updated_at: "DESC").page(params[:page])
 		end
 
 	end
