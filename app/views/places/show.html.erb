@@ -131,10 +131,6 @@
                 <th class="flex_list">予約の難易度</th>
                 <td class="flex_list"><%= render "place_reviews/review_score", review_score: @place.average_reservation.to_f %></td>
               </tr>
-              <tr class="flex_contents">
-                <th class="flex_list">スコア平均</th>
-                <td class="flex_list"><%= render "place_reviews/review_score", review_score: @place.average_score.to_f %></td>
-              </tr>
             <% end %>
 
           </tbody>

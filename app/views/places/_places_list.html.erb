@@ -30,7 +30,7 @@
 
           <div class="border"></div>
 
-          <div class="article_item article_padding place_list ">
+          <div class="article_item article_padding place_list">
             <table>
               <tbody>
 
@@ -53,6 +53,11 @@
                 <tr class="flex_contents">
                   <th class="flex_list">利用料金</th>
                   <td class="flex_list"><%= raw Rinku.auto_link(simple_format place.price) %></td>
+                </tr>
+
+                <tr class="flex_contents">
+                  <th class="flex_list">口コミ・評価</th>
+                  <td class="flex_list"><%= render "layouts/review_score", review_score: place.average_score.to_f, reviews_count: place.place_reviews.count %></td>
                 </tr>
 
               </tbody>

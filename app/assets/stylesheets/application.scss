@@ -7251,6 +7251,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   padding: 10px 0px 8px;
 }
 
+.place_list{
+  .flex_list .reviews_count {
+    border-bottom: none;
+    color: #9c9c9c;
+  }
+}
 
 
 
