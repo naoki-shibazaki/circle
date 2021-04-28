@@ -117,11 +117,11 @@
             <% if @place.place_reviews.present? %>
               <tr class="flex_contents">
                 <th class="flex_list">コスパの良さ</th>
-                <td class="flex_list"><%= render "place_reviews/review_score", review_score: @place.average_facility.to_f %></td>
+                <td class="flex_list"><%= render "place_reviews/review_score", review_score: @place.average_price.to_f %></td>
               </tr>
               <tr class="flex_contents">
                 <th class="flex_list">設備の充実</th>
-                <td class="flex_list"><%= render "place_reviews/review_score", review_score: @place.average_price.to_f %></td>
+                <td class="flex_list"><%= render "place_reviews/review_score", review_score: @place.average_facility.to_f %></td>
               </tr>
               <tr class="flex_contents">
                 <th class="flex_list">アクセス</th>
