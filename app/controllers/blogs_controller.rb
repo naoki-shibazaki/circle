@@ -177,7 +177,7 @@ class BlogsController < ApplicationController
 	end
 
   def gallery
-    @blogs = Blog.where(user_id: params[:user_id]).order(created_at: "DESC")
+    @blogs = Blog.where(user_id: params[:user_id]).order(created_at: "DESC").page(params[:page])
     @user = User.find(params[:user_id])
   end
 
