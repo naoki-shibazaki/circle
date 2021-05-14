@@ -1,5 +1,5 @@
 class UserContactsController < ApplicationController
-  before_action :set_users, except: [:account_block]
+  before_action :set_users, {except: [:account_block, :contact_list]}
 
   def new
     @user_contact = @user.user_contacts.build
@@ -122,6 +122,27 @@ class UserContactsController < ApplicationController
   def account_block
 
   end
+
+  def contact_list
+		if admin_user_signed_in?
+			@user = User.find(params[:id])
+      @admin_user = current_admin_user
+
+			if current_admin_user.id == @user.admin_user_id
+				# OK
+			elsif current_admin_user.id == 1
+				#OK
+			else
+        flash[:notice] = "権限がありません"
+        redirect_to users_path
+			end
+    else
+      flash[:notice] = "権限がありません"
+      redirect_to users_path
+		end
+
+  end
+
 
 
 

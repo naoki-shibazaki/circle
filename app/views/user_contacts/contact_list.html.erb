@@ -1,0 +1,45 @@
+<% set_meta_tags noindex: true,
+				title: "お問い合わせ管理"
+%>
+
+<div class="user_main users-index">
+  <div class="container">
+
+	<div class="mypage_wrap">
+
+	<div class="p_t">お問い合わせ管理</div>
+
+		<div class="user_select_wrap">
+			現在のアカウント：
+			<select name="user_select" onChange="location.href=value;">
+				<option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+        <% @admin_user.users.each do |user| %>
+          <% if @user.id != user.id %>
+            <option value="/users/<%= user.id %>/mypage"><%= user.name %>（<%= user.event.name %>）</option>
+          <% end %>
+				<% end %>
+			</select>
+		</div>
+
+
+    <% @user.user_contacts.each do |user_contact| %>
+      <%= user_contact.name %>
+
+    <% end %>
+
+
+		<div class="border"></div>
+
+
+		<%= render "/layouts/ad_square" %>
+		<div class="ad_space"></div>
+
+
+	</div>
+
+
+
+
+  </div>
+</div>
+
