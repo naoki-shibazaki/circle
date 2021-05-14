@@ -23,8 +23,10 @@
 
 
     <% @user.user_contacts.each do |user_contact| %>
-      <%= user_contact.name %>
-
+      <%= user_contact.name %><br>
+      <%= user_contact.mail %><br>
+      <%= simple_format user_contact.message %><br>
+      <hr>
     <% end %>
 
 
