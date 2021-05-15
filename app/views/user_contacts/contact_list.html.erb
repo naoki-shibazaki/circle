@@ -15,22 +15,26 @@
 				<option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
         <% @admin_user.users.each do |user| %>
           <% if @user.id != user.id %>
-            <option value="/users/<%= user.id %>/mypage"><%= user.name %>（<%= user.event.name %>）</option>
+            <option value="/users/<%= user.id %>/contact_list"><%= user.name %>（<%= user.event.name %>）</option>
           <% end %>
 				<% end %>
 			</select>
 		</div>
 
 
+  <div class="contact_list">
     <% @user.user_contacts.each do |user_contact| %>
-      <%= user_contact.name %><br>
-      <%= user_contact.mail %><br>
-      <%= simple_format user_contact.message %><br>
-      <hr>
+      <div class="cp_actab">
+      <input id="tab-<%= user_contact.id %>" type="checkbox" name="tabs">
+      <label for="tab-<%= user_contact.id %>"><%= user_contact.name %>さん</label>
+      <div class="cp_contact-content">
+            <%= user_contact.mail %><br>
+            <%= simple_format user_contact.message %><br>
+      </div>
+      </div>
     <% end %>
+  </div>
 
-
-		<div class="border"></div>
 
 
 		<%= render "/layouts/ad_square" %>

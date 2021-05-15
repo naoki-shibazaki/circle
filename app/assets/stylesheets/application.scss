@@ -7270,6 +7270,23 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   color: #525252;
 }
 
+.contact_list{
+  .cp_actab .cp_contact-content {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: max-height 0.35s;
+    transition: max-height 0.35s;
+    color: #333333;
+    background: #ffffff;
+  }
+
+  .cp_actab input:checked ~ .cp_contact-content {
+    max-height: 140em;
+    padding: 10px;
+
+  }
+}
+
 
 
 
