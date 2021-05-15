@@ -137,9 +137,6 @@ class UserContactsController < ApplicationController
         flash[:notice] = "権限がありません"
         redirect_to users_path
 			end
-    else
-      flash[:notice] = "権限がありません"
-      redirect_to users_path
 		end
 
 		# パンくず
