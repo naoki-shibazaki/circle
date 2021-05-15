@@ -33,32 +33,32 @@
     <div class="contact_list">
       <% @user_contacts.each do |user_contact| %>
         <div class="cp_actab">
-        <input id="tab-<%= user_contact.id %>" type="checkbox" name="tabs">
-        <label for="tab-<%= user_contact.id %>">
-        <% if user_contact.name.present? %>
-          <%= user_contact.name %> さん
-        <% else %>
-          ゲストユーザー さん
-        <% end %>
-        </label>
-        <div class="cp_contact-content">
-          <div class="time_contact">
-            <%= user_contact.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %>
-          </div>
-          <div class="mail_contact">
-            <i class="fa fa-envelope-square "></i> <%= user_contact.mail %>
-          </div>
+          <input id="tab-<%= user_contact.id %>" type="checkbox" name="tabs">
+          <label for="tab-<%= user_contact.id %>">
           <% if user_contact.name.present? %>
-            <div class="name_contact">
-              <%= user_contact.name %> さん
-            </div>
+            <%= user_contact.name %> さん
           <% else %>
+            ゲストユーザー さん
           <% end %>
+          </label>
+
+          <div class="cp_contact-content">
+            <div class="time_contact">
+              <%= user_contact.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %>
+            </div>
+            <div class="mail_contact">
+              <i class="fa fa-envelope-square "></i> <%= user_contact.mail %>
+            </div>
+            <% if user_contact.name.present? %>
+              <div class="name_contact">
+                <%= user_contact.name %> さん
+              </div>
+            <% else %>
+            <% end %>
+            <div class="message_contact">
+              <%= simple_format user_contact.message %>
+            </div>
           </div>
-          <div class="message_contact">
-            <%= simple_format user_contact.message %>
-          </div>
-        </div>
         </div>
       <% end %>
     </div>
