@@ -48,12 +48,12 @@
           <div class="mail_contact">
             <i class="fa fa-envelope-square "></i> <%= user_contact.mail %>
           </div>
-          <div class="name_contact">
-            <% if user_contact.name.present? %>
+          <% if user_contact.name.present? %>
+            <div class="name_contact">
               <%= user_contact.name %> さん
-            <% else %>
-              ゲストユーザー さん
-            <% end %>
+            </div>
+          <% else %>
+          <% end %>
           </div>
           <div class="message_contact">
             <%= simple_format user_contact.message %>
@@ -62,8 +62,6 @@
         </div>
       <% end %>
     </div>
-
-
 
       <%= render "/layouts/ad_square" %>
       <div class="ad_space"></div>
