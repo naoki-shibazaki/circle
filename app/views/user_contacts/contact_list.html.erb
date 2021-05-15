@@ -7,38 +7,47 @@
 
 	<div class="mypage_wrap">
 
-	<div class="p_t">お問い合わせ管理</div>
+    <div class="p_t">お問い合わせ管理</div>
 
-		<div class="user_select_wrap">
-			現在のアカウント：
-			<select name="user_select" onChange="location.href=value;">
-				<option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
-        <% @admin_user.users.each do |user| %>
-          <% if @user.id != user.id %>
-            <option value="/users/<%= user.id %>/contact_list"><%= user.name %>（<%= user.event.name %>）</option>
+      <% if @admin_user.users.count > 1 %>
+      <div class="user_select_wrap">
+        現在のアカウント：
+        <select name="user_select" onChange="location.href=value;">
+          <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+          <% @admin_user.users.each do |user| %>
+            <% if @user.id != user.id %>
+              <option value="/users/<%= user.id %>/contact_list"><%= user.name %>（<%= user.event.name %>）</option>
+            <% end %>
           <% end %>
-				<% end %>
-			</select>
-		</div>
-
-
-  <div class="contact_list">
-    <% @user.user_contacts.each do |user_contact| %>
-      <div class="cp_actab">
-      <input id="tab-<%= user_contact.id %>" type="checkbox" name="tabs">
-      <label for="tab-<%= user_contact.id %>"><%= user_contact.name %>さん</label>
-      <div class="cp_contact-content">
-            <%= user_contact.mail %><br>
-            <%= simple_format user_contact.message %><br>
+        </select>
       </div>
+      <% end %>
+
+      <div class="contact_address_wrap">
+        お問い合わせのメールは下記に届いています。<br>
+        <%= @user.admin_user.email %><br>
+        <%= link_to ">>設定のアドレスを変更する", "/admin_users/edit" %>
       </div>
-    <% end %>
-  </div>
+
+
+    <div class="contact_list">
+      <% @user.user_contacts.each do |user_contact| %>
+        <div class="cp_actab">
+        <input id="tab-<%= user_contact.id %>" type="checkbox" name="tabs">
+        <label for="tab-<%= user_contact.id %>"><%= user_contact.name %> さん</label>
+        <div class="cp_contact-content">
+              <%= user_contact.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %><br>
+              <%= user_contact.mail %><br>
+              <%= simple_format user_contact.message %><br>
+        </div>
+        </div>
+      <% end %>
+    </div>
 
 
 
-		<%= render "/layouts/ad_square" %>
-		<div class="ad_space"></div>
+      <%= render "/layouts/ad_square" %>
+      <div class="ad_space"></div>
 
 
 	</div>
