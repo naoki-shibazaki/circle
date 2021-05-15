@@ -127,6 +127,7 @@ class UserContactsController < ApplicationController
 		if admin_user_signed_in?
 			@user = User.find(params[:id])
       @admin_user = current_admin_user
+      @user_contacts = UserContact.where(user_id: @user.id).order(updated_at: :desc)
 
 			if current_admin_user.id == @user.admin_user_id
 				# OK
@@ -141,6 +142,13 @@ class UserContactsController < ApplicationController
       redirect_to users_path
 		end
 
+		# パンくず
+		@b1_name = @user.name
+		@b1_url = "/users/#{@user.id}"
+		@b2_name = "マイページ"
+		@b2_url = "/users/#{@user.id}/mypage"
+		@b3_name = "お問い合わせ管理"
+		@b3_url = ""
   end
 
 

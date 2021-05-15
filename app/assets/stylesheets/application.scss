@@ -7277,14 +7277,41 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     -webkit-transition: max-height 0.35s;
     transition: max-height 0.35s;
     color: #333333;
-    background: #ffffff;
+    padding: 4px 10px 0;
+    background-color: #f1fffe;
   }
 
   .cp_actab input:checked ~ .cp_contact-content {
     max-height: 140em;
-    padding: 10px;
-
+    padding: 4px 10px 0;
+    background-color: #f1fffe;
   }
+
+  .time_contact{
+    text-align: right;
+    color: #696969;
+    font-size: 12px;
+  }
+
+  .mail_contact{
+    -webkit-align-items: center;
+    align-items: center;
+    .fa {
+      color: #61cec7;
+      font-size: 16px;
+    }
+  }
+
+  .name_contact{
+    margin-top: 10px;;
+  }
+
+  .message_contact{
+    margin-top: 6px;
+    margin-bottom: 20px;
+  }
+
+
 }
 
 .contact_address_wrap{
