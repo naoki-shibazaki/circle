@@ -65,9 +65,17 @@
 
                   <%= f.text_area :comment, class: 'form-control', placeholder: "7月7日に参加予定" %>
 
-                  <%= f.submit "更新する" %>
+                  <div class="update_wrap">
+                    <%= f.submit "更新する", name: "update" %>
+                  </div>
 
                   <div class="reset"></div>
+
+                  <div class="text_btn_wrap">
+                    <%= f.submit "削除する", class: 'text_btn', name: "delete" %>
+                    <br>
+                    <%= f.submit "違反報告をする", class: 'text_btn', name: "report" %>
+                  </div>
 
               <% end %>
             </div>

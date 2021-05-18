@@ -7272,17 +7272,19 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .contact_list{
   margin-bottom: 30px;
-  input[type="submit"] {
-    background-color: #3ecdc6;
-    color: white;
-    cursor: pointer;
-    font-weight: 300;
-    width: 100px;
-    height: 32px;
-    border-radius: 2px;
-    margin-top: 8px;
-    margin-bottom: 0;
-    float: right;
+  .update_wrap{
+    input[type="submit"] {
+      background-color: #3ecdc6;
+      color: white;
+      cursor: pointer;
+      font-weight: 300;
+      width: 100px;
+      height: 32px;
+      border-radius: 2px;
+      margin-top: 8px;
+      margin-bottom: 0;
+      float: right;
+    }
   }
   .cp_actab .cp_contact-content {
     overflow: hidden;
@@ -7325,7 +7327,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 
   .comment_contact{
-    padding-bottom: 80px;
+    padding-bottom: 50px;
     input{
       z-index: 10;
       opacity: 1.0;
@@ -7337,6 +7339,15 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     .fa {
       color: #61cec7;
       font-size: 16px;
+    }
+    .text_btn_wrap{
+      margin-top: 60px;
+      text-align: right;
+      .text_btn{
+        position: unset;
+        clear: both;
+        margin-top: 8px;
+      }
     }
   }
 
