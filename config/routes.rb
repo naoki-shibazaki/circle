@@ -86,6 +86,8 @@ Rails.application.routes.draw do
   # お問い合わせフォーム
   get 'users/:user_id/thanks' , to: 'user_contacts#thanks'
   get 'users/:user_id/respond_check/:random_id' , to: 'user_contacts#respond_check'
+  patch 'users/:user_id/contact_list/:id', to: 'user_contacts#update_contact'
+
 
 	# get 'users/:user_id/collection-sample' , to: 'collections#sample'
 

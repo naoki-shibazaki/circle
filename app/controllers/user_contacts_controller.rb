@@ -148,13 +148,29 @@ class UserContactsController < ApplicationController
 		@b3_url = ""
   end
 
+  def update_contact
+    @user = User.find(params[:user_id])
+    @user_contact = UserContact.find(params[:id])
+
+    if @user_contact.update(user_contact_params)
+      flash[:notice] = '更新完了しました！'
+      redirect_to "/users/#{@user.id}/contact_list"
+
+    else
+      flash[:notice] = 'エラーが発生しました'
+    end
+
+
+  end
+
+
 
 
 
 
 private
 	def user_contact_params
-		params.require(:user_contact).permit(:mail, :mail_confirmation, :name, :message, :entry, :respond_check, :random_id, :ip_address, :account_block)
+		params.require(:user_contact).permit(:mail, :mail_confirmation, :name, :message, :entry, :respond_check, :random_id, :ip_address, :account_block, :contact_del, :comment)
 	end
 
 	def set_users

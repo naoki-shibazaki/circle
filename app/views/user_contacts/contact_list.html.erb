@@ -58,6 +58,19 @@
             <div class="message_contact">
               <%= simple_format user_contact.message %>
             </div>
+
+            <div class="comment_contact">
+              <i class="fa fa-pencil-square "></i>  メモする
+              <%= form_for user_contact,url: "/users/#{@user.id}/contact_list/#{user_contact.id}" do |f| %>
+
+                  <%= f.text_area :comment, class: 'form-control', placeholder: "7月7日に参加予定" %>
+
+                  <%= f.submit "更新する" %>
+
+                  <div class="reset"></div>
+
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>
