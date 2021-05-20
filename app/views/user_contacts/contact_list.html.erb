@@ -47,7 +47,11 @@
               <%= user_contact.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %>
             </div>
             <div class="mail_contact">
-              <i class="fa fa-envelope-square "></i> <%= user_contact.mail %>
+              <i class="fa fa-envelope-square "></i>
+                <%= mail_to "#{user_contact.mail}", nil,
+                      :bcc => "circlebook.mailer@gmail.com",
+                      :subject => "【サークルブック】#{@user.name}",
+                      :body => "こちらにご記入ください"  %>
             </div>
             <% if user_contact.name.present? %>
               <div class="name_contact">
@@ -66,15 +70,16 @@
                   <%= f.text_area :comment, class: 'form-control', placeholder: "7月7日に参加予定" %>
 
                   <div class="update_wrap">
-                    <%= f.submit "更新する", name: "update" %>
+                    <%= f.button type: "submit", name: "submit", value: "update" do %>更新する<% end %>
                   </div>
 
                   <div class="reset"></div>
 
                   <div class="text_btn_wrap">
-                    <%= f.submit "削除する", class: 'text_btn', name: "delete" %>
+                    <%= f.button type: "submit", name: "submit", value: "delete", data: {confirm: "一度削除すると、元に戻せませんがよろしいでしょうか？"}, class: "text_btn" do %><i class="fa fa-trash-o "></i> 削除する<% end %>
                     <br>
-                    <%= f.submit "違反報告をする", class: 'text_btn', name: "report" %>
+                    <%= f.button type: "submit", name: "submit", value: "report", data: {confirm: "このお問い合わせを違反報告しますか？"}, class: "text_btn" do %><i class="fa fa-frown-o "></i> 違反報告<% end %>
+
                   </div>
 
               <% end %>

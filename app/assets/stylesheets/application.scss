@@ -7272,9 +7272,15 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .contact_list{
   margin-bottom: 30px;
+  button{
+    border-style: none;
+    background: none;
+    text-decoration: underline;
+  }
   .update_wrap{
-    input[type="submit"] {
+    button {
       background-color: #3ecdc6;
+      text-decoration: none;
       color: white;
       cursor: pointer;
       font-weight: 300;
@@ -7286,6 +7292,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       float: right;
     }
   }
+
   .cp_actab .cp_contact-content {
     overflow: hidden;
     max-height: 0;
@@ -7315,6 +7322,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       color: #61cec7;
       font-size: 16px;
     }
+    a{
+      color: #61cec7;
+      font-weight: 700;
+      text-decoration: revert;
+    }
   }
 
   .name_contact{
@@ -7341,12 +7353,19 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       font-size: 16px;
     }
     .text_btn_wrap{
-      margin-top: 60px;
+      margin-top: 30px;
       text-align: right;
       .text_btn{
         position: unset;
         clear: both;
-        margin-top: 8px;
+        margin-top: 10px;
+        font-size: 12px;
+        color: #696969;
+        padding-bottom: 0px;
+        .fa{
+          font-size: 12px;
+          color: #696969;
+        }
       }
     }
   }

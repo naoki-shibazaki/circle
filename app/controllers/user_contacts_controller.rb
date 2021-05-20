@@ -149,27 +149,25 @@ class UserContactsController < ApplicationController
   end
 
   def update_contact
+    @user = User.find(params[:user_id])
+    @user_contact = UserContact.find(params[:id])
 
-    if params[:update]
-      @user = User.find(params[:user_id])
-      @user_contact = UserContact.find(params[:id])
-      if @user_contact.update(user_contact_params)
-        flash[:notice] = '更新完了しました！'
+    case params[:submit]
+      when "update"
+        if @user_contact.update(user_contact_params)
+          flash[:notice] = '更新完了しました！'
+          redirect_to "/users/#{@user.id}/contact_list"
+        else
+          flash[:notice] = 'エラーが発生しました'
+        end
+      when "delete"
+        flash[:notice] = 'delete'
         redirect_to "/users/#{@user.id}/contact_list"
-      else
-        flash[:notice] = 'エラーが発生しました'
-      end
+      when "report"
+        flash[:notice] = 'report'
+        redirect_to "/users/#{@user.id}/contact_list"
 
-    elsif params[:delete]
-      flash[:notice] = 'delete'
-      redirect_to "/users/#{@user.id}/contact_list"
-    elsif params[:report]
-      flash[:notice] = 'report'
-      redirect_to "/users/#{@user.id}/contact_list"
-    else
     end
-
-
   end
 
 
