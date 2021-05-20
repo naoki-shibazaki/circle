@@ -127,7 +127,7 @@ class UserContactsController < ApplicationController
 		if admin_user_signed_in?
 			@user = User.find(params[:id])
       @admin_user = current_admin_user
-      @user_contacts = UserContact.where(user_id: @user.id).order(updated_at: :desc)
+      @user_contacts = UserContact.where(user_id: @user.id, contact_del: nil).order(updated_at: :desc)
 
 			if current_admin_user.id == @user.admin_user_id
 				# OK
@@ -155,17 +155,40 @@ class UserContactsController < ApplicationController
     case params[:submit]
       when "update"
         if @user_contact.update(user_contact_params)
-          flash[:notice] = '更新完了しました！'
+          flash[:notice] = "更新完了しました！"
           redirect_to "/users/#{@user.id}/contact_list"
         else
-          flash[:notice] = 'エラーが発生しました'
+          flash[:notice] = "エラーが発生しました"
+          redirect_to "/users/#{@user.id}/contact_list"
         end
+
       when "delete"
-        flash[:notice] = 'delete'
-        redirect_to "/users/#{@user.id}/contact_list"
+        @user_contact.contact_del = "非表示"
+        if @user_contact.update(user_contact_params)
+          flash[:notice] = "削除しました"
+          redirect_to "/users/#{@user.id}/contact_list"
+        else
+          flash[:notice] = "エラーが発生しました"
+          redirect_to "/users/#{@user.id}/contact_list"
+        end
+
       when "report"
-        flash[:notice] = 'report'
-        redirect_to "/users/#{@user.id}/contact_list"
+
+        # 荒らし対応
+        @yellow_card = UserContact.where(ip_address: @user_contact.ip_address, account_block: "yellow_card")
+        if @yellow_card.count >= 2 # 2回目からブロック
+          @user_contact.account_block = "block"
+        else
+          @user_contact.account_block = "yellow_card"
+        end
+
+        if @user_contact.update(user_contact_params)
+          flash[:notice] = "違反通報を受け付けました"
+          redirect_to "/users/#{@user.id}/contact_list"
+        else
+          flash[:notice] = "エラーが発生しました"
+          redirect_to "/users/#{@user.id}/contact_list"
+        end
 
     end
   end

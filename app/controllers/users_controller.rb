@@ -313,6 +313,7 @@ helper_method :link_count
 
     @questions_current = Question.where(user_id: @user.id)
     @questions_current_nil = Question.where(user_id: @user.id).where(answer: nil)
+    @user_contacts = UserContact.where(user_id: @user.id, contact_del: nil)
 
 		# 管理者判定
 		if admin_user_signed_in?

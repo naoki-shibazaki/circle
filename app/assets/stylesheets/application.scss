@@ -5108,7 +5108,8 @@ td.ui-datepicker-week-end a.ui-state-highlight{
     line-height: 1.8;
 }
 
-.advice_wrap a {
+.advice_wrap a,
+.analytics_txt a {
     text-decoration: underline;
     color: $link-blue;
 }
@@ -7367,9 +7368,16 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
           color: #696969;
         }
       }
+      .account_block_done{
+        color: #a0a0a0;
+      }
     }
   }
 
+}
+
+.user_contact_wrap{
+  padding: 30px 10px;
 }
 
 .contact_address_wrap{

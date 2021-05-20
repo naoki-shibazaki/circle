@@ -20,20 +20,23 @@
 							</tr>
 							<% end %>
 						<% end %>
-            <% if @user.user_contacts.count >= 1 %>
+            <% if @user_contacts.count >= 1 %>
             <tr>
               <th>お問い合わせ件数（メール）</th>
-              <td><%= @user.user_contacts.count %> 件</td>
+              <td><%= @user_contacts.count %> 件</td>
             </tr>
-            <tr>
+            <%
+=begin%>
+ <tr>
               <th>
                 <div class="analytics_txt">
-                  こちらにメールをお送りしております。<br>
-                  <%= @user.admin_user.email %>
+                  <%= link_to "/users/#{@user.id}/contact_list" do %>>> お問い合わせ管理ページ<% end %>
                 </div>
               </th>
               <td></td>
             </tr>
+<%
+=end%>
             <% end %>
             <%
 =begin%>
