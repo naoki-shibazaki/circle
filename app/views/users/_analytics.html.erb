@@ -25,9 +25,7 @@
               <th>お問い合わせ件数（メール）</th>
               <td><%= @user_contacts.count %> 件</td>
             </tr>
-            <%
-=begin%>
- <tr>
+            <tr>
               <th>
                 <div class="analytics_txt">
                   <%= link_to "/users/#{@user.id}/contact_list" do %>>> お問い合わせ管理ページ<% end %>
@@ -35,8 +33,6 @@
               </th>
               <td></td>
             </tr>
-<%
-=end%>
             <% end %>
             <%
 =begin%>
