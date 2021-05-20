@@ -176,7 +176,7 @@ class UserContactsController < ApplicationController
 
         # 荒らし対応
         @yellow_card = UserContact.where(ip_address: @user_contact.ip_address, account_block: "yellow_card")
-        if @yellow_card.count >= 2 # 2回目からブロック
+        if @yellow_card.count >= 1 # 2回目からブロック
           @user_contact.account_block = "block"
         else
           @user_contact.account_block = "yellow_card"
