@@ -190,7 +190,18 @@ class UserContactsController < ApplicationController
           redirect_to "/users/#{@user.id}/contact_list"
         end
 
+      when "respond"
+        @user_contact.respond_check = nil
+        if @user_contact.update(user_contact_params)
+          flash[:notice] = "更新しました"
+          redirect_to "/users/#{@user.id}/contact_list"
+        else
+          flash[:notice] = "エラーが発生しました"
+          redirect_to "/users/#{@user.id}/contact_list"
+        end
+
     end
+
   end
 
 

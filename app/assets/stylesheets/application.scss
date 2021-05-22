@@ -7375,6 +7375,30 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     }
   }
 
+  .cp_actab_alert{
+    label {
+      background: #e09a1b;
+    }
+    input:checked ~ .cp_contact-content {
+      background-color: #fff;
+    }
+    .cp_contact-content {
+      background-color: #fff;
+    }
+    .respond_check_alert{
+      background-color: #fcf8e3;
+      border-color: #faebcc;
+      color: #8a6d3b;
+      padding: 15px 10px;
+      margin-bottom: 12px;
+    }
+    .respond_btn{
+      padding: 6px 0 0;
+    }
+  }
+
+
+
 }
 
 .user_contact_wrap{
@@ -7395,6 +7419,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     font-size: 12px;
   }
 }
+
 
 
 
