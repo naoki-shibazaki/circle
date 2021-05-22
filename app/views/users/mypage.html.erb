@@ -80,8 +80,8 @@
                 <% else %>
                   <div class="nil">
                 <% end %>
-								<img class="icon_size" src="/images/icon/icon_06.png">
-							</div>
+                    <img class="icon_size" src="/images/icon/icon_06.png">
+                  </div>
 						</div>
 
 						<div class="icon_txt">
@@ -120,7 +120,13 @@
           <%= link_to "/users/#{@user.id}/contact_list", class: "icon_cont" do %>
             <div class="">
               <div class="icon_img">
-                <img class="icon_size" src="/images/icon/icon_14.png">
+                <% if @user_contact_alerts.present? %>
+                  <div class="notice_icon">
+                <% else %>
+                  <div class="nil">
+                <% end %>
+                    <img class="icon_size" src="/images/icon/icon_14.png">
+                  </div>
               </div>
 
               <div class="icon_txt">

@@ -164,6 +164,7 @@ class UserContactsController < ApplicationController
 
       when "delete"
         @user_contact.contact_del = "非表示"
+        @user_contact.respond_check = nil
         if @user_contact.update(user_contact_params)
           flash[:notice] = "削除しました"
           redirect_to "/users/#{@user.id}/contact_list"
