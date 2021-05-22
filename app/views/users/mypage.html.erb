@@ -116,6 +116,20 @@
 				<% end %>
 
 
+        <% if @user.user_contacts.present? %>
+          <%= link_to "/users/#{@user.id}/contact_list", class: "icon_cont" do %>
+            <div class="">
+              <div class="icon_img">
+                <img class="icon_size" src="/images/icon/icon_14.png">
+              </div>
+
+              <div class="icon_txt">
+                お問い合わせ管理
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
 
 			<% if @user.event.matching != 0 %>
 
@@ -167,18 +181,6 @@
 
 			<% end %>
 
-				<%= link_to "/users/#{@user.id}/user_contacts/new", class: "icon_cont" do %>
-					<div class="">
-						<div class="icon_img">
-              <img class="icon_size" src="/images/icon/icon_14.png">
-						</div>
-
-						<div class="icon_txt">
-							お問い合わせ項目
-						</div>
-					</div>
-				<% end %>
-
 				<%= link_to "/user/add", class: "icon_cont" do %>
 					<div class="">
 						<div class="icon_img">
@@ -197,6 +199,10 @@
 
 		<div class="border"></div>
 
+		<%= render "/layouts/ad_square" %>
+		<div class="ad_space"></div>
+
+		<div class="border"></div>
 
 		<div class="opinion_wrap">
 			<div class="p_t opinion_title">ご意見箱</div>
@@ -223,13 +229,6 @@
 
 
 		</div>
-
-		<div class="border"></div>
-
-
-		<%= render "/layouts/ad_square" %>
-		<div class="ad_space"></div>
-
 
 	</div>
 

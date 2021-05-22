@@ -28,6 +28,9 @@
         お問い合わせのメールは下記に届いています。<br>
         <%= @user.admin_user.email %><br>
         <%= link_to ">>設定のアドレスを変更する", "/admin_users/edit" %>
+        <br><br>
+        お問い合わせ内容は下記から変更できます。<br>
+        <%= link_to ">>テンプレを変更する","/users/#{@user.id}/user_contacts/new" %>
       </div>
 
 
