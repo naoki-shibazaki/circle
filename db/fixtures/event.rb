@@ -4,6 +4,7 @@ Event.seed(:id,
 # place => Place 1:連携/0:非連携
 # { :id => 99, :category_id => 9, :order => "9999", :name => "99" , :ruby => "99",  :matching => 0, :place => 0, :openchat => "", :txt => "99" },
 
+# Max id 48
 
   # 球技スポーツ
   { :id => 2, :category_id => 1, :order => "0101", :name => "バスケ" , :ruby => "basketball", :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/28860kzjimldNe2P9MOsqg", :txt => "バスケサークル・チーム" },
@@ -20,6 +21,8 @@ Event.seed(:id,
   { :id => 5, :category_id => 2, :order => "0201", :name => "バドミントン" , :ruby => "badminton",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/9hLTdMzYeuiuO1fRinT_wQ", :txt => "バドミントンサークル・クラブ" },
   { :id => 9, :category_id => 2, :order => "0202", :name => "テニス" , :ruby => "tennis",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/rQkRsdC0Ppg-xVTQVlQYgw", :txt => "テニスサークル" },
   { :id => 10, :category_id => 2, :order => "0203", :name => "卓球" , :ruby => "table-tennis",  :matching => 1, :place => 1, :openchat => "", :txt => "卓球サークル・クラブ" },
+  { :id => 47, :category_id => 2, :order => "0204", :name => "パデル" , :ruby => "padel",  :matching => 0, :place => 0, :openchat => "", :txt => "パデルサークル" },
+
 
   # その他のスポーツ
   { :id => 3, :category_id => 3, :order => "0301", :name => "ランニング" , :ruby => "running",  :matching => 0, :place => 0, :openchat => "", :txt => "ランニング・マラソンサークル" },
@@ -48,10 +51,11 @@ Event.seed(:id,
   { :id => 33, :category_id => 7, :order => "0702", :name => "読書会" , :ruby => "reading",  :matching => 0, :place => 0, :openchat => "", :txt => "読書会・読書サークル" },
   { :id => 34, :category_id => 7, :order => "0703", :name => "英会話" , :ruby => "english",  :matching => 0, :place => 0, :openchat => "", :txt => "英会話サークル" },
   { :id => 44, :category_id => 7, :order => "0704", :name => "勉強会・研究" , :ruby => "study",  :matching => 0, :place => 0, :openchat => "", :txt => "勉強会・研究サークル" },
-  { :id => 37, :category_id => 7, :order => "0705", :name => "旅行・お出かけ" , :ruby => "go-out",  :matching => 0, :place => 0, :openchat => "", :txt => "旅行・お出かけサークル" },
-  { :id => 36, :category_id => 7, :order => "0706", :name => "交流会" , :ruby => "gathering",  :matching => 0, :place => 0, :openchat => "", :txt => "交流会サークル" },
-  { :id => 35, :category_id => 7, :order => "0707", :name => "街コン・オフ会" , :ruby => "meet-up",  :matching => 0, :place => 0, :openchat => "", :txt => "街コン・オフ会サークル" },
-  { :id => 12, :category_id => 7, :order => "0708", :name => "イベント" , :ruby => "event",  :matching => 0, :place => 0, :openchat => "", :txt => "イベントサークル" },
+  { :id => 48, :category_id => 7, :order => "0705", :name => "料理" , :ruby => "cooking",  :matching => 0, :place => 0, :openchat => "", :txt => "料理サークル" },
+  { :id => 37, :category_id => 7, :order => "0706", :name => "旅行・お出かけ" , :ruby => "go-out",  :matching => 0, :place => 0, :openchat => "", :txt => "旅行・お出かけサークル" },
+  { :id => 36, :category_id => 7, :order => "0707", :name => "交流会" , :ruby => "gathering",  :matching => 0, :place => 0, :openchat => "", :txt => "交流会サークル" },
+  { :id => 35, :category_id => 7, :order => "0708", :name => "街コン・オフ会" , :ruby => "meet-up",  :matching => 0, :place => 0, :openchat => "", :txt => "街コン・オフ会サークル" },
+  { :id => 12, :category_id => 7, :order => "0709", :name => "イベント" , :ruby => "event",  :matching => 0, :place => 0, :openchat => "", :txt => "イベントサークル" },
 
 
   # アウトドア
