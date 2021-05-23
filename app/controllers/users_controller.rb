@@ -26,12 +26,12 @@ helper_method :link_count
 
 	def search
 		# キーワード分割
-		keywords = params[:kw].split(/[[:blank:]]+/).select(&:present?)
+		keywords = params[:q].split(/[[:blank:]]+/).select(&:present?)
 
     # 検索ワードの保存
     last_search = DbSearch.last
     @db_search = DbSearch.new
-    @db_search.keyword = params[:kw]
+    @db_search.keyword = params[:q]
     if last_search.keyword != @db_search.keyword
       @db_search.save
     end
