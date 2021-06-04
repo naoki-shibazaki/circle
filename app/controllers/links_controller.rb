@@ -7,7 +7,7 @@ class LinksController < ApplicationController
 
 	def index
 		@links = Link.where.not(link03_title: "").order("RANDOM()").limit(5)
-	end	
+	end
 
 	def new
 		@user = User.find(params[:user_id])
@@ -23,19 +23,19 @@ class LinksController < ApplicationController
 				end
 			else
 				flash[:notice] = "権限がありません"
-			    redirect_to links_path			
-			end			
+        redirect_to links_path
+			end
 
-	    else
-		  flash[:notice] = "ログインをしてください"
-	      redirect_to "/admin_users/sign_in"
+    else
+      flash[:notice] = "ログインをしてください"
+      redirect_to "/admin_users/sign_in"
 		end
 
 		# パンくず
 		@b2_name = "サークルリンク"
-		@b2_url = "/links"		
+		@b2_url = "/links"
 		@b3_name = @user.name
-		@b3_url = "/users/#{@user.id}"		
+		@b3_url = "/users/#{@user.id}"
 		@b4_name = "新規作成"
 		@b4_url = ""
 
@@ -43,6 +43,7 @@ class LinksController < ApplicationController
 
 	def create
 		@link = Link.new(link_params)
+    @links = Link.where.not(link03_title: "").order("RANDOM()").limit(5)
 		@user = User.find(params[:user_id])
 		@link.id = @user.id
 		@link.user_id = @user.id
@@ -64,7 +65,7 @@ class LinksController < ApplicationController
 		else
 			flash[:notice] = '他のIDをご入力ください'
 			render "new"
-		end	
+		end
 
 	end
 
@@ -76,12 +77,12 @@ class LinksController < ApplicationController
 	end
 
 	def link
-		
+
 		@link = Link.find_by(unique_id: params[:unique_id])
 
 		if @link.nil?
 			flash[:notice] = "URLが間違っています"
-		    redirect_to links_path
+      redirect_to links_path
 
 		else
 			@user = User.find(@link.id)
@@ -89,9 +90,9 @@ class LinksController < ApplicationController
 
 			# パンくず
 			@b2_name = "サークルリンク"
-			@b2_url = "/links"		
+			@b2_url = "/links"
 			@b3_name = @user.name
-			@b3_url = "/users/#{@user.id}"		
+			@b3_url = "/users/#{@user.id}"
 			@b4_name = "リンク集"
 			@b4_url = ""
 
@@ -107,25 +108,23 @@ class LinksController < ApplicationController
 		if admin_user_signed_in?
 
 			if current_admin_user.id != @link.user.admin_user_id.to_i
-				if current_admin_user.id == 1   			
-					
-			   	else
-			      flash[:notice] = "権限がありません"
-			      redirect_to links_path
-
-			    end
+				if current_admin_user.id == 1 
+        else
+          flash[:notice] = "権限がありません"
+          redirect_to links_path
+        end
 			end
 
 		else
-	      flash[:notice] = "権限がありません"
-	      redirect_to links_path
+      flash[:notice] = "権限がありません"
+      redirect_to links_path
 		end
 
 		# パンくず
 		@b2_name = "サークルリンク"
-		@b2_url = "/links"		
+		@b2_url = "/links"
 		@b3_name = @user.name
-		@b3_url = "/users/#{@user.id}"		
+		@b3_url = "/users/#{@user.id}"
 		@b4_name = "リンク集"
 		@b4_url = "/link/#{@link.unique_id}"
 	end
@@ -138,7 +137,7 @@ class LinksController < ApplicationController
 		else
 			flash[:notice] = '入力エラー'
 			render "edit"
-		end	
+		end
 	end
 
 	def destroy
@@ -149,14 +148,14 @@ private
 	def link_params
 		params.require(:link).permit(
 			:unique_id, :link01_title, :link01_url, :link02_title, :link02_url, :link03_title, :link03_url, :link04_title, :link04_url, :link05_title, :link05_url
-   		)
+    )
 	end
 
 	def set_linkes
 	end
 
 	def ensure_correct_user
-	end		
+	end
 
 
 end
