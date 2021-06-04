@@ -6398,11 +6398,14 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   text-align: center;
   margin: 0px auto 40px;
   width: 100%;
-
-  .sample_link_child{
+  li{
     width: 220px !important;
     height: 360px;
+  }
+
+  .sample_link_child{
     display: inline-table;
+    display: table;
     margin: 0 10px 16px;
     border: 1px solid #d8dadf;
     border-radius: 6px;
