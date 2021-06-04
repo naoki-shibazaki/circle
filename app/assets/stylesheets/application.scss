@@ -6397,9 +6397,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   overflow-x: scroll;
   text-align: center;
   margin: 0px auto 40px;
+  width: 100%;
 
   .sample_link_child{
-    width: 220px;
+    width: 220px !important;
     height: 360px;
     display: inline-table;
     margin: 0 10px 16px;
