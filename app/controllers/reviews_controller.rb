@@ -39,8 +39,9 @@ class ReviewsController < ApplicationController
 				@user.last_post = Time.now
 				@user.save
 				ReviewMailer.send_review(@user).deliver
-			else
-        ReviewMailer.bad_review(@user).deliver
+      elsif @review.review == 0
+				ReviewMailer.bad_review(@user).deliver
+      else
 			end
 			flash[:notice] = "投稿が完了しました！"
 			redirect_to user_reviews_path
@@ -92,7 +93,7 @@ class ReviewsController < ApplicationController
 	end
 
   def all_reviews
-    @reviews = Review.all
+    @reviews = Review.all.order(updated_at: "ASC")
 
     @b1_name = "サークルブック内の口コミ・評価"
     @b1_url = ""
