@@ -40,6 +40,7 @@ class ReviewsController < ApplicationController
 				@user.save
 				ReviewMailer.send_review(@user).deliver
 			else
+        ReviewMailer.bad_review(@user).deliver
 			end
 			flash[:notice] = "投稿が完了しました！"
 			redirect_to user_reviews_path
