@@ -61,7 +61,15 @@
 				<%= link_to user_schedules_path(@user), class: "icon_cont" do %>
 					<div class="">
 						<div class="icon_img">
-							<img class="icon_size" src="/images/icon/icon_08.png">
+              <% if @schedules.blank? %>
+                <div class="notice_icon">
+                  <img class="icon_size" src="/images/icon/icon_08.png">
+                </div>
+              <% else %>
+                <div class="nil">
+                  <img class="icon_size" src="/images/icon/icon_08.png">
+                </div>
+              <% end %>
 						</div>
 
 						<div class="icon_txt">
@@ -75,13 +83,15 @@
 				<%= link_to user_questions_path(@user), class: "icon_cont" do %>
 					<div class="">
 						<div class="icon_img">
-                <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
-                  <div class="notice_icon">
-                <% else %>
-                  <div class="nil">
-                <% end %>
-                    <img class="icon_size" src="/images/icon/icon_06.png">
-                  </div>
+              <% if @questions_current.count < 3 || @questions_current_nil.count >= 1 %>
+                <div class="notice_icon">
+                  <img class="icon_size" src="/images/icon/icon_06.png">
+                </div>
+              <% else %>
+                <div class="nil">
+                  <img class="icon_size" src="/images/icon/icon_06.png">
+                </div>
+              <% end %>
 						</div>
 
 						<div class="icon_txt">

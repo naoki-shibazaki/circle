@@ -2,13 +2,13 @@
 
   <div class="schedule_list_wrap">
 
-      <% @schedules.each do |schedule| %> 
+      <% @schedules.each do |schedule| %>
           <% if schedule.present? && @schedule.id != schedule.id %>
 
             <% if @schedule_month != Time.parse(schedule.day).strftime("%-m") %>
               <h2 class="schedule_m"><i class="fa fa-calendar "></i> <%= Time.parse(schedule.day).strftime("%-m月") %>のスケジュール</h2>
               <% @schedule_month = Time.parse(schedule.day).strftime("%-m") %>
-            <% end %>             
+            <% end %>
 
 
 
@@ -19,15 +19,15 @@
                             <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
                       <% if schedule.time_s.present? %>
-                            <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
-                          <% end %>
+                        <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+                      <% end %>
 
-                       <% if schedule.recruitment == "募集終了" %>
-                          <span class="schedule_mark mark_red">満員</span>                       
-                       <% else %>
-                          <span class="schedule_mark mark_green">開催予定</span>
-                       <% end %>      
-                    
+                      <% if schedule.recruitment == "募集終了" %>
+                        <span class="schedule_mark mark_red">満員</span>
+                      <% else %>
+                        <span class="schedule_mark mark_green">開催予定</span>
+                      <% end %>
+
                     </div>
 
                       @<%= schedule.venue %>
@@ -35,9 +35,9 @@
                       <%= schedule.title if schedule.title.present? %>
                 </div>
 
-              <% end %>  
+              <% end %>
 
-          <% end %>                  
+          <% end %>
       <% end %>
 
   </div>
@@ -53,27 +53,27 @@
 
   <div class="schedule_list_wrap">
 
-      <% @past_schedules.each do |past_schedule| %> 
+      <% @past_schedules.each do |past_schedule| %>
           <% if past_schedule.present? && @schedule.id != past_schedule.id %>
 
             <% if @past_schedule_month != Time.parse(past_schedule.day).strftime("%-m") %>
               <h3 class="schedule_m"><i class="fa fa-calendar "></i> <%= Time.parse(past_schedule.day).strftime("%Y年%-m月") %></h3>
               <% @past_schedule_month = Time.parse(past_schedule.day).strftime("%-m") %>
-            <% end %>             
+            <% end %>
 
 
               <%= link_to(user_schedule_path(@user.id, past_schedule.id)) do %>
 
                 <div class="schedule_list">
                     <div class="schedule_day">
-                            <%= Time.parse(past_schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(past_schedule.day).wday]})") %>
+                        <%= Time.parse(past_schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(past_schedule.day).wday]})") %>
 
                       <% if past_schedule.time_s.present? %>
-                            <%= past_schedule.time_s.strftime('%H:%M') %>-<%= past_schedule.time_e.strftime('%H:%M') if past_schedule.time_e.present? %>
-                          <% end %>
+                          <%= past_schedule.time_s.strftime('%H:%M') %>-<%= past_schedule.time_e.strftime('%H:%M') if past_schedule.time_e.present? %>
+                        <% end %>
 
-                      <span class="schedule_mark mark_red">開催終了</span>
-                    
+                      <span class="schedule_mark mark_gray">開催終了</span>
+
                     </div>
 
                       @<%= past_schedule.venue %>
@@ -81,9 +81,9 @@
                       <%= past_schedule.title if past_schedule.title.present? %>
                 </div>
 
-              <% end %>  
+              <% end %>
 
-          <% end %>                  
+          <% end %>
       <% end %>
 
   </div>

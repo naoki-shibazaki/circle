@@ -310,10 +310,9 @@ helper_method :link_count
 
 	def mypage
 		@user = User.find(params[:id])
-
     @questions_current = Question.where(user_id: @user.id)
     @questions_current_nil = Question.where(user_id: @user.id).where(answer: nil)
-
+    @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday)
     @user_contacts = UserContact.where(user_id: @user.id, contact_del: nil)
     @user_contact_alerts = UserContact.where(user_id: @user.id, respond_check: "NG")
 
