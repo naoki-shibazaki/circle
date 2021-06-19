@@ -4,7 +4,7 @@ Event.seed(:id,
 # place => Place 1:連携/0:非連携
 # { :id => 99, :category_id => 9, :order => "9999", :name => "99" , :ruby => "99",  :matching => 0, :place => 0, :openchat => "", :txt => "99" },
 
-# Max id 48
+# Max id 52
 
   # 球技スポーツ
   { :id => 2, :category_id => 1, :order => "0101", :name => "バスケ" , :ruby => "basketball", :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/28860kzjimldNe2P9MOsqg", :txt => "バスケサークル・チーム" },
@@ -15,7 +15,9 @@ Event.seed(:id,
   { :id => 16, :category_id => 1, :order => "0106", :name => "サッカー" , :ruby => "soccer",  :matching => 1, :place => 1, :openchat => "", :txt => "サッカーチーム・サークル" },
   { :id => 25, :category_id => 1, :order => "0107", :name => "ハンドボール" , :ruby => "handball",  :matching => 1, :place => 1, :openchat => "", :txt => "ハンドボールサークル・チーム" },
   { :id => 23, :category_id => 1, :order => "0108", :name => "ドッジボール" , :ruby => "dodgeball",  :matching => 0, :place => 0, :openchat => "", :txt => "ドッジボールサークル" },
-  { :id => 43, :category_id => 1, :order => "0109", :name => "ラグビー・アメフト" , :ruby => "rugby",  :matching => 0, :place => 0, :openchat => "", :txt => "ラグビー・アメフトサークル" },
+  { :id => 43, :category_id => 1, :order => "0109", :name => "ラグビー" , :ruby => "rugby",  :matching => 0, :place => 0, :openchat => "", :txt => "ラグビーチーム・サークル" },
+  { :id => 49, :category_id => 1, :order => "0110", :name => "アメフト" , :ruby => "american-football",  :matching => 0, :place => 0, :openchat => "", :txt => "アメフトチーム・サークル" },
+
 
   # ラケットスポーツ
   { :id => 5, :category_id => 2, :order => "0201", :name => "バドミントン" , :ruby => "badminton",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/9hLTdMzYeuiuO1fRinT_wQ", :txt => "バドミントンサークル・クラブ" },
@@ -32,7 +34,8 @@ Event.seed(:id,
   { :id => 30, :category_id => 3, :order => "0305", :name => "水泳" , :ruby => "swimming",  :matching => 0, :place => 0, :openchat => "", :txt => "水泳サークル・チーム" },
   { :id => 31, :category_id => 3, :order => "0306", :name => "カバディ" , :ruby => "kabaddi",  :matching => 0, :place => 0, :openchat => "", :txt => "カバディサークル・チーム" },
   { :id => 15, :category_id => 3, :order => "0307", :name => "オールラウンド" , :ruby => "all-round",  :matching => 2, :place => 0, :openchat => "", :txt => "オールラウンドサークル" },
-  { :id => 46, :category_id => 3, :order => "0308", :name => "その他のスポーツ" , :ruby => "other-sports",  :matching => 0, :place => 0, :openchat => "", :txt => "その他のスポーツサークル" },
+  { :id => 50, :category_id => 3, :order => "0308", :name => "モルック" , :ruby => "molkky",  :matching => 2, :place => 0, :openchat => "", :txt => "モルックサークル" },
+  { :id => 46, :category_id => 3, :order => "0309", :name => "その他のスポーツ" , :ruby => "other-sports",  :matching => 0, :place => 0, :openchat => "", :txt => "その他のスポーツサークル" },
 
   # ウィンタースポーツ
   { :id => 20, :category_id => 4, :order => "0401", :name => "スノーボード" , :ruby => "snow-board",  :matching => 0, :place => 0, :openchat => "", :txt => "スノーボードサークル" },
@@ -56,12 +59,14 @@ Event.seed(:id,
   { :id => 36, :category_id => 7, :order => "0707", :name => "交流会" , :ruby => "gathering",  :matching => 0, :place => 0, :openchat => "", :txt => "交流会サークル" },
   { :id => 35, :category_id => 7, :order => "0708", :name => "街コン・オフ会" , :ruby => "meet-up",  :matching => 0, :place => 0, :openchat => "", :txt => "街コン・オフ会サークル" },
   { :id => 12, :category_id => 7, :order => "0709", :name => "イベント" , :ruby => "event",  :matching => 0, :place => 0, :openchat => "", :txt => "イベントサークル" },
-
+  { :id => 42, :category_id => 7, :order => "0710", :name => "麻雀" , :ruby => "mahjong",  :matching => 0, :place => 0, :openchat => "", :txt => "麻雀サークル" },
+  { :id => 51, :category_id => 7, :order => "0711", :name => "サバゲー" , :ruby => "airsoft",  :matching => 0, :place => 0, :openchat => "", :txt => "サバゲーサークル" },
 
   # アウトドア
   { :id => 18, :category_id => 8, :order => "0801", :name => "登山" , :ruby => "mountain",  :matching => 0, :place => 0, :openchat => "", :txt => "登山サークル" },
   { :id => 39, :category_id => 8, :order => "0802", :name => "キャンプ" , :ruby => "camping",  :matching => 0, :place => 0, :openchat => "", :txt => "キャンプサークル" },
   { :id => 17, :category_id => 8, :order => "0803", :name => "ロードバイク" , :ruby => "road-bike",  :matching => 0, :place => 0, :openchat => "", :txt => "ロードバイクサークル" },
+  { :id => 52, :category_id => 8, :order => "0804", :name => "釣り" , :ruby => "fishing",  :matching => 0, :place => 0, :openchat => "", :txt => "釣りサークル" },
 
   # ダンス・よさこい
   { :id => 19, :category_id => 9, :order => "0901", :name => "ダンス" , :ruby => "dance",  :matching => 0, :place => 0, :openchat => "", :txt => "ダンスサークル" },
@@ -72,9 +77,8 @@ Event.seed(:id,
   { :id => 40, :category_id => 10, :order => "1002", :name => "演劇" , :ruby => "theater",  :matching => 0, :place => 0, :openchat => "", :txt => "演劇サークル" },
 
   # ゲーム
-  { :id => 11, :category_id => 11, :order => "1101", :name => "ゲーム" , :ruby => "game",  :matching => 1, :place => 0, :openchat => "", :txt => "ボードゲームサークル" },
+  { :id => 11, :category_id => 11, :order => "1101", :name => "ボードゲーム" , :ruby => "game",  :matching => 1, :place => 0, :openchat => "", :txt => "ボードゲームサークル" },
   { :id => 41, :category_id => 11, :order => "1102", :name => "ダーツ・ビリヤード" , :ruby => "darts",  :matching => 0, :place => 0, :openchat => "", :txt => "ダーツ・ビリヤードサークル" },
-  { :id => 42, :category_id => 11, :order => "1103", :name => "麻雀" , :ruby => "mahjong",  :matching => 0, :place => 0, :openchat => "", :txt => "麻雀サークル" },
 
   # 学生団体・ボランティア
   { :id => 24, :category_id => 12, :order => "1201", :name => "学生団体" , :ruby => "student-group",  :matching => 0, :place => 0, :openchat => "", :txt => "学生団体" },
