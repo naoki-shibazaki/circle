@@ -12,6 +12,7 @@ class ContactMailer < ApplicationMailer
     @user = user
     @user_contact = user_contact
     mail to:      user_contact.mail,
+        reply_to: user.admin_user.email,
         subject: "【サークルブック】#{user_contact.entry}のお問い合わせありがとうございます！"
   end
 
