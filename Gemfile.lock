@@ -807,6 +807,9 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
+    counter_culture (2.8.0)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
     crass (1.0.4)
     debug_inspector (0.0.3)
     derailed_benchmarks (1.8.1)
@@ -1092,6 +1095,7 @@ DEPENDENCIES
   chromedriver-helper
   cloudinary
   coffee-rails (~> 4.2)
+  counter_culture
   derailed_benchmarks
   devise
   devise-i18n
