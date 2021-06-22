@@ -18,9 +18,9 @@ class User < ApplicationRecord
 	has_one :match, dependent: :destroy
 	has_one :link, dependent: :destroy
 
-	belongs_to :prefecture, optional: true
+	belongs_to :prefecture
 	belongs_to :category, optional: true
-	belongs_to :event, optional: true
+	belongs_to :event
   counter_culture :event, column_name: 'users_count'
 	belongs_to :admin_user, optional: true
 

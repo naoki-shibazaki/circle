@@ -296,12 +296,12 @@ helper_method :link_count
 		@user = User.find(params[:id])
 
     # 削除データの保存
-    @db_validation_error = DbValidationError.new
-    @db_validation_error.name = "UserDelete" + "_#{@user.id}"
-    @db_validation_error.content_01 = @user.name
-    @db_validation_error.content_02 = @user.event.name
-    @db_validation_error.content_03 = @user.prefecture.name
-    @db_validation_error.save
+    # @db_validation_error = DbValidationError.new
+    # @db_validation_error.name = "UserDelete" + "_#{@user.id}"
+    # @db_validation_error.content_01 = @user.name
+    # @db_validation_error.content_02 = @user.event.name
+    # @db_validation_error.content_03 = @user.prefecture.name
+    # @db_validation_error.save
 
 		@user.destroy
 
