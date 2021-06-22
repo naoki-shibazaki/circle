@@ -8,7 +8,7 @@ helper_method :link_count
 
 
   def top
-		@events = Event.all.order(:order => :asc)
+		@events = Event.all.order(:users_count => :desc)
 		@prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
 		@match_events = Event.where(matching: 1).order(:order => :asc)
 		@place_events = Event.where(place: 1).order(:order => :asc)
