@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_170339) do
+ActiveRecord::Schema.define(version: 2021_06_22_161930) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_170339) do
     t.integer "matching"
     t.integer "place"
     t.string "category_id"
+    t.integer "users_count", default: 0, null: false
   end
 
   create_table "groups", force: :cascade do |t|
@@ -440,7 +441,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_170339) do
     t.string "goal"
     t.integer "prefecture_id"
     t.string "user_id"
-    t.string "event_id"
+    t.integer "event_id"
     t.integer "decade_age"
     t.string "header_image"
     t.string "pic_profile"
