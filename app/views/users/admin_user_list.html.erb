@@ -14,7 +14,7 @@
             <tr>
               <td><%= admin_user.id %></td>
               <td><%= user.id %></td>
-              <td><%= link_to user.name, "/users/#{user.id}"%>
+              <td><%= link_to user.name, "/users/#{user.id}"%></td>
             </tr>
           <% end %>
         <% end %>
@@ -24,12 +24,13 @@
 
 
       <table>
-        <tr><th>user_id</th><th>event_id</th></tr>
+        <tr><th>user_id</th><th>event_id</th><th>delete</th></tr>
 
         <% @users.each do |user| %>
           <tr>
             <td><%= user.id %></td>
-            <td><%= user.event_id %>
+            <td><%= user.event_id %></td>
+            <td><%= link_to( "削除", user_path(user), method: :delete, data: {confirm: "このサークルを削除しますか？"}) %></td>
           </tr>
         <% end %>
       </table>

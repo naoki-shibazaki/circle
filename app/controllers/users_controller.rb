@@ -8,8 +8,9 @@ helper_method :link_count
 
 
   def top
-		@events = Event.all.order(:users_count => :desc)
-		@prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
+		# @events = Event.all.order(:users_count => :desc)
+		@events = Event.all.order(:order => :asc)
+    @prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
 		@match_events = Event.where(matching: 1).order(:order => :asc)
 		@place_events = Event.where(place: 1).order(:order => :asc)
     @match_users = Match.where(recruit: "募集中").order(updated_at: "DESC")
@@ -641,6 +642,7 @@ def admin_user_list
   if admin_user_signed_in?
     if current_admin_user.id == 1
       @admin_users = AdminUser.last(100)
+      # @users = User.where(event_id: nil).order(:id => :asc)
       @users = User.all.order(:id => :asc)
     else
       flash[:notice] = "権限がありません"
