@@ -641,7 +641,7 @@ def admin_user_list
   if admin_user_signed_in?
     if current_admin_user.id == 1
       @admin_users = AdminUser.last(100)
-      @users = User.all
+      @users = User.all.order(:id => :asc)
     else
       flash[:notice] = "権限がありません"
       redirect_to users_path
