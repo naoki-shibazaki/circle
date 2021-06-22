@@ -642,8 +642,8 @@ def admin_user_list
   if admin_user_signed_in?
     if current_admin_user.id == 1
       @admin_users = AdminUser.last(100)
-      # @users = User.where(event_id: nil).order(:id => :asc)
-      @users = User.all.order(:id => :asc)
+      @users = User.where(event_id: nil).order(:id => :asc)
+      # @users = User.all.order(:id => :asc)
     else
       flash[:notice] = "権限がありません"
       redirect_to users_path
