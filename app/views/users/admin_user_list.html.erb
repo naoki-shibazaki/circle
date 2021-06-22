@@ -4,7 +4,9 @@
   <div class="container">
 
     <div class="table_list">
-      <table>
+      <%
+=begin%>
+ <table>
         <tr><th>AdminUser</th><th>User</th><th>Name</th></tr>
 
         <% @admin_users.reverse_each do |admin_user| %>
@@ -15,6 +17,20 @@
               <td><%= link_to user.name, "/users/#{user.id}"%>
             </tr>
           <% end %>
+        <% end %>
+      </table>
+<%
+=end%>
+
+
+      <table>
+        <tr><th>user_id</th><th>event_id</th></tr>
+
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.event_id %>
+          </tr>
         <% end %>
       </table>
 
