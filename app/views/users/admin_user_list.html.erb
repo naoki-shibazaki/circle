@@ -30,7 +30,7 @@
           <tr>
             <td><%= user.id %></td>
             <td><%= user.event_id %></td>
-            <td><%= link_to( "削除", user_path(user), method: :delete, data: {confirm: "このサークルを削除しますか？"}) %></td>
+            <td><%= link_to( "削除", user_path(user), method: :delete) %></td>
           </tr>
         <% end %>
       </table>
