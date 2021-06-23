@@ -4,36 +4,20 @@
   <div class="container">
 
     <div class="table_list">
-      <%
-=begin%>
- <table>
-        <tr><th>AdminUser</th><th>User</th><th>Name</th></tr>
 
-        <% @admin_users.reverse_each do |admin_user| %>
-          <% admin_user.users.each do |user| %>
-            <tr>
-              <td><%= admin_user.id %></td>
-              <td><%= user.id %></td>
-              <td><%= link_to user.name, "/users/#{user.id}"%></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </table>
-<%
-=end%>
-
-
-      <table>
-        <tr><th>user_id</th><th>event_id</th><th>delete</th></tr>
-
-        <% @users.each do |user| %>
+    <table>
+      <tr><th>AdminUser</th><th>User</th><th>Name</th></tr>
+      <% @admin_users.reverse_each do |admin_user| %>
+        <% admin_user.users.each do |user| %>
           <tr>
+            <td><%= admin_user.id %></td>
             <td><%= user.id %></td>
-            <td><%= user.event_id %></td>
-            <td><%= link_to( "削除", user_path(user), method: :delete) %></td>
+            <td><%= link_to user.name, "/users/#{user.id}"%></td>
           </tr>
         <% end %>
-      </table>
+      <% end %>
+    </table>
+
 
     </div>
 

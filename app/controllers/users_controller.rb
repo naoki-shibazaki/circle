@@ -8,8 +8,7 @@ helper_method :link_count
 
 
   def top
-		# @events = Event.all.order(:users_count => :desc)
-		@events = Event.all.order(:order => :asc)
+		@events = Event.all.order(:users_count => :desc)
     @prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
 		@match_events = Event.where(matching: 1).order(:order => :asc)
 		@place_events = Event.where(place: 1).order(:order => :asc)
@@ -295,13 +294,13 @@ helper_method :link_count
 	def destroy
 		@user = User.find(params[:id])
 
-    # 削除データの保存
-    # @db_validation_error = DbValidationError.new
-    # @db_validation_error.name = "UserDelete" + "_#{@user.id}"
-    # @db_validation_error.content_01 = @user.name
-    # @db_validation_error.content_02 = @user.event.name
-    # @db_validation_error.content_03 = @user.prefecture.name
-    # @db_validation_error.save
+    削除データの保存
+    @db_validation_error = DbValidationError.new
+    @db_validation_error.name = "UserDelete" + "_#{@user.id}"
+    @db_validation_error.content_01 = @user.name
+    @db_validation_error.content_02 = @user.event.name
+    @db_validation_error.content_03 = @user.prefecture.name
+    @db_validation_error.save
 
 		@user.destroy
 
@@ -642,8 +641,6 @@ def admin_user_list
   if admin_user_signed_in?
     if current_admin_user.id == 1
       @admin_users = AdminUser.last(100)
-      @users = User.where(event_id: "").order(:id => :asc)
-      # @users = User.all.order(:id => :asc)
     else
       flash[:notice] = "権限がありません"
       redirect_to users_path
