@@ -63,7 +63,7 @@
 <%= f.select :category_id, category_options, { include_blank: true }, class: 'user-select-parent' %>
 
 <p>サークル種目（中）<span class="must_red">(必須)</span></p>
-<% events = Event.where(category_id: @user.category).order(:order => :asc) %>
+<% events = Event.where(category_id: @user.category).order(:users_count => :desc) %>
 <% event_options = events.map { |e| [e.name, e.id] } %>
 <%= f.select :event_id, event_options, { include_blank: true }, class: 'user-select-children' %>
 
