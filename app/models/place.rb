@@ -2,6 +2,7 @@ class Place < ApplicationRecord
 	belongs_to :prefecture
   counter_culture :prefecture, column_name: 'places_count'
 	belongs_to :city
+  counter_culture :city, column_name: 'places_count'
 	belongs_to :user, optional: true
 
   has_many :place_reviews, dependent: :destroy

@@ -60,6 +60,7 @@
               <div class="prefecture_city_list">
                 <%= link_to("/places/#{@event.ruby}/#{@prefecture.kana}/#{city.city_kana}") do %>
                   <%= city.name %>
+                  <% if @event.id == 2 %>(<%= city.places_count %>)<% end %>
                 <% end %>
               </div>
             <% end %>

@@ -63,14 +63,16 @@
                       <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
                         <li>
                           <%= link_to "/places/#{@event.ruby}/#{prefecture.kana}" do %>
-                            <%= prefecture.name %>(<%= prefecture.places_count %>)
+                            <%= prefecture.name %>
+                            <% if @event.id == 2 %>(<%= prefecture.places_count %>)<% end %>
                           <% end %>
                         </li>
                       <% @x = prefecture.group %>
                     <% else %>
                         <li>
                           <%= link_to "/places/#{@event.ruby}/#{prefecture.kana}" do %>
-                            <%= prefecture.name %>(<%= prefecture.places_count %>)
+                            <%= prefecture.name %>
+                            <% if @event.id == 2 %>(<%= prefecture.places_count %>)<% end %>
                           <% end %>
                         </li>
                     <% end %>
