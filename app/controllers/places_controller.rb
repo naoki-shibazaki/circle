@@ -161,7 +161,7 @@ class PlacesController < ApplicationController
 
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
-		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
+		@cities = City.where(prefecture_id: @prefecture.id).order(places_count: "DESC")
     @places = Place.where(id: @event_places).where(prefecture_id: @prefecture.id).all.order(updated_at: "DESC").page(params[:page])
 		@b2_name = @event.name
 		@b2_url = "/places/#{@event.ruby}"
