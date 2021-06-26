@@ -294,7 +294,7 @@ helper_method :link_count
 	def destroy
 		@user = User.find(params[:id])
 
-    削除データの保存
+    # 削除データの保存
     @db_validation_error = DbValidationError.new
     @db_validation_error.name = "UserDelete" + "_#{@user.id}"
     @db_validation_error.content_01 = @user.name
