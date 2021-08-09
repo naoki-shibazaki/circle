@@ -34,8 +34,8 @@ Event.seed(:id,
   { :id => 29, :category_id => 3, :order => "0304", :name => "ボウリング" , :ruby => "bowling",  :matching => 0, :place => 0, :openchat => "", :txt => "ボウリングサークル" },
   { :id => 30, :category_id => 3, :order => "0305", :name => "水泳" , :ruby => "swimming",  :matching => 0, :place => 0, :openchat => "", :txt => "水泳サークル・チーム" },
   { :id => 31, :category_id => 3, :order => "0306", :name => "カバディ" , :ruby => "kabaddi",  :matching => 0, :place => 0, :openchat => "", :txt => "カバディサークル・チーム" },
-  { :id => 15, :category_id => 3, :order => "0307", :name => "オールラウンド" , :ruby => "all-round",  :matching => 2, :place => 0, :openchat => "", :txt => "オールラウンドサークル" },
-  { :id => 50, :category_id => 3, :order => "0308", :name => "モルック" , :ruby => "molkky",  :matching => 2, :place => 0, :openchat => "", :txt => "モルックサークル" },
+  { :id => 15, :category_id => 3, :order => "0307", :name => "総合格闘技" , :ruby => "mma",  :matching => 0, :place => 0, :openchat => "", :txt => "総合格闘技サークル" },
+  { :id => 50, :category_id => 3, :order => "0308", :name => "モルック" , :ruby => "molkky",  :matching => 0, :place => 0, :openchat => "", :txt => "モルックサークル" },
   { :id => 46, :category_id => 3, :order => "0309", :name => "その他のスポーツ" , :ruby => "other-sports",  :matching => 0, :place => 0, :openchat => "", :txt => "その他のスポーツサークル" },
 
   # ウィンタースポーツ
