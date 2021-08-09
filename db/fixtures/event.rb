@@ -4,7 +4,7 @@ Event.seed(:id,
 # place => Place 1:連携/0:非連携
 # { :id => 99, :category_id => 9, :order => "9999", :name => "99" , :ruby => "99",  :matching => 0, :place => 0, :openchat => "", :txt => "99" },
 
-# Max id 52
+# Max id 53
 
   # 球技スポーツ
   { :id => 2, :category_id => 1, :order => "0101", :name => "バスケ" , :ruby => "basketball", :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/28860kzjimldNe2P9MOsqg", :txt => "バスケサークル・チーム" },
@@ -24,6 +24,7 @@ Event.seed(:id,
   { :id => 9, :category_id => 2, :order => "0202", :name => "テニス" , :ruby => "tennis",  :matching => 1, :place => 1, :openchat => "https://line.me/ti/g2/rQkRsdC0Ppg-xVTQVlQYgw", :txt => "テニスサークル" },
   { :id => 10, :category_id => 2, :order => "0203", :name => "卓球" , :ruby => "table-tennis",  :matching => 1, :place => 1, :openchat => "", :txt => "卓球サークル・クラブ" },
   { :id => 47, :category_id => 2, :order => "0204", :name => "パデル" , :ruby => "padel",  :matching => 0, :place => 0, :openchat => "", :txt => "パデルサークル" },
+  { :id => 53, :category_id => 2, :order => "0205", :name => "ラクロス" , :ruby => "lacrosse",  :matching => 0, :place => 0, :openchat => "", :txt => "ラクロスサークル" },
 
 
   # その他のスポーツ
