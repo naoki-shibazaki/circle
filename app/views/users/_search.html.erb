@@ -239,21 +239,21 @@
           <li class="list_item selected">新着順</li>
         <% end %>
 
-  <% else controller.action_name != "search" %>
+  <% else controller.action_name == "search" %>
 
         <% if params[:sort] == "1" || params[:sort] == nil %>
           <li class="list_item selected">関連順</li>
-          <a href="<%= request.path %>?sort=2" ><li class="list_item">人気順</li></a>
-          <a href="<%= request.path %>?sort=3" ><li class="list_item">新着順</li></a>
+          <a href="<%= request.path %>?q=<%= params[:q] %>&sort=2" ><li class="list_item">人気順</li></a>
+          <a href="<%= request.path %>?q=<%= params[:q] %>&sort=3" ><li class="list_item">新着順</li></a>
 
         <% elsif params[:sort] == "2" %>
-          <a href="<%= request.path %>?q=<%= params[:q] %>?sort=1" ><li class="list_item">関連順</li></a>
+          <a href="<%= request.path %>?q=<%= params[:q] %>&sort=1" ><li class="list_item">関連順</li></a>
           <li class="list_item selected">人気順</li>
-          <a href="<%= request.path %>?q=<%= params[:q] %>?sort=3" ><li class="list_item">新着順</li></a>
+          <a href="<%= request.path %>?q=<%= params[:q] %>&sort=3" ><li class="list_item">新着順</li></a>
 
         <% else params[:sort] == "3" %>
-          <a href="<%= request.path %>?q=<%= params[:q] %>?sort=1" ><li class="list_item">関連順</li></a>
-          <a href="<%= request.path %>?q=<%= params[:q] %>?sort=2" ><li class="list_item">人気順</li></a>
+          <a href="<%= request.path %>?q=<%= params[:q] %>&sort=1" ><li class="list_item">関連順</li></a>
+          <a href="<%= request.path %>?q=<%= params[:q] %>&sort=2" ><li class="list_item">人気順</li></a>
           <li class="list_item selected">新着順</li>
         <% end %>
 
