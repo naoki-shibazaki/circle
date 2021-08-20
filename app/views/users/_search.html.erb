@@ -219,101 +219,44 @@
 </div>
 
 
-  <ul class="tag_list">
-    <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index') %>
-      <% @tags.each do |tag| %>
-        <% if tag.id == params[:id].to_i %>
-          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-        <% else %>
-          <li><a href="/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-        <% end %>
-      <% end %>
-    <% elsif @path.is('users#event_prefecture_city', 'tags#event_prefecture_city') %>
-      <% @tags.each do |tag| %>
-        <% if tag.id == params[:id].to_i %>
-          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-        <% else %>
-          <li><a href="/<%= @event.ruby %>/<%= @prefecture.kana %>/<%= @city.city_kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-        <% end %>
-      <% end %>
-    <% elsif @path.is('users#event_prefecture', 'tags#event_prefecture') %>
-      <% @tags.each do |tag| %>
-        <% if tag.id == params[:id].to_i %>
-          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-        <% else %>
-          <li><a href="/<%= @event.ruby %>/<%= @prefecture.kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-        <% end %>
-      <% end %>
-    <% elsif  @path.is('users#event', 'tags#event') %>
-      <% @tags.each do |tag| %>
-        <% if tag.id == params[:id].to_i %>
-          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-        <% else %>
-          <li><a href="/<%= @event.ruby %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-        <% end %>
-      <% end %>
-    <% elsif @path.is('users#prefecture_city', 'tags#prefecture_city') %>
-      <% @tags.each do |tag| %>
-        <% if tag.id == params[:id].to_i %>
-          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-        <% else %>
-          <li><a href="/prefectures/<%= @prefecture.kana %>/<%= @city.city_kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-        <% end %>
-      <% end %>
-    <% elsif @path.is('users#prefecture', 'tags#prefecture') %>
-      <% @tags.each do |tag| %>
-        <% if tag.id == params[:id].to_i %>
-          <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-        <% else %>
-          <li><a href="/prefectures/<%= @prefecture.kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-        <% end %>
-      <% end %>
-    <% else %>
-
-    <% end %>
-  </ul>
-
-<div class="sort_wrap">
+<ul class="tab_list">
 
   <% if controller.action_name != "search" %>
 
-      <div class="sort_select">
         <% if params[:sort] == "1" || params[:sort] == nil %>
-        <span class="sort_btn selected">関連順</span>
-          <!-- <a href="<%= request.path %>?sort=2" ><span class="sort_btn">人気順</span></a> -->
-          <a href="<%= request.path %>?sort=3" ><span class="sort_btn">新着順</span></a>
+          <li class="list_item selected">関連順</li>
+          <a href="<%= request.path %>?sort=2" ><li class="list_item">人気順</li></a>
+          <a href="<%= request.path %>?sort=3" ><li class="list_item">新着順</li></a>
+
         <% elsif params[:sort] == "2" %>
-        <a href="<%= request.path %>?sort=1" ><span class="sort_btn">関連順</span></a>
-          <span class="sort_btn selected">人気順</span>
-        <a href="<%= request.path %>?sort=3" ><span class="sort_btn">新着順</span></a>
+          <a href="<%= request.path %>?sort=1" ><li class="list_item">関連順</li></a>
+          <li class="list_item selected">人気順</li>
+          <a href="<%= request.path %>?sort=3" ><li class="list_item">新着順</li></a>
+
         <% else params[:sort] == "3" %>
-        <a href="<%= request.path %>?sort=1" ><span class="sort_btn">関連順</span></a>
-        <!-- <a href="<%= request.path %>?sort=2" ><span class="sort_btn">人気順</span></a> -->
-          <span class="sort_btn selected">新着順</span>
+          <a href="<%= request.path %>?sort=1" ><li class="list_item">関連順</li></a>
+          <a href="<%= request.path %>?sort=2" ><li class="list_item">人気順</li></a>
+          <li class="list_item selected">新着順</li>
         <% end %>
-      </div>
 
   <% else controller.action_name != "search" %>
 
-      <div class="sort_select">
         <% if params[:sort] == "1" || params[:sort] == nil %>
-        <span class="sort_btn selected">関連順</span>
-          <!-- <a href="<%= request.path %>?q=<%= params[:q] %>&sort=2" ><span class="sort_btn">人気順</span></a> -->
-          <a href="<%= request.path %>?q=<%= params[:q] %>&sort=3" ><span class="sort_btn">新着順</span></a>
+          <li class="list_item selected">関連順</li>
+          <a href="<%= request.path %>?sort=2" ><li class="list_item">人気順</li></a>
+          <a href="<%= request.path %>?sort=3" ><li class="list_item">新着順</li></a>
+
         <% elsif params[:sort] == "2" %>
-        <a href="<%= request.path %>?q=<%= params[:q] %>&sort=1" ><span class="sort_btn">関連順</span></a>
-          <span class="sort_btn selected">人気順</span>
-        <a href="<%= request.path %>?q=<%= params[:q] %>&sort=3" ><span class="sort_btn">新着順</span></a>
+          <a href="<%= request.path %>?q=<%= params[:q] %>?sort=1" ><li class="list_item">関連順</li></a>
+          <li class="list_item selected">人気順</li>
+          <a href="<%= request.path %>?q=<%= params[:q] %>?sort=3" ><li class="list_item">新着順</li></a>
+
         <% else params[:sort] == "3" %>
-        <a href="<%= request.path %>?q=<%= params[:q] %>&sort=1" ><span class="sort_btn">関連順</span></a>
-        <!-- <a href="<%= request.path %>?q=<%= params[:q] %>&sort=2" ><span class="sort_btn">人気順</span></a> -->
-          <span class="sort_btn selected">新着順</span>
+          <a href="<%= request.path %>?q=<%= params[:q] %>?sort=1" ><li class="list_item">関連順</li></a>
+          <a href="<%= request.path %>?q=<%= params[:q] %>?sort=2" ><li class="list_item">人気順</li></a>
+          <li class="list_item selected">新着順</li>
         <% end %>
-      </div>
 
   <% end %>
 
-</div>
-
-
-
+</ul>

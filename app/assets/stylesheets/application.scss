@@ -5710,8 +5710,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       display: inline-block;
       vertical-align: middle;
       *zoom: 1; /* for IE6-7 */
-      *display: inline; /* for IE6-7 */    
-    }  
+      *display: inline; /* for IE6-7 */
+    }
 
     .review_count{
       font-size: 14px;
@@ -7429,6 +7429,48 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     text-decoration: underline;
     color: #337ab7;
     font-size: 12px;
+  }
+}
+
+.tab_list{
+  background: #fff;
+  border-bottom: 1px solid #989898;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 .5rem;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 0 auto 16px;
+  .list_item{
+    width: 33%;
+    border: 1px solid #c6c6c6;
+    border-bottom-color: #989898;
+    text-align: center;
+    line-height: 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 0 .5rem -1px;
+  }
+  .selected{
+    font-weight: 700;
+    background-color: #e8e8e8;
+    border: 1px solid #989898;
+    border-bottom-color: #e8e8e8;
+  }
+  a{
+    display: contents;
   }
 }
 
