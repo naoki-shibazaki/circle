@@ -354,7 +354,7 @@ body {
   overflow: hidden;
   // display: table;
   width: 100%;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
 .user-left img {
@@ -3675,7 +3675,7 @@ max-width: 100%;
 }
 
 .user_list_wrapper {
-    padding: 0px 0 0 98px;
+    padding: 0px 0 0 104px;
 }
 
 .user_updated{
@@ -3742,7 +3742,7 @@ max-width: 100%;
 
 .header_user_list,
 .header_imege_user_list{
-    height: 120px;
+    height: 100px;
 }
 
 
@@ -3777,7 +3777,7 @@ max-width: 100%;
     border: 3px solid #fff;
     background: #fff;
     left: 18px;
-    top: 15px;
+    top: -6px;
 }
 
 
@@ -3790,7 +3790,7 @@ max-width: 100%;
 
 
 .user_list_wrap{
-	padding: 0 20px 20px;	
+	padding: 0 14px 20px;	
 }
 
 
@@ -7452,7 +7452,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  margin: 0 auto 16px;
+  margin: 0 auto 20px;
   .list_item{
     width: 33%;
     border: 1px solid #c6c6c6;
@@ -7474,7 +7474,66 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+.user_item_wrap{
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  -webkit-box-shadow: 1px 1px 4px #a2a2a2;
+  box-shadow: 1px 1px 4px #a2a2a2;
+  cursor: pointer;
+  margin: 0 auto 1.5rem;
+  width: 100%;
+  .tag_list_wrap{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    word-break: break-all;
+    background-color: #f3f3f3;
+    height: 40px;
+    .tag_list_content{
+      display: flex;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      display: block;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      overflow-scrolling: touch;
+      white-space: nowrap;
+      padding: 6px 14px;
+      li{
+        float: left;
+        margin-right: 14px;
+      }
+      a{
+        display: block;
+        padding: .25em .5em;
+        background: #fff;
+        border: 1px solid #fff;
+        border-radius: 21px;
+        color: #1a1a1a;
+      }
+    }
+  }
+}
 
+.user_item_schedule{
+  font-size: 12px;
+}
+
+.recruitment_txt{
+  margin: 10px auto;
+}
 
 
 
@@ -7606,6 +7665,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   width: 90%;
   padding: 25px;
 }
+
+.user_item_wrap{
+  width: 96%;
+}
+
 
 
 
