@@ -225,17 +225,14 @@
 
         <% if params[:sort] == "1" || params[:sort] == nil %>
           <li class="list_item selected">標準</li>
-          <a href="<%= request.path %>?sort=2" ><li class="list_item">人気順</li></a>
           <a href="<%= request.path %>?sort=3" ><li class="list_item">新着順</li></a>
 
         <% elsif params[:sort] == "2" %>
           <a href="<%= request.path %>?sort=1" ><li class="list_item">標準</li></a>
-          <li class="list_item selected">人気順</li>
           <a href="<%= request.path %>?sort=3" ><li class="list_item">新着順</li></a>
 
         <% else params[:sort] == "3" %>
           <a href="<%= request.path %>?sort=1" ><li class="list_item">標準</li></a>
-          <a href="<%= request.path %>?sort=2" ><li class="list_item">人気順</li></a>
           <li class="list_item selected">新着順</li>
         <% end %>
 
@@ -243,17 +240,14 @@
 
         <% if params[:sort] == "1" || params[:sort] == nil %>
           <li class="list_item selected">標準</li>
-          <a href="<%= request.path %>?q=<%= params[:q] %>&sort=2" ><li class="list_item">人気順</li></a>
           <a href="<%= request.path %>?q=<%= params[:q] %>&sort=3" ><li class="list_item">新着順</li></a>
 
         <% elsif params[:sort] == "2" %>
           <a href="<%= request.path %>?q=<%= params[:q] %>&sort=1" ><li class="list_item">標準</li></a>
-          <li class="list_item selected">人気順</li>
           <a href="<%= request.path %>?q=<%= params[:q] %>&sort=3" ><li class="list_item">新着順</li></a>
 
         <% else params[:sort] == "3" %>
           <a href="<%= request.path %>?q=<%= params[:q] %>&sort=1" ><li class="list_item">標準</li></a>
-          <a href="<%= request.path %>?q=<%= params[:q] %>&sort=2" ><li class="list_item">人気順</li></a>
           <li class="list_item selected">新着順</li>
         <% end %>
 
