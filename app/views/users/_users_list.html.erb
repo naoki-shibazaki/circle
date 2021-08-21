@@ -74,22 +74,16 @@
                     <i class="fa fa-calendar icon_c"></i><%= user.schedule %>
                   </span>
                   <% if user.switch == "募集中" %>
-                    <% @schedules.each do |schedule| %>
-                      <% if schedule.user_id == user.id %>
-                        <% if @count < 2 %>
-                          <div class="text_slide user_item_schedule">
-                            ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
-                            <% if schedule.time_s.present? %>
-                              <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %>
-                            <% end %>
-                            <%= schedule.venue %>
-                          </div>
-                        <% @count += 1 %>
+                    <% user.schedules.where("day > ?", DateTime.yesterday).order(:day => :asc).first(2).each do |schedule| %>
+                      <div class="text_slide user_item_schedule">
+                        ・<%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                        <% if schedule.time_s.present? %>
+                          <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %>
                         <% end %>
-                      <% end %>
+                        <%= schedule.venue %>
+                      </div>
                     <% end %>
                   <% end %>
-                  <% @count = 0 %>
               </div>
             </div>
 
