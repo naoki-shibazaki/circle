@@ -1256,6 +1256,7 @@ select{
 
 a.line_id {
   color: #099609;
+  display: block;
 }
 
 .events-container,
@@ -2946,6 +2947,7 @@ max-width: 100%;
 .new_user select{
     width: 50%;
     height: 30px;
+    display: block;
     margin-bottom: 14px;
     background: #fff;
     background-color: #ffffff;
@@ -3068,7 +3070,7 @@ max-width: 100%;
 #img_field_header,
 #img_field_header img{
     width: 100%;
-    height: 150px;
+    height: 125px;
     position: absolute;
     object-fit: cover;
     background-color: #dcdcdc;
@@ -3079,8 +3081,8 @@ max-width: 100%;
     height: 100px;
     border-radius: 50%;
     position: absolute;
-    top: 100px;
-    left: 10px;
+    top: 94px;
+    left: 20px;
     object-fit: cover;   
     background-color: #d4d4d4;
 }
@@ -3127,7 +3129,7 @@ max-width: 100%;
 
 .file_size_p{
     position: absolute;
-    top: 174px;
+    top: 166px;
     right: 0;
     color: #565656;
     font-size: 12px;
@@ -3135,7 +3137,7 @@ max-width: 100%;
 
 
 .img_field_profile_space{
-  padding-top: 210px;
+  padding-top: 188px;
 }
 
 
@@ -4378,13 +4380,14 @@ max-width: 100%;
 
 
 .edit01_subtitle {
-    position: absolute;
-    padding: 0px 8px;
-    left: 10px;
-    top: -12px;
-    background-color: #fff;
-    color: #00157d;
-    font-size: 14px;
+  position: absolute;
+  padding: 0px 8px;
+  left: 10px;
+  top: -12px;
+  background-color: #fff;
+  font-size: 14px;
+  max-width: 100%;
+  font-weight: 700;
 }
 
 
@@ -7472,6 +7475,9 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   a{
     display: contents;
   }
+  li{
+    transition: 0.3s ease-out;
+  }
 }
 
 .user_item_wrap{
@@ -7535,6 +7541,30 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   margin: 10px auto;
 }
 
+.label_item{
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  font-weight: 700;
+  color: #555555;
+  .label{
+    display: inline;
+    padding: 4px 10px;
+    margin-right: 4px;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 2px;
+  }
+  .label_danger{
+    background-color: #d9534f;
+  }
+}
 
 
 // --------------------------------------

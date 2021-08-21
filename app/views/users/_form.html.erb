@@ -19,7 +19,7 @@
 
   <div class="img_field_profile_wrap">
 
-  <p>プロフィール画像（アイコン＆背景写真）</p>
+  <div class="label_item">プロフィール画像（アイコン＆背景写真）</div>
   <div id="img_field_header" onClick="$('#file_header').click()" >
     <% if @user.pic_header.present? %>
       <%= image_tag(@user.pic_header.url) %>
@@ -46,44 +46,44 @@
 <div class="img_field_profile_space"></div>
 
 <% if current_admin_user.id == 1 %>
-  <p>NGアカウント判定<span class="must_red">(管理権限)</span></p>
+<div class="label_item"><span class="label label_danger">管理権限</span>NGアカウント判定</div>
   <%= f.select :ng_account, [ ['OK', 'OK'], ['NG','NG'] ] %>
 <% end %>
 
-<p>サークル名<span class="must_red">(必須)</span></p>
+<div class="label_item"><span class="label label_danger">必須</span>サークル名</div>
 <%= f.text_field :name, class: 'form-control change_font', placeholder: "サークルブック" %>
 
-<p>新規メンバーの募集<span class="must_red">(必須)</span></p>
+<div class="label_item"><span class="label label_danger">必須</span>新規メンバーの募集</div>
 <%= f.select :switch, [ ['募集中','募集中'], ['受付終了','受付終了'] ],
 :prompt => "選択してください" %>
 
 
-<p>サークル種目（大）<span class="must_red">(必須)</span></p>
+<div class="label_item"><span class="label label_danger">必須</span>サークル種目（大）</div>
 <% category_options = Category.order(:id).map { |e| [e.name, e.id, data: { children_path: category_events_path(e) }] } %>
 <%= f.select :category_id, category_options, { include_blank: true }, class: 'user-select-parent' %>
 
-<p>サークル種目（中）<span class="must_red">(必須)</span></p>
+<div class="label_item"><span class="label label_danger">必須</span>サークル種目（中）</div>
 <% events = Event.where(category_id: @user.category).order(:users_count => :desc) %>
 <% event_options = events.map { |e| [e.name, e.id] } %>
 <%= f.select :event_id, event_options, { include_blank: true }, class: 'user-select-children' %>
 
 
-<p>メインの活動エリア<span class="must_red">(必須)</span>（例：東京都）</p>
+<div class="label_item"><span class="label label_danger">必須</span>メインの活動エリア（例：東京都）</div>
 <%= f.collection_select :prefecture_id, Prefecture.all.order(:order => :asc), :id, :name, :prompt => "選択してください" %>
 
-<p>サブの活動エリア（例：神奈川県）</p>
+<div class="label_item">サブの活動エリア（例：神奈川県）</div>
 <%= f.collection_select :prefecture_sub_id, Prefecture.where.not(id: 50).order(:order => :asc), :id, :name, :include_blank => true %>	
 
-<p>活動時間</p>
+<div class="label_item">活動時間</div>
 <%= f.text_field :schedule, class: 'form-control', placeholder: "月曜日 18〜20時" %>
 
-<p>活動場所</p>
+<div class="label_item">活動場所</div>
 <%= f.text_field :area, class: 'form-control', placeholder: "世田谷区周辺" %>
 
-<p>こんな人を探しています</p>
+<div class="label_item">こんな人を探しています</div>
 <%= f.text_field :recruitment, class: 'form-control', placeholder: "初心者・経験者でもOKです！" %>
 
-<p>現在の構成メンバー</p>
+<div class="label_item">現在の構成メンバー</div>
 <%= f.text_field :member, class: 'form-control', placeholder: "10名程" %>
 
 <div class="edit01_warp">
@@ -100,44 +100,41 @@
     </div>
 </div>
 
-<p>会費・費用</p>
+<div class="label_item">会費・費用</div>
 <%= f.text_field :cost, class: 'form-control', placeholder: "500円" %>
 
-<p>サークル目標</p>
+<div class="label_item">サークル目標</div>
 <%= f.text_field :goal, class: 'form-control', placeholder: "ゆくる、楽しく活動をする！" %>
 
-<p>LINEビジネス（LINE@）／LINEのURL</p>
+<div class="label_item">LINEビジネス（LINE@）／LINEのURL</div>
 <a href="/line" target="_blank" class="line_id"> >>30秒で作れるLINEアカウントの追加方法</a>
 <%= f.text_field :line_id, class: 'form-control', placeholder: "http://nav.cx/3JiS9Im" %>
 
 <% if @user.line_id.present? %>
-  <p>連絡方法</p>
+  <div class="label_item">連絡方法</div>
   <%= f.select :contact, [ ['メール＆LINE','both'], ['LINEのみ','line'] , ['メールのみ','mail'] ] %>
 <% end %>
 
-<div class="edit01_warp">
-  <span class="edit01_subtitle">SNS</span>
 
 <div class="sns_form">
-  <p>Twitter ID</p>
+  <div class="label_item">Twitter ID</div>
   <div class="sns_input">
     <span class="atmark">@</span><%= f.text_field :twitter, class: 'form-control', placeholder: "circle_book_" %>
   </div>
 </div>
 
 <div class="sns_form">
-  <p>Instagram ID</p>
+  <div class="label_item">Instagram ID</div>
   <div class="sns_input">
     <span class="atmark">@</span><%= f.text_field :instagram, class: 'form-control', placeholder: "circlebook47" %>
   </div>
 </div>
 
-</div>
 
 <div class="reset"></div>
 
 
-<p>ホームページ</p>
+<div class="label_item">ホームページ</div>
 <%= f.text_field :web, class: 'form-control', placeholder: "https://www.circle-book.com/" %>
 
 <div class="edit01_warp">
@@ -190,7 +187,7 @@
   </div>
 </div>
 
-  <p>サークルの詳細情報</p>
+  <div class="label_item">サークルの詳細情報</div>
   <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！&#13;&#10;興味がある人は気軽にご連絡ください！".html_safe %>
 
 
