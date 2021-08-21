@@ -123,7 +123,15 @@
             <% end %>
           </li>
           <% end %>
-
+          <% if user.tags.present? %>
+            <% user.tags.order(:order => :asc).each do |tag| %>
+              <li>
+                <%= link_to("/tag/#{tag.id}") do %>
+                  <%= tag.name %>
+                <% end %>
+              </li>
+            <% end %>
+          <% end %>
         <ul>
       </div>
 

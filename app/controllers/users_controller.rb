@@ -689,7 +689,7 @@ private
 	def user_params
 		params.require(:user).permit(
 			:name, :email, :image_name, :header_image, :line_id, :switch, :item, :prefecture, :area, :schedule, :time_s, :time_e, :venue_address, :note, :age, :recruitment, :foundation, :member, :cost, :web, :appeal, :password, :goal, :user_id, :category_id, :event_id, :decade, :prefecture_id, :image, :pic_profile, :pic_header, :image_01, :image_02, :gallery_01, :gallery_02, :gallery_03, :gallery_04, :requirement, :impressions_count, :line_count, :mail_count, :user_time, :last_post, :contact, :twitter, :instagram, :txt, :prefecture_sub_id, :opinion, :template, :sent_count, :review_score, :ng_account,
-			decade_age:[], average_age:[] ,grouping:[], age_ids:[], group_ids:[], city_ids:[]
+			decade_age:[], average_age:[] ,grouping:[], age_ids:[], group_ids:[], city_ids:[], tag_ids:[]
     )
 	end
 

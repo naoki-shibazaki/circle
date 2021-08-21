@@ -5,49 +5,51 @@
     <div class="form users-form">
 
       <div class="form-body cont-body">
-      	<% if @user.errors.any? %>
-	          <div class="form-error">
-              以下の項目でエラーが発生いたしました。<br>
-              ※原因不明の場合は空欄でご登録ください
-	          </div>
-		<% end %>
- 
-        <% @user.errors.full_messages.each do |message| %>
-            <div class="form-error_message">
-              ・<%= message %>
-            </div>
+        <% if @user.errors.any? %>
+          <div class="form-error">
+            以下の項目でエラーが発生いたしました。<br>
+            ※原因不明の場合は空欄でご登録ください
+          </div>
         <% end %>
 
-      <%= form_for @user,:url => {controller: "users", action: "update2"} do |f| %>
+        <% @user.errors.full_messages.each do |message| %>
+          <div class="form-error_message">
+            ・<%= message %>
+          </div>
+        <% end %>
 
-	    <div class="p_t">サークル内容の編集</div>
+        <%= form_for @user,:url => {controller: "users", action: "update2"} do |f| %>
 
-			<div class="edit02_warp">
-				<span class="edit02_subtitle">活動エリア（<%= @prefecture.name %>）</span>
+          <div class="p_t">サークル内容の編集</div>
 
-			    <div class="check_boxes">
-			   		<%= f.collection_check_boxes(:city_ids, @cities, :id, :name) %>
-			    </div>
+          <div class="edit02_warp">
+            <span class="edit02_subtitle">カテゴリー</span>
+            <div class="check_boxes">
+              <%= f.collection_check_boxes(:tag_ids, @tags, :id, :name) %>
+            </div>
+          </div>
 
-			</div>
+          <div class="edit02_warp">
+            <span class="edit02_subtitle">活動エリア（<%= @prefecture.name %>）</span>
+            <div class="check_boxes">
+              <%= f.collection_check_boxes(:city_ids, @cities, :id, :name) %>
+            </div>
+          </div>
 
-		<% if @user.prefecture_sub_id.present? %>
-			<% if @user.prefecture_sub_id != 50 %> 
-				<div class="edit02_warp">
-					<span class="edit02_subtitle">活動エリア（<%= @sub_prefecture.name %>）</span>
+          <% if @user.prefecture_sub_id.present? %>
+            <% if @user.prefecture_sub_id != 50 %>
+              <div class="edit02_warp">
+                <span class="edit02_subtitle">活動エリア（<%= @sub_prefecture.name %>）</span>
+                <div class="check_boxes">
+                  <%= f.collection_check_boxes(:city_ids, @sub_cities, :id, :name) %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
 
-				    <div class="check_boxes">
-				   		<%= f.collection_check_boxes(:city_ids, @sub_cities, :id, :name) %>
-				    </div>
+          <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
 
-				</div>
-			<% end %>
-		<% end %>
-
-
-        <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
-
-      <% end %>
+        <% end %>
 
 
       </div>

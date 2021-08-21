@@ -12,8 +12,11 @@ class User < ApplicationRecord
   has_many :groups, through: :users_groups
 	has_many :users_cities, dependent: :destroy
   has_many :cities, through: :users_cities
-	has_many :bookmarks, dependent: :destroy
+	has_many :user_tags, dependent: :destroy
+  has_many :tags, through: :user_tags
+  has_many :bookmarks, dependent: :destroy
 	has_many :user_contacts, dependent: :destroy
+
 
 	has_one :match, dependent: :destroy
 	has_one :link, dependent: :destroy
@@ -66,6 +69,7 @@ class User < ApplicationRecord
   scope :prefecture_sub, -> (prefecture_sub_id){ where(prefecture_sub_id: prefecture_sub_id) }
   scope :prefecture_50, -> { where(prefecture_id: 50).or(User.where(prefecture_sub_id: 50)) }
   scope :city, -> (city_id){ where(id: city_id) }
+  scope :tag, -> (tag_id){ where(id: tag_id) }
 
   # Blog用
   scope :user_hide, -> { ng_account.where.not(switch: "") }

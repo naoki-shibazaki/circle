@@ -4,13 +4,15 @@ include ApplicationHelper
 before_action :set_tags
 
   def index
+    @tag_users = @tag.user_tags.map{|t| t.user.id}
+
     # ソート機能
     if params[:sort] == "1" || params[:sort] == nil
-      @users = User.tag_word(@tag.name).user_sort_1.page(params[:page])
+      @users = User.tag(@tag_users).user_sort_1.page(params[:page])
     elsif params[:sort] == "2"
-      @users = User.tag_word(@tag.name).user_sort_2.page(params[:page])
+      @users = User.tag(@tag_users).user_sort_2.page(params[:page])
     else params[:sort] == "3"
-      @users = User.tag_word(@tag.name).user_sort_3.page(params[:page])
+      @users = User.tag(@tag_users).user_sort_3.page(params[:page])
     end
 
     # パンくず
@@ -187,10 +189,13 @@ private
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
     @tags = Tag.all.order(:order => :asc)
 
+    @tag_users = @tag.user_tags.map{|t| t.user.id}
+
     @search_word = "例）バスケ　東京"
 
 		if admin_user_signed_in?
-			@user = User.find_by(id: current_admin_user.id)
+			@admin_user = current_admin_user
+			@user = @admin_user.users.first
 		end
 
 	end
