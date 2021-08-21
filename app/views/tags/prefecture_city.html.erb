@@ -1,4 +1,4 @@
-<% set_meta_tags title: "【#{@tag.text}】#{@prefecture.name}#{@city.name}のサークルやチーム、団体の一覧｜メンバー募集サイト",
+<% set_meta_tags title: "#{@prefecture.name}#{@city.name}の#{@tag.text}サークルやチーム、団体の一覧｜メンバー募集サイト",
   keywords: "#{@prefecture.name},#{@city.name},#{@tag.name},サークル,チーム"
 %>
 
@@ -17,7 +17,7 @@
           <div class="link_txt">
           <h1 class="e_header_title">
             <%= @prefecture.name %><%= @city.name %>で活動している<br>
-            <%= @tag.text %>
+            <%= @tag.text %>サークル
           </h1>
           </div>
       </div>
@@ -43,7 +43,7 @@
         <div class="link_txt">
           <h1 class="e_header_title">
             <%= @prefecture.name %><%= @city.name %>で活動している<br>
-            <%= @tag.text %>
+            <%= @tag.text %>サークル
           </h1>
         </div>
       </div>

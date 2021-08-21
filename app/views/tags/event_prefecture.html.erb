@@ -1,4 +1,4 @@
-<% set_meta_tags title: "【#{@tag.text}】#{@prefecture.name}の#{@event.txt}｜メンバー募集サイト",
+<% set_meta_tags title: "#{@prefecture.name}の#{@tag.text}#{@event.txt}｜メンバー募集サイト",
   keywords: "#{@event.name},#{@prefecture.name},#{@tag.name},サークル,チーム",
   og: {
     image:image_url("/images/events/#{@event.ruby}.jpg")
@@ -20,9 +20,8 @@
         </amp-img>
           <div class="link_txt">
           <h1 class="e_header_title">
-            <%= @tag.text %>の<br>
             <%= @prefecture.name %>で活動している<br>
-            <%= @event.txt %>一覧
+            <%= @tag.text %><%= @event.txt %>
           </h1>
           </div>
       </div>
@@ -46,9 +45,8 @@
         <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
         <div class="link_txt">
           <h1 class="e_header_title">
-            <%= @tag.text %>！<br>
             <%= @prefecture.name %>で活動している<br>
-            <%= @event.txt %>一覧
+            <%= @tag.text %><%= @event.txt %>
           </h1>
         </div>
       </div>
