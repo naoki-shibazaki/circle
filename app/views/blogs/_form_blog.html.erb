@@ -1,8 +1,8 @@
 <%= form_for ([@user, @blog]) do |f| %>
-            <p>タイトル<span class="must_red">(必須)</span></p>
+            <div class="label_item"><span class="label label_danger">必須</span>タイトル</div>
             <%= f.text_field :title, class: 'form-control', placeholder: "日々の活動記録など！" %> 
 
-            <p>ブログ画像（最大4枚）</p>
+            <div class="label_item">ブログ画像（最大4枚）</div>
             <span class="file_size">※10MB以下のjpgかpngのみ対応</span>
                   <div class="img_field_gallery_wrap blog_gallery_wrap">
 
@@ -48,7 +48,7 @@
                   </div>
 
 
-            <p>本文</p>
+            <div class="label_item">本文</div>
             <%= f.text_area :content, class: 'form-control', placeholder: "○月○日に△△で、サークルブックの活動をしましたー！！今回はこんなことをしました！"  %>       
 
             <%= f.submit @blog_button, data: { disable_with: '更新中...' } %>
