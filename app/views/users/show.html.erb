@@ -32,25 +32,9 @@
 	%>
 <% end %>
 
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org/",
-  "@type": "LocalBusiness",
-  "@id": "<%= request.path %>",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "JP",
-    "addressRegion": "<%= @user.prefecture.name %>"
-  },
-  "name": "<%= @user.name %>",
-  "description": "<%= @user.prefecture.name %>で活動している<%= @user.event.txt %>",
-  "image": [
-    "<%= @user.pic_profile.url %>",
-    "<%= @user.pic_header.url %>"
-  ],
-  "priceRange": "<%= @user.cost %>"
-}
-</script>
+<%= render "users/parts/user_local_business"%>
+
+
 
 <% if request.format == :amp %>
   <%= render "/users/amp_show" %>

@@ -1,0 +1,47 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "LocalBusiness",
+  "@id": "<%= request.path %>",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "<%= @user.prefecture.name %>"
+  },
+  "name": "<%= @user.name %>",
+  "description": "<%= @user.prefecture.name %>で活動している<%= @user.event.txt %>",
+  "image": [
+    "<%= @user.pic_profile.url %>",
+    "<%= @user.pic_header.url %>"
+  ],
+  "priceRange": "<%= @user.cost %>"
+}
+</script>
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "サークルブック",
+    "item": "/"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "<%= @user.event.name %>",
+    "item": "/<%= @user.event.ruby %>"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": "<%= @user.prefecture.name %>",
+    "item": "/<%= @user.event.ruby %>/<%= @user.prefecture.kana %>"
+  },{
+    "@type": "ListItem",
+    "position": 4,
+    "name": "<%= @user.name %>",
+    "item": "/users/<%= @user.id %>"
+  }]
+}
+</script>
