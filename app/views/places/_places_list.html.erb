@@ -1,9 +1,10 @@
 <% if @places.present? %>
 
+  <ul>
     <% @places.each.with_index(1) do |place, i| %>
 
 
-      <div class="users-index-item ribbon-wrapper">
+      <li class="places-index-item ribbon-wrapper">
 
           <div class="ribbon-content">
             <% if place.tag.to_i == 1 %>
@@ -43,7 +44,7 @@
                   <td class="flex_list"><%= place.access %></td>
                 </tr>
                 <tr class="flex_contents">
-                  <th class="flex_list">利用可能時間</th>
+                  <th class="flex_list">利用時間</th>
                   <td class="flex_list"><%= raw Rinku.auto_link(simple_format place.time) %></td>
                 </tr>
                 <tr class="flex_contents">
@@ -56,7 +57,7 @@
                 </tr>
 
                 <tr class="flex_contents">
-                  <th class="flex_list">口コミ・評価</th>
+                  <th class="flex_list">口コミ</th>
                   <td class="flex_list"><%= render "layouts/review_score", review_score: place.average_score.to_f, reviews_count: place.place_reviews.count %></td>
                 </tr>
 
@@ -65,7 +66,7 @@
           </div>
           <%= link_to "詳細を確認する", "/places/#{@event.ruby}/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}", class: "place_more" %>
 
-      </div> <!-- 各フレーム -->
+      </li>
 
         <% if i == 5 %>
           <div class="list_ad">
@@ -74,7 +75,7 @@
         <% end %>
 
     <% end %>
-
+  </ul>
 
 <% else %>
 
