@@ -7533,6 +7533,53 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+.user_show_tag_list{
+  margin-bottom: 10px;
+  .tag_list_wrap{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    word-break: break-all;
+    height: 40px;
+    .tag_list_content{
+      display: flex;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      overflow-scrolling: touch;
+      white-space: nowrap;
+      padding: 4px 10px 14px;
+      li{
+        float: left;
+        margin-right: 14px;
+        border: 1px solid #aaa;
+        border-radius: 6px;
+      }
+      a{
+        display: block;
+        padding: .25em .5em;
+        background: #fff;
+        border: 1px solid #fff;
+        border-radius: 21px;
+        color: #1a1a1a;
+      }
+    }
+  }
+}
+
+
 .user_item_schedule{
   font-size: 12px;
 }

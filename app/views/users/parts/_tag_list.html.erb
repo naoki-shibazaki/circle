@@ -172,6 +172,36 @@
         <% end %>
       <% end %>
 
+
+    <% elsif @path.is('users#show') %>
+      <li>
+        <%= link_to("/#{user.event.ruby}") do %>
+          <%= user.event.name %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to("/prefectures/#{user.prefecture.kana}") do %>
+          <%= user.prefecture.name %>
+        <% end %>
+      </li>
+      <% if user.prefecture_sub_id.present? %>
+      <li>
+        <%= link_to("/prefectures/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do %>
+          <%= Prefecture.find_by(id: user.prefecture_sub_id).name %>
+        <% end %>
+      </li>
+      <% end %>
+      <% if user.tags.present? %>
+        <% user.tags.order(:order => :asc).each do |tag| %>
+          <li>
+            <%= link_to("/tag/#{tag.id}") do %>
+              <%= tag.name %>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+
+    <% else %>
     <% end %>
 
 

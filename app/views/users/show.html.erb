@@ -232,6 +232,10 @@
 
         <% end %>
 
+      <div class="user_show_tag_list">
+        <%= render "/users/parts/tag_list", user: @user %>
+      </div>
+
         <% if @schedules.present? %>
           <h2 class="user_sub_title">活動スケジュール</h2>
           <div class="profile_list_p">
