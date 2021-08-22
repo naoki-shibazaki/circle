@@ -26,22 +26,22 @@
     "@type": "ListItem",
     "position": 1,
     "name": "サークルブック",
-    "item": "/"
+    "item": "https://www.circle-book.com"
   },{
     "@type": "ListItem",
     "position": 2,
     "name": "<%= @user.event.name %>",
-    "item": "/<%= @user.event.ruby %>"
+    "item": "https://www.circle-book.com/<%= @user.event.ruby %>"
   },{
     "@type": "ListItem",
     "position": 3,
     "name": "<%= @user.prefecture.name %>",
-    "item": "/<%= @user.event.ruby %>/<%= @user.prefecture.kana %>"
+    "item": "https://www.circle-book.com/<%= @user.event.ruby %>/<%= @user.prefecture.kana %>"
   },{
     "@type": "ListItem",
     "position": 4,
     "name": "<%= @user.name %>",
-    "item": "/users/<%= @user.id %>"
+    "item": "https://www.circle-book.com/users/<%= @user.id %>"
   }]
 }
 </script>
