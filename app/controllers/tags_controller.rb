@@ -28,11 +28,11 @@ before_action :set_tags
 
     # ソート機能
     if params[:sort] == "1" || params[:sort] == nil
-      @users = User.tag_word(@tag.name).event(@event.id).user_sort_1.page(params[:page])
+      @users = User.tag(@tag_users).event(@event.id).user_sort_1.page(params[:page])
     elsif params[:sort] == "2"
-      @users = User.tag_word(@tag.name).event(@event.id).user_sort_2.page(params[:page])
+      @users = User.tag(@tag_users).event(@event.id).user_sort_2.page(params[:page])
     else params[:sort] == "3"
-      @users = User.tag_word(@tag.name).event(@event.id).user_sort_3.page(params[:page])
+      @users = User.tag(@tag_users).event(@event.id).user_sort_3.page(params[:page])
     end
 
 		# パンくず
@@ -48,17 +48,18 @@ before_action :set_tags
 	def event_prefecture
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
+    @cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 
     # ソート機能
     if params[:sort] == "1" || params[:sort] == nil
       @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-      .tag_word(@tag.name).event(@event.id).user_sort_1.page(params[:page])
+      .tag(@tag_users).event(@event.id).user_sort_1.page(params[:page])
     elsif params[:sort] == "2"
       @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-      .tag_word(@tag.name).event(@event.id).user_sort_2.page(params[:page])
+      .tag(@tag_users).event(@event.id).user_sort_2.page(params[:page])
     else params[:sort] == "3"
       @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-      .tag_word(@tag.name).event(@event.id).user_sort_3.page(params[:page])
+      .tag(@tag_users).event(@event.id).user_sort_3.page(params[:page])
     end
 
 		# パンくず
@@ -85,13 +86,13 @@ before_action :set_tags
     # ソート機能
     if params[:sort] == "1" || params[:sort] == nil
       @users = User.city(@city_users).or(User.prefecture_50)
-      .tag_word(@tag.name).event(@event.id).user_sort_1.page(params[:page])
+      .tag(@tag_users).event(@event.id).user_sort_1.page(params[:page])
     elsif params[:sort] == "2"
       @users = User.city(@city_users).or(User.prefecture_50)
-      .tag_word(@tag.name).event(@event.id).user_sort_2.page(params[:page])
+      .tag(@tag_users).event(@event.id).user_sort_2.page(params[:page])
     else params[:sort] == "3"
       @users = User.city(@city_users).or(User.prefecture_50)
-      .tag_word(@tag.name).event(@event.id).user_sort_3.page(params[:page])
+      .tag(@tag_users).event(@event.id).user_sort_3.page(params[:page])
     end
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
@@ -121,13 +122,13 @@ before_action :set_tags
     # ソート機能
     if params[:sort] == "1" || params[:sort] == nil
       @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-      .tag_word(@tag.name).user_sort_1.page(params[:page])
+      .tag(@tag_users).user_sort_1.page(params[:page])
     elsif params[:sort] == "2"
       @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-      .tag_word(@tag.name).user_sort_2.page(params[:page])
+      .tag(@tag_users).user_sort_2.page(params[:page])
     else params[:sort] == "3"
       @users = User.prefecture(@prefecture.id).or(User.prefecture_sub(@prefecture.id)).or(User.prefecture_50)
-      .tag_word(@tag.name).user_sort_3.page(params[:page])
+      .tag(@tag_users).user_sort_3.page(params[:page])
     end
 
 		# パンくず
@@ -151,13 +152,13 @@ before_action :set_tags
     # ソート機能
     if params[:sort] == "1" || params[:sort] == nil
       @users = User.city(@city_users).or(User.prefecture_50)
-      .tag_word(@tag.name).user_sort_1.page(params[:page])
+      .tag(@tag_users).user_sort_1.page(params[:page])
     elsif params[:sort] == "2"
       @users = User.city(@city_users).or(User.prefecture_50)
-      .tag_word(@tag.name).user_sort_2.page(params[:page])
+      .tag(@tag_users).user_sort_2.page(params[:page])
     else params[:sort] == "3"
       @users = User.city(@city_users).or(User.prefecture_50)
-      .tag_word(@tag.name).user_sort_3.page(params[:page])
+      .tag(@tag_users).user_sort_3.page(params[:page])
     end
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
@@ -188,7 +189,6 @@ private
 		@groups = Group.all.order(:id => :asc)
 		@schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc)
     @tags = Tag.all.order(:order => :asc)
-
     @tag_users = @tag.user_tags.map{|t| t.user.id}
 
     @search_word = "例）バスケ　東京"

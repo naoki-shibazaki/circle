@@ -1,53 +1,185 @@
-<ul class="tag_list">
-  <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index') %>
-    <% @tags.each do |tag| %>
-      <% if tag.id == params[:id].to_i %>
-        <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-      <% else %>
-        <li><a href="/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-      <% end %>
-    <% end %>
-  <% elsif @path.is('users#event_prefecture_city', 'tags#event_prefecture_city') %>
-    <% @tags.each do |tag| %>
-      <% if tag.id == params[:id].to_i %>
-        <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-      <% else %>
-        <li><a href="/<%= @event.ruby %>/<%= @prefecture.kana %>/<%= @city.city_kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-      <% end %>
-    <% end %>
-  <% elsif @path.is('users#event_prefecture', 'tags#event_prefecture') %>
-    <% @tags.each do |tag| %>
-      <% if tag.id == params[:id].to_i %>
-        <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-      <% else %>
-        <li><a href="/<%= @event.ruby %>/<%= @prefecture.kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-      <% end %>
-    <% end %>
-  <% elsif  @path.is('users#event', 'tags#event') %>
-    <% @tags.each do |tag| %>
-      <% if tag.id == params[:id].to_i %>
-        <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-      <% else %>
-        <li><a href="/<%= @event.ruby %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-      <% end %>
-    <% end %>
-  <% elsif @path.is('users#prefecture_city', 'tags#prefecture_city') %>
-    <% @tags.each do |tag| %>
-      <% if tag.id == params[:id].to_i %>
-        <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-      <% else %>
-        <li><a href="/prefectures/<%= @prefecture.kana %>/<%= @city.city_kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-      <% end %>
-    <% end %>
-  <% elsif @path.is('users#prefecture', 'tags#prefecture') %>
-    <% @tags.each do |tag| %>
-      <% if tag.id == params[:id].to_i %>
-        <li class="click_tag"><span class="hash_tag">＃</span><%= tag.name %></li>
-      <% else %>
-        <li><a href="/prefectures/<%= @prefecture.kana %>/tag/<%= tag.id %>"><span class="hash_tag">＃</span><%= tag.name %></a></li>
-      <% end %>
-    <% end %>
-  <% else %>
+<div class="tag_list_wrap">
+  <ul class="tag_list_content">
 
-  <% end %>
-</ul>
+    <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index') %>
+      <li>
+        <%= link_to("/#{user.event.ruby}") do %>
+          <%= user.event.name %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to("/prefectures/#{user.prefecture.kana}") do %>
+          <%= user.prefecture.name %>
+        <% end %>
+      </li>
+      <% if user.prefecture_sub_id.present? %>
+      <li>
+        <%= link_to("/prefectures/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do %>
+          <%= Prefecture.find_by(id: user.prefecture_sub_id).name %>
+        <% end %>
+      </li>
+      <% end %>
+      <% if user.tags.present? %>
+        <% user.tags.order(:order => :asc).each do |tag| %>
+          <li>
+            <%= link_to("/tag/#{tag.id}") do %>
+              <%= tag.name %>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+
+    <% elsif @path.is('users#event_prefecture_city', 'tags#event_prefecture_city') %>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do %>
+          <%= user.event.name %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do %>
+          <%= user.prefecture.name %>
+        <% end %>
+      </li>
+      <% if user.prefecture_sub_id.present? %>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do %>
+          <%= Prefecture.find_by(id: user.prefecture_sub_id).name %>
+        <% end %>
+      </li>
+      <% end %>
+      <% if user.tags.present? %>
+        <% user.tags.order(:order => :asc).each do |tag| %>
+          <li>
+            <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}/#{@city.city_kana}/tag/#{tag.id}") do %>
+              <%= tag.name %>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+
+
+    <% elsif @path.is('users#event_prefecture', 'tags#event_prefecture') %>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do %>
+          <%= user.event.name %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do %>
+          <%= user.prefecture.name %>
+        <% end %>
+      </li>
+      <% if user.prefecture_sub_id.present? %>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do %>
+          <%= Prefecture.find_by(id: user.prefecture_sub_id).name %>
+        <% end %>
+      </li>
+      <% end %>
+      <% if user.tags.present? %>
+        <% user.tags.order(:order => :asc).each do |tag| %>
+          <li>
+            <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}/tag/#{tag.id}") do %>
+              <%= tag.name %>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+
+    <% elsif  @path.is('users#event', 'tags#event') %>
+      <li>
+        <%= link_to("/#{user.event.ruby}") do %>
+          <%= user.event.name %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do %>
+          <%= user.prefecture.name %>
+        <% end %>
+      </li>
+      <% if user.prefecture_sub_id.present? %>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do %>
+          <%= Prefecture.find_by(id: user.prefecture_sub_id).name %>
+        <% end %>
+      </li>
+      <% end %>
+      <% if user.tags.present? %>
+        <% user.tags.order(:order => :asc).each do |tag| %>
+          <li>
+            <%= link_to("/#{user.event.ruby}/tag/#{tag.id}") do %>
+              <%= tag.name %>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+
+
+    <% elsif @path.is('users#prefecture_city', 'tags#prefecture_city') %>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}/#{@city.city_kana}") do %>
+          <%= user.event.name %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to("/prefectures/#{user.prefecture.kana}/#{@city.city_kana}") do %>
+          <%= user.prefecture.name %>
+        <% end %>
+      </li>
+      <% if user.prefecture_sub_id.present? %>
+      <li>
+        <%= link_to("/prefectures/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do %>
+          <%= Prefecture.find_by(id: user.prefecture_sub_id).name %>
+        <% end %>
+      </li>
+      <% end %>
+      <% if user.tags.present? %>
+        <% user.tags.order(:order => :asc).each do |tag| %>
+          <li>
+            <%= link_to("/prefectures/#{user.prefecture.kana}/#{@city.city_kana}/tag/#{tag.id}") do %>
+              <%= tag.name %>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+
+
+    <% elsif @path.is('users#prefecture', 'tags#prefecture') %>
+      <li>
+        <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do %>
+          <%= user.event.name %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to("/prefectures/#{user.prefecture.kana}") do %>
+          <%= user.prefecture.name %>
+        <% end %>
+      </li>
+      <% if user.prefecture_sub_id.present? %>
+      <li>
+        <%= link_to("/prefectures/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do %>
+          <%= Prefecture.find_by(id: user.prefecture_sub_id).name %>
+        <% end %>
+      </li>
+      <% end %>
+      <% if user.tags.present? %>
+        <% user.tags.order(:order => :asc).each do |tag| %>
+          <li>
+            <%= link_to("/prefectures/#{user.prefecture.kana}/tag/#{tag.id}") do %>
+              <%= tag.name %>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+
+    <% end %>
+
+
+
+
+  <ul>
+</div>
+
+
+
+
