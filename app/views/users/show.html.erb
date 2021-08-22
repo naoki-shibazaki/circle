@@ -45,8 +45,8 @@
   "name": "<%= @user.name %>",
   "description": "<%= @user.prefecture.name %>で活動している<%= @user.event.txt %>",
   "image": [
-    "<%= image_tag @user.pic_profile.url %>",
-    "<%= image_tag @user.pic_header.url %>"
+    "<%= @user.pic_profile.url %>",
+    "<%= @user.pic_header.url %>"
   ],
   "priceRange": "<%= @user.cost %>"
 }
