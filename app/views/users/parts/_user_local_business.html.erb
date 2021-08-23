@@ -24,17 +24,19 @@
       "ratingValue":<%= user.review_score.to_f %>,
       "reviewCount":<%= user.reviews.count %>
     },
-    <% user.reviews.each.with_index(1) do |review, i| %>
-    "review": {
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": <% if review.member.present? %>"<%= review.member.nickname  %>"<% else %>"ゲストユーザー"<% end %>
-      },
-      "reviewBody": "<%= review.comment %>"
-    },
-    <% break if i == 5 %>
-    <% end %>
+    "review":[
+      <% user.reviews.each.with_index(1) do |review, i| %>
+      <%= "," if i > 1 %>{
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": <% if review.member.present? %>"<%= review.member.nickname  %>"<% else %>"ゲストユーザー"<% end %>
+        },
+        "reviewBody": "<%= review.comment %>"
+      }
+      <% break if i == 5 %>
+      <% end %>
+    ]
   <% end %>
   "priceRange": "<%= user.cost %>"
 }
