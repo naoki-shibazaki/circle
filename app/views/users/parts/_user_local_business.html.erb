@@ -20,12 +20,7 @@
         "@type": "Review",
         "author": {
           "@type": "Person",
-          "name":
-          <% if review.member.present? %>
-            "<%= review.member.nickname  %>",
-          <% else %>
-            "ゲストユーザー",
-          <% end %>
+          "name": <% if review.member.present? %>"<%= review.member.nickname  %>"<% else %>"ゲストユーザー"<% end %>
         },
         "reviewBody":"<%= review.comment %>"
       },
