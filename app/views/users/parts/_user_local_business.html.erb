@@ -18,6 +18,7 @@
     "addressCountry": "JP",
     "addressRegion": "<%= user.prefecture.name %>"
   },
+  "priceRange": "<%= user.cost %>",
   <% if user.reviews.present? %>
     "aggregateRating": {
       "@type":"AggregateRating",
@@ -38,7 +39,6 @@
       <% end %>
     ]
   <% end %>
-  "priceRange": "<%= user.cost %>"
 }
 </script>
 
