@@ -14,8 +14,9 @@
     "<%= user.pic_header.url %>"
   ],
   <% if user.reviews.present? %>
+    "review": [
     <% user.reviews.each.with_index(1) do |review, i| %>
-      "review": {
+      {
         "@type": "Review",
         "author": {
           "@type": "Person",
@@ -28,6 +29,7 @@
         },
         "reviewBody":"<%= review.comment %>"
       },
+    <% break if i == 5 %>
     <% end %>
     "aggregateRating":{
       "@type":"AggregateRating",
@@ -35,6 +37,7 @@
       "reviewCount":<%= user.reviews.count %>
     },
   <% end %>
+  ]
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "JP",
