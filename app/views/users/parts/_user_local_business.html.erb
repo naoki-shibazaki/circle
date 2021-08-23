@@ -6,15 +6,15 @@
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "JP",
-    "addressRegion": "<%= @user.prefecture.name %>"
+    "addressRegion": "<%= user.prefecture.name %>"
   },
-  "name": "<%= @user.name %>",
-  "description": "<%= @user.prefecture.name %>で活動している<%= @user.event.txt %>",
+  "name": "<%= user.name %>",
+  "description": "<%= user.prefecture.name %>で活動している<%= user.event.txt %>",
   "image": [
-    "<%= @user.pic_profile.url %>",
-    "<%= @user.pic_header.url %>"
+    "<%= user.pic_profile.url %>",
+    "<%= user.pic_header.url %>"
   ],
-  "priceRange": "<%= @user.cost %>"
+  "priceRange": "<%= user.cost %>"
 }
 </script>
 
@@ -30,18 +30,39 @@
   },{
     "@type": "ListItem",
     "position": 2,
-    "name": "<%= @user.event.name %>",
-    "item": "https://www.circle-book.com/<%= @user.event.ruby %>"
+    "name": "<%= user.event.name %>",
+    "item": "https://www.circle-book.com/<%= user.event.ruby %>"
   },{
     "@type": "ListItem",
     "position": 3,
-    "name": "<%= @user.prefecture.name %>",
-    "item": "https://www.circle-book.com/<%= @user.event.ruby %>/<%= @user.prefecture.kana %>"
+    "name": "<%= user.prefecture.name %>",
+    "item": "https://www.circle-book.com/<%= user.event.ruby %>/<%= user.prefecture.kana %>"
   },{
     "@type": "ListItem",
     "position": 4,
-    "name": "<%= @user.name %>",
-    "item": "https://www.circle-book.com/users/<%= @user.id %>"
+    "name": "<%= user.name %>",
+    "item": "https://www.circle-book.com/users/<%= user.id %>"
   }]
 }
 </script>
+
+<% if user.questions.present? %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    <% user.questions.each.with_index(1) do |question, i| %>
+      <%= "," if i > 1 %>{
+        "@type": "Question",
+        "name": "<%= question.content %>",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<%= question.answer %>"
+        }
+      }
+    <% end %>
+  ]
+}
+</script>
+<% end %>
