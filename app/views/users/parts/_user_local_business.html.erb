@@ -26,13 +26,13 @@
       },
     <% break if i == 5 %>
     <% end %>
-    "aggregateRating":{
+    "aggregateRating": {
       "@type":"AggregateRating",
       "ratingValue":<%= user.review_score.to_f %>,
       "reviewCount":<%= user.reviews.count %>
-    },
+    }
+  ],
   <% end %>
-  ]
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "JP",
