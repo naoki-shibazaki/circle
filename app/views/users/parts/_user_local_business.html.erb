@@ -53,14 +53,14 @@
   "@type": "FAQPage",
   "mainEntity": [
     <% user.questions.each.with_index(1) do |question, i| %>
-      <%= "," if i > 1 %>{
+      {
         "@type": "Question",
         "name": "<%= question.content %>",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "<%= question.answer %>"
         }
-      }
+      }<%= "," if i > 1 %>
     <% end %>
   ]
 }
