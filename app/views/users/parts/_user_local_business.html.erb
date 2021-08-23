@@ -12,6 +12,10 @@
   "description": "<%= user.prefecture.name %>で活動している<%= user.event.txt %>",
   "image": [
     "<%= user.pic_profile.url %>",
+    <% if user.gallery_01.url.present? %>"<%= user.gallery_01.url %>",<% end %>
+    <% if user.gallery_02.url.present? %>"<%= user.gallery_02.url %>",<% end %>
+    <% if user.gallery_03.url.present? %>"<%= user.gallery_03.url %>",<% end %>
+    <% if user.gallery_04.url.present? %>"<%= user.gallery_04.url %>",<% end %>
     "<%= user.pic_header.url %>"
   ],
   "priceRange": "<%= user.cost %>"
@@ -53,14 +57,14 @@
   "@type": "FAQPage",
   "mainEntity": [
     <% user.questions.each.with_index(1) do |question, i| %>
-      {
+      <%= "," if i > 1 %>{
         "@type": "Question",
         "name": "<%= question.content %>",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "<%= question.answer %>"
         }
-      }<%= "," if i > 1 %>
+      }
     <% end %>
   ]
 }
