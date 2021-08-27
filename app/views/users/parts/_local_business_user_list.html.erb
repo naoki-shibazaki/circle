@@ -43,3 +43,25 @@
   ]
 }
 </script>
+
+
+<% if @users.present? %>
+
+  <script type="application/ld+json">
+  {
+    "@context":"http://schema.org",
+    "@type":"ItemList",
+    "itemListElement":[
+    <% @users.each.with_index(1) do |user, i| %>
+      <%= "," if i > 1 %>{
+        "@type":"ListItem",
+        "position":<%= i %>,
+        "url":"https://www.circle-book.com/users/<%= user.id %>"
+      }
+    <% break if i == 10 %>
+    <% end %>
+    ]
+  }
+  </script>
+
+<% end %>
