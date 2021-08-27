@@ -218,7 +218,7 @@ class PlacesController < ApplicationController
     @event_ids = PlacesEvent.where(event_id: @event.id)
     @event_places = @event_ids.map { |e| e.place_id }
     @search_word = "例）サークルブック体育館"
-    @b1_name = "コート・施設情報"
+    @b1_name = "体育館・コート情報"
     @b1_url = "/places"
     if admin_user_signed_in?
       @current_user = User.find_by(admin_user_id: current_admin_user.id)
