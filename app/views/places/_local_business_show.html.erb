@@ -16,22 +16,6 @@
       "ratingValue":<%= place.average_score.to_f %>,
       "reviewCount":<%= place.place_reviews.count.to_f %>
     },
-    "review":[
-      <% place.place_reviews.each.with_index(1) do |review, i| %>
-      <%= "," if i > 1 %>{
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "ゲストユーザー"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "<%= review.average_score.to_f %>"
-        }
-      }
-      <% break if i == 5 %>
-      <% end %>
-    ],
   <% end %>
   "address": {
     "@type": "PostalAddress",
