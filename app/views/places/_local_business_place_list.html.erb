@@ -45,18 +45,18 @@
 </script>
 
 
-<% if @users.present? %>
+<% if @places.present? %>
 
   <script type="application/ld+json">
   {
     "@context":"http://schema.org",
     "@type":"ItemList",
     "itemListElement":[
-    <% @users.each.with_index(1) do |user, i| %>
+    <% @places.each.with_index(1) do |place, i| %>
       <%= "," if i > 1 %>{
         "@type":"ListItem",
         "position":<%= i %>,
-        "url":"https://www.circle-book.com/users/<%= user.id %>"
+        "url":"https://www.circle-book.com/places/<%= @event.ruby %>/<%= place.prefecture.kana %>/<%= place.city.city_kana %>/<%= place.id %>"
       }
     <% break if i == 10 %>
     <% end %>
