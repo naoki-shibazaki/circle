@@ -8,18 +8,13 @@
   "image": [
     "/images/events/<%= @event.ruby %>.jpg"
   ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "JP",
-    "addressRegion": "<%= place.prefecture.name %>",
-    "addressLocality": "<%= place.city.name %>",
-    "streetAddress": "<%= place.address %>"
-  },
-  <% if place.place_reviews.present? %>
+  <% if place.tel.present? %>"telephone": "<%= place.tel %>",<% end %>
+  <% if place.price.present? %>"priceRange": "<%= place.price %>",<% end %>
+  <% if place.place_reviews.count.to_f > 0 %>
     "aggregateRating": {
       "@type":"AggregateRating",
       "ratingValue":<%= place.average_score.to_f %>,
-      "reviewCount":<%= place.place_reviews.count %>
+      "reviewCount":<%= place.place_reviews.count.to_f %>
     },
     "review":[
       <% place.place_reviews.each.with_index(1) do |review, i| %>
@@ -38,8 +33,13 @@
       <% end %>
     ],
   <% end %>
-  "telephone": "<%= place.tel %>",
-  "priceRange": "<%= place.price %>"
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "<%= place.prefecture.name %>",
+    "addressLocality": "<%= place.city.name %>",
+    "streetAddress": "<%= place.address %>"
+  }
 }
 </script>
 
@@ -56,7 +56,7 @@
     "@type": "ListItem",
     "position": 2,
     "name": "コートや体育館の情報",
-    "item": "https://www.circle-book.com/places>"
+    "item": "https://www.circle-book.com/places"
   },{
     "@type": "ListItem",
     "position": 3,
@@ -76,7 +76,7 @@
     "@type": "ListItem",
     "position": 6,
     "name": "<%= place.name %>",
-    "item": "https://www.circle-book.com/<%= @event.ruby %>/<%= place.prefecture.kana %>/<%= place.city.city_kana %>/<%= place.name %>"
+    "item": "https://www.circle-book.com/<%= @event.ruby %>/<%= place.prefecture.kana %>/<%= place.city.city_kana %>/<%= place.id %>"
   }]
 }
 </script>
