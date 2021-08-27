@@ -19,24 +19,26 @@
     "addressRegion": "<%= user.prefecture.name %>"
   },
   <% if user.reviews.present? %>
-    "aggregateRating": {
-      "@type":"AggregateRating",
-      "ratingValue":<%= user.review_score.to_f %>,
-      "reviewCount":<%= user.reviews.count %>
-    },
-    "review":[
-      <% user.reviews.each.with_index(1) do |review, i| %>
-      <%= "," if i > 1 %>{
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": <% if review.member.present? %>"<%= review.member.nickname  %>"<% else %>"ゲストユーザー"<% end %>
-        },
-        "reviewBody": "<%= review.comment %>"
-      }
-      <% break if i == 5 %>
-      <% end %>
-    ],
+    <% if user.review_score.to_f > 0 %>
+      "aggregateRating": {
+        "@type":"AggregateRating",
+        "ratingValue":<%= user.review_score.to_f %>,
+        "reviewCount":<%= user.reviews.count %>
+      },
+      "review":[
+        <% user.reviews.each.with_index(1) do |review, i| %>
+        <%= "," if i > 1 %>{
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": <% if review.member.present? %>"<%= review.member.nickname  %>"<% else %>"ゲストユーザー"<% end %>
+          },
+          "reviewBody": "<%= review.comment %>"
+        }
+        <% break if i == 5 %>
+        <% end %>
+      ],
+    <% end %>
   <% end %>
   "priceRange": "<%= user.cost %>"
 }
@@ -82,7 +84,7 @@
         "name": "<%= question.content %>",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "<%= question.answer %>"
+          "text": <% if question.answer.present? %>"<%= question.answer %>"<% else %>"未回答の質問です。回答するまで、しばらくお待ちください。"<% end %>
         }
       }
     <% break if i == 5 %>
