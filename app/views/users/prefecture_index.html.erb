@@ -9,7 +9,7 @@
     <h2 class="link_title">47都道府県ごとのサークル</h2>
     <ul>
       <% @prefectures.each do |prefecture| %>
-                <li><%= link_to "#{prefecture.name}のサークル一覧", "/prefectures/#{prefecture.kana}" %></li>  
+            <li><%= link_to "#{prefecture.name}のサークル一覧", "/prefectures/#{prefecture.kana}" %></li>
           <% end %>
       </ul>
     </div>
