@@ -2,36 +2,36 @@
 
 	<% if @schedule.time_e.present? %>
 		<% set_meta_tags title: "#{@schedule.title}｜活動スケジュール｜#{@user.name}",
-							og: { 
+							og: {
 										title: "活動スケジュール｜#{@user.name}",
 										description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
 										image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60_bold:#{ @schedule_title },y_-120,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") } #{ @schedule.time_s.strftime('%H:%M') }〜#{ @schedule.time_e.strftime('%H:%M') },y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_110,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"								
 									},
-							twitter: { card: 'summary_large_image'}   				
-		 %>
-	
+							twitter: { card: 'summary_large_image'}
+		%>
+
 	<% else %>
 		<% set_meta_tags title: "#{@schedule.title}｜活動スケジュール｜#{@user.name}",
-							og: { 
+							og: {
 										title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
 										description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
 										image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60_bold:#{ @schedule_title },y_-120,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") } #{ @schedule.time_s.strftime('%H:%M') }〜,y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_110,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"								
 									},
-							twitter: { card: 'summary_large_image'}   				
-		 %>
+							twitter: { card: 'summary_large_image'}
+		%>
 
 	<% end %>
 
 
 <% else %>
 	<% set_meta_tags title: "#{@schedule.title}｜活動スケジュール｜#{@user.name}",
-						og: { 
+						og: {
 									title: "#{@schedule_title}｜活動スケジュール｜#{@user.name}",
 									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", 
 									image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60_bold:#{ @schedule_title },y_-120,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") },y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_110,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"								
 								},
-						twitter: { card: 'summary_large_image'}   				
-	 %>
+						twitter: { card: 'summary_large_image'}
+	%>
 
 <% end %>
 
@@ -56,8 +56,8 @@
 				<%= @schedule.time_s.strftime('%H:%M') %>
 				〜
 				<%= @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? %>
-			<% end %>	
-			
+			<% end %>
+
 			<br>@<%= @schedule.venue %>
 
 		</div>
@@ -73,23 +73,23 @@
 
 				<% else %>
 
-				  <div class="swiper-container">
-				    <div class="swiper-wrapper">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
 
-				      <% if @user.gallery_01.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_01.url , class:'content_image' %></div><% end %>
-				      <% if @user.gallery_02.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_02.url , class:'content_image' %></div><% end %>
-				      <% if @user.gallery_03.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_03.url , class:'content_image' %></div><% end %>
-				      <% if @user.gallery_04.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_04.url , class:'content_image' %></div><% end %>
+              <% if @user.gallery_01.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_01.url , class:'content_image' %></div><% end %>
+              <% if @user.gallery_02.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_02.url , class:'content_image' %></div><% end %>
+              <% if @user.gallery_03.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_03.url , class:'content_image' %></div><% end %>
+              <% if @user.gallery_04.present? %><div class="swiper-slide"><%= lazysizes_image_tag @user.gallery_04.url , class:'content_image' %></div><% end %>
 
-				    </div>
+            </div>
 
                         <!-- Add Pagination -->
                         <div class="pagination-wrap">
                           <div class="swiper-pagination"></div>
                         </div>
 
-				  </div>
-			  
+          </div>
+
 
 				<% end %>
 
