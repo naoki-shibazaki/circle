@@ -21,7 +21,7 @@
             <option value="/users/<%= user.id %>/mypage"><%= user.name %>（<%= user.event.name %>）</option>
           <% end %>
 				<% end %>
-				<option value="/user/add">＋ サークルを追加する</option>
+				<option value="/user/add">＋ サークルを新規追加する</option>
 			</select>
 		</div>
 
@@ -40,7 +40,19 @@
 						</div>
 
 						<div class="icon_txt">
-							サークル
+							サークルページ
+						</div>
+					</div>
+				<% end %>
+
+				<%= link_to edit_user_path(@user), class: "icon_cont" do %>
+					<div class="">
+						<div class="icon_img">
+							<img class="icon_size" src="/images/icon/icon_01.png">
+						</div>
+
+						<div class="icon_txt">
+							サークル編集
 						</div>
 					</div>
 				<% end %>
