@@ -8,49 +8,57 @@
 
       <div class="attendances_table_wrap">
         <table>
-          <thead>
-            <tr>
-              <th class="day fixed day_title">日程</th>
-              <th class="status_title btn">ステータス</th>
-              <th>名前3</th>
-              <th>名前4</th>
-              <th>名前5</th>
-              <th>名前6</th>
-              <th>名前7</th>
-              <th>名前8</th>
-            </tr>
-          </thead>
+          <% @attendances.each do |attendance| %>
+            <% if attendance.member_id.present? %>
 
-          <% if @schedules.present? %>
-            <tbody>
-              <% @schedules.each.with_index(1) do |schedule, i| %>
+              <thead>
                 <tr>
-                  <td class="day fixed">
-                    <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
-                      <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
-                      <% if schedule.time_s.present? %>
-                        <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
-                      <% end %>
-                      <br>10/20人
-                    <% end %>
-                  </td>
-                  <td class="btn">
-                    <%= render "/attendances/btn", i: i %>
-                  </td>
-                  <td>◯</td>
-                  <td>◯</td>
-                  <td>◯</td>
-                  <td>◯</td>
-                  <td>◯</td>
-                  <td>◯</td>
+                  <th class="day fixed day_title">日程</th>
+                  <th class="status_title btn">ステータス</th>
+
+                  <th><%= attendance.member.nickname %></th>
+
                 </tr>
+              </thead>
 
-                <%= render "/attendances/form", user: @user, schedule: schedule, i: i %>
+              <% if @schedules.present? %>
+                <tbody>
+                  <% @schedules.each.with_index(1) do |schedule, i| %>
+                    <tr>
+                      <td class="day fixed">
+                        <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
+                          <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                          <% if schedule.time_s.present? %>
+                            <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+                          <% end %>
+                          <br>10/20人
+                        <% end %>
+                      </td>
+                      <td class="btn">
+                        <%= render "/attendances/btn", i: i %>
+                      </td>
 
+                      <td>
+                        <% if attendance.schedule_id == schedule.id %>
+                          <%= attendance.answer %>
+                        <% end %>
+                      </td>
+
+                    </tr>
+
+                    <%= render "/attendances/form", user: @user, schedule: schedule, i: i %>
+
+                  <% end %>
+                </tbody>
               <% end %>
-            </tbody>
+
+            <% end %>
           <% end %>
         </table>
+
+
+
+
       </div>
 
   </div>
