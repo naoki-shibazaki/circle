@@ -1,0 +1,56 @@
+<% set_meta_tags noindex: true %>
+
+<div class="user_main users-index">
+  <div class="container">
+		<div class="users-index-item">
+
+      <h1 class="top_title">活動スケジュール</h1>
+
+      <div class="attendances_table_wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="fixed">　</th>
+              <th>　</th>
+              <th>名前3</th>
+              <th>名前4</th>
+              <th>名前5</th>
+              <th>名前6</th>
+              <th>名前7</th>
+              <th>名前8</th>
+            </tr>
+          </thead>
+
+          <% if @schedules.present? %>
+            <tbody>
+                <% @schedules.each do |schedule| %>
+                  <tr>
+                    <td class="day fixed">
+                      <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
+                        <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                        <% if schedule.time_s.present? %>
+                          <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+                        <% end %>
+                        <br>10/20人
+                      <% end %>
+                    </td>
+                    <td>
+                      参加者募集
+                    </td>
+                    <td>◯</td>
+                    <td>◯</td>
+                    <td>◯</td>
+                    <td>◯</td>
+                    <td>◯</td>
+                    <td>◯</td>
+                  </tr>
+                <% end %>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+
+
+  </div>
+</div>
+

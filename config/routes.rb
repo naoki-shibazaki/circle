@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 		resources :matches, only: [:new, :create]
 		resources :links, only: [:new, :create]
     resources :schedules
+    resources :attendances
     resources :questions
     resources :reviews
 		resources :opinions, only: [:new, :create, :index]

@@ -7642,6 +7642,47 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   font-weight: bold;
 }
 
+.attendances_table_wrap{
+  th {
+    background-color: #555;
+    color: #fff;
+    white-space: nowrap;
+  }
+  th,td {
+    text-align: center;
+    padding: 0.5em 1em;
+    white-space: nowrap;
+    display: block;
+  }
+  table {
+      display: flex;
+  }
+  tbody {
+      display: flex;
+      position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
+  }
+  .day{
+    background: #f7f7f7;
+    a {
+      color: #337ab7;
+      text-decoration: underline;
+    }
+  }
+  .fixed{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+
+
+
+
 
 // --------------------------------------
 // ▼PC
