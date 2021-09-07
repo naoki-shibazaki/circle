@@ -23,36 +23,41 @@
 
           <% if @schedules.present? %>
             <tbody>
-                <% @schedules.each.with_index(1) do |schedule, i| %>
-                  <tr>
-                    <td class="day fixed">
-                      <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
-                        <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
-                        <% if schedule.time_s.present? %>
-                          <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
-                        <% end %>
-                        <br>10/20人
+              <% @schedules.each.with_index(1) do |schedule, i| %>
+                <tr>
+                  <td class="day fixed">
+                    <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
+                      <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                      <% if schedule.time_s.present? %>
+                        <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
                       <% end %>
-                    </td>
-                    <td class="btn">
-                      <%= render "/attendances/post", user: @user, schedule: schedule, i: i %>
-                    </td>
-                    <td>◯</td>
-                    <td>◯</td>
-                    <td>◯</td>
-                    <td>◯</td>
-                    <td>◯</td>
-                    <td>◯</td>
-                  </tr>
-                <% end %>
+                      <br>10/20人
+                    <% end %>
+                  </td>
+                  <td class="btn">
+                    <%= render "/attendances/btn", i: i %>
+                  </td>
+                  <td>◯</td>
+                  <td>◯</td>
+                  <td>◯</td>
+                  <td>◯</td>
+                  <td>◯</td>
+                  <td>◯</td>
+                </tr>
+
+                <%= render "/attendances/form", user: @user, schedule: schedule, i: i %>
+
+              <% end %>
             </tbody>
           <% end %>
         </table>
       </div>
 
-
   </div>
 </div>
+
+
+
 
 <script>
 $(function(){

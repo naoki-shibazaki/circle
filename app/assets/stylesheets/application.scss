@@ -7644,33 +7644,6 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .attendances_table_wrap{
 
-  .content{
-      margin: 0 auto;
-  }
-  .modal{
-      display: none;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      width: 100%;
-  }
-  .modal__bg{
-      background: rgba(0,0,0,0.8);
-      height: 100vh;
-      position: absolute;
-      width: 100%;
-  }
-  .modal__content{
-      background: #fff;
-      left: 50%;
-      padding: 40px;
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%,-50%);
-      width: 60%;
-  }
-
-
   th {
     background-color: #555;
     color: #fff;
@@ -7706,7 +7679,6 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
   .btn{
     height: 36px;
-    display: flex;
     justify-content: center;
     align-items: center;
   }
@@ -7730,9 +7702,46 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     justify-content: center;
     align-items: center;
   }
-
+  .attendances_form{
+    width: 100%;
+  }
 
 }
+
+.attendances_modal{
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .content{
+    margin: 0 auto;
+  }
+  .modal{
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .modal_bg{
+    background: rgba(0,0,0,0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+  }
+  .modal_content{
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+  }
+}
+
+
 
 
 
