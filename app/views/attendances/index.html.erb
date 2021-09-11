@@ -6,60 +6,62 @@
 
       <h1 class="top_title">活動スケジュール</h1>
 
+
+
       <div class="attendances_table_wrap">
         <table>
 
-              <thead>
+          <thead>
+            <tr>
+              <th class="day fixed day_title">日程</th>
+              <th class="status_title btn">ステータス</th>
+
+              <% @attendances.each do |attendance| %>
+                <% if attendance.member_id.present? %>
+                <th><%= attendance.member.nickname %></th>
+                <% end %>
+              <% end %>
+
+            </tr>
+          </thead>
+
+          <% if @schedules.present? %>
+            <tbody>
+              <% @schedules.each.with_index(1) do |schedule, i| %>
                 <tr>
-                  <th class="day fixed day_title">日程</th>
-                  <th class="status_title btn">ステータス</th>
+                  <td class="day fixed">
+                    <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
+                      <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                      <% if schedule.time_s.present? %>
+                        <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+                      <% end %>
+                      <br>10/20人
+                    <% end %>
+                  </td>
+                  <td class="btn">
+                    <%= render "/attendances/btn", i: i %>
+                  </td>
 
                   <% @attendances.each do |attendance| %>
                     <% if attendance.member_id.present? %>
-                    <th><%= attendance.member.nickname %></th>
+                      <td>
+                        <% if attendance.schedule_id == schedule.id %>
+                          <%= attendance.answer %>
+                          <% if attendance.comment.present? %>
+                            <div class="attendance_comment"><%= attendance.comment %></div>
+                          <% end %>
+                        <% end %>
+                      </td>
                     <% end %>
                   <% end %>
 
                 </tr>
-              </thead>
 
-              <% if @schedules.present? %>
-                <tbody>
-                  <% @schedules.each.with_index(1) do |schedule, i| %>
-                    <tr>
-                      <td class="day fixed">
-                        <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
-                          <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
-                          <% if schedule.time_s.present? %>
-                            <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
-                          <% end %>
-                          <br>10/20人
-                        <% end %>
-                      </td>
-                      <td class="btn">
-                        <%= render "/attendances/btn", i: i %>
-                      </td>
+                <%= render "/attendances/form", user: @user, schedule: schedule, i: i %>
 
-                      <% @attendances.each do |attendance| %>
-                        <% if attendance.member_id.present? %>
-                          <td>
-                            <% if attendance.schedule_id == schedule.id %>
-                              <%= attendance.answer %>
-                              <% if attendance.comment.present? %>
-                                <div class="attendance_comment"><%= attendance.comment %></div>
-                              <% end %>
-                            <% end %>
-                          </td>
-                        <% end %>
-                      <% end %>
-
-                    </tr>
-
-                    <%= render "/attendances/form", user: @user, schedule: schedule, i: i %>
-
-                  <% end %>
-                </tbody>
               <% end %>
+            </tbody>
+          <% end %>
 
         </table>
 

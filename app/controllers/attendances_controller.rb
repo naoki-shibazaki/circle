@@ -6,6 +6,10 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.new
     @schedule_ids = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).map { |s| s.id }
     @attendances = Attendance.where(schedule_id: @schedule_ids)
+
+    # @members = Member.joins(:attendances).where("schedule_id = ?", @schedule_ids).preload(:attendances)
+
+
   end
 
   def create
