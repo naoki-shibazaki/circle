@@ -7645,8 +7645,6 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .attendances_table_wrap{
 
   th {
-    background-color: #555;
-    color: #fff;
     white-space: nowrap;
   }
   th,td {
@@ -7654,15 +7652,19 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     padding: 0.5em 1em;
     white-space: nowrap;
     display: block;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
   }
   table {
       display: flex;
   }
   tbody {
-      display: flex;
-      position: relative;
-      overflow-x: auto;
-      overflow-y: hidden;
+    display: flex;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 20px;
   }
   .day{
     background: #f7f7f7;
@@ -7704,6 +7706,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
   .attendances_form{
     width: 100%;
+  }
+  .attendance_comment{
+    font-size: 12px;
+    color: #696969;
   }
 
 }

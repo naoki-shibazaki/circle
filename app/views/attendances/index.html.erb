@@ -8,15 +8,17 @@
 
       <div class="attendances_table_wrap">
         <table>
-          <% @attendances.each do |attendance| %>
-            <% if attendance.member_id.present? %>
 
               <thead>
                 <tr>
                   <th class="day fixed day_title">日程</th>
                   <th class="status_title btn">ステータス</th>
 
-                  <th><%= attendance.member.nickname %></th>
+                  <% @attendances.each do |attendance| %>
+                    <% if attendance.member_id.present? %>
+                    <th><%= attendance.member.nickname %></th>
+                    <% end %>
+                  <% end %>
 
                 </tr>
               </thead>
@@ -38,11 +40,18 @@
                         <%= render "/attendances/btn", i: i %>
                       </td>
 
-                      <td>
-                        <% if attendance.schedule_id == schedule.id %>
-                          <%= attendance.answer %>
+                      <% @attendances.each do |attendance| %>
+                        <% if attendance.member_id.present? %>
+                          <td>
+                            <% if attendance.schedule_id == schedule.id %>
+                              <%= attendance.answer %>
+                              <% if attendance.comment.present? %>
+                                <div class="attendance_comment"><%= attendance.comment %></div>
+                              <% end %>
+                            <% end %>
+                          </td>
                         <% end %>
-                      </td>
+                      <% end %>
 
                     </tr>
 
@@ -52,8 +61,6 @@
                 </tbody>
               <% end %>
 
-            <% end %>
-          <% end %>
         </table>
 
 
