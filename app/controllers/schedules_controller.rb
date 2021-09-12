@@ -96,6 +96,30 @@ before_action :set_schedules
 	end
 
 
+# 出欠機能
+
+def attendance
+  @name = Name.new
+
+end
+
+def attendance_create
+  @name = Name.create(name_params)
+
+  if @name.save
+    flash[:notice] = "追加しました"
+    redirect_back(fallback_location: "users/#{@user.id}/schedule")
+  else
+    flash[:notice] = "エラー"
+    redirect_back(fallback_location: "users/#{@user.id}/schedule")
+  end
+
+end
+
+
+
+
+
 	private
 		def set_schedules
 			@user = User.find(params[:user_id])
@@ -130,6 +154,9 @@ before_action :set_schedules
 			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note, :title, :google_map, :recruitment)
 		end
 
+    def name_params
+			params.require(:name).permit(:name)
+		end
 
 
 end

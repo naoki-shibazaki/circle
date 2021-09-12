@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_011904) do
+ActiveRecord::Schema.define(version: 2021_09_12_014424) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -272,6 +272,15 @@ ActiveRecord::Schema.define(version: 2021_09_12_011904) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_members_events_on_event_id"
     t.index ["member_id"], name: "index_members_events_on_member_id"
+  end
+
+  create_table "name_schedules", force: :cascade do |t|
+    t.integer "name_id"
+    t.integer "schedule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name_id"], name: "index_name_schedules_on_name_id"
+    t.index ["schedule_id"], name: "index_name_schedules_on_schedule_id"
   end
 
   create_table "names", force: :cascade do |t|

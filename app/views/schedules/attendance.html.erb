@@ -1,0 +1,122 @@
+<% set_meta_tags noindex: true %>
+
+<div class="user_main users-index">
+  <div class="container">
+		<div class="users-index-item">
+
+      <h1 class="top_title">出欠連絡</h1>
+
+      <div class="attendances_modal">
+        <a class="js-modal-open" href="" data-target="modal_add"><span class="join btn">出欠をする</span></a>
+      </div>
+
+    <div class="attendances_modal">
+      <div id="modal_add" class="modal js-modal">
+        <div class="modal_bg js-modal-close"></div>
+
+        <div class="modal_content">
+
+          <div class="form-body cont-body form">
+            <%= form_for(@name, :url => {:controller => :schedules, :action => :attendance_create}) do |f| %>
+
+
+            <div class="label_item">名前</div><br>
+            <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
+
+            <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
+
+            <% end %>
+          </div>
+
+          <br><a class="js-modal-close" href="">閉じる</a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+      <div class="attendances_table_wrap">
+        <table>
+
+          <thead>
+            <tr>
+              <th class="day fixed day_title">日程</th>
+              <th class="status_title btn">ステータス</th>
+
+                <th>Aさん</th>
+                <th>Bさん</th>
+                <th>Cさん</th>
+
+            </tr>
+          </thead>
+
+          <% if @schedules.present? %>
+            <tbody>
+              <% @schedules.each.with_index(1) do |schedule, i| %>
+                <tr>
+                  <td class="day fixed">
+                    <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
+                      <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                      <% if schedule.time_s.present? %>
+                        <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+                      <% end %>
+                      <br>10/20人
+                    <% end %>
+                  </td>
+                  <td class="btn">
+                    <%= render "schedules/attendances/btn", i: i %>
+                  </td>
+
+                      <td>
+                          1
+                          <div class="attendance_comment">参加します！</div>
+                      </td>
+
+                      <td>
+                          2
+                          <div class="attendance_comment">不参加です</div>
+                      </td>
+
+                </tr>
+
+                <%
+=begin%>
+ <%= render "sschedules/attendances/form", user: @user, schedule: schedule, i: i %> 
+<%
+=end%>
+
+              <% end %>
+            </tbody>
+          <% end %>
+
+        </table>
+
+
+
+
+      </div>
+
+  </div>
+</div>
+
+
+
+
+<script>
+$(function(){
+    $('.js-modal-open').each(function(){
+        $(this).on('click',function(){
+            var target = $(this).data('target');
+            var modal = document.getElementById(target);
+            $(modal).fadeIn();
+            return false;
+        });
+    });
+    $('.js-modal-close').on('click',function(){
+        $('.js-modal').fadeOut();
+        return false;
+    });
+});
+</script>
