@@ -28,6 +28,8 @@
 
               <%= f.fields_for :name_schedules do |name_schedule| %>
                 <div class="label_item"><%= schedule.day %></div><br>
+                <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
+                    :prompt => "選択してください"  %>
                 <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
                 <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
               <% end %>
@@ -81,11 +83,12 @@
                   </td>
 
                   <% @names.each do |name| %>
-                    <td>
-                      <% if name.name_schedules.find_by(schedule_id: schedule.id).present? %>
-                        参加
-                      <% end %>
-                    </td>
+                      <td>
+                        <%= name.name_schedules.find_by(schedule_id: schedule.id).answer %>
+                        <div class="attendance_comment">
+                          <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+                        </div>
+                      </td>
                   <% end %>
 
 

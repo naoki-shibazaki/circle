@@ -7646,7 +7646,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
   th {
     white-space: nowrap;
-    width: 200px;
+    width: 140px;
   }
   th,td {
     text-align: center;
@@ -7656,6 +7656,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     justify-content: center;
     align-items: center;
     height: 50px;
+    overflow: scroll;
   }
   table {
       display: flex;
@@ -7739,7 +7740,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     position: absolute;
     top: 50%;
     transform: translate(-50%,-50%);
-    width: 60%;
+    width: 70%;
+    border-radius: 10px;
   }
 }
 
@@ -7884,7 +7886,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   width: 96%;
 }
 
-
+.attendances_modal .modal_content {
+  padding: 22px;
+  width: 90%;
+  border-radius: 10px;
+}
 
 
 }
