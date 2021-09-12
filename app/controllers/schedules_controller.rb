@@ -100,6 +100,7 @@ before_action :set_schedules
 
 def attendance
   @name = Name.new
+  @names = Name.where.not(name: "")
 
 end
 
@@ -155,7 +156,7 @@ end
 		end
 
     def name_params
-			params.require(:name).permit(:name)
+			params.require(:name).permit(:name, schedule_ids:[])
 		end
 
 

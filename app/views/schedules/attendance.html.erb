@@ -23,6 +23,10 @@
             <div class="label_item">名前</div><br>
             <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
+            <div class="check_boxes">
+              <%= f.collection_check_boxes(:schedule_ids, @schedules, :id, :day) %>
+            </div>
+
             <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
 
             <% end %>
@@ -45,9 +49,9 @@
               <th class="day fixed day_title">日程</th>
               <th class="status_title btn">ステータス</th>
 
-                <th>Aさん</th>
-                <th>Bさん</th>
-                <th>Cさん</th>
+              <% @names.each do |name| %>
+                <th><%= name.name %></th>
+              <% end %>
 
             </tr>
           </thead>
@@ -69,23 +73,17 @@
                     <%= render "schedules/attendances/btn", i: i %>
                   </td>
 
-                      <td>
-                          1
-                          <div class="attendance_comment">参加します！</div>
-                      </td>
+                  <% @names.each do |name| %>
+                    <td>
+                      <% if name.name_schedules.find_by(schedule_id: schedule.id).present? %>
+                        参加
+                      <% end %>
+                    </td>
+                  <% end %>
 
-                      <td>
-                          2
-                          <div class="attendance_comment">不参加です</div>
-                      </td>
+
 
                 </tr>
-
-                <%
-=begin%>
- <%= render "sschedules/attendances/form", user: @user, schedule: schedule, i: i %> 
-<%
-=end%>
 
               <% end %>
             </tbody>
