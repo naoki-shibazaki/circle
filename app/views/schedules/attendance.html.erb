@@ -73,12 +73,10 @@
                           <div class="label_item">名前</div><br>
                           <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
-                          <% @schedules.each do |schedule| %>
-                            <div class="label_item"><%= schedule.day %></div><br>
-
-
-
-
+                          <%= f.fields_for :name_schedules do |name_schedule| %>
+                            <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
+                                :prompt => "選択してください"  %>
+                            <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
                           <% end %>
 
                           <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
