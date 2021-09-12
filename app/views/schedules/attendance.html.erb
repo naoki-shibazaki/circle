@@ -23,9 +23,19 @@
             <div class="label_item">名前</div><br>
             <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
-            <div class="check_boxes">
-              <%= f.collection_check_boxes(:schedule_ids, @schedules, :id, :day) %>
-            </div>
+
+            <% @schedules.each.with_index(1) do |schedule, i| %>
+
+              <%= f.fields_for :name_schedules do |name_schedule| %>
+                <div class="label_item"><%= schedule.day %></div><br>
+                <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
+                <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
+              <% end %>
+
+            <% end %>
+
+
+
 
             <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
 

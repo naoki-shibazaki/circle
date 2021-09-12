@@ -100,14 +100,18 @@ before_action :set_schedules
 
 def attendance
   @name = Name.new
+  @name_schedules = @name.name_schedules.build
   @schedule_ids = @schedules.map{|s| s.id}
   @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}
   @names = Name.where(id: @name_ids)
+
 
 end
 
 def attendance_create
   @name = Name.create(name_params)
+
+
 
   if @name.save
     flash[:notice] = "追加しました"
@@ -158,7 +162,7 @@ end
 		end
 
     def name_params
-			params.require(:name).permit(:name, schedule_ids:[])
+			params.require(:name).permit(:name, schedule_ids:[], name_schedules_attributes: [:answer, :comment, :schedule_id, :name_id, :_destroy, :id])
 		end
 
 
