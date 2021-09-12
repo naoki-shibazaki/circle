@@ -7,40 +7,38 @@
       <h1 class="top_title">出欠連絡</h1>
 
       <div class="attendances_modal">
-        <a class="js-modal-open" href="" data-target="modal_add"><span class="join btn">出欠をする</span></a>
+        <a class="js-modal-open" href="" data-target="attendance_add"><span class="join btn">出欠をする</span></a>
       </div>
 
-    <div class="attendances_modal">
-      <div id="modal_add" class="modal js-modal">
-        <div class="modal_bg js-modal-close"></div>
+      <div class="attendances_modal">
+        <div id="attendance_add" class="modal js-modal">
+          <div class="modal_bg js-modal-close"></div>
 
-        <div class="modal_content">
+          <div class="modal_content">
 
-          <div class="form-body cont-body form">
-            <%= form_for(@name, :url => {:controller => :schedules, :action => :attendance_create}) do |f| %>
-              <div class="label_item">名前</div><br>
-              <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
+            <div class="form-body cont-body form">
+              <%= form_for(@name, :url => {:controller => :schedules, :action => :attendance_create}) do |f| %>
+                <div class="label_item">名前</div><br>
+                <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
-              <% @schedules.each do |schedule| %>
-                <%= f.fields_for :name_schedules do |name_schedule| %>
-                  <div class="label_item"><%= schedule.day %></div><br>
-                  <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
-                      :prompt => "選択してください"  %>
-                  <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
-                  <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
+                <% @schedules.each do |schedule| %>
+                  <%= f.fields_for :name_schedules do |name_schedule| %>
+                    <div class="label_item"><%= schedule.day %></div><br>
+                    <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
+                        :prompt => "選択してください"  %>
+                    <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
+                    <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
+                  <% end %>
                 <% end %>
+
+                <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
               <% end %>
+            </div>
 
-              <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
-            <% end %>
+            <br><a class="js-modal-close" href="">閉じる</a>
           </div>
-
-          <br><a class="js-modal-close" href="">閉じる</a>
         </div>
       </div>
-    </div>
-
-
 
 
 
@@ -52,9 +50,55 @@
               <th class="day fixed day_title">日程</th>
               <th class="status_title btn">ステータス</th>
 
-              <% @names.each do |name| %>
-                <th><%= name.name %></th>
+
+
+
+
+
+              <% @names.each.with_index(1) do |name, i| %>
+                <th>
+                  <div class="attendances_modal">
+                    <a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a>
+                  </div>
+                </th>
+
+                <div class="attendances_modal">
+                  <div id="attendance_edit_<%= i %>" class="modal js-modal">
+                    <div class="modal_bg js-modal-close"></div>
+
+                    <div class="modal_content">
+
+                      <div class="form-body cont-body form">
+                        <%= form_for(name, url: "/users/#{@user.id}/schedule/#{name.id}", html: {method: 'patch'}) do |f| %>
+                          <div class="label_item">名前</div><br>
+                          <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
+
+                          <% @schedules.each do |schedule| %>
+                            <div class="label_item"><%= schedule.day %></div><br>
+
+
+
+
+                          <% end %>
+
+                          <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
+                        <% end %>
+                      </div>
+
+                      <br><a class="js-modal-close" href="">閉じる</a>
+                    </div>
+                  </div>
+                </div>
               <% end %>
+
+
+
+
+
+
+
+
+
 
             </tr>
           </thead>

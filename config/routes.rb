@@ -77,9 +77,14 @@ Rails.application.routes.draw do
 	get 'users/:id/account_del' , to: 'users#account_del'
 	get 'users/:id/contact_list' , to: 'user_contacts#contact_list'
 
+
+
   # テスト
   get 'users/:user_id/schedule' , to: 'schedules#attendance'
   post 'users/:user_id/schedule' , to: 'schedules#attendance_create'
+	patch 'users/:user_id/schedule/:name_id', to: 'schedules#attendance_update'
+  # テスト
+
 
 
   # サンプルの質問

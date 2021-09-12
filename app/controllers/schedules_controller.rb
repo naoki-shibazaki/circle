@@ -111,8 +111,6 @@ end
 def attendance_create
   @name = Name.create(name_params)
 
-
-
   if @name.save
     flash[:notice] = "追加しました"
     redirect_back(fallback_location: "users/#{@user.id}/schedule")
@@ -123,7 +121,19 @@ def attendance_create
 
 end
 
+def attendance_update
+  @name = Name.find(params[:name_id])
+  @name.update(name_params)
 
+  if @name.save
+    flash[:notice] = "更新しました"
+    redirect_back(fallback_location: "users/#{@user.id}/schedule")
+  else
+    flash[:notice] = "エラー"
+    redirect_back(fallback_location: "users/#{@user.id}/schedule")
+  end
+
+end
 
 
 
