@@ -100,7 +100,9 @@ before_action :set_schedules
 
 def attendance
   @name = Name.new
-  @names = Name.where.not(name: "")
+  @schedule_ids = @schedules.map{|s| s.id}
+  @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}
+  @names = Name.where(id: @name_ids)
 
 end
 
