@@ -17,10 +17,7 @@ Rails.application.routes.draw do
 		resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]
 		resources :links, only: [:new, :create]
-    resources :schedules do
-      resources :attendances, except:[:index]
-    end
-    resources :attendances, only:[:index]
+    resources :schedules
     resources :questions
     resources :reviews
 		resources :opinions, only: [:new, :create, :index]

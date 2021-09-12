@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_105848) do
+ActiveRecord::Schema.define(version: 2021_09_12_011904) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,17 +33,6 @@ ActiveRecord::Schema.define(version: 2021_09_04_105848) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "decade"
-  end
-
-  create_table "attendances", force: :cascade do |t|
-    t.integer "schedule_id"
-    t.integer "member_id"
-    t.integer "answer"
-    t.string "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_attendances_on_member_id"
-    t.index ["schedule_id"], name: "index_attendances_on_schedule_id"
   end
 
   create_table "blogs", force: :cascade do |t|
@@ -283,6 +272,12 @@ ActiveRecord::Schema.define(version: 2021_09_04_105848) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_members_events_on_event_id"
     t.index ["member_id"], name: "index_members_events_on_member_id"
+  end
+
+  create_table "names", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "opinions", force: :cascade do |t|

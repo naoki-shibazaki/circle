@@ -9,7 +9,6 @@ class Member < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :members_events, dependent: :destroy
   has_many :events, through: :members_events
-  has_many :attendances, dependent: :destroy
 
   belongs_to :prefecture, optional: true
 
