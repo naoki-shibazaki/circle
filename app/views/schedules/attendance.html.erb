@@ -74,7 +74,7 @@
                           <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
                           <%= f.fields_for :name_schedules do |name_schedule| %>
-                            <%= name_schedule.object.schedule.day %>
+                            <%= name_schedule.object.schedule.day %><br>
 
                             <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
                                 :prompt => "選択してください"  %>
