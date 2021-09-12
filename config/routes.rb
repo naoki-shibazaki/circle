@@ -78,7 +78,6 @@ Rails.application.routes.draw do
 	get 'users/:id/contact_list' , to: 'user_contacts#contact_list'
 
 
-
   # テスト
   get 'users/:user_id/schedule' , to: 'schedules#attendance'
   post 'users/:user_id/schedule' , to: 'schedules#attendance_create'

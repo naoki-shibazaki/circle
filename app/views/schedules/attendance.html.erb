@@ -74,10 +74,14 @@
                           <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
                           <%= f.fields_for :name_schedules do |name_schedule| %>
+                            <%= name_schedule.object.schedule.day %>
+
                             <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
                                 :prompt => "選択してください"  %>
                             <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
+
                           <% end %>
+
 
                           <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
                         <% end %>
