@@ -9,9 +9,9 @@
             <%= f.text_field :day, id: 'datepicker', class: 'form-control form-day', readonly: "readonly", placeholder: "#{@time.strftime("%Y-%m-%d")}" %>
 
             <div class="label_item">時間帯</div><br>
-            <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "18:00" %>
+            <%= f.time_field :time_s, value: "18:00", class: 'form-control form-time', placeholder: "18:00" %>
             〜
-            <%= f.time_field :time_e, class: 'form-control form-time', placeholder: "20:00" %>
+            <%= f.time_field :time_e, value: "20:00", class: 'form-control form-time', placeholder: "20:00" %>
 
             <div class="label_item"><span class="label label_danger">必須</span>開催場所（18文字以内）</div>
             <%= f.text_field :venue, class: 'form-control form-venue', placeholder: "サークルブック体育館" %>

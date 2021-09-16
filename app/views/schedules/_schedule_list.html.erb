@@ -56,6 +56,8 @@
       <% @past_schedules.each do |past_schedule| %>
           <% if past_schedule.present? && @schedule.id != past_schedule.id %>
             <% if @past_schedule_month != Time.parse(past_schedule.day).strftime("%-m") %>
+
+              <div class="ad_space"></div>
               <%= render "/layouts/ad_square" %>
               <div class="ad_space"></div>
 

@@ -7647,6 +7647,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   th {
     white-space: nowrap;
     width: 140px;
+    a{
+      color: #337ab7;
+      text-decoration: underline;
+    }
   }
   td{
     width: 120px;
@@ -7663,6 +7667,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
   table {
       display: flex;
+      padding-bottom: 30px;
   }
   tbody {
     display: flex;
@@ -7747,6 +7752,30 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     width: 70%;
     border-radius: 10px;
   }
+  .join_btn{
+    color: #fff;
+    background-color: #45bd59;
+    border-bottom: 5px solid #30803e;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px 26px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    border-radius: 0.5rem;
+  }
+
 }
 
 

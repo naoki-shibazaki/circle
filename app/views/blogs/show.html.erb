@@ -35,7 +35,7 @@
 					<div class="share_btn_tw">
 							<%= render "blogs/share_tw.html.erb" %>
 					</div>
-				
+
 					<% if admin_user_signed_in?  %>
 						<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
 
@@ -194,7 +194,7 @@
 			                </div>
 
 			              </div>
-			   
+
 			            </div>
 			            <% end %>
 					</div>
@@ -212,7 +212,7 @@
 		<div class="blog-list-wrap">
 			<h2 class="others-blog"><%= @user.name %>のブログ一覧</h2>
             <% @blogs.first(5).each do |blog| %> 
-             
+
               <% if blog.title.present? %>
 
 	            	<div class="blog_list">
@@ -228,12 +228,12 @@
 					    	<%= lazysizes_image_tag @user.pic_profile.url , class:'icon_s' %>    
 							<div class="blog_user_name"><%= @user.name.truncate(16) %></div>
 		                  </div>
-		                <% end %> 
+		                <% end %>
 
 	            	</div>
 
-              <% end %> 
-                      
+              <% end %>
+
             <% end %>
 
             <% if @blogs.count > 5 %>
@@ -244,7 +244,7 @@
             	</div>
             <% end %>
 
-         </div>
+        </div>
 
 		<div class="ad_space"></div>
 
@@ -253,7 +253,7 @@
 			<div class="ad_space"></div>
 		<% end %>
 
-     <% end %>
+    <% end %>
 
 			<div class="space_btm"></div>
 

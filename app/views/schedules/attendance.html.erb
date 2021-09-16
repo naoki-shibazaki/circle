@@ -4,10 +4,13 @@
   <div class="container">
 		<div class="users-index-item">
 
-      <h1 class="top_title">出欠連絡</h1>
+      <h1 class="top_title">出欠連絡（メンバー限定公開）</h1>
+
+      <%= render "/users/parts/user_name", user: @user %>
+
 
       <div class="attendances_modal">
-        <a class="js-modal-open" href="" data-target="attendance_add"><span class="join btn">出欠をする</span></a>
+        <a class="js-modal-open" href="" data-target="attendance_add"><span class="join_btn">出欠を回答する</span></a>
       </div>
 
       <div class="attendances_modal">
@@ -118,17 +121,19 @@
                       <br>10/20人
                     <% end %>
                   </td>
-                  <td class="btn">
-                    <%= render "schedules/attendances/btn", i: i %>
+                  <td class="status">
+                    参加する
                   </td>
 
                   <% @names.each do |name| %>
+                    <% if name.name_schedules.find_by(schedule_id: schedule.id).present? %>
                       <td>
                         <%= name.name_schedules.find_by(schedule_id: schedule.id).answer %>
                         <div class="attendance_comment">
                           <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
                         </div>
                       </td>
+                    <% end %>
                   <% end %>
 
 
@@ -142,6 +147,9 @@
         </table>
 
 
+      <div class="attendances_modal">
+        <a class="js-modal-open" href="" data-target="attendance_add"><span class="join_btn">出欠を回答する</span></a>
+      </div>
 
 
       </div>
