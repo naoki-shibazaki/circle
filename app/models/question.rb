@@ -7,5 +7,6 @@ class Question < ApplicationRecord
 	validates :content, format: { without: NGWORD_REGEX, message: 'にNGワードが含まれています' }
 
 
-  paginates_per 20
+	paginates_per 10
+
 end
