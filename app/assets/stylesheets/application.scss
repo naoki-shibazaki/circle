@@ -7681,6 +7681,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     a {
       color: #337ab7;
       text-decoration: underline;
+      .recruitment_numbers_wrap{
+        padding-top: 4px;
+        font-size: 16px;
+        text-decoration: underline;
+        color: #2d3133;
+      }
     }
   }
   .fixed{
@@ -7817,10 +7823,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+
+
 .only_member_warp {
   position: relative;
-  margin: 30px auto 10px;
-  padding: 16px 10px 4px;
+  margin: 40px auto 24px;
+  padding: 18px 10px 10px;
   color: #555555;
   background-color: #fff;
   border: 2px solid #d6d6d6;

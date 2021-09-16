@@ -8,150 +8,22 @@
 
       <%= render "/users/parts/user_name", user: @user %>
 
+      <%= render "/schedules/attendances/add_btn" %>
 
-      <div class="attendances_modal">
-        <a class="js-modal-open" href="" data-target="attendance_add"><span class="join_btn">出欠を回答する</span></a>
-      </div>
-
-      <div class="attendances_modal">
-        <div id="attendance_add" class="modal js-modal">
-          <div class="modal_bg js-modal-close"></div>
-
-          <div class="modal_content">
-
-            <div class="form-body cont-body form">
-              <%= form_for(@name, :url => {:controller => :schedules, :action => :attendance_create}) do |f| %>
-                <div class="label_item">名前</div><br>
-                <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
-
-                <% @schedules.each do |schedule| %>
-                  <%= f.fields_for :name_schedules do |name_schedule| %>
-                    <div class="label_item"><%= schedule.day %></div><br>
-                    <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
-                        :prompt => "選択してください"  %>
-                    <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
-                    <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
-                  <% end %>
-                <% end %>
-
-                <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
-              <% end %>
-            </div>
-
-            <br><a class="js-modal-close" href="">閉じる</a>
-          </div>
-        </div>
-      </div>
-
-
+      <%= render "/schedules/attendances/new_form" %>
 
       <div class="attendances_table_wrap">
         <table>
-
           <thead>
             <tr>
               <th class="day fixed day_title">日程</th>
               <th class="status_title btn">ステータス</th>
-
-
-
-
-
-
-              <% @names.each.with_index(1) do |name, i| %>
-                <th>
-                  <div class="attendances_modal">
-                    <a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a>
-                  </div>
-                </th>
-
-                <div class="attendances_modal">
-                  <div id="attendance_edit_<%= i %>" class="modal js-modal">
-                    <div class="modal_bg js-modal-close"></div>
-
-                    <div class="modal_content">
-
-                      <div class="form-body cont-body form">
-                        <%= form_for(name, url: "/users/#{@user.id}/schedule/#{name.id}", html: {method: 'patch'}) do |f| %>
-                          <div class="label_item">名前</div><br>
-                          <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
-
-                          <%= f.fields_for :name_schedules do |name_schedule| %>
-                            <%= name_schedule.object.schedule.day %><br>
-
-                            <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
-                                :prompt => "選択してください"  %>
-                            <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
-
-                          <% end %>
-
-
-                          <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
-                        <% end %>
-                      </div>
-
-                      <br><a class="js-modal-close" href="">閉じる</a>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-
-
-
-
-
-
-
-
-
-
+              <%= render "/schedules/attendances/edit_form" %>
             </tr>
           </thead>
-
-          <% if @schedules.present? %>
-            <tbody>
-              <% @schedules.each.with_index(1) do |schedule, i| %>
-                <tr>
-                  <td class="day fixed">
-                    <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
-                      <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
-                      <% if schedule.time_s.present? %>
-                        <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
-                      <% end %>
-                      <br>10/20人
-                    <% end %>
-                  </td>
-                  <td class="status">
-                    参加する
-                  </td>
-
-                  <% @names.each do |name| %>
-                    <% if name.name_schedules.find_by(schedule_id: schedule.id).present? %>
-                      <td>
-                        <%= name.name_schedules.find_by(schedule_id: schedule.id).answer %>
-                        <div class="attendance_comment">
-                          <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
-                        </div>
-                      </td>
-                    <% end %>
-                  <% end %>
-
-
-
-                </tr>
-
-              <% end %>
-            </tbody>
-          <% end %>
-
+          <%= render "/schedules/attendances/answer_list" %>
         </table>
-
-
-      <div class="attendances_modal">
-        <a class="js-modal-open" href="" data-target="attendance_add"><span class="join_btn">出欠を回答する</span></a>
-      </div>
-
-
+        <%= render "/schedules/attendances/add_btn" %>
       </div>
 
   </div>

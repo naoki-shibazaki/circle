@@ -31,9 +31,9 @@
             <%= f.text_field :day, id: 'datepicker', class: 'form-control form-day', readonly: "readonly", placeholder: "#{@time.strftime("%Y-%m-%d")}" %>
 
             <div class="label_item">時間帯</div><br>
-            <%= f.time_field :time_s, value: "18:00", class: 'form-control form-time', placeholder: "18:00" %>
+            <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "18:00" %>
             〜
-            <%= f.time_field :time_e, value: "20:00", class: 'form-control form-time', placeholder: "20:00" %>
+            <%= f.time_field :time_e, class: 'form-control form-time', placeholder: "20:00" %>
 
             <br><div class="label_item">募集人数</div><br>
             <%= render "/schedules/recruitment_numbers", f: f %>
@@ -69,10 +69,6 @@
 
           </div>
         </div>
-
-
-
-
 
 		</div>
 

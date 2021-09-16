@@ -1,0 +1,38 @@
+<% if @schedules.present? %>
+  <tbody>
+    <% @schedules.each.with_index(1) do |schedule, i| %>
+      <tr>
+        <td class="day fixed">
+          <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
+            <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+            <% if schedule.time_s.present? %>
+              <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+            <% end %>
+
+            <% if schedule.recruitment_numbers.present? %>
+              <div class="recruitment_numbers_wrap"><%= schedule.recruitment_numbers %>人</div>
+            <% end %>
+          <% end %>
+        </td>
+        <td class="status">
+          参加する
+        </td>
+
+        <% @names.each do |name| %>
+          <% if name.name_schedules.find_by(schedule_id: schedule.id).present? %>
+            <td>
+              <%= name.name_schedules.find_by(schedule_id: schedule.id).answer %>
+              <div class="attendance_comment">
+                <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+              </div>
+            </td>
+          <% end %>
+        <% end %>
+
+
+
+      </tr>
+
+    <% end %>
+  </tbody>
+<% end %>
