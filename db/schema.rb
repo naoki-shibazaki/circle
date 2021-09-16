@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_050243) do
+ActiveRecord::Schema.define(version: 2021_09_16_064304) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -398,6 +398,8 @@ ActiveRecord::Schema.define(version: 2021_09_12_050243) do
     t.string "title"
     t.string "google_map"
     t.string "recruitment"
+    t.string "member_venue"
+    t.integer "recruitment_numbers"
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
@@ -497,6 +499,7 @@ ActiveRecord::Schema.define(version: 2021_09_12_050243) do
     t.string "review_score"
     t.string "ng_account"
     t.string "category_id"
+    t.string "unique_id"
     t.index ["admin_user_id"], name: "index_users_on_admin_user_id"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true

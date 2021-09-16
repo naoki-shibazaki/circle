@@ -1,10 +1,9 @@
 class SchedulesController < ApplicationController
 
-before_action :ensure_correct_user, {only: [:edit, :update]}
+before_action :ensure_correct_user, {only: [:edit, :update, :new]}
 before_action :set_schedules
 
 	def index
-
 		@schedule = @user.schedules.build
 
 		@b1_name = @user.name
@@ -12,6 +11,15 @@ before_action :set_schedules
 		@b2_name = "活動スケジュール"
 		@b2_url = ""
 	end
+
+  def new
+		@schedule = @user.schedules.build
+
+		@b1_name = @user.name
+		@b1_url = "/users/#{@user.id}"
+		@b2_name = "活動スケジュール"
+		@b2_url = ""
+  end
 
 	def create
 		@user.schedules.create(schedule_params)
@@ -168,7 +176,7 @@ end
 		end
 
 		def schedule_params
-			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note, :title, :google_map, :recruitment)
+			params.require(:schedule).permit(:day, :venue, :date, :time_s, :time_e, :venue_address, :note, :title, :google_map, :recruitment, :member_venue, :recruitment_numbers)
 		end
 
     def name_params

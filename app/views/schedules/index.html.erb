@@ -40,8 +40,13 @@
 
 					<%= render "/schedules/schedule_copy" %>
 
-					<%= render "/schedules/post" %>
-
+          <div class="add_schedule_btn_wrap">
+            <%= link_to new_user_schedule_path(@user) do %>
+              <div class="add_schedule_btn">
+                <i class="fa fa-calendar-plus-o "></i> スケジュールを追加する
+              </div>
+            <% end %>
+          </div>
 
 					<% end %>
 				<% end %>
