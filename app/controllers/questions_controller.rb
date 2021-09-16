@@ -5,12 +5,12 @@ class QuestionsController < ApplicationController
 
 	def index
 		@question = @user.questions.build
-    @questions = Question.where(user_id: @user.id).order(id: "DESC")
+    @questions = Question.where(user_id: @user.id).order(id: "DESC").page(params[:page])
 	end
 
 	def question
 		@question = @user.questions.build
-		@questions = Question.where(user_id: @user.id).order(id: "DESC")
+		@questions = Question.where(user_id: @user.id).order(id: "DESC").page(params[:page])
 
 		if params[:sample] == "first"
 			@question_sample = @question_first
@@ -102,7 +102,7 @@ class QuestionsController < ApplicationController
 
 	def show
 		@question = Question.find(params[:id])
-		@questions = Question.where(user_id: @user.id).order(id: "DESC")
+		@questions = Question.where(user_id: @user.id).order(id: "DESC").page(params[:page])
 
 		if @user.id.to_i != @question.user_id.to_i
 			flash[:notice] = "存在しないURLです"
