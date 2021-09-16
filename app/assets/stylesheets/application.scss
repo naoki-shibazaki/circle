@@ -7750,6 +7750,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     top: 50%;
     transform: translate(-50%,-50%);
     width: 70%;
+    height: 96%;
+    overflow-y: scroll;
     border-radius: 10px;
   }
   .join_btn{
