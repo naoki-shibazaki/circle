@@ -26,6 +26,8 @@
                 <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
               </div>
             </td>
+          <% else %>
+            <td></td>
           <% end %>
         <% end %>
 
