@@ -7643,6 +7643,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .attendances_table_wrap{
+  th,td {
+    border: solid 1px #e0e0e0;
+  }
+  table {
+    border-collapse:  collapse;
+  }
+
 
   th {
     white-space: nowrap;
@@ -7657,7 +7664,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
   th,td {
     text-align: center;
-    padding: 0.5em 1em;
+    // padding: 0.5em 1em;
     white-space: nowrap;
     display: block;
     justify-content: center;
@@ -7724,13 +7731,33 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     width: 100%;
   }
   .attendance_comment{
-    font-size: 12px;
+    font-size: 10px;
     color: #696969;
     overflow: scroll;
   }
   .status,
   .status_title{
     height: 50px;
+  }
+  .answer1{
+    background-image: url("/images/answer/answer_1_blue.png");
+  }
+  .answer0{
+    background-image: url("/images/answer/answer_0_gray.png");
+
+  }
+  .answer1,
+  .answer0{
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 30px;
+    position: relative;
+    .attendance_comment{
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+    }
   }
 
 }

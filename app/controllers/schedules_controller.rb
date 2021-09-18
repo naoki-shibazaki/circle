@@ -6,6 +6,20 @@ before_action :set_schedules
 	def index
 		@schedule = @user.schedules.build
 
+    # unique_id 付与
+    if admin_user_signed_in?
+      if @user.unique_id.blank?
+        @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
+        if @user.save
+          @user.save
+        else
+          flash[:notice] = '必須項目が設定されていません'
+          redirect_to edit_user_path(@user)
+        end
+      end
+    end
+
+
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
 		@b2_name = "活動スケジュール"
@@ -112,7 +126,7 @@ def attendance
   @name_schedules = @name.name_schedules.build
   @schedule_ids = @schedules.map{|s| s.id}
   @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}
-  @names = Name.where(id: @name_ids)
+  @names = Name.where(id: @name_ids).order(updated_at: :desc)
 end
 
 def attendance_create

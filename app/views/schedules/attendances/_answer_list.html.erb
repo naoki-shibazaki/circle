@@ -10,7 +10,9 @@
             <% end %>
 
             <% if schedule.recruitment_numbers.present? %>
-              <div class="recruitment_numbers_wrap"><%= schedule.recruitment_numbers %>人</div>
+              <div class="recruitment_numbers_wrap">
+                <%= schedule.name_schedules.where(answer: 1).count %>／<%= schedule.recruitment_numbers %>人
+              </div>
             <% end %>
           <% end %>
         </td>
@@ -20,12 +22,21 @@
 
         <% @names.each do |name| %>
           <% if name.name_schedules.find_by(schedule_id: schedule.id).present? %>
-            <td>
-              <%= name.name_schedules.find_by(schedule_id: schedule.id).answer %>
-              <div class="attendance_comment">
-                <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
-              </div>
-            </td>
+              <% if name.name_schedules.find_by(schedule_id: schedule.id).answer == 1 %>
+              <td class="answer1">
+                <div class="attendance_comment">
+                  <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+                </div>
+              </td>
+              <% elsif name.name_schedules.find_by(schedule_id: schedule.id).answer == 0 %>
+              <td  class="answer0">
+                <div class="attendance_comment">
+                  <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+                </div>
+              </td>
+              <% else %>
+                <td></td>
+              <% end %>
           <% else %>
             <td></td>
           <% end %>

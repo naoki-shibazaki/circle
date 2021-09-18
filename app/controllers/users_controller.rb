@@ -322,11 +322,6 @@ helper_method :link_count
 		# 管理者判定
 		if admin_user_signed_in?
 
-      if @user.unique_id.blank?
-        @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
-        @user.save
-      end
-
 			@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 			@opinion = @user.opinions.build
 
