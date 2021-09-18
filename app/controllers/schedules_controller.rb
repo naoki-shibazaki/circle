@@ -1,7 +1,7 @@
 class SchedulesController < ApplicationController
 
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
-before_action :set_schedules
+before_action :set_schedules, {except: [:secret]}
 
 	def index
 		@schedule = @user.schedules.build
@@ -83,6 +83,36 @@ before_action :set_schedules
 			@schedule_title = @user.event.name
 		end
 
+		if @user.id.to_i != @schedule.user_id.to_i
+			flash[:notice] = "存在しないURLです"
+			redirect_to "/users"
+		end
+
+
+		@b1_name = @user.name
+		@b1_url = "/users/#{@user.id}"
+		@b2_name = "活動スケジュール"
+		@b2_url = "/users/#{@user.id}/schedules"
+		@b3_name = Time.parse(@schedule.day).strftime("%Y/%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")
+		@b3_url = ""
+	end
+
+	def secret
+		@schedule = Schedule.find(params[:id])
+    @user = User.find_by(unique_id: params[:unique_id])
+    @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
+    @past_schedules = Schedule.where(user_id: @user.id).where("day < ?", DateTime.yesterday).order(:day => :desc)
+    @data = AdminUser.find_by(id: params[:user_id])
+    @prefectures = Prefecture.all
+    @schedule_month = 0
+    @schedule_m_c = 0
+    @contact_judge = "_s"
+
+		if @schedule.title.present?
+			@schedule_title = @schedule.title.gsub(/[^！？!?ー〜0-9A-Za-z-ぁ-んァ-ン一-龥]/, '')
+		else
+			@schedule_title = @user.event.name
+		end
 
 		if @user.id.to_i != @schedule.user_id.to_i
 			flash[:notice] = "存在しないURLです"

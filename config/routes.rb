@@ -84,6 +84,7 @@ Rails.application.routes.draw do
 	patch 'users/:user_id/schedule/:name_id', to: 'schedules#attendance_update'
   # テスト
 
+  get 'schedules/:unique_id/:id' , to: 'schedules#secret'
 
 
   # サンプルの質問

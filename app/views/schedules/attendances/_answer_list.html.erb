@@ -3,7 +3,7 @@
     <% @schedules.each.with_index(1) do |schedule, i| %>
       <tr>
         <td class="day fixed">
-          <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
+          <%= link_to("/schedules/#{@user.unique_id}/#{schedule.id}") do %>
             <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
             <% if schedule.time_s.present? %>
               <br><%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
@@ -17,7 +17,13 @@
           <% end %>
         </td>
         <td class="status">
-          参加する
+          <% if schedule.recruitment_numbers == 0 %>
+            募集中
+          <% elsif schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers %>
+            満員御礼
+          <% else %>
+            募集中
+          <% end %>
         </td>
 
         <% @names.each do |name| %>
