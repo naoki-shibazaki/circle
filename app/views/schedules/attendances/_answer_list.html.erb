@@ -11,18 +11,26 @@
 
             <% if schedule.recruitment_numbers.present? %>
               <div class="recruitment_numbers_wrap">
-                <%= schedule.name_schedules.where(answer: 1).count %>／<%= schedule.recruitment_numbers %>人
+                <% if schedule.recruitment_numbers >= 1 %>
+                  <%= schedule.name_schedules.where(answer: 1).count %>人<span class="small_font">／<%= schedule.recruitment_numbers %>人</span>
+                <% else %>
+                  <%= schedule.name_schedules.where(answer: 1).count %>人
+                <% end %>
+              </div>
+            <% else %>
+              <div class="recruitment_numbers_wrap">
+                <%= schedule.name_schedules.where(answer: 1).count %>人
               </div>
             <% end %>
           <% end %>
         </td>
         <td class="status">
-          <% if schedule.recruitment_numbers == 0 %>
-            募集中
+          <% if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank? %>
+            <div class="set mark_green">募集中</div>
           <% elsif schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers %>
-            満員御礼
+            <div class="set mark_red">満員御礼</div>
           <% else %>
-            募集中
+            <div class="set mark_green">募集中</div>
           <% end %>
         </td>
 

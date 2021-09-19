@@ -1,7 +1,9 @@
 class SchedulesController < ApplicationController
 
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
-before_action :set_schedules, {except: [:secret]}
+before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update]}
+before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update]}
+
 
 	def index
 		@schedule = @user.schedules.build
@@ -14,6 +16,7 @@ before_action :set_schedules, {except: [:secret]}
 
   def new
 		@schedule = @user.schedules.build
+    @btn_name = "新規作成"
 
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
@@ -22,26 +25,25 @@ before_action :set_schedules, {except: [:secret]}
   end
 
 	def create
-		@user.schedules.create(schedule_params)
+    @schedule = @user.schedules.new(schedule_params)
 
-    @schedule = Schedule.where(user_id: @user.id).last
-    @schedule.date = Time.parse(@schedule.day).strftime("%Y年%-m月%-d日(#{%w(日曜日 月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)[Time.parse(@schedule.day).wday]})")
-    @schedule.save
+		if @schedule.save
 
-		@user.user_time = Time.now
-		@user.last_post = Time.now
+      @schedule = Schedule.where(user_id: @user.id).last
+      @schedule.date = Time.parse(@schedule.day).strftime("%Y年%-m月%-d日(#{%w(日曜日 月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)[Time.parse(@schedule.day).wday]})")
+      @schedule.save
 
-		if @user.save
+      @user.user_time = Time.now
+      @user.last_post = Time.now
+      @user.save
 
-			flash[:notice] = "追加しました"
-			redirect_to user_schedules_path
+      flash[:notice] = "追加しました！"
+      redirect_to user_schedules_path
+    else
+      render "new"
+    end
 
-		else
-			flash[:notice] = "必須項目が未記入です"
-			redirect_to user_schedules_path
-		end
-
-	end
+  end
 
 	def update
 		@schedule = Schedule.find(params[:id])
@@ -49,7 +51,6 @@ before_action :set_schedules, {except: [:secret]}
 		if @schedule.update(schedule_params)
 
 			@user.user_time = Time.now
-			@user.last_post = Time.now
       @user.save
 
 			flash[:notice] = '更新完了！'
@@ -116,6 +117,7 @@ before_action :set_schedules, {except: [:secret]}
 
 	def edit
 		@schedule = Schedule.find(params[:id])
+    @btn_name = "更新する"
 
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
@@ -158,7 +160,7 @@ def attendance_create
 end
 
 def attendance_update
-  @name = Name.find(params[:name_id])
+  @name = Name.find(params[:id])
   @name.update(name_params)
 
   if @name.save
@@ -187,6 +189,13 @@ end
 			@mail_title = "【#{@user.name}】お問い合わせ"
 			@mail_message = "こちらに相談内容をご記入ください！"
 		end
+
+    def set_attendances
+      @user = User.find_by(unique_id: params[:unique_id])
+			@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
+			@past_schedules = Schedule.where(user_id: @user.id).where("day < ?", DateTime.yesterday).order(:day => :desc)
+    end
+
 
 
 		def ensure_correct_user

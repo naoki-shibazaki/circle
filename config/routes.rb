@@ -77,15 +77,11 @@ Rails.application.routes.draw do
 	get 'users/:id/account_del' , to: 'users#account_del'
 	get 'users/:id/contact_list' , to: 'user_contacts#contact_list'
 
-
-  # テスト
-  get 'users/:user_id/schedule' , to: 'schedules#attendance'
-  post 'users/:user_id/schedule' , to: 'schedules#attendance_create'
-	patch 'users/:user_id/schedule/:name_id', to: 'schedules#attendance_update'
-  # テスト
-
+  # 出欠管理
+  get 'schedules/:unique_id' , to: 'schedules#attendance'
+  post 'schedules/:user_id' , to: 'schedules#attendance_create'
   get 'schedules/:unique_id/:id' , to: 'schedules#secret'
-
+	patch 'schedules/:user_id/:id', to: 'schedules#attendance_update'
 
   # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'

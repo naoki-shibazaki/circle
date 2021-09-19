@@ -1,3 +1,5 @@
+<% set_meta_tags noindex: true %>
+
 <div class="main users-index">
   <div class="container">
 
@@ -8,73 +10,10 @@
       <%= render "/users/parts/user_name", user: @user %>
 
       <div class="schedule_title">
-        <%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>の活動内容の修正
+        <%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>の修正
       </div>
 
-      <% if @schedule.errors.any? %>
-          <div class="form-error">
-            以下の項目でエラーが発生いたしました。<br>
-          </div>
-        <% end %>
-
-      <% @schedule.errors.full_messages.each do |message| %>
-          <div class="form-error_message">
-            ・<%= message %>
-          </div>
-      <% end %>
-
-
-        <div class="schedule_add_wrap">
-          <div class="schedule_input">
-
-            <%= form_for ([@user, @schedule]) do |f| %>
-
-              <div class="label_item">募集状況</div>
-              <%= f.select  :recruitment,  [ ['募集中','募集中'], ['募集終了','募集終了'] ], class: 'form-control form-venue' %>
-              <br>
-              <div class="label_item">時間帯</div><br>
-              <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "開始時間" %> 
-              〜
-              <%= f.time_field :time_e, class: 'form-control form-time', placeholder: "終了時間" %> 
-
-              <div class="label_item"><span class="label label_danger">必須</span>開催場所（18文字以内）</div>
-              <%= f.text_field :venue, class: 'form-control form-venue', placeholder: "サークルブック体育館" %>
-
-              <div class="label_item">開催場所の住所（郵便番号は不要）</div>
-              <%= f.text_field :venue_address, class: 'form-control form-venue',
-              placeholder: "東京都千代田区丸の内１丁目" %>
-
-              <div class="label_item">地図表示<br>
-              <div class="profile_list_t_a check_box_wrap">
-                <%= f.check_box :google_map %>
-                <div class="check_txt">チェックすると地図が自動表示されます</div>
-              </div>
-              </div>
-
-              <div class="reset"></div>
-
-              <div class="border"></div>
-
-              <div class="label_item">タイトル（28文字以内）</div>
-              <span class="cautions">※"/"や"()"などの半角記号は使えません</span>
-              <%= f.text_field :title, class: 'form-control form-venue', placeholder: "初心者限定のバスケdayです！" %>  
-
-              <div class="label_item">備考欄</div>
-              <%= f.text_area :note, class: 'form-control form-note', placeholder: "持ち物は○○です。参加費は△△です。" %> 
-              <br>
-
-            <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
-
-            <div class="reset"></div>
-
-            <% end %>
-
-          </div>
-        </div>
-
-
-
-
+      <%= render "/schedules/form" %>
 
 		</div>
 

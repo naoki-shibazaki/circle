@@ -12,7 +12,7 @@
       <div class="modal_content">
 
         <div class="form-body cont-body form">
-          <%= form_for(name, url: "/users/#{@user.id}/schedule/#{name.id}", html: {method: 'patch'}) do |f| %>
+          <%= form_for(name, url: "/schedules/#{@user.unique_id}/#{name.id}", html: {method: 'patch'}) do |f| %>
             <div class="label_item">名前</div><br>
             <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
@@ -22,7 +22,7 @@
 
                 <%= f.fields_for :name_schedules, schedule.name_schedules.build do |name_schedule| %>
                   <div class="label_item">【新規】<%= schedule.day %></div><br>
-                  <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
+                  <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
                       :prompt => "選択してください"  %>
                   <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
                   <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
@@ -36,7 +36,7 @@
 
               <%= name_schedule.object.schedule.day %><br>
 
-              <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
+              <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
                   :prompt => "選択してください"  %>
               <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
 

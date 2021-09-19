@@ -77,7 +77,7 @@ ja:
         order: "『配置場所』"
       schedule:
         day: "『日程』"
-        venue: "『開催場所』"
+        venue: "『活動エリア』"
     models:
       user: "ユーザ"
   devise:

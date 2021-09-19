@@ -1,0 +1,66 @@
+<% if @schedule.errors.any? %>
+    <div class="form-error">
+      以下の項目でエラーが発生いたしました。<br>
+    </div>
+  <% end %>
+
+<% @schedule.errors.full_messages.each do |message| %>
+    <div class="form-error_message">
+      ・<%= message %>
+    </div>
+<% end %>
+
+
+<div class="schedule_add_wrap">
+  <div class="schedule_input">
+
+    <%= form_for ([@user, @schedule]) do |f| %>
+
+        <div class="label_item"><span class="label label_danger">必須</span>日程</div>
+        <%= f.text_field :day, id: 'datepicker', class: 'form-control form-day', readonly: "readonly", placeholder: "#{@time.strftime("%Y-%m-%d")}" %>
+
+      <% if @path.is('schedules#edit') %>
+        <div class="label_item">募集状況</div><br>
+        <%= f.select  :recruitment,  [ ['募集中','募集中'], ['募集終了','募集終了'] ,['中止','中止'] ], class: 'form-control form-venue' %>
+        <br>
+      <% end %>
+
+      <div class="label_item">時間帯</div><br>
+      <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "18:00" %>
+      〜
+      <%= f.time_field :time_e, class: 'form-control form-time', placeholder: "20:00" %>
+
+      <br><div class="label_item">募集人数</div><br>
+      <%= render "/schedules/recruitment_numbers", f: f %>
+
+      <div class="label_item"><span class="label label_danger">必須</span>活動エリア（18文字以内）</div>
+      <%= f.text_field :venue, class: 'form-control form-venue', placeholder: "東京都の新宿区周辺" %>
+
+      <div class="only_member_warp">
+      <span class="only_member_title"><i class="fa fa-lock "></i> メンバー限定の公開情報</span>
+      <div class="cautions">※限定URLを共有したメンバーのみに公開されます</div>
+        <div class="label_item">開催場所の名所</div>
+        <%= f.text_field :member_venue, class: 'form-control form-venue', placeholder: "サークルブック体育館" %>
+
+        <div class="label_item">開催場所の住所（郵便番号は不要）</div>
+          <%= f.text_field :venue_address, class: 'form-control form-venue',
+            placeholder: "東京都新宿区新宿1-1-1" %>
+      </div>
+
+
+      <div class="label_item">タイトル（28文字以内）</div>
+      <%= f.text_field :title, class: 'form-control form-venue', placeholder: "初心者限定のバスケdayです！" %>
+
+      <div class="label_item">備考欄</div>
+      <%= f.text_area :note, class: 'form-control form-note', placeholder: "持ち物は○○です。参加費は△△です。" %>
+
+      <br>
+
+      <%= f.submit @btn_name, data: { disable_with: '作成中...' } %>
+
+      <div class="reset"></div>
+
+    <% end %>
+
+  </div>
+</div>
