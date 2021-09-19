@@ -65,13 +65,14 @@
   </div>
 
   <div class="post_share schedule_share">
-    <div class="share_btn_tw">
-      <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の活動日です！%20%23サークルブック%0a", target: '_blank') do %>
+
+    <% if @path.is('schedules#show') %>
       <div class="share_btn_tw">
-            <i class="fa fa-twitter"></i>ツイートする
+        <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の活動日です！%20%23サークルブック%0a", target: '_blank') do %>
+          <i class="fa fa-twitter"></i>ツイートする
+        <% end %>
       </div>
-      <% end %>
-    </div>
+    <% end %>
 
     <% if admin_user_signed_in?  %>
       <% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
@@ -90,11 +91,6 @@
     <% end %>
   </div>
 
-
-  <h2 class="schedule_title">
-    <%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>の内容
-  </h2>
-
   <div class="article_item article_padding place_list ">
     <table>
       <tbody>
@@ -108,13 +104,54 @@
           </td>
         </tr>
         <tr class="flex_contents">
-          <th class="flex_list">場所</th>
-          <td class="flex_list"><%= @schedule.venue %></td>
+          <th class="flex_list">ステータス</th>
+          <td class="flex_list">
+            <% if @schedule.recruitment == "募集終了" %>
+              <span class="set mark_red">満員御礼</span>
+            <% elsif @schedule.recruitment == "中止" %>
+              <span class="set mark_yellow">中止</span>
+            <% else %>
+              <% if @schedule.recruitment_numbers == 0 || @schedule.recruitment_numbers.blank? %>
+                <span class="set mark_green">募集中</span>
+              <% elsif @schedule.name_schedules.where(answer: 1).count >= @schedule.recruitment_numbers %>
+                <span class="set mark_red">満員御礼</span>
+              <% else %>
+                <span class="set mark_green">募集中</span>
+              <% end %>
+            <% end %>
+
+            <% if @schedule.recruitment_numbers.present? %>
+              <% if @schedule.name_schedules.where(answer: 1).count == 0 %>
+              <% elsif @schedule.recruitment_numbers >= 1 %>
+                参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>人<span class="small_font">／<%= @schedule.recruitment_numbers %>人</span>
+              <% else %>
+                参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>人
+              <% end %>
+            <% elsif @schedule.name_schedules.where(answer: 1).count == 0 %>
+            <% else %>
+              参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>人
+            <% end %>
+
+          </td>
         </tr>
-        <tr class="flex_contents">
-          <th class="flex_list">住所</th>
-          <td class="flex_list"><%= @schedule.venue_address %></td>
-        </tr>
+
+
+        <% if @path.is('schedules#secret') %>
+          <tr class="flex_contents">
+            <th class="flex_list">開催場所</th>
+            <td class="flex_list"><%= @schedule.member_venue %></td>
+          </tr>
+          <tr class="flex_contents">
+            <th class="flex_list">住所</th>
+            <td class="flex_list"><%= @schedule.venue_address %></td>
+          </tr>
+        <% else %>
+          <tr class="flex_contents">
+            <th class="flex_list">開催エリア</th>
+            <td class="flex_list"><%= @schedule.venue %></td>
+          </tr>
+        <% end %>
+
       </tbody>
     </table>
 
@@ -129,21 +166,36 @@
     <% end %>
   </div>
 
-  <div class="post_cta schedule_cta">
-    <% if @user.switch == "募集中" %>
-      <%= render "/users/contact_btn" %>
-    <% end %>
-  </div>
-
-  <% if @schedule.venue_address.present? && @schedule.google_map == "1" %>
-    <div class="g_map">
-      <iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@schedule.venue_address}") %>></iframe>
-        <div class="google_map_wrap">
-            <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@schedule.venue_address}" do %>
-              <div class="google_map">Google MAP</div>
-            <% end %>
-          </div>
+  <% if @path.is('schedules#show') %>
+    <div class="post_cta schedule_cta">
+      <% if @user.switch == "募集中" %>
+        <%= render "/users/contact_btn" %>
+      <% end %>
     </div>
+  <% else %>
+    <div class="post_cta schedule_cta">
+      <div class="contact_link">
+        <%= link_to "/schedules/#{@user.unique_id}" do %>
+          <div class="btn btn_c btn_green btn_cubic">
+            <i class="fa fa-calendar-check-o"></i>出欠回答ページに移動
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <% if @path.is('schedules#secret') %>
+    <% if @schedule.venue_address.present? %>
+      <div class="g_map">
+        <iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@schedule.venue_address}") %>></iframe>
+          <div class="google_map_wrap">
+              <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@schedule.venue_address}" do %>
+                <div class="google_map">Google MAP</div>
+              <% end %>
+            </div>
+      </div>
+    <% end %>
   <% end %>
 
 

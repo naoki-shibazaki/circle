@@ -5932,8 +5932,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .schedule_share{
-    margin: 0;
-    padding: 30px 20px 6px 0px;  
+  margin: 0 0 20px;
+  padding: 30px 20px 6px 0px;
 }
 
 .schedule_user_profile{
@@ -6666,6 +6666,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     a{
       color: #3ecdc6;
     }
+  }
+  .set{
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    color: #fff;
   }
 }
 
@@ -7894,6 +7900,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+.secret_schedule{
+  .schedule_show{
+    background: #9dea9c;
+  }
+}
 
 
 
