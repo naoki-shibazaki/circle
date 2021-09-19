@@ -2831,7 +2831,7 @@ max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 30px;
     font-size: 16px;
 }
 
@@ -2850,28 +2850,28 @@ max-width: 100%;
 
 .post_share{
 	height: 40px;
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .post_edit,
 .post_delete{
-    background-color: #888888;
-    height: 40px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-left: 14px;
-    padding: 12px;
-    border-radius: 6px;
+  background-color: #888888;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 14px;
+  padding: 12px;
+  border-radius: 6px;
 }
 
 .post_edit a,
 .post_delete a{
   color: #fff;
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .e_icon_wrap {
