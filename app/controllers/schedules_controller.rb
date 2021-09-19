@@ -138,7 +138,6 @@ before_action :set_schedules, {except: [:secret]}
 
 def attendance
   @name = Name.new
-  @name_schedule = NameSchedule.new
   @name_schedules = @name.name_schedules.build
   @schedule_ids = @schedules.map{|s| s.id}
   @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}

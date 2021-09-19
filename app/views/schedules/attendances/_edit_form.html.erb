@@ -20,8 +20,8 @@
             <% @schedules.each do |schedule| %>
               <% if name.name_schedules.find_by(schedule_id: schedule.id).blank? %>
 
-                <%= f.fields_for (@name_schedule) do |name_schedule| %>
-                  <div class="label_item"><%= schedule.day %></div><br>
+                <%= f.fields_for :name_schedules, schedule.name_schedules.build do |name_schedule| %>
+                  <div class="label_item">【新規】<%= schedule.day %></div><br>
                   <%= name_schedule.select :answer, [ ['参加', 1], ['不参加', 0]],
                       :prompt => "選択してください"  %>
                   <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
