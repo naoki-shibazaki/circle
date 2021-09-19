@@ -6,20 +6,6 @@ before_action :set_schedules, {except: [:secret]}
 	def index
 		@schedule = @user.schedules.build
 
-    # unique_id 付与
-    if admin_user_signed_in?
-      if @user.unique_id.blank?
-        @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
-        if @user.save
-          @user.save
-        else
-          flash[:notice] = '必須項目が設定されていません'
-          redirect_to edit_user_path(@user)
-        end
-      end
-    end
-
-
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
 		@b2_name = "活動スケジュール"
@@ -225,7 +211,6 @@ end
     def name_params
 			params.require(:name).permit(:name, schedule_ids:[], name_schedules_attributes: [:answer, :comment, :schedule_id, :name_id, :_destroy, :id])
 		end
-
 
 
 end
