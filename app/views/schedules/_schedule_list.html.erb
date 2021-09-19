@@ -10,32 +10,32 @@
               <% @schedule_month = Time.parse(schedule.day).strftime("%-m") %>
             <% end %>
 
+            <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
 
+              <div class="schedule_list">
+                  <div class="schedule_day">
+                          <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
-              <%= link_to(user_schedule_path(@user.id, schedule.id)) do %>
+                    <% if schedule.time_s.present? %>
+                      <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+                    <% end %>
 
-                <div class="schedule_list">
-                    <div class="schedule_day">
-                            <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                    <% if schedule.recruitment == "募集終了" %>
+                      <span class="schedule_mark mark_red">満員御礼</span>
+                    <% elsif schedule.recruitment == "中止" %>
+                      <span class="schedule_mark mark_yellow">中止</span>
+                    <% else %>
+                      <span class="schedule_mark mark_green">開催予定</span>
+                    <% end %>
 
-                      <% if schedule.time_s.present? %>
-                        <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
-                      <% end %>
+                  </div>
 
-                      <% if schedule.recruitment == "募集終了" %>
-                        <span class="schedule_mark mark_red">満員</span>
-                      <% else %>
-                        <span class="schedule_mark mark_green">開催予定</span>
-                      <% end %>
+                    @<%= schedule.venue %>
+                    <br>
+                    <%= schedule.title if schedule.title.present? %>
+              </div>
 
-                    </div>
-
-                      @<%= schedule.venue %>
-                      <br>
-                      <%= schedule.title if schedule.title.present? %>
-                </div>
-
-              <% end %>
+            <% end %>
 
           <% end %>
       <% end %>

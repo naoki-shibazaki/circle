@@ -10,7 +10,7 @@
       <%= render "/users/parts/user_name", user: @user %>
 
       <div class="schedule_title">
-        <%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>の修正
+        <%= Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>の編集
       </div>
 
       <%= render "/schedules/form" %>
