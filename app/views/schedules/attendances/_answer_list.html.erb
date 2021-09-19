@@ -25,12 +25,20 @@
           <% end %>
         </td>
         <td class="status">
-          <% if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank? %>
-            <div class="set mark_green">募集中</div>
-          <% elsif schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers %>
-            <div class="set mark_red">満員御礼</div>
+          <% if schedule.recruitment == "募集終了" %>
+            <span class="set mark_red">満員御礼</span>
+          <% elsif schedule.recruitment == "中止" %>
+            <span class="set mark_yellow">中止</span>
           <% else %>
-            <div class="set mark_green">募集中</div>
+
+            <% if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank? %>
+              <div class="set mark_green">募集中</div>
+            <% elsif schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers %>
+              <div class="set mark_red">満員御礼</div>
+            <% else %>
+              <div class="set mark_green">募集中</div>
+            <% end %>
+
           <% end %>
         </td>
 

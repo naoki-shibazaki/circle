@@ -25,7 +25,15 @@
                     <% elsif schedule.recruitment == "中止" %>
                       <span class="schedule_mark mark_yellow">中止</span>
                     <% else %>
-                      <span class="schedule_mark mark_green">開催予定</span>
+
+                      <% if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank? %>
+                        <div class="schedule_mark mark_green">募集中</div>
+                      <% elsif schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers %>
+                        <div class="schedule_mark mark_red">満員御礼</div>
+                      <% else %>
+                        <div class="schedule_mark mark_green">募集中</div>
+                      <% end %>
+
                     <% end %>
 
                   </div>
