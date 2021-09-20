@@ -102,9 +102,9 @@ helper_method :link_count
 
 		if @user.save
 
-      if @user.unique_id.blank?
-        @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
-      end
+      # if @user.unique_id.blank?
+      #   @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
+      # end
 
 			# like検索用
 			@user.grouping = @user.users_groups.map{|g| g.group.name}
@@ -326,16 +326,15 @@ helper_method :link_count
 		# 管理者判定
 		if admin_user_signed_in?
 
-    # unique_id 付与
-    # if @user.unique_id.blank?
-    #   @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
-    #   if @user.save
-    #     @user.save
-    #   else
-    #     flash[:notice] = '必須項目が設定されていません'
-    #     redirect_to edit_user_path(@user)
-    #   end
-    # end
+      # unique_id 付与
+      if @user.unique_id.blank?
+        @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
+        if @user.save
+        else
+          flash[:notice] = '必須項目が設定されていません'
+          redirect_to edit_user_path(@user)
+        end
+      end
 
 
 			@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
