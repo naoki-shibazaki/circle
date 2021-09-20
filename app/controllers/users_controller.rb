@@ -102,9 +102,9 @@ helper_method :link_count
 
 		if @user.save
 
-      # if @user.unique_id.blank?
-      #   @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
-      # end
+      if @user.unique_id.blank?
+        @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
+      end
 
 			# like検索用
 			@user.grouping = @user.users_groups.map{|g| g.group.name}
