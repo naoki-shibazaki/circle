@@ -98,11 +98,19 @@
           <th class="flex_list">日程</th>
           <td class="flex_list">
             <%= Time.parse(@schedule.day).strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
-            <% if @schedule.time_s.present? %>
-              <%= @schedule.time_s.strftime('%H:%M') %>〜<%= @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? %>
-            <% end %>
           </td>
         </tr>
+
+        <% if @schedule.time_s.present? %>
+          <tr class="flex_contents">
+            <th class="flex_list">時間</th>
+            <td class="flex_list">
+                <%= @schedule.time_s.strftime('%H:%M') %>〜<%= @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? %>
+            </td>
+          </tr>
+        <% end %>
+
+
         <tr class="flex_contents">
           <th class="flex_list">ステータス</th>
           <td class="flex_list">
@@ -203,13 +211,14 @@
 
 </div>
 
+<% if @path.is('schedules#show') %>
+  <% if @schedules.where.not(id: @schedule.id).present? %>
+    <%= render "/layouts/ad_square" %>
 
-<% if @schedules.where.not(id: @schedule.id).present? %>
-  <%= render "/layouts/ad_square" %>
-
-  <div class="users-index-item">
-    <%= render "/schedules/schedule_list" %>
-  </div>
+    <div class="users-index-item">
+      <%= render "/schedules/schedule_list" %>
+    </div>
+  <% end %>
 <% end %>
 
 <%= render "/layouts/ad_square" %>

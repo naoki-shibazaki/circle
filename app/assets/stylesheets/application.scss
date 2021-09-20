@@ -7782,6 +7782,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .attendances_modal{
+  margin: auto;
+  text-align: center;
   .content{
     margin: 0 auto;
   }
@@ -7817,8 +7819,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     font-size: 16px;
     font-weight: 700;
     line-height: 1.5;
-    display: block;
-    margin: 0 auto 20px;
+    position: relative;
+    display: inline-block;
     padding: 10px 26px;
     cursor: pointer;
     -webkit-user-select: none;
@@ -7832,6 +7834,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     text-decoration: none;
     letter-spacing: 0.1em;
     border-radius: 0.5rem;
+    margin-bottom: 20px;
+    &:hover {
+      margin-top: 3px;
+      border-bottom: 2px solid #30803e;
+    }
   }
   .label_item {
     margin-bottom: 6px;
