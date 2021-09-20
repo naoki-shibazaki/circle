@@ -90,19 +90,7 @@
 					</div>
 				<% end %>
 
-        <% if @schedules.present? %>
-          <%= link_to "/schedules/#{@user.unique_id}", class: "icon_cont" do %>
-            <div class="">
-              <div class="icon_img">
-                <img class="icon_size" src="/images/icon/icon_16.png">
-              </div>
 
-              <div class="icon_txt">
-                メンバー出欠管理
-              </div>
-            </div>
-          <% end %>
-        <% end %>
 
 
 				<%= link_to user_questions_path(@user), class: "icon_cont" do %>
