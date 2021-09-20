@@ -99,11 +99,12 @@ helper_method :link_count
 		@user.admin_user_id = current_admin_user.id
 		@user.last_post = Time.now.ago(3.days)
 		@user.user_time = Time.now
-    if @user.unique_id.blank?
-      @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
-    end
 
 		if @user.save
+
+      if @user.unique_id.blank?
+        @user.unique_id = "#{@user.id}" + SecureRandom.alphanumeric(20)
+      end
 
 			# like検索用
 			@user.grouping = @user.users_groups.map{|g| g.group.name}
