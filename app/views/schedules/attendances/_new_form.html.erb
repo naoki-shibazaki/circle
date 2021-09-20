@@ -5,8 +5,8 @@
     <div class="modal_content">
 
       <div class="form-body cont-body form">
-        <%= form_for(@name, url: "/schedules/#{@user.unique_id}", html: {method: 'get'}) do |f| %>
-          <div class="label_item">名前</div><br>
+        <%= form_for(@name, url: "/schedules/#{@user.unique_id}", html: {method: 'post'}) do |f| %>
+          <div class="label_item"><span class="label label_danger">必須</span>名前</div><br>
           <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
           <% @schedules.each do |schedule| %>

@@ -79,9 +79,9 @@ Rails.application.routes.draw do
 
   # 出欠管理
   get 'schedules/:unique_id' , to: 'schedules#attendance'
-  post 'schedules/:user_id' , to: 'schedules#attendance_create'
+  post 'schedules/:unique_id' , to: 'schedules#attendance_create'
   get 'schedules/:unique_id/:id' , to: 'schedules#secret'
-	patch 'schedules/:user_id/:id', to: 'schedules#attendance_update'
+	patch 'schedules/:unique_id/:id', to: 'schedules#attendance_update'
 
   # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'

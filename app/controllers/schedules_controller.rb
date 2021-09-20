@@ -162,6 +162,7 @@ end
 def attendance_update
   @name = Name.find(params[:id])
   @name.update(name_params)
+  @name.updated_at = Time.now
 
   if @name.save
     flash[:notice] = "更新しました"

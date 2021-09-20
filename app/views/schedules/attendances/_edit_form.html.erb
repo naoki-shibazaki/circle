@@ -13,7 +13,7 @@
 
         <div class="form-body cont-body form">
           <%= form_for(name, url: "/schedules/#{@user.unique_id}/#{name.id}", html: {method: 'patch'}) do |f| %>
-            <div class="label_item">名前</div><br>
+            <div class="label_item"><span class="label label_danger">必須</span>名前</div><br>
             <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
 
