@@ -17,13 +17,13 @@
 
 				<% if admin_user_signed_in?  %>
 					<% if @user.admin_user_id == current_admin_user.id %>
-            <div class="join_txt">＼ グループに共有すれば簡単に出欠管理ができます！ ／</div>
+            <div class="join_txt">＼ メンバーに共有すれば簡単に出欠管理！ ／</div>
             <div class="attendance_url_copy">
               <div class="copyTarget">
                 <%= request.url %>
               </div>
             </div>
-            <button class="copyBtn"><div class="requirement_copy"><i class="fa fa-copy "></i> URLをコピーする</div></button>
+            <button class="copyBtn"><div class="requirement_copy"><i class="fa fa-copy "></i> URLをコピーする！</div></button>
           <% end %>
         <% end %>
 
