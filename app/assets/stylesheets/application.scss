@@ -2045,11 +2045,6 @@ li.current_page{
 
 
 
-.url_copy {
-
-}
-
-
 #sosyal {
     margin: 40px auto;
     text-align: center;
@@ -7938,7 +7933,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   width: 100%;
   height: 28px;
   display: inline-flex;
-  overflow: scroll;
+  overflow-x: scroll;
+  .copyTarget{
+    white-space:nowrap;
+  }
 }
 
 .h40{
