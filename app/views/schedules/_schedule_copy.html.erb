@@ -3,16 +3,16 @@
 
       <div class="schedule_list_copy">
         <div class="copyTarget">
-          <% @schedules.each do |schedule| %> 
+          <% @schedules.each do |schedule| %>
               <% if schedule.present? %>
 
 
                     <% if @schedule_m_c != Time.parse(schedule.day).strftime("%-m") %>
 
                       【<%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール】<br>
-                      
+
                       <% @schedule_m_c = Time.parse(schedule.day).strftime("%-m") %>
-                    <% end %>             
+                    <% end %>
 
 
                     ・<%= Time.parse(schedule.day).strftime("%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
@@ -24,7 +24,7 @@
 
                           <br>
 
-              <% end %>                  
+              <% end %>
           <% end %>
 
           ▼スケジュール詳細

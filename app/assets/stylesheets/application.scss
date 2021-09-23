@@ -7882,6 +7882,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+.join_txt{
+  padding-bottom: 4px;
+  color: #5f5f5f;
+  text-align: center;
+}
+
 .attendance_txt{
   padding-bottom: 10px;
 }
@@ -7916,6 +7922,19 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
+.attendance_url_copy{
+  width: 96%;
+  padding: 6px 10px;
+  background: #f9f9f9;
+  border: solid 1px #ccc;
+  color: #5d5c5c;
+  border-radius: 2px;
+  font-size: 10px;
+}
+
+.h40{
+  height: 40px;
+}
 
 
 

@@ -15,6 +15,19 @@
 
       <%= render "/users/parts/user_name", user: @user %>
 
+				<% if admin_user_signed_in?  %>
+					<% if @user.admin_user_id == current_admin_user.id %>
+            <div class="join_txt">＼ グループに共有すれば簡単に出欠管理ができます！ ／</div>
+            <div class="attendance_url_copy">
+              <div class="copyTarget">
+                <%= request.url %>
+              </div>
+            </div>
+            <button class="copyBtn"><div class="requirement_copy"><i class="fa fa-copy "></i> URLをコピーする</div></button>
+          <% end %>
+        <% end %>
+
+
       <%= render "/schedules/attendances/add_btn" %>
 
       <%= render "/schedules/attendances/new_form" %>
