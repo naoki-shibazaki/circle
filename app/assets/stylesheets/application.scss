@@ -7892,6 +7892,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   padding-bottom: 10px;
 }
 
+.scroll_txt{
+  margin-top: 10px;
+  text-align: right;
+  font-size: 12px;
+}
+
 .only_member_warp {
   position: relative;
   margin: 40px auto 24px;
@@ -7931,9 +7937,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   font-size: 10px;
   width: 100%;
   height: 28px;
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
+  display: inline-flex;
+  overflow: scroll;
 }
 
 .h40{

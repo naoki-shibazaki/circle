@@ -42,6 +42,14 @@
         →名前のリンクをクリックしてください
       </div>
 
+      <% if @schedules.present? %>
+        <% if @schedules.count >= 3 %>
+          <div class="scroll_txt">
+            右にスクロールすると他の日程も見れます→
+          </div>
+        <% end %>
+      <% end %>
+
       <div class="attendances_table_wrap">
         <table>
           <thead>
