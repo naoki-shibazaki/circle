@@ -7931,8 +7931,9 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   font-size: 10px;
   width: 100%;
   height: 28px;
-  overflow-x: scroll;
   display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .h40{
