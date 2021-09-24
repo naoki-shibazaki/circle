@@ -21,9 +21,7 @@
               <% if name.name_schedules.find_by(schedule_id: schedule.id).blank? %>
 
                 <%= f.fields_for :name_schedules, schedule.name_schedules.build do |name_schedule| %>
-                  <div class="label_item">
-                    <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
-                  </div><br>
+                  <%= render "/schedules/attendances/label_day", schedule: schedule %>
                   <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
                       :prompt => "選択してください"  %>
                   <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
@@ -35,11 +33,7 @@
 
 
             <%= f.fields_for :name_schedules do |name_schedule| %>
-
-              <div class="label_item">
-                <%= Time.parse(name_schedule.object.schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(name_schedule.object.schedule.day).wday]})") %>
-              </div>
-              <br>
+              <%= render "/schedules/attendances/label_day", schedule: name_schedule.object.schedule %>
 
               <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
                   :prompt => "選択してください"  %>
