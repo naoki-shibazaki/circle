@@ -21,14 +21,31 @@
           <br>
 
           <% @schedules.each do |schedule| %>
-            <%= f.fields_for :name_schedules do |name_schedule| %>
-              <%= render "/schedules/attendances/label_day", schedule: schedule %>
-              <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
-                  :prompt => "選択してください"  %>
-              <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
-              <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
+            <% if schedule.recruitment_numbers.present? %>
+
+              <% if schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers %>
+              <% else %>
+                <%= f.fields_for :name_schedules do |name_schedule| %>
+                  <%= render "/schedules/attendances/label_day", schedule: schedule %>
+                  <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
+                      :prompt => "選択してください"  %>
+                  <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
+                  <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
+                <% end %>
+              <% end %>
+
+            <% else %>
+              <%= f.fields_for :name_schedules do |name_schedule| %>
+                <%= render "/schedules/attendances/label_day", schedule: schedule %>
+                <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
+                    :prompt => "選択してください"  %>
+                <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
+                <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
+              <% end %>
+
             <% end %>
           <% end %>
+
 
           <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
         <% end %>
