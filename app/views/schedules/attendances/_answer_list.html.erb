@@ -50,22 +50,26 @@
               <td>
                 <div class="answer_content">
                   <div class="answer1"></div>
-                  <div class="attendance_comment">
-                    <div class="attendance_comment_scroll">
-                      <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+                  <% if name.name_schedules.find_by(schedule_id: schedule.id).comment.present? %>
+                    <div class="attendance_comment">
+                      <div class="attendance_comment_scroll">
+                        <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 </div>
               </td>
               <% elsif name.name_schedules.find_by(schedule_id: schedule.id).answer == 0 %>
               <td>
                 <div class="answer_content">
                   <div class="answer0"></div>
-                  <div class="attendance_comment">
-                    <div class="attendance_comment_scroll">
-                      <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+                  <% if name.name_schedules.find_by(schedule_id: schedule.id).comment.present? %>
+                    <div class="attendance_comment">
+                      <div class="attendance_comment_scroll">
+                        <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 </div>
               </td>
               <% else %>
