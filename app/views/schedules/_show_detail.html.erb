@@ -15,7 +15,18 @@
       <%= @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? %>
     <% end %>
 
-    <br>@<%= @schedule.venue %>
+    <br>@
+    <% if @path.is('schedules#secret') %>
+      <% if @schedule.member_venue.present? %>
+        <%= @schedule.member_venue %>
+      <% else %>
+        <%= @schedule.venue %>
+      <% end %>
+    <% else %>
+      <%= @schedule.venue %>
+    <% end %>
+
+
   </div>
 
 
@@ -145,10 +156,17 @@
 
 
         <% if @path.is('schedules#secret') %>
-          <tr class="flex_contents">
-            <th class="flex_list">開催場所</th>
-            <td class="flex_list"><%= @schedule.member_venue %></td>
-          </tr>
+          <% if @schedule.member_venue.present? %>
+            <tr class="flex_contents">
+              <th class="flex_list">開催場所</th>
+              <td class="flex_list"><%= @schedule.member_venue %></td>
+            </tr>
+          <% else %>
+            <tr class="flex_contents">
+              <th class="flex_list">開催エリア</th>
+              <td class="flex_list"><%= @schedule.venue %></td>
+            </tr>
+          <% end %>
           <tr class="flex_contents">
             <th class="flex_list">住所</th>
             <td class="flex_list"><%= @schedule.venue_address %></td>

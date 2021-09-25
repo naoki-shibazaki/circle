@@ -65,10 +65,6 @@
           <% if past_schedule.present? && @schedule.id != past_schedule.id %>
             <% if @past_schedule_month != Time.parse(past_schedule.day).strftime("%-m") %>
 
-              <div class="ad_space"></div>
-              <%= render "/layouts/ad_square" %>
-              <div class="ad_space"></div>
-
               <h3 class="schedule_m"><i class="fa fa-calendar "></i> <%= Time.parse(past_schedule.day).strftime("%Y年%-m月") %></h3>
               <% @past_schedule_month = Time.parse(past_schedule.day).strftime("%-m") %>
             <% end %>
