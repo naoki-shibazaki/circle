@@ -218,7 +218,7 @@ end
 		end
 
     def name_params
-			params.require(:name).permit(:name, schedule_ids:[], name_schedules_attributes: [:answer, :comment, :schedule_id, :name_id, :_destroy, :id])
+			params.require(:name).permit(:name, :gender, schedule_ids:[], name_schedules_attributes: [:answer, :comment, :schedule_id, :name_id, :_destroy, :id])
 		end
 
 

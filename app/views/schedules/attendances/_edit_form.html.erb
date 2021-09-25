@@ -1,7 +1,13 @@
 <% @names.each.with_index(1) do |name, i| %>
   <th>
     <div class="attendances_modal">
-      <a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a>
+        <% if name.gender == 1 %>
+          <span class="blue"><a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a></span>
+        <% elsif name.gender == 2 %>
+          <span class="pink"><a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a></span>
+        <% else %>
+          <span class="purple"><a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a></span>
+        <% end %>
     </div>
   </th>
 
@@ -16,6 +22,16 @@
             <div class="label_item"><span class="label label_danger">必須</span>名前</div><br>
             <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
+            <div class="label_item"></span>性別</div><br>
+            <div class="radio_btn">
+              <%= f.radio_button :gender, 1 %>
+              <%= f.label :gender, "男性", {value: 1} %>
+              <%= f.radio_button :gender, 2 %>
+              <%= f.label :gender, "女性", {value: 2} %>
+              <%= f.radio_button :gender, 0 %>
+              <%= f.label :gender, "その他", {value: 0} %>
+            </div>
+            <br>
 
             <% @schedules.each do |schedule| %>
               <% if name.name_schedules.find_by(schedule_id: schedule.id).blank? %>

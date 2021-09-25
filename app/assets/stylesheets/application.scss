@@ -7658,8 +7658,16 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     white-space: nowrap;
     width: 120px;
     a{
-      color: #337ab7;
       text-decoration: underline;
+    }
+    .blue a{
+      color: #2196F3;
+    }
+    .pink a{
+      color: #FF4081;
+    }
+    .purple a{
+      color: #9C27B0;
     }
   }
   td{
@@ -7936,6 +7944,25 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   overflow-x: scroll;
   .copyTarget{
     white-space:nowrap;
+  }
+}
+
+.radio_btn{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  input{
+    width: 30px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  label {
+    margin-bottom: 0;
+    margin-right: 12px;
+    font-weight: normal;
   }
 }
 

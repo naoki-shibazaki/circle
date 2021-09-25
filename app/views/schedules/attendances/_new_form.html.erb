@@ -9,6 +9,17 @@
           <div class="label_item"><span class="label label_danger">必須</span>名前</div><br>
           <%= f.text_field :name, class: 'form-control', placeholder: "ヤマダ" %>
 
+          <div class="label_item"></span>性別</div><br>
+          <div class="radio_btn">
+            <%= f.radio_button :gender, 1 %>
+            <%= f.label :gender, "男性", {value: 1} %>
+            <%= f.radio_button :gender, 2 %>
+            <%= f.label :gender, "女性", {value: 2} %>
+            <%= f.radio_button :gender, 0 %>
+            <%= f.label :gender, "その他", {value: 0} %>
+          </div>
+          <br>
+
           <% @schedules.each do |schedule| %>
             <%= f.fields_for :name_schedules do |name_schedule| %>
               <%= render "/schedules/attendances/label_day", schedule: schedule %>
