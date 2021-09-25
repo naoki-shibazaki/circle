@@ -23,7 +23,7 @@
           <% @schedules.each do |schedule| %>
             <% if schedule.recruitment_numbers.present? %>
 
-              <% if schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers %>
+              <% if schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers && schedule.recruitment_numbers != 0 %>
               <% else %>
                 <%= f.fields_for :name_schedules do |name_schedule| %>
                   <%= render "/schedules/attendances/label_day", schedule: schedule %>
@@ -44,6 +44,7 @@
               <% end %>
 
             <% end %>
+
           <% end %>
 
 

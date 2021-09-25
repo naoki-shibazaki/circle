@@ -33,11 +33,12 @@
             </div>
             <br>
 
+
             <% @schedules.each do |schedule| %>
               <% if name.name_schedules.find_by(schedule_id: schedule.id).blank? %>
                 <% if schedule.recruitment_numbers.present? %>
 
-                  <% if schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers %>
+                  <% if schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers && schedule.recruitment_numbers != 0  %>
                   <% else %>
                     <%= f.fields_for :name_schedules, schedule.name_schedules.build do |name_schedule| %>
                       <%= render "/schedules/attendances/label_day", schedule: schedule %>
@@ -63,6 +64,7 @@
             <% end %>
 
 
+
             <%= f.fields_for :name_schedules do |name_schedule| %>
 
               <% if name_schedule.object.schedule.recruitment_numbers.present? %>
@@ -71,7 +73,7 @@
                     <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
                         :prompt => "選択してください"  %>
                     <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
-                  <% elsif name_schedule.object.schedule.name_schedules.where(answer: 1).count >= name_schedule.object.schedule.recruitment_numbers %>
+                  <% elsif name_schedule.object.schedule.name_schedules.where(answer: 1).count >= name_schedule.object.schedule.recruitment_numbers && name_schedule.object.schedule.recruitment_numbers != 0 %>
 
                   <% else %>
                     <%= render "/schedules/attendances/label_day", schedule: name_schedule.object.schedule %>
