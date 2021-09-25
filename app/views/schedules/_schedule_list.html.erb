@@ -101,20 +101,20 @@
                   <div class="schedule_venue">
                     <i class="fa fa-map-marker "></i> <%= schedule.venue %>
                   </div>
-                  <% if schedule.recruitment_numbers.present? %>
+                  <% if past_schedule.recruitment_numbers.present? %>
                     <div class="schedule_member">
-                      <% if schedule.recruitment_numbers != 0 && schedule.name_schedules.where(answer: 1).count >= 1 %>
-                        <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>/<%= schedule.recruitment_numbers %>名
-                      <% elsif schedule.name_schedules.where(answer: 1).count == 0 %>
+                      <% if past_schedule.recruitment_numbers != 0 && past_schedule.name_schedules.where(answer: 1).count >= 1 %>
+                        <i class="fa fa-users "></i> <%= past_schedule.name_schedules.where(answer: 1).count %>/<%= past_schedule.recruitment_numbers %>名
+                      <% elsif past_schedule.name_schedules.where(answer: 1).count == 0 %>
 
                       <% else %>
-                        <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>名
+                        <i class="fa fa-users "></i> <%= past_schedule.name_schedules.where(answer: 1).count %>名
                       <% end %>
                     </div>
                   <% end %>
-                  <% if schedule.title.present? %>
+                  <% if past_schedule.title.present? %>
                     <div class="schedule_title_list">
-                      <%= schedule.title %>
+                      <%= past_schedule.title %>
                     </div>
                   <% end %>
 

@@ -2826,8 +2826,14 @@ max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
+    height: 40px;
     font-size: 16px;
+}
+
+.schedule_user{
+  .share_btn_tw {
+    height: 30px;
+  }
 }
 
 .share_btn_tw a{
