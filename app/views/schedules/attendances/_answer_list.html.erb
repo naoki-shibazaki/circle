@@ -47,15 +47,25 @@
         <% @names.each do |name| %>
           <% if name.name_schedules.find_by(schedule_id: schedule.id).present? %>
               <% if name.name_schedules.find_by(schedule_id: schedule.id).answer == 1 %>
-              <td class="answer1">
-                <div class="attendance_comment">
-                  <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+              <td>
+                <div class="answer_content">
+                  <div class="answer1"></div>
+                  <div class="attendance_comment">
+                    <div class="attendance_comment_scroll">
+                      <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+                    </div>
+                  </div>
                 </div>
               </td>
               <% elsif name.name_schedules.find_by(schedule_id: schedule.id).answer == 0 %>
-              <td  class="answer0">
-                <div class="attendance_comment">
-                  <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+              <td>
+                <div class="answer_content">
+                  <div class="answer0"></div>
+                  <div class="attendance_comment">
+                    <div class="attendance_comment_scroll">
+                      <%= name.name_schedules.find_by(schedule_id: schedule.id).comment %>
+                    </div>
+                  </div>
                 </div>
               </td>
               <% else %>
