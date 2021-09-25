@@ -7650,6 +7650,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .attendances_table_wrap{
   th,td {
     border: solid 1px #e0e0e0;
+    white-space: nowrap;
   }
   table {
     border-collapse:  collapse;
@@ -7740,7 +7741,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   .attendance_comment{
     font-size: 10px;
     color: #696969;
-    overflow: scroll;
+    padding-left: 4px;
   }
   .status,
   .status_title{
