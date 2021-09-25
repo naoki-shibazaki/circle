@@ -5454,7 +5454,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .schedule_day{
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 
@@ -7971,7 +7971,19 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   height: 40px;
 }
 
+.schedule_venue,
+.schedule_member{
+  .fa{
+    width: 20px;
+    text-align: center;
+    color: #908b8b;
+  }
+}
 
+.schedule_title_list{
+  margin-top: 6px;
+  font-weight: 700;
+}
 
 
 // --------------------------------------

@@ -142,7 +142,7 @@
             <% if @schedule.recruitment_numbers.present? %>
               <% if @schedule.name_schedules.where(answer: 1).count == 0 %>
               <% elsif @schedule.recruitment_numbers >= 1 %>
-                参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>人<span class="small_font">／<%= @schedule.recruitment_numbers %>人</span>
+                参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>人<span class="small_font">/<%= @schedule.recruitment_numbers %>人</span>
               <% else %>
                 参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>人
               <% end %>

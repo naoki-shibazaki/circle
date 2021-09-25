@@ -14,7 +14,7 @@
 
               <div class="schedule_list">
                   <div class="schedule_day">
-                          <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                    <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 
                     <% if schedule.time_s.present? %>
                       <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
@@ -35,12 +35,28 @@
                       <% end %>
 
                     <% end %>
-
                   </div>
 
-                    @<%= schedule.venue %>
-                    <br>
-                    <%= schedule.title if schedule.title.present? %>
+                  <div class="schedule_venue">
+                    <i class="fa fa-map-marker "></i> <%= schedule.venue %>
+                  </div>
+                  <% if schedule.recruitment_numbers.present? %>
+                    <div class="schedule_member">
+                      <% if schedule.recruitment_numbers != 0 && schedule.name_schedules.where(answer: 1).count >= 1 %>
+                        <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>/<%= schedule.recruitment_numbers %>名
+                      <% elsif schedule.name_schedules.where(answer: 1).count == 0 %>
+
+                      <% else %>
+                        <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>名
+                      <% end %>
+                    </div>
+                  <% end %>
+                  <% if schedule.title.present? %>
+                    <div class="schedule_title_list">
+                      <%= schedule.title %>
+                    </div>
+                  <% end %>
+
               </div>
 
             <% end %>
@@ -77,16 +93,31 @@
                         <%= Time.parse(past_schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(past_schedule.day).wday]})") %>
 
                       <% if past_schedule.time_s.present? %>
-                          <%= past_schedule.time_s.strftime('%H:%M') %>-<%= past_schedule.time_e.strftime('%H:%M') if past_schedule.time_e.present? %>
-                        <% end %>
-
+                        <%= past_schedule.time_s.strftime('%H:%M') %>-<%= past_schedule.time_e.strftime('%H:%M') if past_schedule.time_e.present? %>
+                      <% end %>
                       <span class="schedule_mark mark_gray">開催終了</span>
-
                     </div>
 
-                      @<%= past_schedule.venue %>
-                      <br>
-                      <%= past_schedule.title if past_schedule.title.present? %>
+                  <div class="schedule_venue">
+                    <i class="fa fa-map-marker "></i> <%= schedule.venue %>
+                  </div>
+                  <% if schedule.recruitment_numbers.present? %>
+                    <div class="schedule_member">
+                      <% if schedule.recruitment_numbers != 0 && schedule.name_schedules.where(answer: 1).count >= 1 %>
+                        <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>/<%= schedule.recruitment_numbers %>名
+                      <% elsif schedule.name_schedules.where(answer: 1).count == 0 %>
+
+                      <% else %>
+                        <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>名
+                      <% end %>
+                    </div>
+                  <% end %>
+                  <% if schedule.title.present? %>
+                    <div class="schedule_title_list">
+                      <%= schedule.title %>
+                    </div>
+                  <% end %>
+
                 </div>
 
               <% end %>
