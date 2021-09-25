@@ -3205,7 +3205,7 @@ max-width: 100%;
 }
 
 .schedule_list_wrap{
-    padding: 0px 10px 0px;
+    // padding: 0px 10px 0px;
 }
 
 .schedule_list{
@@ -3213,7 +3213,7 @@ max-width: 100%;
     border: 1px solid #d8dadf;
     border-bottom: 4px solid #d8dadf;
     border-bottom: 4px solid #d8dadf;
-    margin: 10px 0;
+    margin: 10px 0 20px;
     padding: 10px 10px;
     border-radius: 6px;
 }
@@ -5458,8 +5458,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .schedule_day{
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 700;
   margin-bottom: 4px;
 }
 
@@ -5943,7 +5943,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 
 .schedule_mark{
     position: absolute;
-    top: 6px;
+    top: 8px;
     width: 78px;
     text-align: center;
     right: 8px;
@@ -7703,11 +7703,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     background: #f7f7f7;
     a {
       color: #337ab7;
-      text-decoration: underline;
+      .schedule_day_link{
+        text-decoration: underline;
+      }
       .recruitment_numbers_wrap{
         padding-top: 4px;
         font-size: 18px;
-        text-decoration: underline;
         color: #2d3133;
       }
       .small_font{
@@ -7982,13 +7983,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   .fa{
     width: 20px;
     text-align: center;
-    color: #908b8b;
+    color: #777;
   }
 }
 
 .schedule_title_list{
   margin-top: 6px;
-  font-weight: 700;
 }
 
 
