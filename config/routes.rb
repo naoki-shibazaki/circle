@@ -82,6 +82,8 @@ Rails.application.routes.draw do
   post 'schedules/:unique_id' , to: 'schedules#attendance_create'
   get 'schedules/:unique_id/:id' , to: 'schedules#secret'
 	patch 'schedules/:unique_id/:id', to: 'schedules#attendance_update'
+	delete 'schedules/:unique_id/:id/delete' , to: 'schedules#attendance_delete'
+
 
   # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'

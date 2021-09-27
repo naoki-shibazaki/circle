@@ -88,13 +88,13 @@
     <% if admin_user_signed_in?  %>
       <% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
         <div class="post_edit">
-            <%= link_to(edit_user_schedule_path(@user.id, @schedule.id)) do %>
+          <%= link_to(edit_user_schedule_path(@user.id, @schedule.id)) do %>
             <i class="fa fa-pencil-square-o "> 編集</i>
           <% end %>
         </div>
 
         <div class="post_delete">
-            <%= link_to(user_schedule_path(@user.id, @schedule.id), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+          <%= link_to(user_schedule_path(@user.id, @schedule.id), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
             <i class="fa fa-trash "> 削除</i>
           <% end %>
         </div>

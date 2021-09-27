@@ -95,7 +95,18 @@
         </div>
 
         <br><a class="js-modal-close" href="">閉じる</a>
+
+        <div class="delete_btn">
+          <%= link_to(("/schedules/#{@user.unique_id}/#{name.id}/delete"), method: :delete, data: {confirm: "#{ name.name }さんの登録を削除しますか？"}) do %>
+            <i class="fa fa-trash "> <%= name.name %>さんの登録を削除する</i>
+          <% end %>
+        </div>
+
       </div>
     </div>
   </div>
+
+
+
 <% end %>
+

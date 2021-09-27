@@ -1,8 +1,8 @@
 class SchedulesController < ApplicationController
 
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
-before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update]}
-before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update]}
+before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
+before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
 
 
 	def index
@@ -172,6 +172,14 @@ def attendance_update
     redirect_back(fallback_location: "users/#{@user.id}/schedule")
   end
 
+end
+
+def attendance_delete
+  @name = Name.find(params[:id])
+  @name.destroy
+
+  flash[:notice] = "削除しました"
+  redirect_back(fallback_location: "users/#{@user.id}/schedule")
 end
 
 
