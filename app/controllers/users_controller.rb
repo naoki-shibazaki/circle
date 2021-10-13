@@ -85,8 +85,15 @@ helper_method :link_count
 	end
 
 	def add
+
     if admin_user_signed_in? #ログイン判定
-    @user = User.new
+      @ng_accounts = User.where(admin_user_id: current_admin_user.id, ng_account: "NG")
+      if @ng_accounts.count == 0
+        @user = User.new
+      else
+        flash[:notice] = "URLが間違っています"
+        redirect_to root_path
+      end
     else
       flash[:notice] = "登録が必要です"
       redirect_to root_path
