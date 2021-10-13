@@ -323,6 +323,8 @@ helper_method :link_count
     @user_contacts = UserContact.where(user_id: @user.id, contact_del: nil)
     @user_contact_alerts = UserContact.where(user_id: @user.id, respond_check: "NG")
 
+    @ng_accounts = User.where(admin_user_id: @user.admin_user_id, ng_account: "NG")
+
 		# 管理者判定
 		if admin_user_signed_in?
 
