@@ -1,0 +1,120 @@
+<div class="review_contents">
+  <div class="review_l">
+    <% if request.format == :amp %>
+      <% if review.member.present? %>
+        <% if review.member.image_profile.present? %>
+          <amp-img src="<%= review.member.image_profile.url %>"
+            class="member_icon"
+            width="38"
+            height="38"
+            object-fit="cover">
+          </amp-img>
+        <% else %>
+          <amp-img src="/images/icon/icon_member.png"
+            class="member_icon"
+            width="38"
+            height="38"
+            object-fit="cover">
+          </amp-img>
+        <% end %>
+      <% else %>
+          <amp-img src="/images/icon/icon_member.png"
+            class="member_icon"
+            width="38"
+            height="38"
+            object-fit="cover">
+          </amp-img>
+      <% end %>
+
+    <% else %>
+      <% if review.member.present? %>
+        <% if review.member.image_profile.present? %>
+          <%= lazysizes_image_tag review.member.image_profile.url , class:'member_icon' %>
+        <% else %>
+          <img src="/images/icon/icon_member.png" class="member_icon">
+        <% end %>
+      <% else %>
+        <img src="/images/icon/icon_member.png" class="member_icon">
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="review_r">
+    <div class="speech_title">
+      <% if review.review == 1 %>
+        <i class="fa fa-smile-o good"></i>
+      <% elsif review.review == 0 %>
+        <i class="fa fa-frown-o bad"></i>
+      <% else %>
+
+      <% end %>
+
+
+      <% if review.member.present? %>
+        <%= review.member.nickname  %>さん
+      <% else %>
+        ゲストユーザー
+      <% end %>
+
+
+      <div class="btm_content">
+        <span class="review_day"><%= review.created_at.strftime("%Y年%-m月%-d日") %></span>
+      </div>
+
+
+
+      <% if @path.is('reviews#index') %>
+
+        <% if review.member.present? %>
+          <span class="random_id">（@<%= review.member.random_id %>）</span>
+          <br>
+          <% if member_signed_in? %>
+            <% if current_member.id == review.member_id %>
+              <span class="review_edit">
+                  <%= link_to(edit_user_review_path(@user, review)) do %>
+                  <i class="fa fa-pencil-square-o "></i> 編集
+                <% end %>
+              </span>
+              <span class="review_slash">／</span>
+              <span class="review_delete">
+                  <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+                  <i class="fa fa-trash "></i> 削除
+                <% end %>
+              </span>
+            <% end %>
+          <% end %>
+
+        <% end %>
+
+        <% if admin_user_signed_in? %>
+          <% if current_admin_user.id == 1 %>
+            <span class="review_edit">
+                <%= link_to(edit_user_review_path(@user, review)) do %>
+                <i class="fa fa-pencil-square-o "></i> 編集
+              <% end %>
+            </span>
+            <span class="review_slash">／</span>
+            <span class="review_delete">
+                <%= link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+                <i class="fa fa-trash "></i> 削除
+              <% end %>
+            </span>
+          <% end %>
+        <% end %>
+
+      <% end %>
+
+
+
+
+    </div>
+
+    <div class="speech_bubble">
+      <%= simple_format review.comment %>
+    </div>
+
+  </div>
+</div>
+
+<div class="reset"></div>
+
