@@ -7691,14 +7691,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
   table {
       display: flex;
-      padding-bottom: 30px;
+      padding-bottom: 0;
   }
   tbody {
     display: flex;
     position: relative;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-bottom: 20px;
   }
   .answer_content{
     margin: auto;
@@ -8005,6 +8004,16 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .delete_btn{
   text-align: right;
   margin-top: 60px;
+}
+
+.schedule_archive{
+  text-align: right;
+  margin-top: 14px;
+  margin-bottom: 30px;
+  a{
+    color: #337ab7;
+    text-decoration: underline;
+  }
 }
 
 

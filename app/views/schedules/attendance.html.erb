@@ -19,9 +19,7 @@
 					<% if @user.admin_user_id == current_admin_user.id %>
             <div class="join_txt">＼ メンバーに共有すれば簡単に出欠管理！ ／</div>
             <div class="attendance_url_copy">
-              <div class="copyTarget">
-                <%= request.url %>
-              </div>
+              <div class="copyTarget"><%= request.url %></div>
             </div>
             <button class="copyBtn"><div class="requirement_copy"><i class="fa fa-copy "></i> URLをコピーする！</div></button>
           <% end %>
@@ -61,6 +59,16 @@
           </thead>
           <%= render "/schedules/attendances/answer_list" %>
         </table>
+
+        <div class="schedule_archive">
+          <% if params[:archive] == "1" %>
+            <a href="<%= request.path %>" >>> 現在の出欠を確認する</a>
+          <% else %>
+            <a href="<%= request.path %>?archive=1" >>> 過去の出欠を確認する</a>
+          <% end %>
+        </div>
+
+
         <%= render "/schedules/attendances/add_btn" %>
       </div>
 
