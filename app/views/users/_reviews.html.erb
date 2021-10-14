@@ -1,4 +1,4 @@
-<% @user.reviews.last(3).reverse_each do |review| %>
+<% @user.reviews.order(created_at: :desc).last(3).each do |review| %>
   <%= render "/reviews/review_comment", review: review %>
 <% end %>
 
