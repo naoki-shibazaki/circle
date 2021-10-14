@@ -139,16 +139,14 @@ before_action :set_attendances, {only: [:secret, :attendance, :attendance_create
 # 出欠機能
 
 def attendance
+  if params[:archive] == "1"
+    @schedules = Schedule.where(user_id: @user.id).order(:day => :desc)
+  end
   @name = Name.new
   @name_schedules = @name.name_schedules.build
   @schedule_ids = @schedules.map{|s| s.id}
   @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}
   @names = Name.where(id: @name_ids).order(updated_at: :desc)
-
-  if params[:archive] == "1"
-    @schedules = Schedule.where(user_id: @user.id).order(:day => :desc)
-  end
-
 end
 
 def attendance_create
