@@ -1,3 +1,3 @@
-<% reviews.reverse_each do |review| %>
+<% reviews.each do |review| %>
   <%= render "/reviews/review_comment", review: review %>
 <% end %>

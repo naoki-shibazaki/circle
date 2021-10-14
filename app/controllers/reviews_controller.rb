@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
 
 	def index
 		@review = @user.reviews.build
-		@reviews = Review.where(user_id: @user.id).order(created_at: :desc)
+		@reviews = Review.where(user_id: @user.id).order(created_at: :DESC)
     @ip = Review.where(user_id: @user.id, ip: request.remote_ip)
 		@b4_name = "口コミ・評価"
 		@b4_url = ""
