@@ -31,10 +31,22 @@
         <% if review.member.image_profile.present? %>
           <%= lazysizes_image_tag review.member.image_profile.url , class:'member_icon' %>
         <% else %>
-          <img src="/images/icon/icon_member.png" class="member_icon">
+          <% if review.member.gender == "1" %>
+            <img src="/images/icon/icon_member_blue.png" class="member_icon">
+          <% elsif review.member.gender == "2" %>
+            <img src="/images/icon/icon_member_pink.png" class="member_icon">
+          <% else %>
+            <img src="/images/icon/icon_member.png" class="member_icon">
+          <% end %>
         <% end %>
       <% else %>
-        <img src="/images/icon/icon_member.png" class="member_icon">
+        <% if review.gender == "1" %>
+          <img src="/images/icon/icon_member_blue.png" class="member_icon">
+        <% elsif review.gender == "2" %>
+          <img src="/images/icon/icon_member_pink.png" class="member_icon">
+        <% else %>
+          <img src="/images/icon/icon_member.png" class="member_icon">
+        <% end %>
       <% end %>
     <% end %>
   </div>
