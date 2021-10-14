@@ -124,7 +124,7 @@ class ReviewsController < ApplicationController
 
 
   def review_params
-    params.require(:review).permit(:review, :comment, :ip)
+    params.require(:review).permit(:review, :comment, :ip, :age, :gender, :nickname)
   end
 
 	def ensure_correct_member

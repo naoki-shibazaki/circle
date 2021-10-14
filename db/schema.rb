@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_25_044251) do
+ActiveRecord::Schema.define(version: 2021_10_14_054912) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -260,6 +260,7 @@ ActiveRecord::Schema.define(version: 2021_09_25_044251) do
     t.string "gender"
     t.text "profile"
     t.integer "prefecture_id"
+    t.string "age"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["prefecture_id"], name: "index_members_on_prefecture_id"
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
@@ -381,6 +382,9 @@ ActiveRecord::Schema.define(version: 2021_09_25_044251) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ip"
+    t.string "age"
+    t.string "gender"
+    t.string "nickname"
     t.index ["member_id"], name: "index_reviews_on_member_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

@@ -5,11 +5,11 @@ class MembersController < ApplicationController
 
 	def index
         redirect_to users_path
-	end	
+	end
 
 	def create
 
-	end	
+	end
 
     def edit
         @member = Member.find(params[:id])
@@ -29,7 +29,7 @@ class MembersController < ApplicationController
             redirect_to users_path
         else
             render "edit"
-        end         
+        end
     end
 
     def show
@@ -41,7 +41,7 @@ class MembersController < ApplicationController
         @r_users = User.where(prefecture_id: @member.prefecture_id).or(User.where(prefecture_sub_id: @member.prefecture_id)).where(event_id: @event_ids).order("RANDOM()").limit(5)
 
         @bookmarks = Bookmark.where(member_id: @member.id).map { |m| m.user_id }
-        @b_users = User.where(id: @bookmarks)            
+        @b_users = User.where(id: @bookmarks)
 
         @event_questions = EventQuestion.all
 
@@ -49,30 +49,30 @@ class MembersController < ApplicationController
         # パンくず
         @b1_name = @member.nickname
         @b1_url = ""
-    end     
+    end
 
     def ensure_correct_member
-       if current_member.id != params[:id].to_i
-            if current_member.id == 1               
+      if current_member.id != params[:id].to_i
+        if current_member.id == 1
 
-            else
-              flash[:notice] = "権限がありません"
-              redirect_to users_path
+        else
+          flash[:notice] = "権限がありません"
+          redirect_to users_path
 
-            end
-       end
+        end
+      end
     end
 
 
     def set_member
-    	@event = Event.find_by(ruby: params[:ruby])
-    	@event_question = EventQuestion.find_by(id: params[:id])
+      @event = Event.find_by(ruby: params[:ruby])
+      @event_question = EventQuestion.find_by(id: params[:id])
     end
 
 
     private
     def member_params
-    	params.require(:member).permit(:id, :email, :event_question_id, :nickname, :image_profile, :answer, :gender, :profile, :prefecture_id,
+      params.require(:member).permit(:id, :email, :event_question_id, :nickname, :image_profile, :answer, :gender, :profile, :prefecture_id, :age,
             event_ids:[]
             )
     end
