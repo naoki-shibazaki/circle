@@ -112,6 +112,20 @@
 
     <div class="schedule_input">
       <%= form_for ([@user, @review]) do |f| %>
+
+        <p>ニックネーム</p>
+        <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
+        <br>
+        <p>性別</p>
+        <div class="radio_button_review">
+          <%= f.radio_button :gender, 1, {:checked => true} %>男性 <%= f.radio_button :gender, 2 %>女性 <%= f.radio_button :gender, 0 %>その他
+        </div>
+
+        <p>年代</p>
+        <%= f.select :age,
+          [["10代", "10代"], ["20代", "20代"], ["30代", "30代"], ["40代", "40代"], ["50代", "50代"], ["60代以上", "60代以上"]],
+        :prompt => "選択してください" %>
+
         <p>口コミ・評価</p>
         <div class="radio_button_review">
           <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった

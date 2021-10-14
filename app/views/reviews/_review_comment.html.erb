@@ -49,25 +49,56 @@
 
       <% end %>
 
-
       <% if review.member.present? %>
         <%= review.member.nickname  %>さん
+        <div class="btm_content">
+            <% if review.member.gender == "1" %>
+              男性
+            <% elsif review.member.gender == "2" %>
+              女性
+            <% elsif review.member.gender == "0" %>
+              その他
+            <% else %>
+            <% end %>
+            <%= review.member.age %>
+          <span class="review_day">
+            ［<%= review.created_at.strftime("%Y年%-m月%-d日") %>］
+          </span>
+        </div>
+
       <% else %>
-        ゲストユーザー
+        <% if review.nickname.present? %>
+          <%= review.nickname  %>さん
+        <% else %>
+          ゲストユーザー
+        <% end %>
+
+        <div class="btm_content">
+            <% if review.gender == "1" %>
+              男性
+            <% elsif review.gender == "2" %>
+              女性
+            <% elsif review.gender == "0" %>
+              その他
+            <% else %>
+            <% end %>
+            <%= review.age %>
+          <span class="review_day">
+            ［<%= review.created_at.strftime("%Y年%-m月%-d日") %>］
+          </span>
+        </div>
+
       <% end %>
 
 
-      <div class="btm_content">
-        <span class="review_day"><%= review.created_at.strftime("%Y年%-m月%-d日") %></span>
-      </div>
+
 
 
 
       <% if @path.is('reviews#index') %>
 
         <% if review.member.present? %>
-          <span class="random_id">（@<%= review.member.random_id %>）</span>
-          <br>
+
           <% if member_signed_in? %>
             <% if current_member.id == review.member_id %>
               <span class="review_edit">
