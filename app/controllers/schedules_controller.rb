@@ -140,7 +140,7 @@ before_action :set_attendances, {only: [:secret, :attendance, :attendance_create
 
 def attendance
   if params[:archive] == "1"
-    @schedules = Schedule.where(user_id: @user.id).order(:day => :desc)
+    @schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).limit(10).order(:day => :desc)
   end
   @name = Name.new
   @name_schedules = @name.name_schedules.build
