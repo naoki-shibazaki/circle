@@ -1,12 +1,23 @@
 <% @names.each.with_index(1) do |name, i| %>
   <th>
     <div class="attendances_modal">
-        <% if name.gender == 1 %>
-          <span class="blue"><a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a></span>
-        <% elsif name.gender == 2 %>
-          <span class="pink"><a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a></span>
+        <% if params[:archive] != "1" %>
+          <% if name.gender == 1 %>
+            <span class="blue"><a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a></span>
+          <% elsif name.gender == 2 %>
+            <span class="pink"><a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a></span>
+          <% else %>
+            <span class="purple"><a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a></span>
+          <% end %>
+
         <% else %>
-          <span class="purple"><a class="js-modal-open" href="" data-target="attendance_edit_<%= i %>"><%= name.name %></a></span>
+          <% if name.gender == 1 %>
+            <span class="blue"><%= name.name %></span>
+          <% elsif name.gender == 2 %>
+            <span class="pink"><%= name.name %></span>
+          <% else %>
+            <span class="purple"><%= name.name %></span>
+          <% end %>
         <% end %>
     </div>
   </th>

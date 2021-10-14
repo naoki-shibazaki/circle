@@ -7667,14 +7667,23 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     a{
       text-decoration: underline;
     }
-    .blue a{
+    .blue{
       color: #2196F3;
+      a{
+        color: #2196F3;
+      }
     }
-    .pink a{
+    .pink{
       color: #FF4081;
+      a{
+        color: #FF4081;
+      }
     }
-    .purple a{
+    .purple{
       color: #9C27B0;
+      a{
+        color: #9C27B0;
+      }
     }
   }
 
