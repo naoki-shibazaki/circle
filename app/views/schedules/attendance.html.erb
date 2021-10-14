@@ -26,6 +26,11 @@
         <% end %>
 
       <% if params[:archive] != "1" %>
+
+        <% if @names.blank? %>
+          <img class="attendance_img" src="/images/attendance_ogp.png">
+        <% end %>
+
         <%= render "/schedules/attendances/add_btn" %>
 
         <%= render "/schedules/attendances/new_form" %>
