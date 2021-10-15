@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
       # @db_validation_error.content_01 = @review.comment
       # @db_validation_error.save
 
-			flash[:notice] = "10文字未満かNGワードが含まれています"
+			flash[:notice] = "6文字未満かNGワードが含まれています"
 			redirect_to user_reviews_path
 		end
 
