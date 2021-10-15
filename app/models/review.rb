@@ -6,6 +6,6 @@ class Review < ApplicationRecord
 	NGWORD_REGEX = %r(#{NGWORD.join('|')})
   validates :comment,
     format: { without: NGWORD_REGEX },
-    length: { minimum: 10 }
+    length: { minimum: 5 }
 
 end
