@@ -8178,17 +8178,17 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   width: 96%;
 }
 
-.attendances_modal .modal_content {
+.attendances_modal .modal_content,
+.reviews_modal .modal_content{
   padding: 22px;
   width: 90%;
   border-radius: 10px;
 }
 
-.attendances_modal .cont-body{
+.attendances_modal .cont-body,
+.reviews_modal .cont-body{
   padding: 0;
 }
-
-
 
 
 }// ▼SP
