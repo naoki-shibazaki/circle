@@ -11,8 +11,7 @@ module Circle
     config.load_defaults 5.2
     config.time_zone = 'Tokyo'
 
-	config.i18n.default_locale = :ja
-
+    config.i18n.default_locale = :ja
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
@@ -23,6 +22,8 @@ module Circle
 
     amp_css_paths = Dir.entries("#{config.root}/app/assets/stylesheets/amp").select { |name| name =~ /css$/ }.map { |name| "amp/#{name}" }
     config.assets.precompile += amp_css_paths
+
+    config.active_storage.variable_content_types += ['image/heic', 'image/heic-sequence', 'image/heif', 'image/heif-sequence']
 
 
   end
