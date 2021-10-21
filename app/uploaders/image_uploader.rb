@@ -71,7 +71,6 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   process :convert => 'jpg'
 
-
   # 20MB以下
   def size_range
     1..20.megabytes
