@@ -38,52 +38,62 @@ Event.seed(:id,
   { :id => 50, :category_id => 3, :order => "0308", :name => "モルック" , :ruby => "molkky",  :matching => 0, :place => 0, :openchat => "", :txt => "モルックサークル" },
   { :id => 46, :category_id => 3, :order => "0309", :name => "その他のスポーツ" , :ruby => "other-sports",  :matching => 0, :place => 0, :openchat => "", :txt => "その他のスポーツサークル" },
 
+
   # ウィンタースポーツ
   { :id => 20, :category_id => 4, :order => "0401", :name => "スノーボード" , :ruby => "snow-board",  :matching => 0, :place => 0, :openchat => "", :txt => "スノーボードサークル" },
   { :id => 32, :category_id => 4, :order => "0402", :name => "アイスホッケー" , :ruby => "ice-hockey",  :matching => 0, :place => 0, :openchat => "", :txt => "アイスホッケーサークル" },
 
-  # フィットネス
-  { :id => 27, :category_id => 5, :order => "0501", :name => "ヨガ" , :ruby => "yoga",  :matching => 0, :place => 0, :openchat => "", :txt => "ヨガサークル" },
-  { :id => 6, :category_id => 5, :order => "0502", :name => "筋トレ・合トレ" , :ruby => "work-out",  :matching => 0, :place => 0, :openchat => "", :txt => "筋トレ・合トレ" },
 
   # 写真・動画
-  { :id => 1, :category_id => 6, :order => "0601", :name => "写真・カメラ" , :ruby => "camera",  :matching => 0, :place => 0, :openchat => "https://line.me/ti/g2/MrGVZOgwkBEGzRpvagL-Cw", :txt => "写真・カメラサークル" },
-  { :id => 45, :category_id => 6, :order => "0602", :name => "動画・映画" , :ruby => "movie",  :matching => 0, :place => 0, :openchat => "", :txt => "動画・映画サークル" },
+  { :id => 1, :category_id => 5, :order => "0501", :name => "写真・カメラ" , :ruby => "camera",  :matching => 0, :place => 0, :openchat => "https://line.me/ti/g2/MrGVZOgwkBEGzRpvagL-Cw", :txt => "写真・カメラサークル" },
+  { :id => 45, :category_id => 5, :order => "0502", :name => "動画・映画" , :ruby => "movie",  :matching => 0, :place => 0, :openchat => "", :txt => "動画・映画サークル" },
 
-  # 趣味・交流
-  { :id => 38, :category_id => 7, :order => "0701", :name => "イラスト" , :ruby => "illustration",  :matching => 0, :place => 0, :openchat => "", :txt => "イラストサークル" },
-  { :id => 33, :category_id => 7, :order => "0702", :name => "読書会" , :ruby => "reading",  :matching => 0, :place => 0, :openchat => "", :txt => "読書会・読書サークル" },
-  { :id => 34, :category_id => 7, :order => "0703", :name => "英会話" , :ruby => "english",  :matching => 0, :place => 0, :openchat => "", :txt => "英会話サークル" },
-  { :id => 44, :category_id => 7, :order => "0704", :name => "勉強会・研究" , :ruby => "study",  :matching => 0, :place => 0, :openchat => "", :txt => "勉強会・研究サークル" },
-  { :id => 48, :category_id => 7, :order => "0705", :name => "料理" , :ruby => "cooking",  :matching => 0, :place => 0, :openchat => "", :txt => "料理サークル" },
-  { :id => 37, :category_id => 7, :order => "0706", :name => "旅行・お出かけ" , :ruby => "go-out",  :matching => 0, :place => 0, :openchat => "", :txt => "旅行・お出かけサークル" },
-  { :id => 36, :category_id => 7, :order => "0707", :name => "交流会" , :ruby => "gathering",  :matching => 0, :place => 0, :openchat => "", :txt => "交流会サークル" },
-  { :id => 35, :category_id => 7, :order => "0708", :name => "街コン・オフ会" , :ruby => "meet-up",  :matching => 0, :place => 0, :openchat => "", :txt => "街コン・オフ会サークル" },
-  { :id => 12, :category_id => 7, :order => "0709", :name => "イベント" , :ruby => "event",  :matching => 0, :place => 0, :openchat => "", :txt => "イベントサークル" },
-  { :id => 42, :category_id => 7, :order => "0710", :name => "麻雀" , :ruby => "mahjong",  :matching => 0, :place => 0, :openchat => "", :txt => "麻雀サークル" },
-  { :id => 51, :category_id => 7, :order => "0711", :name => "サバゲー" , :ruby => "airsoft",  :matching => 0, :place => 0, :openchat => "", :txt => "サバゲーサークル" },
 
   # アウトドア
-  { :id => 18, :category_id => 8, :order => "0801", :name => "登山" , :ruby => "mountain",  :matching => 0, :place => 0, :openchat => "", :txt => "登山サークル" },
-  { :id => 39, :category_id => 8, :order => "0802", :name => "キャンプ" , :ruby => "camping",  :matching => 0, :place => 0, :openchat => "", :txt => "キャンプサークル" },
-  { :id => 17, :category_id => 8, :order => "0803", :name => "ロードバイク" , :ruby => "road-bike",  :matching => 0, :place => 0, :openchat => "", :txt => "ロードバイクサークル" },
-  { :id => 52, :category_id => 8, :order => "0804", :name => "釣り" , :ruby => "fishing",  :matching => 0, :place => 0, :openchat => "", :txt => "釣りサークル" },
+  { :id => 18, :category_id => 6, :order => "0601", :name => "登山" , :ruby => "mountain",  :matching => 0, :place => 0, :openchat => "", :txt => "登山サークル" },
+  { :id => 39, :category_id => 6, :order => "0602", :name => "キャンプ" , :ruby => "camping",  :matching => 0, :place => 0, :openchat => "", :txt => "キャンプサークル" },
+  { :id => 17, :category_id => 6, :order => "0603", :name => "ロードバイク" , :ruby => "road-bike",  :matching => 0, :place => 0, :openchat => "", :txt => "ロードバイクサークル" },
+  { :id => 52, :category_id => 6, :order => "0604", :name => "釣り" , :ruby => "fishing",  :matching => 0, :place => 0, :openchat => "", :txt => "釣りサークル" },
 
-  # ダンス・よさこい
-  { :id => 19, :category_id => 9, :order => "0901", :name => "ダンス" , :ruby => "dance",  :matching => 0, :place => 0, :openchat => "", :txt => "ダンスサークル" },
-  { :id => 14, :category_id => 9, :order => "0902", :name => "よさこい" , :ruby => "yosakoi",  :matching => 0, :place => 0, :openchat => "", :txt => "よさこいチーム・サークル" },
-
-  # 音楽・演劇
-  { :id => 13, :category_id => 10, :order => "1001", :name => "音楽" , :ruby => "music",  :matching => 0, :place => 0, :openchat => "", :txt => "音楽サークル" },
-  { :id => 40, :category_id => 10, :order => "1002", :name => "演劇" , :ruby => "theater",  :matching => 0, :place => 0, :openchat => "", :txt => "演劇サークル" },
 
   # ゲーム
-  { :id => 11, :category_id => 11, :order => "1101", :name => "ボードゲーム" , :ruby => "game",  :matching => 1, :place => 0, :openchat => "", :txt => "ボードゲームサークル" },
-  { :id => 41, :category_id => 11, :order => "1102", :name => "ダーツ・ビリヤード" , :ruby => "darts",  :matching => 0, :place => 0, :openchat => "", :txt => "ダーツ・ビリヤードサークル" },
+  { :id => 11, :category_id => 7, :order => "0701", :name => "ボードゲーム" , :ruby => "game",  :matching => 1, :place => 0, :openchat => "", :txt => "ボードゲームサークル" },
+  { :id => 41, :category_id => 7, :order => "0702", :name => "ダーツ・ビリヤード" , :ruby => "darts",  :matching => 0, :place => 0, :openchat => "", :txt => "ダーツ・ビリヤードサークル" },
+  { :id => 42, :category_id => 7, :order => "0703", :name => "麻雀" , :ruby => "mahjong",  :matching => 0, :place => 0, :openchat => "", :txt => "麻雀サークル" },
+  { :id => 51, :category_id => 7, :order => "0704", :name => "サバゲー" , :ruby => "airsoft",  :matching => 0, :place => 0, :openchat => "", :txt => "サバゲーサークル" },
+
+
+  # 趣味・交流
+  { :id => 38, :category_id => 8, :order => "0801", :name => "イラスト" , :ruby => "illustration",  :matching => 0, :place => 0, :openchat => "", :txt => "イラストサークル" },
+  { :id => 33, :category_id => 8, :order => "0802", :name => "読書会" , :ruby => "reading",  :matching => 0, :place => 0, :openchat => "", :txt => "読書会・読書サークル" },
+  { :id => 34, :category_id => 8, :order => "0803", :name => "英会話" , :ruby => "english",  :matching => 0, :place => 0, :openchat => "", :txt => "英会話サークル" },
+  { :id => 44, :category_id => 8, :order => "0804", :name => "勉強会・研究" , :ruby => "study",  :matching => 0, :place => 0, :openchat => "", :txt => "勉強会・研究サークル" },
+  { :id => 48, :category_id => 8, :order => "0805", :name => "料理" , :ruby => "cooking",  :matching => 0, :place => 0, :openchat => "", :txt => "料理サークル" },
+  { :id => 37, :category_id => 8, :order => "0806", :name => "散策・散歩" , :ruby => "go-out",  :matching => 0, :place => 0, :openchat => "", :txt => "散策・散歩サークル" },
+  { :id => 36, :category_id => 8, :order => "0807", :name => "交流会・カフェ会" , :ruby => "gathering",  :matching => 0, :place => 0, :openchat => "", :txt => "交流会・カフェ会サークル" },
+  { :id => 35, :category_id => 8, :order => "0808", :name => "街コン・オフ会" , :ruby => "meet-up",  :matching => 0, :place => 0, :openchat => "", :txt => "街コン・オフ会サークル" },
+  { :id => 12, :category_id => 8, :order => "0809", :name => "イベント" , :ruby => "event",  :matching => 0, :place => 0, :openchat => "", :txt => "イベントサークル" },
+
+
+  # 音楽・演劇
+  { :id => 13, :category_id => 9, :order => "0901", :name => "音楽" , :ruby => "music",  :matching => 0, :place => 0, :openchat => "", :txt => "音楽サークル" },
+  { :id => 40, :category_id => 9, :order => "0902", :name => "演劇" , :ruby => "theater",  :matching => 0, :place => 0, :openchat => "", :txt => "演劇サークル" },
+
+
+  # ダンス・よさこい
+  { :id => 19, :category_id => 10, :order => "1001", :name => "ダンス" , :ruby => "dance",  :matching => 0, :place => 0, :openchat => "", :txt => "ダンスサークル" },
+  { :id => 14, :category_id => 10, :order => "1002", :name => "よさこい" , :ruby => "yosakoi",  :matching => 0, :place => 0, :openchat => "", :txt => "よさこいチーム・サークル" },
+
+
+  # フィットネス
+  { :id => 27, :category_id => 11, :order => "1101", :name => "ヨガ" , :ruby => "yoga",  :matching => 0, :place => 0, :openchat => "", :txt => "ヨガサークル" },
+  { :id => 6, :category_id => 11, :order => "1102", :name => "筋トレ・合トレ" , :ruby => "work-out",  :matching => 0, :place => 0, :openchat => "", :txt => "筋トレ・合トレ" },
+
 
   # 学生団体・ボランティア
   { :id => 24, :category_id => 12, :order => "1201", :name => "学生団体" , :ruby => "student-group",  :matching => 0, :place => 0, :openchat => "", :txt => "学生団体" },
   { :id => 26, :category_id => 12, :order => "1202", :name => "ボランティア" , :ruby => "volunteer",  :matching => 0, :place => 0, :openchat => "", :txt => "ボランティアサークル" },
+
 
   # その他
   { :id => 99, :category_id => 99, :order => "9999", :name => "その他" , :ruby => "other",  :matching => 0, :place => 0, :openchat => "", :txt => "その他のサークル" }
