@@ -8303,7 +8303,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   .title::after, .title::before {
     font-size: 18px;
   }
-  .content p {
+  .content p ,
+  .content p a{
     padding-bottom: 34px;
     font-size: 14px;
   }
