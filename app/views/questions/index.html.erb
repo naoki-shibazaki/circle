@@ -30,7 +30,8 @@
 				<div class="qa_answer_form">
 					<%= form_for ([@user, @question]) do |f| %>
             <%= render 'layouts/error_messages', model: f.object %>
-						<%= f.text_area :content, class: 'form-control form-note change_question', placeholder: "質問を書いてください！（80文字以内）" %>
+						<%= f.text_area :content, class: 'form-control form-note change_question', id: "input-text",rows: 4, placeholder: "質問を書いてください！（80文字以内）" %>
+            <div class="counter_wrap"><span id="counter">0文字</span> / 80文字</div>
 
 							<div class="actions">
                 <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
@@ -163,3 +164,15 @@
       }).change();
   });
 </script>
+
+
+<!-- 文字カウント -->
+<script>
+  $(function(){
+    $("#input-text").on("keyup", function() {
+      let countNum = String($(this).val().length);
+      $("#counter").text(countNum + "文字");
+    });
+  });
+</script>
+
