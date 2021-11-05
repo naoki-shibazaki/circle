@@ -182,6 +182,7 @@ before_action :set_tags
 private
 	def set_tags
 		@tag = Tag.find(params[:id])
+    @categories = Category.all.order(:id => :asc)
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
     @cities = City.all.order(:id => :asc)

@@ -193,6 +193,7 @@ class BlogsController < ApplicationController
   @blogs = Blog.all.order(created_at: "DESC")
   @users_r = User.all.user_hide
   @blogs_r = Blog.all.order(created_at: "DESC")
+  @categories = Category.all.order(:id => :asc)
   @events = Event.all.where.not(id: 0).order(:order => :asc)
   @prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
   @x = "nil"

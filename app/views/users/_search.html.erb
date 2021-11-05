@@ -48,10 +48,14 @@
 
         <select name="event_select" onChange="location.href=value;">
           <option value="#"><%= @event.name %></option>
-            <% @events.each do |event| %>
-              <% if event.ruby != @event.ruby %>
-              <option value="/<%= event.ruby %>"><%= event.name %></option>
-            <% end %>
+          <% @categories.each do |category| %>
+            <optgroup label="<%= category.name %>">
+              <% category.events.each do |event| %>
+                <% if event.ruby != @event.ruby %>
+                  <option value="/<%= event.ruby %>"><%= event.name %></option>
+                <% end %>
+              <% end %>
+            </optgroup>
           <% end %>
         </select>
 
@@ -87,10 +91,14 @@
 
         <select name="event_select" onChange="location.href=value;">
           <option value="#"><%= @event.name %></option>
-            <% @events.each do |event| %>
-              <% if event.ruby != @event.ruby %>
-              <option value="/<%= event.ruby %>"><%= event.name %></option>
-            <% end %>
+          <% @categories.each do |category| %>
+            <optgroup label="<%= category.name %>">
+              <% category.events.each do |event| %>
+                <% if event.ruby != @event.ruby %>
+                  <option value="/<%= event.ruby %>"><%= event.name %></option>
+                <% end %>
+              <% end %>
+            </optgroup>
           <% end %>
         </select>
 
@@ -123,10 +131,14 @@
 
         <select name="event_select" onChange="location.href=value;">
           <option value="#"><%= @event.name %></option>
-            <% @events.each do |event| %>
-              <% if event.ruby != @event.ruby %>
-              <option value="/<%= event.ruby %>"><%= event.name %></option>
-            <% end %>
+          <% @categories.each do |category| %>
+            <optgroup label="<%= category.name %>">
+              <% category.events.each do |event| %>
+                <% if event.ruby != @event.ruby %>
+                  <option value="/<%= event.ruby %>"><%= event.name %></option>
+                <% end %>
+              <% end %>
+            </optgroup>
           <% end %>
         </select>
 
@@ -150,8 +162,12 @@
 
         <select name="event_select" onChange="location.href=value;">
           <option value="#">サークル</option>
-            <% @events.each do |event| %>
-            <option value="/<%= event.ruby %>/<%= @prefecture.kana %>/<%= @city.city_kana %>"><%= event.name %></option>
+          <% @categories.each do |category| %>
+            <optgroup label="<%= category.name %>">
+              <% category.events.each do |event| %>
+                <option value="/<%= event.ruby %>/<%= @prefecture.kana %>/<%= @city.city_kana %>"><%= event.name %></option>
+              <% end %>
+            </optgroup>
           <% end %>
         </select>
 
@@ -185,8 +201,12 @@
 
         <select name="event_select" onChange="location.href=value;">
           <option value="#">サークル</option>
-            <% @events.each do |event| %>
-            <option value="/<%= event.ruby %>/<%= @prefecture.kana %>"><%= event.name %></option>
+          <% @categories.each do |category| %>
+            <optgroup label="<%= category.name %>">
+              <% category.events.each do |event| %>
+                <option value="/<%= event.ruby %>/<%= @prefecture.kana %>"><%= event.name %></option>
+              <% end %>
+            </optgroup>
           <% end %>
         </select>
 
