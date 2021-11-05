@@ -93,7 +93,9 @@ Rails.application.routes.draw do
 
   # お問い合わせフォーム
   get 'users/:user_id/thanks' , to: 'user_contacts#thanks'
-  get 'users/:user_id/respond_check/:random_id' , to: 'user_contacts#respond_check'
+    #↓2021年12月 削除予定
+    get 'users/:user_id/respond_check/:random_id' , to: 'user_contacts#respond_check'
+  get 'check_r/:user_id/:random_id' , to: 'user_contacts#check_reaction'
   patch 'users/:user_id/contact_list/:id', to: 'user_contacts#update_contact'
 
 

@@ -103,7 +103,21 @@ class UserContactsController < ApplicationController
       flash[:notice] = "URLが間違っています"
 			redirect_to user_path(@user.id)
     end
+  end
 
+  def check_reaction
+    if UserContact.find_by(random_id: params[:random_id])
+      @user_contact = UserContact.find_by(random_id: params[:random_id])
+
+      if @user.id != @user_contact.user_id
+        flash[:notice] = "URLが間違っています"
+        redirect_to user_path(@user.id)
+      end
+
+    else
+      flash[:notice] = "URLが間違っています"
+			redirect_to user_path(@user.id)
+    end
   end
 
   def update

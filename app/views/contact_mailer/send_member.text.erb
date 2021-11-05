@@ -18,6 +18,5 @@ URL： https://www.circle-book.com/users/<%= @user.id %>
 --------------------------------------
 
   【主催者から返信がない場合】
-  3日以上返信がない場合は、下記のURLよりご報告ください。
-  サービス向上のため、ご協力いただけると幸いです。
-  https://www.circle-book.com/users/<%= @user.id %>/respond_check/<%= @user_contact.random_id %>
+  3日以上返信がない場合、ご報告ください。
+  https://www.circle-book.com/check_r/<%= @user.id %>/<%= @user_contact.random_id %>
