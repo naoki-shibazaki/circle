@@ -20,10 +20,14 @@
         <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index') %>
 
         <select name="event_select" onChange="location.href=value;">
-          <option value="#">サークル・チーム</option>
-            <% @events.each do |event| %>
-            <option value="/<%= event.ruby %>"><%= event.name %></option>
-          <% end %>
+            <option value="#">サークル・チーム</option>
+            <% @categories.each do |category| %>
+              <optgroup label="<%= category.name %>">
+                <% category.events.each do |event| %>
+                  <option value="/<%= event.ruby %>"><%= event.name %></option>
+                <% end %>
+              </optgroup>
+            <% end %>
         </select>
 
         <select name="prefecture_select" onChange="location.href=value;">

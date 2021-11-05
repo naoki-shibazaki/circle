@@ -694,6 +694,7 @@ private
 
 		@user_all = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
+    @categories = Category.all
 		@events = Event.all.where.not(id: 0).order(:order => :asc)
 		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
 		@cities = City.all.order(:id => :asc)
