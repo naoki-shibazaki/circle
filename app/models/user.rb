@@ -42,6 +42,11 @@ class User < ApplicationRecord
     :allow_blank => true,
     :format => /\A#{URI::regexp(%w(http https))}\z/
 	}
+
+	NGWORD = %w(http)
+	NGWORD_REGEX = %r(#{NGWORD.join('|')})
+	validates :template, format: { without: NGWORD_REGEX }
+
 	paginates_per 20
 	is_impressionable counter_cache: true
 

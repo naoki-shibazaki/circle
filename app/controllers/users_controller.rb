@@ -300,7 +300,8 @@ helper_method :link_count
 			flash[:notice] = '「お問い合わせのテンプレ」更新完了！'
 			redirect_to new_user_user_contact_path(@user)
 		else
-			flash[:notice] = 'エラーが発生しました'
+			flash[:notice] = 'URLを設定することはできません'
+      redirect_to request.referer
 		end
 	end
 

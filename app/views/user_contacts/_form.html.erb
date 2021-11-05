@@ -19,11 +19,12 @@
             <div class="template_title">【サークル主催者専用】<br>「お問い合わせ内容」の修正</div>
             <span class="cautions">※URLを設定することはできません</span>
               <%= form_for @user,url: "/users/#{@user.id}/mypage" do |f| %>
+                <%= render 'layouts/error_messages', model: f.object %>
 
-                  <%= f.text_area :template, class: 'form-control' %>
-                  <%= f.submit "更新する" %>
+                <%= f.text_area :template, class: 'form-control' %>
+                <%= f.submit "更新する" %>
 
-                  <div class="reset"></div>
+                <div class="reset"></div>
 
               <% end %>
           </div>

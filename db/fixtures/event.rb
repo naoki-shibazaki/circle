@@ -63,7 +63,7 @@ Event.seed(:id,
   { :id => 51, :category_id => 7, :order => "0704", :name => "サバゲー" , :ruby => "airsoft",  :matching => 0, :place => 0, :openchat => "", :txt => "サバゲーサークル" },
 
 
-  # 趣味・交流
+  # 趣味・交流・学び
   { :id => 38, :category_id => 8, :order => "0801", :name => "イラスト" , :ruby => "illustration",  :matching => 0, :place => 0, :openchat => "", :txt => "イラストサークル" },
   { :id => 33, :category_id => 8, :order => "0802", :name => "読書会" , :ruby => "reading",  :matching => 0, :place => 0, :openchat => "", :txt => "読書会・読書サークル" },
   { :id => 34, :category_id => 8, :order => "0803", :name => "英会話" , :ruby => "english",  :matching => 0, :place => 0, :openchat => "", :txt => "英会話サークル" },
