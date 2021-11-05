@@ -1,60 +1,86 @@
 <% set_meta_tags title: "よくある質問" %>
 <div class="main users-index">
-  <div class="container">
-  	<div class="page_wrap">
+  <div class="container QandA_wrap">
+    <div class="contents_wrap">
 
-<h1 class="users-heading">よくある質問</h1>
+      <h1 class="p_t">よくある質問</h1>
 
-<h2 class="page_title">【共通の質問】</h2>
+      <ul class="QandA_accordion">
+        <li class="option">
+          <input type="checkbox" id="toggle01" class="toggle">
+          <label class="title" for="toggle01">Ｑ.サークルブックとは？</label>
+          <div class="content">
+            <p>Ａ.
+              サークルブックとは、サークルやチームの新規メンバーを募集するためのSNSです。
+            </p>
+          </div>
+        </li>
 
-	<h3 class="page_title">サークルブックとは？</h3>
-	<p>
-		サークルブックとは、サークルやチームの新規メンバーを募集するためのSNSです。
-	</p>
+        <li class="option">
+          <input type="checkbox" id="toggle02" class="toggle">
+          <label class="title" for="toggle02">Ｑ.無料で使えるんですか？</label>
+          <div class="content">
+            <p>Ａ.
+              サークルブックのサービスは全て無料でお使いいただくことが可能です。
+            </p>
+          </div>
+        </li>
 
-	<h3 class="page_title">無料で使えるんですか？</h3>
-	<p>
-		サークルブックのサービスは全て無料でお使いいただくことが可能です。
-	</p>
+        <li class="option">
+          <input type="checkbox" id="toggle03" class="toggle">
+          <label class="title" for="toggle03">Ｑ.気になったサークルにどうやって連絡すればいいですか？</label>
+          <div class="content">
+            <p>Ａ.
+              サークルブックでは、LINE（LINE公式アカウント）やメールで直接やり取りすることが可能です。<br>
+              各サークルのページに、LINEかメールにて連絡ができるボタンがありますので、そちらからご連絡をお願いします。
+            </p>
+          </div>
+        </li>
 
-	<h3 class="page_title">活動ブログとは何ですか？</h3>
-	<p>
-		各サークルの活動記録や、活動スケジュールなどを載せているブログのことです。
-	</p>
+        <li class="option">
+          <input type="checkbox" id="toggle04" class="toggle">
+          <label class="title" for="toggle04">Ｑ.絞り込み検索はできますか？</label>
+          <div class="content">
+            <p>Ａ.
+              サークル検索から、種目やエリアから絞り込み検索をすることができます。
+            </p>
+          </div>
+        </li>
 
-<div class="border"></div>
+        <li class="option">
+          <input type="checkbox" id="toggle07" class="toggle">
+          <label class="title" for="toggle07">Ｑ.サークル主催者から返信が来ないです</label>
+          <div class="content">
+            <p>Ａ.
+              メールアドレスが変わったり、サークル活動が停止している場合は、返信が届かない場合があります。<br>
+              返信が来ないサークルに対しては、お問い合わせ自動返信メールのリンクから、ご報告いただけると幸いです。
+            </p>
+          </div>
+        </li>
 
+        <li class="option">
+          <input type="checkbox" id="toggle05" class="toggle">
+          <label class="title" for="toggle05">Ｑ.サークルの並び順を上位にする方法は？</label>
+          <div class="content">
+            <p>Ａ.
+              ブログや活動スケジュールなどの更新が活発なサークルは上位に表示されやすくなります。
+            </p>
+          </div>
+        </li>
 
-<h2 class="page_title">【一般ユーザー向けの質問】</h2>
+        <li class="option">
+          <input type="checkbox" id="toggle06" class="toggle">
+          <label class="title" for="toggle06">Ｑ.サークルの削除方法は？</label>
+          <div class="content">
+            <p>Ａ.
+              ログインした状態で、<%= link_to "サークル削除ページ",user_del_path %>より、手続きをお願いいたします。              </p>
+          </div>
+        </li>
+      </ul>
 
-	<h3 class="page_title">気になったサークルにどうやって連絡すればいいですか？</h3>
-	<p>
-		サークルブックでは、LINE（LINE@）やメールで直接やり取りすることが可能です。<br>
-		各サークルのページに、LINEかメールにて連絡ができるボタンがありますので、そちらからご連絡をお願いします。
-	</p>
-
-	<h3 class="page_title">絞り込み検索はできますか？</h3>
-	<p>
-		サークル検索から、『+』のボタンを押していただくと、種目やエリアから絞り込み検索をすることができます。
-	</p>
-
-
-<div class="border"></div>
-
-
-<h2 class="page_title">【サークル運営者向けの質問】</h2>
-
-	<h3 class="page_title">サークルの並び順を上位にする方法は？</h3>
-	<p>
-		各サークルの活動記録や、活動スケジュールなどを載せているブログのことです。
-	</p>
-
-	<h3 class="page_title">サークルの削除方法は？</h3>
-	<p>
-		ログインした状態で、<%= link_to "サークル削除ページ",user_del_path %>より、手続きをお願いいたします。
-	</p>
-
-
-	</div>
+    </div>
   </div>
 </div>
+
+
+

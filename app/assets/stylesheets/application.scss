@@ -8047,6 +8047,103 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   color: #787878;
 }
 
+.QandA_wrap {
+  margin: auto;
+  max-width: 640px;
+}
+
+.QandA_accordion {
+  margin: 3em auto;
+  max-width: 60vw;
+
+  .toggle {
+  display: none;
+  }
+
+  .option {
+  position: relative;
+  margin-bottom: 30px;
+  border: 4px solid #222222;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  background: #e2fffe;
+  color: #222;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  }
+
+  .title,
+  .content {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: all 0.3s;
+  padding: 0px 30px;
+  }
+
+  .title {
+    height: 80px;
+    color: #353535;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .title::after,
+  .title::before {
+    content: "";
+    position: absolute;
+    right: 1.25em;
+    font-size: 24px;
+    width: 2px;
+    height: 0.75em;
+    background-color: #3e3b3b;
+    transition: all 0.3s;
+  }
+
+  .title::after {
+  transform: rotate(90deg);
+  }
+
+  .content {
+  max-height: 0;
+  overflow: hidden;
+  }
+
+  .content p,
+  .content p a {
+    margin: 0;
+    padding-bottom: 50px;
+    font-size: 18px;
+    color: #5f5f5f;
+    line-height: 1.5;
+  }
+
+  .toggle:checked + .title + .content {
+  max-height: 500px;
+  transition: all 1.5s;
+  }
+
+  .toggle:checked + .title::before {
+  transform: rotate(90deg) !important;
+  }
+
+  ul,
+  li{
+    list-style: none;
+  }
+
+  a{
+    text-decoration: underline;
+  }
+
+}
+
+
+
 
 
 // --------------------------------------
@@ -8192,6 +8289,25 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .attendances_modal .cont-body,
 .reviews_modal .cont-body{
   padding: 0;
+}
+
+.QandA_accordion {
+  max-width: 100%;
+  .title {
+    font-size: 16px;
+    padding: 0px 40px 0 14px;
+    }
+  .content{
+    padding: 0px 40px 0 14px;
+  }
+  .title::after, .title::before {
+    font-size: 18px;
+  }
+  .content p {
+    padding-bottom: 34px;
+    font-size: 14px;
+  }
+
 }
 
 
