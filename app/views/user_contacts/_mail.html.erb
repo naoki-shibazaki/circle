@@ -5,24 +5,24 @@
         <%= render 'layouts/error_messages', model: f.object %>
 
           <div class="field">
-            <p>お名前（必須）</p>
+            <div class="label_item"><span class="label label_danger">必須</span>お名前 （英字不可）</div>
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
           </div>
 
           <div class="field">
-            <p>メールアドレス（必須）</p>
+            <div class="label_item"><span class="label label_danger">必須</span>メールアドレス</div>
             <span class="cautions">※『icloud.com』を利用する場合は、<br>　受信トレイの空き容量を必ずご確認ください</span>
-            <%= f.text_field :mail, class: 'form-control', id: 'change_mail', placeholder: "circlebook47@gmail.com" %>
+            <%= f.text_field :mail, class: 'form-control', id: 'change_mail_01', placeholder: "circlebook47@gmail.com" %>
           </div>
 
           <div class="field">
-            <p>確認用メールアドレス（必須）</p>
-            <span class="cautions">※上記のアドレスと同じアドレスをご記入ください</span>
-            <%= f.text_field :mail_confirmation, class: 'form-control', id: 'change_mail', placeholder: "circlebook47@gmail.com" %>
+            <div class="label_item"><span class="label label_danger">必須</span>確認用メールアドレス</div>
+            <span class="cautions">※同じアドレスをご記入ください</span>
+            <%= f.text_field :mail_confirmation, class: 'form-control', id: 'change_mail_02', placeholder: "circlebook47@gmail.com" %>
           </div>
 
           <div class="field">
-            <p>お問い合わせ内容（必須）</p>
+            <div class="label_item"><span class="label label_danger">必須</span>お問い合わせ内容</div>
             <%= f.text_area :message, class: 'form-control form-note', placeholder: "#{@place_holder}" %>
           </div>
 
@@ -46,3 +46,12 @@
     <% end %>
 
     </div>
+
+<script>
+  function change() {
+    //テキストボックスの値を取得
+    var val = document.getElementById("change_mail_01").value;
+    //空白を削除して代入して結果を表示します
+    document.getElementById("change_mail_01").value = val.trim();
+  }
+</script>

@@ -115,7 +115,7 @@
     <!-- 全角 => 半角　変換 -->
     <script>
       $(function(){
-          $("#change_tel, #change_address, #change_time, #change_price, #change_regular_holiday, #change_parking, #change_scale, #change_order, #change_mail").change(function(){
+          $("#change_tel, #change_address, #change_time, #change_price, #change_regular_holiday, #change_parking, #change_scale, #change_order, #change_mail_01, #change_mail_02").change(function(){
               var str = $(this).val();
               str = str.replace( /[Ａ-Ｚａ-ｚ０-９－！”＃＄％＆’（）＝＜＞，．？＿［］｛｝＠＾￥：]/g, function(s) {
                   return String.fromCharCode(s.charCodeAt(0) - 65248);
@@ -160,6 +160,18 @@
 
       });
     </script>
+
+    <!-- 空白削除 -->
+    <script>
+      $(function(){
+          $("#change_mail_01, #change_mail_02").change(function(){
+              var str = $(this).val();
+              str = str.replace(/\s+/g, "");
+              $(this).val(str);
+          }).change();
+      });
+    </script>
+
 
     <!-- flashメッセージ -->
     <script>

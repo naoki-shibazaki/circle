@@ -10,4 +10,10 @@ class UserContact < ApplicationRecord
 	NGWORD_REGEX = %r(#{NGWORD.join('|')})
 	validates :message, format: { without: NGWORD_REGEX, message: 'にNGワードが含まれています' }
 
+
+  def email=(value)
+    value = value.strip if value.kind_of?(String)
+    write_attribute(:mail, value)
+  end
+
 end
