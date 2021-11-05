@@ -88,7 +88,7 @@ helper_method :link_count
 
     if admin_user_signed_in? #ログイン判定
       @ng_accounts = User.where(admin_user_id: current_admin_user.id, ng_account: "NG")
-      if @ng_accounts.count == 0
+      if @ng_accounts.count == 0 && current_admin_user.users.count < 5
         @user = User.new
       else
         flash[:notice] = "URLが間違っています"

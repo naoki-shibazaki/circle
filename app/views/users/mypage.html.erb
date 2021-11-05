@@ -21,7 +21,7 @@
             <option value="/users/<%= user.id %>/mypage"><%= user.name %>（<%= user.event.name %>）</option>
           <% end %>
 				<% end %>
-        <% if @ng_accounts.count == 0 %>
+        <% if @ng_accounts.count == 0 && @admin_user.users.count < 5 %>
           <option value="/user/add">＋ サークルを新規追加する</option>
         <% end %>
 			</select>
@@ -226,7 +226,7 @@
 
 			<% end %>
 
-      <% if @ng_accounts.count == 0 %>
+      <% if @ng_accounts.count == 0 && @admin_user.users.count <= 5 %>
 				<%= link_to "/user/add", class: "icon_cont" do %>
 					<div class="">
 						<div class="icon_img">
