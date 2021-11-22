@@ -10,6 +10,9 @@
       </div>
     <% end %>
 
+    <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
+
+
     <%= render "users/parts/user_name", user: @user%>
 
     <% if params[:entry] != "2" && params[:entry] != "3" %>

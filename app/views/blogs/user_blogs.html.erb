@@ -12,6 +12,8 @@
       <%= render "/users/parts/user_profile", user: @user %>
     </div>
 
+    <div class="space_content"><div>
+
     <% if @blogs.any? %>
       <% @blogs.each do |blog| %>
         <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
