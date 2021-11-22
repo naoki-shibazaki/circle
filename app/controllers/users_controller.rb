@@ -240,9 +240,15 @@ helper_method :link_count
   def admin_user_update
     @user = User.find(params[:id])
     @admin_user = @user.admin_user
-    @admin_user.update(admin_user_params)
-    flash[:notice] = '違反者登録完了！'
-    redirect_to "/users/#{@user.id}"
+
+		if admin_user_signed_in?
+			if current_admin_user.id == 1
+        @admin_user.update(admin_user_params)
+        flash[:notice] = '違反者登録完了！'
+        redirect_to "/users/#{@user.id}"
+			end
+		end
+
   end
 
 
