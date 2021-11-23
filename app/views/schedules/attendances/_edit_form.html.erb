@@ -49,7 +49,6 @@
               <!-- 未登録 -->
                 <% if schedule.recruitment_numbers.present? %>
                 <!-- 定員設定あり -->
-
                   <% if schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers && schedule.recruitment_numbers != 0  %>
                   <!-- 満員の場合は非表示 -->
 

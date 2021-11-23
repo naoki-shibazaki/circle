@@ -1,4 +1,4 @@
-<% @matches.each do |matching| %>
+<% @matches.each.with_index(1) do |matching, i| %>
 	<div class="user-profile matching_wrap">
 
 		<%= link_to match_path(matching.id) do %>
@@ -65,5 +65,17 @@
 			</div>
 		<% end %>
 
+      <% if i == 5 || i == 10 || i == 15 %>
+        <div class="list_ad">
+          <%= render "/layouts/ad_square" %>
+        </div>
+      <% end %>
+
+
     </div>
 <% end %>
+
+
+<%= render "/layouts/ad_square" %>
+
+<%= paginate @matches %>

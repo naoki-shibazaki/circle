@@ -5,8 +5,8 @@ before_action :set_matches
 
 
 	def index
-		@matches = Match.all.order(updated_at: "DESC")
-	end	
+		@matches = Match.all.order(updated_at: "DESC").page(params[:page])
+	end
 
 	def new
 		@user = User.find(params[:user_id])
@@ -98,7 +98,7 @@ before_action :set_matches
 		@event = Event.find_by(ruby: params[:ruby])
 		@users = User.where(event_id: @event.id)
 
-		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
+		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC").page(params[:page])
  
 		# パンくず
 		@b2_name = @event.name
@@ -108,7 +108,7 @@ before_action :set_matches
 	def prefecture
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(prefecture_id: @prefecture.id)
-		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
+		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC").page(params[:page])
 
 		# パンくず
 		@b2_name = @prefecture.name
@@ -119,7 +119,7 @@ before_action :set_matches
 		@event = Event.find_by(ruby: params[:ruby])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 		@users = User.where(event_id: @event.id, prefecture_id: @prefecture.id)
-		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC")
+		@matches = Match.where(user_id: @users.map { |user| user.id }).order(updated_at: "DESC").page(params[:page])
 
 		# パンくず
 		@b2_name = @event.name
@@ -132,7 +132,7 @@ private
 	def match_params
 		params.require(:match).permit(
 			:age_group, :member, :level, :recruit, :comment
-   		)
+    )
 	end
 
 	def set_matches
@@ -151,17 +151,14 @@ private
 
 	def ensure_correct_user
 		@match = Match.find(params[:id])
-		
-	   if current_admin_user.id != @match.user.admin_user_id.to_i
-	   		if current_admin_user.id == 1   			
-	   		
-		   	else
-		      flash[:notice] = "権限がありません"
-		      redirect_to matches_path
-
-		    end
-	   end
-	end		
+    if current_admin_user.id != @match.user.admin_user_id.to_i
+      if current_admin_user.id == 1
+      else
+        flash[:notice] = "権限がありません"
+        redirect_to matches_path
+      end
+    end
+	end
 
 
 
