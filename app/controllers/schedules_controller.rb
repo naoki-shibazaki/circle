@@ -145,6 +145,8 @@ def attendance
   @name = Name.new
   @name_schedules = @name.name_schedules.build
 
+  @today = DateTime.yesterday
+
   # ▼@nemesの取得
   @schedule_ids = @schedules.map{|s| s.id}
   @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}

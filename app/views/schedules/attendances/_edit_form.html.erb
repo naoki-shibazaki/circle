@@ -44,12 +44,51 @@
             </div>
             <br>
 
+            <% @schedules.each do |schedule| %>
+              <% if name.name_schedules.find_by(schedule_id: schedule.id).blank? %>
+              <!-- 未登録 -->
+                <% if schedule.recruitment_numbers.present? %>
+                <!-- 定員設定あり -->
+
+                  <% if schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers && schedule.recruitment_numbers != 0  %>
+                  <!-- 満員の場合は非表示 -->
+
+                  <% else %>
+                  <!-- 募集中 -->
+                    <%= f.fields_for :name_schedules, schedule.name_schedules.build do |name_schedule| %>
+                      <%= render "/schedules/attendances/label_day", schedule: schedule %>
+                      <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
+                          :prompt => "選択してください"  %>
+                      <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
+                      <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
+                    <% end %>
+                  <% end %>
+
+                <% else %>
+                <!-- 定員設定なし -->
+                  <%= f.fields_for :name_schedules, schedule.name_schedules.build do |name_schedule| %>
+                    <%= render "/schedules/attendances/label_day", schedule: schedule %>
+                    <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
+                        :prompt => "選択してください"  %>
+                    <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
+                    <%= name_schedule.hidden_field :schedule_id, value: schedule.id %>
+                  <% end %>
+
+                <% end %>
+
+              <% end %>
+            <% end %>
+
+
+
 
             <%= f.fields_for :name_schedules do |name_schedule| %>
 
-              <% if name_schedule.object.schedule.recruitment_numbers.present? %>
-              <!-- 定員設定あり -->
+              <% if name_schedule.object.schedule.day > Time.now.yesterday %>
+              <!-- 今日以降のみ表示 -->
 
+                <% if name_schedule.object.schedule.recruitment_numbers.present? %>
+                <!-- 定員設定あり -->
 
                   <% if name_schedule.object.answer == 1 %>
                   <!-- 参加で回答済み -->
@@ -72,15 +111,18 @@
 
                   <% end %>
 
-              <% else %>
-              <!-- 定員設定なし -->
-                <%= render "/schedules/attendances/label_day", schedule: name_schedule.object.schedule %>
-                <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
-                    :prompt => "選択してください"  %>
-                <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
-                <%= name_schedule.hidden_field :schedule_id, value: name_schedule.object.schedule.id %>
+                <% else %>
+                <!-- 定員設定なし -->
+                  <%= render "/schedules/attendances/label_day", schedule: name_schedule.object.schedule %>
+                  <%= name_schedule.select :answer, [ ['◯ 参加', 1], ['× 不参加', 0]],
+                      :prompt => "選択してください"  %>
+                  <%= name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント" %>
+                  <%= name_schedule.hidden_field :schedule_id, value: name_schedule.object.schedule.id %>
 
-              <% end %>
+                <% end %>
+
+              <% end %><!-- 今日以降 -->
+
 
             <% end %><!-- 子 -->
 
