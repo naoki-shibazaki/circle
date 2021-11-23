@@ -1,5 +1,6 @@
 <% if @schedules.present? %>
   <tbody>
+    <!-- ▼日程の行 表示▼ -->
     <% @schedules.each.with_index(1) do |schedule, i| %>
       <tr>
         <td class="day fixed">
@@ -26,6 +27,7 @@
             <% end %>
           <% end %>
         </td>
+
         <td class="status">
           <% if params[:archive] != "1" %>
 
@@ -49,8 +51,9 @@
             <span class="set mark_gray">開催終了</span>
           <% end %>
 
-        </td>
+        </td><!-- ▲日程の行 表示▼ -->
 
+        <!-- ▼名前＋ステータス 表示▼ -->
         <% @names.each do |name| %>
           <% if name.name_schedules.find_by(schedule_id: schedule.id).present? %>
               <% if name.name_schedules.find_by(schedule_id: schedule.id).answer == 1 %>
@@ -86,6 +89,7 @@
             <td></td>
           <% end %>
         <% end %>
+        <!-- ▲名前＋ステータス 表示▲ -->
 
 
 

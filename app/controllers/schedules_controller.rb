@@ -144,9 +144,17 @@ def attendance
   end
   @name = Name.new
   @name_schedules = @name.name_schedules.build
+
+  # ▼@nemesの取得
   @schedule_ids = @schedules.map{|s| s.id}
   @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}
   @names = Name.where(id: @name_ids).order(updated_at: :desc)
+
+  # ▼テスト
+  # @names = Name.includes(:schedules).where(schedule_id: @schedule_ids).order(updated_at: :desc)
+  # @names = Name.includes(:schedules).all.order(updated_at: :desc)
+
+
 end
 
 def attendance_create
