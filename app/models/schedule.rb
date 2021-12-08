@@ -4,4 +4,7 @@ class Schedule < ApplicationRecord
   has_many :names, through: :name_schedules
   validates :day, presence: true, date: true
   validates :venue, presence: true
+
+	paginates_per 5
+
 end

@@ -1,4 +1,4 @@
-<% if @schedules.where.not(id: @schedule.id).present? %>
+<% if @schedules.where.not(id: @schedule.id).present? && params[:page] == nil %>
 
   <div class="schedule_list_wrap">
 
@@ -68,6 +68,10 @@
 
 <% end %>
 
+<% if params[:page] == nil %>
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+<% end %>
 
 
 
@@ -126,5 +130,13 @@
       <% end %>
 
   </div>
+
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+
+
+  <%= paginate @past_schedules %>
+
 
 <% end %>

@@ -105,6 +105,20 @@
               <div class="admin_edit"><%= link_to("編集", edit_user_path, data: {"turbolinks" => false}) %></div>
               <div class="admin_delete"><%= link_to( "削除", user_path, method: :delete, data: {confirm: "このサークルを削除しますか？"}) %></div>
             </div>
+
+          <% if @admin_user.users.count > 1 %>
+            <div class="admin_user_list">
+              <% @admin_user.users.each do |user| %>
+                <ul>
+                  <% if user.id != @user.id %>
+                    <li>● <%= link_to(user.name,"/users/#{user.id}") %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          <% end %>
+
+
           <% end %>
         <% end %>
         <div class="content_01"></div>

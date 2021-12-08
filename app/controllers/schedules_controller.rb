@@ -140,7 +140,7 @@ before_action :set_attendances, {only: [:secret, :attendance, :attendance_create
 
 def attendance
   if params[:archive] == "1"
-    @schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).limit(10).order(:day => :desc)
+    @schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).limit(5).order(:day => :desc)
   end
   @name = Name.new
   @name_schedules = @name.name_schedules.build
@@ -201,7 +201,7 @@ end
 		def set_schedules
 			@user = User.find(params[:user_id])
 			@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
-			@past_schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).order(:day => :desc)
+			@past_schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).order(:day => :desc).page(params[:page])
 			@data = AdminUser.find_by(id: params[:user_id])
 			@prefectures = Prefecture.all
 			@schedule_month = 0
