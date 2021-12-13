@@ -26,5 +26,4 @@ module Circlebook
       end
     end
 
-
 end
