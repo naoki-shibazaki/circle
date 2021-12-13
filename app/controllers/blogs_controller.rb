@@ -39,9 +39,7 @@ class BlogsController < ApplicationController
 		@blog.save
 
 		if @blog.update(blog_params)
-
-			@user.last_post = Time.now
-			@user.user_time = Time.now
+      last_post(@user)
       cb_point(@user)
       @user.save
 
@@ -125,6 +123,8 @@ class BlogsController < ApplicationController
 	def destroy
     @blog = Blog.find_by(id: params[:id])
     @blog.destroy
+    cb_point(@blog.user)
+    @blog.user.save
 
 		flash[:notice] = 'ブログ削除完了'
 		redirect_to("/")
@@ -199,9 +199,7 @@ class BlogsController < ApplicationController
   @categories = Category.all.order(:id => :asc)
   @events = Event.all.where.not(id: 0).order(:order => :asc)
   @prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
-  @x = "nil"
-  @category = "nil"
-  @contact_judge = "_b"
+
 
 		if admin_user_signed_in?
 			@admin_user = current_admin_user

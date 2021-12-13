@@ -15,4 +15,16 @@ module Circlebook
       end
     end
 
+    # ソート用の日付更新
+    def last_post(user)
+			@user.user_time = Time.now
+      if user.admin_user.check.present? && user.admin_user.check != 0
+        # 違反者
+        @user.last_post = Time.now.ago(3.years)
+      else
+        @user.last_post = Time.now
+      end
+    end
+
+
 end

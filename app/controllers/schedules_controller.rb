@@ -1,5 +1,7 @@
 class SchedulesController < ApplicationController
 
+include Circlebook
+
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
 before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
 before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
@@ -33,8 +35,8 @@ before_action :set_attendances, {only: [:secret, :attendance, :attendance_create
       @schedule.date = Time.parse(@schedule.day).strftime("%Y年%-m月%-d日(#{%w(日曜日 月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)[Time.parse(@schedule.day).wday]})")
       @schedule.save
 
-      @user.user_time = Time.now
-      @user.last_post = Time.now
+      last_post(@user)
+      cb_point(@user)
       @user.save
 
       flash[:notice] = "追加しました！"
@@ -131,7 +133,10 @@ before_action :set_attendances, {only: [:secret, :attendance, :attendance_create
 		@schedule = @user.schedules.find(params[:id])
 		@schedule.destroy
 
-		flash[:notice] = "削除しました"
+    cb_point(@user)
+    @user.save
+
+    flash[:notice] = "削除しました"
 		redirect_to user_schedules_path
 	end
 

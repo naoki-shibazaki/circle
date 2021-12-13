@@ -8,7 +8,6 @@
 	<div class="mypage_wrap">
 
 	<div class="p_t">マイページ</div>
-  <%= @user.point %><br>
 
   <%= render "/users/alert" %>
 
@@ -26,10 +25,6 @@
         <% end %>
 			</select>
 		</div>
-
-
-  <%= render "/layouts/ads/b-books_users", user: @user %>
-
 
   <%= render "/users/analytics" %>
 

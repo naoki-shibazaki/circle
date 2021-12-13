@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
 
+  include Circlebook
 	before_action :set_user
 
 
@@ -55,7 +56,8 @@ class QuestionsController < ApplicationController
 					if current_admin_user.id == @user.admin_user_id
 						@user.last_post = Time.now
 						@user.user_time = Time.now
-						@user.save
+            cb_point(@user)
+            @user.save
 					end
 
 				else
@@ -90,8 +92,8 @@ class QuestionsController < ApplicationController
 
 		if @question.update(question_params)
 
-			@user.last_post = Time.now
-			@user.user_time = Time.now
+      last_post(@user)
+      cb_point(@user)
 			@user.save
 
 			flash[:notice] = '更新しました！'
@@ -121,6 +123,9 @@ class QuestionsController < ApplicationController
 	def destroy
 		@question = @user.questions.find(params[:id])
 		@question.destroy
+
+    cb_point(@user)
+    @user.save
 
 		flash[:notice] = "削除しました"
 		redirect_to user_questions_path

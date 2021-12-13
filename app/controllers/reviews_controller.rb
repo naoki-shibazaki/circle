@@ -27,9 +27,11 @@ class ReviewsController < ApplicationController
 		star_count = @user.reviews.count
 		if star_count == 0 && star_sum == 0
 			@user.review_score =  0
+      cb_point(@user)
       @user.save
 		else
 			@user.review_score =  (star_sum / star_count.to_f)*5
+      cb_point(@user)
       @user.save
 		end
 
@@ -82,9 +84,11 @@ class ReviewsController < ApplicationController
 		star_count = @user.reviews.count
 		if star_count == 0 && star_sum == 0
 			@user.review_score =  0
+      cb_point(@user)
       @user.save
 		else
 			@user.review_score =  (star_sum / star_count.to_f)*5
+      cb_point(@user)
       @user.save
 		end
 
