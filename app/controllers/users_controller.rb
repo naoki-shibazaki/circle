@@ -106,6 +106,7 @@ helper_method :link_count
 		@user.admin_user_id = current_admin_user.id
 		@user.last_post = Time.now.ago(3.days)
 		@user.user_time = Time.now
+    @user.switch = "募集中"
 
 		if @user.save
 
@@ -256,6 +257,9 @@ helper_method :link_count
 	def update
 		@user = User.find(params[:id])
 		@user.user_time = Time.now if current_admin_user.id != 1
+    if @user.switch.nil?
+      @user.switch = "募集中"
+    end
 
 		if @user.update(user_params)
 

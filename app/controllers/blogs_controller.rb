@@ -1,5 +1,7 @@
 class BlogsController < ApplicationController
 
+  include Circlebook
+
 	before_action :set_user, only: [:show, :edit, :update]
 	before_action :ensure_correct_user, {only: [:edit, :update]}
 	before_action :set_blog
@@ -40,6 +42,7 @@ class BlogsController < ApplicationController
 
 			@user.last_post = Time.now
 			@user.user_time = Time.now
+      cb_point(@user)
       @user.save
 
 			flash[:notice] = 'ブログ投稿完了！'
