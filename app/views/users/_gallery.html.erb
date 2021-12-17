@@ -92,5 +92,10 @@
 
 	</div>
 
+    <% if @gallery_count > 0 %>
+        <div class="gallery_link"><%= link_to ">> 写真をもっと見る", "/users/#{@user.id}/gallery" %></div>
+    <% end %>
+
+
 <% end %>
 

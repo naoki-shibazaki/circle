@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 include ApplicationHelper
+include Circlebook
 
 before_action :ensure_correct_user, {only: [:mypage, :edit, :update, :edit2, :update2, :update_contact, :account_del]}
 before_action :set_users
@@ -151,6 +152,7 @@ helper_method :link_count
 
 	def show
 		@user = User.find(params[:id])
+    gallery_counts(@user)
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: @user.admin_user_id)
@@ -343,6 +345,7 @@ helper_method :link_count
 
 	def mypage
 		@user = User.find(params[:id])
+    gallery_counts(@user)
     @questions_current = Question.where(user_id: @user.id)
     @questions_current_nil = Question.where(user_id: @user.id).where(answer: nil)
     @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday)

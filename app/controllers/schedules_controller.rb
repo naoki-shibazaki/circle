@@ -205,6 +205,7 @@ end
 	private
 		def set_schedules
 			@user = User.find(params[:user_id])
+      gallery_counts(@user)
 			@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 			@past_schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).order(:day => :desc).page(params[:page])
 			@data = AdminUser.find_by(id: params[:user_id])
@@ -219,6 +220,7 @@ end
 
     def set_attendances
       @user = User.find_by(unique_id: params[:unique_id])
+      gallery_counts(@user)
 			@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 			@past_schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).order(:day => :desc)
     end

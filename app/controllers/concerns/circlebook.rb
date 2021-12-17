@@ -26,4 +26,18 @@ module Circlebook
       end
     end
 
+    # ギャラリー数のカウント
+    def gallery_counts(user)
+      @gallery_count = 0
+      @user.blogs.map { |blog|
+        @gallery_count += 1 if blog.image_01.present?
+        @gallery_count += 1 if blog.image_02.present?
+        @gallery_count += 1 if blog.image_03.present?
+        @gallery_count += 1 if blog.image_04.present?
+      }
+
+    end
+
+
+
 end

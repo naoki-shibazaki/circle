@@ -107,13 +107,6 @@
           <li class="none_page"><span>ブログ</span></li>
         <% end %>
 
-        <% @gallery_count = 0 %>
-        <% @user.blogs.each do |blog| %>
-          <% @gallery_count += 1 if blog.image_01.present? %>
-          <% @gallery_count += 1 if blog.image_02.present? %>
-          <% @gallery_count += 1 if blog.image_03.present? %>
-          <% @gallery_count += 1 if blog.image_04.present? %>
-        <% end %>
 
         <% if @path.is('blogs#gallery') %>
           <li class="current_page">

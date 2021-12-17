@@ -1240,7 +1240,7 @@ opacity: 1; /* 要素を表示する */
 .profile-content .content_08 a,
 .qa_answer a,
 .matching_url a{
-    color: #3ecdc6;
+    color: #337ab7;
 }
 
 .profile-content .content_08,
@@ -6661,11 +6661,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 .flex_list{
   .reviews_count{
     border-bottom: 1px solid;
-    color: #3ecdc6;
+    color: #337ab7;
     font-weight: 700;
     font-size: 16px;
     a{
-      color: #3ecdc6;
+      color: #337ab7;
     }
   }
   .set{
@@ -8151,6 +8151,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   margin-top: 30px;
 }
 
+.gallery_link{
+  text-align: right;
+  a {
+    color: #337ab7;
+    text-decoration: underline;
+  }
+}
 
 
 
