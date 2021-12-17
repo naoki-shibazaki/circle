@@ -65,7 +65,7 @@ class User < ApplicationRecord
 	# User用
   scope :ng_account, -> {where(ng_account: nil).or(User.where(ng_account: "OK"))}
   scope :user_sort_1, -> {ng_account.order(switch: :asc, last_post: :desc).where.not(switch: "") }
-  scope :user_sort_2, -> {ng_account.order(switch: :asc, cb_point: :desc).where.not(switch: "") }
+  scope :user_sort_2, -> {ng_account.order(switch: :asc, cb_point: :desc, last_post: :desc).where.not(switch: "") }
   scope :user_sort_3, -> {ng_account.order(switch: :asc, created_at: :desc).where.not(switch: "") }
   scope :pref, -> { includes(:prefecture).order("prefectures.sort asc") }
   scope :user, -> (user_id){ where(id: user_id) }

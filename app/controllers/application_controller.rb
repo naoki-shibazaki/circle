@@ -117,7 +117,7 @@ class ApplicationController < ActionController::Base
 
   end
 
-  # amp
+  # amp（残しておく）
   def set_format
     Thread.current[:format] = request[:format]
   end
