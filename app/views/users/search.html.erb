@@ -3,26 +3,26 @@
   <div class="container">
     <img data-src="/images/search.jpg" class="lazyload imege_title search_img" >
     <h1 class="users-heading search_title">「<%= params[:q].truncate(18) %>」の検索結果</h1>
-	    <div class="users-txt">
-		        <% if admin_user_signed_in?  %>
-		        	<%= link_to("活動ブログ", new_user_blog_path(@user) ) %>を投稿すると<br>
-		        	あなたの掲載順位が上がります！
-		        
-		        <% else %>
-		    		あなたにピッタリの<br>
-		    		サークルやチーム、団体が見つかる！！
-		        <% end %>
-		</div>
+      <div class="users-txt">
+        <% if admin_user_signed_in?  %>
+          <%= link_to("活動ブログ", new_user_blog_path(@user) ) %>を投稿すると<br>
+          あなたの掲載順位が上がります！
+
+          <% else %>
+          あなたにピッタリの<br>
+          サークルやチーム、団体が見つかる！！
+          <% end %>
+      </div>
 
 	<% if @users.count != 0 %>
 		<div class="search_area">
 			<%= render "/users/search.html.erb" %>
 		</div>
 
-		    <%= render "users_list.html.erb" %>
-		    
+    <%= render "users_list.html.erb" %>
+
 	<% else @users.count == 0 %>
-			<%= render "/users/no_hit.html.erb" %>	
+			<%= render "/users/no_hit.html.erb" %>
 
 	<% end %>
 

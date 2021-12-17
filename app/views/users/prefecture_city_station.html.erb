@@ -5,40 +5,6 @@
 
 <%= render "users/parts/local_business_user_list" %>
 
-
-<% if request.format == :amp %>
-  <div class="main">
-    <div class="container">
-      <%= render "/layouts/breadcrumb" %>
-
-      <div class="e_header_wrap">
-        <amp-img src="/images/top.png"
-          width="450px"
-          height="130px"
-          layout="responsive"
-          object-fit="cover">
-        </amp-img>
-          <div class="link_txt">
-            <h1 class="e_header_title">
-              <%= @station.name %>周辺で活動している<br>
-              メンバー募集中の<br>
-              サークルやチーム、クラブ、団体<br>
-            </h1>
-          </div>
-      </div>
-
-      <%= render "/users/amp_search.html.erb" %>
-
-      <% if @users.count != 0 %>
-        <%= render "/users/amp_users_list.html.erb" %>
-      <% else @users.count == 0 %>
-        <%= render "/users/no_hit.html.erb" %>
-      <% end %>
-
-    </div>
-  </div>
-
-<% else %>
   <div class="main users-index">
     <div class="container">
     <%= render "/layouts/breadcrumb" %>
@@ -67,4 +33,3 @@
 
     </div>
   </div>
-<% end %>

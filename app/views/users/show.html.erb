@@ -35,10 +35,6 @@
 <%= render "users/parts/local_business_show", user: @user %>
 
 
-
-<% if request.format == :amp %>
-  <%= render "/users/amp_show" %>
-<% else %>
   <div class="user_main user-show">
     <div class="container">
 
@@ -408,4 +404,3 @@
 
     </div>
   </div>
-<% end %>

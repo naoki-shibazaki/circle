@@ -1,6 +1,4 @@
-<% if request.format == :amp %>
-  <%= render "/layouts/amp" %>
-<% else %>
+
   <!DOCTYPE html>
   <html>
     <head>
@@ -20,12 +18,7 @@
       <%= csp_meta_tag %>
       <%= display_meta_tags(default_meta_tags) %>
 
-      <% if amp_ready? %>
-        <% amp_uri = URI.parse(request.url) %>
-        <% amp_uri.path = "#{amp_uri.path}.amp" %>
-        <% amp_uri.query = h(amp_uri.query) if amp_uri.query.present? %>
-        <link rel="amphtml" href = "<%= amp_uri.to_s.html_safe %>"/>
-      <% end %>
+
 
 
       <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -185,7 +178,7 @@
     $('#datepicker').datepicker({
         dateFormat: 'yy-mm-dd', //日付表示
         minDate: 0, //過去の日付選択不可
-        showOtherMonths: true,　//次月表示
+        showOtherMonths: true,//次月表示
         selectOtherMonths: true, //次月選択可能
         changeMonth: true, //月選択
         firstDay: 1, // 月曜始まり
@@ -203,10 +196,10 @@
       //スクロールしてページトップから***に達したらボタンを表示
       $(window).scroll(function () {
           if ($(this).scrollTop() > 200) {
-    　　　　　　　//フェードインで表示
+            //フェードインで表示
               topBtn.fadeIn();
           } else {
-    　　　　　　　//フェードアウトで非表示
+            //フェードアウトで非表示
               topBtn.fadeOut();
           }
       });
@@ -223,7 +216,6 @@
     </body>
 
   </html>
-<% end %>
 
 
 

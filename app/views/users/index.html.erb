@@ -1,36 +1,5 @@
 <% set_meta_tags title: "【#{@time.strftime("%Y")}年版】47都道府県のサークルやチーム、団体一覧｜メンバー募集サイト" %>
 
-<% if request.format == :amp %>
-  <div class="main">
-    <div class="container">
-      <amp-img class="imege_title"
-        src="/images/top.png"
-        width="450px"
-        height="130px"
-        layout="responsive"
-        object-fit="cover">
-      </amp-img>
-    <h1 class="users-heading">
-      <amp-img class="img_logo_title"
-        src="/images/logo.png"
-        alt="サークルブック"
-        width="170"
-        height="35"
-        object-fit="cover">
-      </amp-img>
-    </h1>
-      <div class="users-txt">
-        あなたにピッタリの<br>
-        サークルやチーム、団体が見つかる！！
-      </div>
-
-      <%= render "/users/amp_search.html.erb" %>
-      <%= render "/users/amp_users_list.html.erb" %>
-
-    </div>
-  </div>
-
-<% else %>
   <div class="main users-index">
     <div class="container">
       <img data-src="/images/top.png" class="lazyload imege_title" >
@@ -54,7 +23,6 @@
 
     </div>
   </div>
-<% end %>
 
 
 

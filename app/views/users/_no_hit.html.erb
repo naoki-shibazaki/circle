@@ -1,25 +1,4 @@
-<% if request.format == :amp %>
 
-  <div class="no_hit_wrap">
-
-    <amp-img class="imege_sorry"
-      src="/images/sorry.png"
-      width="150px"
-      height="150px"
-      layout="responsive">
-    </amp-img>
-
-    <%= link_to(root_path) do %>
-      <div class="no_hit_top">トップページに戻る</div>
-    <% end %>
-
-    <%= link_to(new_admin_user_registration_path) do %>
-      <div class="no_hit_new">新しくサークルを登録する</div>
-    <% end %>
-
-  </div>
-
-<% else %>
 
   <% if @path.is('users#index', 'users#top') %>
   <% else %>
@@ -40,7 +19,6 @@
 
   </div>
 
-<% end %>
 
 <%= render "/layouts/ad_square" %>
 <div class="ad_space"></div>
