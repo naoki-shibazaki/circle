@@ -46,7 +46,7 @@
                 <h2 class="user_name"><%= user.name.truncate(24) %></h2>
                   <% if admin_user_signed_in? %>
                     <% if current_admin_user.id == 1 %>
-                      【PV：<%= user.impressionist_count %>／CP：<%= user.point %>】
+                      【PV：<%= user.impressionist_count %>／CP：<%= user.cb_point %>】
                     <% end %>
                   <% end %>
               </div>

@@ -104,8 +104,8 @@ helper_method :link_count
 	def create
 		@user = User.new(user_params)
 		@user.admin_user_id = current_admin_user.id
-		@user.last_post = Time.now.ago(3.days)
-		@user.user_time = Time.now
+		@user.last_post = Time.zone.now.ago(3.days)
+		@user.user_time = Time.zone.now
     @user.switch = "募集中"
 
 		if @user.save
@@ -120,7 +120,7 @@ helper_method :link_count
 			@user.save
 
 			if @user.switch == "受付終了"
-				@user.last_post = Time.now.ago(60.days)
+				@user.last_post = Time.zone.now.ago(60.days)
 				@user.save
 			end
 
@@ -256,7 +256,7 @@ helper_method :link_count
 
 	def update
 		@user = User.find(params[:id])
-		@user.user_time = Time.now if current_admin_user.id != 1
+		@user.user_time = Time.zone.now if current_admin_user.id != 1
     if @user.switch.nil?
       @user.switch = "募集中"
     end
@@ -270,7 +270,7 @@ helper_method :link_count
 
 
 			if @user.switch == "受付終了"
-				@user.last_post = Time.now.ago(60.days)
+				@user.last_post = Time.zone.now.ago(60.days)
 				@user.save
 			end
 
