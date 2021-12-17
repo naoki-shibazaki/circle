@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_024111) do
+ActiveRecord::Schema.define(version: 2021_12_17_034518) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -440,6 +440,7 @@ ActiveRecord::Schema.define(version: 2021_12_17_024111) do
     t.string "account_block"
     t.string "contact_del"
     t.text "comment"
+    t.text "violation"
     t.index ["user_id"], name: "index_user_contacts_on_user_id"
   end
 

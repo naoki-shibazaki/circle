@@ -92,6 +92,7 @@ class UserContactsController < ApplicationController
 
   def respond_check
     if UserContact.find_by(random_id: params[:random_id])
+      @user = User.find_by(id: params[:user_id])
       @user_contact = UserContact.find_by(random_id: params[:random_id])
 
       if @user.id != @user_contact.user_id
@@ -107,6 +108,7 @@ class UserContactsController < ApplicationController
 
   def check_reaction
     if UserContact.find_by(random_id: params[:random_id])
+      @user = User.find_by(id: params[:user_id])
       @user_contact = UserContact.find_by(random_id: params[:random_id])
 
       if @user.id != @user_contact.user_id
@@ -120,16 +122,47 @@ class UserContactsController < ApplicationController
     end
   end
 
+
+  def check_violation
+    if UserContact.find_by(random_id: params[:random_id])
+      @user = User.find_by(id: params[:user_id])
+      @user_contact = UserContact.find_by(random_id: params[:random_id])
+
+      if @user.id != @user_contact.user_id
+        flash[:notice] = "URLが間違っています"
+        redirect_to user_path(@user.id)
+      end
+
+    else
+      flash[:notice] = "URLが間違っています"
+			redirect_to user_path(@user.id)
+    end
+  end
+
+
   def update
     @user_contact = UserContact.find_by(id: params[:id])
 
-		if @user_contact.update(user_contact_params)
-			flash[:notice] = 'ご報告ありがとうございます！'
-			redirect_to users_path
-		else
-      flash[:notice] = 'エラーです'
-      redirect_to "/users/#{@user.id}/respond_check/#{@user_contact.random_id}"
-		end
+    if @user_contact.violation.present?
+      # 違反報告
+      if @user_contact.update(user_contact_params)
+        ViolationMailer.send_violation(@user, @user_contact).deliver
+        flash[:notice] = 'ご報告ありがとうございます！'
+        redirect_to users_path
+      else
+        flash[:notice] = 'エラーです'
+        redirect_to users_path
+      end
+    else
+      # 返信なしの報告
+      if @user_contact.update(user_contact_params)
+        flash[:notice] = 'ご報告ありがとうございます！'
+        redirect_to users_path
+      else
+        flash[:notice] = 'エラーです'
+        redirect_to users_path
+      end
+    end
 
   end
 
@@ -226,7 +259,7 @@ class UserContactsController < ApplicationController
 
 private
 	def user_contact_params
-		params.require(:user_contact).permit(:mail, :mail_confirmation, :name, :message, :entry, :respond_check, :random_id, :ip_address, :account_block, :contact_del, :comment)
+		params.require(:user_contact).permit(:mail, :mail_confirmation, :name, :message, :entry, :respond_check, :random_id, :ip_address, :account_block, :contact_del, :comment, :violation)
 	end
 
 	def set_users

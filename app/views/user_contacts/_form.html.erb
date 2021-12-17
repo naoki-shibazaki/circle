@@ -2,6 +2,8 @@
 
     <div class="p_t"><%= @user_contact.entry %>のお問い合わせ</div>
 
+    <%= render "users/parts/user_name", user: @user%>
+
     <% if @respond_check_count >= 1%>
       <div class="attention_content">
         <div class="attention_title">＜注意＞</div>
@@ -11,9 +13,6 @@
     <% end %>
 
     <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
-
-
-    <%= render "users/parts/user_name", user: @user%>
 
     <% if params[:entry] != "2" && params[:entry] != "3" %>
       <% if admin_user_signed_in? %>
