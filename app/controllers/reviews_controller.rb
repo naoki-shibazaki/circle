@@ -42,7 +42,7 @@ class ReviewsController < ApplicationController
 		if @review.save
 			# レビュー高評価
 			if @review.review == 1
-				@user.last_post = Time.now
+				@user.last_post = Time.zone.now
 				@user.save
 				ReviewMailer.send_review(@user).deliver
       elsif @review.review == 0
