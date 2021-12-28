@@ -3,112 +3,6 @@
 
   <div class="s_space"></div>
 
-  <% if @user.cb_point > 0%>
-
-		<div class="analytics_wrap">
-				<div class="analytics_title"><i class="fa fa-pinterest "></i> サクブポイント<span class="right">累計：<%= @user.cb_point.to_f.round(1) %> P</span></div>
-
-          <div class="cp_box">
-            <input id="cp01" type="checkbox">
-            <label for="cp01"></label>
-            <div class="cp_container">
-
-              <div class="s_space"></div>
-              <div class="analytics_contents">
-                <table>
-                  <tr>
-                    <th></th>
-                    <td class="txt_center">1件</td>
-                    <td class="txt_center">合計</td>
-                  </tr>
-                  <tr>
-                    <th><%= link_to user_schedules_path(@user) do %>スケジュール登録 <i class="fa fa-external-link "></i><% end %></th>
-                    <td>0.1 P</td>
-                    <td><%= @blog_point.to_f.round(1) %> P</td>
-                  </tr>
-
-                  <tr>
-                    <th><%= link_to new_user_blog_path(@user) do %>ブログ投稿 <i class="fa fa-external-link "></i><% end %></th>
-                    <td>0.5 P</td>
-                    <td><%= @schedule_point.to_f.round(1) %> P</td>
-                  </tr>
-
-                  <tr>
-                    <th><%= link_to user_questions_path(@user) do %>Ｑ＆Ａの回答 <i class="fa fa-external-link "></i><% end %></th>
-                    <td>1.0 P</td>
-                    <td><%= @qa_point.to_f.round(1) %> P</td>
-                  </tr>
-
-                  <tr>
-                    <th><%= link_to user_reviews_path(@user) do %>高評価の口コミ <i class="fa fa-external-link "></i><% end %></th>
-                    <td>3.0 P</td>
-                    <td><%= @review_point.to_f.round(1) %> P</td>
-                  </tr>
-
-                </table>
-              </div>
-
-              <div class="cp_txt">
-                サクブ（サークルブック）ポイントを貯めると<br>
-                表示順位が上がりやすくなります！<br>
-                <br>
-                スケジュール登録やブログ投稿などをすると<br>
-                件数によってポイントが付与されます！
-              </div>
-
-            </div>
-          </div>
-
-		</div>
-
-  <% end %>
-
-
-
-<% if @user.impressionist_count > 1 %>
-
-		<div class="analytics_wrap">
-				<div class="analytics_title"><i class="fa fa-bar-chart-o "></i> アクセス数</div>
-				<div class="analytics_contents">
-					<table>
-						<tr>
-							<th>サークルページを見た人</th>
-							<td><%= @user.impressionist_count %> 人</td>
-						</tr>
-						<% if @blogs.any? %>
-							<% @blogs.each do |blog| %>
-								<% @blogs_imp = @blogs_imp + blog.impressions_count %>
-							<% end %>
-							<% if @blogs_imp > 1 || current_admin_user.id == 1 %>
-							<tr>
-								<th>活動ブログを見た人</th>
-								<td><%= @blogs_imp %> 人</td>
-							</tr>
-							<% end %>
-						<% end %>
-
-            <% if @user_contacts.count >= 1 %>
-              <tr>
-                <th>お問い合わせ件数（メール）</th>
-                <td><%= @user_contacts.count %> 件</td>
-              </tr>
-              <tr>
-                <th>
-                  <div class="analytics_txt">
-                    <%= link_to "/users/#{@user.id}/contact_list" do %>>> お問い合わせ管理ページ<% end %>
-                  </div>
-                </th>
-                <td></td>
-              </tr>
-            <% end %>
-
-					</table>
-				</div>
-		</div>
-
-  <% end %>
-
-
     <% if @user.created_at > Time.now.ago(7.days)  %>
 
       <% if @user.pic_profile.blank? || @user.pic_header.blank? %><!-- プロフィール画像 -->
@@ -160,6 +54,121 @@
       <% end %>
 
     <% end %>
+
+
+
+  <% if @user.impressionist_count > 1 %>
+
+		<div class="analytics_wrap">
+				<div class="analytics_title"><i class="fa fa-bar-chart-o "></i> アクセス数</div>
+				<div class="analytics_contents">
+					<table>
+						<tr>
+							<th>サークルページを見た人</th>
+							<td><%= @user.impressionist_count %> 人</td>
+						</tr>
+						<% if @blogs.any? %>
+							<% @blogs.each do |blog| %>
+								<% @blogs_imp = @blogs_imp + blog.impressions_count %>
+							<% end %>
+							<% if @blogs_imp > 1 || current_admin_user.id == 1 %>
+							<tr>
+								<th>活動ブログを見た人</th>
+								<td><%= @blogs_imp %> 人</td>
+							</tr>
+							<% end %>
+						<% end %>
+
+            <% if @user_contacts.count >= 1 %>
+              <tr>
+                <th>お問い合わせ件数（メール）</th>
+                <td><%= @user_contacts.count %> 件</td>
+              </tr>
+              <tr>
+                <th>
+                  <div class="analytics_txt">
+                    <%= link_to "/users/#{@user.id}/contact_list" do %>>> お問い合わせ管理ページ<% end %>
+                  </div>
+                </th>
+                <td></td>
+              </tr>
+            <% end %>
+
+					</table>
+				</div>
+		</div>
+
+  <% end %>
+
+
+
+
+  <% if @user.cb_point > 0%>
+
+		<div class="analytics_wrap">
+				<div class="analytics_title"><i class="fa fa-pinterest "></i> サクブポイント<span class="right">累計：<%= @user.cb_point.to_f.round(1) %> P</span></div>
+
+          <div class="cp_box">
+            <input id="cp01" type="checkbox">
+            <label for="cp01"></label>
+            <div class="cp_container">
+
+              <div class="s_space"></div>
+              <div class="analytics_contents">
+                <table>
+                  <tr>
+                    <th></th>
+                    <td class="txt_center">1件</td>
+                    <td class="txt_center">合計</td>
+                  </tr>
+                  <tr>
+                    <th><%= link_to user_schedules_path(@user) do %>スケジュール登録 <i class="fa fa-external-link "></i><% end %></th>
+                    <td>0.1 P</td>
+                    <td><%= @blog_point.to_f.round(1) %> P</td>
+                  </tr>
+
+                  <tr>
+                    <th><%= link_to new_user_blog_path(@user) do %>ブログ投稿 <i class="fa fa-external-link "></i><% end %></th>
+                    <td>0.2 P</td>
+                    <td><%= @schedule_point.to_f.round(1) %> P</td>
+                  </tr>
+
+                  <tr>
+                    <th><%= link_to user_questions_path(@user) do %>Ｑ＆Ａの回答 <i class="fa fa-external-link "></i><% end %></th>
+                    <td>1.0 P</td>
+                    <td><%= @qa_point.to_f.round(1) %> P</td>
+                  </tr>
+
+                  <tr>
+                    <th><%= link_to user_reviews_path(@user) do %>高評価の口コミ <i class="fa fa-external-link "></i><% end %></th>
+                    <td>3.0 P</td>
+                    <td><%= @review_point.to_f.round(1) %> P</td>
+                  </tr>
+
+                </table>
+              </div>
+
+              <div class="cp_txt">
+                サクブ（サークルブック）ポイントを貯めると<br>
+                表示順位が上がりやすくなります！<br>
+                <br>
+                スケジュール登録やブログ投稿などをすると<br>
+                件数によってポイントが付与されます！
+              </div>
+
+            </div>
+          </div>
+
+		</div>
+
+  <% end %>
+
+
+
+
+
+
+
 
 
 
