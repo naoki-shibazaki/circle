@@ -1,6 +1,20 @@
 <% if admin_user_signed_in? %>
 	<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
 
+    <% if @respond_check_count > 0 %>
+      <div class="attention_content">
+        <span class="attention_count"><%= @respond_check_count %>人</span>の応募者が、
+        <%= @user.name %> さんから<br>
+        メールの返信がなかったと言っています。
+
+        <div class="analytics_txt">
+          <%= link_to "/users/#{@user.id}/contact_list" do %>>> お問い合わせ内容の確認<% end %>
+        </div>
+
+      </div>
+    <% end %>
+
+
   <div class="s_space"></div>
 
     <% if @user.created_at > Time.now.ago(7.days)  %>
@@ -144,6 +158,14 @@
                     <td>3.0 P</td>
                     <td><%= @review_point.to_f.round(1) %> P</td>
                   </tr>
+
+                  <% if @respond_point.to_f > 0 %>
+                    <tr>
+                      <th><%= link_to "/users/#{@user.id}/contact_list" do %>問い合わせ未返信 <i class="fa fa-external-link "></i><% end %></th>
+                      <td>-10.0 P</td>
+                      <td>-<%= @respond_point.to_f.round(1) %> P</td>
+                    </tr>
+                  <% end %>
 
                 </table>
               </div>

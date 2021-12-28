@@ -7,11 +7,12 @@ module Circlebook
         # 違反者
         user.cb_point = -100
       else
-        schedule_point = user.schedules.count * 0.1
-        blog_point = user.blogs.count * 0.2
-        qa_point = Question.where(user_id: user.id).where.not(answer: nil).count * 1
-        review_point = Review.where(user_id: user.id, review: 1).count * 3
-        user.cb_point = blog_point + schedule_point + qa_point + review_point
+        @schedule_point = user.schedules.count * 0.1
+        @blog_point = user.blogs.count * 0.2
+        @qa_point = Question.where(user_id: user.id).where.not(answer: nil).count * 1
+        @review_point = Review.where(user_id: user.id, review: 1).count * 3
+        @respond_point = UserContact.where(user_id: user.id, respond_check: "NG").count * 10
+        user.cb_point = @blog_point + @schedule_point + @qa_point + @review_point - @respond_point
       end
     end
 

@@ -1,4 +1,6 @@
 class UserContactsController < ApplicationController
+  include Circlebook
+
   before_action :set_users, {except: [:account_block, :contact_list]}
 
   def new
@@ -173,6 +175,7 @@ class UserContactsController < ApplicationController
   def contact_list
 		if admin_user_signed_in?
 			@user = User.find(params[:id])
+      @respond_check_count = UserContact.where(user_id: @user.id, respond_check: "NG").count
       @admin_user = current_admin_user
       @user_contacts = UserContact.where(user_id: @user.id, contact_del: nil).order(updated_at: :desc)
 
@@ -241,6 +244,8 @@ class UserContactsController < ApplicationController
       when "respond"
         @user_contact.respond_check = nil
         if @user_contact.update(user_contact_params)
+          cb_point(@user)
+          @user.save
           flash[:notice] = "更新しました"
           redirect_to "/users/#{@user.id}/contact_list"
         else

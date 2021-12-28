@@ -37,6 +37,13 @@
         <% end %>
       </div>
 
+
+    <% if @respond_check_count > 0 %>
+      <div class="attention_content">
+        オレンジ色は主催者からの返信が<br>届いていないと報告があったユーザーさんです。
+      </div>
+    <% end %>
+
     <div class="contact_list">
       <% @user_contacts.each do |user_contact| %>
 
@@ -80,7 +87,7 @@
               <%= form_for user_contact,url: "/users/#{@user.id}/contact_list/#{user_contact.id}" do |f| %>
                 <% if user_contact.respond_check == "NG"%>
                   <div class="respond_check_alert">
-                    返信が来ていないと連絡がありました。<br>
+                    返信が届いていないと報告ががありました。<br>
                     このお問い合わせに返信しましたか？<br>
                     <%= f.button type: "submit", name: "submit", value: "respond", class: "respond_btn" do %>>> 確認しました<% end %>
                   </div>

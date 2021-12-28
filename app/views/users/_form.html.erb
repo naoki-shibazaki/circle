@@ -204,6 +204,7 @@
   <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！&#13;&#10;興味がある人は気軽にご連絡ください！".html_safe %>
 
   <% if @path.is('users#edit') %>
+    <div class="warning_txt">※更新完了に少し時間がかかります</div>
     <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
   <% elsif @admin_user.check.present? && @admin_user.check != 0 %>
     <br>
@@ -211,6 +212,7 @@
       このアカウントは一時的に制限されています
     </div>
   <% else %>
+    <div class="warning_txt">※更新完了に少し時間がかかります</div>
     <%= f.submit "更新する", data: { disable_with: '更新中...' } %>
   <% end %>
 

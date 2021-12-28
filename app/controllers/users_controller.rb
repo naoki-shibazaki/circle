@@ -357,12 +357,8 @@ helper_method :link_count
     @user_contact_alerts = UserContact.where(user_id: @user.id, respond_check: "NG")
 
     @ng_accounts = User.where(admin_user_id: @user.admin_user_id, ng_account: "NG")
-
-    # サークルブックポイント計算
-    @schedule_point = @user.schedules.count * 0.1
-    @blog_point = @user.blogs.count * 0.2
-    @qa_point = Question.where(user_id: @user.id).where.not(answer: nil).count * 1
-    @review_point = Review.where(user_id: @user.id, review: 1).count * 3
+    @respond_check_count = UserContact.where(user_id: @user.id, respond_check: "NG").count
+    cb_point(@user)
 
 		# 管理者判定
 		if admin_user_signed_in?
