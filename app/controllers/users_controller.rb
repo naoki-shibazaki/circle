@@ -359,8 +359,8 @@ helper_method :link_count
     @ng_accounts = User.where(admin_user_id: @user.admin_user_id, ng_account: "NG")
 
     # サークルブックポイント計算
-    @blog_point = @user.blogs.count * 0.5
     @schedule_point = @user.schedules.count * 0.1
+    @blog_point = @user.blogs.count * 0.2
     @qa_point = Question.where(user_id: @user.id).where.not(answer: nil).count * 1
     @review_point = Review.where(user_id: @user.id, review: 1).count * 3
 
