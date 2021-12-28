@@ -358,6 +358,12 @@ helper_method :link_count
 
     @ng_accounts = User.where(admin_user_id: @user.admin_user_id, ng_account: "NG")
 
+    # サークルブックポイント計算
+    @blog_point = @user.blogs.count * 0.5
+    @schedule_point = @user.schedules.count * 0.1
+    @qa_point = Question.where(user_id: @user.id).where.not(answer: nil).count * 1
+    @review_point = Review.where(user_id: @user.id, review: 1).count * 3
+
 		# 管理者判定
 		if admin_user_signed_in?
 
@@ -371,20 +377,11 @@ helper_method :link_count
         end
       end
 
-
 			@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
 			@opinion = @user.opinions.build
 
       @blogs_imp = 0
 			@count = 0
-
-			# ランキング取得
-			@users = User.user_sort_2
-			@users.map.with_index(1){ |user,i|
-				if user.id.to_i == @user.id.to_i
-					@ranking = i
-				end
-			}
 
 			if @admin_user.users.any?
 			else

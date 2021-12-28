@@ -11,6 +11,8 @@
 
   <%= render "/users/alert" %>
 
+  <% if @admin_user.users.count > 1 %>
+
 		<div class="user_select_wrap">
 			現在のアカウント：
 			<select name="user_select" onChange="location.href=value;">
@@ -28,6 +30,8 @@
         <% end %>
 			</select>
 		</div>
+
+  <% end %>
 
   <%= render "/users/analytics" %>
 
