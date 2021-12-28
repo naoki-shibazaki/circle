@@ -21,7 +21,10 @@
           <% end %>
 				<% end %>
         <% if @ng_accounts.count == 0 && @admin_user.users.count < 5 %>
-          <option value="/user/add">＋ サークルを新規追加する</option>
+          <% if @admin_user.check.present? && @admin_user.check != 0 %>
+          <% else %>
+            <option value="/user/add">＋ サークルを新規追加する</option>
+          <% end %>
         <% end %>
 			</select>
 		</div>
@@ -221,18 +224,21 @@
 
 			<% end %>
 
-      <% if @ng_accounts.count == 0 && @admin_user.users.count <= 5 %>
-				<%= link_to "/user/add", class: "icon_cont" do %>
-					<div class="">
-						<div class="icon_img">
-							<img class="icon_size" src="/images/icon/icon_12.png">
-						</div>
+      <% if @ng_accounts.count == 0 && @admin_user.users.count < 5 %>
+        <% if @admin_user.check.present? && @admin_user.check != 0 %>
+        <% else %>
+          <%= link_to "/user/add", class: "icon_cont" do %>
+            <div class="">
+              <div class="icon_img">
+                <img class="icon_size" src="/images/icon/icon_12.png">
+              </div>
 
-						<div class="icon_txt">
-							サークル新規追加
-						</div>
-					</div>
-				<% end %>
+              <div class="icon_txt">
+                サークル新規追加
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
 
 		</div>
