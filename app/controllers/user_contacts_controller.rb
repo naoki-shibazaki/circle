@@ -177,7 +177,7 @@ class UserContactsController < ApplicationController
 			@user = User.find(params[:id])
       @respond_check_count = UserContact.where(user_id: @user.id, respond_check: "NG").count
       @admin_user = current_admin_user
-      @user_contacts = UserContact.where(user_id: @user.id, contact_del: nil).order(updated_at: :desc)
+      @user_contacts = UserContact.where(user_id: @user.id, contact_del: nil).order(updated_at: :desc).page(params[:page]).per(10)
 
 			if current_admin_user.id == @user.admin_user_id
 				# OK
