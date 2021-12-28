@@ -85,7 +85,7 @@
 <%= f.collection_select :prefecture_id, Prefecture.all.order(:order => :asc), :id, :name, :prompt => "選択してください" %>
 
 <div class="label_item">サブの活動エリア（例：神奈川県）</div>
-<%= f.collection_select :prefecture_sub_id, Prefecture.where.not(id: 50).order(:order => :asc), :id, :name, :include_blank => true %>	
+<%= f.collection_select :prefecture_sub_id, Prefecture.where.not(id: 50).order(:order => :asc), :id, :name, :include_blank => true %>
 
 <div class="label_item">活動時間</div>
 <%= f.text_field :schedule, class: 'form-control', placeholder: "月曜日 18〜20時" %>
