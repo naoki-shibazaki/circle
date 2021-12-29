@@ -143,12 +143,11 @@ class UserContactsController < ApplicationController
 
 
   def update
-    @user_contact = UserContact.find_by(id: params[:id])
-
+    @user_contact = UserContact.find(params[:id])
     if @user_contact.violation.present?
       # 違反報告
       if @user_contact.update(user_contact_params)
-        ViolationMailer.send_violation(@user, @user_contact).deliver
+        OpinionMailer.send_violation(@user, @user_contact).deliver
         flash[:notice] = 'ご報告ありがとうございます！'
         redirect_to users_path
       else
