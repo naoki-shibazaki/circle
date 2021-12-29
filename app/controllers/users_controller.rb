@@ -349,6 +349,7 @@ helper_method :link_count
 
 	def mypage
 		@user = User.find(params[:id])
+    @users = User.where.not(id: @user.id).where.not("cb_point > ?", 0).prefecture(@user.prefecture.id).event(@user.event.id).user_sort_2
     gallery_counts(@user)
     @questions_current = Question.where(user_id: @user.id)
     @questions_current_nil = Question.where(user_id: @user.id).where(answer: nil)

@@ -186,6 +186,13 @@
                 件数によってポイントが付与されます！
               </div>
 
+              <% if @users.count >= 3 %>
+                <div class="competitor_wrap">
+                  <div>▼ あなたの競合サークル</div>
+                  <%= render "/users/users_list_slide", users: @users %>
+                </div>
+              <% end %>
+
             </div>
           </div>
 
