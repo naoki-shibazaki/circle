@@ -7,9 +7,8 @@ class OpinionsController < ApplicationController
 
 		if @opinion.save
 			OpinionMailer.send_opinion(@opinion, @user).deliver
-			flash[:notice] = "送信ありがとうございます！"
-			redirect_to "/users/#{@user.id}/mypage"
-
+			flash[:notice] = "ご連絡ありがとうございます！"
+			redirect_to "/check/thanks"
 		else
 			flash[:notice] = "必須項目が未記入です"
 			redirect_to "/users/#{@user.id}/mypage"
