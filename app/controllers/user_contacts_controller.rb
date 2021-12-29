@@ -1,7 +1,7 @@
 class UserContactsController < ApplicationController
   include Circlebook
 
-  before_action :set_users, {except: [:account_block, :contact_list]}
+  before_action :set_users, {except: [:account_block, :contact_list, :check_thanks]}
 
   def new
     @user_contact = @user.user_contacts.build
@@ -92,6 +92,9 @@ class UserContactsController < ApplicationController
     @users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中").where.not(id: @user.id).order(:last_post => :desc)
 	end
 
+	def check_thanks
+	end
+
   def respond_check
     if UserContact.find_by(random_id: params[:random_id])
       @user = User.find_by(id: params[:user_id])
@@ -149,7 +152,7 @@ class UserContactsController < ApplicationController
       if @user_contact.update(user_contact_params)
         OpinionMailer.send_violation(@user, @user_contact).deliver
         flash[:notice] = 'ご報告ありがとうございます！'
-        redirect_to users_path
+        redirect_to "/check/thanks"
       else
         flash[:notice] = 'エラーです'
         redirect_to users_path
@@ -158,7 +161,7 @@ class UserContactsController < ApplicationController
       # 返信なしの報告
       if @user_contact.update(user_contact_params)
         flash[:notice] = 'ご報告ありがとうございます！'
-        redirect_to users_path
+        redirect_to "/check/thanks"
       else
         flash[:notice] = 'エラーです'
         redirect_to users_path
@@ -167,8 +170,11 @@ class UserContactsController < ApplicationController
 
   end
 
-  def account_block
 
+
+
+
+  def account_block
   end
 
   def contact_list

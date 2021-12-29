@@ -94,6 +94,7 @@ Rails.application.routes.draw do
 
   # お問い合わせフォーム
   get 'users/:user_id/thanks' , to: 'user_contacts#thanks'
+  get 'check/thanks' , to: 'user_contacts#check_thanks'
   get 'check_r/:user_id/:random_id' , to: 'user_contacts#check_reaction'
   get 'check_v/:user_id/:random_id' , to: 'user_contacts#check_violation'
   patch 'users/:user_id/contact_list/:id', to: 'user_contacts#update_contact'
