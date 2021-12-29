@@ -10,10 +10,10 @@ module Circlebook
         @schedule_point = user.schedules.count * 0.1
         @blog_point = user.blogs.count * 0.2
         @qa_point = Question.where(user_id: user.id).where.not(answer: nil).count * 0.5
-        @contact_point = UserContact.where(user_id: user.id, contact_del: nil).count * 0.5
         @review_point = Review.where(user_id: user.id, review: 1).count * 2
+        @contact_point = UserContact.where(user_id: user.id, contact_del: nil).count * 0.5
         @respond_point = UserContact.where(user_id: user.id, respond_check: "NG").count * 10
-        user.cb_point = @blog_point + @schedule_point + @qa_point + @review_point - @respond_point
+        user.cb_point = @blog_point + @schedule_point + @qa_point + @review_point + @contact_point - @respond_point
       end
     end
 
