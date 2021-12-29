@@ -149,15 +149,23 @@
 
                   <tr>
                     <th><%= link_to user_questions_path(@user) do %>Ｑ＆Ａの回答 <i class="fa fa-external-link "></i><% end %></th>
-                    <td>1.0 P</td>
+                    <td>0.5 P</td>
                     <td><%= @qa_point.to_f.round(1) %> P</td>
                   </tr>
 
                   <tr>
                     <th><%= link_to user_reviews_path(@user) do %>高評価の口コミ <i class="fa fa-external-link "></i><% end %></th>
-                    <td>3.0 P</td>
+                    <td>2.0 P</td>
                     <td><%= @review_point.to_f.round(1) %> P</td>
                   </tr>
+
+                  <% if @contact_point.to_f > 0 %>
+                    <tr>
+                      <th>お問い合わせ数（メール）</th>
+                      <td>0.5 P</td>
+                      <td><%= @contact_point.to_f.round(1) %> P</td>
+                    </tr>
+                  <% end %>
 
                   <% if @respond_point.to_f > 0 %>
                     <tr>
