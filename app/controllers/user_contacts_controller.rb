@@ -72,7 +72,7 @@ class UserContactsController < ApplicationController
       @user.save
 
       flash[:notice] = "お問い合わせありがとうございます！"
-      redirect_to "/users/#{@user.id}/thanks#{@user_contact.random_id}"
+      redirect_to "/users/#{@user.id}/thanks/#{@user_contact.random_id}"
 
     else
       # バリデーションエラー値の保存
