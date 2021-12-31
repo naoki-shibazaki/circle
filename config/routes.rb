@@ -53,6 +53,7 @@ Rails.application.routes.draw do
 	get 'faq' , to: 'pages#faq'
 	get 'rules' , to: 'pages#rules'
 	get 'privacypolicy' , to: 'pages#privacypolicy'
+	get 'about' , to: 'pages#about'
 
 	get 'line' , to: 'users#line'
 	get 'login' , to: 'users#login'
