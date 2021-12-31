@@ -72,7 +72,7 @@ class UserContactsController < ApplicationController
       @user.save
 
       flash[:notice] = "お問い合わせありがとうございます！"
-      redirect_to "/users/#{@user.id}/thanks"
+      redirect_to "/users/#{@user.id}/thanks#{@user_contact.random_id}"
 
     else
       # バリデーションエラー値の保存
@@ -89,6 +89,7 @@ class UserContactsController < ApplicationController
 	end
 
 	def thanks
+    @user_contact = UserContact.find_by(random_id: params[:random_id])
     @users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中").where.not(id: @user.id).order(:last_post => :desc)
 	end
 

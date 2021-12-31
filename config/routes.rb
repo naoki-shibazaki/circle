@@ -49,9 +49,11 @@ Rails.application.routes.draw do
 
 	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
-	get 'faq' , to: 'users#faq'
-	get 'rules' , to: 'users#rules'
-	get 'privacypolicy' , to: 'users#privacypolicy'
+  # 静的ページ
+	get 'faq' , to: 'pages#faq'
+	get 'rules' , to: 'pages#rules'
+	get 'privacypolicy' , to: 'pages#privacypolicy'
+
 	get 'line' , to: 'users#line'
 	get 'login' , to: 'users#login'
 	get 'admin_users' , to: 'users#admin_users'
@@ -92,12 +94,12 @@ Rails.application.routes.draw do
 	get 'users/:user_id/blogs' , to: 'blogs#user_blogs'
   get 'users/:user_id/gallery' , to: 'blogs#gallery'
 
-  # お問い合わせフォーム
-  get 'users/:user_id/thanks' , to: 'user_contacts#thanks'
+  # お問い合わせ
+  get 'users/:user_id/thanks/:random_id' , to: 'user_contacts#thanks'
+  patch 'users/:user_id/contact_list/:id', to: 'user_contacts#update_contact'
   get 'check/thanks' , to: 'user_contacts#check_thanks'
   get 'check_r/:user_id/:random_id' , to: 'user_contacts#check_reaction'
   get 'check_v/:user_id/:random_id' , to: 'user_contacts#check_violation'
-  patch 'users/:user_id/contact_list/:id', to: 'user_contacts#update_contact'
 
 
 	# get 'users/:user_id/collection-sample' , to: 'collections#sample'

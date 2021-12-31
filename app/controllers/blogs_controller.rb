@@ -113,7 +113,7 @@ class BlogsController < ApplicationController
 
 		if @blog.update(blog_params)
 
-			@user.user_time = Time.now
+			@user.user_time = Time.zone.now
       @user.save
 			flash[:notice] = 'ブログ更新完了！'
 			redirect_to user_blog_path(@blog.user.id, @blog.id)

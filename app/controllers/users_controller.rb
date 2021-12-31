@@ -424,15 +424,6 @@ helper_method :link_count
   def line
   end
 
-  def rules
-  end
-
-  def privacypolicy
-  end
-
-  def faq
-  end
-
   def admin_users
   end
 

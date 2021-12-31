@@ -54,8 +54,7 @@ class QuestionsController < ApplicationController
 
 				if admin_user_signed_in?
 					if current_admin_user.id == @user.admin_user_id
-						@user.last_post = Time.now
-						@user.user_time = Time.now
+            last_post(@user)
             cb_point(@user)
             @user.save
 					end

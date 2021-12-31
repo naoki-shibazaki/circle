@@ -6,7 +6,7 @@
     <div class="contents_wrap">
       <div class="p_t">サンクスページ</div>
       <div class="schedule_profile_wrap">
-        <%= link_to(user_path(@user.id)) do %>  
+        <%= link_to(user_path(@user.id)) do %>
           <div class="user-content">
             <%= image_tag @user.pic_profile.url , class:'image_icon' %>
             <div class="list_wrapper contact_name_wrap">
@@ -21,6 +21,10 @@
       <div class="thanks_txt">
         <p class="check_pose_mail">
           確認用のメールを送信しました！<br>
+          <% if @user_contact.present? %>
+          【<%= @user_contact.mail %>】<br>
+          <% end %>
+          <br>
           届いていない場合は、<br>
           違うアドレスで再度お問い合わせください。
         </p>
