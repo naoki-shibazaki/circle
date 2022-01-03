@@ -13,6 +13,8 @@ module Circlebook
       if user.admin_user.check.present? && user.admin_user.check != 0
         # 違反者
         user.cb_point = -100
+      elsif user.user_time.blank?
+        user.cb_point = 0
       elsif user.user_time.to_time <= Time.zone.now.ago(1.years)
         user.cb_point = 0
       else
