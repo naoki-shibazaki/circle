@@ -10,7 +10,7 @@ helper_method :link_count
 
   def top
 		@events = Event.all.order(:users_count => :desc)
-    @prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
+    @prefectures = Prefecture.all.order(:order => :asc)
 		@match_events = Event.where(matching: 1).order(:order => :asc)
 		@place_events = Event.where(place: 1).order(:order => :asc)
     @match_users = Match.where(recruit: "募集中").order(updated_at: "DESC")
@@ -706,8 +706,8 @@ private
 		@user_all = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
     @categories = Category.all.order(:id => :asc)
-		@events = Event.all.where.not(id: 0).order(:order => :asc)
-		@prefectures = Prefecture.all.order(:order => :asc).where.not(id: 0)
+		@events = Event.all.order(:order => :asc)
+		@prefectures = Prefecture.all.order(:order => :asc)
 		@cities = City.all.order(:id => :asc)
 		@ages = Age.all
 		@groups = Group.all.order(:id => :asc)

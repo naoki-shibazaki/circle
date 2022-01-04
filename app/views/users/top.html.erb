@@ -123,7 +123,11 @@
             <ul class="prefectures-menus place_meus">
               <% @prefectures.each do |prefecture| %>
                   <% if prefecture.group != @x %>
-                    <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+                    <% if prefecture.id == 50 %>
+                      <div class="prefectures-sub-title">全国</div>
+                    <% else %>
+                      <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+                    <% end %>
                       <li>
                         <%= link_to "/prefectures/#{prefecture.kana}" do %>
                           <%= prefecture.name %>
@@ -282,7 +286,11 @@
             <ul class="prefectures-menus place_meus">
               <% @prefectures.each do |prefecture| %>
                   <% if prefecture.group != @x %>
-                    <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+                    <% if prefecture.id == 50 %>
+                      <div class="prefectures-sub-title">全国</div>
+                    <% else %>
+                      <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+                    <% end %>
                       <li>
                         <%= link_to "/match/prefectures/#{prefecture.kana}" do %>
                           <%= prefecture.name %>
