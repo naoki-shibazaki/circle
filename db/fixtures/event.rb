@@ -36,7 +36,7 @@ Event.seed(:id,
   { :id => 31, :category_id => 3, :order => "0306", :name => "カバディ" , :ruby => "kabaddi",  :matching => 0, :place => 0, :openchat => "", :txt => "カバディサークル・チーム" },
   { :id => 15, :category_id => 3, :order => "0307", :name => "総合格闘技" , :ruby => "mma",  :matching => 0, :place => 0, :openchat => "", :txt => "総合格闘技サークル" },
   { :id => 50, :category_id => 3, :order => "0308", :name => "モルック" , :ruby => "molkky",  :matching => 0, :place => 0, :openchat => "", :txt => "モルックサークル" },
-  { :id => 46, :category_id => 3, :order => "0309", :name => "その他のスポーツ" , :ruby => "other-sports",  :matching => 0, :place => 0, :openchat => "", :txt => "その他のスポーツサークル" },
+  { :id => 46, :category_id => 3, :order => "0309", :name => "その他のスポーツ" , :ruby => "other-sports",  :matching => 0, :place => 0, :openchat => "", :txt => "スポーツサークル" },
 
 
   # ウィンタースポーツ

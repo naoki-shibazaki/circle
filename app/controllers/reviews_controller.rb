@@ -52,11 +52,6 @@ class ReviewsController < ApplicationController
 			flash[:notice] = "投稿が完了しました！"
 			redirect_to user_reviews_path
 		else
-      # バリデーションエラー値の保存
-      # @db_validation_error = DbValidationError.new
-      # @db_validation_error.name = "Review"
-      # @db_validation_error.content_01 = @review.comment
-      # @db_validation_error.save
 
 			flash[:notice] = "6文字未満かNGワードが含まれています"
 			redirect_to user_reviews_path

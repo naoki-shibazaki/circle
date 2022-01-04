@@ -45,7 +45,7 @@ Prefecture.seed(:id,
   { :id => 37, :group => "四国" , :order => "37", :sort => 0, :name => "香川県" , :kana => "kagawa" },
   { :id => 38, :group => "四国" , :order => "36", :sort => 0, :name => "愛媛県" , :kana => "ehime" },
   { :id => 39, :group => "四国" , :order => "39", :sort => 0, :name => "高知県" , :kana => "kochi" },
-  
+
   { :id => 40, :group => "九州" , :order => "40", :sort => 0, :name => "福岡県" , :kana => "fukuoka" },
   { :id => 41, :group => "九州" , :order => "44", :sort => 0, :name => "佐賀県" , :kana => "saga" },
   { :id => 42, :group => "九州" , :order => "41", :sort => 0, :name => "長崎県" , :kana => "nagasaki" },
@@ -55,6 +55,6 @@ Prefecture.seed(:id,
   { :id => 46, :group => "九州" , :order => "46", :sort => 0, :name => "鹿児島県" , :kana => "kagoshima" },
   { :id => 47, :group => "九州" , :order => "47", :sort => 0, :name => "沖縄県" , :kana => "okinawa" },
 
-  { :id => 50, :group => "全国" , :order => "00", :sort => 99, :name => "全国" , :kana => "zenkoku" }
+  { :id => 50, :group => "オンライン" , :order => "00", :sort => 99, :name => "オンライン" , :kana => "online" }
 
 )
