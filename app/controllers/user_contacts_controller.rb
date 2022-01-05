@@ -21,7 +21,7 @@ class UserContactsController < ApplicationController
     case params[:entry]
     when "1"
       @user_contact.entry = "見学"
-      @user.template = "性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
+      @user.template = "性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n\r\n▼メッセージ\r\n例）初心者ですがよろしくお願いします！\r\n" if @user.template.blank?
       @place_holder = @user.template
     when "2"
       @user_contact.entry = "練習試合"
@@ -33,7 +33,7 @@ class UserContactsController < ApplicationController
       @place_holder = "例）次の活動日はいつですか？"
     else
       @user_contact.entry = "参加"
-      @user.template = "性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n" if @user.template.blank?
+      @user.template = "性別： 例）男\r\n年代： 例）30代\r\n経歴： 例）初心者\r\n\r\n▼メッセージ\r\n例）初心者ですがよろしくお願いします！\r\n" if @user.template.blank?
       @place_holder = @user.template
     end
 
