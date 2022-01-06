@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_034518) do
+ActiveRecord::Schema.define(version: 2022_01_06_073755) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 2021_12_17_034518) do
     t.string "kana"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "order"
+    t.string "txt"
   end
 
   create_table "cities", force: :cascade do |t|
