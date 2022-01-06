@@ -113,6 +113,14 @@ Rails.application.routes.draw do
 	get 'prefectures/:kana/:city_kana/:id' , to: 'users#prefecture_city_station'
 	get 'prefectures/:kana/:city_kana/tag/:id' , to: 'tags#prefecture_city'
 
+  # カテゴリー別
+	get 'categories' , to: 'categories#index'
+  get 'categories/prefectures' , to: 'categories#prefecture_index'
+	get 'categories/prefectures/:kana' , to: 'categories#prefecture'
+	get 'categories/:kana' , to: 'categories#category'
+  get 'categories/:kana/:p_kana' , to: 'categories#category_prefecture'
+
+
   # ブログ
 	get 'blog' , to: 'blogs#index'
 	get 'blog/prefectures' , to: 'blogs#prefecture_index'

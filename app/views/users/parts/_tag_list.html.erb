@@ -1,7 +1,7 @@
 <div class="tag_list_wrap">
   <ul class="tag_list_content">
 
-    <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index') %>
+    <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index', 'categories#index', 'categories#category') %>
       <li>
         <%= link_to("/#{user.event.ruby}") do %>
           <%= user.event.name %>
@@ -58,7 +58,7 @@
       <% end %>
 
 
-    <% elsif @path.is('users#event_prefecture', 'tags#event_prefecture') %>
+    <% elsif @path.is('users#event_prefecture', 'tags#event_prefecture', 'categories#c_p') %>
       <li>
         <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do %>
           <%= user.event.name %>
@@ -86,7 +86,7 @@
         <% end %>
       <% end %>
 
-    <% elsif  @path.is('users#event', 'tags#event') %>
+    <% elsif  @path.is('users#event', 'tags#event', 'categories#event') %>
       <li>
         <%= link_to("/#{user.event.ruby}") do %>
           <%= user.event.name %>
@@ -115,7 +115,7 @@
       <% end %>
 
 
-    <% elsif @path.is('users#prefecture_city', 'tags#prefecture_city') %>
+    <% elsif @path.is('users#prefecture_city', 'tags#prefecture_city', 'categories#prefecture_city') %>
       <li>
         <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}/#{@city.city_kana}") do %>
           <%= user.event.name %>
@@ -144,7 +144,7 @@
       <% end %>
 
 
-    <% elsif @path.is('users#prefecture', 'tags#prefecture') %>
+    <% elsif @path.is('users#prefecture', 'tags#prefecture', 'categories#prefecture') %>
       <li>
         <%= link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do %>
           <%= user.event.name %>

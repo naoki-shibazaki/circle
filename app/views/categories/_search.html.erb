@@ -1,0 +1,322 @@
+<div class="search_wrap">
+  <div class="search_word">
+    <%= form_tag('/users/search', method: :get, enforce_utf8: false) do %>
+        <input name='q' size="30" type="text" placeholder="<%= @search_word %>" value="<%= params[:q] %>" class="search_area change_font"/>
+          <div class="search_icon">
+            <%= submit_tag("検索", :name => nil) %>
+        </div>
+    <% end %>
+    <div class="search_word_announce">※複数の単語はスペースで区切ってください</div>
+  </div>
+</div>
+
+
+<div class="top_page">
+
+  <% case controller.action_name %>
+  <% when "index","prefecture_index"  %>
+      <div class="top_contents bg_blue">
+        <div class="top_heading">
+            <h2 class="sub_title"><i class="fa fa-users "></i> サークルをカテゴリーから探す</h2>
+        </div>
+
+        <div class="readmore">
+            <input id="check1-1" class="readmore-check" type="checkbox">
+            <div class="readmore-content">
+              <ul class="events-menus">
+                <% @categories.each do |category| %>
+                  <li>
+                    <%= link_to("/categories/#{category.kana}") do %>
+                      <div class="e_icon_wrap">
+                        <img data-src="/images/categories/<%= category.kana %>.jpg" alt="<%= category.name %>" class="lazyload">
+                        <div class="link_txt"><%= category.name %></div>
+                      </div>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            <label class="readmore-label" for="check1-1"></label>
+        </div>
+      </div>
+
+  <% when "category_prefecture" %>
+    <div class="top_contents bg_blue">
+      <div class="top_heading">
+          <h2 class="sub_title"><i class="fa fa-users "></i> <%= @category.name %>の一覧</h2>
+      </div>
+
+      <div class="readmore">
+          <input id="check1-1" class="readmore-check" type="checkbox">
+          <div class="readmore-content">
+            <ul class="events-menus">
+              <% @events.each do |event| %>
+                <li>
+                  <%= link_to("/#{event.ruby}/#{@prefecture.kana}") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/events/<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
+                      <div class="link_txt"><%= event.name %></div>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <label class="readmore-label" for="check1-1"></label>
+      </div>
+    </div>
+
+  <% when "prefecture" %>
+    <div class="top_contents bg_blue">
+      <div class="top_heading">
+          <h2 class="sub_title"><i class="fa fa-users "></i> </i> サークルをカテゴリーから探す</h2>
+      </div>
+
+      <div class="readmore">
+          <input id="check1-1" class="readmore-check" type="checkbox">
+          <div class="readmore-content">
+            <ul class="events-menus">
+              <% @categories.each do |category| %>
+                <li>
+                  <%= link_to("/categories/#{category.kana}/#{@prefecture.kana}") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/categories/<%= category.kana %>.jpg" alt="<%= category.name %>" class="lazyload">
+                      <div class="link_txt"><%= category.name %></div>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <label class="readmore-label" for="check1-1"></label>
+      </div>
+    </div>
+
+  <% when "category" %>
+    <div class="top_contents bg_blue">
+      <div class="top_heading">
+          <h2 class="sub_title"><i class="fa fa-users "></i> <%= @category.name %>の一覧</h2>
+      </div>
+
+      <div class="readmore">
+          <input id="check1-1" class="readmore-check" type="checkbox">
+          <div class="readmore-content">
+            <ul class="events-menus">
+              <% @events.each do |event| %>
+                <li>
+                  <%= link_to("/#{event.ruby}") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/events/<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
+                      <div class="link_txt"><%= event.name %></div>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <label class="readmore-label" for="check1-1"></label>
+      </div>
+    </div>
+
+  <% else %>
+  <% end %>
+
+
+
+
+
+
+
+  <% case controller.action_name %>
+  <% when "prefecture","category_prefecture"  %>
+
+  <% when "category" %>
+    <div class="top_contents bg_blue">
+      <div class="top_heading">
+          <h2 class="sub_title"><i class="fa fa-users "></i> サークルをエリアから探す</h2>
+      </div>
+      <div class="readmore">
+          <input id="check1-2" class="readmore-check" type="checkbox">
+          <div class="readmore-content pref-menus">
+            <ul class="events-menus">
+                <li>
+                  <%= link_to("/categories/#{@category.kana}/tokyo") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/tokyo.jpg" alt="東京" class="lazyload">
+                      <div class="link_txt">東京</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/#{@category.kana}/kanagawa") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/kanagawa.jpg" alt="神奈川" class="lazyload">
+                      <div class="link_txt">神奈川</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/#{@category.kana}/aichi") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/aichi.jpg" alt="愛知" class="lazyload">
+                      <div class="link_txt">愛知</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/#{@category.kana}/osaka") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/osaka.jpg" alt="大阪" class="lazyload">
+                      <div class="link_txt">大阪</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/#{@category.kana}/kyoto") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/kyoto.jpg" alt="京都" class="lazyload">
+                      <div class="link_txt">京都</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/#{@category.kana}/fukuoka") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/fukuoka.jpg" alt="福岡" class="lazyload">
+                      <div class="link_txt">福岡</div>
+                    </div>
+                  <% end %>
+                </li>
+            </ul>
+
+            <ul class="prefectures-menus place_meus">
+              <% @prefectures.each do |prefecture| %>
+                  <% if prefecture.group != @x %>
+                    <% if prefecture.id == 50 %>
+                      <div class="prefectures-sub-title">全国</div>
+                    <% else %>
+                      <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+                    <% end %>
+                      <li>
+                        <%= link_to "/categories/prefectures/#{prefecture.kana}" do %>
+                          <%= prefecture.name %>
+                        <% end %>
+                      </li>
+                    <% @x = prefecture.group %>
+                  <% else %>
+                      <li>
+                        <%= link_to "/categories/prefectures/#{prefecture.kana}" do %>
+                          <%= prefecture.name %>
+                        <% end %>
+                      </li>
+                  <% end %>
+              <% end %>
+            </ul>
+
+
+          </div>
+          <label class="readmore-label" for="check1-2"></label>
+      </div>
+
+    </div>
+
+  <% else %>
+    <div class="top_contents bg_blue">
+      <div class="top_heading">
+          <h2 class="sub_title"><i class="fa fa-users "></i> サークルをエリアから探す</h2>
+
+      </div>
+      <div class="readmore">
+          <input id="check1-2" class="readmore-check" type="checkbox">
+          <div class="readmore-content pref-menus">
+            <ul class="events-menus">
+                <li>
+                  <%= link_to("/categories/prefectures/tokyo") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/tokyo.jpg" alt="東京" class="lazyload">
+                      <div class="link_txt">東京</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/prefectures/kanagawa") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/kanagawa.jpg" alt="神奈川" class="lazyload">
+                      <div class="link_txt">神奈川</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/prefectures/aichi") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/aichi.jpg" alt="愛知" class="lazyload">
+                      <div class="link_txt">愛知</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/prefectures/osaka") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/osaka.jpg" alt="大阪" class="lazyload">
+                      <div class="link_txt">大阪</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/prefectures/kyoto") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/kyoto.jpg" alt="京都" class="lazyload">
+                      <div class="link_txt">京都</div>
+                    </div>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to("/categories/prefectures/fukuoka") do %>
+                    <div class="e_icon_wrap">
+                      <img data-src="/images/prefectures/fukuoka.jpg" alt="福岡" class="lazyload">
+                      <div class="link_txt">福岡</div>
+                    </div>
+                  <% end %>
+                </li>
+            </ul>
+
+            <ul class="prefectures-menus place_meus">
+              <% @prefectures.each do |prefecture| %>
+                  <% if prefecture.group != @x %>
+                    <% if prefecture.id == 50 %>
+                      <div class="prefectures-sub-title">全国</div>
+                    <% else %>
+                      <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
+                    <% end %>
+                      <li>
+                        <%= link_to "/categories/prefectures/#{prefecture.kana}" do %>
+                          <%= prefecture.name %>
+                        <% end %>
+                      </li>
+                    <% @x = prefecture.group %>
+                  <% else %>
+                      <li>
+                        <%= link_to "/categories/prefectures/#{prefecture.kana}" do %>
+                          <%= prefecture.name %>
+                        <% end %>
+                      </li>
+                  <% end %>
+              <% end %>
+            </ul>
+
+          </div>
+          <label class="readmore-label" for="check1-2"></label>
+      </div>
+
+    </div>
+
+
+  <% end %>
+
+
+
+
+
+
+</div>
+
