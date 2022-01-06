@@ -20,9 +20,7 @@ class PlacesController < ApplicationController
     @db_search = DbSearch.new
     @db_search.keyword = params[:kw]
     @db_search.save
-    # if last_search.keyword != @db_search.keyword
-    #   @db_search.save
-    # end
+
 
 		# Placeモデルオブジェクト作成
 		@places = Place

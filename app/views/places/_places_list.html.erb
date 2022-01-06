@@ -83,17 +83,7 @@
 
     <div class="sorry_message">該当するコート情報がございません</div>
 
-    <% if request.format == :amp %>
-      <amp-img class="imege_sorry"
-        src="/images/sorry_cat.png"
-        width="150px"
-        height="150px"
-        layout="responsive"
-        object-fit="cover">
-      </amp-img>
-    <% else %>
-      <img class="imege_sorry" src="/images/sorry_cat.png">
-    <% end %>
+    <img class="imege_sorry" src="/images/sorry_cat.png">
 
     <%= link_to "/places" do %>
       <div class="no_hit_top">コート・施設情報ページに戻る</div>
@@ -110,13 +100,7 @@
 
 <%= render "/layouts/ad_square" %>
 
-<% if request.format == :amp %>
-  <div class="pagination_wrap">
-    <%= paginate @places %>
-  </div>
 
-<% else %>
   <%= paginate @places %>
 
-<% end %>
 

@@ -10,33 +10,6 @@
 <%= render "places/local_business_place_list" %>
 
 
-<% if request.format == :amp %>
-  <div class="main users-index">
-    <div class="container">
-      <%= render "/layouts/breadcrumb" %>
-      <div class="e_header_wrap">
-        <amp-img alt="<%= @event.name %>"
-          src="/images/events/<%= @event.ruby %>.jpg"
-          width="450px"
-          height="130px"
-          layout="responsive"
-          object-fit="cover">
-        </amp-img>
-        <div class="link_txt">
-          <h1 class="e_header_title">
-            <%= @event.name %>の<br>コートや体育館の情報一覧
-          </h1>
-        </div>
-      </div>
-
-      <%= render "/places/amp_search.html.erb" %>
-
-      <%= render "/places/places_list" %>
-
-    </div>
-  </div>
-
-<% else %>
   <div class="main users-index">
     <div class="container">
 
@@ -103,4 +76,3 @@
 
     </div>
   </div>
-<% end %>

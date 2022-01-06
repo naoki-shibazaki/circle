@@ -7,27 +7,27 @@
 
 	  <div class="users-index-item ribbon-wrapper">
 
-	      <div class="ribbon-content">
-	        <% if @place.tag.to_i == 1 %>
-	          <span class="ribbon green">屋内</span>
-	        <% else @place.tag.to_i == 2 %>
-	          <span class="ribbon blue">屋外</span>
-	        <% end %>
-	      </div>
+      <div class="ribbon-content">
+        <% if @place.tag.to_i == 1 %>
+          <span class="ribbon green">屋内</span>
+        <% else @place.tag.to_i == 2 %>
+          <span class="ribbon blue">屋外</span>
+        <% end %>
+      </div>
 
-		      <div class="place_cnt_wrap">
+      <div class="place_cnt_wrap">
 
-		          <h1 class="place_name"><%= @place.name %></h1>
+        <h1 class="place_name"><%= @place.name %></h1>
 
-		          <h2 class="place_d">
-		              <%= @place.prefecture.name %><%= @place.city.name %>の<%= "屋内" if @place.tag.to_i == 1 %><%= "屋外" if @place.tag.to_i == 2 %>にあるコート情報
-		          </h2>
+        <h2 class="place_d">
+            <%= @place.prefecture.name %><%= @place.city.name %>の<%= "屋内" if @place.tag.to_i == 1 %><%= "屋外" if @place.tag.to_i == 2 %>にあるコート情報
+        </h2>
 
-		      </div>
+      </div>
 
 			<% if admin_user_signed_in?  %>
 				<% if @place.user_id.to_i == @current_user.id.to_i || @current_user.id.to_i == 1 %>
-				
+
 				<div class="place_edit">
 					<div class="post-edit_btn">
 						<%= link_to( "編集", edit_place_path ) %>／
@@ -36,7 +36,7 @@
 				</div>
 
 				<% end %>
-			<% end %>  
+			<% end %>
 
 
 	      <div class="border"></div>
@@ -102,17 +102,17 @@
 				</tr>
 
 	          </tbody>
-	        </table> 
-	      </div>  
+	        </table>
+	      </div>
 
 
 				<div class="g_map">
 					<iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></iframe>
 						<div class="google_map_wrap">
-						    <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@place.address}" do %>  
-						    	<div class="google_map">Google MAP</div>
-						    <% end %>
-					    </div>
+              <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@place.address}" do %>  
+                <div class="google_map">Google MAP</div>
+              <% end %>
+            </div>
 				</div>
 
 
@@ -124,8 +124,8 @@
 				※誤りがあった場合、メニューのお問い合わせよりご連絡ください。	
 			</div>
 
-	  	</div>
+      </div>
 
   </div>
-</div>  
+</div>
 

@@ -3,13 +3,13 @@
     <div class="form-heading">投稿</div>
     <div class="form users-form">
       <div class="form-body cont-body">
-      	<% if @place.errors.any? %>
-	          <div class="form-error">
-	             いずれかのエラーが発生いたしました。<br>
-              ・必須項目の未記入<br>
-              ・その他のエラー
-	          </div>
-		<% end %>
+        <% if @place.errors.any? %>
+          <div class="form-error">
+              いずれかのエラーが発生いたしました。<br>
+            ・必須項目の未記入<br>
+            ・その他のエラー
+          </div>
+        <% end %>
 
 
       <%= render "form_place.html.erb" %>

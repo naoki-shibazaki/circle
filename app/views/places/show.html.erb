@@ -44,16 +44,7 @@
 			<% end %>
 
       <div class="img_source_wrap">
-        <% if request.format == :amp %>
-          <amp-img src="/images/events/<%= @event.ruby %>.jpg"
-            class="img_source"
-            width="235"
-            height="157"
-            object-fit="cover">>
-          </amp-img>
-        <% else %>
           <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" class="img_source" >
-        <% end %>
         <div class="img_url_source">※画像はイメージです</div>
       </div>
 
@@ -143,16 +134,8 @@
       <%= render "/places/link_to_user" %>
 
       <div class="g_map">
-        <% if request.format == :amp %>
-          <amp-iframe width="300" height="200"
-            sandbox="allow-scripts allow-same-origin"
-            layout="responsive"
-            frameborder="0"
-            src="<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>">
-          </amp-iframe>
-        <% else %>
           <iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></iframe>
-        <%end %>
+
           <div class="google_map_wrap">
               <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@place.address}" do %>  
                 <div class="google_map">Google MAP</div>
@@ -183,7 +166,7 @@
       <% end %>
 
 
-      <% if @ip.blank? && request.format != :amp %>
+      <% if @ip.blank? %>
         <div class="place_review_form">
         <h2 class="place_sub_title">感想を投稿する</h2>
           <%= form_for ([@place, @place_review]) do |f| %>
@@ -232,16 +215,7 @@
             <div class="user_list">
               <div class="user-content">
                 <div class="user_list_header">
-                  <% if request.format == :amp %>
-                    <amp-img src="<%= user.pic_profile.url %>"
-                      class="image_icon"
-                      width="60"
-                      height="60"
-                      object-fit="cover">>
-                    </amp-img>
-                  <% else %>
                     <%= lazysizes_image_tag user.pic_profile.url , class:'image_icon' %>
-                  <% end %>
                   <h3 class="user_name"><%= user.name.truncate(20) %></h3>
                 </div>
                 <div class="list_02">

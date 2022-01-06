@@ -9,7 +9,7 @@
                   <span class="box_subtitle"><i class="fa fa-soccer-ball-o "></i> 種目<span class="must_red">(必須)</span></span>
 
                 <div class="check_boxes">
-                       <%= f.collection_check_boxes(:event_ids, Event.where(place: 1), :id, :name) %>
+                  <%= f.collection_check_boxes(:event_ids, Event.where(place: 1), :id, :name) %>
                 </div>
 
             </div>
@@ -23,7 +23,7 @@
             <div class="radio_button">
                   <%= f.radio_button :tag, 1, {:checked => true} %>屋内（体育館） <%= f.radio_button :tag, 2 %>屋外（グランド、公園）
             </div>
-  
+
             <p><i class="fa fa-map-marker "></i> 住所<span class="must_red">(必須)</span></p>
             <%= f.text_field :address, class: 'form-control', id: 'change_address', placeholder: "東京都千代田区丸の内1-1-1"  %>
 
