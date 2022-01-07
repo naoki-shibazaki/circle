@@ -8335,6 +8335,8 @@ trix-toolbar .button_group button.icon{
   }
   trix-editor{
     min-height: 300px;
+    max-height: 300px;
+    overflow: auto;
   }
 
 }
