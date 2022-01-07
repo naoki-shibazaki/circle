@@ -8302,7 +8302,7 @@ trix-toolbar .button_group button.icon{
 .rich_text_main,
 .rich_text_sub{
   font-size: 16px;
-  .italic, .strike, .quote, .bullets, .numbers, .decrease, .increase {
+  .italic, .strike, .quote, .code, .numbers, .decrease, .increase {
     display: none;
   }
   .button_row{
@@ -8318,7 +8318,12 @@ trix-toolbar .button_group button.icon{
     margin-top: 54px;
     margin-bottom: 4px;
   }
-  pre{
+  ul{
+    display: block;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border-radius: 4px;
     font-size: 16px;
     white-space: unset;
     margin: 10px 0;
@@ -8343,14 +8348,19 @@ trix-toolbar .button_group button.icon{
 
 
 .rich_text_sub{
+  font-size: 14px;
   .heading-1 {
     display: none;
   }
-  pre {
+  ul {
+    font-size: 14px;
     padding: 18px 24px;
   }
   div {
     line-height: 24px;
+  }
+  strong {
+    font-size: 16px;
   }
 }
 
