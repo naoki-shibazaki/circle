@@ -201,7 +201,10 @@
 </div>
 
   <div class="label_item">サークルの詳細情報</div>
-  <%= f.text_area :appeal, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！&#13;&#10;興味がある人は気軽にご連絡ください！".html_safe %>
+  <div class="rich_text_sub">
+    <%= f.hidden_field :appeal, id: :article_text %>
+    <trix-editor input="article_text"></trix-editor>
+  </div>
 
   <% if @path.is('users#edit') %>
     <div class="warning_txt">※更新完了に少し時間がかかります</div>

@@ -8295,7 +8295,12 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
-.rich_text_main{
+trix-toolbar .button_group button.icon{
+  max-width: 100%;
+}
+
+.rich_text_main,
+.rich_text_sub{
   font-size: 16px;
   .italic, .strike, .quote, .bullets, .numbers, .decrease, .increase {
     display: none;
@@ -8333,6 +8338,20 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 
 }
+
+
+.rich_text_sub{
+  .heading-1 {
+    display: none;
+  }
+  pre {
+    padding: 18px 24px;
+  }
+  div {
+    line-height: 24px;
+  }
+}
+
 
 
 
