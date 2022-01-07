@@ -247,7 +247,7 @@
         <% if @schedules.present? %>
           <h2 class="user_sub_title"><i class="fa fa-calendar "></i> 活動スケジュール</h2>
           <div class="profile_list_p">
-          <% @schedules.each do |schedule| %>
+          <% @schedules.first(7).each do |schedule| %>
               <% if schedule.present? %>
                 <%= link_to(user_schedules_path(@user.id)) do %>
                   <div class="text_slide">
@@ -284,7 +284,7 @@
                 <%= sanitize @user.appeal, tags: %w(p a br strong ul li div), attributes:  %w(id class href) %>
               </div>
             <% else %>
-              <div class="profile_list_p profile_list_a rich_text_sub">
+              <div class="profile_list_p profile_list_a">
                 <%= raw Rinku.auto_link(simple_format @user.appeal) %>
               </div>
             <% end %>
