@@ -116,7 +116,11 @@
 
 
               <div class="rich_text_main">
-                <%= raw Rinku.auto_link(simple_format @blog.content) %>
+                <% if @blog.content.include?("<div>") %>
+                  <%= sanitize @blog.content, tags: %w(p a br h1 strong ul li div), attributes:  %w(id class href) %>
+                <% else %>
+                  <%= raw Rinku.auto_link(simple_format @blog.content) %>
+                <% end %>
               </div>
 						</div>
 

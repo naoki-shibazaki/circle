@@ -356,7 +356,11 @@
                 <% end %>
                 <div class="cont-width">
                   <h3 class="blog_title"><%= blog.title %></h3>
-                  <%= simple_format blog.content.truncate(140) %>
+                    <% if blog.content.include?("<div>") %>
+                      <%= sanitize blog.content.truncate(140), tags: %w(p br h1 strong ul li div), attributes:  %w(id class href) %>
+                    <% else %>
+                      <%= simple_format blog.content.truncate(140) %>
+                    <% end %>
                 </div>
               </div>
             </div>

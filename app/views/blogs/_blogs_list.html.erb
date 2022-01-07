@@ -66,7 +66,11 @@
                   <div class="cont-width">
                     <h2 class="blog_title"><%= blog.title.truncate(36) %></h2>
                     <div class="rich_text_main">
-                      <%= simple_format blog.content.truncate(120) %>
+                      <% if blog.content.include?("<div>") %>
+                        <%= sanitize blog.content.truncate(120), tags: %w(p br h1 strong ul li div), attributes:  %w(id class href) %>
+                      <% else %>
+                        <%= simple_format blog.content.truncate(120) %>
+                      <% end %>
                     </div>
                   </div>
 
@@ -85,7 +89,7 @@
 
                       <% if blog.user.prefecture_sub_id.present? %>
                         <% @prefectures.each do |sub_prefecture| %>
-                          <% if blog.user.prefecture_sub_id == sub_prefecture.id %>  
+                          <% if blog.user.prefecture_sub_id == sub_prefecture.id %>
 
                             <%= link_to("/#{blog.user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
                             <i class="fa fa-tags tag-color"></i><%= sub_prefecture.name %>
