@@ -287,7 +287,7 @@
         <% if @user.appeal.present? %>
           <div class="profile_list_t p_t_t"></div>
           <div class="profile_list_p profile_list_a rich_text_sub">
-            <%= sanitize @user.appeal, tags: %w(p a br strong pre div), attributes:  %w(id class href) %>
+            <%= raw Rinku.auto_link(simple_format @user.appeal) %>
           </div>
           <div class="border"></div>
         <% end %>
