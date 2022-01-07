@@ -11,6 +11,7 @@ helper_method :link_count
   def top
 		@events = Event.all.order(:users_count => :desc)
     @prefectures = Prefecture.all.order(:order => :asc)
+    @categories = Category.all.order(:order => :asc)
 		@match_events = Event.where(matching: 1).order(:order => :asc)
 		@place_events = Event.where(place: 1).order(:order => :asc)
     @match_users = Match.where(recruit: "募集中").order(updated_at: "DESC")

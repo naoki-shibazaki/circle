@@ -41,29 +41,22 @@
       </div>
 
   <% when "category_prefecture" %>
-    <div class="top_contents bg_blue">
+    <div class="top_contents no_more bg_blue">
       <div class="top_heading">
           <h2 class="sub_title"><i class="fa fa-users "></i> <%= @category.name %>の一覧</h2>
       </div>
-
-      <div class="readmore">
-          <input id="check1-1" class="readmore-check" type="checkbox">
-          <div class="readmore-content">
-            <ul class="events-menus">
-              <% @events.each do |event| %>
-                <li>
-                  <%= link_to("/#{event.ruby}/#{@prefecture.kana}") do %>
-                    <div class="e_icon_wrap">
-                      <img data-src="/images/events/<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
-                      <div class="link_txt"><%= event.name %></div>
-                    </div>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <label class="readmore-label" for="check1-1"></label>
-      </div>
+      <ul class="events-menus">
+        <% @events.each do |event| %>
+          <li>
+            <%= link_to("/#{event.ruby}/#{@prefecture.kana}") do %>
+              <div class="e_icon_wrap">
+                <img data-src="/images/events/<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
+                <div class="link_txt"><%= event.name %></div>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
 
   <% when "prefecture" %>
@@ -93,29 +86,22 @@
     </div>
 
   <% when "category" %>
-    <div class="top_contents bg_blue">
+    <div class="top_contents no_more bg_blue">
       <div class="top_heading">
           <h2 class="sub_title"><i class="fa fa-users "></i> <%= @category.name %>の一覧</h2>
       </div>
-
-      <div class="readmore">
-          <input id="check1-1" class="readmore-check" type="checkbox">
-          <div class="readmore-content">
-            <ul class="events-menus">
-              <% @events.each do |event| %>
-                <li>
-                  <%= link_to("/#{event.ruby}") do %>
-                    <div class="e_icon_wrap">
-                      <img data-src="/images/events/<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
-                      <div class="link_txt"><%= event.name %></div>
-                    </div>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <label class="readmore-label" for="check1-1"></label>
-      </div>
+      <ul class="events-menus">
+        <% @events.each do |event| %>
+          <li>
+            <%= link_to("/#{event.ruby}") do %>
+              <div class="e_icon_wrap">
+                <img data-src="/images/events/<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
+                <div class="link_txt"><%= event.name %></div>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
 
   <% else %>
@@ -198,14 +184,14 @@
                       <div class="prefectures-sub-title"><%= prefecture.group %>エリア</div>
                     <% end %>
                       <li>
-                        <%= link_to "/categories/prefectures/#{prefecture.kana}" do %>
+                        <%= link_to "/categories/#{@category.kana}/#{prefecture.kana}" do %>
                           <%= prefecture.name %>
                         <% end %>
                       </li>
                     <% @x = prefecture.group %>
                   <% else %>
                       <li>
-                        <%= link_to "/categories/prefectures/#{prefecture.kana}" do %>
+                        <%= link_to "/categories/#{@category.kana}/#{prefecture.kana}" do %>
                           <%= prefecture.name %>
                         <% end %>
                       </li>

@@ -32,7 +32,7 @@
     <div class="top_contents bg_blue">
 
       <div class="top_heading">
-          <h2 class="sub_title"><i class="fa fa-users "></i> サークルをジャンルから探す</h2>
+          <h2 class="sub_title"><i class="fa fa-users "></i> サークルをカテゴリーから探す</h2>
 
       </div>
 
@@ -40,12 +40,12 @@
           <input id="check1-1" class="readmore-check" type="checkbox">
           <div class="readmore-content">
             <ul class="events-menus">
-              <% @events.each do |event| %>
+              <% @categories.each do |category| %>
                 <li>
-                  <%= link_to("/#{event.ruby}") do %>
+                  <%= link_to("/categories/#{category.kana}") do %>
                     <div class="e_icon_wrap">
-                      <img data-src="/images/events/<%= event.ruby %>.jpg" alt="<%= event.name %>" class="lazyload">
-                      <div class="link_txt"><%= event.name %></div>
+                      <img data-src="/images/categories/<%= category.kana %>.jpg" alt="<%= category.name %>" class="lazyload">
+                      <div class="link_txt"><%= category.name %></div>
                     </div>
                   <% end %>
                 </li>

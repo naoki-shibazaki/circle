@@ -31,61 +31,10 @@
 
 			<div class="form users-form">
 
-				<div class="post_share blog_share">
-					<div class="share_btn_tw">
-							<%= render "blogs/share_tw.html.erb" %>
-					</div>
-
-					<% if admin_user_signed_in?  %>
-						<% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
+        <div class="form-body blog_show">
 
 
-
-						<div class="post_edit">
-						    <%= link_to(edit_user_blog_path) do %>
-								<i class="fa fa-pencil-square-o "></i> 
-							<% end %>
-						</div>
-
-						<div class="post_delete">
-						    <%= link_to(user_blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
-								<i class="fa fa-trash "></i>
-							<% end %>
-						</div>
-
-						<% end %>
-					<% end %>
-
-					<% if admin_user_signed_in?  %>
-						<% if current_admin_user.id == 1 %>
-							<div class="analytics_blog">閲覧数：<%= @blog.impressionist_count %>人</div>
-						<% end %>
-					<% end %>
-
-				</div>
-
-
-
-			    <div class="form-body blog_show">
-
-
-				    <div class="header-post cont-width">
-						<%= link_to(user_path(@user.id)) do %>
-					    	<%= lazysizes_image_tag @user.pic_profile.url , class:'content_icon' %>    
-							<div class="post-user_wrap">
-								<div class="post-user">
-									<div class="post-top"><%= @user.name.truncate(40) %></div>
-
-									<div class="post-bottom"><%= @blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
-								</div>
-							</div>
-
-
-						<% end %>
-
-					</div>
-
-					<div class="post-body">	
+					<div class="post-body">
 
 
 					<% if @blog.image_01.present? %>
@@ -96,23 +45,23 @@
 
 						<% else %>
 
-						  <div class="swiper-container">
-						    <div class="swiper-wrapper">
+              <div class="swiper-container">
+                <div class="swiper-wrapper">
 
-						      <% if @blog.image_01.present? %><div class="swiper-slide"><%= image_tag @blog.image_01.url , class:'content_image' %></div><% end %>
-						      <% if @blog.image_02.present? %><div class="swiper-slide"><%= image_tag @blog.image_02.url , class:'content_image' %></div><% end %>
-						      <% if @blog.image_03.present? %><div class="swiper-slide"><%= image_tag @blog.image_03.url , class:'content_image' %></div><% end %>
-						      <% if @blog.image_04.present? %><div class="swiper-slide"><%= image_tag @blog.image_04.url , class:'content_image' %></div><% end %>
+                  <% if @blog.image_01.present? %><div class="swiper-slide"><%= image_tag @blog.image_01.url , class:'content_image' %></div><% end %>
+                  <% if @blog.image_02.present? %><div class="swiper-slide"><%= image_tag @blog.image_02.url , class:'content_image' %></div><% end %>
+                  <% if @blog.image_03.present? %><div class="swiper-slide"><%= image_tag @blog.image_03.url , class:'content_image' %></div><% end %>
+                  <% if @blog.image_04.present? %><div class="swiper-slide"><%= image_tag @blog.image_04.url , class:'content_image' %></div><% end %>
 
-						    </div>
+                </div>
 
-                                <!-- Add Pagination -->
-                                <div class="pagination-wrap">
-                                  <div class="swiper-pagination"></div>
-                                </div>
+                <!-- Add Pagination -->
+                <div class="pagination-wrap">
+                  <div class="swiper-pagination"></div>
+                </div>
 
-						  </div>
-					  
+              </div>
+
 
 						<% end %>
 
@@ -120,13 +69,61 @@
 
 						<div class="cont-width">
 							<h1 class="blog_title"><%= @blog.title %></h1>
-							<%= raw Rinku.auto_link(simple_format @blog.content) %>
+
+              <div class="header-post blog_profile">
+                <%= link_to(user_path(@user.id)) do %>
+                  <%= lazysizes_image_tag @user.pic_profile.url , class:'content_icon' %>
+                  <div class="post-user_wrap">
+                    <div class="post-user">
+                      <div class="post-top"><%= @user.name.truncate(40) %></div>
+
+                      <div class="post-bottom"><%= @blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+
+                <div class="post_share blog_share">
+                  <div class="share_btn_tw">
+                      <%= render "blogs/share_tw.html.erb" %>
+                  </div>
+
+                  <% if admin_user_signed_in?  %>
+                    <% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
+
+                    <div class="post_edit">
+                      <%= link_to(edit_user_blog_path) do %>
+                        <i class="fa fa-pencil-square-o "></i>
+                      <% end %>
+                    </div>
+
+                    <div class="post_delete">
+                      <%= link_to(user_blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+                        <i class="fa fa-trash "></i>
+                      <% end %>
+                    </div>
+
+                    <% end %>
+                  <% end %>
+
+                  <% if admin_user_signed_in?  %>
+                    <% if current_admin_user.id == 1 %>
+                      <div class="analytics_blog">閲覧数：<%= @blog.impressionist_count %>人</div>
+                    <% end %>
+                  <% end %>
+
+                </div>
+
+
+              <div class="rich_text_main">
+                <%= raw Rinku.auto_link(simple_format @blog.content) %>
+              </div>
 						</div>
 
-					</div>
+        </div>
 
 
-			    </div>
+      </div>
 
 
 				<div class="post_cta">
@@ -143,44 +140,41 @@
 
 
 <%= render "/layouts/ad_square" %>
-<div class="ad_space"></div>			
+<div class="ad_space"></div>
 
 
 	<% if @blogs.count >= 1 %>
 
 		<div class="blog-list-wrap">
 			<h2 class="others-blog"><%= @user.name %>のブログ一覧</h2>
-            <% @blogs.first(5).each do |blog| %> 
+            <% @blogs.first(5).each do |blog| %>
 
-              <% if blog.title.present? %>
+              <div class="blog_list">
 
-	            	<div class="blog_list">
+                <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
+                  <div class="blog_link">
+                    <div class="catch_image"><%= lazysizes_image_tag blog.image_01.url , class:'post_image' %></div>
+                    <div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
+                    <h3 class="post_title"><%= blog.title.truncate(36) %></h3>
+                  </div>
 
-		                <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
-		                  <div class="blog_link">
-		                    <div class="catch_image"><%= lazysizes_image_tag blog.image_01.url , class:'post_image' %></div>
-							<div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>	                    
-							<h3 class="post_title"><%= blog.title.truncate(36) %></h3>
-		                  </div>
+                  <div class="blog_user">
+                      <%= lazysizes_image_tag @user.pic_profile.url , class:'icon_s' %>
+                      <div class="blog_user_name"><%= @user.name.truncate(16) %></div>
+                  </div>
 
-		                  <div class="blog_user">
-					    	<%= lazysizes_image_tag @user.pic_profile.url , class:'icon_s' %>    
-							<div class="blog_user_name"><%= @user.name.truncate(16) %></div>
-		                  </div>
-		                <% end %>
+                <% end %>
+              </div>
 
-	            	</div>
-
-              <% end %>
 
             <% end %>
 
             <% if @blogs.count > 5 %>
-            	<div class="more_link">
-            		<%= link_to "/users/#{@user.id}/blogs" do %>
-            			>> ブログをもっと見る
-            		<% end %>
-            	</div>
+              <div class="more_link">
+                <%= link_to "/users/#{@user.id}/blogs" do %>
+                  >> ブログをもっと見る
+                <% end %>
+              </div>
             <% end %>
 
         </div>

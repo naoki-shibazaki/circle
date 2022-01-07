@@ -49,7 +49,9 @@
                 <% end %>
                 <div class="cont-width">
                   <h3 class="blog_title"><%= blog.title %></h3>
-                  <%= simple_format blog.content.truncate(140) %>
+                  <div class="rich_text_main">
+                    <%= simple_format blog.content.truncate(140) %>
+                  </div>
                 </div>
               </div>
             </div>

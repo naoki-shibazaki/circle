@@ -49,7 +49,11 @@
 
 
             <div class="label_item">本文</div>
-            <%= f.text_area :content, class: 'form-control', placeholder: "○月○日に△△で、サークルブックの活動をしましたー！！今回はこんなことをしました！"  %>       
+            <div class="rich_text_main">
+              <%= f.hidden_field :content, id: :article_text %>
+              <trix-editor input="article_text"></trix-editor>
+            </div>
+
 
             <%= f.submit @blog_button, data: { disable_with: '更新中...' } %>
       <% end %>

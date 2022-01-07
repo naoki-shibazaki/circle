@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+@import "trix";
 
 $link-blue: #337ab7;
 
@@ -1214,10 +1215,12 @@ opacity: 1; /* 要素を表示する */
 }
 
 
-.blog_title{
-	font-size: 24px;
-  // margin-top: 16px;
-  margin-bottom: 10px;
+.blog_title {
+  font-size: 26px;
+  padding: 30px 0 24px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .04em;
 }
 
 .post-body p,
@@ -3467,7 +3470,7 @@ max-width: 100%;
 
 .blog_share{
     margin: 0;
-    padding: 30px 20px 30px 0px;	
+    padding: 0px;
 }
 
 .analytics_blog{
@@ -7174,6 +7177,10 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     }
   }
 
+  .no_more{
+    padding: 18px 14px 24px;
+  }
+
   .top_contents_btm{
     padding-bottom: 20px;
   }
@@ -8279,6 +8286,52 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
       margin-right: 14px;
     }
   }
+}
+
+.blog_profile{
+  a{
+    text-decoration: none;
+    color: #4b5356;
+  }
+}
+
+.rich_text_main{
+  font-size: 16px;
+  .italic, .strike, .quote, .bullets, .numbers, .decrease, .increase {
+    display: none;
+  }
+  .button_row{
+    justify-content: left;
+  }
+  a {
+    font-size: 16px;
+    color: #2d3133;
+    text-decoration: underline;
+  }
+  h1{
+    font-size: 24px;
+    margin-top: 54px;
+    margin-bottom: 4px;
+  }
+  pre{
+    font-size: 16px;
+    white-space: unset;
+    margin: 10px 0;
+    padding: 25px 36px;
+    line-height: 30px;
+    border: none;
+  }
+  strong {
+    font-weight: 700;
+    font-size: 18px;
+  }
+  div{
+    line-height: 30px;
+  }
+  trix-editor{
+    min-height: 300px;
+  }
+
 }
 
 

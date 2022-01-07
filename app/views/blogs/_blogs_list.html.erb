@@ -2,15 +2,15 @@
     <div class="post_message">
         <%= link_to(user_path(@user)) do %>
           <%= lazysizes_image_tag @user.pic_profile.url , class:'post_image_icon' %>
-         <% end %>
+        <% end %>
 
-        <%= link_to(new_user_blog_path(@user)) do %>      
+        <%= link_to(new_user_blog_path(@user)) do %>
           <div class="post_link">サークル活動をつぶやく！</div>
-        <% end %> 
+        <% end %>
     </div>
   <% end %>
 
-  
+
   <% @blogs.each.with_index(1) do |blog, i| %>
 
           <div class="form users-form">
@@ -18,82 +18,84 @@
 
                 <%= link_to(user_blog_path(blog.user_id, blog.id)) do %>
 
-                            <div class="header-post cont-width">
+                  <div class="header-post cont-width">
 
-                              <%= lazysizes_image_tag blog.user.pic_profile.url , class:'content_icon' %>     
-                              <div class="post-user_wrap">
-                                <div class="post-user">
-                                  <div class="post-top"><%= blog.user.name.truncate(40) %></div>
+                    <%= lazysizes_image_tag blog.user.pic_profile.url , class:'content_icon' %>
+                    <div class="post-user_wrap">
+                      <div class="post-user">
+                        <div class="post-top"><%= blog.user.name.truncate(40) %></div>
 
-                                  <div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
-                                </div>
-                              </div>
+                        <div class="post-bottom"><%= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %></div>
+                      </div>
+                    </div>
 
-                            </div>
+                  </div>
 
-                            <div class="post-body">   
+                  <div class="post-body">
 
-                              <% if blog.image_01.present? %>
-                                <% if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank? %>
+                    <% if blog.image_01.present? %>
+                      <% if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank? %>
 
-                                  <%= lazysizes_image_tag blog.image_01.url , class:'content_image_one' %>
+                        <%= lazysizes_image_tag blog.image_01.url , class:'content_image_one' %>
 
-                                <% else %>
+                      <% else %>
 
-                                  <div class="swiper-container">
-                                    <div class="swiper-wrapper">
+                        <div class="swiper-container">
+                          <div class="swiper-wrapper">
 
-                                      <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
-                                      <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
-                                      <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
-                                      <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
+                            <% if blog.image_01.present? %><div class="swiper-slide"><%= image_tag blog.image_01.url , class:'content_image' %></div><% end %>
+                            <% if blog.image_02.present? %><div class="swiper-slide"><%= image_tag blog.image_02.url , class:'content_image' %></div><% end %>
+                            <% if blog.image_03.present? %><div class="swiper-slide"><%= image_tag blog.image_03.url , class:'content_image' %></div><% end %>
+                            <% if blog.image_04.present? %><div class="swiper-slide"><%= image_tag blog.image_04.url , class:'content_image' %></div><% end %>
 
-                                    </div>
+                          </div>
 
-                                    <!-- Add Pagination -->
-                                    <div class="pagination-wrap">
-                                      <div class="swiper-pagination"></div>
-                                    </div>
+                          <!-- Add Pagination -->
+                          <div class="pagination-wrap">
+                            <div class="swiper-pagination"></div>
+                          </div>
 
-                                  </div>
+                        </div>
 
 
-                                <% end %>
-                              <% end %>
+                      <% end %>
+                    <% end %>
 
-                            </div>
+                  </div>
 
-                            <div class="cont-width">
-                              <h2 class="blog_title"><%= blog.title.truncate(36) %></h2>
-                                <%= simple_format blog.content.truncate(120) %>      
-                            </div>                            
+                  <div class="cont-width">
+                    <h2 class="blog_title"><%= blog.title.truncate(36) %></h2>
+                    <div class="rich_text_main">
+                      <%= simple_format blog.content.truncate(120) %>
+                    </div>
+                  </div>
 
                 <% end %>
 
 
-                              <div class="blog_tag tag_bottom cont-width">
+                    <div class="blog_tag tag_bottom cont-width">
 
-                                <%= link_to("/#{blog.user.event.ruby}", class: "tag_btn") do %>
-                                  <i class="fa fa-tags tag-color"></i><%= blog.user.event.name %>
-                                <% end %>
+                      <%= link_to("/#{blog.user.event.ruby}", class: "tag_btn") do %>
+                        <i class="fa fa-tags tag-color"></i><%= blog.user.event.name %>
+                      <% end %>
 
-                                <%= link_to("/#{blog.user.event.ruby}/#{blog.user.prefecture.kana}", class: "tag_btn") do %>
-                                  <i class="fa fa-tags tag-color"></i><%= blog.user.prefecture.name %>
-                                <% end %>
+                      <%= link_to("/#{blog.user.event.ruby}/#{blog.user.prefecture.kana}", class: "tag_btn") do %>
+                        <i class="fa fa-tags tag-color"></i><%= blog.user.prefecture.name %>
+                      <% end %>
 
-                                <% if blog.user.prefecture_sub_id.present? %>
-                                  <% @prefectures.each do |sub_prefecture| %>
-                                    <% if blog.user.prefecture_sub_id == sub_prefecture.id %>  
+                      <% if blog.user.prefecture_sub_id.present? %>
+                        <% @prefectures.each do |sub_prefecture| %>
+                          <% if blog.user.prefecture_sub_id == sub_prefecture.id %>  
 
-                                      <%= link_to("/#{blog.user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
-                                      <i class="fa fa-tags tag-color"></i><%= sub_prefecture.name %>
-                                      <% end %>
+                            <%= link_to("/#{blog.user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do %>
+                            <i class="fa fa-tags tag-color"></i><%= sub_prefecture.name %>
+                            <% end %>
 
-                                    <% end %>
-                                  <% end %>
-                                <% end %> 
+                          <% end %>
+                        <% end %>
+                      <% end %>
 
-                              </div>
+                    </div>
 
 
                 </div>
@@ -105,7 +107,7 @@
       </div>
     <% end %>
 
-  <% end %> 
+  <% end %>
 
 
 <% if @blogs.empty? %>
@@ -114,13 +116,13 @@
 
     <img class="imege_sorry" src="/images/sorry.png">
 
-    <%= link_to(root_path) do %> 
-      <div class="no_hit_top">トップページに戻る</div> 
+    <%= link_to(root_path) do %>
+      <div class="no_hit_top">トップページに戻る</div>
     <% end %>
 
-    <%= link_to(new_admin_user_registration_path) do %> 
-      <div class="no_hit_new">新しくサークルを登録する</div>  
-    <% end %> 
+    <%= link_to(new_admin_user_registration_path) do %>
+      <div class="no_hit_new">新しくサークルを登録する</div>
+    <% end %>
 
 
   </div>

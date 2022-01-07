@@ -2,11 +2,11 @@
   <div class="container">
     <div class="form users-form">
       <div class="form-body cont-body">
-      	<% if @blog.errors.any? %>
-	          <div class="form-error">
-	            対応していないファイル形式です
-	          </div>
-		<% end %>
+      <% if @blog.errors.any? %>
+        <div class="form-error">
+          対応していないファイル形式です
+        </div>
+      <% end %>
 
       <div class="p_t">ブログの投稿</div>
 
@@ -14,7 +14,7 @@
         <% if @user.admin_user_id == current_admin_user.id %>
             <% if current_admin_user.users.count > 1 %>
               <div class="user_select_wrap">
-                    現在のアカウント：     
+                    現在のアカウント：
                   <select name="user_select" onChange="location.href=value;">
                     <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
                       <% current_admin_user.users.each do |user| %>
@@ -22,13 +22,13 @@
                         <option value="/users/<%= user.id %>/blogs/new"><%= user.name %>（<%= user.event.name %>）</option>
                         <% end %>
                     <% end %>
-                  </select> 
+                  </select>
               </div>
             <% end %>
         <% end %>
-      <% end %>     
+      <% end %>
 
-      <%= render "form_blog.html.erb"%>
+      <%= render "/blogs/form_blog"%>
 
 
       </div>
