@@ -14,7 +14,7 @@ Tag.seed(:id,
   { :id => 11, :order => "0105" ,  :category => "group" , :tag => "friend", :name => "友達作り", :text => "友達作りの" },
   { :id => 12, :order => "0106" ,  :category => "group" , :tag => "male", :name => "男子募集", :text => "男子を募集中の" },
   { :id => 13, :order => "0107" ,  :category => "group" , :tag => "female", :name => "女子募集", :text => "女子を募集中の" },
-  { :id => 16, :order => "0108" ,  :category => "group" , :tag => "mom", :name => "ママさん募集", :text => "ママ友を募集中の" },
+  { :id => 16, :order => "0108" ,  :category => "group" , :tag => "mom", :name => "ママさん募集", :text => "ママさんを募集中の" },
   { :id => 14, :order => "0109" ,  :category => "group" , :tag => "mix", :name => "男女混合", :text => "男女混合の" },
   { :id => 15, :order => "0110" ,  :category => "group" , :tag => "family-friendly", :name => "親子歓迎", :text => "親子歓迎の" },
 

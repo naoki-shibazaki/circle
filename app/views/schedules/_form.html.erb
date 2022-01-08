@@ -51,11 +51,14 @@
       <div class="label_item">タイトル（28文字以内）</div>
       <%= f.text_field :title, class: 'form-control form-venue', placeholder: "初心者限定のバスケdayです！" %>
 
-      <div class="label_item">備考欄</div>
-      <%= f.text_area :note, class: 'form-control form-note', placeholder: "持ち物は○○です。参加費は△△です。" %>
+      <div class="label_item">活動内容</div>
+      <div class="rich_text_sub">
+        <%= f.hidden_field :note, id: :article_text %>
+        <trix-editor input="article_text" placeholder= "持ち物は○○です。参加費は△△です。"></trix-editor>
+      </div>
 
-      <br>
 
+    <div class="warning_txt">※更新完了に少し時間がかかります</div>
       <%= f.submit @btn_name, data: { disable_with: '作成中...' } %>
 
       <div class="reset"></div>

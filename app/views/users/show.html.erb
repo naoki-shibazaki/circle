@@ -281,7 +281,7 @@
           <h2 class="user_sub_title"><i class="fa fa-book "></i> サークルの詳細内容</h2>
             <% if @user.appeal.include?("<div>") %>
               <div class="profile_list_p profile_list_a rich_text_sub">
-                <%= sanitize @user.appeal, tags: %w(p a br strong ul li div), attributes:  %w(id class href) %>
+                <%= raw Rinku.auto_link(sanitize @user.appeal, tags: %w(p a br strong ul li div), attributes:  %w(id class href)) %>
               </div>
             <% else %>
               <div class="profile_list_p profile_list_a">
@@ -351,11 +351,13 @@
                 <% end %>
                 <div class="cont-width">
                   <h3 class="blog_title"><%= blog.title %></h3>
-                    <% if blog.content.include?("<div>") %>
-                      <%= sanitize blog.content.truncate(140), tags: %w(p br h1 strong ul li div), attributes:  %w(id class href) %>
-                    <% else %>
-                      <%= simple_format blog.content.truncate(140) %>
-                    <% end %>
+                    <div class="rich_text_main">
+                      <% if blog.content.include?("<div>") %>
+                        <%= sanitize blog.content.truncate(140), tags: %w(p br h1 strong ul li div), attributes:  %w(id class href) %>
+                      <% else %>
+                        <%= simple_format blog.content.truncate(140) %>
+                      <% end %>
+                    </div>
                 </div>
               </div>
             </div>

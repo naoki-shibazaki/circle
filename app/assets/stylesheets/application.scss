@@ -1214,13 +1214,17 @@ opacity: 1; /* 要素を表示する */
     }    
 }
 
-
+.blog_1st_title,
 .blog_title {
   font-size: 26px;
   padding: 30px 0 24px;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: .04em;
+}
+
+.blog_title {
+  padding: 0;
 }
 
 .post-body p,
@@ -3469,7 +3473,7 @@ max-width: 100%;
 }
 
 .blog_share{
-    margin: 0;
+    margin: 0 0 20px;
     padding: 0px;
 }
 
@@ -8315,7 +8319,7 @@ trix-toolbar .button_group button.icon{
   }
   h1{
     font-size: 24px;
-    margin-top: 54px;
+    margin-top: 30px;
     margin-bottom: 4px;
   }
   ul{
@@ -8327,7 +8331,7 @@ trix-toolbar .button_group button.icon{
     font-size: 16px;
     white-space: unset;
     margin: 10px 0;
-    padding: 25px 36px;
+    padding: 22px 30px;
     line-height: 30px;
     border: none;
   }
@@ -8352,21 +8356,24 @@ trix-toolbar .button_group button.icon{
   .heading-1 {
     display: none;
   }
+  div {
+    line-height: 20px;
+  }
   ul {
     font-size: 14px;
     padding: 16px 20px;
+    line-height: 20px;
   }
   a {
     font-size: 14px;
     color: #337ab7;
-    text-decoration: underline;
-  }
-  div {
-    line-height: 24px;
+    text-decoration: none;
   }
   strong {
     font-size: 16px;
   }
+
+
 }
 
 
