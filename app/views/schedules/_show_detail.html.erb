@@ -189,7 +189,7 @@
     <% if @schedule.note.present? %>
       <h2 class="user_sub_title"><i class="fa fa-book "></i> 活動内容の詳細</h2>
 
-      <% if @user.appeal.include?("<div>") %>
+      <% if @schedule.note.include?("<div>") %>
         <div class="profile_list_p profile_list_a rich_text_sub">
           <%= raw Rinku.auto_link(sanitize @schedule.note, tags: %w(p a br strong ul li div), attributes:  %w(id class href)) %>
         </div>
