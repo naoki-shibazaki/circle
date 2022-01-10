@@ -61,10 +61,12 @@ helper_method :link_count
       end
 
     # 検索ワードの保存
-    if DbKeyword.find_by(keyword: params[:q]) || params[:q].count("^ ") <= 1 || @users.count == 0
+      # 各キーワードを半角で保存
+      keywords.map{|kw| @sort_kw = "#{@sort_kw}" + " #{kw}" }
+    if DbKeyword.find_by(keyword: @sort_kw) || params[:q].count("^ ") <= 1 || @users.count == 0
     else
       @db_keyword = DbKeyword.new
-      @db_keyword.keyword = params[:q]
+      @db_keyword.keyword = @sort_kw
       @db_keyword.save
     end
 
