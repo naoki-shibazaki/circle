@@ -21,6 +21,10 @@ SitemapGenerator::Sitemap.create do
     add "/users/#{user.id}/questions", :lastmod => current_time, :priority => 0.3, :changefreq => 'daily'
   end
 
+  DbKeyword.find_each do |keyword|
+    add "/users/search/#{keyword.keyword}", :lastmod => current_time, :priority => 0.7, :changefreq => 'daily'
+  end
+
   Blog.find_each do |blog|
     add user_blog_path(blog.user, blog), :lastmod => blog.updated_at, :priority => 0.8, :changefreq => 'daily'
   end

@@ -27,7 +27,6 @@ helper_method :link_count
 	end
 
 	def search
-
 		# Userモデルオブジェクト作成
 		@users = User
 

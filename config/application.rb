@@ -25,6 +25,5 @@ module Circle
 
     config.active_storage.variable_content_types += ['image/heic', 'image/heic-sequence', 'image/heif', 'image/heif-sequence']
 
-
   end
 end

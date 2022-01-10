@@ -202,12 +202,12 @@
                   <th class="flex_list">SNS</th>
                   <td class="flex_list">
                     <% if @user.twitter.present? %>
-                      <a href="https://twitter.com/<%= @user.twitter %>">
+                      <a href="https://twitter.com/<%= @user.twitter %>" rel=”nofollow”>
                         <span class="sns_link twitter_link"><i class="fa fa-twitter-square "></i> Twitter</span>
                       </a>
                     <% end %>
                     <% if @user.instagram.present? %>
-                      <a href="https://www.instagram.com/<%= @user.instagram %>">
+                      <a href="https://www.instagram.com/<%= @user.instagram %>" rel=”nofollow”>
                         <span class="sns_link instagram_link"><i class="fa fa-instagram "></i> Instagram</span>
                       </a>
                     <% end %>
@@ -236,7 +236,7 @@
         <% end %>
 
         <% if @user.web.present? %>
-          <div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>"> <%= @user.web %></a></div>
+          <div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>" rel=”nofollow”> <%= @user.web %></a></div>
           <div class="border"></div>
         <% end %>
 
