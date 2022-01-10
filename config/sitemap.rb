@@ -15,14 +15,13 @@ SitemapGenerator::Sitemap.create do
 
   User.find_each do |user|
     add user_path(user), :lastmod => user.updated_at, :priority => 1.0, :changefreq => 'daily'
-    add "/users/#{user.id}.amp", :lastmod => user.updated_at, :priority => 1.0, :changefreq => 'daily'
     add "/users/#{user.id}/schedules", :lastmod => current_time, :priority => 0.5, :changefreq => 'daily'
     add "/users/#{user.id}/reviews", :lastmod => current_time, :priority => 0.5, :changefreq => 'daily'
     add "/users/#{user.id}/questions", :lastmod => current_time, :priority => 0.3, :changefreq => 'daily'
   end
 
   DbKeyword.find_each do |keyword|
-    add "/users/search/#{keyword.keyword}", :lastmod => current_time, :priority => 0.7, :changefreq => 'daily'
+    add "/users/kw/#{keyword.keyword}", :lastmod => current_time, :priority => 0.7, :changefreq => 'daily'
   end
 
   Blog.find_each do |blog|
