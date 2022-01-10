@@ -27,11 +27,11 @@ helper_method :link_count
 	end
 
 	def search
-		# Userモデルオブジェクト作成
+    # Userモデルオブジェクト作成
 		@users = User
 
 		# キーワード分割
-		keywords = params[:q].split(/[[:blank:]]+/).select(&:present?)
+    keywords = params[:q].split(/[[:blank:]]+/).select(&:present?)
 
 		# 検索ワードの数だけand検索を行う
 		keywords.each do |keyword|
@@ -66,6 +66,7 @@ helper_method :link_count
           if i == 1
             @sort_kw = "#{@sort_kw}" + "#{kw}"
           else
+            # 2個目以降は間に半角スペース
             @sort_kw = "#{@sort_kw}" + " #{kw}"
           end
         }
@@ -76,6 +77,11 @@ helper_method :link_count
       @db_keyword.save
     end
 
+		# パンくず
+		@b1_name = "サークル検索"
+    @b1_url = "/users"
+    @b2_name = "「#{params[:q]}」の検索結果"
+    @b2_url = ""
 	end
 
 
@@ -120,6 +126,11 @@ def keyword
     redirect_to users_path
   end
 
+		# パンくず
+		@b1_name = "サークル検索"
+    @b1_url = "/users"
+    @b2_name = "「#{params[:q]}」の検索結果"
+    @b2_url = ""
 end
 
 
