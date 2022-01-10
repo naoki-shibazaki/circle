@@ -34,6 +34,7 @@
 
 	<button class="copyBtn copy_txt"><div class="requirement_copy"><i class="fa fa-copy "></i> テンプレをコピーする</div></button>
 
+  <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
 
 	<div class="cta_wrap contact_space">
 		<a href="<%= @user.line_id %>">

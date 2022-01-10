@@ -30,6 +30,8 @@
 
           <div class="warning_txt">※送信完了に少し時間がかかります</div>
 
+          <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
+
           <%= f.submit "送信する", data: { disable_with: '送信中...' } %>
 
           <div class="reset"></div>
