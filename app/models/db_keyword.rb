@@ -1,0 +1,2 @@
+class DbKeyword < ApplicationRecord
+end

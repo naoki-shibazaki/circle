@@ -27,19 +27,12 @@ helper_method :link_count
 	end
 
 	def search
-		# キーワード分割
-		keywords = params[:q].split(/[[:blank:]]+/).select(&:present?)
-
-    # 検索ワードの保存
-    last_search = DbSearch.last
-    @db_search = DbSearch.new
-    @db_search.keyword = params[:q]
-    if last_search.keyword != @db_search.keyword
-      @db_search.save
-    end
 
 		# Userモデルオブジェクト作成
 		@users = User
+
+		# キーワード分割
+		keywords = params[:q].split(/[[:blank:]]+/).select(&:present?)
 
 		# 検索ワードの数だけand検索を行う
 		keywords.each do |keyword|
@@ -68,7 +61,61 @@ helper_method :link_count
       @users = @users.user_sort_3.page(params[:page])
       end
 
+    # 検索ワードの保存
+    if DbKeyword.find_by(keyword: params[:q]) || params[:q].count("^ ") <= 1 || @users.count == 0
+    else
+      @db_keyword = DbKeyword.new
+      @db_keyword.keyword = params[:q]
+      @db_keyword.save
+    end
+
 	end
+
+
+def keyword
+  if @keywords = DbKeyword.find_by(keyword: params[:q])
+
+      # Userモデルオブジェクト作成
+      @users = User
+
+      # キーワード分割
+      @keywords = params[:q].split(/[[:blank:]]+/).select(&:present?)
+
+      # 検索ワードの数だけand検索を行う
+      @keywords.each do |keyword|
+        @event_ids = Event.where("name LIKE ?", "%#{keyword}%").map { |e| e.id }
+        @prefecture_ids = Prefecture.where("name LIKE ?", "%#{keyword}%").map { |p| p.id }
+
+        @city_ids = City.where("name LIKE ?", "%#{keyword}%").map { |c| c.id }
+        @city_user_ids = UsersCity.where(city_id: @city_ids).map { |u| u.user_id }
+        @tag_ids = Tag.where("name LIKE ?", "%#{keyword}%").map { |t| t.id }
+        @tag_user_ids = UserTag.where(tag_id: @tag_ids).map { |u| u.user_id }
+
+        @users = @users.search_word(keyword).
+        or(@users.where(event_id: @event_ids)).
+        or(@users.where(prefecture_id: @prefecture_ids)).or(@users.where(prefecture_sub_id: @prefecture_ids)).
+        or(@users.where(id: @city_user_ids)).
+        or(@users.where(id: @tag_user_ids))
+
+      end
+
+      # ソート機能
+      if params[:sort] == "1" || params[:sort] == nil
+      @users = @users.user_sort_1.page(params[:page])
+      elsif params[:sort] == "2"
+      @users = @users.user_sort_2.page(params[:page])
+      else params[:sort] == "3"
+      @users = @users.user_sort_3.page(params[:page])
+      end
+
+  else
+    flash[:notice] = "URLが間違っています"
+    redirect_to users_path
+  end
+
+end
+
+
 
 
 	def new

@@ -1,0 +1,25 @@
+<% set_meta_tags noindex: true %>
+
+<div class="main users-index">
+  <div class="container">
+
+  <div class="table_list">
+    <table>
+      <tr><th>No.</th><th>create</th><th>キーワード</th></tr>
+      <% @db_keywords.each.with_index(1) do |db_keyword, i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= db_keyword.created_at.strftime("%-m/%-d %-H:%M") %></td>
+          <td><%= db_keyword.keyword %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+
+
+
+  </div>
+</div>
+
+<%= paginate @db_keywords %>

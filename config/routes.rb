@@ -34,7 +34,8 @@ Rails.application.routes.draw do
 
   # Webmaster
   resources :invalid_emails, only: [:index, :create, :destroy]
-  resources :db_searches, only: [:index]
+  # resources :db_searches, only: [:index]
+  resources :db_keywords, only: [:index]
   resources :db_validation_errors, only: [:index]
 
 	resources :prefectures, only: [] do
@@ -73,6 +74,8 @@ Rails.application.routes.draw do
 	get 'blogs/:id', to: 'blogs#show_redirect'
 
 	get 'user/add', to: 'users#add'
+  get 'users/search/:q', to: 'users#keyword'
+
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'
 	patch 'users/:id/admin_user_update', to: 'users#admin_user_update'

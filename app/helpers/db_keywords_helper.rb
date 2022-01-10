@@ -1,0 +1,2 @@
+module DbKeywordsHelper
+end
