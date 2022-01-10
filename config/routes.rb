@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   # Webmaster
   resources :invalid_emails, only: [:index, :create, :destroy]
   # resources :db_searches, only: [:index]
-  resources :db_keywords, only: [:index]
+  resources :db_keywords, except: [:new, :create]
   resources :db_validation_errors, only: [:index]
 
 	resources :prefectures, only: [] do

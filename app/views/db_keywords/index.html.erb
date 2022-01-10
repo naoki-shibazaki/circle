@@ -5,18 +5,26 @@
 
   <div class="table_list">
     <table>
-      <tr><th>No.</th><th>create</th><th>キーワード</th></tr>
-      <% @db_keywords.each.with_index(1) do |db_keyword, i| %>
+      <tr><th>create</th><th>キーワード</th><th>削除</th></tr>
+      <% @db_keywords.each do |db_keyword| %>
         <tr>
-          <td><%= i %></td>
           <td><%= db_keyword.created_at.strftime("%-m/%-d %-H:%M") %></td>
-          <td><%= db_keyword.keyword %></td>
+          <td>
+            <%= form_for(db_keyword) do |f| %>
+              <%= f.text_field :keyword %>
+            <%= f.submit "更新" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to(db_keyword_path(db_keyword.id), method: :delete, data: {confirm: "削除しますか？"}) do %>
+              削除
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </table>
 
   </div>
-
 
 
   </div>
