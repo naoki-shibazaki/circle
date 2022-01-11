@@ -234,6 +234,7 @@ class BlogsController < ApplicationController
 			:image_02,
 			:image_03,
 			:image_04,
+      :remove_image_01, :remove_image_02, :remove_image_03, :remove_image_04,
 			:image_name,
 			:name,
 			:requirement,

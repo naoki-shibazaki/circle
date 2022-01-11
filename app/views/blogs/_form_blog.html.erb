@@ -2,50 +2,79 @@
             <div class="label_item"><span class="label label_danger">必須</span>タイトル</div>
             <%= f.text_field :title, class: 'form-control', placeholder: "日々の活動記録など！" %> 
 
-            <div class="label_item">ブログ画像（最大4枚）</div><br>
+
+
+        <div class="edit01_warp">
+          <span class="edit01_subtitle">ブログ画像（最大4枚）</span>
+
+          <div class="file_upload_wrap">
             <span class="file_size">※10MB以下のjpgかpngのみ対応</span>
-                  <div class="img_field_gallery_wrap blog_gallery_wrap">
+            <div class="img_field_gallery_wrap">
 
-                            <div id="img_field_01" onClick="$('#file_01').click()" >
-                                <% if @blog.image_01.present? %>
-                                  <%= image_tag(@blog.image_01.url) %>
-                                <% else %>
-                                  <i class="fa fa-image"></i>
-                                <% end %>
-                            </div>
-                            <%= f.file_field :image_01, class: "image", style: "display:none;", id: "file_01"%>
-
-
-                            <div id="img_field_02" onClick="$('#file_02').click()" >
-                                <% if @blog.image_02.present? %>
-                                  <%= image_tag(@blog.image_02.url) %>
-                                <% else %>
-                                  <i class="fa fa-image"></i>
-                                <% end %>
-                            </div>
-                            <%= f.file_field :image_02, class: "image", style: "display:none;", id: "file_02"%>
+              <div id="img_field_01" onClick="$('#file_01').click()" >
+                  <% if @blog.image_01.present? %>
+                    <%= image_tag(@blog.image_01.url) %>
+                  <% else %>
+                    <i class="fa fa-image"></i>
+                  <% end %>
+              </div>
+              <%= f.file_field :image_01, class: "image", style: "display:none;", id: "file_01"%>
 
 
-                            <div id="img_field_03" onClick="$('#file_03').click()" >
-                                <% if @blog.image_03.present? %>
-                                  <%= image_tag(@blog.image_03.url) %>
-                                <% else %>
-                                  <i class="fa fa-image"></i>
-                                <% end %>
-                            </div>
-                            <%= f.file_field :image_03, class: "image", style: "display:none;", id: "file_03"%>
+              <div id="img_field_02" onClick="$('#file_02').click()" >
+                  <% if @blog.image_02.present? %>
+                    <%= image_tag(@blog.image_02.url) %>
+                  <% else %>
+                    <i class="fa fa-image"></i>
+                  <% end %>
+              </div>
+              <%= f.file_field :image_02, class: "image", style: "display:none;", id: "file_02"%>
 
 
-                            <div id="img_field_04" onClick="$('#file_04').click()" >
-                                <% if @blog.image_04.present? %>
-                                  <%= image_tag(@blog.image_04.url) %>
-                                <% else %>
-                                  <i class="fa fa-image"></i>
-                                <% end %>
-                            </div>
-                            <%= f.file_field :image_04, class: "image", style: "display:none;", id: "file_04"%>
+              <div id="img_field_03" onClick="$('#file_03').click()" >
+                  <% if @blog.image_03.present? %>
+                    <%= image_tag(@blog.image_03.url) %>
+                  <% else %>
+                    <i class="fa fa-image"></i>
+                  <% end %>
+              </div>
+              <%= f.file_field :image_03, class: "image", style: "display:none;", id: "file_03"%>
 
-                  </div>
+
+              <div id="img_field_04" onClick="$('#file_04').click()" >
+                  <% if @blog.image_04.present? %>
+                    <%= image_tag(@blog.image_04.url) %>
+                  <% else %>
+                    <i class="fa fa-image"></i>
+                  <% end %>
+              </div>
+              <%= f.file_field :image_04, class: "image", style: "display:none;", id: "file_04"%>
+
+            </div>
+
+            <% if @blog.image_01.present? || @blog.image_02.present? || @blog.image_03.present? || @blog.image_04.present? %>
+              <ul class="remove_img">
+                <% if @blog.image_01.present? %>
+                  <li><%= f.check_box :remove_image_01 %>①削除</li>
+                <% end %>
+
+                <% if @blog.image_02.present? %>
+                  <li><%= f.check_box :remove_image_02 %>②削除</li>
+                <% end %>
+
+                <% if @blog.image_03.present? %>
+                  <li><%= f.check_box :remove_image_03 %>③削除</li>
+                <% end %>
+
+                <% if @blog.image_04.present? %>
+                  <li><%= f.check_box :remove_image_04 %>④削除</li>
+                <% end %>
+              </ul>
+            <% end %>
+
+
+          </div>
+        </div>
 
 
             <div class="label_item">本文</div>

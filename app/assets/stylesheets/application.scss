@@ -554,6 +554,7 @@ body {
 .header-wrapper .end{
   background-color: #ccc;
   color: #fff;
+  height: 40px;
   font-size: 1rem;
   font-weight: bold;
   padding: 5px 20px;
@@ -2867,7 +2868,7 @@ max-width: 100%;
 .post_edit,
 .post_delete{
   background-color: #888888;
-  height: 30px;
+  height: 40px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -8386,6 +8387,7 @@ trix-toolbar .button_group button.icon{
     font-size: 14px;
     input{
       width: 24px;
+      height: 14px;
       font-size: 14px;
     }
   }
