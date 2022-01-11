@@ -57,6 +57,19 @@
 
 <div class="img_field_profile_space"></div>
 
+
+<% if @user.pic_profile.present? || @user.pic_header.present? %>
+  <ul class="remove_img">
+    <% if @user.pic_profile.present? %>
+      <li><%= f.check_box :remove_pic_profile %>アイコン画像の削除</li>
+    <% end %>
+
+    <% if @user.pic_header.present? %>
+      <li><%= f.check_box :remove_pic_header %>背景画像の削除</li>
+    <% end %>
+  </ul>
+<% end %>
+
 <% if current_admin_user.id == 1 %>
   <div class="label_item"><span class="label label_danger">管理権限</span>NGアカウント判定</div>
   <%= f.select :ng_account, [ ['OK', 'OK'], ['NG','NG'] ] %>
@@ -198,6 +211,27 @@
 
     </div>
   </div>
+
+  <% if @user.gallery_01.present? || @user.gallery_02.present? || @user.gallery_03.present? || @user.gallery_04.present? %>
+    <ul class="remove_img">
+      <% if @user.gallery_01.present? %>
+        <li><%= f.check_box :remove_gallery_01 %>①削除</li>
+      <% end %>
+
+      <% if @user.gallery_02.present? %>
+        <li><%= f.check_box :remove_gallery_02 %>②削除</li>
+      <% end %>
+
+      <% if @user.gallery_03.present? %>
+        <li><%= f.check_box :remove_gallery_03 %>③削除</li>
+      <% end %>
+
+      <% if @user.gallery_04.present? %>
+        <li><%= f.check_box :remove_gallery_04 %>④削除</li>
+      <% end %>
+    </ul>
+  <% end %>
+
 </div>
 
   <div class="label_item">サークルの詳細情報</div>

@@ -8378,6 +8378,19 @@ trix-toolbar .button_group button.icon{
   margin-top: 40px;
 }
 
+.remove_img{
+  display: flex;
+  li{
+    display: inline;
+    padding-right: 10px;
+    font-size: 14px;
+    input{
+      width: 24px;
+      font-size: 14px;
+    }
+  }
+}
+
 
 
 // --------------------------------------
