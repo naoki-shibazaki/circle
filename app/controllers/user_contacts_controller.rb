@@ -5,6 +5,7 @@ class UserContactsController < ApplicationController
 
   def new
     @user_contact = @user.user_contacts.build
+    @users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中").where.not(id: @user.id).order(:last_post => :desc)
 
     # 荒らし対応
     @account_block = UserContact.where(ip_address: request.remote_ip, account_block: "block")

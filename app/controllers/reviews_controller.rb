@@ -20,6 +20,12 @@ class ReviewsController < ApplicationController
 	def create
 		@user.reviews.create(review_params)
 		@review = @user.reviews.last
+    if InvalidEmail.find_by(email: @user.admin_user.email)
+      @invalid = "無効"
+    else
+      @invalid = "有効"
+    end
+
     if member_signed_in?
       @review.member_id = @member.id
     else
@@ -41,16 +47,22 @@ class ReviewsController < ApplicationController
 
 		if @review.save
 			# レビュー高評価
-			if @review.review == 1
+
+      if @review.review == 1 && @user.switch == "募集中" && @invalid == "有効"
 				@user.last_post = Time.zone.now
 				@user.save
 				ReviewMailer.send_review(@user).deliver
+
+      # 主催者に通知なし
+      elsif @review.review == 1
+
       elsif @review.review == 0
 				ReviewMailer.bad_review(@user).deliver
       else
 			end
 			flash[:notice] = "投稿が完了しました！"
 			redirect_to user_reviews_path
+
 		else
 
 			flash[:notice] = "6文字未満かNGワードが含まれています"

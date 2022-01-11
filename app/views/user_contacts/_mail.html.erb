@@ -39,12 +39,18 @@
         <% end %>
 
     <% else @invalid == "無効" %>
-				<div class="stop_match">
-          <%= @user.name %>が設定している<br>
-          メールアドレスが無効なため<br>
-          お問い合わせをすることができません。
-					<%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
-				</div>
+      <div class="stop_match">
+        <%= @user.name %>が設定している<br>
+        メールアドレスが無効なため<br>
+        お問い合わせをすることができません。
+        <%= link_to ">> 他のサークルを探す", users_path, class: "other_match" %>
+
+        <% if @users.count >= 3 %>
+          <h2 class="other_users">条件が似ている<%= @user.event.txt %></h2>
+          <%= render "/users/users_list_slide", users: @users %>
+        <% end %>
+
+      </div>
     <% end %>
 
     </div>

@@ -44,6 +44,11 @@ class QuestionsController < ApplicationController
 
 	def create
     @questions = Question.where(user_id: params[:user_id]).order(id: "DESC")
+    if InvalidEmail.find_by(email: @user.admin_user.email)
+      @invalid = "無効"
+    else
+      @invalid = "有効"
+    end
 
 		if @user.questions.create(question_params)
 
@@ -59,8 +64,9 @@ class QuestionsController < ApplicationController
             @user.save
 					end
 
-				else
+				elsif @user.switch == "募集中" && @invalid == "有効"
 					UserMailer.send_when_create(@user, @question).deliver
+        else
 				end
 
 				flash[:notice] = '送信しました！'

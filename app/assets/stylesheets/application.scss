@@ -5529,13 +5529,11 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .other_match{
-    text-align: center;
-    display: block;
-    margin-top: 10px;
-}
-
-.other_match{
+  text-align: center;
+  display: block;
+  margin-top: 10px;
   color: $link_blue;
+  text-decoration: underline;
 }
 
 .txt_s{
@@ -8371,10 +8369,14 @@ trix-toolbar .button_group button.icon{
     font-size: 16px;
   }
 
-
 }
 
-
+.other_users{
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 16px;
+  margin-top: 40px;
+}
 
 
 

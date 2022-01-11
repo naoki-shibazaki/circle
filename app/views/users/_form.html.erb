@@ -62,13 +62,13 @@
   <%= f.select :ng_account, [ ['OK', 'OK'], ['NG','NG'] ] %>
 <% end %>
 
-<div class="label_item"><span class="label label_danger">必須</span>サークル名</div>
-<%= f.text_field :name, class: 'form-control change_font', placeholder: "サークルブック" %>
-
 <% if @user.switch.present? %>
   <div class="label_item"><span class="label label_danger">必須</span>新規メンバーの募集</div>
   <%= f.select :switch, [ ['募集中','募集中'], ['受付終了','受付終了'] ] %>
 <% end %>
+
+<div class="label_item"><span class="label label_danger">必須</span>サークル名</div>
+<%= f.text_field :name, class: 'form-control change_font', placeholder: "サークルブック" %>
 
 
 <div class="label_item"><span class="label label_danger">必須</span>サークル種目（大）</div>
