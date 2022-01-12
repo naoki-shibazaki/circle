@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_022724) do
+ActiveRecord::Schema.define(version: 2022_01_12_054048) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2022_01_10_022724) do
     t.string "keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "search_count", default: 0, null: false
   end
 
   create_table "db_searches", force: :cascade do |t|

@@ -74,7 +74,7 @@ Rails.application.routes.draw do
 	get 'blogs/:id', to: 'blogs#show_redirect'
 
 	get 'user/add', to: 'users#add'
-  get 'users/kw/:q', to: 'users#keyword'
+  get 'users/kw/:q', to: 'db_keywords#keyword'
 
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'

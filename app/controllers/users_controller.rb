@@ -61,20 +61,26 @@ helper_method :link_count
       end
 
     # 検索ワードの保存
-      # 各キーワードを半角で保存
-        keywords.map.with_index(1){|kw,i|
-          if i == 1
-            @sort_kw = "#{@sort_kw}" + "#{kw}"
-          else
-            # 2個目以降は間に半角スペース
-            @sort_kw = "#{@sort_kw}" + " #{kw}"
-          end
-        }
+
+    # 各キーワードを半角で保存
+    keywords.map.with_index(1){|kw,i|
+      if i == 1
+        @sort_kw = "#{@sort_kw}" + "#{kw}"
+      else
+        # 2個目以降は間に半角スペース
+        @sort_kw = "#{@sort_kw}" + " #{kw}"
+      end
+    }
     if DbKeyword.find_by(keyword: @sort_kw) || params[:q].count("^ ") <= 1 || @users.count == 0
     else
       @db_keyword = DbKeyword.new
       @db_keyword.keyword = @sort_kw
       @db_keyword.save
+    end
+
+    # 既存と同じキーワードの場合カウント+1
+    if @kw = DbKeyword.find_by(keyword: @sort_kw)
+      @kw.increment!(:search_count, 1)
     end
 
 		# パンくず
@@ -83,55 +89,6 @@ helper_method :link_count
     @b2_name = "「#{params[:q]}」の検索結果"
     @b2_url = ""
 	end
-
-
-def keyword
-  if @keywords = DbKeyword.find_by(keyword: params[:q])
-
-      # Userモデルオブジェクト作成
-      @users = User
-
-      # キーワード分割
-      @keywords = params[:q].split(/[[:blank:]]+/).select(&:present?)
-
-      # 検索ワードの数だけand検索を行う
-      @keywords.each do |keyword|
-        @event_ids = Event.where("name LIKE ?", "%#{keyword}%").map { |e| e.id }
-        @prefecture_ids = Prefecture.where("name LIKE ?", "%#{keyword}%").map { |p| p.id }
-
-        @city_ids = City.where("name LIKE ?", "%#{keyword}%").map { |c| c.id }
-        @city_user_ids = UsersCity.where(city_id: @city_ids).map { |u| u.user_id }
-        @tag_ids = Tag.where("name LIKE ?", "%#{keyword}%").map { |t| t.id }
-        @tag_user_ids = UserTag.where(tag_id: @tag_ids).map { |u| u.user_id }
-
-        @users = @users.search_word(keyword).
-        or(@users.where(event_id: @event_ids)).
-        or(@users.where(prefecture_id: @prefecture_ids)).or(@users.where(prefecture_sub_id: @prefecture_ids)).
-        or(@users.where(id: @city_user_ids)).
-        or(@users.where(id: @tag_user_ids))
-
-      end
-
-      # ソート機能
-      if params[:sort] == "1" || params[:sort] == nil
-      @users = @users.user_sort_1.page(params[:page])
-      elsif params[:sort] == "2"
-      @users = @users.user_sort_2.page(params[:page])
-      else params[:sort] == "3"
-      @users = @users.user_sort_3.page(params[:page])
-      end
-
-  else
-    flash[:notice] = "URLが間違っています"
-    redirect_to users_path
-  end
-
-		# パンくず
-		@b1_name = "サークル検索"
-    @b1_url = "/users"
-    @b2_name = "「#{params[:q]}」の検索結果"
-    @b2_url = ""
-end
 
 
 
