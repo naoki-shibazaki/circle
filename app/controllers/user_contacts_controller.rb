@@ -174,8 +174,6 @@ class UserContactsController < ApplicationController
 
 
 
-
-
   def account_block
   end
 

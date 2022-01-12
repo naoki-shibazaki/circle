@@ -92,7 +92,6 @@ helper_method :link_count
 
 
 
-
 	def new
     if admin_user_signed_in? #ログイン判定
 

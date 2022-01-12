@@ -20,13 +20,13 @@
 
 	<% if @users.count != 0 %>
 		<div class="search_area">
-			<%= render "/users/search.html.erb" %>
+			<%= render "/users/search" %>
 		</div>
 
-    <%= render "users_list.html.erb" %>
+    <%= render "/users/users_list" %>
 
 	<% else @users.count == 0 %>
-			<%= render "/users/no_hit.html.erb" %>
+			<%= render "/users/no_hit" %>
 
 	<% end %>
 

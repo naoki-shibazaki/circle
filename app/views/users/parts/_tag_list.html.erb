@@ -1,7 +1,7 @@
 <div class="tag_list_wrap">
   <ul class="tag_list_content">
 
-    <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index', 'categories#index', 'categories#category') %>
+    <% if @path.is('users#index', 'users#top', 'users#search', 'tags#index', 'categories#index', 'categories#category', 'db_keywords') %>
       <li>
         <%= link_to("/#{user.event.ruby}") do %>
           <%= user.event.name %>
