@@ -1,0 +1,44 @@
+<% set_meta_tags title: "よく検索されるキーワードの一覧｜メンバー募集サイト",
+  description: "よく検索されるキーワードの一覧です！メンバー募集情報を、全国のサークルやチームから探すことができます！スポーツや趣味など豊富に掲載！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！バスケやバレー、フットサルなど。無料で簡単にメンバー募集ができます！",
+  keywords: "サークル,チーム,募集"
+%>
+
+<div class="main users-index">
+  <div class="container">
+    <img data-src="/images/search.jpg" class="lazyload imege_title search_img" >
+    <h1 class="users-heading search_title">よく検索されるキーワードの一覧</h1>
+      <div class="users-txt">
+        <% if admin_user_signed_in?  %>
+          <%= link_to("活動ブログ", new_user_blog_path(@user) ) %>を投稿すると<br>
+          あなたの掲載順位が上がります！
+
+          <% else %>
+          あなたにピッタリの<br>
+          サークルやチーム、団体が見つかる！！
+          <% end %>
+      </div>
+
+		<div class="search_area">
+			<%= render "/users/search" %>
+		</div>
+
+    <div class="kw_list_wrap">
+      <div class="top_heading">
+        <h2 class="sub_title"><i class="fa fa-search "></i> キーワード候補から探す</h2>
+      </div>
+
+      <ul>
+        <% @keywords.each do |keyword| %>
+          <%= link_to "/users/kw/#{keyword.keyword}" do %>
+            <li><%= keyword.keyword %></li>
+          <% end %>
+        <% end %>
+      </ul>
+
+    </div>
+
+    <%= render "/layouts/ad_square" %>
+    <div class="ad_space"></div>
+
+  </div>
+</div>

@@ -1,5 +1,6 @@
 class DbKeywordsController < ApplicationController
-  before_action :webmaster, {except: [:keyword]}
+  before_action :webmaster, {except: [:keyword, :kw]}
+  before_action :search, {only: [:keyword, :kw]}
 
   def index
     @db_keywords = DbKeyword.all.order(id: "DESC").page(params[:page])
@@ -29,13 +30,6 @@ class DbKeywordsController < ApplicationController
 
 
   def keyword
-		if admin_user_signed_in?
-			@user = current_admin_user.users.first
-		end
-    @categories = Category.all.order(:id => :asc)
-		@events = Event.all.order(:order => :asc)
-		@prefectures = Prefecture.all.order(:order => :asc)
-
     if @keywords = DbKeyword.find_by(keyword: params[:q])
 
       case params[:q].split(/[[:blank:]]+/).select(&:present?).size
@@ -43,7 +37,6 @@ class DbKeywordsController < ApplicationController
       when 2
         kws = params[:q].split(/[[:blank:]]+/).select(&:present?)
         kws.map do |kw|
-          @kw = kw
           if @kw_event = Event.find_by(name: kw)
           elsif @kw_prefecture = Prefecture.find_by(name: kw)
           elsif @kw_city = City.find_by(name: kw)
@@ -119,11 +112,15 @@ class DbKeywordsController < ApplicationController
       # パンくず
       @b1_name = "サークル検索"
       @b1_url = "/users"
-      @b2_name = "「#{params[:q]}」の検索結果"
-      @b2_url = ""
+      @b2_name = "キーワード一覧"
+      @b2_url = "/users/kw"
+      @b3_name = "「#{params[:q]}」の検索結果"
+      @b3_url = ""
   end
 
-
+  def kw
+    @keywords = DbKeyword.all.order(:search_count => :DESC, :updated_at => :DESC).limit(30)
+  end
 
 
 
@@ -132,6 +129,15 @@ class DbKeywordsController < ApplicationController
 	def db_keyword_params
 		params.require(:db_keyword).permit(:keyword)
 	end
+
+  def search
+		if admin_user_signed_in?
+			@user = current_admin_user.users.first
+		end
+    @categories = Category.all.order(:id => :asc)
+		@events = Event.all.order(:order => :asc)
+		@prefectures = Prefecture.all.order(:order => :asc)
+  end
 
 	def webmaster
     if current_admin_user.id == 1

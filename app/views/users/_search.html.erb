@@ -229,10 +229,11 @@
 
 </div>
 
+  <% if controller.action_name == "kw" %>
 
-<ul class="tab_list">
 
-  <% if controller.action_name != "search" %>
+  <% elsif controller.action_name != "search" %>
+      <ul class="tab_list">
 
         <% if params[:sort] == "1" || params[:sort] == nil %>
           <li class="list_item selected">標準</li>
@@ -249,8 +250,11 @@
           <a href="<%= request.path %>?sort=2" ><li class="list_item">人気順</li></a>
           <li class="list_item selected">新着順</li>
         <% end %>
+
+      </ul>
 
   <% else controller.action_name == "search" %>
+      <ul class="tab_list">
 
         <% if params[:sort] == "1" || params[:sort] == nil %>
           <li class="list_item selected">標準</li>
@@ -267,7 +271,7 @@
           <a href="<%= request.path %>?q=<%= params[:q] %>&sort=2" ><li class="list_item">人気順</li></a>
           <li class="list_item selected">新着順</li>
         <% end %>
+      </ul>
 
   <% end %>
 
-</ul>

@@ -8393,6 +8393,38 @@ trix-toolbar .button_group button.icon{
   }
 }
 
+.kw_list_wrap{
+  background: #fff;
+  margin: 0.8rem auto;
+  padding: 18px 14px 60px;
+  border-top: 1px solid #eeece4;
+  border-bottom: 1px solid #eeece4;
+  .top_heading {
+    display: flex;
+    margin-bottom: 16px;
+    color: #13131e;
+    align-items: baseline;
+    justify-content: space-between;
+    .sub_title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+  ul{
+
+    li{
+      display: inline-block;
+      margin: 6px 4px;
+      padding: 6px 16px;
+      background: #fff;
+      border: 1px solid #d9d9d9;
+      box-shadow: 1px 1px 2px #d1d1d1;
+      border-radius: 21px;
+      color: #1a1a1a;
+    }
+  }
+}
+
 
 
 // --------------------------------------

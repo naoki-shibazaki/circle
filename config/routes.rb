@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :events, only: :index
   end
 
+  get 'users/kw', to: 'db_keywords#kw'
+
 	resources :users do
 		resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]
@@ -74,6 +76,7 @@ Rails.application.routes.draw do
 	get 'blogs/:id', to: 'blogs#show_redirect'
 
 	get 'user/add', to: 'users#add'
+
   get 'users/kw/:q', to: 'db_keywords#keyword'
 
 	get 'users/:id/edit2', to: 'users#edit2'
