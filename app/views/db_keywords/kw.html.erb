@@ -28,9 +28,15 @@
       </div>
 
       <ul>
-        <% @keywords.each do |keyword| %>
+        <% @keywords.each.with_index(1) do |keyword, i| %>
           <%= link_to "/users/kw/#{keyword.keyword}" do %>
             <li><%= keyword.keyword %></li>
+          <% end %>
+
+          <% if i == 50 %>
+            <div class="list_ad">
+              <%= render "/layouts/ad_square" %>
+            </div>
           <% end %>
         <% end %>
       </ul>
