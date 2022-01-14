@@ -119,7 +119,12 @@ class DbKeywordsController < ApplicationController
   end
 
   def kw
-    @keywords = DbKeyword.all.order(:search_count => :DESC, :updated_at => :DESC).limit(30)
+    @keywords = DbKeyword.all.order(:search_count => :DESC, :updated_at => :DESC).limit(100)
+
+    # パンくず
+    @b1_name = "サークル検索"
+    @b1_url = "/users"
+    @b2_name = "キーワード一覧"
   end
 
 
