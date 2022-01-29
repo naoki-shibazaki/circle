@@ -16,6 +16,12 @@
           <%= f.email_field :email, autofocus: true, autocomplete: "email", value: @current_admin_user.email %>
         </div>
 
+        <div class="receive_setting">
+          参加者からのお問い合わせメールは<br>
+          【circlebook.mailer@gmail.com】から送信します。<br>
+          メールを受信できるように設定をお願いします。
+        </div>
+
         <div class="field">
           <%= f.label :現在のパスワード %>※
           <em>(6文字以上)</em>

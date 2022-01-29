@@ -31,6 +31,10 @@
           >> <i class="fa fa-envelope-o "></i> アドレスを変更する
         <% end %>
         <br><br>
+        <div class="receive_setting">
+          【circlebook.mailer@gmail.com】から送信します。<br>
+          メールを受信できるように設定をお願いします。
+        </div>
         お問い合わせ内容は下記から変更できます。<br>
         <%= link_to "/users/#{@user.id}/user_contacts/new" do %>
           >> <i class="fa fa-file-text-o "></i> テンプレを変更する

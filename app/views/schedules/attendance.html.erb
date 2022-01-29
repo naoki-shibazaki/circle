@@ -31,8 +31,6 @@
           <img class="attendance_img" src="/images/attendance_ogp.png">
         <% end %>
 
-        <%= render "/schedules/attendances/add_btn" %>
-
         <%= render "/schedules/attendances/new_form" %>
 
         <div class="attendance_txt">
@@ -69,40 +67,26 @@
         <div class="schedule_archive">
           <% if params[:archive] == "1" %>
             <a href="<%= request.path %>" >>> 現在の出欠を確認する</a>
-          <% else %>
+          <% elsif @past_schedules.present? %>
             <a href="<%= request.path %>?archive=1" >>> 過去の出欠5件を確認する</a>
+          <% else %>
           <% end %>
         </div>
 
         <% if params[:archive] != "1" %>
-          <%= render "/schedules/attendances/add_btn" %>
+          <div class="join_txt">
+            ＼ 登録なしで回答できます！ ／
+          </div>
+
+          <div class="attendances_modal center">
+            <a class="js-modal-open" href="" data-target="attendance_add"><span class="join_btn">新規で出欠回答する！</span></a>
+          </div>
         <% end %>
 
       </div>
-
 
     <%= render "/layouts/ad_square" %>
     <div class="ad_space"></div>
 
   </div>
 </div>
-
-
-
-
-<script>
-$(function(){
-    $('.js-modal-open').each(function(){
-        $(this).on('click',function(){
-            var target = $(this).data('target');
-            var modal = document.getElementById(target);
-            $(modal).fadeIn();
-            return false;
-        });
-    });
-    $('.js-modal-close').on('click',function(){
-        $('.js-modal').fadeOut();
-        return false;
-    });
-});
-</script>
