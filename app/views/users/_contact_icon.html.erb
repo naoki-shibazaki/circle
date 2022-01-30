@@ -1,28 +1,63 @@
-<% if @user.contact == "line" && @user.line_id != "" %>
-		<div class="contact-button">
-			<%= link_to new_user_user_contact_path(@user) do %>
-				<img src="/images/icon_line.png" alt="" class="icon_sns" />
-			<% end %>
-		</div>
+<% if @user.admin_user.check == 1 %>
 
-<% elsif @user.contact == "mail" %>
-		<div class="contact-button">
-			<%= link_to new_user_user_contact_path(@user) do %>
-				<img src="/images/icon_mail.png" alt="" class="icon_sns" />
-			<% end %>
-		</div>
+  <% if @user.contact == "line" && @user.line_id != "" %>
+      <div class="contact-button">
+        <%= link_to new_user_user_contact_path(@user, check: "1") do %>
+          <img src="/images/icon_line.png" alt="" class="icon_sns" />
+        <% end %>
+      </div>
+
+  <% elsif @user.contact == "mail" %>
+      <div class="contact-button">
+        <%= link_to new_user_user_contact_path(@user, check: "1") do %>
+          <img src="/images/icon_mail.png" alt="" class="icon_sns" />
+        <% end %>
+      </div>
+
+  <% else %>
+    <% if @user.line_id != "" %>
+      <div class="contact-button">
+        <%= link_to new_user_user_contact_path(@user, check: "1") do %>
+          <img src="/images/icon_line.png" alt="" class="icon_sns" />
+        <% end %>
+      </div>
+    <% end %>
+      <div class="contact-button">
+        <%= link_to new_user_user_contact_path(@user, check: "1") do %>
+          <img src="/images/icon_mail.png" alt="" class="icon_sns" />
+        <% end %>
+      </div>
+  <% end %>
 
 <% else %>
-	<% if @user.line_id != "" %>
-		<div class="contact-button">
-			<%= link_to new_user_user_contact_path(@user) do %>
-				<img src="/images/icon_line.png" alt="" class="icon_sns" />
-			<% end %>
-		</div>
-	<% end %>
-		<div class="contact-button">
-			<%= link_to new_user_user_contact_path(@user) do %>
-				<img src="/images/icon_mail.png" alt="" class="icon_sns" />
-			<% end %>
-		</div>
+
+  <% if @user.contact == "line" && @user.line_id != "" %>
+      <div class="contact-button">
+        <%= link_to new_user_user_contact_path(@user) do %>
+          <img src="/images/icon_line.png" alt="" class="icon_sns" />
+        <% end %>
+      </div>
+
+  <% elsif @user.contact == "mail" %>
+      <div class="contact-button">
+        <%= link_to new_user_user_contact_path(@user) do %>
+          <img src="/images/icon_mail.png" alt="" class="icon_sns" />
+        <% end %>
+      </div>
+
+  <% else %>
+    <% if @user.line_id != "" %>
+      <div class="contact-button">
+        <%= link_to new_user_user_contact_path(@user) do %>
+          <img src="/images/icon_line.png" alt="" class="icon_sns" />
+        <% end %>
+      </div>
+    <% end %>
+      <div class="contact-button">
+        <%= link_to new_user_user_contact_path(@user) do %>
+          <img src="/images/icon_mail.png" alt="" class="icon_sns" />
+        <% end %>
+      </div>
+  <% end %>
+
 <% end %>

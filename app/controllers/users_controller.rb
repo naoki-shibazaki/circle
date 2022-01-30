@@ -274,6 +274,13 @@ helper_method :link_count
 		if admin_user_signed_in?
 			if current_admin_user.id == 1
         @admin_user.update(admin_user_params)
+        @admin_user.users.map{|user|
+          user.last_post = Time.zone.now.ago(5.years)
+          user.save
+        }
+
+
+
         flash[:notice] = '違反者登録完了！'
         redirect_to "/users/#{@user.id}"
 			end

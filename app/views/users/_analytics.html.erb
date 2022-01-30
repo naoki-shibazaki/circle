@@ -149,7 +149,7 @@
 
                   <tr>
                     <th><%= link_to user_questions_path(@user) do %>Ｑ＆Ａの回答 <i class="fa fa-external-link "></i><% end %></th>
-                    <td>0.5 P</td>
+                    <td>0.3 P</td>
                     <td><%= @qa_point.to_f.round(1) %> P</td>
                   </tr>
 
@@ -170,7 +170,7 @@
                   <% if @respond_point.to_f > 0 %>
                     <tr>
                       <th><%= link_to "/users/#{@user.id}/contact_list" do %>問い合わせ未返信 <i class="fa fa-external-link "></i><% end %></th>
-                      <td>-10.0 P</td>
+                      <td>-30.0 P</td>
                       <td>-<%= @respond_point.to_f.round(1) %> P</td>
                     </tr>
                   <% end %>
