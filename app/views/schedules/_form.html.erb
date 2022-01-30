@@ -28,9 +28,17 @@
         <% end %>
 
         <div class="label_item">時間帯</div><br>
-        <%= f.time_field :time_s, value: @copy_schedule.time_s.strftime('%H:%M'), class: 'form-control form-time', placeholder: "18:00" %>
+        <% if @copy_schedule.time_s.present? %>
+          <%= f.time_field :time_s, value: @copy_schedule.time_s.strftime('%H:%M'), class: 'form-control form-time', placeholder: "18:00" %>
+        <% else %>
+          <%= f.time_field :time_s, class: 'form-control form-time', placeholder: "18:00" %>
+        <% end %>
         〜
-        <%= f.time_field :time_e, value: @copy_schedule.time_e.strftime('%H:%M'), class: 'form-control form-time', placeholder: "20:00" %>
+        <% if @copy_schedule.time_e.present? %>
+          <%= f.time_field :time_e, value: @copy_schedule.time_e.strftime('%H:%M'), class: 'form-control form-time', placeholder: "20:00" %>
+        <% else %>
+          <%= f.time_field :time_e, class: 'form-control form-time', placeholder: "20:00" %>
+        <% end %>
 
         <br><div class="label_item">募集人数</div><br>
         <%= render "/schedules/recruitment_numbers", f: f %>
