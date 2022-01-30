@@ -20,6 +20,14 @@ before_action :set_attendances, {only: [:secret, :attendance, :attendance_create
 		@schedule = @user.schedules.build
     @btn_name = "新規作成"
 
+    if params[:copy]
+      @copy_schedule = Schedule.find(params[:copy])
+      if @user.id != @copy_schedule.user.id
+        flash[:notice] = "URLに誤りがあります"
+        redirect_to new_user_schedule_path
+      end
+    end
+
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
 		@b2_name = "活動スケジュール"
@@ -27,7 +35,16 @@ before_action :set_attendances, {only: [:secret, :attendance, :attendance_create
   end
 
 	def create
+    if params[:copy]
+      @copy_schedule = Schedule.find(params[:copy])
+      if @user.id != @copy_schedule.user.id
+        flash[:notice] = "URLに誤りがあります"
+        redirect_to new_user_schedule_path
+      end
+    end
+
     @schedule = @user.schedules.new(schedule_params)
+    @btn_name = "更新する"
 
 		if @schedule.save
 

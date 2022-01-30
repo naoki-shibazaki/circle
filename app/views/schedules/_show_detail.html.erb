@@ -102,6 +102,18 @@
     <% end %>
   </div>
 
+    <% if admin_user_signed_in?  %>
+      <% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
+        <div class="add_schedule_btn_wrap">
+          <%= link_to new_user_schedule_path(@user,copy: @schedule.id ) do %>
+            <div class="add_schedule_btn">
+              <i class="fa fa-calendar-plus-o "></i> コピーして新規作成する！
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
   <div class="article_item article_padding place_list ">
     <table>
       <tbody>
