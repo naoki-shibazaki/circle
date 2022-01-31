@@ -6,6 +6,7 @@
 
           <div class="field">
             <div class="label_item"><span class="label label_danger">必須</span>お名前 （英字不可）</div>
+            <span class="cautions">※全角の漢字／ひらがな／カタカナでご記入ください</span>
             <%= f.text_field :name, class: 'form-control', placeholder: "サークルブック" %>
           </div>
 
@@ -17,7 +18,7 @@
 
           <div class="field">
             <div class="label_item"><span class="label label_danger">必須</span>確認用メールアドレス</div>
-            <span class="cautions">※同じアドレスをご記入ください</span>
+            <span class="cautions">※上と同じアドレスをご記入ください</span>
             <%= f.text_field :mail_confirmation, class: 'form-control', id: 'change_mail_02', placeholder: "circlebook47@gmail.com" %>
           </div>
 
