@@ -50,7 +50,7 @@ Rails.application.routes.draw do
 
 	root 'users#top'
 
-	get '/sm', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sm/sitemap.xml.gz')
+	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
   # 静的ページ
 	get 'faq' , to: 'pages#faq'
