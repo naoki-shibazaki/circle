@@ -123,7 +123,7 @@
 
 
       <div class="warning_txt">※更新完了に少し時間がかかります</div>
-        <input type="submit" value="<%= @btn_name %>" formaction="/users/<%= @user.id %>/schedules" formmethod="POST"/>
+        <%= f.submit @btn_name, data: { disable_with: '作成中...' } %>
 
         <div class="reset"></div>
       <% end %>
