@@ -9,36 +9,34 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
   aws_region: ENV['AWS_S3_REGION'],
 )
 
-
 # ▼SEOの観点
 # 1.0 最重要
 # 0.8 高
 # 0.5 中
 # 0.3 低
 
-
 SitemapGenerator::Sitemap.create do
   current_time = Time.now
   add root_path, :lastmod => current_time, changefreq: 'weekly', priority: 0.3
 
-  User.find_each do |user|
-    add user_path(user), :lastmod => user.updated_at, :priority => 0.3, :changefreq => 'weekly'
-    add "/users/#{user.id}/schedules", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'
-    add "/users/#{user.id}/reviews", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'
-    add "/users/#{user.id}/questions", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'
-  end
+  # User.find_each do |user|
+  #   add user_path(user), :lastmod => user.updated_at, :priority => 0.3, :changefreq => 'weekly'
+    # add "/users/#{user.id}/schedules", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'
+    # add "/users/#{user.id}/reviews", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'
+    # add "/users/#{user.id}/questions", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'
+  # end
 
   DbKeyword.find_each do |keyword|
     add "/users/kw/#{keyword.keyword}", :lastmod => current_time, :priority => 0.8, :changefreq => 'daily'
   end
 
-  Blog.find_each do |blog|
-    add user_blog_path(blog.user, blog), :lastmod => blog.updated_at, :priority => 0.3, :changefreq => 'weekly'
-  end
+  # Blog.find_each do |blog|
+  #   add user_blog_path(blog.user, blog), :lastmod => blog.updated_at, :priority => 0.3, :changefreq => 'weekly'
+  # end
 
-  Schedule.find_each do |schedule|
-    add user_schedule_path(schedule.user, schedule), :lastmod => schedule.updated_at, :priority => 0.3, :changefreq => 'weekly'
-  end
+  # Schedule.find_each do |schedule|
+  #   add user_schedule_path(schedule.user, schedule), :lastmod => schedule.updated_at, :priority => 0.3, :changefreq => 'weekly'
+  # end
 
   # Match.find_each do |match|
   #   add match_path(match), :lastmod => match.updated_at, :priority => 0.5, :changefreq => 'daily'
