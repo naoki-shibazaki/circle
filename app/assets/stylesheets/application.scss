@@ -5657,6 +5657,26 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
     border-bottom: 2px solid #30803e;
   }
 
+  .btn_gray {
+    color: #fff;
+    background-color: #a5a5a5;
+  }
+
+  .btn_gray:hover {
+    color: #fff;
+    background: #817f7f;
+  }
+
+  .btn_gray.btn_cubic {
+    border-bottom: 5px solid #7e7e7e;
+  }
+
+  .btn_gray.btn_cubic:hover {
+    margin-top: 3px;
+    border-bottom: 2px solid #817f7f;
+  }
+
+
 
   .btn_c i.fa {
     margin-right: 8px;
