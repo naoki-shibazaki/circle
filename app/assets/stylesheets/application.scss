@@ -1040,6 +1040,12 @@ body {
   background: #3997bd;
 }
 
+.ribbon-content .yellow {
+  position: absolute;
+  background: #ead308;
+}
+
+
 .tag_btn{
   display: inline-block;
   -webkit-box-align: center;
@@ -7532,7 +7538,8 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   }
 }
 
-.user_item_wrap{
+.user_item_wrap,
+.schedule_item_wrap{
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
@@ -8454,6 +8461,29 @@ trix-toolbar .button_group button.icon{
   }
 }
 
+.schedule_item_wrap{
+
+  .header_schedule_list {
+    background: #000;
+    height: 100px;
+  }
+
+  .schedule_list_content{
+    display: block;
+    padding: 20px 20px;
+  }
+
+  .schedule_list_title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+}
+
+
+
+
 
 // --------------------------------------
 // ▼PC
@@ -8584,7 +8614,8 @@ trix-toolbar .button_group button.icon{
   padding: 25px;
 }
 
-.user_item_wrap{
+.user_item_wrap,
+.schedule_item_wrap{
   width: 96%;
 }
 

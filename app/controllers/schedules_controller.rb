@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
 include Circlebook
 
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
-before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
+before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete, :schedules]}
 before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
 
 
@@ -215,6 +215,12 @@ def attendance_delete
 
   flash[:notice] = "削除しました"
   redirect_back(fallback_location: "users/#{@user.id}/schedule")
+end
+
+
+# スケジュール
+def schedules
+  @schedules = Schedule.all.order(:day => :asc).page(params[:page])
 end
 
 
