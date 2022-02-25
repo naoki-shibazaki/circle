@@ -48,7 +48,7 @@
                 <div class="schedule_list_content">
                   <h2 class="schedule_list_title">【<%= schedule.user.event.name %>】<%= schedule.title %></h2>
 
-                  <div class="list_03">
+                  <div class="schedule_cont">
                       <div class="user_area">
                         <i class="fa fa-calendar icon_c"></i><%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
                         <% if schedule.time_s.present? %>
@@ -63,6 +63,18 @@
                       </div>
                   </div>
 
+                  <hr>
+
+                  <h3 class="schedule_list_sub_title">主催サークル</h3>
+
+                  <div class="user_profile_wrap">
+                      <%= lazysizes_image_tag schedule.user.pic_profile.url , class:'image_icon' %>
+                      <div class="user_profile">
+                        <h2 class="user_name"><%= schedule.user.name.truncate(40) %></h2>
+                      </div>
+
+                    <div class="reset"></div>
+                  </div>
 
 
                 </div>

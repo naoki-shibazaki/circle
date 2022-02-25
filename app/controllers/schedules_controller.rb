@@ -220,7 +220,7 @@ end
 
 # スケジュール
 def schedules
-  @schedules = Schedule.all.order(:day => :asc).page(params[:page])
+  @schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc).page(params[:page]).per(20)
 end
 
 

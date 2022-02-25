@@ -8470,7 +8470,7 @@ trix-toolbar .button_group button.icon{
 
   .schedule_list_content{
     display: block;
-    padding: 20px 20px;
+    padding: 20px 20px 10px;
   }
 
   .schedule_list_title{
@@ -8478,6 +8478,36 @@ trix-toolbar .button_group button.icon{
     font-weight: bold;
     margin-bottom: 10px;
   }
+
+  .schedule_cont {
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .schedule_list_sub_title{
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+
+  .user_profile_wrap {
+    width: 100%;
+    margin: 0;
+    .user_profile .user_name {
+      font-weight: normal;
+    }
+  }
+
+
 
 }
 
