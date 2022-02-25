@@ -59,27 +59,32 @@
 
                       </div>
                       <div class="user_schedule">
-                        <i class="fa fa-map-marker icon_c"></i><%= schedule.venue %>
+                        <i class="fa fa-map-marker icon_c"></i><%= schedule.user.prefecture.name %><% if schedule.user.prefecture_sub_id.present? %>・<%= Prefecture.find(schedule.user.prefecture_sub_id).name %><% end %>：<%= schedule.venue %>
                       </div>
                   </div>
-
-                  <hr>
-
-                  <h3 class="schedule_list_sub_title">主催サークル</h3>
-
-                  <div class="user_profile_wrap">
-                      <%= lazysizes_image_tag schedule.user.pic_profile.url , class:'image_icon' %>
-                      <div class="user_profile">
-                        <h2 class="user_name"><%= schedule.user.name.truncate(40) %></h2>
-                      </div>
-
-                    <div class="reset"></div>
-                  </div>
-
 
                 </div>
 
               <% end %>
+
+              <hr class="hr_w">
+
+
+              <%= link_to(user_path(schedule.user.id)) do %>
+                <div class="schedule_user_wrap">
+                  <div class="schedule_list_sub_title">主催サークル</div>
+
+                  <div class="user_profile_wrap">
+                      <%= lazysizes_image_tag schedule.user.pic_profile.url , class:'image_icon' %>
+                      <div class="user_profile">
+                        <h3 class="user_name"><%= schedule.user.name.truncate(40) %></h3>
+                      </div>
+
+                    <div class="reset"></div>
+                  </div>
+                </div>
+              <% end %>
+
 
               <%= render "/users/parts/tag_list", user: schedule.user %>
 
