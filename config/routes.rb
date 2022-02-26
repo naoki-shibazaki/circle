@@ -87,8 +87,11 @@ Rails.application.routes.draw do
 	get 'users/:id/account_del' , to: 'users#account_del'
 	get 'users/:id/contact_list' , to: 'user_contacts#contact_list'
 
+  # イベント一覧
+  get 'dates' , to: 'schedules#schedules'
+  get 'dates/:year/:month/:day' , to: 'schedules#day'
+
   # 出欠管理
-  get 'schedules' , to: 'schedules#schedules'
   get 'schedules/:unique_id' , to: 'schedules#attendance'
   post 'schedules/:unique_id' , to: 'schedules#attendance_create'
   get 'schedules/:unique_id/:id' , to: 'schedules#secret'

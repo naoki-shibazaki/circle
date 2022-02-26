@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
 include Circlebook
 
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
-before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete, :schedules]}
+before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete, :dates, :day]}
 before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
 
 
@@ -219,10 +219,13 @@ end
 
 
 # スケジュール
-def schedules
-  @schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc).page(params[:page]).per(20)
+def dates
+  @schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
 end
 
+def day
+  @schedules = Schedule.where(day: "#{params[:year]}-#{params[:month]}-#{params[:day]}").order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+end
 
 
 	private
