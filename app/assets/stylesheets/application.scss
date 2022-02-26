@@ -8515,10 +8515,39 @@ trix-toolbar .button_group button.icon{
     }
   }
 
-
-
 }
 
+.date_list_wrap{
+  background-color: #fff;
+  padding: 18px 14px;
+  margin: 0px 0 20px;
+  ul{
+    display: -webkit-box;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    white-space: nowrap;
+    li{
+      height: 50px;
+      width: 50px;
+      display: block;
+      text-align: center;
+      padding: 0.25em 0.5em;
+      margin-right: 10px;
+      background: #fff;
+      border: 1px solid #aaa;
+      border-radius: 10px;
+      color: #1a1a1a;
+    }
+    a{
+      display: block;
+    }
+  }
+}
 
 
 
