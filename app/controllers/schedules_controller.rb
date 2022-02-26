@@ -225,6 +225,18 @@ end
 
 def day
   @schedules = Schedule.where(day: "#{params[:year]}-#{params[:month]}-#{params[:day]}").order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+  @date = "#{params[:year]}-#{params[:month]}-#{params[:day]}"
+  wdays =  ["日", "月", "火", "水", "木", "金", "土" ]
+  @day = Time.parse(@date).strftime("%Y年%-m月%-d日(#{wdays[Time.parse(@date).wday]})")
+
+  @b1_name = "イベント一覧"
+  @b1_url = "/dates"
+  @b2_name = "#{Time.parse(@date).strftime("%Y年")}"
+  @b2_url = "/dates/#{params[:year]}"
+  @b3_name = "#{Time.parse(@date).strftime("%-m月")}"
+  @b3_url = "/dates/#{params[:year]}/#{params[:month]}"
+  @b4_name = "#{@day}に開催予定のイベント一覧"
+  @b4_url = ""
 end
 
 

@@ -243,10 +243,6 @@ helper_method :link_count
 			end
 		end
 
-    # 一時期 サークルブックポイント繁栄
-    cb_point(@user)
-    @user.save
-
     # amp対応
     amp_set
 	end

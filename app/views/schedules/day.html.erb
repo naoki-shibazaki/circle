@@ -1,13 +1,24 @@
-<% set_meta_tags title: "【#{@time.strftime("%Y")}年版】47都道府県のサークルやチーム、団体一覧｜メンバー募集サイト" %>
+<% set_meta_tags title: "#{@day}に開催予定のサークルやチーム、イベント一覧｜メンバー募集サイト",
+    description: "【完全無料／登録不要】#{@day}に開催予定のサークルやチーム、イベント一覧です！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！無料で簡単にメンバーの募集ができます！",
+    keywords: "#{@day},サークル,チーム",
+    og: {
+      image:image_url("/images/dates.jpg")
+    }
+%>
 
   <div class="main users-index">
     <div class="container">
-      <img data-src="/images/top.png" class="lazyload imege_title" >
-      <h1 class="users-heading">サークル検索</h1>
-        <div class="users-txt">
-          あなたにピッタリの<br>
-          サークルやチーム、団体が見つかる！！
+    <%= render "/layouts/breadcrumb" %>
+
+      <div class="e_header_wrap">
+        <img src="/images/dates.jpg" alt="イベント" >
+        <div class="link_txt">
+          <h1 class="e_header_title">
+            <%= @day %>に<br>
+            開催予定のイベント一覧
+          </h1>
         </div>
+      </div>
 
       <%= render "/schedules/select_date" %>
 
