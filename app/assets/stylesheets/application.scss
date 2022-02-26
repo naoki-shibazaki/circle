@@ -8519,7 +8519,7 @@ trix-toolbar .button_group button.icon{
 
 .date_list_wrap{
   background-color: #fff;
-  padding: 18px 14px;
+  padding: 18px 14px 6px;
   margin: 0px 0 20px;
   ul{
     display: -webkit-box;
@@ -8531,6 +8531,7 @@ trix-toolbar .button_group button.icon{
     -webkit-overflow-scrolling: touch;
     overflow-scrolling: touch;
     white-space: nowrap;
+    padding-bottom: 10px;
     li{
       height: 50px;
       width: 50px;
@@ -8548,6 +8549,15 @@ trix-toolbar .button_group button.icon{
     }
   }
 }
+
+.search_wrap{
+  .date_list_wrap {
+    padding: 0;
+    margin: 20px 0 0;
+  }
+}
+
+
 
 
 

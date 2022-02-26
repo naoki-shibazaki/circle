@@ -1,0 +1,12 @@
+<div class="date_list_wrap">
+  <ul>
+    <%= link_to "/dates/#{DateTime.now.strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.strftime("#{%w(日 月 火 水 木 金 土)[DateTime.now.wday]}") %><br><%= DateTime.now.strftime("%-d") %></li><% end %>
+    <%= link_to "/dates/#{DateTime.now.since(1.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(1.days).strftime("#{%w(日 月 火 水 木 金 土)[DateTime.now.since(1.days).wday]}") %><br><%= DateTime.now.since(1.days).strftime("%-d") %></li><% end %>
+    <%= link_to "/dates/#{DateTime.now.since(2.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(2.days).strftime("#{%w(日 月 火 水 木 金 土)[DateTime.now.since(2.days).wday]}") %><br><%= DateTime.now.since(2.days).strftime("%-d") %></li><% end %>
+    <%= link_to "/dates/#{DateTime.now.since(3.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(3.days).strftime("#{%w(日 月 火 水 木 金 土)[DateTime.now.since(3.days).wday]}") %><br><%= DateTime.now.since(3.days).strftime("%-d") %></li><% end %>
+    <%= link_to "/dates/#{DateTime.now.since(4.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(4.days).strftime("#{%w(日 月 火 水 木 金 土)[DateTime.now.since(4.days).wday]}") %><br><%= DateTime.now.since(4.days).strftime("%-d") %></li><% end %>
+    <%= link_to "/dates/#{DateTime.now.since(5.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(5.days).strftime("#{%w(日 月 火 水 木 金 土)[DateTime.now.since(5.days).wday]}") %><br><%= DateTime.now.since(5.days).strftime("%-d") %></li><% end %>
+    <%= link_to "/dates/#{DateTime.now.since(6.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(6.days).strftime("#{%w(日 月 火 水 木 金 土)[DateTime.now.since(6.days).wday]}") %><br><%= DateTime.now.since(6.days).strftime("%-d") %></li><% end %>
+    <%= link_to "/dates/#{DateTime.now.since(7.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(7.days).strftime("#{%w(日 月 火 水 木 金 土)[DateTime.now.since(7.days).wday]}") %><br><%= DateTime.now.since(7.days).strftime("%-d") %></li><% end %>
+  </ul>
+</div>
