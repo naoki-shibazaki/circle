@@ -88,7 +88,7 @@ Rails.application.routes.draw do
 	get 'users/:id/contact_list' , to: 'user_contacts#contact_list'
 
   # イベント一覧
-  get 'dates' , to: 'schedules#schedules'
+  get 'dates' , to: 'schedules#dates'
   get 'dates/:year/:month/:day' , to: 'schedules#day'
 
   # 出欠管理
