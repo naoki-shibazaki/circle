@@ -5,6 +5,7 @@ include Circlebook
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
 before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete, :dates, :day]}
 before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
+before_action :set_dates, {only: [:dates, :day]}
 
 
 	def index
@@ -221,13 +222,20 @@ end
 # スケジュール
 def dates
   @schedules = Schedule.where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+
+  @b1_name = "イベント一覧"
+  @b1_url = ""
 end
 
 def day
-  @schedules = Schedule.where(day: "#{params[:year]}-#{params[:month]}-#{params[:day]}").order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
   @date = "#{params[:year]}-#{params[:month]}-#{params[:day]}"
-  wdays =  ["日", "月", "火", "水", "木", "金", "土" ]
-  @day = Time.parse(@date).strftime("%Y年%-m月%-d日(#{wdays[Time.parse(@date).wday]})")
+  @day = Time.parse(@date).strftime("%Y年%-m月%-d日(#{@wdays[Time.parse(@date).wday]})")
+
+  if DateTime.now.strftime("%Y-%m-%d") != @date
+    @schedules = Schedule.where(day: @date).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+  else
+    @schedules = Schedule.where(day: @date).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+  end
 
   @b1_name = "イベント一覧"
   @b1_url = "/dates"
@@ -263,6 +271,12 @@ end
 			@past_schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).order(:day => :desc)
     end
 
+    def set_dates
+      @wdays =  ["日", "月", "火", "水", "木", "金", "土" ]
+      if admin_user_signed_in?
+        @user = current_admin_user.users.last
+      end
+    end
 
 
 		def ensure_correct_user
