@@ -1,17 +1,33 @@
 <% @wdays =  ["日", "月", "火", "水", "木", "金", "土" ] %>
 <div class="date_list_wrap">
-  <ul>
-    <%= link_to "/dates/#{DateTime.now.strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.strftime("#{@wdays[DateTime.now.wday]}") %><br><%= DateTime.now.strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(1.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(1.days).strftime("#{@wdays[DateTime.now.since(1.days).wday]}") %><br><%= DateTime.now.since(1.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(2.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(2.days).strftime("#{@wdays[DateTime.now.since(2.days).wday]}") %><br><%= DateTime.now.since(2.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(3.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(3.days).strftime("#{@wdays[DateTime.now.since(3.days).wday]}") %><br><%= DateTime.now.since(3.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(4.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(4.days).strftime("#{@wdays[DateTime.now.since(4.days).wday]}") %><br><%= DateTime.now.since(4.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(5.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(5.days).strftime("#{@wdays[DateTime.now.since(5.days).wday]}") %><br><%= DateTime.now.since(5.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(6.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(6.days).strftime("#{@wdays[DateTime.now.since(6.days).wday]}") %><br><%= DateTime.now.since(6.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(7.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(7.days).strftime("#{@wdays[DateTime.now.since(7.days).wday]}") %><br><%= DateTime.now.since(7.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(8.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(8.days).strftime("#{@wdays[DateTime.now.since(8.days).wday]}") %><br><%= DateTime.now.since(8.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(9.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(9.days).strftime("#{@wdays[DateTime.now.since(9.days).wday]}") %><br><%= DateTime.now.since(9.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(10.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(10.days).strftime("#{@wdays[DateTime.now.since(10.days).wday]}") %><br><%= DateTime.now.since(10.days).strftime("%-d") %></li><% end %>
-    <%= link_to "/dates/#{DateTime.now.since(11.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(11.days).strftime("#{@wdays[DateTime.now.since(11.days).wday]}") %><br><%= DateTime.now.since(11.days).strftime("%-d") %></li><% end %>
-  </ul>
+
+  <% if @path.is('schedules#day') %>
+
+    <ul>
+      <% 14.times do |i| %>
+        <% if i == 0 %>
+          <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_selected"><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
+        <% elsif Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") == "土" %>
+          <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sat"><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
+        <% elsif Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") == "日" %>
+          <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sun"><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
+        <% else %>
+          <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  <% else %>
+    <ul>
+      <% 14.times do |i| %>
+        <% if DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") == "土" %>
+          <%= link_to "/dates/#{DateTime.now.since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sat"><%= DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") %><br><%= DateTime.now.since(i.days).strftime("%-d") %></li><% end %>
+        <% elsif DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") == "日" %>
+          <%= link_to "/dates/#{DateTime.now.since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sun"><%= DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") %><br><%= DateTime.now.since(i.days).strftime("%-d") %></li><% end %>
+        <% else %>
+          <%= link_to "/dates/#{DateTime.now.since(i.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") %><br><%= DateTime.now.since(i.days).strftime("%-d") %></li><% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+
 </div>
