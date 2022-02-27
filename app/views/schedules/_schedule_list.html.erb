@@ -45,7 +45,7 @@
                       <% if schedule.recruitment_numbers != 0 && schedule.name_schedules.where(answer: 1).count >= 1 %>
                         <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>/<%= schedule.recruitment_numbers %>名
                       <% elsif schedule.name_schedules.where(answer: 1).count == 0 %>
-
+                        <i class="fa fa-users "></i> 募集人数：<%= schedule.recruitment_numbers %>名
                       <% else %>
                         <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>名
                       <% end %>
