@@ -1,44 +1,17 @@
-<% if @schedule.time_s.present? %>
-
-	<% if @schedule.time_e.present? %>
-		<% set_meta_tags title: "#{@schedule.title}#{Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")}の活動内容｜#{@user.name}",
-							og: {
-										title: "#{Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")}の活動内容｜#{@user.name}",
-										description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}",
-                    image:image_url("/images/schedule_ogp.jpg")
-									},
-							twitter: { card: 'summary_large_image' ,
-                        image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60_bold:#{ @schedule_title },y_-120,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") } #{ @schedule.time_s.strftime('%H:%M') }〜#{ @schedule.time_e.strftime('%H:%M') },y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_110,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
-              }
-		%>
-
-	<% else %>
-		<% set_meta_tags title: "#{@schedule.title}#{Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")}の活動内容｜#{@user.name}",
-							og: {
-										title: "#{@schedule_title}#{Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")}の活動内容｜#{@user.name}",
-										description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}",
-                    image:image_url("/images/schedule_ogp.jpg")
-									},
-							twitter: { card: 'summary_large_image',
-                        image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60_bold:#{ @schedule_title },y_-120,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") } #{ @schedule.time_s.strftime('%H:%M') }〜,y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_110,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
-              }
-		%>
-
-	<% end %>
-
+<% if @schedule.top_image.present? %>
+  <% set_meta_tags title: @meta_title,
+            description: @meta_description,
+            og: {image: @schedule.top_image.url},
+            twitter: { card: 'summary_large_image'}
+  %>
 <% else %>
-	<% set_meta_tags title: "#{@schedule.title}#{Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")}の活動内容｜#{@user.name}",
-						og: {
-									title: "#{@schedule_title}#{Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")}の活動内容｜#{@user.name}",
-									description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}",
-                  image:image_url("/images/schedule_ogp.jpg")
-								},
-						twitter: { card: 'summary_large_image',
-                      image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_60_bold:#{ @schedule_title },y_-120,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_60:#{ Time.parse(@schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") },y_10,co_rgb:333,w_900,c_fit/l_text:Sawarabi%20Gothic_50:@#{ @schedule.venue },y_110,co_rgb:333,w_900,c_fit/v1586676520/qa_vipkmx.jpg"
-            }
-	%>
-
+  <% set_meta_tags title: @meta_title,
+            description: @meta_description,
+            og: {image: image_url("/images/schedule_ogp.jpg")},
+            twitter: { card: 'summary_large_image'}
+  %>
 <% end %>
+
 
 
 

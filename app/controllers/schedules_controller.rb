@@ -105,6 +105,9 @@ before_action :set_dates, {only: [:dates, :day]}
 			redirect_to "/users"
 		end
 
+    # meta_tag
+    @meta_title = "#{Time.parse(@schedule.day).strftime("%-m月%-d日(#{@wdays[Time.parse(@schedule.day).wday]})")}の活動内容｜#{@schedule.title}｜#{@user.name}"
+    @meta_description = "#{Time.parse(@schedule.day).strftime("%-m月%-d日(#{@wdays[Time.parse(@schedule.day).wday]})")}#{ @schedule.time_s.strftime('%H:%M') if @schedule.time_s.present? }#{"〜" if @schedule.time_s.present? }#{ @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? }@#{ @schedule.venue }の活動内容｜#{@schedule.title}｜#{@user.name}"
 
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
@@ -263,6 +266,7 @@ end
 			@schedule_month = 0
 			@schedule_m_c = 0
 			@contact_judge = "_s"
+      @wdays =  ["日", "月", "火", "水", "木", "金", "土" ]
 
 			@mail_title = "【#{@user.name}】お問い合わせ"
 			@mail_message = "こちらに相談内容をご記入ください！"
