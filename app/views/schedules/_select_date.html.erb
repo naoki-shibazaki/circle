@@ -19,21 +19,41 @@
 
     <div class="search_select">
         <select name="event_select" onChange="location.href=value;">
+          <% if params[:event].present? %>
+            <option value="#"><%= @event.name %></option>
+          <% else %>
             <option value="#">サークル・チーム</option>
-            <% @categories.each do |category| %>
-              <optgroup label="<%= category.name %>">
-                <% category.events.each do |event| %>
-                  <option value="/dates/<%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %>?event=<%= event.ruby %>"><%= event.name %></option>
+          <% end %>
+          <% @categories.each do |category| %>
+            <optgroup label="<%= category.name %>">
+              <% category.events.each do |event| %>
+                <% if params[:event] != event.ruby %>
+                  <% if params[:pref].present? %>
+                    <option value="/dates/<%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %>?pref=<%= params[:pref] %>&event=<%= event.ruby %>"><%= event.name %></option>
+                  <% else %>
+                    <option value="/dates/<%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %>?event=<%= event.ruby %>"><%= event.name %></option>
+                  <% end %>
                 <% end %>
-              </optgroup>
-            <% end %>
+              <% end %>
+            </optgroup>
+          <% end %>
         </select>
 
         <select name="prefecture_select" onChange="location.href=value;">
-          <option value="#">都道府県</option>
-            <% @prefectures.each do |prefecture| %>
-              <option value="/dates/<%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %>?pref=<%= prefecture.kana %>"><%= prefecture.name %></option>
+          <% if params[:pref].present? %>
+            <option value="#"><%= @prefecture.name %></option>
+          <% else %>
+            <option value="#">都道府県</option>
+          <% end %>
+          <% @prefectures.each do |prefecture| %>
+            <% if params[:pref] != prefecture.kana %>
+              <% if params[:event].present? %>
+                <option value="/dates/<%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %>?event=<%= params[:event] %>&pref=<%= prefecture.kana %>"><%= prefecture.name %></option>
+              <% else %>
+                <option value="/dates/<%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %>?pref=<%= prefecture.kana %>"><%= prefecture.name %></option>
+              <% end %>
             <% end %>
+          <% end %>
         </select>
 
         <div class="search_icon"><i class="fa fa-search "></i></div>
@@ -46,12 +66,12 @@
   <% else %>
     <ul>
       <% 14.times do |i| %>
-        <% if DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") == "土" %>
-          <%= link_to "/dates/#{DateTime.now.since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sat"><%= DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") %><br><%= DateTime.now.since(i.days).strftime("%-d") %></li><% end %>
-        <% elsif DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") == "日" %>
-          <%= link_to "/dates/#{DateTime.now.since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sun"><%= DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") %><br><%= DateTime.now.since(i.days).strftime("%-d") %></li><% end %>
+        <% if Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}") == "土" %>
+          <%= link_to "/dates/#{Time.zone.now.since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sat"><%= Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}") %><br><%= Time.zone.now.since(i.days).strftime("%-d") %></li><% end %>
+        <% elsif Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}") == "日" %>
+          <%= link_to "/dates/#{Time.zone.now.since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sun"><%= Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}") %><br><%= Time.zone.now.since(i.days).strftime("%-d") %></li><% end %>
         <% else %>
-          <%= link_to "/dates/#{DateTime.now.since(i.days).strftime("%Y/%m/%d")}" do %><li><%= DateTime.now.since(i.days).strftime("#{@wdays[DateTime.now.since(i.days).wday]}") %><br><%= DateTime.now.since(i.days).strftime("%-d") %></li><% end %>
+          <%= link_to "/dates/#{Time.zone.now.since(i.days).strftime("%Y/%m/%d")}" do %><li><%= Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}") %><br><%= Time.zone.now.since(i.days).strftime("%-d") %></li><% end %>
         <% end %>
       <% end %>
     </ul>

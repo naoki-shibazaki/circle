@@ -240,18 +240,24 @@ def day
   @categories = Category.all.order(:id => :asc)
   @events = Event.all.order(:order => :asc)
   @prefectures = Prefecture.all.order(:order => :asc)
+  @event = Event.find_by(ruby: params[:event])
+  @prefecture = Prefecture.find_by(kana: params[:pref])
 
-  if params[:event].present?
-    @event = Event.find_by(ruby: params[:event])
+  if params[:event].present? && params[:pref].present?
+    @users = User.event(@event.id).prefecture(@prefecture.id)
+    @user_ids = @users.map{|u| u.id}
+    @schedules = Schedule.where(day: @date, user_id: @user_ids).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+
+  elsif params[:event].present?
     @users = User.event(@event.id)
     @user_ids = @users.map{|u| u.id}
     @schedules = Schedule.where(day: @date, user_id: @user_ids).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
 
   elsif params[:pref].present?
-    @prefecture = Prefecture.find_by(kana: params[:pref])
     @users = User.prefecture(@prefecture.id)
     @user_ids = @users.map{|u| u.id}
     @schedules = Schedule.where(day: @date, user_id: @user_ids).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+
   else
     @schedules = Schedule.where(day: @date).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
   end

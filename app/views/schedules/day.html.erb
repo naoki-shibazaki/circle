@@ -14,8 +14,21 @@
         <img src="/images/dates.jpg" alt="イベント" >
         <div class="link_txt">
           <h1 class="e_header_title">
-            <%= @day %>に<br>
-            開催予定のイベント一覧
+            <% if params[:event].present? && params[:pref].present? %>
+              <%= @day %>に<br>
+              <%= @prefecture.name %>で開催予定の<br>
+              <%= @event.txt %>の一覧
+            <% elsif params[:event].present? %>
+              <%= @day %>に開催予定の<br>
+              <%= @event.txt %>の一覧
+            <% elsif params[:pref].present? %>
+              <%= @day %>に<br>
+              <%= @prefecture.name %>で開催予定の<br>
+              イベント一覧
+            <% else %>
+              <%= @day %>に<br>
+              開催予定のイベント一覧
+            <% end %>
           </h1>
         </div>
       </div>
