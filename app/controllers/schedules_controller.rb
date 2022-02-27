@@ -53,6 +53,14 @@ before_action :set_dates, {only: [:dates, :day]}
 
       @schedule = Schedule.where(user_id: @user.id).last
       @schedule.date = Time.parse(@schedule.day).strftime("%Y年%-m月%-d日(#{%w(日曜日 月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)[Time.parse(@schedule.day).wday]})")
+      if params[:copy]
+        if @schedule.top_image.blank?
+          @schedule.top_image = @copy_schedule.top_image.file
+        end
+        if @schedule.recruitment_numbers.blank?
+          @schedule.recruitment_numbers = @copy_schedule.recruitment_numbers
+        end
+      end
       @schedule.save
 
       last_post(@user)
@@ -109,8 +117,8 @@ before_action :set_dates, {only: [:dates, :day]}
 	def secret
 		@schedule = Schedule.find(params[:id])
     @user = User.find_by(unique_id: params[:unique_id])
-    @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
-    @past_schedules = Schedule.where(user_id: @user.id).where("day < ?", DateTime.yesterday).order(:day => :desc)
+    @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
+    @past_schedules = Schedule.where(user_id: @user.id).where("day < ?", DateTime.yesterday).order(:day => :desc, :time_s => :asc)
     @data = AdminUser.find_by(id: params[:user_id])
     @prefectures = Prefecture.all
     @schedule_month = 0
@@ -174,10 +182,6 @@ def attendance
   @schedule_ids = @schedules.map{|s| s.id}
   @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}
   @names = Name.where(id: @name_ids).order(updated_at: :desc)
-
-  # ▼テスト
-  # @names = Name.includes(:schedules).where(schedule_id: @schedule_ids).order(updated_at: :desc)
-  # @names = Name.includes(:schedules).all.order(updated_at: :desc)
 
 
 end

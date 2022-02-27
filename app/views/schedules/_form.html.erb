@@ -21,8 +21,8 @@
         <div class="img_field_profile_wrap">
           <div class="label_item">トップ画像</div>
           <div id="img_field_header" onClick="$('#file_header').click()" >
-            <% if @schedule.top_image.present? %>
-              <%= image_tag(@schedule.top_image.url) %>
+            <% if @copy_schedule.top_image.present? %>
+              <%= image_tag(@copy_schedule.top_image.url) %>
             <% else %>
               <i class="fa fa-image"></i>
             <% end %>
