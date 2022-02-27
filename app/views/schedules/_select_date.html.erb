@@ -16,6 +16,33 @@
         <% end %>
       <% end %>
     </ul>
+
+    <div class="search_select">
+        <select name="event_select" onChange="location.href=value;">
+            <option value="#">サークル・チーム</option>
+            <% @categories.each do |category| %>
+              <optgroup label="<%= category.name %>">
+                <% category.events.each do |event| %>
+                  <option value="/dates/<%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %>?event=<%= event.ruby %>"><%= event.name %></option>
+                <% end %>
+              </optgroup>
+            <% end %>
+        </select>
+
+        <select name="prefecture_select" onChange="location.href=value;">
+          <option value="#">都道府県</option>
+            <% @prefectures.each do |prefecture| %>
+              <option value="/dates/<%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %>?pref=<%= prefecture.kana %>"><%= prefecture.name %></option>
+            <% end %>
+        </select>
+
+        <div class="search_icon"><i class="fa fa-search "></i></div>
+    </div>
+
+
+
+
+
   <% else %>
     <ul>
       <% 14.times do |i| %>

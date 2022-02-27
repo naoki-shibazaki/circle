@@ -237,9 +237,21 @@ end
 def day
   @date = "#{params[:year]}-#{params[:month]}-#{params[:day]}"
   @day = Time.parse(@date).strftime("%Y年%-m月%-d日(#{@wdays[Time.parse(@date).wday]})")
+  @categories = Category.all.order(:id => :asc)
+  @events = Event.all.order(:order => :asc)
+  @prefectures = Prefecture.all.order(:order => :asc)
 
-  if DateTime.now.strftime("%Y-%m-%d") != @date
-    @schedules = Schedule.where(day: @date).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+  if params[:event].present?
+    @event = Event.find_by(ruby: params[:event])
+    @users = User.event(@event.id)
+    @user_ids = @users.map{|u| u.id}
+    @schedules = Schedule.where(day: @date, user_id: @user_ids).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+
+  elsif params[:pref].present?
+    @prefecture = Prefecture.find_by(kana: params[:pref])
+    @users = User.prefecture(@prefecture.id)
+    @user_ids = @users.map{|u| u.id}
+    @schedules = Schedule.where(day: @date, user_id: @user_ids).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
   else
     @schedules = Schedule.where(day: @date).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
   end

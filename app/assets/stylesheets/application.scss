@@ -8532,6 +8532,9 @@ trix-toolbar .button_group button.icon{
   background-color: #fff;
   padding: 18px 14px 6px;
   margin: 0px 0 20px;
+  .search_select{
+    margin: 10px 0 12px;
+  }
   ul{
     display: -webkit-box;
     -webkit-box-pack: start;
@@ -8556,8 +8559,8 @@ trix-toolbar .button_group button.icon{
       color: #1a1a1a;
     }
     .c_selected{
-      background-color: #3ecdc6;
-      border: 1px solid #3ecdc6;
+      background-color: #c0c0c0;
+      border: 1px solid #c0c0c0;
       color: #fff;
     }
     .c_sat{
