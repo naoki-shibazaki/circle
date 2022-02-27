@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_054048) do
+ActiveRecord::Schema.define(version: 2022_02_27_061420) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -415,6 +415,8 @@ ActiveRecord::Schema.define(version: 2022_01_12_054048) do
     t.string "recruitment"
     t.string "member_venue"
     t.integer "recruitment_numbers"
+    t.string "cost"
+    t.string "top_image"
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
