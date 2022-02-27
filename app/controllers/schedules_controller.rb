@@ -21,6 +21,8 @@ before_action :set_dates, {only: [:dates, :day]}
 		@schedule = @user.schedules.build
     @btn_name = "新規作成"
 
+    @copy_schedules = Schedule.where(user_id: @user.id).order(:day => :asc, :time_s => :asc).last(10)
+
     if params[:copy]
       @copy_schedule = Schedule.find(params[:copy])
       if @user.id != @copy_schedule.user.id
@@ -31,7 +33,7 @@ before_action :set_dates, {only: [:dates, :day]}
 
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
-		@b2_name = "活動スケジュール"
+		@b2_name = "スケジュールの新規追加"
 		@b2_url = ""
   end
 
@@ -141,10 +143,8 @@ before_action :set_dates, {only: [:dates, :day]}
 
 		@b1_name = @user.name
 		@b1_url = "/users/#{@user.id}"
-		@b2_name = "活動スケジュール"
-		@b2_url = "/users/#{@user.id}/schedules"
-		@b3_name = Time.parse(@schedule.day).strftime("%Y/%-m/%-d(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})")
-		@b3_url = ""
+		@b2_name = "スケジュールの編集"
+		@b2_url = ""
 	end
 
 	def destroy

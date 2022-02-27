@@ -3,19 +3,39 @@
 <div class="main users-index">
   <div class="container">
 
-    <%= render "/layouts/breadcrumb" %>
+		<div class="users-index-item schedule_wrap">
 
-		<div class="users-index-item">
-
+      <h1 class="top_title">スケジュールの新規追加</h1>
       <%= render "/users/parts/user_name", user: @user %>
+
+
+      <% if @copy_schedules.present? %>
+        <div class="schedule_copy_wrap" >
+          <div class="schedule_copy_txt"><i class="fa fa-copy "></i> 過去のスケジュールから複製する</div>
+          <select name="schedule_select" onChange="location.href=value;">
+            <option value="#">コピーするスケジュールを選択する</option>
+            <% @copy_schedules.each do |schedule| %>
+              <option value="/users/<%= schedule.user.id %>/schedules/new?copy=<%= schedule.id %>">
+                <%= Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
+                <% if schedule.time_s.present? %>
+                  <%= schedule.time_s.strftime('%-H:%M') %>-<%= schedule.time_e.strftime('%-H:%M') if schedule.time_e.present? %>
+                <% end %>
+
+                <% if schedule.member_venue.present? %>
+                  ＠<%= schedule.member_venue %>
+                <% else %>
+                  ＠<%= schedule.venue %>
+                <% end %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+      <% end %>
 
       <%= render "/schedules/form" %>
 
 		</div>
 
-
-	<%= render "/layouts/ad_square" %>
-	<div class="ad_space"></div>
 
 	</div>
 </div>

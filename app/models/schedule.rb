@@ -7,4 +7,7 @@ class Schedule < ApplicationRecord
 
 	paginates_per 5
 
+	mount_uploader :top_image, ImageUploader
+
+
 end

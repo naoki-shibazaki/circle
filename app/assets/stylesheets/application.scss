@@ -554,10 +554,13 @@ body {
 .header-wrapper .end{
   background-color: #ccc;
   color: #fff;
-  height: 40px;
   font-size: 1rem;
   font-weight: bold;
-  padding: 5px 20px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
 }
 
 .admin_area{
@@ -2367,10 +2370,11 @@ max-width: 100%;
 }
 
 .schedule_title{
-    font-size: 18px;
-    margin: 30px 0 20px;
-    color: #545454;
-    text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 20px 0 20px;
+  color: #545454;
+  text-align: center;
 }
 
 .schedule_t{
@@ -5860,6 +5864,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   padding: 4px 10px 6px;
 }
 
+.schedule_sub_title{
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  padding: 4px 10px 6px;
+}
 
 .search_word{
     background-color: #fff;
@@ -5961,14 +5972,13 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .schedule_user{
-  padding-top: 54px;
   .schedule_profile_wrap{
     margin: 0 auto 30px;
     text-align: center;
-    display: block; 
+    display: block;
     .user_name{
       margin-bottom: 10px;
-      font-size: 24px; 
+      font-size: 24px;
     }
   }
 
@@ -8558,8 +8568,68 @@ trix-toolbar .button_group button.icon{
   }
 }
 
+.schedule_wrap{
+  .label_item{
+    display: block;
+  }
+  #img_field_header i {
+    height: 125px;
+  }
+  .user_profile_wrap {
+    margin-bottom: 0;
+  }
+  .img_field_profile_space {
+    padding-top: 160px;
+  }
+  .time_form{
+    display: inline-flex;
+    display: -webkit-inline-box;
+    margin-bottom: 14px;
+    .form-control{
+      width: 50%;
+    }
+    .form_f{
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px;
+    }
+  }
+  .cautions a{
+    color: #337ab7;
+    text-decoration: underline;
+    font-size: 12px;
+  }
+  select {
+    margin-bottom: 10px;
+  }
+  .file_size_p {
+    top: 154px;
+  }
+}
 
+.schedule_top_image{
+  .top_img{
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+  }
+}
 
+.schedule_copy_wrap{
+  .schedule_copy_txt{
+    display: block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-weight: 700;
+    color: #555555;
+  }
+  select {
+    width: 100%;
+  }
+}
 
 
 
