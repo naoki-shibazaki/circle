@@ -22,7 +22,9 @@
         <%= link_to(user_schedule_path(schedule.user.id, schedule.id)) do %>
           <div class="header_schedule_list ribbon-wrapper">
             <div class="header_img_wrap">
-              <% if schedule.user.pic_header.present? %>
+              <% if schedule.top_image.present? %>
+                <%= lazysizes_image_tag schedule.top_image.url , class:'header_imege_user_list', alt: "#{schedule.title}" %>
+              <% elsif schedule.user.pic_header.present? %>
                 <%= lazysizes_image_tag schedule.user.pic_header.url , class:'header_imege_user_list', alt: "#{schedule.user.name}" %>
               <% else %>
                 <%= lazysizes_image_tag schedule.user.pic_header.url , class:'header_imege_user_list' %>
