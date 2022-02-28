@@ -111,7 +111,7 @@
                 参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>名
               <% end %>
             <% elsif @schedule.name_schedules.where(answer: 1).count == 0 %>
-                募集人数：<%= @schedule.recruitment_numbers %>名
+
             <% else %>
               参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>名
             <% end %>
