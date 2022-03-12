@@ -259,7 +259,7 @@ def day
     @schedules = Schedule.joins(:user).includes(:user).where(day: @date, user_id: @user_ids).order(:day => :asc).order("users.cb_point desc").page(params[:page]).per(20)
 
   else
-    @schedules = Schedule.joins(:user).includes(:user).where(day: @date).order(:day => :asc).order("users.cb_point desc desc").page(params[:page]).per(20)
+    @schedules = Schedule.joins(:user).includes(:user).where(day: @date).order(:day => :asc).order("users.cb_point desc").page(params[:page]).per(20)
   end
 
   @b1_name = "イベント一覧"
