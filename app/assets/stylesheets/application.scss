@@ -5972,6 +5972,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
 }
 
 .schedule_user{
+  padding: 15px 15px;
   .schedule_profile_wrap{
     margin: 0 auto 30px;
     text-align: center;
@@ -6980,6 +6981,7 @@ background: linear-gradient(transparent 60%, #f7aa30a1 60%);
   color: #8a6d3b;
   padding: 15px 10px;
   margin-bottom: 12px;
+  text-align: left;
   .attention_title{
     color: #313131;
     font-size: 14px;
@@ -8649,6 +8651,10 @@ trix-toolbar .button_group button.icon{
   }
 }
 
+.admin_user_check_wrap{
+  padding: 0px 20px;
+  text-align: left;
+}
 
 
 

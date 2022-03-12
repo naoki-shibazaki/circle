@@ -65,6 +65,9 @@
       <% end %>
     <% end %>
 
+    <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
+
+
   <div class="article_item article_padding place_list ">
     <table>
       <tbody>
@@ -184,6 +187,7 @@
   <% if @path.is('schedules#show') %>
     <div class="post_cta schedule_cta">
       <% if @user.switch == "募集中" %>
+          <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
         <%= render "/users/contact_btn" %>
       <% end %>
     </div>

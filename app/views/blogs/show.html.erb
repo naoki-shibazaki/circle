@@ -115,13 +115,18 @@
                 </div>
 
 
+              <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
+
+
               <div class="rich_text_main">
                 <% if @blog.content.include?("<div>") %>
                   <%= raw Rinku.auto_link(sanitize @blog.content, tags: %w(p a br h1 strong ul li div), attributes:  %w(id class href)) %>
                 <% else %>
                   <%= raw Rinku.auto_link(simple_format @blog.content) %>
                 <% end %>
+
               </div>
+
 						</div>
 
         </div>
@@ -129,9 +134,11 @@
 
       </div>
 
-
 				<div class="post_cta">
 					<% if @user.switch == "募集中" %>
+            <div class="admin_user_check_wrap">
+              <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
+            </div>
 						<%= render "/users/contact_btn" %>
 					<% end %>
 				</div>

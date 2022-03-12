@@ -274,6 +274,7 @@ helper_method :link_count
         @admin_user.update(admin_user_params)
         @admin_user.users.map{|user|
           user.last_post = Time.zone.now.ago(5.years)
+          user.cb_point = -100
           user.save
         }
 
