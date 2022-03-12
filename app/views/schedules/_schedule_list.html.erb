@@ -40,17 +40,24 @@
                   <div class="schedule_venue">
                     <i class="fa fa-map-marker "></i> <%= schedule.venue %>
                   </div>
-                  <% if schedule.recruitment_numbers.present? %>
-                    <div class="schedule_member">
-                      <% if schedule.recruitment_numbers != 0 && schedule.name_schedules.where(answer: 1).count >= 1 %>
-                        <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>/<%= schedule.recruitment_numbers %>名
+                  <div class="schedule_member">
+                    <% if schedule.recruitment_numbers.present? %>
+                      <% if schedule.recruitment_numbers == 0 %>
+                        <i class="fa fa-users "></i> 募集人数：制限なし
                       <% elsif schedule.name_schedules.where(answer: 1).count == 0 %>
                         <i class="fa fa-users "></i> 募集人数：<%= schedule.recruitment_numbers %>名
+                      <% elsif schedule.recruitment_numbers >= 1 %>
+                        <i class="fa fa-users "></i> 参加人数：<%= schedule.name_schedules.where(answer: 1).count %><span class="small_font">/<%= schedule.recruitment_numbers %>名</span>
                       <% else %>
-                        <i class="fa fa-users "></i> <%= schedule.name_schedules.where(answer: 1).count %>名
+                        <i class="fa fa-users "></i> 参加人数：<%= schedule.name_schedules.where(answer: 1).count %>名
                       <% end %>
-                    </div>
-                  <% end %>
+                    <% elsif schedule.name_schedules.where(answer: 1).count == 0 %>
+
+                    <% else %>
+                      <i class="fa fa-users "></i> 参加人数：<%= schedule.name_schedules.where(answer: 1).count %>名
+                    <% end %>
+                  </div>
+
                   <% if schedule.title.present? %>
                     <div class="schedule_title_list">
                       <%= schedule.title %>
@@ -105,17 +112,23 @@
                   <div class="schedule_venue">
                     <i class="fa fa-map-marker "></i> <%= past_schedule.venue %>
                   </div>
-                  <% if past_schedule.recruitment_numbers.present? %>
-                    <div class="schedule_member">
-                      <% if past_schedule.recruitment_numbers != 0 && past_schedule.name_schedules.where(answer: 1).count >= 1 %>
-                        <i class="fa fa-users "></i> <%= past_schedule.name_schedules.where(answer: 1).count %>/<%= past_schedule.recruitment_numbers %>名
+                  <div class="schedule_member">
+                    <% if past_schedule.recruitment_numbers.present? %>
+                      <% if past_schedule.recruitment_numbers == 0 %>
+                        <i class="fa fa-users "></i> 募集人数：制限なし
                       <% elsif past_schedule.name_schedules.where(answer: 1).count == 0 %>
-
+                        <i class="fa fa-users "></i> 募集人数：<%= past_schedule.recruitment_numbers %>名
+                      <% elsif past_schedule.recruitment_numbers >= 1 %>
+                        <i class="fa fa-users "></i> 参加人数：<%= past_schedule.name_schedules.where(answer: 1).count %><span class="small_font">/<%= past_schedule.recruitment_numbers %>名</span>
                       <% else %>
-                        <i class="fa fa-users "></i> <%= past_schedule.name_schedules.where(answer: 1).count %>名
+                        <i class="fa fa-users "></i> 参加人数：<%= past_schedule.name_schedules.where(answer: 1).count %>名
                       <% end %>
-                    </div>
-                  <% end %>
+                    <% elsif past_schedule.name_schedules.where(answer: 1).count == 0 %>
+
+                    <% else %>
+                      <i class="fa fa-users "></i> 参加人数：<%= past_schedule.name_schedules.where(answer: 1).count %>名
+                    <% end %>
+                  </div>
                   <% if past_schedule.title.present? %>
                     <div class="schedule_title_list">
                       <%= past_schedule.title %>

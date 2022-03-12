@@ -78,6 +78,7 @@ ja:
       schedule:
         day: "『日程』"
         venue: "『活動エリア』"
+        title: "『タイトル』"
     models:
       user: "ユーザ"
   devise:

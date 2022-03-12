@@ -106,7 +106,9 @@
             <% end %>
 
             <% if @schedule.recruitment_numbers.present? %>
-              <% if @schedule.name_schedules.where(answer: 1).count == 0 %>
+              <% if @schedule.recruitment_numbers == 0 %>
+                募集人数：制限なし
+              <% elsif @schedule.name_schedules.where(answer: 1).count == 0 %>
                 募集人数：<%= @schedule.recruitment_numbers %>名
               <% elsif @schedule.recruitment_numbers >= 1 %>
                 参加人数：<%= @schedule.name_schedules.where(answer: 1).count %><span class="small_font">/<%= @schedule.recruitment_numbers %>名</span>

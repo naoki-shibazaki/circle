@@ -66,6 +66,25 @@
                 <div class="user_schedule">
                   <i class="fa fa-map-marker icon_c"></i><%= schedule.user.prefecture.name %><% if schedule.user.prefecture_sub_id.present? %>・<%= Prefecture.find(schedule.user.prefecture_sub_id).name %><% end %>：<%= schedule.venue %>
                 </div>
+
+                <div class="user_schedule">
+                  <% if schedule.recruitment_numbers.present? %>
+                    <% if schedule.recruitment_numbers == 0 %>
+                      <i class="fa fa-users "></i>募集人数：制限なし
+                    <% elsif schedule.name_schedules.where(answer: 1).count == 0 %>
+                      <i class="fa fa-users "></i>募集人数：<%= schedule.recruitment_numbers %>名
+                    <% elsif schedule.recruitment_numbers >= 1 %>
+                      <i class="fa fa-users "></i>参加人数：<%= schedule.name_schedules.where(answer: 1).count %><span class="small_font">/<%= schedule.recruitment_numbers %>名</span>
+                    <% else %>
+                      <i class="fa fa-users "></i>参加人数：<%= schedule.name_schedules.where(answer: 1).count %>名
+                    <% end %>
+                  <% elsif schedule.name_schedules.where(answer: 1).count == 0 %>
+
+                  <% else %>
+                    <i class="fa fa-users "></i>参加人数：<%= schedule.name_schedules.where(answer: 1).count %>名
+                  <% end %>
+                </div>
+
             </div>
 
           </div>

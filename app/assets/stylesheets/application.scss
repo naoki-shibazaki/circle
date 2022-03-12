@@ -8511,6 +8511,12 @@ trix-toolbar .button_group button.icon{
     -webkit-overflow-scrolling: touch;
     overflow-scrolling: touch;
     white-space: nowrap;
+
+    .user_area,
+    .user_schedule{
+      font-size: 16px;
+    }
+
   }
 
   .schedule_list_sub_title{

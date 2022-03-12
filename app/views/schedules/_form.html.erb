@@ -59,7 +59,7 @@
           <% end %>
         </div>
 
-        <div class="label_item"><span class="label label_danger">必須</span>活動エリア（18文字以内）</div>
+        <div class="label_item"><span class="label label_danger">必須</span>活動エリア</div>
         <%= f.text_field :venue, value: @copy_schedule.venue, class: 'form-control form-venue', placeholder: "東京都の新宿区周辺" %>
 
         <div class="label_item">募集人数</div>
@@ -80,7 +80,7 @@
         </div>
 
 
-        <div class="label_item">タイトル（28文字以内）</div>
+        <div class="label_item"><span class="label label_danger">必須</span>タイトル</div>
         <%= f.text_field :title, value: @copy_schedule.title, class: 'form-control form-venue', placeholder: "初心者限定のバスケdayです！" %>
 
         <div class="label_item">活動内容</div>
@@ -134,7 +134,7 @@
           <%= f.time_field :time_e, class: 'form-control', placeholder: "20:00" %>
         </div>
 
-        <div class="label_item"><span class="label label_danger">必須</span>活動エリア（18文字以内）</div>
+        <div class="label_item"><span class="label label_danger">必須</span>活動エリア</div>
         <%= f.text_field :venue, class: 'form-control form-venue', placeholder: "東京都の新宿区周辺" %>
 
         <div class="label_item">募集人数</div>
@@ -158,7 +158,7 @@
         </div>
 
 
-        <div class="label_item">タイトル（28文字以内）</div>
+        <div class="label_item"><span class="label label_danger">必須</span>タイトル</div>
         <%= f.text_field :title, class: 'form-control form-venue', placeholder: "初心者限定のエンジョイバスケです！" %>
 
         <div class="label_item">活動内容</div>
