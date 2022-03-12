@@ -246,20 +246,20 @@ def day
   if params[:event].present? && params[:pref].present?
     @users = User.event(@event.id).prefecture(@prefecture.id)
     @user_ids = @users.map{|u| u.id}
-    @schedules = Schedule.where(day: @date, user_id: @user_ids).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+    @schedules = Schedule.joins(:user).includes(:user).where(day: @date, user_id: @user_ids).order(:day => :asc).order("users.cb_point").page(params[:page]).per(20)
 
   elsif params[:event].present?
     @users = User.event(@event.id)
     @user_ids = @users.map{|u| u.id}
-    @schedules = Schedule.where(day: @date, user_id: @user_ids).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+    @schedules = Schedule.joins(:user).includes(:user).where(day: @date, user_id: @user_ids).order(:day => :asc).order("users.cb_point").page(params[:page]).per(20)
 
   elsif params[:pref].present?
     @users = User.prefecture(@prefecture.id)
     @user_ids = @users.map{|u| u.id}
-    @schedules = Schedule.where(day: @date, user_id: @user_ids).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+    @schedules = Schedule.joins(:user).includes(:user).where(day: @date, user_id: @user_ids).order(:day => :asc).order("users.cb_point").page(params[:page]).per(20)
 
   else
-    @schedules = Schedule.where(day: @date).order(:day => :asc, :time_s => :asc).page(params[:page]).per(20)
+    @schedules = Schedule.joins(:user).includes(:user).where(day: @date).order(:day => :asc).order("users.cb_point").page(params[:page]).per(20)
   end
 
   @b1_name = "イベント一覧"
