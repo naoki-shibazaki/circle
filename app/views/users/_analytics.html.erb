@@ -219,7 +219,7 @@
                                 <i class="fa fa-pinterest "></i>サクブP：<%= user.cb_point.to_f.round(1) %> P
                               </span>
                               <% if user.cb_point.to_f.round(1) > @user.cb_point.to_f.round(1) %>
-                                <div class="cbp_txt">→ あと<%=  user.cb_point.to_f.round(1) - @user.cb_point.to_f.round(1) %>Pで追いつきます！</div>
+                                <div class="cbp_txt">→ あと<%=  (user.cb_point.to_f.round(1) - @user.cb_point.to_f.round(1)).round(1) %>Pで追いつきます！</div>
                               <% end %>
 
                             </div>
