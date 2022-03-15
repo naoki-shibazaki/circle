@@ -2,17 +2,17 @@
 
       <div class="schedule_list_copy">
         <div class="copyTarget01">
-          <% @schedules.each do |schedule| %>
-            <% if schedule.present? %>
-              <% if @schedule_m_c != Time.parse(schedule.day).strftime("%-m") %>
-                【<%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール】<br>
-                <% @schedule_m_c = Time.parse(schedule.day).strftime("%-m") %>
+          <% @schedules.each do |schedule01| %>
+            <% if schedule01.present? %>
+              <% if @schedule_m_c != Time.parse(schedule01.day).strftime("%-m") %>
+                【<%= Time.parse(schedule01.day).strftime("%-m") %>月のスケジュール】<br>
+                <% @schedule_m_c = Time.parse(schedule01.day).strftime("%-m") %>
               <% end %>
-              ・<%= Time.parse(schedule.day).strftime("%-d日(#{@wdays[Time.parse(schedule.day).wday]})") %>
-              <% if schedule.time_s.present? %>
-                <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+              ・<%= Time.parse(schedule01.day).strftime("%-d日(#{@wdays[Time.parse(schedule01.day).wday]})") %>
+              <% if schedule01.time_s.present? %>
+                <%= schedule01.time_s.strftime('%H:%M') %>-<%= schedule01.time_e.strftime('%H:%M') if schedule01.time_e.present? %>
               <% end %>
-                <br>　<%= schedule.venue %><br>
+                <br>　<%= schedule01.venue %><br>
                 <br>
             <% end %>
           <% end %>
@@ -28,20 +28,20 @@
 
       <div class="schedule_list_copy">
         <div class="copyTarget02">
-          <% @schedules.each do |schedule| %>
-            <% if schedule.present? %>
-              <% if @schedule_m_c != Time.parse(schedule.day).strftime("%-m") %>
-                【<%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール】<br>
-                <% @schedule_m_c = Time.parse(schedule.day).strftime("%-m") %>
+          <% @schedules.each do |schedule02| %>
+            <% if schedule02.present? %>
+              <% if @schedule_m_c != Time.parse(schedule02.day).strftime("%-m") %>
+                【<%= Time.parse(schedule02.day).strftime("%-m") %>月のスケジュール】<br>
+                <% @schedule_m_c = Time.parse(schedule02.day).strftime("%-m") %>
               <% end %>
-              ・<%= Time.parse(schedule.day).strftime("%-d日(#{@wdays[Time.parse(schedule.day).wday]})") %>
-              <% if schedule.time_s.present? %>
-                <%= schedule.time_s.strftime('%H:%M') %>-<%= schedule.time_e.strftime('%H:%M') if schedule.time_e.present? %>
+              ・<%= Time.parse(schedule02.day).strftime("%-d日(#{@wdays[Time.parse(schedule02.day).wday]})") %>
+              <% if schedule02.time_s.present? %>
+                <%= schedule02.time_s.strftime('%H:%M') %>-<%= schedule02.time_e.strftime('%H:%M') if schedule02.time_e.present? %>
               <% end %>
-              <% if schedule.member_venue.present? %>
-                <br>　<%= schedule.member_venue %><br>
+              <% if schedule02.member_venue.present? %>
+                <br>　<%= schedule02.member_venue %><br>
               <% else %>
-                <br>　<%= schedule.venue %><br>
+                <br>　<%= schedule02.venue %><br>
               <% end %>
                 <br>
             <% end %>
