@@ -282,8 +282,8 @@ end
 			@data = AdminUser.find_by(id: params[:user_id])
 			@prefectures = Prefecture.all
 			@schedule_month = 0
-			@schedule_m_c = 0
-			@contact_judge = "_s"
+			@schedule_m_01 = 0
+			@schedule_m_02 = 0
       @wdays =  ["日", "月", "火", "水", "木", "金", "土" ]
 
 			@mail_title = "【#{@user.name}】お問い合わせ"
