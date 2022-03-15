@@ -101,6 +101,17 @@ class LinksController < ApplicationController
 
 	end
 
+  def unique_page
+    if @link = Link.find_by(unique_id: params[:unique_id])
+      @user = User.find(@link.id)
+      redirect_to user_path(@user.id)
+    else
+			flash[:notice] = "URLが間違っています"
+      redirect_to users_path
+    end
+  end
+
+
 	def edit
 		@link = Link.find(params[:id])
 		@user = @link.user
@@ -108,7 +119,7 @@ class LinksController < ApplicationController
 		if admin_user_signed_in?
 
 			if current_admin_user.id != @link.user.admin_user_id.to_i
-				if current_admin_user.id == 1 
+				if current_admin_user.id == 1
         else
           flash[:notice] = "権限がありません"
           redirect_to links_path

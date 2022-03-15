@@ -162,6 +162,7 @@ Rails.application.routes.draw do
 	get 'match/:ruby/:kana' , to: 'matches#event_prefecture'
 
 	get 'link/:unique_id', to: 'links#link'
+	get 'u/:unique_id', to: 'links#unique_page'
 
   # タグ検索
 	get 'tag/:id' , to: 'tags#index'
