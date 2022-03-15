@@ -1,6 +1,6 @@
 <% if @user.pic_profile.present? %>
 	<% set_meta_tags  noindex: true,
-    canonical: user_path(@user.id),
+    canonical: "https://www.circle-book.com/users/#{@user.id}",
     title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
     description: "#{@user.prefecture.name}で活動している#{@user.event.txt}の【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、サークルやチームメンバーを募集するサイトです！",
     keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
@@ -13,7 +13,7 @@
 
 <% elsif @user.pic_header.present? %>
 	<% set_meta_tags  noindex: true,
-    canonical: user_path(@user.id),
+    canonical: "https://www.circle-book.com/users/#{@user.id}",
     title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
     description: "#{@user.prefecture.name}で活動している#{@user.event.txt}の【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、サークルやチームメンバーを募集するサイトです！",
     keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",
@@ -26,7 +26,7 @@
 
 <% else %>
 	<% set_meta_tags  noindex: true,
-    canonical: user_path(@user.id),
+    canonical: "https://www.circle-book.com/users/#{@user.id}",
     title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",
     description: "#{@user.prefecture.name}で活動している#{@user.event.txt}の【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！", 
     keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",

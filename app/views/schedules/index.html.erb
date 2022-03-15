@@ -58,3 +58,35 @@
   </div>
 </div>
 
+
+<!-- text copy 01 -->
+<script>
+  function copyText () {
+    var $target = document.querySelector('.copyTarget01');
+    if (!$target) {return false;}
+    var range = document.createRange();
+    range.selectNode($target);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    alert('コピーしました！');
+    return false;
+  }
+    document.querySelector('.copyBtn01').addEventListener('click', copyText, false);
+</script>
+
+<!-- text copy 02 -->
+<script>
+  function copyText () {
+    var $target = document.querySelector('.copyTarget02');
+    if (!$target) {return false;}
+    var range = document.createRange();
+    range.selectNode($target);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    alert('コピーしました！');
+    return false;
+  }
+    document.querySelector('.copyBtn02').addEventListener('click', copyText, false);
+</script>

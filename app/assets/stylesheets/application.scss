@@ -2254,29 +2254,14 @@ max-width: 100%;
   margin: 0;
 }
 
-.copyTarget {
-    // border: 1px solid #e5e5e5;
-    // margin: 1px auto;
-    // font-size: 12px;
-    // padding: 0.5em;
-    // width: 80%;
-    // height: 40px;
-    // overflow-x: scroll;
-    // color: #696969;
-    // float: left;
-    // transform: translateZ(0);
-}
 
-.copyBtn{
-    // border: 1px solid #e5e5e5;
-    // background-color: #e5e5e5;
-    // padding: 0.5em 12px;
-    // width: 20%;
-    // height: 40px;
+.copyBtn,
+.copyBtn01,
+.copyBtn02{
     background-color: #8a8a8a;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     color: #fff;
     font-size: 14px;
     padding: 6px 20px;
@@ -3356,7 +3341,7 @@ max-width: 100%;
 
 .schedule_list_copy{
     width: 96%;
-    height: 80px;
+    height: 60px;
     overflow-y: scroll;
     padding: 6px 10px;
     background: #f9f9f9;
