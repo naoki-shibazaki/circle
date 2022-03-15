@@ -189,7 +189,45 @@
               <% if @users.count >= 3 %>
                 <div class="competitor_wrap">
                   <div>▼ あなたの競合サークル</div>
-                  <%= render "/users/users_list_slide", users: @users %>
+
+                    <ul class="user_slide_wrap">
+                      <% @users.first(5).each do |user| %>
+                        <%= link_to(user_path(user.id)) do %>
+                          <li class="user_slide_list">
+                            <div class="user_list_header">
+                              <%= lazysizes_image_tag user.pic_profile.url , class:'image_icon' %>
+                              <h3 class="user_name"><%= user.name.truncate(20) %></h3>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="list_02">
+                              <span class="user_area">
+                                <i class="fa fa-users "></i><%= user.event.name %>
+                              </span>
+                            </div>
+                            <div class="list_02">
+                              <span class="user_schedule">
+                                <i class="fa fa-calendar "></i><%= user.schedule %>
+                              </span>
+                            </div>
+                            <div class="list_03">
+                              <span class="user_area">
+                                <i class="fa fa-map-marker "></i><%= user.area %>
+                              </span>
+                            </div>
+                            <div class="list_02">
+                              <span class="user_schedule">
+                                <i class="fa fa-pinterest "></i>サクブP：<%= user.cb_point.to_f.round(1) %> P
+                              </span>
+                              <% if user.cb_point.to_f.round(1) > @user.cb_point.to_f.round(1) %>
+                                <div class="cbp_txt">→ あと<%=  user.cb_point.to_f.round(1) - @user.cb_point.to_f.round(1) %>Pで追いつきます！</div>
+                              <% end %>
+
+                            </div>
+                          </li>
+                        <% end %>
+                      <% end %>
+                    </ul>
+
                 </div>
               <% end %>
 

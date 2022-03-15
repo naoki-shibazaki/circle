@@ -4,15 +4,19 @@
   <% if @path.is('schedules#day') %>
 
     <ul>
-      <% 14.times do |i| %>
-        <% if i == 0 %>
-          <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_selected"><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
-        <% elsif Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") == "土" %>
-          <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sat"><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
-        <% elsif Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") == "日" %>
-          <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sun"><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
-        <% else %>
-          <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
+      <% (-7..14).each do |i| %>
+        <% if Time.parse(@date).since(i.days) > Time.zone.now %>
+
+          <% if i == 0 %>
+            <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_selected"><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
+          <% elsif Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") == "土" %>
+            <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sat"><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
+          <% elsif Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") == "日" %>
+            <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li class="c_sun"><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
+          <% else %>
+            <%= link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do %><li><%= Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") %><br><%= Time.parse(@date).since(i.days).strftime("%-d") %></li><% end %>
+          <% end %>
+
         <% end %>
       <% end %>
     </ul>
@@ -58,6 +62,10 @@
 
         <div class="search_icon"><i class="fa fa-search "></i></div>
     </div>
+
+
+
+
 
 
 
