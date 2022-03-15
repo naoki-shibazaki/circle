@@ -1,4 +1,31 @@
 
+    <tr>
+      <td>1</td>
+      <td>コマンド１</td>
+      <td><input id="copyText1" type="text" value="" readonly>
+          <button onclick="copyToClipboard(1)">コピーする</button>
+          </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>コマンド2</td>
+      <td>
+          <input id="copyText2" type="text" value="pwd" readonly>
+          <div id="copyText2">https://www.circle-book.com/u/<%= @user.link.unique_id %></div>
+
+
+          <button onclick="copyToClipboard(2)">コピーする</button>
+      </td>
+    </tr>
+
+      <div class="attendance_url_copy">
+        <div class="copyTarget">https://www.circle-book.com/u/<%= @user.link.unique_id %></div>
+      </div>
+      <button class="copyBtn mypage_url_copy"><div class="requirement_copy"><i class="fa fa-copy "></i> URLをコピーする！</div></button>
+
+
+
+
   <% if @schedules.present? %>
 
       <div class="schedule_list_copy">
@@ -6,14 +33,12 @@
           <% @schedules.each do |schedule| %>
               <% if schedule.present? %>
 
-
                     <% if @schedule_m_c != Time.parse(schedule.day).strftime("%-m") %>
 
                       【<%= Time.parse(schedule.day).strftime("%-m") %>月のスケジュール】<br>
 
                       <% @schedule_m_c = Time.parse(schedule.day).strftime("%-m") %>
                     <% end %>
-
 
                     ・<%= Time.parse(schedule.day).strftime("%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})") %>
 

@@ -33,6 +33,14 @@
 
   <% end %>
 
+  <% if @user.link.present? %>
+    <% if @user.link.unique_id.present? %>
+      <div class="join_txt">＼ サークルページのURL ／</div>
+      <div class="attendance_url_copy"><div class="copyTarget">https://www.circle-book.com/u/<%= @user.link.unique_id %></div></div>
+      <button class="copyBtn mypage_url_copy"><div class="requirement_copy"><i class="fa fa-copy "></i> URLをコピーする！</div></button>
+    <% end %>
+  <% end %>
+
   <%= render "/users/analytics" %>
 
 		<div class="icon_wrap">

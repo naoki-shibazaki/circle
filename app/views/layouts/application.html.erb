@@ -103,6 +103,16 @@
         document.querySelector('.copyBtn').addEventListener('click', copyText, false);
     </script>
 
+    <!-- 複数のテキストコピー -->
+    <script>
+        function copyToClipboard(index) {
+            var copyTarget = document.getElementById("copyTarget" + index);
+            copyTarget.select();
+            document.execCommand("Copy");
+                    alert('コピーしました！');
+        }
+    </script>
+
     <!-- 全角 => 半角　変換 -->
     <script>
       $(function(){
