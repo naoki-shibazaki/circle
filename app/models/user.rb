@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
 	has_one :match, dependent: :destroy
 	has_one :link, dependent: :destroy
+  accepts_nested_attributes_for :link
+
 
 	belongs_to :prefecture
 	belongs_to :category, optional: true

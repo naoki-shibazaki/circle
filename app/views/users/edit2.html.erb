@@ -28,6 +28,22 @@
           </div>
 
 
+            <div class="form users-form new_link_form">
+
+              <%= f.fields_for :link do |fin| %>
+
+                <p class="text_s">
+                  アカウントID（半角英数字：4文字〜16文字以内）<br>
+                  ※記号などは使用できません
+                </p>
+                <%= fin.text_field :unique_id, class: 'form-control', placeholder: "circlebook" %>
+                <p>アカウントIDはURLに使用されます。<br>
+                あとで変更はできません。</p>
+
+              <% end %>
+
+            </div>
+
           <div class="edit02_warp">
             <span class="edit02_subtitle">カテゴリー</span>
             <div class="check_boxes">
