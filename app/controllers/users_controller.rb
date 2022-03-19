@@ -263,7 +263,14 @@ helper_method :link_count
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id).order(:id => :asc)
 		@user.users_cities.build
-	end
+
+    if @user.link.present?
+      @link = @user.link
+    else
+      @link = Link.new
+    end
+
+  end
 
   def admin_user_update
     @user = User.find(params[:id])
@@ -335,6 +342,14 @@ helper_method :link_count
 
 	def update2
 		@user = User.find(params[:id])
+    if @user.link.present?
+      @link = @user.link
+    else
+      @link = Link.new
+    end
+    @link.save
+
+    aaaa
 
 		if @user.update(user_params)
 
