@@ -3,6 +3,7 @@ class Link < ApplicationRecord
 
   validates :unique_id,
     presence: true,
+    uniqueness: true,
     length: { minimum: 4, maximum: 16 },
     format: {with: /\A[0-9a-zA-Z]+\z/i }
 

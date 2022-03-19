@@ -5,10 +5,12 @@
     <div class="form users-form">
 
       <div class="form-body cont-body">
+
+        <div class="p_t">サークル内容の編集</div>
+
         <% if @user.errors.any? %>
           <div class="form-error">
             以下の項目でエラーが発生いたしました。<br>
-            ※原因不明の場合は空欄でご登録ください
           </div>
         <% end %>
 
@@ -20,29 +22,17 @@
 
         <%= form_for @user,:url => {controller: "users", action: "update2"} do |f| %>
 
-          <div class="p_t">サークル内容の編集</div>
+          <%= f.fields_for :link do |fin| %>
 
-          <div class="check_boxes_advice_wrap">
-            該当項目を選択すると<br>
-            検索にヒットする確率がアップします！
-          </div>
+            <p class="text_s">
+              アカウントID（半角英数字：4文字〜16文字以内）<br>
+              ※記号などは使用できません
+            </p>
+            <%= fin.text_field :unique_id, class: 'form-control', placeholder: "circlebook" %>
+            <p>アカウントIDはURLに使用されます。<br>
+            あとで変更はできません。</p>
 
-
-            <div class="form users-form new_link_form">
-
-              <%= f.fields_for :link do |fin| %>
-
-                <p class="text_s">
-                  アカウントID（半角英数字：4文字〜16文字以内）<br>
-                  ※記号などは使用できません
-                </p>
-                <%= fin.text_field :unique_id, class: 'form-control', placeholder: "circlebook" %>
-                <p>アカウントIDはURLに使用されます。<br>
-                あとで変更はできません。</p>
-
-              <% end %>
-
-            </div>
+          <% end %>
 
           <div class="edit02_warp">
             <span class="edit02_subtitle">カテゴリー</span>

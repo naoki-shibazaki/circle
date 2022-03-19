@@ -258,13 +258,16 @@ helper_method :link_count
 
 	def edit2
 		@user = User.find(params[:id])
-		@prefecture = Prefecture.find_by(id: @user.prefecture_id)
+		@prefecture = Prefecture.find(@user.prefecture_id)
 		@cities = City.where(prefecture_id: @user.prefecture_id).order(:id => :asc)
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id).order(:id => :asc)
 		@user.users_cities.build
 
-    @user.build_link
+    if @user.link.present?
+    else
+      @user.build_link
+    end
 
   end
 
@@ -280,8 +283,6 @@ helper_method :link_count
           user.cb_point = -100
           user.save
         }
-
-
 
         flash[:notice] = '違反者登録完了！'
         redirect_to "/users/#{@user.id}"
@@ -299,33 +300,24 @@ helper_method :link_count
     end
 
 		if @user.update(user_params)
-
 			# like検索用
 			@user.grouping = @user.users_groups.map{|g| g.group.name}
 			@user.average_age = @user.users_ages.map{|a| a.age.name}
 			@user.save
-
-
 			if @user.switch == "受付終了"
 				@user.last_post = Time.zone.now.ago(60.days)
 				@user.save
 			end
-
 			if @user.prefecture.id == 50 #全国選択
-
 				@user.prefecture_sub_id = nil #サブエリアはnil
 				@user.save
-
 				flash[:notice] = 'プロフィール更新完了！'
 				redirect_to user_path(@user)
-
 			else #47都道府県
-
 				if @user.prefecture_id == @user.prefecture_sub_id #エリア重複判断
 					@user.prefecture_sub_id = nil #サブエリアはnil
 					@user.save
 				end
-
 				flash[:notice] = 'これで最後です！'
 				redirect_to "/users/#{@user.id}/edit2"
 			end
@@ -338,14 +330,19 @@ helper_method :link_count
 
 	def update2
 		@user = User.find(params[:id])
+		@prefecture = Prefecture.find(@user.prefecture_id)
+		@cities = City.where(prefecture_id: @user.prefecture_id).order(:id => :asc)
+		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
+		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id).order(:id => :asc)
 
-		if @user.update(user_params)
 
-			flash[:notice] = 'プロフィール更新完了！'
-			redirect_to user_path(@user)
-		else
-			render "/users/edit2"
-		end
+    if @user.update(user_params)
+      flash[:notice] = 'プロフィール更新完了！'
+      redirect_to user_path(@user)
+    else
+      render "/users/edit2"
+    end
+
 	end
 
 	def update_contact

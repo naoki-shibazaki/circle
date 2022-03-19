@@ -79,6 +79,8 @@ ja:
         day: "『日程』"
         venue: "『活動エリア』"
         title: "『タイトル』"
+      link:
+        unique_id: "『アカウントID』"
     models:
       user: "ユーザ"
   devise:
