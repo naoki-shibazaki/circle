@@ -291,45 +291,51 @@
           <div class="border"></div>
         <% end %>
 
-        <% if @user.admin_user.open == 1 && @user.admin_user.nickname.present? %>
-          <h2 class="user_sub_title"><i class="fa fa-book "></i> 主催者のプロフィール</h2>
+        <% if @user.admin_user.open == 1 && @user.admin_user.nickname.present? && @user.admin_user.profile.present? %>
+          <h2 class="user_sub_title"><i class="fa fa-user "></i> 主催者のプロフィール</h2>
 
-          <div class="review_contents">
-            <div class="review_l">
+          <div class="admin_user_profile_wrap">
+            <div class="admin_user_profile">
+              <div class="admin_user_img">
                 <% if @user.admin_user.image_profile.present? %>
-                  <%= lazysizes_image_tag @user.admin_user.image_profile.url , class:'member_icon' %>
+                  <%= lazysizes_image_tag @user.admin_user.image_profile.url , class:'admin_user_icon' %>
                 <% else %>
                   <% if @user.admin_user.gender == "1" %>
-                    <img src="/images/icon/icon_member_blue.png" class="member_icon">
+                    <img src="/images/icon/icon_member_blue.png" class="admin_user_icon">
                   <% elsif @user.admin_user.gender == "2" %>
-                    <img src="/images/icon/icon_member_pink.png" class="member_icon">
+                    <img src="/images/icon/icon_member_pink.png" class="admin_user_icon">
                   <% else %>
-                    <img src="/images/icon/icon_member.png" class="member_icon">
+                    <img src="/images/icon/icon_member.png" class="admin_user_icon">
                   <% end %>
                 <% end %>
-            </div>
+              </div>
 
-            <div class="review_r">
-              <div class="speech_title">
-                <%= @user.admin_user.nickname  %>
-                <div class="btm_content">
-                    <% if @user.admin_user.gender == "1" %>
-                      男性
-                    <% elsif @user.admin_user.gender == "2" %>
-                      女性
-                    <% elsif @user.admin_user.gender == "0" %>
-                      その他
-                    <% else %>
-                    <% end %>
-                    <%= @user.admin_user.age %>
+              <div class="admin_user_name_wrap">
+                <h3 class="admin_user_name">
+                  <%= @user.admin_user.nickname  %>
+                </h3>
+                <div class="admin_user_cont">
+                  <% if @user.admin_user.gender == "1" %>
+                    男性
+                  <% elsif @user.admin_user.gender == "2" %>
+                    女性
+                  <% elsif @user.admin_user.gender == "0" %>
+                    その他
+                  <% else %>
+                  <% end %>
+                  <%= @user.admin_user.age %>
+
+                  <% if @user.admin_user.prefecture.present? %>
+                    <i class="fa fa-map-marker "></i><%= @user.admin_user.prefecture.name %>
+                  <% end %>
                 </div>
               </div>
-
-              <div class="speech_bubble">
-                <%= simple_format @user.admin_user.profile %>
-              </div>
-
             </div>
+
+            <div class="admin_user_txt">
+              <%= raw Rinku.auto_link(simple_format @user.admin_user.profile) %>
+            </div>
+
           </div>
 
           <div class="reset"></div>

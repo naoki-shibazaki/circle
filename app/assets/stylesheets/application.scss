@@ -8726,6 +8726,65 @@ trix-toolbar .button_group button.icon{
 
 }
 
+.admin_user_profile_wrap{
+  .admin_user_profile{
+    float: left;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    word-break: break-all;
+
+    .admin_user_img{
+      .admin_user_icon{
+        display: block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid #e6e6e6;
+        object-fit: cover;
+      }
+    }
+    .admin_user_name_wrap{
+      margin-left: 10px;
+      .admin_user_name{
+        font-size: 16px;
+      }
+      .admin_user_cont{
+        color: #7e7e7e;
+        .fa{
+          padding-right: 2px;
+        }
+      }
+    }
+  }
+  .admin_user_txt{
+    clear: both;
+    display: block;
+    border: 1px solid #d8dadf;
+    margin: 0px 10px 2px;
+    padding: 10px 10px;
+    border-radius: 4px;
+    word-break: break-all;
+    font-size: 14px;
+    p{
+      font-size: 14px;
+    }
+  }
+
+}
+
 
 // --------------------------------------
 // ▼PC

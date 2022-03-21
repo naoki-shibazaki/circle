@@ -152,7 +152,7 @@ helper_method :link_count
 				@user.prefecture_sub_id = nil #サブエリアはnil
 				@user.save
 
-				flash[:notice] = 'プロフィール更新完了！'
+				flash[:notice] = 'ステップ１更新完了！'
 				redirect_to user_path(@user)
 
 			else #47都道府県
@@ -162,7 +162,7 @@ helper_method :link_count
 					@user.save
 				end
 
-				flash[:notice] = 'これで最後です！'
+				flash[:notice] = 'ステップ１更新完了！'
 				redirect_to "/users/#{@user.id}/edit2"
 			end
 
@@ -341,7 +341,7 @@ helper_method :link_count
 		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id).order(:id => :asc)
 
     if @user.update(user_params)
-      @user.link.id = @user.id
+      @user.id = @user.id
       @user.save
       flash[:notice] = 'ステップ２更新完了！'
       redirect_to "/users/#{@user.id}/edit3"

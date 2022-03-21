@@ -7,14 +7,14 @@
 
 	<div class="swiper-container">
 
-	    <div class="swiper-wrapper">
-		    <img data-src="/images/circle_link01.jpg" class="lazyload swiper-slide" >
-		 	<img data-src="/images/circle_link02.jpg" class="lazyload swiper-slide" >	
-	    </div>
+    <div class="swiper-wrapper">
+      <img data-src="/images/circle_link01.jpg" class="lazyload swiper-slide" >
+    <img data-src="/images/circle_link02.jpg" class="lazyload swiper-slide" >	
+    </div>
 
-	    <div class="pagination-wrap">
-	      <div class="swiper-pagination"></div>
-	    </div>
+    <div class="pagination-wrap">
+      <div class="swiper-pagination"></div>
+    </div>
 
 	</div>
 
@@ -22,41 +22,40 @@
 	<h2 class="links_sub_title">他の人のサークルリンク</h2>
 
     <ul class="sample_link_slide">
-	    <% @links.each do |link| %>
+      <% @links.each do |link| %>
 			<li class="sample_link_child">
 
 				<%= link_to "/link/#{link.unique_id}" do %>
 
 					<div class="link_profile">
 
-					      <% if link.user.pic_header.present? %>
-					        <div class="link_img_header">
-					          <%= lazysizes_image_tag link.user.pic_header.url, class:'header_link_imege', alt: "ヘッダー画像｜#{link.user.name}" %>
-					        </div>
-					      <% else %>
-					        <div class="link_img_header">      
-					          <%= lazysizes_image_tag link.user.pic_header.url , class:'header_link_imege' %>
-					        </div>
-					      <% end %>
+            <% if link.user.pic_header.present? %>
+              <div class="link_img_header">
+                <%= lazysizes_image_tag link.user.pic_header.url, class:'header_link_imege', alt: "ヘッダー画像｜#{link.user.name}" %>
+              </div>
+            <% else %>
+              <div class="link_img_header">
+                <%= lazysizes_image_tag link.user.pic_header.url , class:'header_link_imege' %>
+              </div>
+            <% end %>
 
 
 
 
-					      <% if link.user.pic_profile.present? %>
-					          <div class="link_img_profile">
-					              <%= lazysizes_image_tag link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{link.user.name}" %>
-					          </div>
-					      <% else %>
-					          <div class="link_img_profile">
-					              <%= lazysizes_image_tag link.user.pic_profile.url , class:'profile_link_imege' %>
-					          </div>
-					      <% end %>
+            <% if link.user.pic_profile.present? %>
+              <div class="link_img_profile">
+                <%= lazysizes_image_tag link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{link.user.name}" %>
+              </div>
+            <% else %>
+              <div class="link_img_profile">
+                <%= lazysizes_image_tag link.user.pic_profile.url , class:'profile_link_imege' %>
+              </div>
+            <% end %>
 
-
-					      <div class="link_name_wrap">
-				                <div class="link_name"><%= link.user.name.truncate(12) %></div>
-				                <div class="link_unique_id">@<%= link.unique_id %>
-					      </div>
+            <div class="link_name_wrap">
+              <div class="link_name"><%= link.user.name.truncate(12) %></div>
+              <div class="link_unique_id">@<%= link.unique_id %>
+            </div>
 
 					</div>
 
@@ -89,7 +88,7 @@
 
 
 			</li>
-	    <% end %>
+      <% end %>
     </ul>
 
 
