@@ -3,8 +3,10 @@
 <div class="schedule_top_image">
   <% if @schedule.top_image.present? %>
     <%= lazysizes_image_tag @schedule.top_image.url, class: "top_img" %>
-  <% else %>
+  <% elsif @user.pic_header.present? %>
     <%= lazysizes_image_tag @user.pic_header.url, class: "top_img" %>
+  <% else %>
+    <img data-src="/images/events/<%= @user.event.ruby %>.jpg" alt="<%= @user.event.name %>" class="lazyload top_img">
   <% end %>
 </div>
 

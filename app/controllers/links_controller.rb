@@ -85,7 +85,7 @@ class LinksController < ApplicationController
       redirect_to links_path
 
 		else
-			@user = User.find(@link.id)
+			@user = @link.user
 			@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 
 			# パンくず

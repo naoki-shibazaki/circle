@@ -1988,6 +1988,9 @@ li.current_page{
   a{
     color: #337ab7;
   }
+  .header_count, .header_count a{
+    color: #337ab7;
+  }
 }
 
 .none_page{
@@ -2944,6 +2947,7 @@ max-width: 100%;
 
 
 .edit_user select,
+.edit_admin_user select,
 .new_user select{
     width: 50%;
     height: 30px;
@@ -8654,6 +8658,72 @@ trix-toolbar .button_group button.icon{
 
 .mypage_url_copy{
   margin: 4px auto 10px;
+}
+
+
+.step_bar{
+  padding-top: 20px;
+
+  .progressbar {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    z-index: 0;
+  }
+  .progressbar li {
+    position: relative;
+    list-style-type: none;
+    text-align: center;
+    text-transform: uppercase;
+    width: 33.333%;
+    color: #999999;
+    font-size: 12px;
+    font-weight: bold;
+    counter-increment: steps;
+  }
+  .progressbar li:before {
+    display: block;
+    width: 26px;
+    height: 26px;
+    margin: 7px auto 10px auto;
+    content: '';
+    line-height: 26px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #F5F5F5;
+    content: counter(steps);
+  }
+  .progressbar li:after {
+    position: absolute;
+    z-index: -1;
+    top: 15px;
+    left: -50%;
+    width: 100%;
+    height: 2px;
+    content: '';
+    background-color: #F5F5F5;
+  }
+  .progressbar li:first-child:after {
+    content: none;
+  }
+  .progressbar li.active,
+  .progressbar li.complete{
+    color: #337ab7;
+  }
+  .progressbar li.active:before,
+  .progressbar li.complete:before {
+    background-color: #337ab7;
+    color: #FFF;
+  }
+  .progressbar li.active:after,
+  .progressbar li.complete:after {
+    background-color: #337ab7;
+  }
+
 }
 
 

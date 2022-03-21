@@ -3,10 +3,9 @@
 <div class="main users-edit">
   <div class="container">
     <div class="form users-form">
+      <%= render "users/parts/step_bar" %>
 
       <div class="form-body cont-body">
-
-        <div class="p_t">サークル内容の編集</div>
 
         <% if @user.errors.any? %>
           <div class="form-error">
@@ -24,13 +23,9 @@
 
           <%= f.fields_for :link do |fin| %>
 
-            <p class="text_s">
-              アカウントID（半角英数字：4文字〜16文字以内）<br>
-              ※記号などは使用できません
-            </p>
-            <%= fin.text_field :unique_id, class: 'form-control', placeholder: "circlebook" %>
-            <p>アカウントIDはURLに使用されます。<br>
-            あとで変更はできません。</p>
+            <div class="label_item"><span class="label label_danger">必須</span>アカウントID（半角英数字：4〜16文字）<br>※記号などは使用できません
+</div>
+            <%= fin.text_field :unique_id, id: 'change_order', class: 'form-control', placeholder: "circlebook" %>
 
           <% end %>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_27_061420) do
+ActiveRecord::Schema.define(version: 2022_03_19_083150) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,7 +25,11 @@ ActiveRecord::Schema.define(version: 2022_02_27_061420) do
     t.string "image_profile"
     t.text "profile"
     t.integer "check"
+    t.integer "prefecture_id"
+    t.string "age"
+    t.integer "open", default: 0, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["prefecture_id"], name: "index_admin_users_on_prefecture_id"
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 

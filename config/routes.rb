@@ -81,7 +81,9 @@ Rails.application.routes.draw do
 
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'
-	patch 'users/:id/admin_user_update', to: 'users#admin_user_update'
+	get 'users/:id/edit3', to: 'users#edit3'
+	patch 'users/:id/edit3', to: 'users#update3'
+  patch 'users/:id/admin_user_update', to: 'users#admin_user_update'
   get 'users/:id/mypage' , to: 'users#mypage'
 	patch 'users/:id/mypage', to: 'users#update_contact'
 	get 'users/:id/account_del' , to: 'users#account_del'

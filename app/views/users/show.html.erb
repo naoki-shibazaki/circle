@@ -291,6 +291,53 @@
           <div class="border"></div>
         <% end %>
 
+        <% if @user.admin_user.open == 1 && @user.admin_user.nickname.present? %>
+          <h2 class="user_sub_title"><i class="fa fa-book "></i> 主催者のプロフィール</h2>
+
+          <div class="review_contents">
+            <div class="review_l">
+                <% if @user.admin_user.image_profile.present? %>
+                  <%= lazysizes_image_tag @user.admin_user.image_profile.url , class:'member_icon' %>
+                <% else %>
+                  <% if @user.admin_user.gender == "1" %>
+                    <img src="/images/icon/icon_member_blue.png" class="member_icon">
+                  <% elsif @user.admin_user.gender == "2" %>
+                    <img src="/images/icon/icon_member_pink.png" class="member_icon">
+                  <% else %>
+                    <img src="/images/icon/icon_member.png" class="member_icon">
+                  <% end %>
+                <% end %>
+            </div>
+
+            <div class="review_r">
+              <div class="speech_title">
+                <%= @user.admin_user.nickname  %>
+                <div class="btm_content">
+                    <% if @user.admin_user.gender == "1" %>
+                      男性
+                    <% elsif @user.admin_user.gender == "2" %>
+                      女性
+                    <% elsif @user.admin_user.gender == "0" %>
+                      その他
+                    <% else %>
+                    <% end %>
+                    <%= @user.admin_user.age %>
+                </div>
+              </div>
+
+              <div class="speech_bubble">
+                <%= simple_format @user.admin_user.profile %>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="reset"></div>
+
+          <div class="border"></div>
+        <% end %>
+
+
         <% if @user.switch == "募集中" %>
           <%= render "/users/contact_btn" %>
           <div class="border"></div>

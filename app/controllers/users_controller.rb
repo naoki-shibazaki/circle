@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 include ApplicationHelper
 include Circlebook
 
-before_action :ensure_correct_user, {only: [:mypage, :edit, :update, :edit2, :update2, :update_contact, :account_del]}
+before_action :ensure_correct_user, {only: [:mypage, :edit, :update, :edit2, :update2, :edit3, :update3, :update_contact, :account_del]}
 before_action :set_users
 
 helper_method :link_count
@@ -271,6 +271,11 @@ helper_method :link_count
 
   end
 
+	def edit3
+    @admin_user = current_admin_user
+    @user = User.find(params[:id])
+  end
+
   def admin_user_update
     @user = User.find(params[:id])
     @admin_user = @user.admin_user
@@ -311,14 +316,14 @@ helper_method :link_count
 			if @user.prefecture.id == 50 #全国選択
 				@user.prefecture_sub_id = nil #サブエリアはnil
 				@user.save
-				flash[:notice] = 'プロフィール更新完了！'
-				redirect_to user_path(@user)
+				flash[:notice] = 'ステップ１更新完了！'
+				redirect_to "/users/#{@user.id}/edit2"
 			else #47都道府県
 				if @user.prefecture_id == @user.prefecture_sub_id #エリア重複判断
 					@user.prefecture_sub_id = nil #サブエリアはnil
 					@user.save
 				end
-				flash[:notice] = 'これで最後です！'
+				flash[:notice] = 'ステップ１更新完了！'
 				redirect_to "/users/#{@user.id}/edit2"
 			end
 
@@ -335,15 +340,29 @@ helper_method :link_count
 		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 		@sub_cities = City.where(prefecture_id: @user.prefecture_sub_id).order(:id => :asc)
 
-
     if @user.update(user_params)
-      flash[:notice] = 'プロフィール更新完了！'
-      redirect_to user_path(@user)
+      @user.link.id = @user.id
+      @user.save
+      flash[:notice] = 'ステップ２更新完了！'
+      redirect_to "/users/#{@user.id}/edit3"
     else
       render "/users/edit2"
     end
 
 	end
+
+  def update3
+		@user = User.find(params[:id])
+    @admin_user = @user.admin_user
+    if @admin_user.update(admin_user_params)
+
+      flash[:notice] = 'プロフィール更新完了！'
+      redirect_to user_path(@user)
+    else
+      render "/users/edit3"
+    end
+  end
+
 
 	def update_contact
 		@user = User.find(params[:id])
@@ -763,7 +782,7 @@ private
 	end
 
 	def admin_user_params
-		params.require(:admin_user).permit(:check)
+		params.require(:admin_user).permit(:check, :gender, :nickname, :image_profile, :profile, :prefecture_id, :age, :open)
 	end
 
 	def ensure_correct_user
