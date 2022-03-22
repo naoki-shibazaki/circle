@@ -300,7 +300,7 @@
                 <% if @user.admin_user.image_profile.present? %>
                   <%= lazysizes_image_tag @user.admin_user.image_profile.url , class:'admin_user_icon' %>
                 <% else %>
-                  <img src="/images/icon/icon_member.png" class="admin_user_icon">
+                  <%= lazysizes_image_tag @user.pic_profile.url, class:'profile_imege', alt: "プロフィール画像｜#{@user.name}" %>
                 <% end %>
               </div>
 

@@ -37,6 +37,8 @@ ja:
               invalid: "は有効でありません。"
               confirmation: "が内容とあっていません。"
     attributes:
+      admin_user:
+        nickname: "『ニックネーム』"
       user:
         current_password: "現在のパスワード"
         name: "『サークル名』"

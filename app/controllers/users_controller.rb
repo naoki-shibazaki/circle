@@ -272,8 +272,8 @@ helper_method :link_count
   end
 
 	def edit3
-    @admin_user = current_admin_user
     @user = User.find(params[:id])
+    @admin_user = @user.admin_user
   end
 
   def admin_user_update

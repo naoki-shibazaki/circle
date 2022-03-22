@@ -37,6 +37,8 @@ gem 'devise-i18n-views'
 gem 'kaminari'
 gem 'jquery-rails'
 
+gem 'newrelic_rpm' # heroku add on
+
 gem 'bootstrap-sass', '~> 3.3.7'
 gem "font-awesome-rails"
 # gem "bootstrap4-datetime-picker-rails"

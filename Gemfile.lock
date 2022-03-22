@@ -933,6 +933,7 @@ GEM
     msgpack (1.2.9)
     multi_json (1.13.1)
     netrc (0.11.0)
+    newrelic_rpm (8.5.0)
     nio4r (2.3.1)
     nokogiri (1.10.2)
       mini_portile2 (~> 2.4.0)
@@ -1119,6 +1120,7 @@ DEPENDENCIES
   meta-tags
   mini_magick (~> 4.8)
   momentjs-rails
+  newrelic_rpm
   paperclip
   pg
   puma (~> 3.11)

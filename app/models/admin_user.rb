@@ -10,7 +10,9 @@ class AdminUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
-  mount_uploader :image_profile, ImageUploader
+    validates :nickname, length: { maximum: 16 }
+
+    mount_uploader :image_profile, ImageUploader
 
   def remember_me
     true

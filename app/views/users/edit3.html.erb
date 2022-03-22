@@ -40,7 +40,7 @@
 
           <%= f.file_field :image_profile, class: "image", style: "display:none;", id: "file_profile"%>
 
-          <div class="label_item"><span class="label label_danger">必須</span>ニックネーム</div>
+          <div class="label_item"><span class="label label_danger">必須</span>ニックネーム（16文字以内）</div>
           <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
 
           <% if @admin_user.gender.blank? %>
