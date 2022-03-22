@@ -300,13 +300,7 @@
                 <% if @user.admin_user.image_profile.present? %>
                   <%= lazysizes_image_tag @user.admin_user.image_profile.url , class:'admin_user_icon' %>
                 <% else %>
-                  <% if @user.admin_user.gender == "1" %>
-                    <img src="/images/icon/icon_member_blue.png" class="admin_user_icon">
-                  <% elsif @user.admin_user.gender == "2" %>
-                    <img src="/images/icon/icon_member_pink.png" class="admin_user_icon">
-                  <% else %>
-                    <img src="/images/icon/icon_member.png" class="admin_user_icon">
-                  <% end %>
+                  <img src="/images/icon/icon_member.png" class="admin_user_icon">
                 <% end %>
               </div>
 
