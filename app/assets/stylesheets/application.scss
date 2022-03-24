@@ -8796,12 +8796,7 @@ trix-toolbar .button_group button.icon{
     position: relative;
     overflow: hidden;
     height: 200px;
-  }
-  .pref-menus{
-    height: 180px;
-    .link_txt{
-      font-size: 16px;
-    }
+    margin-bottom: 20px;
   }
   .readmore-content::before {
       display: block;
@@ -8813,8 +8808,8 @@ trix-toolbar .button_group button.icon{
       z-index: 7;
       /*以下お好み グラデーションの色と高さ 高さはreadmoreのheight以下にすること*/
       height: 80px;
-      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.8) 50%, #fff 100%);
-      background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.8) 50%, #fff 100%);
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 30%, rgba(255,255,255,0.8) 30%, #fff 100%);
+      background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 30%, rgba(255,255,255,0.8) 30%, #fff 100%);
   }
   /* もっと見るボタン */
   .readmore-label{
@@ -8838,9 +8833,10 @@ trix-toolbar .button_group button.icon{
   }
   /*チェック時にボタンを非表示*/
   .readmore-check:checked ~ .readmore-label{
-      position: static;
-      transform: translateX(0);
-      -webkit-transform: translateX(0);
+    position: static;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    padding-bottom: 20px;
   }
   .readmore-check:checked ~ .readmore-label:before{
       content: '− 閉じる';
