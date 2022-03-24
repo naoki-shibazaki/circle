@@ -322,6 +322,19 @@
 
           <h2 class="user_sub_title"><i class="fa fa-user "></i> 主催者のプロフィール</h2>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
           <div class="admin_user_profile_wrap">
             <div class="admin_user_profile">
               <div class="admin_user_img">
@@ -354,9 +367,22 @@
               </div>
             </div>
 
-            <div class="admin_user_txt">
-              <%= raw Rinku.auto_link(simple_format @user.admin_user.profile) %>
-            </div>
+            <% if @user.admin_user.profile.size >= 200 %>
+              <div class="reset"></div>
+              <div class="readmore">
+                <input id="check_admin_prof" class="readmore-check" type="checkbox">
+                <div class="readmore-content">
+                  <div class="admin_user_txt">
+                    <%= raw Rinku.auto_link(simple_format(@user.admin_user.profile)) %>
+                  </div>
+                </div>
+                <label class="readmore-label" for="check_admin_prof"></label>
+              </div>
+            <% else %>
+              <div class="admin_user_txt">
+                <%= raw Rinku.auto_link(simple_format(@user.admin_user.profile)) %>
+              </div>
+            <% end %>
 
           </div>
 

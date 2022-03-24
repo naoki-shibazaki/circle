@@ -8773,7 +8773,7 @@ trix-toolbar .button_group button.icon{
     clear: both;
     display: block;
     border: 1px solid #d8dadf;
-    margin: 0px 10px 2px;
+    margin: 0px 10px 20px;
     padding: 10px 10px;
     border-radius: 4px;
     word-break: break-all;
@@ -8781,6 +8781,77 @@ trix-toolbar .button_group button.icon{
     p{
       font-size: 14px;
     }
+    a {
+      font-size: 14px;
+      color: #337ab7;
+      text-decoration: none;
+    }
+  }
+
+  .readmore{
+    position: relative;
+    box-sizing: border-box;
+  }
+  .readmore-content{
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+  }
+  .pref-menus{
+    height: 180px;
+    .link_txt{
+      font-size: 16px;
+    }
+  }
+  .readmore-content::before {
+      display: block;
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      content: "";
+      z-index: 7;
+      /*以下お好み グラデーションの色と高さ 高さはreadmoreのheight以下にすること*/
+      height: 80px;
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.8) 50%, #fff 100%);
+      background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.8) 50%, #fff 100%);
+  }
+  /* もっと見るボタン */
+  .readmore-label{
+    display: table;
+    bottom: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    margin: 0 auto;
+    z-index: 20;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: #686a6a;
+  }
+  .readmore-label:before{
+      content: '＋ もっと見る';
+  }
+  .readmore-check{
+      display: none;
+  }
+  /*チェック時にボタンを非表示*/
+  .readmore-check:checked ~ .readmore-label{
+      position: static;
+      transform: translateX(0);
+      -webkit-transform: translateX(0);
+  }
+  .readmore-check:checked ~ .readmore-label:before{
+      content: '− 閉じる';
+  }
+  /*チェック時に高さを自動に戻す*/
+  .readmore-check:checked ~ .readmore-content{
+      height: auto;
+  }
+  /*チェック時グラデーション等を削除*/
+  .readmore-check:checked ~ .readmore-content::before {
+      display: none;
   }
 
 }
