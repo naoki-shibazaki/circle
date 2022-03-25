@@ -45,8 +45,8 @@ class LinksController < ApplicationController
 		@link = Link.new(link_params)
     @links = Link.where.not(link03_title: "").order("RANDOM()").limit(5)
 		@user = User.find(params[:user_id])
-		@link.id = @user.id
-		@link.user_id = @user.id
+		# @link.id = @user.id
+		# @link.user_id = @user.id
 
 		@link.link01_title = @user.name
 		@link.link01_url = "https://www.circle-book.com/users/#{@user.id}"
