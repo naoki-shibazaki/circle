@@ -8,6 +8,18 @@
 
 		<div class="users-index-item bottom_zero">
 
+    <% if @link.errors.any? %>
+      <div class="form-error">
+        以下の項目でエラーが発生いたしました。<br>
+      </div>
+    <% end %>
+
+    <% @link.errors.full_messages.each do |message| %>
+      <div class="form-error_message">
+        ・<%= message %>
+      </div>
+    <% end %>
+
       <h1 class="p_t">リンク集の作成</h1>
 
 			<% if admin_user_signed_in?  %>
@@ -118,12 +130,23 @@
 
 			<h2 class="links_form_sub_title">リンク集の作成</h2>
 
+      <% if @link.errors.any? %>
+        <div class="form-error">
+          以下の項目でエラーが発生いたしました。<br>
+        </div>
+      <% end %>
+
+      <% @link.errors.full_messages.each do |message| %>
+        <div class="form-error_message">
+          ・<%= message %>
+        </div>
+      <% end %>
+
       <div class="form users-form new_link_form">
 
 				<%= form_for([@user, @link]) do |f| %>
 
 					<div class="url_link_txt">https://circle-book.com/link/<span class="red_text">[アカウントID]</span></div>
-
 
 					<p class="text_s">
             アカウントID（半角英数字：4文字〜16文字以内）<br>

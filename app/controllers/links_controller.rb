@@ -43,11 +43,9 @@ class LinksController < ApplicationController
 
 	def create
 		@link = Link.new(link_params)
-    @links = Link.where.not(link03_title: "").order("RANDOM()").limit(5)
 		@user = User.find(params[:user_id])
-		# @link.id = @user.id
-		# @link.user_id = @user.id
-
+    @links = Link.where.not(link03_title: "").order("RANDOM()").limit(5)
+		@link.user_id = @user.id
 		@link.link01_title = @user.name
 		@link.link01_url = "https://www.circle-book.com/users/#{@user.id}"
 
@@ -58,12 +56,10 @@ class LinksController < ApplicationController
 			end
 		end
 
-
-		if @link.update(link_params)
+		if @link.save(link_params)
 			flash[:notice] = 'ID設定完了しました！'
 			redirect_to "/link/#{@link.unique_id}"
 		else
-			flash[:notice] = '他のIDをご入力ください'
 			render "new"
 		end
 

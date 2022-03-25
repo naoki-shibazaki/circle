@@ -8821,12 +8821,18 @@ trix-toolbar .button_group button.icon{
     -webkit-transform: translateX(-50%);
     margin: 0 auto;
     z-index: 20;
-    padding: 0 10px;
     border-radius: 10px;
-    color: #686a6a;
+    padding: 0px 20px;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #3ecdc6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
   }
   .readmore-label:before{
-      content: '＋ もっと見る';
+      content: '▼ もっと見る';
   }
   .readmore-check{
       display: none;
@@ -8836,10 +8842,9 @@ trix-toolbar .button_group button.icon{
     position: static;
     transform: translateX(0);
     -webkit-transform: translateX(0);
-    padding-bottom: 20px;
   }
   .readmore-check:checked ~ .readmore-label:before{
-      content: '− 閉じる';
+      content: '▲ 閉じる';
   }
   /*チェック時に高さを自動に戻す*/
   .readmore-check:checked ~ .readmore-content{
