@@ -61,13 +61,7 @@
                 <i class="fa fa-trash-o "></i>質問を削除する
 							<% end %>
 
-              <% if @question.ip_address.present? %>
-                <span class="ml-10">
-                  <%= link_to("/users/#{@user.id}/questions/#{@question.id}/account_block", method: :update, data: {confirm: "質問者を通報しますか？"}) do %>
-                    <i class="fa fa-ban"></i>質問者を通報する
-                  <% end %>
-                </span>
-              <% end %>
+
 						</div>
 
 
