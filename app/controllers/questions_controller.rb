@@ -54,6 +54,7 @@ class QuestionsController < ApplicationController
 
 			@question = @user.questions.last
 			@question.content = @question.content.gsub(/[^!！？、。ー〜0-9０-９A-Za-zＡ-Ｚａ-ｚ-ぁ-んァ-ン一-龥]/, '')
+      @question.ip_address = request.remote_ip
 
 			if @question.save
 
@@ -167,7 +168,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:id, :content, :answer)
+      params.require(:question).permit(:id, :content, :answer, :ip_address)
     end
 
 
