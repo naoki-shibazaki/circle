@@ -85,6 +85,7 @@
 
         <div class="label_item">活動内容</div>
         <div class="rich_text_sub">
+          <div class="rich_text_notes">▼文字の装飾は最後に行ってください</div>
           <%= f.hidden_field :note, value: @copy_schedule.note, id: :article_text %>
           <trix-editor input="article_text" placeholder= "持ち物は○○です。参加費は△△です。"></trix-editor>
         </div>
@@ -163,6 +164,7 @@
 
         <div class="label_item">活動内容</div>
         <div class="rich_text_sub">
+          <div class="rich_text_notes">▼文字の装飾は最後に行ってください</div>
           <%= f.hidden_field :note, id: :article_text %>
           <trix-editor input="article_text" placeholder= "持ち物は○○です！"></trix-editor>
         </div>

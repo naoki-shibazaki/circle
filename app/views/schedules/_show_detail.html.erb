@@ -177,6 +177,7 @@
 
       <% if @schedule.note.include?("<div>") %>
         <div class="profile_list_p profile_list_a rich_text_sub">
+          <div class="rich_text_notes">▼文字の装飾は最後に行ってください</div>
           <%= raw Rinku.auto_link(sanitize @schedule.note, tags: %w(p a br strong ul li div), attributes:  %w(id class href)) %>
         </div>
       <% else %>
