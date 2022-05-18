@@ -1,0 +1,25 @@
+<% set_meta_tags noindex: true %>
+
+<div class="main users-index">
+  <div class="container">
+
+
+    <div class="table_list">
+      <table>
+        <tr><th>モデル</th><th>URL</th><th>ipアドレス</th><th>削除</th></tr>
+        <% @account_blocks.each do |account_block| %>
+          <tr>
+            <td><%= account_block.model %></td>
+            <td><%= account_block.url %></td>
+            <td><%= account_block.ip_address %></td>
+            <td><%= link_to "削除", account_block_path(account_block.id), method: :delete, data: {confirm: "削除しますか？"} %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+
+
+  </div>
+</div>
+

@@ -28,12 +28,13 @@
   <% end %>
 <% end %>
 
-
-<div class="user_qa_btn">
-	<%= link_to  user_questions_path(@user) do %>
-		<div class="contact-button qa_btn qa">
-			<i class="fa fa-comments "></i> このサークルに質問する
-		</div>
-	<% end %>
-</div>
-
+<% if AccountBlock.find_by(ip_address: request.remote_ip) %>
+<% else %>
+  <div class="user_qa_btn">
+    <%= link_to  user_questions_path(@user) do %>
+      <div class="contact-button qa_btn qa">
+        <i class="fa fa-comments "></i> このサークルに質問する
+      </div>
+    <% end %>
+  </div>
+<% end %>

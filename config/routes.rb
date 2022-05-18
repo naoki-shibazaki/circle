@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   # resources :db_searches, only: [:index]
   resources :db_keywords, except: [:new, :create]
   resources :db_validation_errors, only: [:index]
+  resources :account_blocks, only: [:index, :destroy]
+
 
 	resources :prefectures, only: [] do
     resources :cities, only: :index
