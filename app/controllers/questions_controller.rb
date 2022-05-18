@@ -142,21 +142,6 @@ class QuestionsController < ApplicationController
 		@questions = Question.all.order(id: "DESC").page(params[:page])
 	end
 
-  def block
-		@question = Question.find(params[:id])
-
-    @account_block = AccountBlock.new
-    @account_block.block = 1
-    @account_block.ip_address = @question.ip_address
-    @account_block.model = "Question"
-    @account_block.url = request.url
-    @account_block.save
-
-		flash[:notice] = "通報しました"
-		redirect_to user_questions_path
-
-  end
-
 
   private
 	def set_user

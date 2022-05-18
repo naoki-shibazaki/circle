@@ -13,6 +13,22 @@ class AccountBlocksController < ApplicationController
 		redirect_to account_blocks_path
   end
 
+  def question_block
+    @user = User.find_by(id: params[:user_id])
+    @question = Question.find(params[:id])
+
+    @account_block = AccountBlock.new
+    @account_block.block = 1
+    @account_block.ip_address = @question.ip_address
+    @account_block.model = "Question"
+    @account_block.url = request.url
+    @account_block.save
+
+		flash[:notice] = "通報しました"
+		redirect_to user_questions_path
+
+  end
+
 
   private
 	def webmaster
