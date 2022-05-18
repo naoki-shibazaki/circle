@@ -281,7 +281,6 @@
           <h2 class="user_sub_title"><i class="fa fa-book "></i> サークルの詳細内容</h2>
             <% if @user.appeal.include?("<div>") %>
               <div class="profile_list_p profile_list_a rich_text_sub">
-                <div class="rich_text_notes">▼文字の装飾は最後に行ってください</div>
                 <%= raw Rinku.auto_link(sanitize @user.appeal, tags: %w(p a br strong ul li div), attributes:  %w(id class href)) %>
               </div>
             <% else %>
