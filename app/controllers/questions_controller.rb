@@ -142,6 +142,12 @@ class QuestionsController < ApplicationController
 		@questions = Question.all.order(id: "DESC").page(params[:page])
 	end
 
+  def account_block
+		@question = Question.find(params[:id])
+
+  end
+
+
   private
 	def set_user
     @user = User.find_by(id: params[:user_id])

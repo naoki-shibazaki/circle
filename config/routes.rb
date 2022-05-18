@@ -88,6 +88,8 @@ Rails.application.routes.draw do
 	patch 'users/:id/mypage', to: 'users#update_contact'
 	get 'users/:id/account_del' , to: 'users#account_del'
 	get 'users/:id/contact_list' , to: 'user_contacts#contact_list'
+  post '/users/:user_id/questions/:id/account_block' , to: 'questions#account_block'
+
 
   # イベント一覧
   get 'dates' , to: 'schedules#dates'
@@ -103,7 +105,6 @@ Rails.application.routes.draw do
 
   # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'
-
 	get 'users/:user_id/blogs' , to: 'blogs#user_blogs'
   get 'users/:user_id/gallery' , to: 'blogs#gallery'
 

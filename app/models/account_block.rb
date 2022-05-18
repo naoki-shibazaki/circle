@@ -1,0 +1,2 @@
+class AccountBlock < ApplicationRecord
+end
