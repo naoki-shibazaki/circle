@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
 	end
 
+
+
+
+  private
 	def set_current_user
     @current_user = User.find_by(id: session[:user_id])
 		if admin_user_signed_in?
