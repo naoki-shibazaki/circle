@@ -6,9 +6,10 @@
 
     <div class="table_list">
       <table>
-        <tr><th>モデル</th><th>URL</th><th>ipアドレス</th><th>削除</th></tr>
+        <tr><th>実行日</th><th>モデル</th><th>URL</th><th>ipアドレス</th><th>削除</th></tr>
         <% @account_blocks.each do |account_block| %>
           <tr>
+            <td><%= account_block.created_at %></td>
             <td><%= account_block.model %></td>
             <td><%= account_block.url %></td>
             <td><%= account_block.ip_address %></td>
