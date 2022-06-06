@@ -70,40 +70,46 @@
       <hr>
     <% end %>
 
-    <h2 class="top_title">口コミ投稿</h2>
 
-    <div class="join_txt">
-      ＼ コチラから投稿できます！ ／
-    </div>
+    <% if AccountBlock.find_by(ip_address: request.remote_ip) %>
+    <% else %>
 
-    <div class="reviews_modal center">
-      <a class="js-modal-open" href="" data-target="review_add_member"><span class="join_btn">口コミを投稿する！</span></a>
-    </div>
+      <h2 class="top_title">口コミ投稿</h2>
 
-    <div class="reviews_modal">
-      <div id="review_add_member" class="modal js-modal">
-        <div class="modal_bg js-modal-close"></div>
+      <div class="join_txt">
+        ＼ コチラから投稿できます！ ／
+      </div>
 
-        <div class="modal_content">
-          <h2 class="top_title">口コミ投稿</h2>
+      <div class="reviews_modal center">
+        <a class="js-modal-open" href="" data-target="review_add_member"><span class="join_btn">口コミを投稿する！</span></a>
+      </div>
 
-          <div class="schedule_input">
-            <%= form_for ([@user, @review]) do |f| %>
-              <p>口コミ・評価</p>
-              <div class="radio_button_review">
-                <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
-              </div>
-              <p>コメント<span class="must_red">(必須)</span></p>
-              <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
-              <%= f.submit "投稿する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
-              <div class="reset"></div>
-            <% end %>
+      <div class="reviews_modal">
+        <div id="review_add_member" class="modal js-modal">
+          <div class="modal_bg js-modal-close"></div>
+
+          <div class="modal_content">
+            <h2 class="top_title">口コミ投稿</h2>
+
+            <div class="schedule_input">
+              <%= form_for ([@user, @review]) do |f| %>
+                <p>口コミ・評価</p>
+                <div class="radio_button_review">
+                  <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
+                </div>
+                <p>コメント<span class="must_red">(必須)</span></p>
+                <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
+                <%= f.submit "投稿する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
+                <div class="reset"></div>
+              <% end %>
+            </div>
+
+            <br><a class="js-modal-close" href="">閉じる</a>
           </div>
-
-          <br><a class="js-modal-close" href="">閉じる</a>
         </div>
       </div>
-    </div>
+
+    <% end %>
 
 
 

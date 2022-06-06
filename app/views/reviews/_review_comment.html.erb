@@ -114,7 +114,9 @@
                 <i class="fa fa-trash "></i> 削除
               <% end %>
             </span>
+
           <% end %>
+
         <% end %>
 
       <% end %>
@@ -127,6 +129,28 @@
     <div class="speech_bubble">
       <%= simple_format review.comment %>
     </div>
+
+    <% if admin_user_signed_in? %>
+      <% if current_admin_user.id == @user.admin_user.id || current_admin_user.id == 1 %>
+
+        <% if review.ip.present? %>
+          <span class="report_btn">
+            <% if AccountBlock.find_by(ip_address: review.ip) %>
+              <i class="fa fa-ban"></i>このアカウントは通報済みです
+            <% else %>
+                <%= link_to("/users/#{@user.id}/reviews/#{review.id}/block", method: :update, data: {confirm: "投稿者を通報しますか？"}) do %>
+                  <i class="fa fa-ban"></i>投稿者を通報する
+                <% end %>
+            <% end %>
+          </span>
+        <% end %>
+
+      <% end %>
+    <% end %>
+
+
+
+
 
   </div>
 </div>

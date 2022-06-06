@@ -94,6 +94,7 @@ Rails.application.routes.draw do
 
   # アカウントブロック
   post 'users/:user_id/questions/:id/block' , to: 'account_blocks#question_block'
+  post 'users/:user_id/reviews/:id/block' , to: 'account_blocks#review_block'
 
 
   # イベント一覧

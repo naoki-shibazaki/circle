@@ -73,7 +73,7 @@
               <% if @question.ip_address.present? %>
                 <span class="ml-10">
                   <% if AccountBlock.find_by(ip_address: @question.ip_address) %>
-                    <i class="fa fa-ban"></i>通報済み
+                    <i class="fa fa-ban"></i>このアカウントは通報済みです
                   <% else %>
                       <%= link_to("/users/#{@user.id}/questions/#{@question.id}/block", method: :update, data: {confirm: "質問者を通報しますか？"}) do %>
                         <i class="fa fa-ban"></i>質問者を通報する
