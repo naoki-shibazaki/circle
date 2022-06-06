@@ -134,54 +134,58 @@
     <hr>
   <% end %>
 
-  <h2 class="top_title">口コミ投稿</h2>
 
-  <div class="join_txt">
-    ＼ 登録なしで投稿できます！ ／
-  </div>
+  <% if AccountBlock.find_by(ip_address: request.remote_ip) %>
+  <% else %>
+    <h2 class="top_title">口コミ投稿</h2>
 
-  <div class="reviews_modal center">
-    <a class="js-modal-open" href="" data-target="review_add_no_member"><span class="join_btn">口コミを投稿する！</span></a>
-  </div>
+    <div class="join_txt">
+      ＼ 登録なしで投稿できます！ ／
+    </div>
 
-  <div class="reviews_modal">
-    <div id="review_add_no_member" class="modal js-modal">
-      <div class="modal_bg js-modal-close"></div>
+    <div class="reviews_modal center">
+      <a class="js-modal-open" href="" data-target="review_add_no_member"><span class="join_btn">口コミを投稿する！</span></a>
+    </div>
 
-      <div class="modal_content">
-          <h2 class="top_title">口コミ投稿</h2>
+    <div class="reviews_modal">
+      <div id="review_add_no_member" class="modal js-modal">
+        <div class="modal_bg js-modal-close"></div>
 
-          <div class="schedule_input">
-            <%= form_for ([@user, @review]) do |f| %>
+        <div class="modal_content">
+            <h2 class="top_title">口コミ投稿</h2>
 
-              <p>ニックネーム</p>
-              <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
-              <br>
-              <p>性別</p>
-              <div class="radio_button_review">
-                <%= f.radio_button :gender, 1, {:checked => true} %>男性 <%= f.radio_button :gender, 2 %>女性 <%= f.radio_button :gender, 0 %>その他
-              </div>
+            <div class="schedule_input">
+              <%= form_for ([@user, @review]) do |f| %>
 
-              <p>年代</p>
-              <%= f.select :age,
-                [["10代", "10代"], ["20代", "20代"], ["30代", "30代"], ["40代", "40代"], ["50代", "50代"], ["60代以上", "60代以上"]],
-              :prompt => "選択してください" %>
+                <p>ニックネーム</p>
+                <%= f.text_field :nickname, class: 'form-control', placeholder: "サークルブック" %>
+                <br>
+                <p>性別</p>
+                <div class="radio_button_review">
+                  <%= f.radio_button :gender, 1, {:checked => true} %>男性 <%= f.radio_button :gender, 2 %>女性 <%= f.radio_button :gender, 0 %>その他
+                </div>
 
-              <p>口コミ・評価</p>
-              <div class="radio_button_review">
-                <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
-              </div>
-              <p>コメント<span class="must_red">(必須)</span></p>
-              <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
-              <%= f.submit "投稿する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
-              <div class="reset"></div>
-            <% end %>
-          </div>
+                <p>年代</p>
+                <%= f.select :age,
+                  [["10代", "10代"], ["20代", "20代"], ["30代", "30代"], ["40代", "40代"], ["50代", "50代"], ["60代以上", "60代以上"]],
+                :prompt => "選択してください" %>
 
-        <br><a class="js-modal-close" href="">閉じる</a>
+                <p>口コミ・評価</p>
+                <div class="radio_button_review">
+                  <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
+                </div>
+                <p>コメント<span class="must_red">(必須)</span></p>
+                <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
+                <%= f.submit "投稿する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
+                <div class="reset"></div>
+              <% end %>
+            </div>
+
+          <br><a class="js-modal-close" href="">閉じる</a>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
 
   <% if @reviews.blank? %>
