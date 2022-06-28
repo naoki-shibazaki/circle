@@ -71,7 +71,7 @@ Rails.application.routes.draw do
 	get 'event_questions' , to: 'event_questions#event_questions'
   get 'contents' , to: 'differences#contents'
   get 'reviews' , to: 'reviews#all_reviews'
-  get 'account_block' , to: 'user_contacts#account_block'
+  get 'contact_block' , to: 'user_contacts#contact_block'
 	get 'user_del' , to: 'users#user_del'
 	get 'member_del' , to: 'members#member_del'
 

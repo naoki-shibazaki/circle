@@ -1,7 +1,7 @@
 class UserContactsController < ApplicationController
   include Circlebook
 
-  before_action :set_users, {except: [:account_block, :contact_list, :check_thanks]}
+  before_action :set_users, {except: [:contact_block, :contact_list, :check_thanks]}
 
   def new
     @user_contact = @user.user_contacts.build
@@ -18,7 +18,7 @@ class UserContactsController < ApplicationController
       @db_validation_error.save
 
       flash[:notice] = "アカウントをロックしました"
-      redirect_to account_block_path
+      redirect_to contact_block_path
     end
 
     case params[:entry]
@@ -176,7 +176,7 @@ class UserContactsController < ApplicationController
 
 
 
-  def account_block
+  def contact_block
   end
 
   def contact_list
