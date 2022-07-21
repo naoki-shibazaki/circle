@@ -71,6 +71,9 @@
 <% if current_admin_user.id == 1 %>
   <div class="label_item"><span class="label label_danger">管理権限</span>NGアカウント判定</div>
   <%= f.select :ng_account, [ ['OK', 'OK'], ['NG','NG'] ] %>
+
+  <div class="label_item"><span class="label label_danger">管理権限</span>口コミの投稿許可</div>
+  <%= f.select :review_permit, [ ['許可', true], ['禁止', false] ] %>
 <% end %>
 
 <% if @user.switch.present? %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_104832) do
+ActiveRecord::Schema.define(version: 2022_07_21_001905) do
 
   create_table "account_blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -534,6 +534,7 @@ ActiveRecord::Schema.define(version: 2022_05_18_104832) do
     t.string "unique_id"
     t.string "point"
     t.float "cb_point", default: 0.0, null: false
+    t.boolean "review_permit", default: true
     t.index ["admin_user_id"], name: "index_users_on_admin_user_id"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true

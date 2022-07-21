@@ -71,7 +71,7 @@
     <% end %>
 
 
-    <% if AccountBlock.find_by(ip_address: request.remote_ip) %>
+    <% if AccountBlock.find_by(ip_address: request.remote_ip) || @user.review_permit == false %>
     <% else %>
 
       <h2 class="top_title">口コミ投稿</h2>
@@ -95,7 +95,7 @@
               <%= form_for ([@user, @review]) do |f| %>
                 <p>口コミ・評価</p>
                 <div class="radio_button_review">
-                  <%= f.radio_button :review, 1, {:checked => true} %>良かった <%= f.radio_button :review, 0 %>残念だった
+                  <%= f.radio_button :review, 1, {:checked => true } %>良かった <%= f.radio_button :review, 0 %>残念だった
                 </div>
                 <p>コメント<span class="must_red">(必須)</span></p>
                 <%= f.text_area :comment, class: 'form-control form-note', placeholder: "初参加でしたが、とても楽しかったです！" %>
@@ -135,7 +135,7 @@
   <% end %>
 
 
-  <% if AccountBlock.find_by(ip_address: request.remote_ip) %>
+  <% if AccountBlock.find_by(ip_address: request.remote_ip)  || @user.review_permit == false %>
   <% else %>
     <h2 class="top_title">口コミ投稿</h2>
 
