@@ -35,3 +35,5 @@ public/sitemap.xml.gz
 
 #Cloudinary
 /.env
+
+.DS_Store
