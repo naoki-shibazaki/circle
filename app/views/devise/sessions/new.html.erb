@@ -7,12 +7,21 @@
     <div class="login_info_txt">
       <%= link_to ">>参加者用のログインはコチラ",new_member_session_path %>
     </div>
+
+    <div class="info_wrap">
+      <div class="info_title">【重要】</div>
+      一部のユーザーにおいて、ログインができない事象が発生しております。現在、原因を調査中です。<br>
+      誠に申し訳ございませんが、ログインできない方は、<br>
+      以下のパスワード再発行のボタンから、パスワードの再設定をお願いいたします。<br>
+      <%= link_to ">>パスワードの再発行", new_admin_user_password_path %>
+    </div>
+
     <div class="form users-form">
       <div class="form-body cont-body">
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
-        
+
           <div class="field">
             <%= f.label :メールアドレス %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
