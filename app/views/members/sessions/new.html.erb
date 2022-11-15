@@ -7,6 +7,14 @@
     <div class="login_info_txt">
       <%= link_to ">>サークル主催者用のログインはコチラ",new_admin_user_session_path %>
     </div>
+
+    <div class="info_wrap">
+      <div class="info_title">【重要】</div>
+      一部のユーザーにおいて、ログインができない事象が発生しております。現在、原因を調査中です。<br>
+      誠に申し訳ございませんが、ログインできない方は、以下のパスワード再発行のボタンから、パスワードの再設定をお願いいたします。<br><br>
+      <%= link_to ">>パスワードの再発行", new_member_password_path %>
+    </div>
+
     <div class="form users-form">
       <div class="form-body cont-body">
 
