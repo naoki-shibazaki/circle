@@ -1,0 +1,18 @@
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.16.0/ext/bootsnap
+/home/ec2-user/.rbenv/versions/2.7.6/bin/ruby -I /home/ec2-user/.rbenv/versions/2.7.6/lib/ruby/site_ruby/2.7.0 extconf.rb
+creating Makefile
+
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20230225-13692-bvo0r0 sitelibdir\=./.gem.20230225-13692-bvo0r0 clean
+
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20230225-13692-bvo0r0 sitelibdir\=./.gem.20230225-13692-bvo0r0
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20230225-13692-bvo0r0 sitelibdir\=./.gem.20230225-13692-bvo0r0 install
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20230225-13692-bvo0r0/bootsnap
+
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20230225-13692-bvo0r0 sitelibdir\=./.gem.20230225-13692-bvo0r0 clean
