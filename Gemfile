@@ -69,6 +69,7 @@ gem 'trix'
 
 gem 'hirb'         # 出力結果を表として出力するgem
 gem 'hirb-unicode'  # マルチバイト文字の表示を補正するgem
+gem 'uri', '0.10.0'
 
 
 group :development, :test do
@@ -97,5 +98,6 @@ group :production do
   gem 'rails_12factor'
   gem 'heroku-deflater'
   gem 'unicorn'
+  gem 'net-http'
 end
 
