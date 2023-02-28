@@ -1,13 +1,10 @@
 name: migrate_in_prod
 
-on:
-  push:
-    branches:
-      - create_prodenv
+on: [ workflow_dispatch ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ububuntu-22.04
 
     steps:
           - name: Deploy
