@@ -37,3 +37,4 @@ public/sitemap.xml.gz
 /.env
 
 .DS_Store
+/config/credentials/production.key

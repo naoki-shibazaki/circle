@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.0'
+ruby '2.7.6'
 
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 6.0.5.1'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -69,6 +69,7 @@ gem 'trix'
 
 gem 'hirb'         # 出力結果を表として出力するgem
 gem 'hirb-unicode'  # マルチバイト文字の表示を補正するgem
+gem 'uri', '0.10.0'
 
 
 group :development, :test do
@@ -96,5 +97,7 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem 'heroku-deflater'
+  gem 'unicorn'
+  gem 'net-http'
 end
 

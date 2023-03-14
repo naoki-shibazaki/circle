@@ -5,10 +5,10 @@ if defined? Rack::Cors
     Rails.configuration.middleware.insert_before 0, Rack::Cors do
         allow do
             origins %w[
-                https://circle-book.com
-                http://circle-book.com
-                https://www.circle-book.com
-                http://www.circle-book.com
+              https://circle-book.com
+              http://circle-book.com
+              https://www.circle-book.com
+              http://www.circle-book.com
             ]
             resource '/assets/*'
         end
