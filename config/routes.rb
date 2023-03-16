@@ -104,6 +104,8 @@ Rails.application.routes.draw do
   # 出欠管理
   get 'schedules/:unique_id' , to: 'schedules#attendance'
   post 'schedules/:unique_id' , to: 'schedules#attendance_create'
+  get 'schedules/:unique_id/new' , to: 'schedules#attendance_new'
+  get 'schedules/:unique_id/edit/:id' , to: 'schedules#attendance_edit'
   get 'schedules/:unique_id/:id' , to: 'schedules#secret'
 	patch 'schedules/:unique_id/:id', to: 'schedules#attendance_update'
 	delete 'schedules/:unique_id/:id/delete' , to: 'schedules#attendance_delete'
