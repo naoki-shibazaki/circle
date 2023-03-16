@@ -7,61 +7,26 @@
 
 <%= render "users/parts/local_business_user_list" %>
 
-
-<% if request.format == :amp %>
-  <div class="main">
-    <div class="container">
-      <%= render "/layouts/breadcrumb" %>
-
-      <div class="e_header_wrap">
-        <amp-img alt="<%= @event.name %>"
-          src="/images/events/<%= @event.ruby %>.jpg"
-          width="450px"
-          height="130px"
-          layout="responsive"
-          object-fit="cover">
-        </amp-img>
-          <div class="link_txt">
-          <h1 class="e_header_title">
-            <%= @prefecture.name %>で活動している<br>
-            <%= @tag.text %><%= @event.txt %>
-          </h1>
-          </div>
+<div class="main users-index">
+  <div class="container">
+  <%= render "/layouts/breadcrumb" %>
+    <div class="e_header_wrap">
+      <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
+      <div class="link_txt">
+        <h1 class="e_header_title">
+          <%= @prefecture.name %>で活動している<br>
+          <%= @tag.text %><%= @event.txt %>
+        </h1>
       </div>
-
-      <%= render "/users/amp_search.html.erb" %>
-
-      <% if @users.count != 0 %>
-        <%= render "/users/amp_users_list.html.erb" %>
-      <% else @users.count == 0 %>
-        <%= render "/tags/no_hit.html.erb" %>
-      <% end %>
-
     </div>
+
+  <%= render "/users/search.html.erb" %>
+
+  <% if @users.count != 0 %>
+    <%= render "/users/users_list.html.erb" %>
+  <% else @users.count == 0 %>
+    <%= render "/tags/no_hit.html.erb" %>
+  <% end %>
+
   </div>
-
-<% else %>
-  <div class="main users-index">
-    <div class="container">
-    <%= render "/layouts/breadcrumb" %>
-      <div class="e_header_wrap">
-        <img src="/images/events/<%= @event.ruby %>.jpg" alt="<%= @event.name %>" >
-        <div class="link_txt">
-          <h1 class="e_header_title">
-            <%= @prefecture.name %>で活動している<br>
-            <%= @tag.text %><%= @event.txt %>
-          </h1>
-        </div>
-      </div>
-
-    <%= render "/users/search.html.erb" %>
-
-    <% if @users.count != 0 %>
-      <%= render "/users/users_list.html.erb" %>
-    <% else @users.count == 0 %>
-      <%= render "/tags/no_hit.html.erb" %>
-    <% end %>
-
-    </div>
-  </div>
-<% end %>
+</div>
