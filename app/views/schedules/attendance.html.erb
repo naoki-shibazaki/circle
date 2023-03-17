@@ -77,7 +77,7 @@
           </div>
 
           <div class="attendances_modal center">
-            <%= link_to "新規で出欠回答する！", "/schedules/#{@user.unique_id}/new", class: "join_btn" %>
+            <a class="js-modal-open" href="" data-target="attendance_add"><span class="join_btn">新規で出欠回答する！</span></a>
           </div>
         <% end %>
 

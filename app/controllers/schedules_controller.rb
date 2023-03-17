@@ -3,8 +3,8 @@ class SchedulesController < ApplicationController
 include Circlebook
 
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
-before_action :set_schedules, {except: [:secret, :attendance, :attendance_new, :attendance_create, :attendance_edit, :attendance_update, :attendance_delete, :dates, :day]}
-before_action :set_attendances, {only: [:secret, :attendance, :attendance_new, :attendance_create, :attendance_edit, :attendance_update, :attendance_delete]}
+before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete, :dates, :day]}
+before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
 before_action :set_dates, {only: [:dates, :day]}
 
 
@@ -177,6 +177,9 @@ def attendance
     @schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).limit(5).order(:day => :desc)
   end
 
+  @name = Name.new
+  @name_schedules = @name.name_schedules.build
+
   @today = DateTime.yesterday
 
   # ▼@nemesの取得
@@ -185,20 +188,15 @@ def attendance
   @names = Name.where(id: @name_ids).order(updated_at: :desc)
 end
 
-def attendance_new
-  @name = Name.new
-  @name_schedules = @name.name_schedules.build
-end
-
 def attendance_create
   @name = Name.create(name_params)
 
   if @name.save
     flash[:notice] = "追加しました"
-    redirect_to "/schedules/#{@user.unique_id}"
+    redirect_back(fallback_location: "users/#{@user.id}/schedule")
   else
     flash[:notice] = "エラー"
-    render "attendance_new"
+    redirect_back(fallback_location: "users/#{@user.id}/schedule")
   end
 
 end
@@ -214,10 +212,10 @@ def attendance_update
 
   if @name.save
     flash[:notice] = "更新しました"
-    redirect_to "/schedules/#{@user.unique_id}"
+    redirect_back(fallback_location: "users/#{@user.id}/schedule")
   else
     flash[:notice] = "エラー"
-    render "attendance_edit"
+    redirect_back(fallback_location: "users/#{@user.id}/schedule")
   end
 
 end
@@ -227,7 +225,7 @@ def attendance_delete
   @name.destroy
 
   flash[:notice] = "削除しました"
-  redirect_to "/schedules/#{@user.unique_id}"
+  redirect_back(fallback_location: "users/#{@user.id}/schedule")
 end
 
 
