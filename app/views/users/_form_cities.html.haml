@@ -1,0 +1,10 @@
+#cities_select.field
+  = label_tag '活動エリア'
+  %br/
+  - checked = user.cities.presence || []
+  - cities.each do |city|
+  - checkedval = checked.include?(city.id.to_s) ? true : false
+  - concat check_box_tag 'user[city_ids][]', city.id, checkedval, {id: 'user_city_ids_' + city.id.to_s}
+  - concat city.name
+  - concat " "
+  - end

@@ -1,0 +1,36 @@
+- set_meta_tags noindex: true,title: "集金管理ページ"
+.main.users-index
+  .container
+    .users-index-item
+      .p_t 集金管理ページ
+      - if @collections.present?
+        .collection_list_wrap
+          - @collections.each do |collection|
+            - if collection.present?
+              - if @collection_month != Time.parse(collection.day).strftime("%-m")
+                .collection_m
+                  【#{Time.parse(collection.day).strftime("%-m")}月】
+                - @collection_month = Time.parse(collection.day).strftime("%-m")
+              .collection_content_rwap
+                = link_to(user_collection_path(collection.user_id, collection.id)) do
+                  .collection_list
+                    %span.collection_day
+                      = Time.parse(collection.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(collection.day).wday]})")
+                      %br/
+                    人数：#{collection.items.count}人
+                    %br/
+                    金額：#{collection.items.sum(:money)}円
+      - if @collection_archives.present?
+        .collection_list_wrap
+          .collection_m 【アーカイブ】
+          - @collection_archives.each do |collection_archive|
+            - if collection_archive.present?
+              .collection_content_rwap
+                = link_to(user_collection_path(collection_archive.user_id, collection_archive.id)) do
+                  .collection_list
+                    %span.collection_day
+                      = Time.parse(collection_archive.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(collection_archive.day).wday]})")
+                      %br/
+                    人数：#{collection_archive.items.count}人
+                    %br/
+                    金額：#{collection_archive.items.sum(:money)}円

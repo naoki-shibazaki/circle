@@ -1,0 +1,70 @@
+- set_meta_tags title: "#{@user.name}のギャラリーページ", og: { image: @user.ogp_img }
+
+.user_main.user-show
+  .container
+    .users-index-item
+      %h1.top_title ギャラリーページ
+      = render "/users/parts/user_switching", user: @user, url_path: "gallery"
+      = render "/users/parts/user_profile", user: @user
+      .photogallery
+        %ul.modal_trigger
+          - @blogs.each do |blog|
+            - if blog.image_01.present?
+              %li.modal_btn= lazysizes_image_tag blog.image_01.url, alt: "#{blog.title}｜#{@user.name}"
+            - if blog.image_02.present?
+              %li.modal_btn= lazysizes_image_tag blog.image_02.url, alt: "#{blog.title}｜#{@user.name}"
+            - if blog.image_03.present?
+              %li.modal_btn= lazysizes_image_tag blog.image_03.url, alt: "#{blog.title}｜#{@user.name}"
+            - if blog.image_04.present?
+              %li.modal_btn= lazysizes_image_tag blog.image_04.url, alt: "#{blog.title}｜#{@user.name}"
+          %ul
+            .modal_area
+              - @blogs.each do |blog|
+                - if blog.image_01.present?
+                  .modal_box
+                    .modal_bg
+                    .modal_inner
+                      .modal_block
+                        = lazysizes_image_tag blog.image_01.url
+                        .gallery_comment= link_to ">>#{blog.title}", user_blog_path(@user, blog)
+                      .modal_close ×
+                - if blog.image_02.present?
+                  .modal_box
+                    .modal_bg
+                    .modal_inner
+                      .modal_block
+                        = lazysizes_image_tag blog.image_02.url
+                        .gallery_comment= link_to ">> #{blog.title}", user_blog_path(@user, blog)
+                      .modal_close ×
+                - if blog.image_03.present?
+                  .modal_box
+                    .modal_bg
+                    .modal_inner
+                      .modal_block
+                        = lazysizes_image_tag blog.image_03.url
+                        .gallery_comment= link_to ">> #{blog.title}", user_blog_path(@user, blog)
+                      .modal_close ×
+                - if blog.image_04.present?
+                  .modal_box
+                    .modal_bg
+                    .modal_inner
+                      .modal_block
+                        = lazysizes_image_tag blog.image_04.url
+                        .gallery_comment= link_to ">> #{blog.title}", user_blog_path(@user, blog)
+                      .modal_close ×
+      = render "/layouts/ad_square"
+      .ad_space
+      = paginate @blogs
+:javascript
+  $(function () {
+    // モーダルのボタンをクリックした時
+    $('.modal_trigger .modal_btn').on('click', function() {
+      var btnIndex = $(this).index(); // 何番目のモーダルボタンかを取得
+      $('.modal_area .modal_box').eq(btnIndex).fadeIn(); // クリックしたモーダルボタンと同じ番目のモーダルを表示する
+    });
+  
+    // ×やモーダルの背景をクリックした時
+    $('.modal_close , .modal_bg').click(function(){
+      $('.modal_box').fadeOut(); // モーダルを非表示にする
+    });
+  });

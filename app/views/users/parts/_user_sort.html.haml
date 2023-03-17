@@ -1,0 +1,37 @@
+.sort_wrap
+  - if controller.action_name != "search"
+    .sort_select
+      - if params[:sort] == "1" || params[:sort] == nil
+        %span.sort_btn.selected 関連順
+        / <a href="<haml_loud> request.path </haml_loud>?sort=2" ><span class="sort_btn">人気順</span></a>
+        %a{:href => "#{request.path}?sort=3"}
+          %span.sort_btn 新着順
+      - elsif params[:sort] == "2"
+        %a{:href => "#{request.path}?sort=1"}
+          %span.sort_btn 関連順
+        %span.sort_btn.selected 人気順
+        %a{:href => "#{request.path}?sort=3"}
+          %span.sort_btn 新着順
+      - else params[:sort] == "3"
+        %a{:href => "#{request.path}?sort=1"}
+          %span.sort_btn 関連順
+        / <a href="<haml_loud> request.path </haml_loud>?sort=2" ><span class="sort_btn">人気順</span></a>
+        %span.sort_btn.selected 新着順
+  - else controller.action_name != "search"
+    .sort_select
+      - if params[:sort] == "1" || params[:sort] == nil
+        %span.sort_btn.selected 関連順
+        / <a href="<haml_loud> request.path </haml_loud>?q=<haml_loud> params[:q] </haml_loud>&sort=2" ><span class="sort_btn">人気順</span></a>
+        %a{:href => "#{request.path}?q=#{params[:q]}=3"}
+          %span.sort_btn 新着順
+      - elsif params[:sort] == "2"
+        %a{:href => "#{request.path}?q=#{params[:q]}=1"}
+          %span.sort_btn 関連順
+        %span.sort_btn.selected 人気順
+        %a{:href => "#{request.path}?q=#{params[:q]}=3"}
+          %span.sort_btn 新着順
+      - else params[:sort] == "3"
+        %a{:href => "#{request.path}?q=#{params[:q]}=1"}
+          %span.sort_btn 関連順
+        / <a href="<haml_loud> request.path </haml_loud>?q=<haml_loud> params[:q] </haml_loud>&sort=2" ><span class="sort_btn">人気順</span></a>
+        %span.sort_btn.selected 新着順

@@ -1,0 +1,12 @@
+.groups-container
+  .cp_actab
+    %input#tab-two{:name => "tabs", :type => "checkbox"}/
+    %label{:for => "tab-two"}
+      %i.fa.fa-search.search-list>
+      募集内容から探す
+    .cp_actab-content
+      %ul.groups-menus
+        - @groups.each do |group|
+          %li
+            = link_to("/#{@event.ruby}/#{@prefecture.kana}/#{group.group}") do
+              .link_txt= group.name

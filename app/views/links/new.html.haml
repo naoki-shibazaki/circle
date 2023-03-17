@@ -1,0 +1,84 @@
+- set_meta_tags title: "サークルリンク"
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .users-index-item.bottom_zero
+      - if @link.errors.any?
+        .form-error
+          以下の項目でエラーが発生いたしました。
+          %br/
+      - @link.errors.full_messages.each do |message|
+        .form-error_message
+          ・#{message}
+      %h1.p_t リンク集の作成
+      - if admin_user_signed_in?
+        - if @user.admin_user_id == current_admin_user.id
+          - if current_admin_user.users.count > 1
+            .user_select_wrap
+              現在のアカウント：
+              %select{:name => "user_select", :onchange => "location.href=value;"}
+                %option{:value => "#"}
+                  = @user.name
+                  （#{@user.event.name}）
+                - current_admin_user.users.each do |user|
+                  - if @user.id != user.id
+                    %option{:value => "/users/#{user.id}/links/new"}
+                      = user.name
+                      （#{user.event.name}）
+            .border
+      .swiper-container
+        .swiper-wrapper
+          %img.lazyload.swiper-slide{"data-src" => "/images/circle_link01.jpg"}/
+          %img.lazyload.swiper-slide{"data-src" => "/images/circle_link02.jpg"}/
+        .pagination-wrap
+          .swiper-pagination
+      %h2.links_sub_title 他の人のサークルリンク
+      %ul.sample_link_slide.sample_link_slide_s
+        - @links.each do |link|
+          %li.sample_link_child.sample_link_child_s
+            = link_to "/link/#{link.unique_id}" do
+              .link_profile
+                - if link.user.pic_header.present?
+                  .link_img_header
+                    = lazysizes_image_tag link.user.pic_header.url, class:'header_link_imege', alt: "ヘッダー画像｜#{link.user.name}"
+                - else
+                  .link_img_header
+                    = lazysizes_image_tag link.user.pic_header.url , class:'header_link_imege'
+                - if link.user.pic_profile.present?
+                  .link_img_profile
+                    = lazysizes_image_tag link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{link.user.name}"
+                - else
+                  .link_img_profile
+                    = lazysizes_image_tag link.user.pic_profile.url , class:'profile_link_imege'
+                .link_name_wrap
+                  .link_name= link.user.name.truncate(12)
+                  .link_unique_id
+                    @#{link.unique_id}
+                .reset
+                .sample_link_title_wrap
+                  - if link.link02_title.present?
+                    .sample_link_title
+                      = link.link02_title.truncate(14)
+                  - if link.link03_title.present?
+                    .sample_link_title
+                      = link.link03_title.truncate(14)
+                .border
+                %h2.links_form_sub_title リンク集の作成
+                - if @link.errors.any?
+                  .form-error
+                    以下の項目でエラーが発生いたしました。
+                    %br/
+                - @link.errors.full_messages.each do |message|
+                  .form-error_message
+                    ・#{message}
+                .form.users-form.new_link_form
+                  = form_for([@user, @link]) do |f|
+                    .url_link_txt
+                      https://circle-book.com/link/
+                      %span.red_text [アカウントID]
+                    %p.text_s
+                      アカウントID（半角英数字：4文字〜16文字以内）
+                      %br/
+                      ※記号などは使用できません
+                    = f.text_field :unique_id, class: 'form-control', placeholder: "circlebook"
+                    = f.submit "登録する", data: { disable_with: '更新中...' }

@@ -1,0 +1,26 @@
+.prefectures-container
+  .cp_actab
+    %input#tab-two{:name => "tabs", :type => "checkbox"}/
+    %label{:for => "tab-two"}
+      %i.fa.fa-search.search-list>
+      47都道府県から探す
+    .cp_actab-content
+      %ul.prefectures-menus
+        - @prefectures.each do |prefecture|
+          - if prefecture.id != 50
+            - if prefecture.group != @x
+              .prefectures-sub-title
+                = prefecture.group
+                エリア
+              %li
+                - if @path.is('blogs#index', 'blogs#top', 'blogs#prefecture_index')
+                  = link_to prefecture.name, "/blog/prefectures/#{prefecture.kana}"
+                - else
+                  = link_to prefecture.name, "/blog/#{@event.ruby}/#{prefecture.kana}"
+              - @x = prefecture.group
+            - else
+              %li
+                - if @path.is('blogs#index', 'blogs#top', 'blogs#prefecture_index')
+                  = link_to prefecture.name, "/blog/prefectures/#{prefecture.kana}"
+                - else
+                  = link_to prefecture.name, "/blog/#{@event.ruby}/#{prefecture.kana}"

@@ -1,0 +1,190 @@
+.search_wrap
+  .search_word
+    = form_tag('/users/search', method: :get, enforce_utf8: false) do
+      %input.search_area.change_font{:name => "q", :placeholder => "#{@search_word}", :size => "30", :type => "text", :value => "#{params[:q]}"}/
+      .search_icon
+        = submit_tag("検索", :name => nil)
+    .search_word_announce ※複数の単語はスペースで区切ってください
+.top_page
+  - case controller.action_name
+  - when "index","prefecture_index"
+    .top_contents.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          サークルをカテゴリーから探す
+      .readmore
+        %input#check1-1.readmore-check{:type => "checkbox"}/
+        .readmore-content
+          %ul.events-menus
+            - @categories.each do |category|
+              %li
+                = link_to("/categories/#{category.kana}") do
+                  .e_icon_wrap
+                    %img.lazyload{:alt => "#{category.name}", "data-src" => "/images/categories/#{category.kana}.jpg"}/
+                    .link_txt= category.name
+        %label.readmore-label{:for => "check1-1"}
+  - when "category_prefecture"
+    .top_contents.no_more.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          = @category.name
+          の一覧
+      %ul.events-menus
+        - @events.each do |event|
+          %li
+            = link_to("/#{event.ruby}/#{@prefecture.kana}") do
+              .e_icon_wrap
+                %img.lazyload{:alt => "#{event.name}", "data-src" => "/images/events/#{event.ruby}.jpg"}/
+                .link_txt= event.name
+  - when "prefecture"
+    .top_contents.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          サークルをカテゴリーから探す
+      .readmore
+        %input#check1-1.readmore-check{:type => "checkbox"}/
+        .readmore-content
+          %ul.events-menus
+            - @categories.each do |category|
+              %li
+                = link_to("/categories/#{category.kana}/#{@prefecture.kana}") do
+                  .e_icon_wrap
+                    %img.lazyload{:alt => "#{category.name}", "data-src" => "/images/categories/#{category.kana}.jpg"}/
+                    .link_txt= category.name
+        %label.readmore-label{:for => "check1-1"}
+  - when "category"
+    .top_contents.no_more.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          = @category.name
+          の一覧
+      %ul.events-menus
+        - @events.each do |event|
+          %li
+            = link_to("/#{event.ruby}") do
+              .e_icon_wrap
+                %img.lazyload{:alt => "#{event.name}", "data-src" => "/images/events/#{event.ruby}.jpg"}/
+                .link_txt= event.name
+  - else
+  - case controller.action_name
+  - when "prefecture","category_prefecture"
+  - when "category"
+    .top_contents.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          サークルをエリアから探す
+      .readmore
+        %input#check1-2.readmore-check{:type => "checkbox"}/
+        .readmore-content.pref-menus
+          %ul.events-menus
+            %li
+              = link_to("/categories/#{@category.kana}/tokyo") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "東京", "data-src" => "/images/prefectures/tokyo.jpg"}/
+                  .link_txt 東京
+            %li
+              = link_to("/categories/#{@category.kana}/kanagawa") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "神奈川", "data-src" => "/images/prefectures/kanagawa.jpg"}/
+                  .link_txt 神奈川
+            %li
+              = link_to("/categories/#{@category.kana}/aichi") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "愛知", "data-src" => "/images/prefectures/aichi.jpg"}/
+                  .link_txt 愛知
+            %li
+              = link_to("/categories/#{@category.kana}/osaka") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "大阪", "data-src" => "/images/prefectures/osaka.jpg"}/
+                  .link_txt 大阪
+            %li
+              = link_to("/categories/#{@category.kana}/kyoto") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "京都", "data-src" => "/images/prefectures/kyoto.jpg"}/
+                  .link_txt 京都
+            %li
+              = link_to("/categories/#{@category.kana}/fukuoka") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "福岡", "data-src" => "/images/prefectures/fukuoka.jpg"}/
+                  .link_txt 福岡
+          %ul.prefectures-menus.place_meus
+            - @prefectures.each do |prefecture|
+              - if prefecture.group != @x
+                - if prefecture.id == 50
+                  .prefectures-sub-title 全国
+                - else
+                  .prefectures-sub-title
+                    = prefecture.group
+                    エリア
+                %li
+                  = link_to "/categories/#{@category.kana}/#{prefecture.kana}" do
+                    = prefecture.name
+                - @x = prefecture.group
+              - else
+                %li
+                  = link_to "/categories/#{@category.kana}/#{prefecture.kana}" do
+                    = prefecture.name
+        %label.readmore-label{:for => "check1-2"}
+  - else
+    .top_contents.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          サークルをエリアから探す
+      .readmore
+        %input#check1-2.readmore-check{:type => "checkbox"}/
+        .readmore-content.pref-menus
+          %ul.events-menus
+            %li
+              = link_to("/categories/prefectures/tokyo") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "東京", "data-src" => "/images/prefectures/tokyo.jpg"}/
+                  .link_txt 東京
+            %li
+              = link_to("/categories/prefectures/kanagawa") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "神奈川", "data-src" => "/images/prefectures/kanagawa.jpg"}/
+                  .link_txt 神奈川
+            %li
+              = link_to("/categories/prefectures/aichi") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "愛知", "data-src" => "/images/prefectures/aichi.jpg"}/
+                  .link_txt 愛知
+            %li
+              = link_to("/categories/prefectures/osaka") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "大阪", "data-src" => "/images/prefectures/osaka.jpg"}/
+                  .link_txt 大阪
+            %li
+              = link_to("/categories/prefectures/kyoto") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "京都", "data-src" => "/images/prefectures/kyoto.jpg"}/
+                  .link_txt 京都
+            %li
+              = link_to("/categories/prefectures/fukuoka") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "福岡", "data-src" => "/images/prefectures/fukuoka.jpg"}/
+                  .link_txt 福岡
+          %ul.prefectures-menus.place_meus
+            - @prefectures.each do |prefecture|
+              - if prefecture.group != @x
+                - if prefecture.id == 50
+                  .prefectures-sub-title 全国
+                - else
+                  .prefectures-sub-title
+                    = prefecture.group
+                    エリア
+                %li
+                  = link_to "/categories/prefectures/#{prefecture.kana}" do
+                    = prefecture.name
+                - @x = prefecture.group
+              - else
+                %li
+                  = link_to "/categories/prefectures/#{prefecture.kana}" do
+                    = prefecture.name
+        %label.readmore-label{:for => "check1-2"}

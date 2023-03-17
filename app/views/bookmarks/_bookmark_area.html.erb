@@ -1,9 +1,0 @@
-<% if @user.bookmarked_by?(current_member) %>
-	<div class="bookmark_btn_wrap">
-		<%= render 'bookmarks/unbookmark', user: @user %>
-	</div>
-<% else %>
-	<div class="bookmark_btn_wrap">
-		<%= render 'bookmarks/bookmark', user: @user %>
-	</div>
-<% end %>

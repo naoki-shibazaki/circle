@@ -1,0 +1,13 @@
+.main.users-new
+  .container
+    .form-heading 投稿
+    .form.users-form
+      .form-body.cont-body
+        - if @place.errors.any?
+          .form-error
+            いずれかのエラーが発生いたしました。
+            %br/
+            ・必須項目の未記入
+            %br/
+            ・その他のエラー
+        = render "/places/form_place"

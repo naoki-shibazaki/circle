@@ -2,6 +2,11 @@
   <!DOCTYPE html>
   <html>
     <head>
+      <%= csrf_meta_tag %>
+      <%= csp_meta_tag %>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
 
       <!-- Google Tag Manager -->
       <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,22 +16,14 @@
       })(window,document,'script','dataLayer','GTM-WZ5RS5L');</script>
       <!-- End Google Tag Manager -->
 
-      <%= csrf_meta_tag %>
-
-      <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-      <%= csp_meta_tag %>
       <%= display_meta_tags(default_meta_tags) %>
 
 
-
-
-      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-      <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css' %> 
+      <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css' %>
 
       <!-- フォトスライド -->
       <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
-      <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %> 
+      <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload', defer: true %>
 
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -286,7 +283,6 @@
     </body>
 
   </html>
-
 
 
 

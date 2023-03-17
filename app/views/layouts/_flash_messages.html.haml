@@ -1,0 +1,21 @@
+- flash.each do |message_type, message|
+  - if flash[:share]
+    .flash_social
+      %p= flash[:share]
+      - if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present?
+        %p SNSでシェアする！
+        %p ※５秒後に自動で消えます
+        - if @path.is('users#show')
+          #sosyal
+            = link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@user.name}%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", class: 'sosyal_twitter', title: 'Twitter', target: '_blank'
+            = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}", class: 'sosyal_facebook', title: 'Facebook', target: '_blank'
+            = link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}", class: 'sosyal_line', title: 'LINE', target: '_blank'
+        - if @path.is('blogs#show')
+          #sosyal
+            = link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@blog.title}｜#{@user.name}%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", class: 'sosyal_twitter', title: 'Twitter', target: '_blank'
+            = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}", class: 'sosyal_facebook', title: 'Facebook', target: '_blank'
+            = link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}", class: 'sosyal_line', title: 'LINE', target: '_blank'
+:javascript
+  $(function(){
+  setTimeout("$('.flash_social').fadeOut('slow')", 5000) 
+  })

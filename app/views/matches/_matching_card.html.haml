@@ -1,0 +1,19 @@
+- if admin_user_signed_in?
+  - if @match.user.admin_user_id != @admin_user.id
+    .vs_wrap VS
+    .matching_card
+      - if @admin_user.users.first.pic_profile.present?
+        %img.matching_icon{:alt => "プロフィール｜#{@admin_user.users.first.name}", :src => "#{@admin_user.users.first.pic_profile.url}"}/
+      - else
+        = lazysizes_image_tag @admin_user.users.first.pic_profile.url , class:'matching_icon'
+      .matching_name= @admin_user.users.first.name
+    = link_to("/matches/#{@match.id}/contact") do
+      .matching_entry
+        練習試合を申し込む！
+- else
+  = link_to(new_admin_user_registration_path) do
+    .vs_wrap VS
+    .matching_entry
+      無料登録をして
+      %br/
+      練習試合を申し込む！

@@ -1084,6 +1084,9 @@ body {
   background: #fff;
   border: 1px solid #519851;
   border-radius: 4px;
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
 }
 
 .tag-color {

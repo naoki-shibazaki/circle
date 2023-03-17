@@ -1,0 +1,55 @@
+.search_wrap
+  .search_select
+    - if @path.is('blogs#index')
+      %select{:name => "event_select", :onchange => "location.href=value;"}
+        %option{:value => "#"} サークル・団体
+        - @events.each do |event|
+          %option{:value => "/blog/#{event.ruby}"}= event.name
+      %select{:name => "prefecture_select", :onchange => "location.href=value;"}
+        %option{:value => "#"} 都道府県
+        - @prefectures.each do |prefecture|
+          - if prefecture.id != 50
+            %option{:value => "/blog/prefectures/#{prefecture.kana}"}= prefecture.name
+      .search_icon
+        %i.fa.fa-search
+    - elsif @path.is('blogs#event_prefecture')
+      %select{:name => "event_select", :onchange => "location.href=value;"}
+        %option{:value => "#"}= @event.name
+        - @events.each do |event|
+          - if event.ruby != @event.ruby
+            %option{:value => "/blog/#{event.ruby}/#{@prefecture.kana}"}= event.name
+      %select{:name => "prefecture_select", :onchange => "location.href=value;"}
+        %option{:value => "#"}= @prefecture.name
+        - @prefectures.each do |prefecture|
+          - if prefecture.id != 50
+            - if prefecture.kana != @prefecture.kana
+              %option{:value => "/blog/#{@event.ruby}/#{prefecture.kana}"}= prefecture.name
+      .search_icon
+        %i.fa.fa-search
+    - elsif @path.is('blogs#event')
+      %select{:name => "event_select", :onchange => "location.href=value;"}
+        %option{:value => "#"}= @event.name
+        - @events.each do |event|
+          - if event.ruby != @event.ruby
+            %option{:value => "/blog/#{event.ruby}"}= event.name
+      %select{:name => "prefecture_select", :onchange => "location.href=value;"}
+        %option{:value => "#"} 都道府県
+        - @prefectures.each do |prefecture|
+          - if prefecture.id != 50
+            %option{:value => "/blog/#{@event.ruby}/#{prefecture.kana}"}= prefecture.name
+      .search_icon
+        %i.fa.fa-search
+    - elsif @path.is('blogs#prefecture')
+      %select{:name => "event_select", :onchange => "location.href=value;"}
+        %option{:value => "#"} サークル・団体
+        - @events.each do |event|
+          %option{:value => "/blog/#{event.ruby}/#{@prefecture.kana}"}= event.name
+      %select{:name => "prefecture_select", :onchange => "location.href=value;"}
+        %option{:value => "#"}= @prefecture.name
+        - @prefectures.each do |prefecture|
+          - if prefecture.id != 50
+            - if prefecture.kana != @prefecture.kana
+              %option{:value => "/blog/prefectures/#{prefecture.kana}"}= prefecture.name
+      .search_icon
+        %i.fa.fa-search
+    - else

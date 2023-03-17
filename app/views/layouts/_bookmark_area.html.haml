@@ -1,0 +1,4 @@
+- if @user.bookmarked_by?(current_member)
+  = render 'layouts/unbookmark', user: @user
+- else
+  = render 'layouts/bookmark', user: @user

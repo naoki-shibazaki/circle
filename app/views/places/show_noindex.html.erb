@@ -5,7 +5,7 @@
 
     <%= render "/layouts/breadcrumb" %>
 
-	  <div class="users-index-item ribbon-wrapper">
+    <div class="users-index-item ribbon-wrapper">
 
       <div class="ribbon-content">
         <% if @place.tag.to_i == 1 %>
@@ -39,11 +39,11 @@
 			<% end %>
 
 
-	      <div class="border"></div>
+        <div class="border"></div>
 
-	      <div class="article_item article_padding place_list ">
-	        <table>
-	          <tbody>
+        <div class="article_item article_padding place_list ">
+          <table>
+            <tbody>
 
 				<tr class="flex_contents">
 					<th class="flex_list">住所</th>
@@ -101,9 +101,9 @@
 					<td class="flex_list"><a href="<%= @place.url %>" ><%= @place.url %></a></td>
 				</tr>
 
-	          </tbody>
-	        </table>
-	      </div>
+            </tbody>
+          </table>
+        </div>
 
 
 				<div class="g_map">
@@ -128,4 +128,3 @@
 
   </div>
 </div>
-

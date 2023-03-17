@@ -1,0 +1,13 @@
+- set_meta_tags noindex: true
+.main.users-index
+  .container
+    .users-index-item
+      .p_t サークルブックへの報告
+      = render "users/parts/user_name", user: @user
+      .form
+        = form_for ([@user, @user_contact]) do |f|
+          %p 主催者からの返信はありましたか？
+          = f.select :respond_check, [ ['○ 返信あり','OK'], ['× 返信なし','NG'] ], |
+            :prompt => "選択してください"                                          |
+          .reset
+          = f.submit "報告する", data: { disable_with: '送信中...' }
