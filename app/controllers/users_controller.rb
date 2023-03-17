@@ -21,9 +21,6 @@ helper_method :link_count
 		# パンくず
 		@b1_name = "サークル検索"
     @b1_url = "/users"
-
-    # amp対応
-    amp_set
 	end
 
 	def search
@@ -242,9 +239,6 @@ helper_method :link_count
 				@b3_url = ""
 			end
 		end
-
-    # amp対応
-    amp_set
 	end
 
 	def edit
@@ -497,9 +491,6 @@ helper_method :link_count
 		# パンくず
 		@b1_name = @event.name
     @b1_url = "/#{@event.ruby}"
-
-    # amp対応
-    amp_set
 	end
 
 	def prefecture
@@ -518,9 +509,6 @@ helper_method :link_count
 		# パンくず
 		@b1_name = @prefecture.name
     @b1_url = "/prefectures/#{@prefecture.kana}"
-
-    # amp対応
-    amp_set
 	end
 
 	def prefecture_city
@@ -550,9 +538,6 @@ helper_method :link_count
 		@b1_url = "/prefectures/#{@prefecture.kana}"
 		@b2_name = @city.name
     @b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"
-
-    # amp対応
-    amp_set
 	end
 
 	def prefecture_city_station
@@ -587,9 +572,6 @@ helper_method :link_count
 		@b2_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}"
 		@b3_name = @station.name
     @b3_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"
-
-    # amp対応
-    amp_set
 	end
 
 	def event_prefecture
@@ -611,9 +593,6 @@ helper_method :link_count
 		@b1_url = "/#{@event.ruby}"
 		@b2_name = @prefecture.name
     @b2_url = "/#{@event.ruby}/#{@prefecture.kana}"
-
-    # amp対応
-    amp_set
 	end
 
 	def event_prefecture_city
@@ -646,9 +625,6 @@ helper_method :link_count
 		@b2_url = "/#{@event.ruby}/#{@prefecture.kana}"
 		@b3_name = @city.name
     @b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
-
-    # amp対応
-    amp_set
 	end
 
 
@@ -687,9 +663,6 @@ helper_method :link_count
 		@b3_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
 		@b4_name = @station.name
     @b4_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@station.id}"
-
-    # amp対応
-    amp_set
 	end
 
 	def login
