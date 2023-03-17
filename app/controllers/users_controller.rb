@@ -474,7 +474,6 @@ helper_method :link_count
   def admin_users
   end
 
-
 	def prefecture_index
 		# パンくず
 		@b1_name = "47都道府県ごとのサークル"
