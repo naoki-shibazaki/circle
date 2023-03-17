@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
 include Circlebook
 
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
-before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete, :dates, :day]}
+before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete, :dates, :day, :year, :month]}
 before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
 before_action :set_dates, {only: [:dates, :day]}
 
@@ -235,6 +235,14 @@ def dates
 
   @b1_name = "イベント一覧"
   @b1_url = ""
+end
+
+def year
+  redirect_to :action => 'dates', :status => 301
+end
+
+def month
+  redirect_to :action => 'dates', :status => 301
 end
 
 def day

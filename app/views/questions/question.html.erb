@@ -1,0 +1,100 @@
+<% set_meta_tags title: "#{@question_sample}｜#{@user.name}の質問コーナー",
+  og: {
+    title: "#{@user.name}の質問コーナーです！",
+    description: "",
+    image: image_url('/images/qa_top.jpg')
+  },
+  twitter: { card: 'summary_large_image'} 
+%>
+
+
+<div class="user_main users-index">
+  <div class="container bg_white">
+
+	<%= link_to user_questions_path(@user) do %>
+    <h1 class="users-heading">質問コーナー</h1>
+	<% end %>
+
+	<div class="ribbon-wrapper qa_card_img">
+		<div class="ribbon-content">
+			<% if @question.answer.nil? %>
+        <span class="ribbon red">未回答</span>
+			<% else %>
+        <span class="ribbon green">回答済み</span>
+			<% end %>
+		</div>
+
+    <div class="qa_large">
+      <div class="user_slide_qa">
+        <div class="user_slide_qa_wrap">
+          <div class="user_slide_qa_content_wrap">
+            <h1><%= @question_sample %></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	</div>
+
+
+	<div class="qa_wrap">
+
+			<div class="qa_profile_wrap">
+
+      <%= render "/users/parts/user_name", user: @user %>
+
+
+				<div class="reset"></div>
+
+
+			<% if admin_user_signed_in?  %>
+				<% if @user.admin_user_id == current_admin_user.id %>
+
+
+					<div class="qa_answer_form">
+
+						<%= form_for ([@user, @question]) do |f| %>
+
+              <%= f.hidden_field :content, :value => @question_sample %>
+
+              <%= f.text_area :answer, class: 'form-control form-note change_question', placeholder: "回答を書いてください！" %> 
+
+              <div class="submit_btn">
+                <input type="submit" name="commit" value="回答する" data-disable-with="回答する">
+              </div>
+
+              <div class="reset"></div>
+
+						<% end %>
+
+					</div>
+
+				<% end %>
+			<% end %>
+
+			</div>
+
+	</div>
+
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+
+  <%= paginate @questions %>
+
+
+  </div>
+</div>
+
+<!-- 半角 => 全角　変換 -->
+<script>
+  $(function(){
+      $(".change_question").change(function(){
+          var str = $(this).val();
+          str = str.replace(  /["#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
+              return String.fromCharCode(s.charCodeAt(0) + 65248);
+          });
+          $(this).val(str);
+      }).change();
+  });
+</script>

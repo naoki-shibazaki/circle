@@ -99,6 +99,8 @@ Rails.application.routes.draw do
 
   # イベント一覧
   get 'dates' , to: 'schedules#dates'
+  get 'dates/:year' , to: 'schedules#year'
+  get 'dates/:year/:month' , to: 'schedules#month'
   get 'dates/:year/:month/:day' , to: 'schedules#day'
 
   # 出欠管理

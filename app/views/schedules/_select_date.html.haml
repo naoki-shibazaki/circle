@@ -39,7 +39,7 @@
             - category.events.each do |event|
               - if params[:event] != event.ruby
                 - if params[:pref].present?
-                  %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?pref=#{params[:pref]}=#{event.ruby}"}= event.name
+                  %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?pref=#{params[:pref]}&event=#{event.ruby}"}= event.name
                 - else
                   %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?event=#{event.ruby}"}= event.name
       %select{:name => "prefecture_select", :onchange => "location.href=value;"}
@@ -50,7 +50,7 @@
         - @prefectures.each do |prefecture|
           - if params[:pref] != prefecture.kana
             - if params[:event].present?
-              %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?event=#{params[:event]}=#{prefecture.kana}"}= prefecture.name
+              %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?event=#{params[:event]}&pref=#{prefecture.kana}"}= prefecture.name
             - else
               %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?pref=#{prefecture.kana}"}= prefecture.name
       .search_icon
