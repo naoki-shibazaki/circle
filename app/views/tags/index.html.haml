@@ -11,6 +11,6 @@
           サークルやチーム
     = render "/users/search"
     - if @users.count != 0
-      = render "/users/users_list.html.erb"
+      = render "/users/users_list"
     - else @users.count == 0
-      = render "/tags/no_hit.html.erb"
+      = render "/tags/no_hit"

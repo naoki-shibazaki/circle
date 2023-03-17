@@ -97,7 +97,7 @@ class PlacesController < ApplicationController
 		@b4_name = @city.name
 		@b4_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
 		@b5_name = @place.name
-    @b5_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@place.name}"
+    @b5_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@place.id}"
 
     # amp対応
     amp_set

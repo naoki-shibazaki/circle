@@ -16,6 +16,6 @@
     - if @users.count != 0
       .search_area
         = render "/users/search"
-      = render "/users/users_list.html.erb"
+      = render "/users/users_list"
     - else @users.count == 0
-      = render "/users/no_hit.html.erb"
+      = render "/users/no_hit"
