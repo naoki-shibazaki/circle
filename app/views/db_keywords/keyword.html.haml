@@ -1,0 +1,22 @@
+- set_meta_tags title: "【#{params[:q].truncate(30)}】｜サークルやチーム、団体一覧｜メンバー募集サイト",description: "「#{params[:q]}」の検索結果の一覧です！#{params[:q]}のメンバー募集情報を、全国のサークルやチームから探すことができます！スポーツや趣味など豊富に掲載！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！バスケやバレー、フットサルなど。無料で簡単にメンバー募集ができます！",keywords: "#{params[:q]},サークル,チーム,募集"
+.main.users-index
+  .container
+    %img.lazyload.imege_title.search_img{"data-src" => "/images/search.jpg"}/
+    %h1.users-heading.search_title
+      「#{params[:q].truncate(18)}」の検索結果
+    .users-txt
+      - if admin_user_signed_in?
+        = link_to("活動ブログ", new_user_blog_path(@user) )
+        を投稿すると
+        %br/
+        あなたの掲載順位が上がります！
+      - else
+        あなたにピッタリの
+        %br/
+        サークルやチーム、団体が見つかる！！
+    - if @users.count != 0
+      .search_area
+        = render "/users/search"
+      = render "/users/users_list"
+    - else @users.count == 0
+      = render "/users/no_hit"

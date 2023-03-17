@@ -1,0 +1,41 @@
+%span.contact_memo
+  下のテンプレをコピーすると、
+  %br/
+  お問い合わせが簡単にできます！
+.contact_sample_wrap
+  .contact_t_wrap
+    %span.contact_s_t> 件名：
+    お問い合わせのテンプレ
+  .contact_sample
+    .copyTarget
+      %p
+        = @user.name
+        さん
+        %br/
+      %p
+        はじめまして。
+        %br/
+        サークルブックを見てご連絡しました！
+        %br/
+      \--------------------------------------
+      %br/
+      ▼ #{@user_contact.entry}のお問い合わせ内容
+      %br/
+      名前： 例）サークルブック
+      %br/
+      = simple_format @user.template
+      \--------------------------------------
+      %p
+        ご返信お待ちしております。
+        %br/
+        よろしくお願いします。
+%button.copyBtn.copy_txt
+  .requirement_copy
+    %i.fa.fa-copy
+    テンプレをコピーする
+= render "users/parts/admin_user_check", admin_user: @user.admin_user
+.cta_wrap.contact_space
+  %a{:href => "#{@user.line_id}"}
+    .cta_100.line
+      %i.fa.fa-comment
+      LINEでお問い合わせをする！

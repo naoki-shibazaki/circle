@@ -1,0 +1,10 @@
+- set_meta_tags noindex: true, nofollow: true
+.main.user-show
+  .container
+    %h1.users-heading コート情報一覧
+    .users-index-item
+      - @places.each do |place|
+        = place.prefecture.name
+        ：
+        \#{link_to place.name, "/places/all/#{place.prefecture.kana}/#{place.city.city_kana}/#{place.id}"}
+        %br/

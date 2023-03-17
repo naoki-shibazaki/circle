@@ -1,0 +1,47 @@
+- set_meta_tags noindex: true
+.main.users-edit
+  .container
+    .form.users-form
+      .form-body.cont-body
+        - if @match.errors.any?
+          .form-error
+            以下の項目でエラーが発生いたしました。
+            %br/
+            ※原因不明の場合は空欄でご登録ください
+        - @match.errors.full_messages.each do |message|
+          .form-error_message
+            ・#{message}
+        .p_t 対戦募集の内容編集
+        - if admin_user_signed_in?
+          - if @user.admin_user_id == current_admin_user.id
+            - if current_admin_user.users.count > 1
+              .user_select_wrap
+                現在のアカウント：
+                %select{:name => "user_select", :onchange => "location.href=value;"}
+                  %option{:value => "#"}
+                    = @user.name
+                    （#{@user.event.name}）
+                  - current_admin_user.users.each do |user|
+                    - if @user.id != user.id
+                      - if user.event.matching != 0
+                        %option{:value => "/users/#{user.id}/matches/new"}
+                          = user.name
+                          （#{user.event.name}）
+                      - else
+        = form_for(@match, url: user_matches_path(@user)) do |f|
+          %dir.your_name_txt
+            = @user.name
+            の追加情報をご登録ください！
+          %p 年齢層
+          = f.select :age_group, [ ['20代中心','20代中心'], ['30代中心','30代中心'], ['40代以上中心','40代以上中心'], ['幅広い年齢層','幅広い年齢層'] ], |
+            :prompt => "選択してください"                                                                                      |
+          %p 男女構成
+          = f.select :member, [ ['男性メイン','男性メイン'], ['女性メイン','女性メイン'], ['男女混合','男女混合'] ], |
+            :prompt => "選択してください"                                                        |
+          %p レベル
+          = f.select :level, [ ['初級','初級'], ['中級','中級'], ['上級','上級'] ], |
+            :prompt => "選択してください"                                       |
+          %p 募集内容
+          = f.text_area :comment, class: 'form-control', placeholder: "サークルブックは週１回、都内で活動しています！ |
+            都内で練習相手を募集しています！".html_safe                                                        |
+          = f.submit "登録する", data: { disable_with: '更新中...' }

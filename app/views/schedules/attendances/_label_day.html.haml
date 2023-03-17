@@ -1,0 +1,17 @@
+.label_item
+  = Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})")
+  - if schedule.time_s.present?
+    = schedule.time_s.strftime('%H:%M')
+    \-#{schedule.time_e.strftime('%H:%M') if schedule.time_e.present?}
+  %br/
+  - if schedule.member_venue.present?
+    %i.fa.fa-map-marker
+    = schedule.member_venue
+  - else
+    %i.fa.fa-map-marker
+    = schedule.venue
+  - if schedule.title.present?
+    %br/
+    = schedule.title
+  - else
+%br/

@@ -1,0 +1,14 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】サークルやチームの活動ブログ"
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .e_header_wrap
+      %img{:src => "/images/top.png"}/
+      .link_txt
+        %h1.e_header_title
+          サークルやチームの
+          %br/
+          活動ブログ
+    .search_area
+      = render "/blogs/search"
+    = render "/blogs/blogs_list"

@@ -1,0 +1,38 @@
+.main.user-show
+  .container.white
+    = render "/layouts/breadcrumb"
+    - if @user_cities.present?
+      = render "/users/breadcrumb_city"
+    .user-profile
+      = render "/links/profile"
+      - if admin_user_signed_in?
+        - if @user.admin_user_id == current_admin_user.id
+          .edit_link_wrap
+            = link_to edit_link_path(@link) do
+              .edit_link_txt
+                %i.fa.fa-link
+                リンクを編集
+        - else
+      - else
+    - if @user.twitter.present? || @user.instagram.present?
+      .sns_links
+        - if @user.twitter.present?
+          %a{:href => "https://twitter.com/#{@user.twitter}"}
+            %span.twitter_link
+              %i.fa.fa-twitter-square
+        - if @user.instagram.present?
+          %a{:href => "https://www.instagram.com/#{@user.instagram}"}
+            %span.instagram_link
+              %i.fa.fa-instagram
+    .reset
+    .links_content
+      = link_to @link.link01_title, "#{@link.link01_url}" if @link.link01_title.present? && @link.link01_url.present?
+      = link_to @link.link02_title, "#{@link.link02_url}" if @link.link02_title.present? && @link.link02_url.present?
+      = link_to @link.link03_title, "#{@link.link03_url}" if @link.link03_title.present? && @link.link03_url.present?
+      = link_to @link.link04_title, "#{@link.link04_url}" if @link.link04_title.present? && @link.link04_url.present?
+      = link_to @link.link05_title, "#{@link.link05_url}" if @link.link05_title.present? && @link.link05_url.present?
+    .circle_link_footer
+      = link_to links_path do
+        %i.fa.fa-link
+        サークルリンク
+      .link_sub_txt サークル運営者向け リンク集の無料作成

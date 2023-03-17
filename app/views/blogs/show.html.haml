@@ -1,0 +1,86 @@
+- set_meta_tags title: "#{@blog.title}｜#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}｜サークルブック", description: @blog.content, og: { image: @blog.ogp_img }
+
+.user_main.user-show
+  .container
+    .form.users-form
+      .form-body.blog_show
+        .post-body
+          - if @blog.image_01.present?
+            - if @blog.image_02.blank? && @blog.image_03.blank? && @blog.image_04.blank?
+              = lazysizes_image_tag @blog.image_01.url , class:'content_image_one'
+            - else
+              .swiper-container
+                .swiper-wrapper
+                  - if @blog.image_01.present?
+                    .swiper-slide= image_tag @blog.image_01.url , class:'content_image'
+                  - if @blog.image_02.present?
+                    .swiper-slide= image_tag @blog.image_02.url , class:'content_image'
+                  - if @blog.image_03.present?
+                    .swiper-slide= image_tag @blog.image_03.url , class:'content_image'
+                  - if @blog.image_04.present?
+                    .swiper-slide= image_tag @blog.image_04.url , class:'content_image'
+                / Add Pagination
+                .pagination-wrap
+                  .swiper-pagination
+          .cont-width
+            %h1.blog_1st_title= @blog.title
+            .header-post.blog_profile
+              = link_to(user_path(@user.id)) do
+                = lazysizes_image_tag @user.pic_profile.url , class:'content_icon'
+                .post-user_wrap
+                  .post-user
+                    .post-top= @user.name.truncate(40)
+                    .post-bottom= @blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M")
+            .post_share.blog_share
+              .share_btn_tw
+                = render "blogs/share_tw"
+              - if admin_user_signed_in?
+                - if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1
+                  .post_edit
+                    = link_to(edit_user_blog_path) do
+                      %i.fa.fa-pencil-square-o
+                  .post_delete
+                    = link_to(user_blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do
+                      %i.fa.fa-trash
+              - if admin_user_signed_in?
+                - if current_admin_user.id == 1
+                  .analytics_blog
+                    閲覧数：#{@blog.impressionist_count}人
+            = render "users/parts/admin_user_check", admin_user: @user.admin_user
+            .rich_text_main
+              - if @blog.content.include?("<div>")
+                = raw Rinku.auto_link(sanitize @blog.content, tags: %w(p a br h1 strong ul li div), attributes:  %w(id class href))
+              - else
+                = raw Rinku.auto_link(simple_format @blog.content)
+      .post_cta
+        - if @user.switch == "募集中"
+          .admin_user_check_wrap
+            = render "users/parts/admin_user_check", admin_user: @user.admin_user
+          = render "/users/contact_btn"
+      = render "/users/parts/user_profile_large", user: @user
+    = render "/layouts/ad_square"
+    .ad_space
+    - if @blogs.count >= 1
+      .blog-list-wrap
+        %h2.others-blog
+          = @user.name
+          のブログ一覧
+        - @blogs.first(5).each do |blog|
+          .blog_list
+            = link_to(user_blog_path(blog.user_id, blog.id)) do
+              .blog_link
+                .catch_image= lazysizes_image_tag blog.image_01.url , class:'post_image'
+                .post-bottom= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M")
+                %h3.post_title= blog.title.truncate(36)
+              .blog_user
+                = lazysizes_image_tag @user.pic_profile.url , class:'icon_s'
+                .blog_user_name= @user.name.truncate(16)
+        - if @blogs.count > 5
+          .more_link
+            = link_to "/users/#{@user.id}/blogs" do
+              \&gt;&gt; ブログをもっと見る
+      .ad_space
+      - if @blogs.count >= 3
+        = render "/layouts/ad_square"
+        .ad_space
+    .space_btm

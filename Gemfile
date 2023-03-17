@@ -73,6 +73,11 @@ gem 'hirb'         # 出力結果を表として出力するgem
 gem 'hirb-unicode'  # マルチバイト文字の表示を補正するgem
 gem 'uri', '0.10.0'
 
+gem 'haml-rails'
+gem 'erb2haml'
+
+gem 'active_decorator'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

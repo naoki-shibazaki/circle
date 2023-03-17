@@ -1,0 +1,6 @@
+- if place.img_link.present? && place.img_url.present? && place.img_source.present?
+  .img_source_wrap
+    %img.img_source{:alt => "", :src => "#{place.img_link}"}/
+    .img_url_source
+      出典：
+      %a.image_link{:href => "#{place.img_url}"}= place.img_source

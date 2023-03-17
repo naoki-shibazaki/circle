@@ -1,0 +1,13 @@
+- if resource.errors.any?
+  #error_explanation
+    /
+      <h2>
+      <haml_loud> I18n.t(&quot;errors.messages.not_saved&quot;,
+      count: resource.errors.count,
+      resource: resource.class.model_name.human.downcase)
+      </haml_loud>
+      </h2>
+    %ul
+      以下のエラーが発生しました。
+      - resource.errors.full_messages.each do |message|
+        %li= message

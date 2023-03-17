@@ -1,0 +1,10 @@
+- if @invalid == "無効"
+  .alert_wrap
+    参加者からお問い合わせがありましたが、
+    %br/
+    アドレスが無効のため送信できませんでした。
+    %br/
+    .email_change
+      = @user.admin_user.email
+      %br/
+      = link_to '>>メールアドレスを変更する', edit_admin_user_registration_path

@@ -1,0 +1,59 @@
+- set_meta_tags title: "よくある質問"
+.main.users-index
+  .container.QandA_wrap
+    .contents_wrap
+      %h1.p_t よくある質問
+      %ul.QandA_accordion
+        %li.option
+          %input#toggle01.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle01"} Ｑ.サークルブックとは？
+          .content
+            %p
+              Ａ.
+              サークルブックとは、サークルやチームの新規メンバーを募集するためのSNSです。
+        %li.option
+          %input#toggle02.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle02"} Ｑ.無料で使えるんですか？
+          .content
+            %p
+              Ａ.
+              サークルブックのサービスは全て無料でお使いいただくことが可能です。
+        %li.option
+          %input#toggle03.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle03"} Ｑ.気になったサークルにどうやって連絡すればいいですか？
+          .content
+            %p
+              Ａ.
+              サークルブックでは、LINE（LINE公式アカウント）やメールで直接やり取りすることが可能です。
+              %br/
+              各サークルのページに、LINEかメールにて連絡ができるボタンがありますので、そちらからご連絡をお願いします。
+        %li.option
+          %input#toggle04.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle04"} Ｑ.絞り込み検索はできますか？
+          .content
+            %p
+              Ａ.
+              サークル検索から、種目やエリアから絞り込み検索をすることができます。
+        %li.option
+          %input#toggle07.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle07"} Ｑ.サークル主催者から返信が来ないです
+          .content
+            %p
+              Ａ.
+              メールアドレスが変わったり、サークル活動が停止している場合は、返信が届かない場合があります。
+              %br/
+              返信が来ないサークルに対しては、お問い合わせ自動返信メールのリンクから、ご報告いただけると幸いです。
+        %li.option
+          %input#toggle05.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle05"} Ｑ.サークルの並び順を上位にする方法は？
+          .content
+            %p
+              Ａ.
+              ブログや活動スケジュールなどの更新が活発なサークルは上位に表示されやすくなります。
+        %li.option
+          %input#toggle06.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle06"} Ｑ.サークルの削除方法は？
+          .content
+            %p
+              Ａ.
+              ログインした状態で、#{link_to "サークル削除ページ",user_del_path}より、手続きをお願いいたします。

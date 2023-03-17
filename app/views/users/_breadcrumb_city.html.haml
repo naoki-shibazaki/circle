@@ -1,0 +1,5 @@
+.breadcrumbs_wrapper_city
+  .breadcrumbs_city
+    %ul
+      - @user_cities.sort.each do |user_city|
+        %li= link_to user_city.name, "/#{@user.event.ruby}/#{user_city.prefecture.kana}/#{user_city.city_kana}"

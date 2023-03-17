@@ -1,0 +1,15 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@event.txt}の活動ブログ"
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .e_header_wrap
+      %img{:alt => "#{@event.name}", :src => "/images/events/#{@event.ruby}.jpg"}/
+      .link_txt
+        %h1.e_header_title
+          = @event.name
+          の
+          %br>/
+          サークル活動ブログ
+    .search_area
+      = render "/blogs/search"
+    = render "/blogs/blogs_list"

@@ -1,0 +1,35 @@
+- set_meta_tags title: "「#{params[:kw].truncate(30)}」のコートや体育館の検索結果",og: {image:image_url("/images/events/#{@event.ruby}.jpg")},twitter: { card: 'summary'}
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .e_header_wrap
+      %img{:alt => "#{@event.name}", :src => "/images/events/#{@event.ruby}.jpg"}/
+      .link_txt
+        %h1.e_header_title
+          「#{params[:kw].truncate(30)}」の
+          = succeed "\u30B3\u30FC\u30C8\u3084\u4F53\u80B2\u9928\u306E\u691C\u7D22\u7D50\u679C" do
+            %br/
+    = render "/places/search"
+    .search_area
+      .prefectures-container
+        .cp_actab
+          %input#tab-two{:name => "tabs", :type => "checkbox"}/
+          %label{:for => "tab-two"}
+            %i.fa.fa-search.search-list>
+            47都道府県から探す
+          .cp_actab-content
+            %ul.prefectures-menus.place_meus
+              - @prefectures.each do |prefecture|
+                - if prefecture.group != @x
+                  .prefectures-sub-title
+                    = prefecture.group
+                    エリア
+                  %li
+                    = link_to "/places/#{@event.ruby}/#{prefecture.kana}" do
+                      = prefecture.name
+                  - @x = prefecture.group
+                - else
+                  %li
+                    = link_to "/places/#{@event.ruby}/#{prefecture.kana}" do
+                      = prefecture.name
+    = render "/places/places_list"

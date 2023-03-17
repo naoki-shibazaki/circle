@@ -1,0 +1,163 @@
+:javascript
+  $(function(){
+    $fileField = $('#file_01')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_01");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });
+
+    $(function(){
+    $fileField = $('#file_02')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_02");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });
+
+  $(function(){
+    $fileField = $('#file_03')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_03");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });  
+
+  $(function(){
+    $fileField = $('#file_04')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_04");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });  
+
+
+  $(function(){
+    $fileField = $('#file_profile')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_profile");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });  
+
+
+  $(function(){
+    $fileField = $('#file_header')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_header");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });  
+
+  $(function(){
+    $fileField = $('#file_icon')
+
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field_icon");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });

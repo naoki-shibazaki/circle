@@ -1,0 +1,39 @@
+- if user.switch.present?
+  .border
+  .users-index-item.ribbon-wrapper
+    .tag_lists_wrap
+      %ul.tag_lists
+        %li
+          = link_to("/#{user.event.ruby}", class: "tag_btn") do
+            %i.fa.fa-tags.tag-color
+            = user.event.name
+        %li
+          = link_to("/#{user.event.ruby}/#{user.prefecture.kana}", class: "tag_btn") do
+            %i.fa.fa-tags.tag-color
+            = user.prefecture.name
+        - if user.prefecture_sub_id.present?
+          %li
+            - @prefectures.each do |sub_prefecture|
+              - if user.prefecture_sub_id == sub_prefecture.id
+                = link_to("/#{user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do
+                  %i.fa.fa-tags.tag-color
+                  = sub_prefecture.name
+    = link_to(user_path(user.id)) do
+      .user-content
+        = lazysizes_image_tag user.pic_profile.url , class:'image_icon'
+        .list_wrapper
+          .list_01
+            %h2.user_name= user.name.truncate(40)
+        .list_cnts
+          .list_02
+            %span.user_schedule
+              %i.fa.fa-calendar.icon_c
+              = user.schedule
+          .list_03
+            %span.user_area
+              %i.fa.fa-map-marker.icon_c
+              = user.prefecture.name
+              = "：" if user.area.present?
+              = user.area
+          .list_04
+            %span.user_recruitment= user.recruitment.truncate(110)

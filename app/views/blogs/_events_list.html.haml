@@ -1,0 +1,25 @@
+.events-container
+  .cp_actab
+    %input#tab-one{:name => "tabs", :type => "checkbox"}/
+    %label{:for => "tab-one"}
+      %i.fa.fa-search.search-list>
+      趣味やスポーツ、団体から探す
+    .cp_actab-content
+      %ul.events-menus
+        - @events.each do |event|
+          - if @category != event.category
+            .category-title
+              ▼#{event.category}
+            - @category = event.category
+          - if @path.is('blogs#index', 'blogs#top', 'blogs#prefecture_index')
+            %li
+              = link_to("/blog/#{event.ruby}") do
+                .e_icon_wrap
+                  %img{:alt => "#{event.name}", :src => "/images/events/s_e_icon_#{event.ruby}.jpg"}/
+                  .link_txt= event.name
+          - else
+            %li
+              = link_to("/blog/#{event.ruby}/#{@prefecture.kana}") do
+                .e_icon_wrap
+                  %img{:alt => "#{event.name}", :src => "/images/events/s_e_icon_#{event.ruby}.jpg"}/
+                  .link_txt= event.name

@@ -1,0 +1,39 @@
+- set_meta_tags noindex: true
+.main.users-edit
+  .container
+    .form.users-form
+      = render "users/parts/step_bar"
+      .form-body.cont-body
+        - if @user.errors.any?
+          .form-error
+            以下の項目でエラーが発生いたしました。
+            %br/
+        - @user.errors.full_messages.each do |message|
+          .form-error_message
+            ・#{message}
+        = form_for @user,:url => {controller: "users", action: "update2"} do |f|
+          = f.fields_for :link do |fin|
+            .label_item
+              %span.label.label_danger> 必須
+              アカウントID（半角英数字：4〜16文字）
+              %br>/
+              ※記号などは使用できません
+            = fin.text_field :unique_id, id: 'change_order', class: 'form-control', placeholder: "circlebook"
+          .edit02_warp
+            %span.edit02_subtitle カテゴリー
+            .check_boxes
+              = f.collection_check_boxes(:tag_ids, @tags, :id, :name)
+          - if @user.prefecture_id != 50
+            .edit02_warp
+              %span.edit02_subtitle
+                活動エリア（#{@prefecture.name}）
+              .check_boxes
+                = f.collection_check_boxes(:city_ids, @cities, :id, :name)
+          - if @user.prefecture_sub_id.present?
+            - if @user.prefecture_sub_id != 50
+              .edit02_warp
+                %span.edit02_subtitle
+                  活動エリア（#{@sub_prefecture.name}）
+                .check_boxes
+                  = f.collection_check_boxes(:city_ids, @sub_cities, :id, :name)
+          = f.submit "更新する", data: { disable_with: '更新中...' }

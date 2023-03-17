@@ -1,0 +1,22 @@
+.popupModal1
+  %input#pop11{:name => "modalPop", :type => "radio"}/
+  %label{:for => "pop11"}
+    %i.fa.fa-share-alt
+  %input#pop12{:name => "modalPop", :type => "radio"}/
+  %label{:for => "pop12"} CLOSE
+  %input#pop13{:name => "modalPop", :type => "radio"}/
+  %label{:for => "pop13"} ×
+  .modalPopup2
+    .modalPopup3
+      %h2.modalTitle シェアする
+      .modalMain
+        .url_copy
+          .copyTarget= @url
+          %button.copyBtn
+            %i.fa.fa-files-o
+        %img.imege_happy{:src => "/images/happy.png"}/
+        - if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present?
+          #sosyal
+            = link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=#{@blog.title}【#{@user.name}】%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", class: 'sosyal_twitter', title: 'Twitter', target: '_blank'
+            = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}", class: 'sosyal_facebook', title: 'Facebook', target: '_blank'
+            = link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}", class: 'sosyal_line', title: 'LINE', target: '_blank'

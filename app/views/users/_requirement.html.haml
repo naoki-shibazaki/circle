@@ -1,0 +1,16 @@
+- if @user.requirement.present?
+  .profile_list_t
+    応募に必要な情報
+    %br/
+    %span.profile_list_t_a ※コピーしてご応募ください
+  .profile_list_p.profile_list_frame
+    .copyTarget= simple_format @user.requirement
+  %button.copyBtn
+    .requirement_copy
+      %i.fa.fa-copy
+      コピーする
+  .border
+/ User Edit用
+/
+  <p>応募時に送って欲しい内容</p>
+  <haml_loud> f.text_area :requirement, class: &#39;form-control form_small&#39;, placeholder: &quot;名前：&amp;#13;&amp;#10;年齢：&amp;#13;&amp;#10;性別：&quot;.html_safe </haml_loud>

@@ -1,0 +1,37 @@
+- set_meta_tags title: "質問コーナー",og: {title: "登録不要！匿名で質問ができます！",description: "",image: image_url('/images/qa_top.jpg')},twitter: { card: 'summary_large_image'}
+.main.users-index
+  .container.bg_white
+    = render "/layouts/breadcrumb"
+    %h1.e_header_title 質問コーナー
+    .search_qa
+      = search_form_for @search do |f|
+        = f.search_field :question_cont, placeholder: "質問を検索する（1単語のみ）", class: "event_search"
+        .search_icon
+          = button_tag type: 'submit' do
+            %i.fa.fa-search
+    - if @search_questions.any?
+      .qa_card_warp
+        %ul
+          - @search_questions.each do |search_question|
+            %li.ribbon-wrapper
+              - @events.each do |event|
+                - if search_question.event_id == event.id
+                  = link_to "/#{event.ruby}/qa/#{search_question.id}" do
+                    .qa_large
+                      .user_slide_qa
+                        .user_slide_qa_wrap
+                          .user_slide_qa_content_wrap
+                            %h2= search_question.question
+    - if @search_questions.nil?
+      .qa_card_warp
+        %ul
+          - @event_questions.each do |event_question|
+            %li.ribbon-wrapper
+              - @events.each do |event|
+                - if event_question.event_id == event.id
+                  = link_to "/#{event.ruby}/qa/#{event_question.id}" do
+                    .qa_large
+                      .user_slide_qa
+                        .user_slide_qa_wrap
+                          .user_slide_qa_content_wrap
+                            %h2= event_question.question

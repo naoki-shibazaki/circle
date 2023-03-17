@@ -1,0 +1,36 @@
+- set_meta_tags title: "【#{Time.now.strftime("%Y")}年版】#{@prefecture.name}にある#{@event.name}コートや体育館の情報一覧ページ",description: "現在、#{@places_count}件の#{@prefecture.name}にある#{@event.name}コートの情報を掲載中です！体育館やアリーナ、屋外にある公園などの情報を分かりやすく掲載しています！住所やアクセス方法、駐車場情報も載っているので便利です。また、#{@prefecture.name}で活動している#{@event.name}サークルやチーム、団体などの情報も掲載しています！",og: {image:image_url("/images/events/#{@event.ruby}.jpg")},twitter: { card: 'summary'}
+= render "places/local_business_place_list"
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .e_header_wrap
+      %img{:alt => "#{@event.name}", :src => "/images/events/#{@event.ruby}.jpg"}/
+      .link_txt
+        %h1.e_header_title
+          = @prefecture.name
+          にある
+          %br/
+          = @event.name
+          のコートや体育館の情報
+    = render "/places/search"
+    .search_area
+      .coat-container
+        .cp_actab
+          %input#tab-one{:name => "tabs", :type => "checkbox"}/
+          %label{:for => "tab-one"}
+            %i.fa.fa-search.search-list
+            = @prefecture.name
+            の市区郡から探す
+          .cp_actab-content
+            - @cities.each do |city|
+              .prefecture_city_list
+                - if city.places_count == 0
+                  .no_link
+                    = city.name
+                - else
+                  = link_to("/places/#{@event.ruby}/#{@prefecture.kana}/#{city.city_kana}") do
+                    = city.name
+                    - if @event.id == 2
+                      (#{city.places_count})
+    = render "/layouts/ads/b-books_places"
+    = render "/places/places_list"

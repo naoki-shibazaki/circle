@@ -1,0 +1,43 @@
+- set_meta_tags title: "#{@question_sample}｜#{@user.name}の質問コーナー",og: {title: "#{@user.name}の質問コーナーです！",description: "",image: image_url('/images/qa_top.jpg')},twitter: { card: 'summary_large_image'}
+.user_main.users-index
+  .container.bg_white
+    = link_to user_questions_path(@user) do
+      %h1.users-heading 質問コーナー
+    .ribbon-wrapper.qa_card_img
+      .ribbon-content
+        - if @question.answer.nil?
+          %span.ribbon.red 未回答
+        - else
+          %span.ribbon.green 回答済み
+      .qa_large
+        .user_slide_qa
+          .user_slide_qa_wrap
+            .user_slide_qa_content_wrap
+              %h1= @question_sample
+    .qa_wrap
+      .qa_profile_wrap
+        = render "/users/parts/user_name", user: @user
+        .reset
+        - if admin_user_signed_in?
+          - if @user.admin_user_id == current_admin_user.id
+            .qa_answer_form
+              = form_for ([@user, @question]) do |f|
+                = f.hidden_field :content, :value => @question_sample
+                = f.text_area :answer, class: 'form-control form-note change_question', placeholder: "回答を書いてください！"
+                .submit_btn
+                  %input{"data-disable-with" => "回答する", :name => "commit", :type => "submit", :value => "回答する"}/
+                .reset
+    = render "/layouts/ad_square"
+    .ad_space
+    = paginate @questions
+/ 半角 => 全角　変換
+:javascript
+  $(function(){
+      $(".change_question").change(function(){
+          var str = $(this).val();
+          str = str.replace(  /["#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
+              return String.fromCharCode(s.charCodeAt(0) + 65248);
+          });
+          $(this).val(str);
+      }).change();
+  });
