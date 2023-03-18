@@ -20,9 +20,7 @@ jobs:
               script: |
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
-                gem install bundler
-                bundle install
-          - name: Deploy to server2
+          - name: Deploy to circle-book-web-server-2
             uses: appleboy/ssh-action@master
             with:
               host: ${{ secrets.DEPLOY_HOST2 }}
@@ -32,9 +30,7 @@ jobs:
               script: |
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
-                gem install bundler
-                bundle install
-          - name: Deploy to server3
+          - name: Deploy to circle-book-web-server-3
             uses: appleboy/ssh-action@master
             with:
               host: ${{ secrets.DEPLOY_HOST3 }}
@@ -44,5 +40,3 @@ jobs:
               script: |
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
-                gem install bundler
-                bundle install
