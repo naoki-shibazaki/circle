@@ -20,6 +20,7 @@ jobs:
               script: |
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
+                bundle install
           - name: Deploy to server2
             uses: appleboy/ssh-action@master
             with:
@@ -30,6 +31,7 @@ jobs:
               script: |
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
+                bundle install
           - name: Deploy to server3
             uses: appleboy/ssh-action@master
             with:
@@ -40,3 +42,4 @@ jobs:
               script: |
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
+                bundle install
