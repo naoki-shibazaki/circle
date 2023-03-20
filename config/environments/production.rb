@@ -112,7 +112,7 @@ Rails.application.configure do
   Aws::Rails.add_action_mailer_delivery_method(
     :ses,
     credentials: creds,
-    region: ENV['AWS_S3_REGION']
+    region: 'ap-northeast-1'
   )
 
   # config.action_mailer.default_url_options = { host: 'https://circle-book.com' }
