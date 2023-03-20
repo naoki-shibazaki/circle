@@ -55,7 +55,10 @@ gem "aws-sdk-s3", require: false
 
 gem 'meta-tags'
 gem 'sitemap_generator'
+
 gem 'aws-sdk'
+gem 'aws-sdk-rails'
+
 gem 'whenever', :require => false
 gem 'rack-rewrite'
 
