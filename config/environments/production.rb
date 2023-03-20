@@ -107,18 +107,17 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-
-  credentials = Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
-  Aws::Rails.add_action_mailer_delivery_method(
-    :ses,
-    credentials: credentials,
-    region: 'ap-northeast-1'
-  )
+  # credentials = Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
+  # Aws::Rails.add_action_mailer_delivery_method(
+  #   :ses,
+  #   credentials: credentials,
+  #   region: 'ap-northeast-1'
+  # )
 
   # config.action_mailer.default_url_options = { host: 'https://circle-book.com' }
-  config.action_mailer.delivery_method = :ses
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.perform_caching = false
+  # config.action_mailer.delivery_method = :ses
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.perform_caching = false
   # config.action_mailer.raise_delivery_errors = true
 
 
