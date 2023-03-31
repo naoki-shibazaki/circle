@@ -13,16 +13,26 @@ Gem::Specification.new do |s|
   s.email = "rails-i18n@googlegroups.com".freeze
   s.homepage = "https://github.com/svenfuchs/rails-i18n".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Common locale data and translations for Rails i18n.".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_runtime_dependency(%q<i18n>.freeze, [">= 0.7", "< 2"])
-  s.add_runtime_dependency(%q<railties>.freeze, [">= 6.0.0", "< 8"])
-  s.add_development_dependency(%q<rspec-rails>.freeze, ["~> 3.7"])
-  s.add_development_dependency(%q<i18n-spec>.freeze, ["~> 0.6.0"])
-  s.add_development_dependency(%q<i18n-tasks>.freeze, ["~> 0.9.37"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<i18n>.freeze, [">= 0.7", "< 2"])
+    s.add_runtime_dependency(%q<railties>.freeze, [">= 6.0.0", "< 8"])
+    s.add_development_dependency(%q<rspec-rails>.freeze, ["~> 3.7"])
+    s.add_development_dependency(%q<i18n-spec>.freeze, ["~> 0.6.0"])
+    s.add_development_dependency(%q<i18n-tasks>.freeze, ["~> 0.9.37"])
+  else
+    s.add_dependency(%q<i18n>.freeze, [">= 0.7", "< 2"])
+    s.add_dependency(%q<railties>.freeze, [">= 6.0.0", "< 8"])
+    s.add_dependency(%q<rspec-rails>.freeze, ["~> 3.7"])
+    s.add_dependency(%q<i18n-spec>.freeze, ["~> 0.6.0"])
+    s.add_dependency(%q<i18n-tasks>.freeze, ["~> 0.9.37"])
+  end
 end

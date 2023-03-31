@@ -19,17 +19,28 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--exclude".freeze, ".".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.5.0".freeze)
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Tools for creating, working with, and running Rails applications.".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_runtime_dependency(%q<activesupport>.freeze, ["= 6.0.5.1"])
-  s.add_runtime_dependency(%q<actionpack>.freeze, ["= 6.0.5.1"])
-  s.add_runtime_dependency(%q<rake>.freeze, [">= 0.8.7"])
-  s.add_runtime_dependency(%q<thor>.freeze, [">= 0.20.3", "< 2.0"])
-  s.add_runtime_dependency(%q<method_source>.freeze, [">= 0"])
-  s.add_development_dependency(%q<actionview>.freeze, ["= 6.0.5.1"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<activesupport>.freeze, ["= 6.0.5.1"])
+    s.add_runtime_dependency(%q<actionpack>.freeze, ["= 6.0.5.1"])
+    s.add_runtime_dependency(%q<rake>.freeze, [">= 0.8.7"])
+    s.add_runtime_dependency(%q<thor>.freeze, [">= 0.20.3", "< 2.0"])
+    s.add_runtime_dependency(%q<method_source>.freeze, [">= 0"])
+    s.add_development_dependency(%q<actionview>.freeze, ["= 6.0.5.1"])
+  else
+    s.add_dependency(%q<activesupport>.freeze, ["= 6.0.5.1"])
+    s.add_dependency(%q<actionpack>.freeze, ["= 6.0.5.1"])
+    s.add_dependency(%q<rake>.freeze, [">= 0.8.7"])
+    s.add_dependency(%q<thor>.freeze, [">= 0.20.3", "< 2.0"])
+    s.add_dependency(%q<method_source>.freeze, [">= 0"])
+    s.add_dependency(%q<actionview>.freeze, ["= 6.0.5.1"])
+  end
 end

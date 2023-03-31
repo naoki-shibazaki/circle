@@ -15,17 +15,28 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.0".freeze)
   s.requirements = ["You must have ImageMagick or GraphicsMagick installed".freeze]
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Manipulate images with minimal use of memory via ImageMagick / GraphicsMagick".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_development_dependency(%q<rake>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rspec>.freeze, ["~> 3.5.0"])
-  s.add_development_dependency(%q<guard>.freeze, [">= 0"])
-  s.add_development_dependency(%q<guard-rspec>.freeze, [">= 0"])
-  s.add_development_dependency(%q<posix-spawn>.freeze, [">= 0"])
-  s.add_development_dependency(%q<webmock>.freeze, [">= 0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<rake>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rspec>.freeze, ["~> 3.5.0"])
+    s.add_development_dependency(%q<guard>.freeze, [">= 0"])
+    s.add_development_dependency(%q<guard-rspec>.freeze, [">= 0"])
+    s.add_development_dependency(%q<posix-spawn>.freeze, [">= 0"])
+    s.add_development_dependency(%q<webmock>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<rake>.freeze, [">= 0"])
+    s.add_dependency(%q<rspec>.freeze, ["~> 3.5.0"])
+    s.add_dependency(%q<guard>.freeze, [">= 0"])
+    s.add_dependency(%q<guard-rspec>.freeze, [">= 0"])
+    s.add_dependency(%q<posix-spawn>.freeze, [">= 0"])
+    s.add_dependency(%q<webmock>.freeze, [">= 0"])
+  end
 end

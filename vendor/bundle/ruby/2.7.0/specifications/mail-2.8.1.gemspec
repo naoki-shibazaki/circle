@@ -17,21 +17,36 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--exclude".freeze, "lib/mail/values/unicode_tables.dat".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.5".freeze)
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Mail provides a nice Ruby DSL for making, sending and reading emails.".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_runtime_dependency(%q<mini_mime>.freeze, [">= 0.1.1"])
-  s.add_runtime_dependency(%q<net-smtp>.freeze, [">= 0"])
-  s.add_runtime_dependency(%q<net-imap>.freeze, [">= 0"])
-  s.add_runtime_dependency(%q<net-pop>.freeze, [">= 0"])
-  s.add_development_dependency(%q<bundler>.freeze, [">= 1.0.3"])
-  s.add_development_dependency(%q<rake>.freeze, ["> 0.8.7"])
-  s.add_development_dependency(%q<rspec>.freeze, ["~> 3.0"])
-  s.add_development_dependency(%q<rspec-benchmark>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rdoc>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rufo>.freeze, [">= 0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<mini_mime>.freeze, [">= 0.1.1"])
+    s.add_runtime_dependency(%q<net-smtp>.freeze, [">= 0"])
+    s.add_runtime_dependency(%q<net-imap>.freeze, [">= 0"])
+    s.add_runtime_dependency(%q<net-pop>.freeze, [">= 0"])
+    s.add_development_dependency(%q<bundler>.freeze, [">= 1.0.3"])
+    s.add_development_dependency(%q<rake>.freeze, ["> 0.8.7"])
+    s.add_development_dependency(%q<rspec>.freeze, ["~> 3.0"])
+    s.add_development_dependency(%q<rspec-benchmark>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rdoc>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rufo>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<mini_mime>.freeze, [">= 0.1.1"])
+    s.add_dependency(%q<net-smtp>.freeze, [">= 0"])
+    s.add_dependency(%q<net-imap>.freeze, [">= 0"])
+    s.add_dependency(%q<net-pop>.freeze, [">= 0"])
+    s.add_dependency(%q<bundler>.freeze, [">= 1.0.3"])
+    s.add_dependency(%q<rake>.freeze, ["> 0.8.7"])
+    s.add_dependency(%q<rspec>.freeze, ["~> 3.0"])
+    s.add_dependency(%q<rspec-benchmark>.freeze, [">= 0"])
+    s.add_dependency(%q<rdoc>.freeze, [">= 0"])
+    s.add_dependency(%q<rufo>.freeze, [">= 0"])
+  end
 end

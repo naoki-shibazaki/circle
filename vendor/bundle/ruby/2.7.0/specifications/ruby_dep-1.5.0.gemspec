@@ -15,12 +15,18 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/e2/ruby_dep".freeze
   s.licenses = ["MIT".freeze]
   s.required_ruby_version = Gem::Requirement.new(["~> 2.2".freeze, ">= 2.2.5".freeze])
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Extracts supported Ruby versions from Travis file".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_development_dependency(%q<bundler>.freeze, ["~> 1.12"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<bundler>.freeze, ["~> 1.12"])
+  else
+    s.add_dependency(%q<bundler>.freeze, ["~> 1.12"])
+  end
 end

@@ -15,17 +15,28 @@ Gem::Specification.new do |s|
   s.files = ["LICENSE.txt".freeze, "README.md".freeze]
   s.homepage = "http://github.com/mcasimir/devise-i18n-views".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "I18n support for devise views".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_development_dependency(%q<rspec>.freeze, ["~> 3.1"])
-  s.add_development_dependency(%q<bundler>.freeze, ["~> 1.7"])
-  s.add_development_dependency(%q<jeweler>.freeze, ["~> 2.0"])
-  s.add_development_dependency(%q<i18n-spec>.freeze, ["~> 0.6"])
-  s.add_development_dependency(%q<localeapp>.freeze, ["~> 0.8"])
-  s.add_development_dependency(%q<json>.freeze, [">= 1.8.2"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<rspec>.freeze, ["~> 3.1"])
+    s.add_development_dependency(%q<bundler>.freeze, ["~> 1.7"])
+    s.add_development_dependency(%q<jeweler>.freeze, ["~> 2.0"])
+    s.add_development_dependency(%q<i18n-spec>.freeze, ["~> 0.6"])
+    s.add_development_dependency(%q<localeapp>.freeze, ["~> 0.8"])
+    s.add_development_dependency(%q<json>.freeze, [">= 1.8.2"])
+  else
+    s.add_dependency(%q<rspec>.freeze, ["~> 3.1"])
+    s.add_dependency(%q<bundler>.freeze, ["~> 1.7"])
+    s.add_dependency(%q<jeweler>.freeze, ["~> 2.0"])
+    s.add_dependency(%q<i18n-spec>.freeze, ["~> 0.6"])
+    s.add_dependency(%q<localeapp>.freeze, ["~> 0.8"])
+    s.add_dependency(%q<json>.freeze, [">= 1.8.2"])
+  end
 end

@@ -14,14 +14,22 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/activerecord-hackery/ransack".freeze
   s.licenses = ["MIT".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.7".freeze)
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Object-based searching for Active Record.".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_runtime_dependency(%q<activerecord>.freeze, [">= 6.0.4"])
-  s.add_runtime_dependency(%q<activesupport>.freeze, [">= 6.0.4"])
-  s.add_runtime_dependency(%q<i18n>.freeze, [">= 0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<activerecord>.freeze, [">= 6.0.4"])
+    s.add_runtime_dependency(%q<activesupport>.freeze, [">= 6.0.4"])
+    s.add_runtime_dependency(%q<i18n>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<activerecord>.freeze, [">= 6.0.4"])
+    s.add_dependency(%q<activesupport>.freeze, [">= 6.0.4"])
+    s.add_dependency(%q<i18n>.freeze, [">= 0"])
+  end
 end

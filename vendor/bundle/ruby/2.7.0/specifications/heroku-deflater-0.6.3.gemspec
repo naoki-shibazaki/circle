@@ -15,16 +15,26 @@ Gem::Specification.new do |s|
   s.files = ["LICENSE.txt".freeze, "README.md".freeze]
   s.homepage = "http://github.com/romanbsd/heroku-deflater".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Deflate assets on heroku".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_runtime_dependency(%q<rack>.freeze, [">= 1.4.5"])
-  s.add_development_dependency(%q<bundler>.freeze, [">= 0"])
-  s.add_development_dependency(%q<jeweler>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rspec>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rails>.freeze, [">= 0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<rack>.freeze, [">= 1.4.5"])
+    s.add_development_dependency(%q<bundler>.freeze, [">= 0"])
+    s.add_development_dependency(%q<jeweler>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rspec>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rails>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<rack>.freeze, [">= 1.4.5"])
+    s.add_dependency(%q<bundler>.freeze, [">= 0"])
+    s.add_dependency(%q<jeweler>.freeze, [">= 0"])
+    s.add_dependency(%q<rspec>.freeze, [">= 0"])
+    s.add_dependency(%q<rails>.freeze, [">= 0"])
+  end
 end

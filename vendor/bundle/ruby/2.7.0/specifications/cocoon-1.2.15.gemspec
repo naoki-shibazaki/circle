@@ -15,27 +15,48 @@ Gem::Specification.new do |s|
   s.files = ["LICENSE".freeze, "README.markdown".freeze]
   s.homepage = "http://github.com/nathanvda/cocoon".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "gem that enables easier nested forms with standard forms, formtastic and simple-form".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_development_dependency(%q<rails>.freeze, ["~> 4.2"])
-  s.add_development_dependency(%q<sqlite3>.freeze, ["= 1.3.13"])
-  s.add_development_dependency(%q<json_pure>.freeze, [">= 0"])
-  s.add_development_dependency(%q<jeweler>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rspec-rails>.freeze, ["~> 3.0.0"])
-  s.add_development_dependency(%q<rspec>.freeze, ["~> 3.0.0"])
-  s.add_development_dependency(%q<actionpack>.freeze, [">= 4.0.0"])
-  s.add_development_dependency(%q<simplecov>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rake>.freeze, ["~> 10.1"])
-  s.add_development_dependency(%q<nokogiri>.freeze, [">= 0"])
-  s.add_development_dependency(%q<generator_spec>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rubysl>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rubysl-test-unit>.freeze, [">= 0"])
-  s.add_development_dependency(%q<psych>.freeze, ["~> 2.2"])
-  s.add_development_dependency(%q<racc>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rubinius-developer_tools>.freeze, [">= 0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<rails>.freeze, ["~> 4.2"])
+    s.add_development_dependency(%q<sqlite3>.freeze, ["= 1.3.13"])
+    s.add_development_dependency(%q<json_pure>.freeze, [">= 0"])
+    s.add_development_dependency(%q<jeweler>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rspec-rails>.freeze, ["~> 3.0.0"])
+    s.add_development_dependency(%q<rspec>.freeze, ["~> 3.0.0"])
+    s.add_development_dependency(%q<actionpack>.freeze, [">= 4.0.0"])
+    s.add_development_dependency(%q<simplecov>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rake>.freeze, ["~> 10.1"])
+    s.add_development_dependency(%q<nokogiri>.freeze, [">= 0"])
+    s.add_development_dependency(%q<generator_spec>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rubysl>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rubysl-test-unit>.freeze, [">= 0"])
+    s.add_development_dependency(%q<psych>.freeze, ["~> 2.2"])
+    s.add_development_dependency(%q<racc>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rubinius-developer_tools>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<rails>.freeze, ["~> 4.2"])
+    s.add_dependency(%q<sqlite3>.freeze, ["= 1.3.13"])
+    s.add_dependency(%q<json_pure>.freeze, [">= 0"])
+    s.add_dependency(%q<jeweler>.freeze, [">= 0"])
+    s.add_dependency(%q<rspec-rails>.freeze, ["~> 3.0.0"])
+    s.add_dependency(%q<rspec>.freeze, ["~> 3.0.0"])
+    s.add_dependency(%q<actionpack>.freeze, [">= 4.0.0"])
+    s.add_dependency(%q<simplecov>.freeze, [">= 0"])
+    s.add_dependency(%q<rake>.freeze, ["~> 10.1"])
+    s.add_dependency(%q<nokogiri>.freeze, [">= 0"])
+    s.add_dependency(%q<generator_spec>.freeze, [">= 0"])
+    s.add_dependency(%q<rubysl>.freeze, [">= 0"])
+    s.add_dependency(%q<rubysl-test-unit>.freeze, [">= 0"])
+    s.add_dependency(%q<psych>.freeze, ["~> 2.2"])
+    s.add_dependency(%q<racc>.freeze, [">= 0"])
+    s.add_dependency(%q<rubinius-developer_tools>.freeze, [">= 0"])
+  end
 end

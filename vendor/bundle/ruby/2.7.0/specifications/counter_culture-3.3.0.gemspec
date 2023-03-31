@@ -17,31 +17,56 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/magnusvk/counter_culture".freeze
   s.licenses = ["MIT".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.3.0".freeze)
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Turbo-charged counter caches for your Rails app.".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_runtime_dependency(%q<activerecord>.freeze, [">= 4.2"])
-  s.add_runtime_dependency(%q<activesupport>.freeze, [">= 4.2"])
-  s.add_development_dependency(%q<appraisal>.freeze, ["> 2.0.0"])
-  s.add_development_dependency(%q<awesome_print>.freeze, [">= 0"])
-  s.add_development_dependency(%q<bundler>.freeze, [">= 0"])
-  s.add_development_dependency(%q<database_cleaner>.freeze, [">= 1.1.1"])
-  s.add_development_dependency(%q<discard>.freeze, [">= 0"])
-  s.add_development_dependency(%q<paper_trail>.freeze, [">= 0"])
-  s.add_development_dependency(%q<paranoia>.freeze, [">= 0"])
-  s.add_development_dependency(%q<after_commit_action>.freeze, [">= 0"])
-  s.add_development_dependency(%q<rails>.freeze, [">= 4.2"])
-  s.add_development_dependency(%q<rake>.freeze, [">= 10.0"])
-  s.add_development_dependency(%q<rdoc>.freeze, [">= 6.3.1"])
-  s.add_development_dependency(%q<rspec>.freeze, ["~> 3.0"])
-  s.add_development_dependency(%q<rspec-extra-formatters>.freeze, [">= 0"])
-  s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.16.1"])
-  s.add_development_dependency(%q<timecop>.freeze, [">= 0"])
-  s.add_development_dependency(%q<sqlite3>.freeze, [">= 0"])
-  s.add_development_dependency(%q<mysql2>.freeze, [">= 0"])
-  s.add_development_dependency(%q<pg>.freeze, [">= 0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<activerecord>.freeze, [">= 4.2"])
+    s.add_runtime_dependency(%q<activesupport>.freeze, [">= 4.2"])
+    s.add_development_dependency(%q<appraisal>.freeze, ["> 2.0.0"])
+    s.add_development_dependency(%q<awesome_print>.freeze, [">= 0"])
+    s.add_development_dependency(%q<bundler>.freeze, [">= 0"])
+    s.add_development_dependency(%q<database_cleaner>.freeze, [">= 1.1.1"])
+    s.add_development_dependency(%q<discard>.freeze, [">= 0"])
+    s.add_development_dependency(%q<paper_trail>.freeze, [">= 0"])
+    s.add_development_dependency(%q<paranoia>.freeze, [">= 0"])
+    s.add_development_dependency(%q<after_commit_action>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rails>.freeze, [">= 4.2"])
+    s.add_development_dependency(%q<rake>.freeze, [">= 10.0"])
+    s.add_development_dependency(%q<rdoc>.freeze, [">= 6.3.1"])
+    s.add_development_dependency(%q<rspec>.freeze, ["~> 3.0"])
+    s.add_development_dependency(%q<rspec-extra-formatters>.freeze, [">= 0"])
+    s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.16.1"])
+    s.add_development_dependency(%q<timecop>.freeze, [">= 0"])
+    s.add_development_dependency(%q<sqlite3>.freeze, [">= 0"])
+    s.add_development_dependency(%q<mysql2>.freeze, [">= 0"])
+    s.add_development_dependency(%q<pg>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<activerecord>.freeze, [">= 4.2"])
+    s.add_dependency(%q<activesupport>.freeze, [">= 4.2"])
+    s.add_dependency(%q<appraisal>.freeze, ["> 2.0.0"])
+    s.add_dependency(%q<awesome_print>.freeze, [">= 0"])
+    s.add_dependency(%q<bundler>.freeze, [">= 0"])
+    s.add_dependency(%q<database_cleaner>.freeze, [">= 1.1.1"])
+    s.add_dependency(%q<discard>.freeze, [">= 0"])
+    s.add_dependency(%q<paper_trail>.freeze, [">= 0"])
+    s.add_dependency(%q<paranoia>.freeze, [">= 0"])
+    s.add_dependency(%q<after_commit_action>.freeze, [">= 0"])
+    s.add_dependency(%q<rails>.freeze, [">= 4.2"])
+    s.add_dependency(%q<rake>.freeze, [">= 10.0"])
+    s.add_dependency(%q<rdoc>.freeze, [">= 6.3.1"])
+    s.add_dependency(%q<rspec>.freeze, ["~> 3.0"])
+    s.add_dependency(%q<rspec-extra-formatters>.freeze, [">= 0"])
+    s.add_dependency(%q<simplecov>.freeze, ["~> 0.16.1"])
+    s.add_dependency(%q<timecop>.freeze, [">= 0"])
+    s.add_dependency(%q<sqlite3>.freeze, [">= 0"])
+    s.add_dependency(%q<mysql2>.freeze, [">= 0"])
+    s.add_dependency(%q<pg>.freeze, [">= 0"])
+  end
 end
