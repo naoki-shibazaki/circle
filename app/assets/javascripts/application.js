@@ -20,3 +20,5 @@
 //= require bootstrap-sprockets
 //= require trix
 //= require_tree .
+
+import '@fortawesome/fontawesome-free/js/all';
