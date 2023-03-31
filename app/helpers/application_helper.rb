@@ -42,17 +42,6 @@ module ApplicationHelper
       defined?(@amp_ready) && @amp_ready == true
     end
 
-  def amp_set
-    # amp対応
-    respond_to do |format|
-      format.html
-      @amp_ready = true
-      format.amp do
-        lookup_context.formats = [:amp, :html]
-        render
-      end
-    end
-  end
 
 
 
