@@ -251,6 +251,10 @@ body {
   }
 }
 
+.menu_icon{
+  padding-bottom: 6px;
+}
+
 /* top ================================ */
 .top-main {
   padding: 200px 0 100px;
@@ -1742,7 +1746,7 @@ a.line_business {
 
 #nav-drawer {
   position: relative;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
 }
 
 /*チェックボックス等は非表示に*/
@@ -4112,7 +4116,6 @@ li.current_page {
   font-size: 10px;
   color: #eaa62b;
 }
-
 
 .analytics_contents .notice_icon::after {
   top: -7px;

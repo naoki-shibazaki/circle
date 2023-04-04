@@ -4,54 +4,59 @@
     - if member_signed_in?
       %li
         = link_to(users_path) do
-          %i.fa.fa-search
+          = image_tag("/images/icon/header/search.png", class: "menu_icon")
           .link_txt サークル検索
       %li
         = link_to("/blog") do
-          %i.fa.fa-book
+          = image_tag("/images/icon/header/blog.png", class: "menu_icon")
           .link_txt 活動ブログ
       %li
         = link_to(member_path(current_member)) do
-          %i.fa.fa-user
+          = image_tag("/images/icon/header/mypage.png", class: "menu_icon")
           .link_txt マイページ
     - elsif admin_user_signed_in?
       - if current_admin_user.users.any?
         %li
           = link_to "/users/#{current_admin_user.users.first.id}/mypage" do
-            %i.fa.fa-user.notice_icon
+            .notice_icon
+              = image_tag("/images/icon/header/mypage.png", class: "menu_icon")
             .link_txt マイページ
       %li
         = link_to(users_path) do
-          %i.fa.fa-search
+          = image_tag("/images/icon/header/search.png", class: "menu_icon")
           .link_txt サークル検索
       %li
         = link_to("/blog") do
-          %i.fa.fa-book
+          = image_tag("/images/icon/header/blog.png", class: "menu_icon")
           .link_txt 活動ブログ
       / ログインなし
     - else
       %li
         - if @path.is('matches')
           = link_to(matches_path) do
-            %i.fa.fa-flag-checkered
+            = image_tag("/images/icon/header/game.png", class: "menu_icon")
             .link_txt 対戦相手募集
         - else
           = link_to(users_path) do
-            %i.fa.fa-search
+            = image_tag("/images/icon/header/search.png", class: "menu_icon")
             .link_txt サークル検索
       %li
         = link_to("/blog") do
-          %i.fa.fa-book
+          = image_tag("/images/icon/header/blog.png", class: "menu_icon")
           .link_txt 活動ブログ
       %li
         = link_to(new_admin_user_registration_path) do
-          %i.fa.fa-user-plus
+          = image_tag("/images/icon/header/signup.png", class: "menu_icon")
           .link_txt サークル登録
       %li
         = link_to(login_path) do
-          %i.fa.fa-sign-in
+          = image_tag("/images/icon/header/login.png", class: "menu_icon")
           .link_txt ログイン
     = render "/layouts/menu"
+
+
+
+
   - if @path.is('users#show') || @path.is('users#mypage') || @path.is('blogs#show') || @path.is('blogs#user_blogs') || @path.is('blogs#gallery') || @path.is('schedules') || @path.is('attendances') || @path.is('questions') || @path.is('reviews#index')
     - if @path.is('event_questions') || @path.is('schedules#dates') || @path.is('schedules#year') || @path.is('schedules#month') || @path.is('schedules#day') || @path.is('#new') || @path.is('#edit')
     - else
