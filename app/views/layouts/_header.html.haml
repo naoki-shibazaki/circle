@@ -4,53 +4,53 @@
     - if member_signed_in?
       %li
         = link_to(users_path) do
-          = image_tag("/images/icon/header/search.png", class: "menu_icon")
+          = image_tag("/images/icon/header/search.svg", class: "menu_icon")
           .link_txt サークル検索
       %li
         = link_to("/blog") do
-          = image_tag("/images/icon/header/blog.png", class: "menu_icon")
+          = image_tag("/images/icon/header/blog.svg", class: "menu_icon")
           .link_txt 活動ブログ
       %li
         = link_to(member_path(current_member)) do
-          = image_tag("/images/icon/header/mypage.png", class: "menu_icon")
+          = image_tag("/images/icon/header/mypage.svg", class: "menu_icon")
           .link_txt マイページ
     - elsif admin_user_signed_in?
       - if current_admin_user.users.any?
         %li
           = link_to "/users/#{current_admin_user.users.first.id}/mypage" do
             .notice_icon
-              = image_tag("/images/icon/header/mypage.png", class: "menu_icon")
+              = image_tag("/images/icon/header/mypage.svg", class: "menu_icon")
             .link_txt マイページ
       %li
         = link_to(users_path) do
-          = image_tag("/images/icon/header/search.png", class: "menu_icon")
+          = image_tag("/images/icon/header/search.svg", class: "menu_icon")
           .link_txt サークル検索
       %li
         = link_to("/blog") do
-          = image_tag("/images/icon/header/blog.png", class: "menu_icon")
+          = image_tag("/images/icon/header/blog.svg", class: "menu_icon")
           .link_txt 活動ブログ
       / ログインなし
     - else
       %li
         - if @path.is('matches')
           = link_to(matches_path) do
-            = image_tag("/images/icon/header/game.png", class: "menu_icon")
+            = image_tag("/images/icon/header/game.svg", class: "menu_icon")
             .link_txt 対戦相手募集
         - else
           = link_to(users_path) do
-            = image_tag("/images/icon/header/search.png", class: "menu_icon")
+            = image_tag("/images/icon/header/search.svg", class: "menu_icon")
             .link_txt サークル検索
       %li
         = link_to("/blog") do
-          = image_tag("/images/icon/header/blog.png", class: "menu_icon")
+          = image_tag("/images/icon/header/blog.svg", class: "menu_icon")
           .link_txt 活動ブログ
       %li
         = link_to(new_admin_user_registration_path) do
-          = image_tag("/images/icon/header/signup.png", class: "menu_icon")
+          = image_tag("/images/icon/header/signup.svg", class: "menu_icon")
           .link_txt サークル登録
       %li
         = link_to(login_path) do
-          = image_tag("/images/icon/header/login.png", class: "menu_icon")
+          = image_tag("/images/icon/header/login.svg", class: "menu_icon")
           .link_txt ログイン
     = render "/layouts/menu"
 
