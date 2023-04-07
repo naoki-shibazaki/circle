@@ -29,7 +29,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
-  config.action_controller.asset_host = 'd2vaopj9xwgout.cloudfront.net'
+  # config.action_controller.asset_host = 'd2vaopj9xwgout.cloudfront.net'
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
