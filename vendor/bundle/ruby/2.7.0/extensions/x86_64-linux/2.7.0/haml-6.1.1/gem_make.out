@@ -1,0 +1,19 @@
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/haml-6.1.1/ext/haml
+/home/ec2-user/.rbenv/versions/2.7.6/bin/ruby -I /home/ec2-user/.rbenv/versions/2.7.6/lib/ruby/site_ruby/2.7.0 extconf.rb
+creating Makefile
+
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/haml-6.1.1/ext/haml
+make DESTDIR\= sitearchdir\=./.gem.20230413-30823-3whu88 sitelibdir\=./.gem.20230413-30823-3whu88 clean
+
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/haml-6.1.1/ext/haml
+make DESTDIR\= sitearchdir\=./.gem.20230413-30823-3whu88 sitelibdir\=./.gem.20230413-30823-3whu88
+compiling haml.c
+compiling hescape.c
+linking shared-object haml/haml.so
+
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/haml-6.1.1/ext/haml
+make DESTDIR\= sitearchdir\=./.gem.20230413-30823-3whu88 sitelibdir\=./.gem.20230413-30823-3whu88 install
+/usr/bin/install -c -m 0755 haml.so ./.gem.20230413-30823-3whu88/haml
+
+current directory: /var/www/circle/vendor/bundle/ruby/2.7.0/gems/haml-6.1.1/ext/haml
+make DESTDIR\= sitearchdir\=./.gem.20230413-30823-3whu88 sitelibdir\=./.gem.20230413-30823-3whu88 clean
