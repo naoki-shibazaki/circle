@@ -14,8 +14,8 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/aws/aws-sdk-ruby".freeze
   s.licenses = ["Apache-2.0".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.3".freeze)
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "AWS Signature Version 2 library.".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 end

@@ -1,7 +1,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome";
 @import "trix";
+
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
+
+
 
 $link-blue: #337ab7;
 
@@ -241,6 +249,11 @@ body {
     /* for IE6-7 */
 
   }
+}
+
+.menu_icon{
+  width: 24px;
+  padding-bottom: 6px;
 }
 
 /* top ================================ */
@@ -1734,7 +1747,7 @@ a.line_business {
 
 #nav-drawer {
   position: relative;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
 }
 
 /*チェックボックス等は非表示に*/
@@ -4104,7 +4117,6 @@ li.current_page {
   font-size: 10px;
   color: #eaa62b;
 }
-
 
 .analytics_contents .notice_icon::after {
   top: -7px;

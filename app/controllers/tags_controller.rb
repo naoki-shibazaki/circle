@@ -19,8 +19,6 @@ before_action :set_tags
     @b1_name = @tag.name
     @b1_url = "/tag/#{@tag.id}"
 
-    # amp対応
-    amp_set
   end
 
 	def event
@@ -41,8 +39,6 @@ before_action :set_tags
 		@b2_name = @tag.name
     @b2_url = "/#{@event.ruby}/tag/#{@tag.id}"
 
-    # amp対応
-    amp_set
 	end
 
 	def event_prefecture
@@ -70,8 +66,6 @@ before_action :set_tags
 		@b3_name = @tag.name
     @b3_url = "/#{@event.ruby}/#{@prefecture.kana}/tag/#{@tag.id}"
 
-    # amp対応
-    amp_set
 	end
 
 
@@ -110,8 +104,6 @@ before_action :set_tags
 		@b4_name = @tag.name
     @b4_url = "/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/tag/#{@tag.id}"
 
-    # amp対応
-    amp_set
 	end
 
 
@@ -137,8 +129,6 @@ before_action :set_tags
 		@b2_name = @tag.name
     @b2_url = "/prefectures/#{@prefecture.kana}/tag/#{@tag.id}"
 
-    # amp対応
-    amp_set
 	end
 
 
@@ -174,8 +164,6 @@ before_action :set_tags
 		@b3_name = @tag.name
     @b3_url = "/prefectures/#{@prefecture.kana}/#{@city.city_kana}/tag/#{@tag.id}"
 
-    # amp対応
-    amp_set
 	end
 
 

@@ -13,12 +13,18 @@ Gem::Specification.new do |s|
   s.email = ["david@heroku.com".freeze, "jd@heroku.com".freeze, "richard@heroku.com".freeze]
   s.homepage = "https://github.com/heroku/rails_stdout_logging".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Overrides Rails' built in logger to send all logs to stdout".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_development_dependency(%q<test-unit>.freeze, ["~> 3"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<test-unit>.freeze, ["~> 3"])
+  else
+    s.add_dependency(%q<test-unit>.freeze, ["~> 3"])
+  end
 end

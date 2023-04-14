@@ -99,8 +99,6 @@ class PlacesController < ApplicationController
 		@b5_name = @place.name
     @b5_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}/#{@place.id}"
 
-    # amp対応
-    amp_set
 	end
 
 	def no_index
@@ -154,8 +152,6 @@ class PlacesController < ApplicationController
     @b2_name = @event.name
     @b2_url = "/places/#{@event.ruby}"
 
-    # amp対応
-    amp_set
 	end
 
 	def prefecture
@@ -168,8 +164,6 @@ class PlacesController < ApplicationController
 		@b3_name = @prefecture.name
     @b3_url = "/places/#{@event.ruby}/#{@prefecture.kana}"
 
-    # amp対応
-    amp_set
 	end
 
 	def city
@@ -184,8 +178,6 @@ class PlacesController < ApplicationController
 		@b4_name = @city.name
     @b4_url = "/places/#{@event.ruby}/#{@prefecture.kana}/#{@city.city_kana}"
 
-    # amp対応
-    amp_set
 	end
 
 	private

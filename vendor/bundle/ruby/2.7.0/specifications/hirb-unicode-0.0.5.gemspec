@@ -12,17 +12,28 @@ Gem::Specification.new do |s|
   s.description = "Unicode support for hirb".freeze
   s.email = ["miaout17 at gmail dot com".freeze]
   s.homepage = "".freeze
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Unicode support for hirb".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 3
+  if s.respond_to? :specification_version then
+    s.specification_version = 3
+  end
 
-  s.add_runtime_dependency(%q<hirb>.freeze, ["~> 0.5"])
-  s.add_runtime_dependency(%q<unicode-display_width>.freeze, ["~> 0.1.1"])
-  s.add_development_dependency(%q<bacon>.freeze, [">= 1.1.0"])
-  s.add_development_dependency(%q<mocha>.freeze, [">= 0"])
-  s.add_development_dependency(%q<mocha-on-bacon>.freeze, [">= 0"])
-  s.add_development_dependency(%q<bacon-bits>.freeze, [">= 0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<hirb>.freeze, ["~> 0.5"])
+    s.add_runtime_dependency(%q<unicode-display_width>.freeze, ["~> 0.1.1"])
+    s.add_development_dependency(%q<bacon>.freeze, [">= 1.1.0"])
+    s.add_development_dependency(%q<mocha>.freeze, [">= 0"])
+    s.add_development_dependency(%q<mocha-on-bacon>.freeze, [">= 0"])
+    s.add_development_dependency(%q<bacon-bits>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<hirb>.freeze, ["~> 0.5"])
+    s.add_dependency(%q<unicode-display_width>.freeze, ["~> 0.1.1"])
+    s.add_dependency(%q<bacon>.freeze, [">= 1.1.0"])
+    s.add_dependency(%q<mocha>.freeze, [">= 0"])
+    s.add_dependency(%q<mocha-on-bacon>.freeze, [">= 0"])
+    s.add_dependency(%q<bacon-bits>.freeze, [">= 0"])
+  end
 end

@@ -18,15 +18,24 @@ Gem::Specification.new do |s|
   s.homepage = "https://yhbt.net/raindrops/".freeze
   s.licenses = ["LGPL-2.1+".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 1.9.3".freeze)
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "real-time stats for preforking Rack servers".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_development_dependency(%q<aggregate>.freeze, ["~> 0.2"])
-  s.add_development_dependency(%q<test-unit>.freeze, ["~> 3.0"])
-  s.add_development_dependency(%q<posix_mq>.freeze, ["~> 2.0"])
-  s.add_development_dependency(%q<rack>.freeze, [">= 1.2", "< 3.0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<aggregate>.freeze, ["~> 0.2"])
+    s.add_development_dependency(%q<test-unit>.freeze, ["~> 3.0"])
+    s.add_development_dependency(%q<posix_mq>.freeze, ["~> 2.0"])
+    s.add_development_dependency(%q<rack>.freeze, [">= 1.2", "< 3.0"])
+  else
+    s.add_dependency(%q<aggregate>.freeze, ["~> 0.2"])
+    s.add_dependency(%q<test-unit>.freeze, ["~> 3.0"])
+    s.add_dependency(%q<posix_mq>.freeze, ["~> 2.0"])
+    s.add_dependency(%q<rack>.freeze, [">= 1.2", "< 3.0"])
+  end
 end

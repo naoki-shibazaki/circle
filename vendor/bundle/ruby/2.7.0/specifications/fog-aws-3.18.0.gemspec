@@ -14,19 +14,32 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/fog/fog-aws".freeze
   s.licenses = ["MIT".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.0.0".freeze)
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Module for the 'fog' gem to support Amazon Web Services.".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_development_dependency(%q<bundler>.freeze, [">= 0"])
-  s.add_development_dependency(%q<github_changelog_generator>.freeze, ["~> 1.16"])
-  s.add_development_dependency(%q<rake>.freeze, [">= 12.3.3"])
-  s.add_development_dependency(%q<rubyzip>.freeze, ["~> 2.3.0"])
-  s.add_development_dependency(%q<shindo>.freeze, ["~> 0.3"])
-  s.add_runtime_dependency(%q<fog-core>.freeze, ["~> 2.1"])
-  s.add_runtime_dependency(%q<fog-json>.freeze, ["~> 1.1"])
-  s.add_runtime_dependency(%q<fog-xml>.freeze, ["~> 0.1"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<bundler>.freeze, [">= 0"])
+    s.add_development_dependency(%q<github_changelog_generator>.freeze, ["~> 1.16"])
+    s.add_development_dependency(%q<rake>.freeze, [">= 12.3.3"])
+    s.add_development_dependency(%q<rubyzip>.freeze, ["~> 2.3.0"])
+    s.add_development_dependency(%q<shindo>.freeze, ["~> 0.3"])
+    s.add_runtime_dependency(%q<fog-core>.freeze, ["~> 2.1"])
+    s.add_runtime_dependency(%q<fog-json>.freeze, ["~> 1.1"])
+    s.add_runtime_dependency(%q<fog-xml>.freeze, ["~> 0.1"])
+  else
+    s.add_dependency(%q<bundler>.freeze, [">= 0"])
+    s.add_dependency(%q<github_changelog_generator>.freeze, ["~> 1.16"])
+    s.add_dependency(%q<rake>.freeze, [">= 12.3.3"])
+    s.add_dependency(%q<rubyzip>.freeze, ["~> 2.3.0"])
+    s.add_dependency(%q<shindo>.freeze, ["~> 0.3"])
+    s.add_dependency(%q<fog-core>.freeze, ["~> 2.1"])
+    s.add_dependency(%q<fog-json>.freeze, ["~> 1.1"])
+    s.add_dependency(%q<fog-xml>.freeze, ["~> 0.1"])
+  end
 end

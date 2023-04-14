@@ -19,6 +19,7 @@
           %option{:value => "/prefectures/#{prefecture.kana}"}= prefecture.name
       .search_icon
         %i.fa.fa-search
+
     - elsif @path.is('users#event_prefecture_city', 'tags#event_prefecture_city')
       .search_select_3
         %select{:name => "event_select", :onchange => "location.href=value;"}
@@ -40,6 +41,7 @@
               %option{:value => "/#{@event.ruby}/#{@prefecture.kana}/#{city.city_kana}"}= city.name
         .search_icon
           %i.fa.fa-search
+
     - elsif @path.is('users#event_prefecture', 'tags#event_prefecture')
       .search_select_3
         %select{:name => "event_select", :onchange => "location.href=value;"}
@@ -60,6 +62,7 @@
             %option{:value => "/#{@event.ruby}/#{@prefecture.kana}/#{city.city_kana}"}= city.name
         .search_icon
           %i.fa.fa-search
+
     - elsif  @path.is('users#event', 'tags#event')
       %select{:name => "event_select", :onchange => "location.href=value;"}
         %option{:value => "#"}= @event.name
@@ -74,6 +77,7 @@
           %option{:value => "/#{@event.ruby}/#{prefecture.kana}"}= prefecture.name
       .search_icon
         %i.fa.fa-search
+
     - elsif @path.is('users#prefecture_city', 'tags#prefecture_city')
       .search_select_3
         %select{:name => "event_select", :onchange => "location.href=value;"}
@@ -94,6 +98,7 @@
               %option{:value => "/prefectures/#{@prefecture.kana}/#{city.city_kana}"}= city.name
         .search_icon
           %i.fa.fa-search
+
     - elsif @path.is('users#prefecture', 'tags#prefecture')
       .search_select_3
         %select{:name => "event_select", :onchange => "location.href=value;"}
@@ -114,7 +119,9 @@
         .search_icon
           %i.fa.fa-search
     - else
+
   = render "/schedules/select_date"
+
 - if controller.action_name == "kw"
 - elsif controller.action_name != "search"
   %ul.tab_list
@@ -136,23 +143,24 @@
       %a{:href => "#{request.path}?sort=2"}
         %li.list_item 人気順
       %li.list_item.selected 新着順
+
 - else controller.action_name == "search"
   %ul.tab_list
     - if params[:sort] == "1" || params[:sort] == nil
       %li.list_item.selected 標準
-      %a{:href => "#{request.path}?q=#{params[:q]}=2"}
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=2"}
         %li.list_item 人気順
-      %a{:href => "#{request.path}?q=#{params[:q]}=3"}
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=3"}
         %li.list_item 新着順
     - elsif params[:sort] == "2"
-      %a{:href => "#{request.path}?q=#{params[:q]}=1"}
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=1"}
         %li.list_item 標準
       %li.list_item.selected 人気順
-      %a{:href => "#{request.path}?q=#{params[:q]}=3"}
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=3"}
         %li.list_item 新着順
     - else params[:sort] == "3"
-      %a{:href => "#{request.path}?q=#{params[:q]}=1"}
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=1"}
         %li.list_item 標準
-      %a{:href => "#{request.path}?q=#{params[:q]}=2"}
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=2"}
         %li.list_item 人気順
       %li.list_item.selected 新着順

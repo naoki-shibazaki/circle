@@ -52,6 +52,10 @@
           %i.fa.fa-sign-in
           .link_txt ログイン
     = render "/layouts/menu"
+
+
+
+
   - if @path.is('users#show') || @path.is('users#mypage') || @path.is('blogs#show') || @path.is('blogs#user_blogs') || @path.is('blogs#gallery') || @path.is('schedules') || @path.is('attendances') || @path.is('questions') || @path.is('reviews#index')
     - if @path.is('event_questions') || @path.is('schedules#dates') || @path.is('schedules#year') || @path.is('schedules#month') || @path.is('schedules#day') || @path.is('#new') || @path.is('#edit')
     - else

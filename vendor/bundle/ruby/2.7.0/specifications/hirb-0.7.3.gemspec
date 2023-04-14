@@ -15,15 +15,24 @@ Gem::Specification.new do |s|
   s.files = ["LICENSE.txt".freeze, "README.rdoc".freeze]
   s.homepage = "http://tagaholic.me/hirb/".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "A mini view framework for console/irb that's easy to use, even while under its influence.".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_development_dependency(%q<bacon>.freeze, [">= 1.1.0"])
-  s.add_development_dependency(%q<mocha>.freeze, ["~> 0.12.1"])
-  s.add_development_dependency(%q<mocha-on-bacon>.freeze, ["~> 0.2.1"])
-  s.add_development_dependency(%q<bacon-bits>.freeze, [">= 0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<bacon>.freeze, [">= 1.1.0"])
+    s.add_development_dependency(%q<mocha>.freeze, ["~> 0.12.1"])
+    s.add_development_dependency(%q<mocha-on-bacon>.freeze, ["~> 0.2.1"])
+    s.add_development_dependency(%q<bacon-bits>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<bacon>.freeze, [">= 1.1.0"])
+    s.add_dependency(%q<mocha>.freeze, ["~> 0.12.1"])
+    s.add_dependency(%q<mocha-on-bacon>.freeze, ["~> 0.2.1"])
+    s.add_dependency(%q<bacon-bits>.freeze, [">= 0"])
+  end
 end

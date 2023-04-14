@@ -15,20 +15,34 @@ Gem::Specification.new do |s|
   s.files = ["LICENSE.txt".freeze, "README.md".freeze]
   s.homepage = "https://github.com/tigrish/devise-i18n".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "Translations for the devise gem".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_runtime_dependency(%q<devise>.freeze, [">= 4.9.0"])
-  s.add_development_dependency(%q<rspec>.freeze, [">= 2.8.0"])
-  s.add_development_dependency(%q<rspec-rails>.freeze, [">= 0"])
-  s.add_development_dependency(%q<jeweler>.freeze, [">= 0"])
-  s.add_development_dependency(%q<i18n-spec>.freeze, ["~> 0.6.0"])
-  s.add_development_dependency(%q<localeapp>.freeze, [">= 0"])
-  s.add_development_dependency(%q<railties>.freeze, [">= 0"])
-  s.add_development_dependency(%q<activemodel>.freeze, [">= 0"])
-  s.add_development_dependency(%q<omniauth-twitter>.freeze, [">= 0"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<devise>.freeze, [">= 4.9.0"])
+    s.add_development_dependency(%q<rspec>.freeze, [">= 2.8.0"])
+    s.add_development_dependency(%q<rspec-rails>.freeze, [">= 0"])
+    s.add_development_dependency(%q<jeweler>.freeze, [">= 0"])
+    s.add_development_dependency(%q<i18n-spec>.freeze, ["~> 0.6.0"])
+    s.add_development_dependency(%q<localeapp>.freeze, [">= 0"])
+    s.add_development_dependency(%q<railties>.freeze, [">= 0"])
+    s.add_development_dependency(%q<activemodel>.freeze, [">= 0"])
+    s.add_development_dependency(%q<omniauth-twitter>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<devise>.freeze, [">= 4.9.0"])
+    s.add_dependency(%q<rspec>.freeze, [">= 2.8.0"])
+    s.add_dependency(%q<rspec-rails>.freeze, [">= 0"])
+    s.add_dependency(%q<jeweler>.freeze, [">= 0"])
+    s.add_dependency(%q<i18n-spec>.freeze, ["~> 0.6.0"])
+    s.add_dependency(%q<localeapp>.freeze, [">= 0"])
+    s.add_dependency(%q<railties>.freeze, [">= 0"])
+    s.add_dependency(%q<activemodel>.freeze, [">= 0"])
+    s.add_dependency(%q<omniauth-twitter>.freeze, [">= 0"])
+  end
 end

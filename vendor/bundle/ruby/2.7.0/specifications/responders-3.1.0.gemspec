@@ -15,13 +15,20 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/heartcombo/responders".freeze
   s.licenses = ["MIT".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.5.0".freeze)
-  s.rubygems_version = "3.4.7".freeze
+  s.rubygems_version = "3.3.18".freeze
   s.summary = "A set of Rails responders to dry up your application".freeze
 
-  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.3.18" if s.respond_to? :installed_by_version
 
-  s.specification_version = 4
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  s.add_runtime_dependency(%q<railties>.freeze, [">= 5.2"])
-  s.add_runtime_dependency(%q<actionpack>.freeze, [">= 5.2"])
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<railties>.freeze, [">= 5.2"])
+    s.add_runtime_dependency(%q<actionpack>.freeze, [">= 5.2"])
+  else
+    s.add_dependency(%q<railties>.freeze, [">= 5.2"])
+    s.add_dependency(%q<actionpack>.freeze, [">= 5.2"])
+  end
 end
