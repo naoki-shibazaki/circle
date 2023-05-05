@@ -113,6 +113,10 @@ Rails.application.routes.draw do
 	delete 'schedules/:unique_id/:id/delete' , to: 'schedules#attendance_delete'
 
 
+  scope 's/:unique_id' do
+    resources :attendances
+	end
+
   # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'
 	get 'users/:user_id/blogs' , to: 'blogs#user_blogs'
