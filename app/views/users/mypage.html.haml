@@ -61,7 +61,7 @@
             .icon_txt
               スケジュール
         - if @schedules.present?
-          = link_to "/schedules/#{@user.unique_id}", class: "icon_cont" do
+          = link_to attendances_path(@user.unique_id), class: "icon_cont" do
             %div
               .icon_img
                 .notice_icon

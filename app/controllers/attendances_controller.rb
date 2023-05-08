@@ -18,6 +18,9 @@ before_action :set_attendances
       @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
     end
 
+    @past_schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).order(:day => :desc, :time_s => :asc).page(params[:page])
+
+
     @name = Name.new
     @name_schedules = @name.name_schedules.build
 

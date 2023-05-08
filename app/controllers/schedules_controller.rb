@@ -4,7 +4,6 @@ include Circlebook
 
 before_action :ensure_correct_user, {only: [:edit, :update, :new]}
 before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete, :dates, :day, :year, :month]}
-before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
 before_action :set_dates, {only: [:dates, :day]}
 
 
@@ -118,8 +117,9 @@ before_action :set_dates, {only: [:dates, :day]}
 	end
 
 	def secret
-		@schedule = Schedule.find(params[:id])
+    @schedule = Schedule.find(params[:id])
     @user = User.find_by(unique_id: params[:unique_id])
+    gallery_counts(@user)
     @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
     @past_schedules = Schedule.where(user_id: @user.id).where("day < ?", DateTime.yesterday).order(:day => :desc, :time_s => :asc)
     @data = AdminUser.find_by(id: params[:user_id])
@@ -169,64 +169,6 @@ before_action :set_dates, {only: [:dates, :day]}
 		redirect_to user_schedules_path
 	end
 
-
-# 出欠機能
-
-def attendance
-  if params[:archive] == "1"
-    @schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).limit(5).order(:day => :desc)
-  end
-
-  @name = Name.new
-  @name_schedules = @name.name_schedules.build
-
-  @today = DateTime.yesterday
-
-  # ▼@nemesの取得
-  @schedule_ids = @schedules.map{|s| s.id}
-  @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}
-  @names = Name.where(id: @name_ids).order(updated_at: :desc)
-end
-
-def attendance_create
-  @name = Name.create(name_params)
-
-  if @name.save
-    flash[:notice] = "追加しました"
-    redirect_back(fallback_location: "users/#{@user.id}/schedule")
-  else
-    flash[:notice] = "エラー"
-    redirect_back(fallback_location: "users/#{@user.id}/schedule")
-  end
-
-end
-
-def attendance_edit
-  @name = Name.find(params[:id])
-end
-
-def attendance_update
-  @name = Name.find(params[:id])
-  @name.update(name_params)
-  @name.updated_at = Time.now
-
-  if @name.save
-    flash[:notice] = "更新しました"
-    redirect_back(fallback_location: "users/#{@user.id}/schedule")
-  else
-    flash[:notice] = "エラー"
-    redirect_back(fallback_location: "users/#{@user.id}/schedule")
-  end
-
-end
-
-def attendance_delete
-  @name = Name.find(params[:id])
-  @name.destroy
-
-  flash[:notice] = "削除しました"
-  redirect_back(fallback_location: "users/#{@user.id}/schedule")
-end
 
 
 # スケジュール
