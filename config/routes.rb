@@ -104,15 +104,7 @@ Rails.application.routes.draw do
   get 'dates/:year/:month/:day' , to: 'schedules#day'
 
   # 出欠管理
-  get 'schedules/:unique_id' , to: 'schedules#attendance'
-  post 'schedules/:unique_id' , to: 'schedules#attendance_create'
-  # get 'schedules/:unique_id/new' , to: 'schedules#attendance_new'
-  # get 'schedules/:unique_id/edit/:id' , to: 'schedules#attendance_edit'
   get 'schedules/:unique_id/:id' , to: 'schedules#secret'
-	patch 'schedules/:unique_id/:id', to: 'schedules#attendance_update'
-	delete 'schedules/:unique_id/:id/delete' , to: 'schedules#attendance_delete'
-
-
   scope 's/:unique_id' do
     resources :attendances
 	end
@@ -183,6 +175,11 @@ Rails.application.routes.draw do
 
   # タグ検索
 	get 'tag/:id' , to: 'tags#index'
+
+
+  # 301リダイレクト
+  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
+
 
   # 種目別
 	get ':ruby' , to: 'users#event'

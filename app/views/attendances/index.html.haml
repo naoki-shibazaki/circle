@@ -18,7 +18,7 @@
           %img.attendance_img{:src => "/images/attendance_ogp.png"}/
 
         .join_txt
-          ＼ 登録なしで回答できます！ ／
+          ＼登録なしで回答できます／
         .attendances_modal.center
           = link_to "新規で出欠回答する！", new_attendance_path(@user.unique_id), class: "join_btn"
 
@@ -58,18 +58,16 @@
                     - else
                       %span.purple= name.name
 
-
-
           = render "/schedules/attendances/answer_list"
         .schedule_archive
           - if params[:archive] == "1"
             %a{:href => "#{request.path}"} &gt;&gt; 現在の出欠を確認する
           - elsif @past_schedules.present?
-            %a{:href => "#{request.path}?archive=1"} &gt;&gt; 過去の出欠5件を確認する
+            %a{:href => "#{request.path}?archive=1"} &gt;&gt; 過去の出欠を確認する
           - else
         - if params[:archive] != "1"
           .join_txt
-            ＼ 登録なしで回答できます！ ／
+            ＼登録なしで回答できます／
           .attendances_modal.center
             = link_to "新規で出欠回答する！", new_attendance_path(@user.unique_id), class: "join_btn"
       = render "/layouts/ad_square"
