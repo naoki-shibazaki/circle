@@ -1,0 +1,2 @@
+class ExhibitionContact < ApplicationRecord
+end

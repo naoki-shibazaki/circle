@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     :passwords => 'members/passwords'
   }
 
+  devise_for :exhibition_groups, :controllers => {
+    :registrations => 'exhibition_groups/registrations',
+    :sessions => 'exhibition_groups/sessions',
+    :passwords => 'exhibition_groups/passwords'
+  }
+
   resources :categories, only: [] do
     resources :events, only: :index
   end

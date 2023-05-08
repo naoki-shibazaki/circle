@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_21_001905) do
+ActiveRecord::Schema.define(version: 2023_05_08_082157) do
 
   create_table "account_blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -180,6 +180,65 @@ ActiveRecord::Schema.define(version: 2022_07_21_001905) do
     t.integer "place"
     t.string "category_id"
     t.integer "users_count", default: 0, null: false
+  end
+
+  create_table "exhibition_contacts", force: :cascade do |t|
+    t.integer "exhibition_id", null: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.integer "subject"
+    t.text "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exhibition_id"], name: "index_exhibition_contacts_on_exhibition_id"
+  end
+
+  create_table "exhibition_group_profiles", force: :cascade do |t|
+    t.integer "exhibition_group_id", null: false
+    t.string "name", null: false
+    t.string "header_img"
+    t.string "profile_img"
+    t.string "instagram_id"
+    t.string "twitter_id"
+    t.string "web_url"
+    t.text "introduction"
+    t.integer "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exhibition_group_id"], name: "index_exhibition_group_profiles_on_exhibition_group_id"
+  end
+
+  create_table "exhibition_groups", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_exhibition_groups_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_exhibition_groups_on_reset_password_token", unique: true
+  end
+
+  create_table "exhibitions", force: :cascade do |t|
+    t.integer "exhibition_group_id", null: false
+    t.string "name", null: false
+    t.datetime "event_date"
+    t.datetime "end_date"
+    t.string "header_img"
+    t.string "gallery_img_01"
+    t.string "gallery_img_02"
+    t.string "gallery_img_03"
+    t.string "gallery_img_04"
+    t.string "venue_name"
+    t.string "venue_address"
+    t.text "detail"
+    t.integer "online", default: 1
+    t.integer "exhibit_person_price"
+    t.integer "visitor_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exhibition_group_id"], name: "index_exhibitions_on_exhibition_group_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -564,6 +623,9 @@ ActiveRecord::Schema.define(version: 2022_07_21_001905) do
   add_foreign_key "bookmarks", "members"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "collections", "users"
+  add_foreign_key "exhibition_contacts", "exhibitions"
+  add_foreign_key "exhibition_group_profiles", "exhibition_groups"
+  add_foreign_key "exhibitions", "exhibition_groups"
   add_foreign_key "items", "collections"
   add_foreign_key "members_events", "events"
   add_foreign_key "members_events", "members"

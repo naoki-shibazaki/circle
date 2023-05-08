@@ -1,0 +1,2 @@
+class ExhibitionGroupProfile < ApplicationRecord
+end
