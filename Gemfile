@@ -65,10 +65,7 @@ gem 'rack-rewrite'
 gem 'rinku'
 gem 'rails_autolink'
 gem 'ransack'
-gem 'impressionist'
-# gem 'impressionist',
-#   git: 'git@github.com:charlotte-ruby/impressionist.git',
-#   ref: '46a582ff8cd3496da64f174b30b91f9d97e86643'
+
 gem 'counter_culture'
 gem 'cocoon'
 gem 'trix'

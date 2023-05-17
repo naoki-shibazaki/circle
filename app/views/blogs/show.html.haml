@@ -42,10 +42,6 @@
                   .post_delete
                     = link_to(user_blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do
                       %i.fa.fa-trash
-              - if admin_user_signed_in?
-                - if current_admin_user.id == 1
-                  .analytics_blog
-                    閲覧数：#{@blog.impressionist_count}人
             = render "users/parts/admin_user_check", admin_user: @user.admin_user
             .rich_text_main
               - if @blog.content.include?("<div>")
