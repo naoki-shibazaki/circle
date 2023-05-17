@@ -47,12 +47,12 @@ class LinksController < ApplicationController
     @links = Link.where.not(link03_title: "").order("RANDOM()").limit(5)
 		@link.user_id = @user.id
 		@link.link01_title = @user.name
-		@link.link01_url = "https://www.circle-book.com/users/#{@user.id}"
+		@link.link01_url = "https://circle-book.com/users/#{@user.id}"
 
 		if @user.match.present?
 			if @user.match.recruit = "募集中"
 				@link.link02_title = "対戦相手の募集ページ"
-				@link.link02_url = "https://www.circle-book.com/matches/#{@user.id}"
+				@link.link02_url = "https://circle-book.com/matches/#{@user.id}"
 			end
 		end
 
