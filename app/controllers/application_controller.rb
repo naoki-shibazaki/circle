@@ -5,21 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :set_data
 
 
-	#herokuapp.comから独自ドメインへリダイレクト
-	before_action :ensure_domain
-	FQDN = 'www.circle-book.com'
-
-	# redirect correct server from herokuapp domain for SEO
-	def ensure_domain
-    return unless /\.herokuapp.com/ =~ request.host
-    # 主にlocalテスト用の対策80と443以外でアクセスされた場合ポート番号をURLに含める
-    port = ":#{request.port}" unless [80, 443].include?(request.port)
-    redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
-	end
-
-
-
-
   private
 	def set_current_user
     @current_user = User.find_by(id: session[:user_id])
@@ -103,7 +88,7 @@ class ApplicationController < ActionController::Base
       edit_member_path(current_member)
 
     elsif exhibition_group_signed_in?
-      root_path
+      edit_exhibitor_profile_path
 
     else
 

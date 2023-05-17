@@ -84,10 +84,19 @@ Rails.application.routes.draw do
 	# 旧ブログ用のリダイレクト
 	get 'blogs/:id', to: 'blogs#show_redirect'
 
+  # ログインユーザー（出展者）
+  scope module: :exhibitor_apps do
+    resource :exhibitor_profile, only: [:edit, :update]
+  end
+
+  # 出展
+  scope module: :exhibitions do
+    resources :exhibitors, only: [:show]
+  end
+
+
 	get 'user/add', to: 'users#add'
-
   get 'users/kw/:q', to: 'db_keywords#keyword'
-
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:id/edit3', to: 'users#edit3'

@@ -182,6 +182,14 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.integer "users_count", default: 0, null: false
   end
 
+  create_table "exhibition_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "display_name"
+    t.string "kana"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "exhibition_contacts", force: :cascade do |t|
     t.integer "exhibition_id", null: false
     t.string "name", null: false
@@ -195,6 +203,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
 
   create_table "exhibition_group_profiles", force: :cascade do |t|
     t.integer "exhibition_group_id", null: false
+    t.integer "exhibition_category_id", null: false
     t.string "name", null: false
     t.string "header_img"
     t.string "profile_img"
@@ -202,9 +211,9 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.string "twitter_id"
     t.string "web_url"
     t.text "introduction"
-    t.integer "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["exhibition_category_id"], name: "index_exhibition_group_profiles_on_exhibition_category_id"
     t.index ["exhibition_group_id"], name: "index_exhibition_group_profiles_on_exhibition_group_id"
   end
 
@@ -222,6 +231,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
 
   create_table "exhibitions", force: :cascade do |t|
     t.integer "exhibition_group_id", null: false
+    t.integer "prefecture_id", null: false
     t.string "name", null: false
     t.datetime "event_date"
     t.datetime "end_date"
@@ -234,11 +244,13 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.string "venue_address"
     t.text "detail"
     t.integer "online", default: 1
+    t.integer "show_contact", default: 1
     t.integer "exhibit_person_price"
     t.integer "visitor_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["exhibition_group_id"], name: "index_exhibitions_on_exhibition_group_id"
+    t.index ["prefecture_id"], name: "index_exhibitions_on_prefecture_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -624,8 +636,10 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "collections", "users"
   add_foreign_key "exhibition_contacts", "exhibitions"
+  add_foreign_key "exhibition_group_profiles", "exhibition_categories"
   add_foreign_key "exhibition_group_profiles", "exhibition_groups"
   add_foreign_key "exhibitions", "exhibition_groups"
+  add_foreign_key "exhibitions", "prefectures"
   add_foreign_key "items", "collections"
   add_foreign_key "members_events", "events"
   add_foreign_key "members_events", "members"
