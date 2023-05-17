@@ -186,11 +186,6 @@ helper_method :link_count
 		@user_groups = @user.users_groups.map{|g| g.group}
 		@user_cities = @user.users_cities.map{|c| c.city}
 
-		if admin_user_signed_in?
-		else
-			impressionist(@user, nil, unique: [:session_hash])
-		end
-
 		# レビュー合計値
 		@star_sum = @user.reviews.sum{|review| review[:review]}
 		# レビュー数

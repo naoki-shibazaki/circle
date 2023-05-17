@@ -9,8 +9,6 @@ class Blog < ApplicationRecord
 	mount_uploader :image_04, ImageUploader
 
 	paginates_per 10
-	is_impressionable counter_cache: true
-
 
   scope :blog_sort, -> { order(created_at: "DESC") }
 

@@ -50,7 +50,6 @@ class User < ApplicationRecord
 	validates :template, format: { without: NGWORD_REGEX }
 
 	paginates_per 20
-	is_impressionable counter_cache: true
 
 	before_save do
 		self.average_age.gsub!(/[\[\]\"]/, "") if attribute_present?("average_age")
