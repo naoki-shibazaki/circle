@@ -15,7 +15,6 @@ gem 'therubyracer'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
-# gem 'turbolinks', '~> 2.5.3'
 gem 'jbuilder', '~> 2.5'
 gem 'mini_magick', '~> 4.8'
 
