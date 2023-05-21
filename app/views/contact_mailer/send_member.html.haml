@@ -19,7 +19,7 @@
     - if @user_contact.entry != "練習試合"
       ＼こちらも#{@user_contact.name}さんにオススメです！／
       %br/
-      https://www.circle-book.com/#{@user.event.ruby}/#{@user.prefecture.kana}
+      https://circle-book.com/#{@user.event.ruby}/#{@user.prefecture.kana}
       %br/
       %br/
     \--------------------------------------
@@ -28,7 +28,7 @@
     %br/
     名前：#{@user_contact.name} さん
     \#{simple_format @user_contact.message}
-    URL： https://www.circle-book.com/users/#{@user.id}
+    URL： https://circle-book.com/users/#{@user.id}
     %br/
     \--------------------------------------
     %br/
@@ -38,7 +38,7 @@
     %br/
     3日以上返信がない場合、ご報告ください。
     %br/
-    https://www.circle-book.com/check_r/#{@user.id}/#{@user_contact.random_id}
+    https://circle-book.com/check_r/#{@user.id}/#{@user_contact.random_id}
     %br/
     %br/
     %br/
@@ -48,6 +48,6 @@
     %br/
     宗教勧誘を目的としている場合、ご報告ください。
     %br/
-    https://www.circle-book.com/check_v/#{@user.id}/#{@user_contact.random_id}
+    https://circle-book.com/check_v/#{@user.id}/#{@user_contact.random_id}
     %br/
     %br/

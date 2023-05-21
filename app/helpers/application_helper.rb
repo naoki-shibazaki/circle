@@ -10,8 +10,8 @@ module ApplicationHelper
         keywords: "サークル,チーム,団体,スポーツ,趣味,社会人,学生",
         separator: "|",
         icon: [
-          { href: image_url("https://www.circle-book.com/images/favicon.ico")},
-          { href: image_url("https://www.circle-book.com/images/apple-touch-icon.png"), rel: "apple-touch-icon", sizes: "180x180", type: "image/jpg" },
+          { href: image_url("https://circle-book.com/images/favicon.ico")},
+          { href: image_url("https://circle-book.com/images/apple-touch-icon.png"), rel: "apple-touch-icon", sizes: "180x180", type: "image/jpg" },
         ],
         og: {
           site_name: :site,
