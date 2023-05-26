@@ -16,7 +16,10 @@
           .link_txt マイページ
 
     - elsif exhibition_group_signed_in?
-
+      %li
+        = link_to(exhibitor_mypage_path) do
+          %i.fa.fa-user
+          .link_txt マイページ
 
 
     - elsif admin_user_signed_in?

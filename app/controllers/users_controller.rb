@@ -186,11 +186,6 @@ helper_method :link_count
 		@user_groups = @user.users_groups.map{|g| g.group}
 		@user_cities = @user.users_cities.map{|c| c.city}
 
-		if admin_user_signed_in?
-		else
-			impressionist(@user, nil, unique: [:session_hash])
-		end
-
 		# レビュー合計値
 		@star_sum = @user.reviews.sum{|review| review[:review]}
 		# レビュー数
@@ -474,6 +469,8 @@ helper_method :link_count
 		@b1_url = ""
 	end
 
+
+
 # 種目別ページ
 	def event
 		@event = Event.find_by(ruby: params[:ruby])
@@ -713,16 +710,14 @@ private
 		@search = User.ransack(params[:q])
 
 		# ソート機能
-        if params[:sort] == "1" || params[:sort] == nil
-			@users = @search.result.user_sort_1.page(params[:page])
-        elsif params[:sort] == "2"
-			@users = User.user_sort_2.page(params[:page])
-        else params[:sort] == "3"
-			@users = User.user_sort_3.page(params[:page])
-        end
+    if params[:sort] == "1" || params[:sort] == nil
+      @users = @search.result.user_sort_1.page(params[:page])
+    elsif params[:sort] == "2"
+      @users = User.user_sort_2.page(params[:page])
+    else params[:sort] == "3"
+      @users = User.user_sort_3.page(params[:page])
+    end
 
-
-		@user_all = User.all.order(:last_post => :desc).where.not(switch: "").page(params[:page])
 
     @categories = Category.all.order(:id => :asc)
 		@events = Event.all.order(:order => :asc)

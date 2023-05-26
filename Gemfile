@@ -6,6 +6,7 @@ ruby '2.7.6'
 gem 'rails', '~> 6.0.5.1'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'execjs'
@@ -14,7 +15,6 @@ gem 'therubyracer'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
-# gem 'turbolinks', '~> 2.5.3'
 gem 'jbuilder', '~> 2.5'
 gem 'mini_magick', '~> 4.8'
 
@@ -65,10 +65,7 @@ gem 'rack-rewrite'
 gem 'rinku'
 gem 'rails_autolink'
 gem 'ransack'
-gem 'impressionist'
-# gem 'impressionist',
-#   git: 'git@github.com:charlotte-ruby/impressionist.git',
-#   ref: '46a582ff8cd3496da64f174b30b91f9d97e86643'
+
 gem 'counter_culture'
 gem 'cocoon'
 gem 'trix'

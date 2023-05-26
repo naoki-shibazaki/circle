@@ -26,6 +26,7 @@
                 %i.fa.fa-image
             = f.file_field :profile_img, class: "image", style: "display:none;", id: "file_profile"
             .file_size_p ※10MB以下のjpgかpngのみ対応
+          %br
           .img_field_profile_space
           - if @profile.profile_img.present? || @profile.header_img.present?
             %ul.remove_img

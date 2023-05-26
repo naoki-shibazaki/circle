@@ -68,39 +68,23 @@
             お問い合わせすることができます！
           = link_to ">>口コミの募集", user_reviews_path(@user)
       - else
-    - if @user.impressionist_count > 1
+    - if @user_contacts.count >= 1
       .analytics_wrap
         .analytics_title
           %i.fa.fa-bar-chart-o
-          アクセス数
+          お問い合わせ件数
         .analytics_contents
           %table
             %tr
-              %th サークルページを見た人
+              %th お問い合わせ件数（メール）
               %td
-                = @user.impressionist_count
-                人
-            - if @blogs.any?
-              - @blogs.each do |blog|
-                - @blogs_imp = @blogs_imp + blog.impressions_count
-              - if @blogs_imp > 1 || current_admin_user.id == 1
-                %tr
-                  %th 活動ブログを見た人
-                  %td
-                    = @blogs_imp
-                    人
-            - if @user_contacts.count >= 1
-              %tr
-                %th お問い合わせ件数（メール）
-                %td
-                  = @user_contacts.count
-                  件
-              %tr
-                %th
-                  .analytics_txt
-                    = link_to "/users/#{@user.id}/contact_list" do
-                      \&gt;&gt; お問い合わせ管理ページ
-                %td
+                = @user_contacts.count
+                件
+            %tr
+              %th
+                .analytics_txt
+                  = link_to "/users/#{@user.id}/contact_list" do
+                    \&gt;&gt; お問い合わせ管理ページ
     - if @user.cb_point > 0
       .analytics_wrap
         .analytics_title

@@ -63,11 +63,6 @@ class BlogsController < ApplicationController
 			redirect_to blog_path
 		end
 
-		if admin_user_signed_in?
-		else
-			impressionist(@blog, nil, unique: [:session_hash])
-		end
-
 		# パンくず
 		if @user.switch.present?
 			@b1_name = "ブログ"

@@ -29,9 +29,6 @@
             .user_list_wrapper
               .list_01
                 %h2.user_name= user.name.truncate(24)
-                - if admin_user_signed_in?
-                  - if current_admin_user.id == 1
-                    【PV：#{user.impressionist_count}／CP：#{user.cb_point.round(1)}】
             .list_cnts
               .list_04.recruitment_txt
                 %span.user_recruitment= user.recruitment.truncate(110)

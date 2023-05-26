@@ -87,11 +87,13 @@ Rails.application.routes.draw do
   # ログインユーザー（出展者）
   scope module: :exhibitor_apps do
     resource :exhibitor_profile, only: [:edit, :update]
+    resource :exhibitor_mypage, only: [:show]
   end
 
   # 出展
   scope module: :exhibitions do
     resources :exhibitors, only: [:show]
+    resources :exhibitions
   end
 
 

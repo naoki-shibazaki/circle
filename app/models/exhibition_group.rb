@@ -12,10 +12,16 @@ class ExhibitionGroup < ApplicationRecord
     true
   end
 
-
   def prepare_profile
     exhibition_group_profile || build_exhibition_group_profile
   end
 
+  def profile
+    self.exhibition_group_profile
+  end
+
+  def has_exhibitor?(exhibitor)
+    exhibitor == self.profile
+  end
 
 end
