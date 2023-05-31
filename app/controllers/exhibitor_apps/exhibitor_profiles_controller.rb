@@ -7,6 +7,7 @@ class ExhibitorApps::ExhibitorProfilesController < ExhibitorApps::ApplicationCon
   def update
     @profile = current_exhibition_group.prepare_profile
     @profile.assign_attributes(exhibition_group_profile_params)
+    @profile.exhibition_category_id = 1
     if @profile.save
       redirect_to exhibitor_path(@profile.id), notice: 'プロフィール更新完了！'
     else
