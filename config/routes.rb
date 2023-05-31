@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     :passwords => 'members/passwords'
   }
 
+  devise_for :exhibition_groups, :controllers => {
+    :registrations => 'exhibition_groups/registrations',
+    :sessions => 'exhibition_groups/sessions',
+    :passwords => 'exhibition_groups/passwords'
+  }
+
   resources :categories, only: [] do
     resources :events, only: :index
   end
@@ -78,10 +84,23 @@ Rails.application.routes.draw do
 	# 旧ブログ用のリダイレクト
 	get 'blogs/:id', to: 'blogs#show_redirect'
 
+  # ログインユーザー（出展者）
+  scope module: :exhibitor_apps do
+    resource :exhibitor_profile, only: [:edit, :update]
+    resource :exhibitor_mypage, only: [:show]
+  end
+
+  # 出展
+  scope module: :exhibitions do
+    resources :exhibitors, only: [:show]
+    resources :exhibitions do
+      resources :exhibition_contacts, only: [:create]
+    end
+  end
+
+
 	get 'user/add', to: 'users#add'
-
   get 'users/kw/:q', to: 'db_keywords#keyword'
-
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:id/edit3', to: 'users#edit3'

@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 	before_action :set_imperfect_current_user
 	before_action :request_path
   before_action :set_data
-  before_action :set_format
 
 
   private
@@ -82,11 +81,17 @@ class ApplicationController < ActionController::Base
 
 	def after_sign_in_path_for(resource)
 
-  if admin_user_signed_in?
-      new_user_path
+    if admin_user_signed_in?
+        new_user_path
 
-    else member_signed_in?
+    elsif member_signed_in?
       edit_member_path(current_member)
+
+    elsif exhibition_group_signed_in?
+      edit_exhibitor_profile_path
+
+    else
+
     end
 
 	end
@@ -106,10 +111,7 @@ class ApplicationController < ActionController::Base
 
   end
 
-  # amp（残しておく）
-  def set_format
-    Thread.current[:format] = request[:format]
-  end
+
 
 
 end

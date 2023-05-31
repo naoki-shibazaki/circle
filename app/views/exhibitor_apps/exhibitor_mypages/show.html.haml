@@ -1,0 +1,23 @@
+- set_meta_tags noindex: true, title: "マイページ"
+.user_main.users-index
+  .container
+    .mypage_wrap
+      .icon_wrap
+        = link_to exhibitor_path(current_exhibition_group.profile), class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_01.png"}/
+            .icon_txt
+              グループページ
+        = link_to edit_exhibitor_profile_path, class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_01.png"}/
+            .icon_txt
+              プロフィール編集
+        = link_to new_exhibition_path, class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_08.png"}/
+            .icon_txt
+              イベント作成
