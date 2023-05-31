@@ -44,7 +44,10 @@
             出展・グループ名
           = f.text_field :name, class: 'form-control', placeholder: "サークルブック"
 
-
+          .label_item
+            %span.label.label_danger> 必須
+            カテゴリー
+          = f.collection_select :exhibition_category_id, ExhibitionCategory.all.order(:order => :asc), :id, :name
 
 
           .sns_form
