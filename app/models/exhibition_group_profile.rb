@@ -11,4 +11,8 @@ class ExhibitionGroupProfile < ApplicationRecord
     :format => /\A#{URI::regexp(%w(http https))}\z/
 	}
 
+  def exhibitions
+    self.exhibition_group.exhibitions
+  end
+
 end

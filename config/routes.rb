@@ -93,7 +93,9 @@ Rails.application.routes.draw do
   # 出展
   scope module: :exhibitions do
     resources :exhibitors, only: [:show]
-    resources :exhibitions
+    resources :exhibitions do
+      resources :exhibition_contacts, only: [:create]
+    end
   end
 
 

@@ -82,3 +82,24 @@
             グループの詳細情報
           .profile_list_p.profile_list_a.rich_text_sub
             = raw Rinku.auto_link(sanitize @exhibitor.introduction, tags: %w(p a br strong ul li div), attributes:  %w(id class href))
+
+
+        -if @exhibitor.exhibitions.present?
+          .schedule_list_wrap
+            %h2.schedule_m
+              %i.fa.fa-calendar
+              スケジュール
+            - @exhibitor.exhibitions.each do |exhibition|
+
+              = link_to exhibition_path(exhibition.id) do
+                .schedule_list
+                  .schedule_day
+                    = exhibition.event_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[exhibition.event_date.wday]}) %H:%M")
+                  .schedule_day
+                    = "〜 #{exhibition.end_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[exhibition.end_date.wday]}) %H:%M")}"
+                  .schedule_venue
+                    %i.fa.fa-map-marker
+                    = exhibition.venue_name
+                  - if exhibition.name.present?
+                    .schedule_title_list
+                      = exhibition.name

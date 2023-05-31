@@ -24,4 +24,8 @@ class ExhibitionGroup < ApplicationRecord
     exhibitor == self.profile
   end
 
+  def has_written?(exhibition)
+    exhibitions.exists?(id: exhibition)
+  end
+
 end
