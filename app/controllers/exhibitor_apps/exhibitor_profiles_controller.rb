@@ -1,9 +1,5 @@
 class ExhibitorApps::ExhibitorProfilesController < ExhibitorApps::ApplicationController
 
-  def new
-    @profile = current_exhibition_group.build_exhibition_group_profile
-  end
-
   def edit
     @profile = current_exhibition_group.prepare_profile
   end
