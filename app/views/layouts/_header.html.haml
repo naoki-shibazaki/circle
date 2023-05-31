@@ -14,6 +14,14 @@
         = link_to(member_path(current_member)) do
           %i.fa.fa-user
           .link_txt マイページ
+
+    - elsif exhibition_group_signed_in?
+      %li
+        = link_to(exhibitor_mypage_path) do
+          %i.fa.fa-user
+          .link_txt マイページ
+
+
     - elsif admin_user_signed_in?
       - if current_admin_user.users.any?
         %li

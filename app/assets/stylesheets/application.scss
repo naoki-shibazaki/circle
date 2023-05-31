@@ -1,6 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "trix";
+@import 'common';
+
+
 
 $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
@@ -1974,7 +1977,8 @@ a.line_business {
 
 
 #admin_user_remember_me,
-#member_remember_me {
+#member_remember_me,
+#exhibition_group_remember_me{
   width: 30px;
 }
 
