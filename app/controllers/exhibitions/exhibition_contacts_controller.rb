@@ -1,5 +1,4 @@
-class ExhibitionContacts::ExhibitionsController < Exhibitions::ApplicationController
-
+class Exhibitions::ExhibitionContactsController < Exhibitions::ApplicationController
 
   def create
     # @exhibition = current_exhibition_group.exhibitions.build(exhibition_params)
