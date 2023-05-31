@@ -88,7 +88,7 @@ class ApplicationController < ActionController::Base
       edit_member_path(current_member)
 
     elsif exhibition_group_signed_in?
-      edit_exhibitor_profile_path
+      new_exhibitor_profile_path
 
     else
 

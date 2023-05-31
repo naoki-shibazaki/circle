@@ -9,7 +9,7 @@
           - @profile.errors.full_messages.each do |message|
             %li= message
 
-        = form_with(model: @profile, url: exhibitor_profile_path, method: 'put', local: true) do |f|
+        = form_with(model: @profile, url: exhibitor_profile_path, local: true) do |f|
 
           .img_field_profile_wrap
             .label_item プロフィール画像（アイコン＆背景写真）
