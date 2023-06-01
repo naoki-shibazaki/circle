@@ -30,7 +30,7 @@ jobs:
               script: |
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
-          - name: Deploy to circle-book-web-server-3
+          - name: Deploy to circle-book-web-server-5
             uses: appleboy/ssh-action@master
             with:
               host: ${{ secrets.DEPLOY_HOST3 }}
