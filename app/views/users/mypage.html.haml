@@ -30,6 +30,9 @@
               %i.fa.fa-copy
               URLをコピーする！
       = render "/users/analytics"
+
+      = render "/layouts/ads/picte_mypage", user: @user
+
       .icon_wrap
         = link_to user_path(@user), class: "icon_cont" do
           %div
