@@ -37,6 +37,14 @@ class Exhibitions::ExhibitionsController < Exhibitions::ApplicationController
 
   end
 
+	def destroy
+		@exhibition = Exhibition.find(params[:id])
+    @exhibition.destroy
+
+		flash[:notice] = '削除が完了しました！'
+		redirect_to exhibitor_path(current_exhibition_group.id)
+	end
+
 
 private
   def exhibition_params

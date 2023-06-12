@@ -21,15 +21,17 @@
       .article_item.article_padding.place_list
         %table
           %tbody
-            %tr.flex_contents
-              %th.flex_list 開催日程
-              %td.flex_list
-                = @exhibition.event_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[@exhibition.event_date.wday]}) %H:%M")
+            -if @exhibition.event_date.present?
+              %tr.flex_contents
+                %th.flex_list 開催日程
+                %td.flex_list
+                  = @exhibition.event_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[@exhibition.event_date.wday]}) %H:%M")
 
-            %tr.flex_contents
-              %th.flex_list 終了日程
-              %td.flex_list
-                = @exhibition.end_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[@exhibition.end_date.wday]}) %H:%M")
+            -if @exhibition.end_date.present?
+              %tr.flex_contents
+                %th.flex_list 終了日程
+                %td.flex_list
+                  = @exhibition.end_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[@exhibition.end_date.wday]}) %H:%M")
 
             %tr.flex_contents
               %th.flex_list エリア
