@@ -10,4 +10,13 @@ class Exhibition < ApplicationRecord
 	mount_uploader :gallery_img_03, ImageUploader
 	mount_uploader :gallery_img_04, ImageUploader
 
+	with_options presence: true do
+    validates :name
+    validates :event_date
+    validates :end_date
+    validates :name
+  end
+
+
+
 end
