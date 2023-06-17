@@ -14,7 +14,7 @@
           %span.label.label_danger> 管理権限
           規約違反判定
         %br/
-        = f.select :check, [ ['なし',''],['ネットワークビジネス',1], ['宗教',2] ]
+        = f.select :check, [ ['なし',''],['ネットワークビジネス',1], ['ペナルティ',2] ]
         = f.submit "更新する", data: { disable_with: '更新中...' }
     .reset
   = form_for @user do |f|
