@@ -89,7 +89,7 @@
             %h2.schedule_m
               %i.fa.fa-calendar
               スケジュール
-            - @exhibitor.exhibitions.each do |exhibition|
+            - @exhibitor.exhibitions.order(end_date: "desc").each do |exhibition|
 
               = link_to exhibition_path(exhibition.id) do
                 .schedule_list
