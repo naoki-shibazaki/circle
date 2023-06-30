@@ -14,13 +14,17 @@
             質問を受付中です！
             %br/
             ※個人情報は書かないようにお願いします
-        .qa_answer_form
-          = form_for ([@user, @question]) do |f|
-            = render 'layouts/error_messages', model: f.object
-            = f.text_area :content, class: 'form-control form-note change_question', placeholder: "質問を書いてください！（80文字以内）"
-            .actions
-              = f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' }
-            .reset
+
+        - if AccountBlock.find_by(ip_address: request.remote_ip) || @user.review_permit == false
+        - else
+          .qa_answer_form
+            = form_for ([@user, @question]) do |f|
+              = render 'layouts/error_messages', model: f.object
+              = f.text_area :content, class: 'form-control form-note change_question', placeholder: "質問を書いてください！（80文字以内）"
+              .actions
+                = f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' }
+              .reset
+
       - if admin_user_signed_in?
         - if @user.admin_user_id == current_admin_user.id
           .qa_tw_share
