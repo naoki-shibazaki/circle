@@ -51,7 +51,7 @@
       = f.select :ng_account, [ ['OK', 'OK'], ['NG','NG'] ]
       .label_item
         %span.label.label_danger> 管理権限
-        口コミの投稿許可
+        口コミ・質問の投稿許可
       = f.select :review_permit, [ ['許可', true], ['禁止', false] ]
     - if @user.switch.present?
       .label_item

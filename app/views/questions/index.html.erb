@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <% if AccountBlock.find_by(ip_address: request.remote_ip) %>
+    <% if AccountBlock.find_by(ip_address: request.remote_ip) || @user.review_permit == false %>
     <% else %>
       <div class="qa_answer_form">
         <%= form_for ([@user, @question]) do |f| %>
