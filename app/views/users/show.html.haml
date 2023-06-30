@@ -207,7 +207,11 @@
             最初の口コミを投稿してみませんか？
           .review_link_b= link_to ">>口コミ投稿",user_reviews_path(@user)
           .border
-        = render "/users/question_card"
+
+        - if AccountBlock.find_by(ip_address: request.remote_ip) || @user.review_permit == false
+        - else
+          = render "/users/question_card"
+
         - if @user.switch == "募集中"
           .border
           = render "/users/contact_btn"
