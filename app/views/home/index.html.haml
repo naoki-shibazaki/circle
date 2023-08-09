@@ -7,7 +7,7 @@
       %img.img_logo_title{:alt => "サークルブック", :src => "/images/logo.png"}/
     .users-txt
       - if admin_user_signed_in?
-        = link_to("活動ブログ", new_user_blog_path(@user) )
+        = link_to("活動ブログ", new_user_blog_path(current_admin_user.users.first) )
         を投稿すると
         %br/
         あなたの掲載順位が上がります！

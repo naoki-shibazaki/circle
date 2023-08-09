@@ -77,6 +77,8 @@ gem 'erb2haml'
 gem 'active_decorator'
 gem 'active_model_serializers'
 
+gem 'annotate'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'sqlite3'

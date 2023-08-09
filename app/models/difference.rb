@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: differences
+#
+#  id         :integer          not null, primary key
+#  combine    :text
+#  dummy      :string
+#  letter     :string
+#  order      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Difference < ApplicationRecord
 
 	validates :letter, presence: true, length: { maximum: 1 }

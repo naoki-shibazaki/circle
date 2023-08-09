@@ -8,15 +8,6 @@ before_action :set_users
 helper_method :link_count
 
 
-  def top
-		@events = Event.all.order(:users_count => :desc)
-    @prefectures = Prefecture.all.order(:order => :asc)
-    @categories = Category.all.order(:order => :asc)
-		@match_events = Event.where(matching: 1).order(:order => :asc)
-		@place_events = Event.where(place: 1).order(:order => :asc)
-    @match_users = Match.where(recruit: "募集中").order(updated_at: "DESC")
-  end
-
 	def index
 		# パンくず
 		@b1_name = "サークル検索"
@@ -182,8 +173,8 @@ helper_method :link_count
 		@users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中", admin_user_id: @admin_ids).where.not(id: @user.id).order(:last_post => :desc)
     @admin_user = AdminUser.find(@user.admin_user.id)
 
-		@user_ages = @user.users_ages.map{|a| a.age}
-		@user_groups = @user.users_groups.map{|g| g.group}
+		@user_ages = @user.users_ages.includes([:age]).map{|a| a.age}
+		@user_groups = @user.users_groups.includes([:group]).map{|g| g.group}
 		@user_cities = @user.users_cities.map{|c| c.city}
 
 		# レビュー合計値
