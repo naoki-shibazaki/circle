@@ -7,7 +7,7 @@ gem 'rails', '~> 6.0.5.1'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'sassc-rails'
-gem 'uglifier', '>= 1.3.0'
+gem 'terser'
 
 gem 'execjs'
 gem 'therubyracer'
@@ -37,11 +37,8 @@ gem 'devise-i18n-views'
 gem 'kaminari'
 gem 'jquery-rails'
 
-gem 'newrelic_rpm' # heroku add on
-
 gem 'bootstrap-sass', '~> 3.3.7'
 gem "font-awesome-rails"
-# gem "bootstrap4-datetime-picker-rails"
 gem 'momentjs-rails'
 gem "rack-cors"
 
@@ -83,6 +80,7 @@ gem 'active_model_serializers'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'sqlite3'
+  gem 'bullet' #N+1問題
 end
 
 group :development do
@@ -92,6 +90,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet' #N+1問題
   gem 'derailed_benchmarks' #メモリ容量チェック
 end
 

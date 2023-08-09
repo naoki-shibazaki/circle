@@ -4,7 +4,7 @@
       = lazysizes_image_tag @user.pic_profile.url , class:'post_image_icon'
     = link_to(new_user_blog_path(@user)) do
       .post_link サークル活動をつぶやく！
-- @blogs.each.with_index(1) do |blog, i|
+- @blogs.includes(user: [:event, :prefecture]).each.with_index(1) do |blog, i|
   .form.users-form
     .blog-body
       = link_to(user_blog_path(blog.user_id, blog.id)) do

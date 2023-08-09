@@ -104,7 +104,7 @@
           %i.fa.fa-users
           メンバー募集中のサークル
       %ul.user_slide_wrap
-        - @users.first(7).each do |user|
+        - @users.includes([:event, :prefecture]).first(7).each do |user|
           = link_to(user_path(user.id)) do
             %li.user_slide_list
               .user_list_header

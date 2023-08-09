@@ -595,9 +595,9 @@ helper_method :link_count
 	def event_prefecture_city
 		@event = Event.find_by(ruby: params[:ruby])
 		@city = City.find_by(city_kana: params[:city_kana])
-		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
+		@prefecture =  Prefecture.find_by(kana: params[:kana])
 		@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
-		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
+		# @prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
 		@city_users = @city.users_cities.map{|c| c.user.id}
 
@@ -610,10 +610,10 @@ helper_method :link_count
         @users = User.city(@city_users).or(User.prefecture_50).event(@event.id).pref.user_sort_3.page(params[:page])
       end
 
-		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
-      flash[:notice] = "URLが間違っています"
-      redirect_to users_path
-		end
+		# if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
+    #   flash[:notice] = "URLが間違っています"
+    #   redirect_to users_path
+		# end
 
 		# パンくず
 		@b1_name = @event.name
