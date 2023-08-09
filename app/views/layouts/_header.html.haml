@@ -3,7 +3,7 @@
     / ログイン時の処理
     - if member_signed_in?
       %li
-        = link_to(users_path) do
+        = link_to(root_path) do
           %i.fa.fa-search
           .link_txt サークル検索
       %li
@@ -29,7 +29,7 @@
             %i.fa.fa-user.notice_icon
             .link_txt マイページ
       %li
-        = link_to(users_path) do
+        = link_to(root_path) do
           %i.fa.fa-search
           .link_txt サークル検索
       %li
@@ -44,7 +44,7 @@
             %i.fa.fa-flag-checkered
             .link_txt 対戦相手募集
         - else
-          = link_to(users_path) do
+          = link_to(root_path) do
             %i.fa.fa-search
             .link_txt サークル検索
       %li

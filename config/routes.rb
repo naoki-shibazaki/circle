@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'home#index'
+
   devise_for :admin_users, :controllers => {
     :registrations => 'admin_users/registrations',
     :sessions => 'admin_users/sessions'
@@ -56,8 +59,6 @@ Rails.application.routes.draw do
 	scope '/contents' do
     resources :differences
 	end
-
-	root 'users#top'
 
 	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
