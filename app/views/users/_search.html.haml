@@ -9,7 +9,7 @@
     - if @path.is('users#index', 'users#top', 'users#search', 'users#keyword', 'tags#index', 'db_keywords')
       %select{:name => "event_select", :onchange => "location.href=value;"}
         %option{:value => "#"} サークル・チーム
-        - @categories.each do |category|
+        - @categories.includes([:events]).each do |category|
           %optgroup{:label => "#{category.name}"}
             - category.events.each do |event|
               %option{:value => "/#{event.ruby}"}= event.name
