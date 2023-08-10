@@ -54,7 +54,6 @@ class BlogsController < ApplicationController
 	def show
 		@blog = Blog.find(params[:id])
 		@user = User.find_by(id: params[:user_id])
-    gallery_counts(@user)
 		@blogs = Blog.where(user_id: @user.id).where.not(id: @blog.id).order(created_at: "DESC")
 		@data = AdminUser.find_by(id: @blog.user.id)
 
@@ -80,7 +79,6 @@ class BlogsController < ApplicationController
 
 	def user_blogs
 		@user = User.find_by(id: params[:user_id])
-    gallery_counts(@user)
 		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC").page(params[:page])
 
 		# パンくず
@@ -179,7 +177,6 @@ class BlogsController < ApplicationController
   def gallery
     @blogs = Blog.where(user_id: params[:user_id]).order(created_at: "DESC").page(params[:page])
     @user = User.find(params[:user_id])
-    gallery_counts(@user)
   end
 
 

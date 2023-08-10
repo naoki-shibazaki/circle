@@ -6,7 +6,7 @@
       .post_link スケジュールを追加する！
 - if @schedules.present?
   %ul
-    - @schedules.each.with_index(1) do |schedule, i|
+    - @schedules.includes(user: [:event, :prefecture, :tags]).each.with_index(1) do |schedule, i|
       %li.schedule_item_wrap
         = link_to(user_schedule_path(schedule.user.id, schedule.id)) do
           .header_schedule_list.ribbon-wrapper

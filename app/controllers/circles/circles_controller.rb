@@ -1,64 +1,27 @@
-class UsersController < ApplicationController
-include ApplicationHelper
-include Circlebook
+class Circles::CirclesController < Circles::ApplicationController
 
-before_action :ensure_correct_user, only: [:mypage, :edit, :update, :edit2, :update2, :edit3, :update3, :update_contact, :account_del]
-before_action :set_users, except: [:show]
 
-helper_method :link_count
+
 
 
 	def index
-		# パンくず
-		@b1_name = "サークル検索"
-    @b1_url = "/users"
 	end
 
 
   def show
 		@user = User.find(params[:id])
-		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
-		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
-		@data = AdminUser.find_by(id: @user.admin_user_id)
+		@sub_prefecture = Prefecture.find(@user.prefecture_sub_id)
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 		@questions = Question.where(user_id: @user.id).where.not(answer: nil).order(created_at: "DESC")
-    @admin_users = AdminUser.where(check: nil)
-    @admin_ids = @admin_users.map{|a| a.id}
-		@users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中", admin_user_id: @admin_ids).where.not(id: @user.id).order(:last_post => :desc)
+
     @admin_user = AdminUser.find(@user.admin_user.id)
 
+    @user_cities = @user.users_cities.includes([city: :prefecture]).map{|c| c.city}
+    @user_groups = @user.users_groups.includes([:group]).map{|g| g.group}
 		@user_ages = @user.users_ages.includes([:age]).map{|a| a.age}
-		@user_groups = @user.users_groups.includes([:group]).map{|g| g.group}
-		@user_cities = @user.users_cities.includes([:city]).map{|c| c.city}
 
-		# レビュー合計値
-		@star_sum = @user.reviews.sum{|review| review[:review]}
-		# レビュー数
-		@star_count = @user.reviews.count
-		# レビュー値
-		if @star_count == 0 && @star_sum == 0
-			@star_review =  0
-		else
-			@star_review =  (@star_sum / @star_count.to_f)*5
-		end
+		@users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中", admin_user_id: @admin_ids).where.not(id: @user.id, appeal: "").order(:last_post => :desc).limit(5)
 
-		if @user.id.to_s != params[:id]
-        flash[:notice] = "URLが間違っています"
-        redirect_to users_path
-		end
-
-		if @user.gallery_01.present?
-			@count += 1
-		end
-		if @user.gallery_02.present?
-			@count += 1
-		end
-		if @user.gallery_03.present?
-			@count += 1
-		end
-		if @user.gallery_04.present?
-			@count += 1
-		end
 
 		if @user.switch.present?
 			if @user.prefecture_sub_id.present?
@@ -79,7 +42,8 @@ helper_method :link_count
 				@b3_url = ""
 			end
 		end
-	end
+
+  end
 
 
 
