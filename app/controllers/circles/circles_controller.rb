@@ -10,7 +10,7 @@ class Circles::CirclesController < Circles::ApplicationController
 
   def show
 		@user = User.find(params[:id])
-		@sub_prefecture = Prefecture.find(@user.prefecture_sub_id)
+		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
 		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
 		@questions = Question.where(user_id: @user.id).where.not(answer: nil).order(created_at: "DESC")
 
@@ -20,7 +20,7 @@ class Circles::CirclesController < Circles::ApplicationController
     @user_groups = @user.users_groups.includes([:group]).map{|g| g.group}
 		@user_ages = @user.users_ages.includes([:age]).map{|a| a.age}
 
-		@users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中", admin_user_id: @admin_ids).where.not(id: @user.id, appeal: "").order(:last_post => :desc).limit(5)
+		@users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中").where.not(id: @user.id).order(:last_post => :desc).limit(5)
 
 
 		if @user.switch.present?
