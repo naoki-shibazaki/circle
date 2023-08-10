@@ -211,7 +211,7 @@
           <%= @prefecture.name %>で活動している<br><%= @event.txt %>
         </h2>
         <% @users.first(3).each do |user| %>
-          <%= link_to(user_path(user.id)) do %>
+          <%= link_to(circle_path(user.id)) do %>
             <div class="user_list">
               <div class="user-content">
                 <div class="user_list_header">

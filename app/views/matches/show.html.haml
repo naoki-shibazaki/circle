@@ -51,7 +51,7 @@
               - if @match.user.switch == "募集中"
                 %tr.flex_contents
                   %th.flex_list 新規募集
-                  %td.flex_list.txt_s= link_to ">> 新規メンバーの募集ページ", user_path(@match.user.id)
+                  %td.flex_list.txt_s= link_to ">> 新規メンバーの募集ページ", circle_path(@match.user.id)
               - if @match.user.twitter.present? || @match.user.instagram.present?
                 %tr.flex_contents
                   %th.flex_list SNS

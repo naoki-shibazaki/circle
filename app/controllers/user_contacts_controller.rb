@@ -106,12 +106,12 @@ class UserContactsController < ApplicationController
 
       if @user.id != @user_contact.user_id
         flash[:notice] = "URLが間違っています"
-        redirect_to user_path(@user.id)
+        redirect_to circle_path(@user.id)
       end
 
     else
       flash[:notice] = "URLが間違っています"
-			redirect_to user_path(@user.id)
+			redirect_to circle_path(@user.id)
     end
   end
 
@@ -122,12 +122,12 @@ class UserContactsController < ApplicationController
 
       if @user.id != @user_contact.user_id
         flash[:notice] = "URLが間違っています"
-        redirect_to user_path(@user.id)
+        redirect_to circle_path(@user.id)
       end
 
     else
       flash[:notice] = "URLが間違っています"
-			redirect_to user_path(@user.id)
+			redirect_to circle_path(@user.id)
     end
   end
 
@@ -139,12 +139,12 @@ class UserContactsController < ApplicationController
 
       if @user.id != @user_contact.user_id
         flash[:notice] = "URLが間違っています"
-        redirect_to user_path(@user.id)
+        redirect_to circle_path(@user.id)
       end
 
     else
       flash[:notice] = "URLが間違っています"
-			redirect_to user_path(@user.id)
+			redirect_to circle_path(@user.id)
     end
   end
 

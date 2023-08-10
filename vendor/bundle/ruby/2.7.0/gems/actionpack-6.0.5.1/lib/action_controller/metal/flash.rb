@@ -22,7 +22,7 @@ module ActionController #:nodoc:
       #   end
       #
       #   # in your controller
-      #   redirect_to user_path(@user), warning: "Incomplete profile"
+      #   redirect_to circle_path(@user), warning: "Incomplete profile"
       #
       #   # in your view
       #   <%= warning %>

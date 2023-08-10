@@ -1,13 +1,13 @@
 - if admin_user_signed_in?
   .post_message
-    = link_to(user_path(@user)) do
+    = link_to(circle_path(@user)) do
       = lazysizes_image_tag @user.pic_profile.url , class:'post_image_icon'
     = link_to(new_user_blog_path(@user)) do
       .post_link サークル活動をつぶやく！
 %ul
   - @users.includes([:reviews, :event, :prefecture, :tags]).each.with_index(1) do |user, i|
     %li.user_item_wrap
-      = link_to(user_path(user.id)) do
+      = link_to(circle_path(user.id)) do
         .header_user_list.ribbon-wrapper
           .header_img_wrap
             - if user.pic_header.present?

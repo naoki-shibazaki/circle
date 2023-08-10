@@ -70,10 +70,10 @@
       %ul.header_menue_btm
         - if @path.is('users')
           %li.current_page
-            %span= link_to "トップ", user_path(@user)
+            %span= link_to "トップ", circle_path(@user)
         - else
           %li
-            %span= link_to "トップ", user_path(@user)
+            %span= link_to "トップ", circle_path(@user)
         - if @path.is('blogs#show') || @path.is('blogs#user_blogs')
           %li.current_page
             %span= link_to "ブログ", user_blogs_path(@user)

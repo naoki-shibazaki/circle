@@ -1,6 +1,6 @@
 - if admin_user_signed_in?
   .post_message
-    = link_to(user_path(@user)) do
+    = link_to(circle_path(@user)) do
       = lazysizes_image_tag @user.pic_profile.url , class:'post_image_icon'
     = link_to(new_user_blog_path(@user)) do
       .post_link サークル活動をつぶやく！
