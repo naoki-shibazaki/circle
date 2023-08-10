@@ -31,9 +31,11 @@ Rails.application.routes.draw do
     resources :circles
   end
 
+  # 301リダイレクト
+  get 'users/:id', to: redirect('circles/%{id}')
+  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
 
-
-	resources :users do
+	resources :users, except: [:show] do
 		resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]
 		resources :links, only: [:new, :create]
@@ -205,8 +207,7 @@ Rails.application.routes.draw do
 	get 'tag/:id' , to: 'tags#index'
 
 
-  # 301リダイレクト
-  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
+
 
 
   # 種目別

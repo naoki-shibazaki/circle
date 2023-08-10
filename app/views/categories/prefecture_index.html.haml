@@ -23,7 +23,7 @@
           メンバー募集中のサークル
       %ul.user_slide_wrap
         - @users.first(7).each do |user|
-          = link_to(user_path(user.id)) do
+          = link_to(circle_path(user.id)) do
             %li.user_slide_list
               .user_list_header
                 = lazysizes_image_tag user.pic_profile.url , class:'image_icon'

@@ -20,7 +20,7 @@ SitemapGenerator::Sitemap.create do
   add root_path, :lastmod => current_time, changefreq: 'weekly', priority: 0.3
 
   # User.find_each do |user|
-  #   add user_path(user), :lastmod => user.updated_at, :priority => 0.3, :changefreq => 'weekly'
+  #   add circle_path(user), :lastmod => user.updated_at, :priority => 0.3, :changefreq => 'weekly'
     # add "/users/#{user.id}/schedules", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'
     # add "/users/#{user.id}/reviews", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'
     # add "/users/#{user.id}/questions", :lastmod => current_time, :priority => 0.3, :changefreq => 'weekly'

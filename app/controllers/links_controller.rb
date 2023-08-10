@@ -100,7 +100,7 @@ class LinksController < ApplicationController
   def unique_page
     if @link = Link.find_by(unique_id: params[:unique_id])
       @user = @link.user
-      redirect_to user_path(@user.id)
+      redirect_to circle_path(@user.id)
     else
 			flash[:notice] = "URLが間違っています"
       redirect_to users_path

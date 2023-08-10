@@ -1,6 +1,6 @@
 - if admin_user_signed_in?
   .post_message
-    = link_to(user_path(@user)) do
+    = link_to(circle_path(@user)) do
       = lazysizes_image_tag @user.pic_profile.url , class:'post_image_icon'
     = link_to(new_user_schedule_path(@user)) do
       .post_link スケジュールを追加する！
@@ -68,7 +68,7 @@
                   %i.fa.fa-users>
                   参加人数：#{schedule.name_schedules.where(answer: 1).count}名
         %hr.hr_w/
-        = link_to(user_path(schedule.user.id)) do
+        = link_to(circle_path(schedule.user.id)) do
           .schedule_user_wrap
             .schedule_list_sub_title 主催サークル
             .user_profile_wrap
