@@ -64,7 +64,7 @@
 
 
 
-  - if @path.is('users#show') || @path.is('users#mypage') || @path.is('blogs#show') || @path.is('blogs#user_blogs') || @path.is('blogs#gallery') || @path.is('schedules') || @path.is('attendances') || @path.is('questions') || @path.is('reviews#index')
+  - if @path.is('users#show') || @path.is('circles#show') || @path.is('users#mypage') || @path.is('blogs#show') || @path.is('blogs#user_blogs') || @path.is('blogs#gallery') || @path.is('schedules') || @path.is('attendances') || @path.is('questions') || @path.is('reviews#index')
     - if @path.is('event_questions') || @path.is('schedules#dates') || @path.is('schedules#year') || @path.is('schedules#month') || @path.is('schedules#day') || @path.is('#new') || @path.is('#edit')
     - else
       %ul.header_menue_btm
@@ -77,55 +77,45 @@
         - if @path.is('blogs#show') || @path.is('blogs#user_blogs')
           %li.current_page
             %span= link_to "ブログ", user_blogs_path(@user)
-            .header_count= @user.blogs.count
+            .header_count= @user.blogs.size
         - elsif @user.blogs.present?
           %li
             %span= link_to "ブログ", user_blogs_path(@user)
-            .header_count= @user.blogs.count
+            .header_count= @user.blogs.size
         - else
           %li.none_page
             %span ブログ
-        - if @path.is('blogs#gallery')
-          %li.current_page
-            %span= link_to "写真", "/users/#{@user.id}/gallery"
-            .header_count= @gallery_count
-        - elsif @gallery_count > 0
-          %li
-            %span= link_to "写真", "/users/#{@user.id}/gallery"
-            .header_count= @gallery_count
-        - else
-          %li.none_page
-            %span 写真
+
         - if @path.is('schedules')
           %li.current_page
             %span= link_to "活動日", user_schedules_path(@user)
-            .header_count= @user.schedules.count
+            .header_count= @user.schedules.size
         - elsif @user.schedules.present?
           %li
             %span= link_to "活動日", user_schedules_path(@user)
-            .header_count= @user.schedules.count
+            .header_count= @user.schedules.size
         - else
           %li.none_page
             %span 活動日
         - if @path.is('questions')
           %li.current_page
             %span= link_to "Ｑ＆Ａ", user_questions_path(@user)
-            .header_count= @user.questions.count
+            .header_count= @user.questions.size
         - elsif @user.questions.present?
           %li
             %span= link_to "Ｑ＆Ａ", user_questions_path(@user)
-            .header_count= @user.questions.count
+            .header_count= @user.questions.size
         - else
           %li.none_page
             %span Ｑ＆Ａ
         - if @path.is('reviews')
           %li.current_page
             %span= link_to "口コミ", user_reviews_path(@user)
-            .header_count= @user.reviews.count
+            .header_count= @user.reviews.size
         - elsif @user.reviews.present?
           %li
             %span= link_to "口コミ", user_reviews_path(@user)
-            .header_count= @user.reviews.count
+            .header_count= @user.reviews.size
         - else
           %li.none_page
             %span 口コミ

@@ -96,7 +96,7 @@
           %li
             = link_to("/prefectures/#{user.prefecture.kana}/tag/#{tag.id}") do
               = tag.name
-    - elsif @path.is('users#show')
+    - elsif @path.is('users#show', 'circles#show')
       %li
         = link_to("/#{user.event.ruby}") do
           = user.event.name

@@ -119,7 +119,6 @@ before_action :set_dates, {only: [:dates, :day]}
 	def secret
     @schedule = Schedule.find(params[:id])
     @user = User.find_by(unique_id: params[:unique_id])
-    gallery_counts(@user)
     @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
     @past_schedules = Schedule.where(user_id: @user.id).where("day < ?", DateTime.yesterday).order(:day => :desc, :time_s => :asc)
     @data = AdminUser.find_by(id: params[:user_id])
@@ -228,7 +227,6 @@ end
 private
   def set_schedules
     @user = User.find(params[:user_id])
-    gallery_counts(@user)
     @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
     @past_schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).order(:day => :desc, :time_s => :asc).page(params[:page])
     @data = AdminUser.find_by(id: params[:user_id])
@@ -244,7 +242,6 @@ private
 
   def set_attendances
     @user = User.find_by(unique_id: params[:unique_id])
-    gallery_counts(@user)
     @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
     @past_schedules = Schedule.where(user_id: @user.id).where("day <= ?", DateTime.yesterday).order(:day => :desc, :time_s => :asc)
   end
