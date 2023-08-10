@@ -13,6 +13,7 @@
           .btn-close_header 閉じる
 - else
   = lazysizes_image_tag @user.pic_header.url , class:'header_imege'
+
 - if @user.pic_profile.present?
   .pop-box
     %label{:for => "popup-on_profile"}

@@ -24,7 +24,7 @@
       .search_select_3
         %select{:name => "event_select", :onchange => "location.href=value;"}
           %option{:value => "#"}= @event.name
-          - @categories.each do |category|
+          - @categories.includes([:events]).each do |category|
             %optgroup{:label => "#{category.name}"}
               - category.events.each do |event|
                 - if event.ruby != @event.ruby
@@ -46,7 +46,7 @@
       .search_select_3
         %select{:name => "event_select", :onchange => "location.href=value;"}
           %option{:value => "#"}= @event.name
-          - @categories.each do |category|
+          - @categories.includes([:events]).each do |category|
             %optgroup{:label => "#{category.name}"}
               - category.events.each do |event|
                 - if event.ruby != @event.ruby
@@ -103,7 +103,7 @@
       .search_select_3
         %select{:name => "event_select", :onchange => "location.href=value;"}
           %option{:value => "#"} サークル
-          - @categories.each do |category|
+          - @categories.includes([:events]).each do |category|
             %optgroup{:label => "#{category.name}"}
               - category.events.each do |event|
                 %option{:value => "/#{event.ruby}/#{@prefecture.kana}"}= event.name

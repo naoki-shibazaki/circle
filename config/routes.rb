@@ -25,6 +25,14 @@ Rails.application.routes.draw do
 
   get 'users/kw', to: 'db_keywords#kw'
 
+
+  # サークル
+  scope module: :circles do
+    resources :circles
+  end
+
+
+
 	resources :users do
 		resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]

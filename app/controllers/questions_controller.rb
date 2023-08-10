@@ -146,7 +146,6 @@ class QuestionsController < ApplicationController
   private
 	def set_user
     @user = User.find_by(id: params[:user_id])
-    gallery_counts(@user)
 
     @question_first = "活動頻度を教えてください！"
     @question_second = "１人でも参加しやすいですか？"
