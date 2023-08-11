@@ -340,7 +340,6 @@ helper_method :link_count
 			@opinion = @user.opinions.build
 
       @blogs_imp = 0
-			@count = 0
 
 			if @admin_user.users.any?
 			else
