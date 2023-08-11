@@ -31,10 +31,6 @@ Rails.application.routes.draw do
     resources :circles
   end
 
-  # 301リダイレクト
-  get 'users/:id', to: redirect('circles/%{id}')
-  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
-
 	resources :users, except: [:show] do
 		resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]
@@ -71,6 +67,14 @@ Rails.application.routes.draw do
 	end
 
 	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
+
+
+  # 301リダイレクト
+  get 'users/:id', to: redirect('circles/%{id}')
+  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
+
+
+
 
   # 静的ページ
 	get 'faq' , to: 'pages#faq'
