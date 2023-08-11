@@ -168,8 +168,8 @@
               .competitor_wrap
                 %div ▼ あなたの競合サークル
                 %ul.user_slide_wrap
-                  - @users.first(5).each do |user|
-                    = link_to(user_path(user.id)) do
+                  - @users.includes([:event]).first(5).each do |user|
+                    = link_to(circle_path(user.id)) do
                       %li.user_slide_list
                         .user_list_header
                           = lazysizes_image_tag user.pic_profile.url , class:'image_icon'

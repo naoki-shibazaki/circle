@@ -107,8 +107,6 @@ class ApplicationController < ActionController::Base
 	def set_data
 		@time = Time.now
 		@url = request.url
-		@count = 0
-
   end
 
 

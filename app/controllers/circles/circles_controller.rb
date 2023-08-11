@@ -1,12 +1,7 @@
 class Circles::CirclesController < Circles::ApplicationController
 
-
-
-
-
 	def index
 	end
-
 
   def show
 		@user = User.find(params[:id])
@@ -21,28 +16,6 @@ class Circles::CirclesController < Circles::ApplicationController
 		@user_ages = @user.users_ages.includes([:age]).map{|a| a.age}
 
 		@users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中").where.not(id: @user.id).order(:last_post => :desc).limit(5)
-
-
-		if @user.switch.present?
-			if @user.prefecture_sub_id.present?
-				@b1_name = @user.event.name
-				@b1_url = "/#{@user.event.ruby}"
-				@b2_name = @user.prefecture.name
-				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"
-				@b3_name = @sub_prefecture.name
-				@b3_url = "/#{@user.event.ruby}/#{@sub_prefecture.kana}"
-				@b4_name = @user.name
-				@b4_url = ""
-			else
-				@b1_name = @user.event.name
-				@b1_url = "/#{@user.event.ruby}"
-				@b2_name = @user.prefecture.name
-				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"
-				@b3_name = @user.name
-				@b3_url = ""
-			end
-		end
-
   end
 
 
@@ -174,7 +147,7 @@ class Circles::CirclesController < Circles::ApplicationController
 				@user.save
 
 				flash[:notice] = 'ステップ１更新完了！'
-				redirect_to user_path(@user)
+				redirect_to circle_path(@user)
 
 			else #47都道府県
 
@@ -305,7 +278,7 @@ class Circles::CirclesController < Circles::ApplicationController
     if @admin_user.update(admin_user_params)
 
       flash[:notice] = 'プロフィール更新完了！'
-      redirect_to user_path(@user)
+      redirect_to circle_path(@user)
     else
       render "/users/edit3"
     end
@@ -372,7 +345,6 @@ class Circles::CirclesController < Circles::ApplicationController
 			@opinion = @user.opinions.build
 
       @blogs_imp = 0
-			@count = 0
 
 			if @admin_user.users.any?
 			else
@@ -381,7 +353,7 @@ class Circles::CirclesController < Circles::ApplicationController
 
 		else
       flash[:notice] = "URLが管理者専用ページです"
-      redirect_to user_path(@user)
+      redirect_to circle_path(@user)
     end
 
     #無効メール

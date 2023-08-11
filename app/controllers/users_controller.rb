@@ -15,74 +15,6 @@ helper_method :link_count
 	end
 
 
-  def show
-		@user = User.find(params[:id])
-		@sub_prefecture = Prefecture.find_by(id: @user.prefecture_sub_id)
-		@blogs = Blog.where(user_id: @user.id).order(created_at: "DESC")
-		@data = AdminUser.find_by(id: @user.admin_user_id)
-		@schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc)
-		@questions = Question.where(user_id: @user.id).where.not(answer: nil).order(created_at: "DESC")
-    @admin_users = AdminUser.where(check: nil)
-    @admin_ids = @admin_users.map{|a| a.id}
-		@users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中", admin_user_id: @admin_ids).where.not(id: @user.id).order(:last_post => :desc)
-    @admin_user = AdminUser.find(@user.admin_user.id)
-
-		@user_ages = @user.users_ages.includes([:age]).map{|a| a.age}
-		@user_groups = @user.users_groups.includes([:group]).map{|g| g.group}
-		@user_cities = @user.users_cities.includes([:city]).map{|c| c.city}
-
-		# レビュー合計値
-		@star_sum = @user.reviews.sum{|review| review[:review]}
-		# レビュー数
-		@star_count = @user.reviews.count
-		# レビュー値
-		if @star_count == 0 && @star_sum == 0
-			@star_review =  0
-		else
-			@star_review =  (@star_sum / @star_count.to_f)*5
-		end
-
-		if @user.id.to_s != params[:id]
-        flash[:notice] = "URLが間違っています"
-        redirect_to users_path
-		end
-
-		if @user.gallery_01.present?
-			@count += 1
-		end
-		if @user.gallery_02.present?
-			@count += 1
-		end
-		if @user.gallery_03.present?
-			@count += 1
-		end
-		if @user.gallery_04.present?
-			@count += 1
-		end
-
-		if @user.switch.present?
-			if @user.prefecture_sub_id.present?
-				@b1_name = @user.event.name
-				@b1_url = "/#{@user.event.ruby}"
-				@b2_name = @user.prefecture.name
-				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"
-				@b3_name = @sub_prefecture.name
-				@b3_url = "/#{@user.event.ruby}/#{@sub_prefecture.kana}"
-				@b4_name = @user.name
-				@b4_url = ""
-			else
-				@b1_name = @user.event.name
-				@b1_url = "/#{@user.event.ruby}"
-				@b2_name = @user.prefecture.name
-				@b2_url = "/#{@user.event.ruby}/#{@user.prefecture.kana}"
-				@b3_name = @user.name
-				@b3_url = ""
-			end
-		end
-	end
-
-
-
 	def search
     # Userモデルオブジェクト作成
 		@users = User
@@ -210,7 +142,7 @@ helper_method :link_count
 				@user.save
 
 				flash[:notice] = 'ステップ１更新完了！'
-				redirect_to user_path(@user)
+				redirect_to circle_path(@user)
 
 			else #47都道府県
 
@@ -341,7 +273,7 @@ helper_method :link_count
     if @admin_user.update(admin_user_params)
 
       flash[:notice] = 'プロフィール更新完了！'
-      redirect_to user_path(@user)
+      redirect_to circle_path(@user)
     else
       render "/users/edit3"
     end
@@ -408,7 +340,6 @@ helper_method :link_count
 			@opinion = @user.opinions.build
 
       @blogs_imp = 0
-			@count = 0
 
 			if @admin_user.users.any?
 			else
@@ -417,7 +348,7 @@ helper_method :link_count
 
 		else
       flash[:notice] = "URLが管理者専用ページです"
-      redirect_to user_path(@user)
+      redirect_to circle_path(@user)
     end
 
     #無効メール

@@ -25,7 +25,7 @@
           .cont-width
             %h1.blog_1st_title= @blog.title
             .header-post.blog_profile
-              = link_to(user_path(@user.id)) do
+              = link_to(circle_path(@user.id)) do
                 = lazysizes_image_tag @user.pic_profile.url , class:'content_icon'
                 .post-user_wrap
                   .post-user

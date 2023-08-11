@@ -1,5 +1,8 @@
 .footer_wrap
   = render "/layouts/breadcrumb"
+  .breadcrumbs_wrapper
+    .breadcrumbs
+      = breadcrumbs separator: "&rsaquo;"
   %ul.footer_links
     %li
       %a{:href => "/faq"} よくある質問
