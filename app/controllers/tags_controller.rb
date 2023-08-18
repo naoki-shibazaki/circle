@@ -91,7 +91,7 @@ before_action :set_tags
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
       flash[:notice] = "URLが間違っています"
-      redirect_to users_path
+      redirect_to circles_path
 		end
 
 		# パンくず
@@ -153,7 +153,7 @@ before_action :set_tags
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
       flash[:notice] = "URLが間違っています"
-      redirect_to users_path
+      redirect_to circles_path
 		end
 
 		# パンくず

@@ -106,7 +106,7 @@ class DbKeywordsController < ApplicationController
 
     else
       flash[:notice] = "URLが間違っています"
-      redirect_to users_path
+      redirect_to circles_path
     end
 
       # パンくず
@@ -149,7 +149,7 @@ class DbKeywordsController < ApplicationController
 
     else
       flash[:notice] = "権限がありません"
-      redirect_to users_path
+      redirect_to circles_path
     end
 
   end

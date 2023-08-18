@@ -48,5 +48,5 @@
         .del_btn_wrap
           = link_to(user_path, method: :delete, data: {confirm: "本当に削除してよろしいでしょうか？"}) do
             .del_btn.red はい、削除します
-          = link_to(users_path) do
+          = link_to(circles_path) do
             .del_btn.gray いいえ、削除しません

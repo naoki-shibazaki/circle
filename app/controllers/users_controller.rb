@@ -8,13 +8,6 @@ before_action :set_users, except: [:show]
 helper_method :link_count
 
 
-	def index
-		# パンくず
-		@b1_name = "サークル検索"
-    @b1_url = "/users"
-	end
-
-
 	def search
     # Userモデルオブジェクト作成
 		@users = User
@@ -307,7 +300,7 @@ helper_method :link_count
 		@user.destroy
 
 		flash[:notice] = 'サークルを削除しました'
-		redirect_to users_path
+		redirect_to circles_path
 	end
 
 	def mypage
@@ -452,7 +445,7 @@ helper_method :link_count
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
         flash[:notice] = "URLが間違っています"
-        redirect_to users_path
+        redirect_to circles_path
 		end
 
 		# パンくず
@@ -484,7 +477,7 @@ helper_method :link_count
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
         flash[:notice] = "URLが間違っています"
-        redirect_to users_path
+        redirect_to circles_path
 		end
 
 		# パンくず
@@ -537,7 +530,7 @@ helper_method :link_count
 
 		# if @city.prefecture_id.to_i != @prefecture_judge.id.to_i
     #   flash[:notice] = "URLが間違っています"
-    #   redirect_to users_path
+    #   redirect_to circles_path
 		# end
 
 		# パンくず
@@ -573,7 +566,7 @@ helper_method :link_count
 
 		if @city.prefecture_id.to_i != @prefecture_judge.id.to_i || @city.id.to_i != @city_judge.id.to_i
       flash[:notice] = "URLが間違っています"
-      redirect_to users_path
+      redirect_to circles_path
 		end
 
 		# パンくず
@@ -597,7 +590,7 @@ helper_method :link_count
     if current_admin_user.id == 1
     else
         flash[:notice] = "権限がありません"
-        redirect_to users_path
+        redirect_to circles_path
     end
 	end
 
@@ -622,7 +615,7 @@ def admin_user_list
       @admin_users = AdminUser.last(100)
     else
       flash[:notice] = "権限がありません"
-      redirect_to users_path
+      redirect_to circles_path
     end
   end
 end
@@ -687,7 +680,7 @@ private
 				#OK
 			else
         flash[:notice] = "権限がありません"
-        redirect_to users_path
+        redirect_to circles_path
 			end
 
 		end

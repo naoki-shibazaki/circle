@@ -89,7 +89,7 @@ before_action :set_collections, except: [:collections]
 
 		else
 		      flash[:notice] = "権限がありません"
-		      redirect_to users_path
+		      redirect_to circles_path
 		end
 
 		
@@ -121,7 +121,7 @@ before_action :set_collections, except: [:collections]
 
 			else
 			      flash[:notice] = "権限がありません"
-			      redirect_to users_path
+			      redirect_to circles_path
 			end
 		end	
 
