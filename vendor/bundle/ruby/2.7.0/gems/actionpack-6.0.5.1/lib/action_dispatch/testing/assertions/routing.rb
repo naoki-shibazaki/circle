@@ -148,7 +148,7 @@ module ActionDispatch
       #     set.draw do
       #       resources :users
       #     end
-      #     assert_equal "/users", users_path
+      #     assert_equal "/users", circles_path
       #   end
       #
       def with_routing

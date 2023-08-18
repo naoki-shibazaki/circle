@@ -159,7 +159,7 @@ class UserContactsController < ApplicationController
         redirect_to "/check/thanks"
       else
         flash[:notice] = 'エラーです'
-        redirect_to users_path
+        redirect_to circles_path
       end
     else
       # 返信なしの報告
@@ -168,7 +168,7 @@ class UserContactsController < ApplicationController
         redirect_to "/check/thanks"
       else
         flash[:notice] = 'エラーです'
-        redirect_to users_path
+        redirect_to circles_path
       end
     end
 
@@ -192,7 +192,7 @@ class UserContactsController < ApplicationController
 				#OK
 			else
         flash[:notice] = "権限がありません"
-        redirect_to users_path
+        redirect_to circles_path
 			end
 		end
 

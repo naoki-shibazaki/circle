@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   # サークル
   scope module: :circles do
-    resources :circles
+    resources :circles, only: [:index, :show]
   end
 
 	resources :users, except: [:show] do

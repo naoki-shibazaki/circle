@@ -31,7 +31,7 @@ class AccountBlocksController < ApplicationController
 
     else
       flash[:notice] = "権限がありません"
-      redirect_to users_path
+      redirect_to circles_path
     end
 
   end
@@ -54,7 +54,7 @@ class AccountBlocksController < ApplicationController
 
     else
       flash[:notice] = "権限がありません"
-      redirect_to users_path
+      redirect_to circles_path
     end
 
   end
@@ -66,7 +66,7 @@ class AccountBlocksController < ApplicationController
 
     else
       flash[:notice] = "権限がありません"
-      redirect_to users_path
+      redirect_to circles_path
     end
 
   end
