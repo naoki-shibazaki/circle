@@ -31,7 +31,7 @@ module ActionDispatch
   #
   #   class Users::CreateTest < ApplicationSystemTestCase
   #     test "adding a new user" do
-  #       visit users_path
+  #       visit circles_path
   #       click_on 'New User'
   #
   #       fill_in 'Name', with: 'Arya'

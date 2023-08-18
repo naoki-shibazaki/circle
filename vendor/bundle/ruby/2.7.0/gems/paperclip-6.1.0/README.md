@@ -247,7 +247,7 @@ end
 ### Edit and New Views
 Make sure you have corresponding methods in your controller:
 ```erb
-<%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
+<%= form_for @user, url: circles_path, html: { multipart: true } do |form| %>
   <%= form.file_field :avatar %>
   <%= form.submit %>
 <% end %>
@@ -256,7 +256,7 @@ Make sure you have corresponding methods in your controller:
 ### Edit and New Views with [Simple Form](https://github.com/plataformatec/simple_form)
 
 ```erb
-<%= simple_form_for @user, url: users_path do |form| %>
+<%= simple_form_for @user, url: circles_path do |form| %>
   <%= form.input :avatar, as: :file %>
   <%= form.submit %>
 <% end %>

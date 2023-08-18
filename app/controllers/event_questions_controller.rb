@@ -41,7 +41,7 @@ class EventQuestionsController < ApplicationController
 
 		if @event.id != @event_question.event.id
 		      flash[:notice] = "URLが間違っています"
-		      redirect_to users_path			
+		      redirect_to circles_path			
 		end
 
 

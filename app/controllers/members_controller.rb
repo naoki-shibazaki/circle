@@ -4,7 +4,7 @@ class MembersController < ApplicationController
 	before_action :set_member
 
 	def index
-        redirect_to users_path
+        redirect_to circles_path
 	end
 
 	def create
@@ -26,7 +26,7 @@ class MembersController < ApplicationController
         if @member.update(member_params)
 
             flash[:notice] = 'プロフィール更新完了！'
-            redirect_to users_path
+            redirect_to circles_path
         else
             render "edit"
         end
@@ -57,7 +57,7 @@ class MembersController < ApplicationController
 
         else
           flash[:notice] = "権限がありません"
-          redirect_to users_path
+          redirect_to circles_path
 
         end
       end

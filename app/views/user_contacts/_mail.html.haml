@@ -41,7 +41,7 @@
       メールアドレスが無効なため
       %br/
       お問い合わせをすることができません。
-      \#{link_to ">> 他のサークルを探す", users_path, class: "other_match"}
+      \#{link_to ">> 他のサークルを探す", circles_path, class: "other_match"}
       - if @users.count >= 3
         %h2.other_users
           条件が似ている#{@user.event.txt}
