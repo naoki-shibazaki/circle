@@ -2,15 +2,15 @@ class Circles::CirclesController < Circles::ApplicationController
   before_action :set_search, only: [:index]
 
 	def index
-		@search = User.ransack(params[:q])
 
-		# ソート機能
-    if params[:sort] == "1" || params[:sort] == nil
-      @users = @search.result.user_sort_1.page(params[:page])
-    elsif params[:sort] == "2"
-      @users = User.user_sort_2.page(params[:page])
-    else params[:sort] == "3"
-      @users = User.user_sort_3.page(params[:page])
+    users = User.list
+    case params[:sort]
+    when "1", nil
+      @users = users.sort_1.page(params[:page])
+    when "2"
+      @users = users.sort_2.page(params[:page])
+    when "3"
+      @users = users.sort_3.page(params[:page])
     end
 
   end
@@ -28,7 +28,7 @@ class Circles::CirclesController < Circles::ApplicationController
     @user_groups = @user.users_groups.includes([:group]).map{|g| g.group}
 		@user_ages = @user.users_ages.includes([:age]).map{|a| a.age}
 
-		@users = User.ng_account.prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中").where.not(id: @user.id).order(:last_post => :desc).limit(5)
+		@users = User.where(ng_account: nil).or(User.where(ng_account: "OK")).where.not(switch: "", appeal: "", id: @user.id).prefecture(@user.prefecture_id).event(@user.event_id).where(switch: "募集中").order(:last_post => :desc).limit(5)
   end
 
 

@@ -3,6 +3,7 @@ class Circles::ApplicationController < ApplicationController
 
   private
   def set_search
+		@search = User.ransack(params[:q])
     @categories = Category.includes(:events).order(:id => :asc)
 		@prefectures = Prefecture.all.order(:order => :asc)
   end
