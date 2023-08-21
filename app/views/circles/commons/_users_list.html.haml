@@ -6,7 +6,7 @@
       .post_link サークル活動をつぶやく！
 
 %ul
-  - @users.each.with_index(1) do |user, i|
+  - users.each.with_index(1) do |user, i|
     %li.user_item_wrap
       = link_to(circle_path(user.id)) do
         .header_user_list.ribbon-wrapper
@@ -34,8 +34,67 @@
               .list_04.recruitment_txt
                 %span.user_recruitment= user.recruitment.truncate(110)
 
+
               - if user.reviews.present?
-                = render "layouts/review_score", review_score: user.review_score.to_f, reviews_count: user.reviews.count
+                %ul.review_set
+                  %li.star_wrap
+                    - case user.review_score.to_f
+                    - when 4.5..5.0
+                      / 5.0
+                      %span.star
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                    - when 3.5..4.4
+                      / 4.0
+                      %span.star
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.gray
+                    - when 2.5..3.4
+                      / 3.0
+                      %span.star
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                    - when 1.5..2.4
+                      / 2.0
+                      %span.star
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                    - when 0.1..1.4
+                      / 1.0
+                      %span.star
+                        %i.fa.fa-star.orange
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                    - else
+                      / 0
+                      %span.star
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                        %i.fa.fa-star.gray
+                  %li.review_score= sprintf("%.2f", user.review_score.to_f )
+                  %li.review_count.review_index
+                    %i.fa.fa-commenting
+                    %span.reviews_count
+                      = user.reviews.size
+                      件
+
+
 
               .list_02
                 %span.user_schedule
@@ -66,14 +125,14 @@
       .tag_list_wrap
         %ul.tag_list_content
           %li
-            = link_to("/#{user.event.ruby}") do
+            = link_to event_path(user.event.ruby) do
               = user.event.name
           %li
-            = link_to("/prefectures/#{user.prefecture.kana}") do
+            = link_to prefecture_path(user.prefecture.kana) do
               = user.prefecture.name
           - if user.prefecture_sub_id.present?
             %li
-              = link_to("/prefectures/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do
+              = link_to prefecture_path(Prefecture.find_by(id: user.prefecture_sub_id).kana) do
                 = Prefecture.find_by(id: user.prefecture_sub_id).name
           - if user.tags.present?
             - user.tags.order(:order => :asc).each do |tag|
@@ -82,13 +141,9 @@
                   = tag.name
 
 
-
-
-
-
-
     - if i == 5 || i == 10 || i == 15
       .list_ad
         = render "/layouts/ad_square"
+
 = render "/layouts/ad_square"
-= paginate @users
+= paginate users

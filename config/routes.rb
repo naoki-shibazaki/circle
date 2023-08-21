@@ -29,7 +29,12 @@ Rails.application.routes.draw do
   # サークル
   scope module: :circles do
     resources :circles, only: [:index, :show]
+    scope module: :search do
+      resources :events, only: [:index, :show], param: :kana
+      resources :prefectures, only: [:index, :show], param: :kana
+    end
   end
+
 
 	resources :users, except: [:show, :index] do
 		resources :blogs, except: [:index]
@@ -69,10 +74,6 @@ Rails.application.routes.draw do
 	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
 
-  # 301リダイレクト
-  get 'users/', to: redirect('circles')
-  get 'users/:id', to: redirect('circles/%{id}')
-  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
 
 
 
@@ -160,8 +161,8 @@ Rails.application.routes.draw do
 	# get 'users/:user_id/collection-sample' , to: 'collections#sample'
 
   # エリア別
-	get 'prefectures' , to: 'users#prefecture_index'
-	get 'prefectures/:kana' , to: 'users#prefecture'
+	# get 'prefectures' , to: 'users#prefecture_index'
+	# get 'prefectures/:kana' , to: 'users#prefecture'
 	get 'prefectures/:kana/tag/:id' , to: 'tags#prefecture'
 	get 'prefectures/:kana/:city_kana' , to: 'users#prefecture_city'
 	get 'prefectures/:kana/:city_kana/:id' , to: 'users#prefecture_city_station'
@@ -216,7 +217,7 @@ Rails.application.routes.draw do
 
 
   # 種目別
-	get ':ruby' , to: 'users#event'
+	# get ':ruby' , to: 'users#event'
 	get ':ruby/qa' , to: 'event_questions#index'
 	post ':ruby/qa' , to: 'event_questions#create'
 	get ':ruby/qa/:id' , to: 'event_questions#show'
@@ -230,6 +231,15 @@ Rails.application.routes.draw do
 	get ':ruby/:kana/:city_kana' , to: 'users#event_prefecture_city'
 	get ':ruby/:kana/:city_kana/:id' , to: 'users#event_prefecture_city_station'
 	get ':ruby/:kana/:city_kana/tag/:id' , to: 'tags#event_prefecture_city'
+
+
+
+
+  # 301リダイレクト
+  get 'users/', to: redirect('circles')
+  get 'users/:id', to: redirect('circles/%{id}')
+  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
+	get ':ruby' , to: redirect('events/%{ruby}')
 
 
 end
