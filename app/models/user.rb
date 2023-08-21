@@ -117,7 +117,7 @@ class User < ApplicationRecord
 	NGWORD_REGEX = %r(#{NGWORD.join('|')})
 	validates :template, format: { without: NGWORD_REGEX }
 
-	paginates_per 10
+	paginates_per 20
 
 	before_save do
 		self.average_age.gsub!(/[\[\]\"]/, "") if attribute_present?("average_age")
@@ -132,7 +132,8 @@ class User < ApplicationRecord
 	mount_uploader :gallery_04, ImageUploader
 
   # 新User用
-  scope :list, -> {(where(ng_account: nil).or(User.where(ng_account: "OK")).where.not(switch: "", appeal: "")).includes([:event, :prefecture, :tags, :reviews])}
+  scope :list, -> {(where(ng_account: nil).or(User.where(ng_account: "OK")).where.not(switch: "").where.not(appeal: "")).includes([:event, :prefecture, :tags, :reviews])}
+  scope :where_pref, -> (prefecture_id){where(prefecture_id: prefecture_id).or(User.where(prefecture_sub_id: prefecture_id)).or(User.where(prefecture_id: 50))}
   scope :sort_1, -> {order(switch: :asc, last_post: :desc)}
   scope :sort_2, -> {order(switch: :asc, cb_point: :desc, last_post: :desc)}
   scope :sort_3, -> {order(switch: :asc, created_at: :desc)}

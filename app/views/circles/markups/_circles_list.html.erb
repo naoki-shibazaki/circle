@@ -1,0 +1,17 @@
+<% if users.present? %>
+  <script type="application/ld+json">
+  {
+    "@context":"http://schema.org",
+    "@type":"ItemList",
+    "itemListElement":[
+      <% users.each.with_index(1) do |user, i| %>
+        {
+          "@type":"ListItem",
+          "position":<%= i %>,
+          "url":"<%= circle_path(user.id) %>"
+        }<%= "," unless i == users.size %>
+      <% end %>
+    ]
+  }
+  </script>
+<% end %>

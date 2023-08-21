@@ -12,3 +12,34 @@ crumb :circle_show do |user|
   link "#{user.name}", circle_path(user)
   parent :circle_index
 end
+
+
+
+# events配下
+crumb :event_show do |event|
+  link "#{event.name}", event_path(event.ruby)
+  parent :circle_index
+end
+
+crumb :event_prefecture_show do |event, prefecture|
+  link "#{prefecture.name}", event_prefecture_path(event.ruby, prefecture.kana)
+  parent :event_show, event
+end
+
+
+
+
+# prefectures配下
+crumb :prefecture_show do |prefecture|
+  link "#{prefecture.name}", prefecture_path(prefecture.kana)
+  parent :circle_index
+end
+
+
+
+
+# tags配下
+crumb :tag_show do |tag|
+  link "#{tag.name}", tag_path(tag.id)
+  parent :circle_index
+end

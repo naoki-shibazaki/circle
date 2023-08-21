@@ -218,7 +218,7 @@
             .content_08
               %i.fa.fa-chain
               %a{:href => "https://circle-book.com/link/#{@user.link.unique_id}"}
-                circle-book.com/link/#{@user.link.unique_id}
+                = "circle-book.com/link/#{@user.link.unique_id}"
             .border
 
         - if @user.web.present?
@@ -229,7 +229,23 @@
           .border
 
         .user_show_tag_list
-          = render "/users/parts/tag_list", user: @user
+          .tag_list_wrap
+            %ul.tag_list_content
+              %li
+                = link_to event_path(@user.event.ruby) do
+                  = @user.event.name
+              %li
+                = link_to prefecture_path(@user.prefecture.kana) do
+                  = @user.prefecture.name
+              - if @user.prefecture_sub_id.present?
+                %li
+                  = link_to prefecture_path(Prefecture.find_by(id: @user.prefecture_sub_id).kana) do
+                    = Prefecture.find_by(id: @user.prefecture_sub_id).name
+              - if @user.tags.present?
+                - @user.tags.order(:order => :asc).each do |tag|
+                  %li
+                    = link_to tag_path(tag.id) do
+                      = tag.name
 
 
         - if @schedules.present?

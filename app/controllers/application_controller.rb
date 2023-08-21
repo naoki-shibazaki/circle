@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-
   # 登録未完了時のアクション
   def set_imperfect_current_user
     if admin_user_signed_in? #管理人ログイン判定
