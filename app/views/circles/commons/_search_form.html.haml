@@ -20,10 +20,12 @@
       - categories.each do |category|
         %optgroup{:label => "#{category.name}"}
           - category.events.each do |event|
+
             - if @event.present? && @event.id == event.id
+            - elsif @prefecture.present?
+              %option{:value => "#{event_prefecture_path(event.ruby, @prefecture.kana)}"}= event.name
             - else
               %option{:value => "#{event_path(event.ruby)}"}= event.name
-
 
 
 
@@ -37,9 +39,11 @@
 
       - prefectures.each do |prefecture|
         - if @prefecture.present? && @prefecture.id == prefecture.id
+
+        - elsif @event.present?
+          %option{:value => "#{event_prefecture_path(@event.ruby, prefecture.kana)}"}= prefecture.name
         - else
           %option{:value => "#{prefecture_path(prefecture.kana)}"}= prefecture.name
-
 
 
 

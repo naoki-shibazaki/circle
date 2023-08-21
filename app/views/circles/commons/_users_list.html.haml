@@ -137,7 +137,7 @@
           - if user.tags.present?
             - user.tags.order(:order => :asc).each do |tag|
               %li
-                = link_to("/tag/#{tag.id}") do
+                = link_to tag_path(tag.id) do
                   = tag.name
 
 

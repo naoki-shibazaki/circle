@@ -1,4 +1,4 @@
-class Circles::Search::EventsController < Circles::Search::ApplicationController
+class Circles::Prefectures::PrefecturesController < Circles::Prefectures::ApplicationController
   before_action :set_search, only: [:show]
 
 	def index
@@ -7,9 +7,9 @@ class Circles::Search::EventsController < Circles::Search::ApplicationController
 
 
   def show
-		@event = Event.find_by(ruby: params[:kana])
+		@prefecture = Prefecture.find_by(kana: params[:kana])
 
-    users = User.where(event_id: @event.id).list
+    users = User.where_pref(@prefecture.id).list.order("prefectures.sort asc")
     case params[:sort]
     when "1", nil
       @users = users.sort_1.page(params[:page])
@@ -20,7 +20,5 @@ class Circles::Search::EventsController < Circles::Search::ApplicationController
     end
 
   end
-
-
 
 end

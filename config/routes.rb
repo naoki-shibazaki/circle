@@ -29,10 +29,24 @@ Rails.application.routes.draw do
   # サークル
   scope module: :circles do
     resources :circles, only: [:index, :show]
-    scope module: :search do
-      resources :events, only: [:index, :show], param: :kana
+
+    # events配下
+    scope module: :events do
+      resources :events, only: [:index, :show], param: :kana do
+        resources :prefectures, only: [:index, :show], param: :kana
+      end
+    end
+
+    # prefectures配下
+    scope module: :prefectures do
       resources :prefectures, only: [:index, :show], param: :kana
     end
+
+    # tags配下
+    scope module: :tags do
+      resources :tags, only: [:index, :show]
+    end
+
   end
 
 
@@ -98,8 +112,6 @@ Rails.application.routes.draw do
 	get 'user_del' , to: 'users#user_del'
 	get 'member_del' , to: 'members#member_del'
 
-	# 旧ブログ用のリダイレクト
-	get 'blogs/:id', to: 'blogs#show_redirect'
 
   # ログインユーザー（出展者）
   scope module: :exhibitor_apps do
@@ -168,6 +180,7 @@ Rails.application.routes.draw do
 	get 'prefectures/:kana/:city_kana/:id' , to: 'users#prefecture_city_station'
 	get 'prefectures/:kana/:city_kana/tag/:id' , to: 'tags#prefecture_city'
 
+
   # カテゴリー別
 	get 'categories' , to: 'categories#index'
   get 'categories/prefectures' , to: 'categories#prefecture_index'
@@ -210,20 +223,28 @@ Rails.application.routes.draw do
 	get 'u/:unique_id', to: 'links#unique_page'
 
   # タグ検索
-	get 'tag/:id' , to: 'tags#index'
-
-
-
-
+	# get 'tag/:id' , to: 'tags#index'
 
   # 種目別
 	# get ':ruby' , to: 'users#event'
-	get ':ruby/qa' , to: 'event_questions#index'
-	post ':ruby/qa' , to: 'event_questions#create'
-	get ':ruby/qa/:id' , to: 'event_questions#show'
-	post ':ruby/qa/:id' , to: 'event_answers#create'
-	delete ':ruby/qa/:id' , to: 'event_questions#delete'
-	delete ':ruby/qa/:event_question_id/:id' , to: 'event_answers#delete'
+	# get ':ruby/qa' , to: 'event_questions#index'
+	# post ':ruby/qa' , to: 'event_questions#create'
+	# get ':ruby/qa/:id' , to: 'event_questions#show'
+	# post ':ruby/qa/:id' , to: 'event_answers#create'
+	# delete ':ruby/qa/:id' , to: 'event_questions#delete'
+	# delete ':ruby/qa/:event_question_id/:id' , to: 'event_answers#delete'
+
+
+
+	# 旧ブログ用のリダイレクト
+	get 'blogs/:id', to: 'blogs#show_redirect'
+
+  # 301リダイレクト
+  get 'users/', to: redirect('circles')
+  get 'users/:id', to: redirect('circles/%{id}')
+  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
+  get 'tag/:id' , to: redirect('tags/%{id}')
+	get ':ruby' , to: redirect('events/%{ruby}')
 
 	get ':ruby/tag/:id' , to: 'tags#event'
 	get ':ruby/:kana' , to: 'users#event_prefecture'
@@ -235,11 +256,6 @@ Rails.application.routes.draw do
 
 
 
-  # 301リダイレクト
-  get 'users/', to: redirect('circles')
-  get 'users/:id', to: redirect('circles/%{id}')
-  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
-	get ':ruby' , to: redirect('events/%{ruby}')
 
 
 end

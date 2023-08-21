@@ -1,4 +1,4 @@
-class Circles::Search::PrefecturesController < Circles::Search::ApplicationController
+class Circles::Tags::TagsController < Circles::Tags::ApplicationController
   before_action :set_search, only: [:show]
 
 	def index
@@ -7,9 +7,9 @@ class Circles::Search::PrefecturesController < Circles::Search::ApplicationContr
 
 
   def show
-		@prefecture = Prefecture.find_by(kana: params[:kana])
+		@tag = Tag.find(params[:id])
 
-    users = User.where_pref(@prefecture.id).list.order("prefectures.sort asc")
+    users = User.where(id: @tag.users.ids).list
     case params[:sort]
     when "1", nil
       @users = users.sort_1.page(params[:page])
@@ -20,5 +20,7 @@ class Circles::Search::PrefecturesController < Circles::Search::ApplicationContr
     end
 
   end
+
+
 
 end

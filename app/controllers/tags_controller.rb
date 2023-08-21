@@ -3,23 +3,23 @@ include ApplicationHelper
 
 before_action :set_tags
 
-  def index
-    @tag_users = @tag.user_tags.map{|t| t.user.id}
+  # def index
+  #   @tag_users = @tag.user_tags.map{|t| t.user.id}
 
-    # ソート機能
-    if params[:sort] == "1" || params[:sort] == nil
-      @users = User.tag(@tag_users).user_sort_1.page(params[:page])
-    elsif params[:sort] == "2"
-      @users = User.tag(@tag_users).user_sort_2.page(params[:page])
-    else params[:sort] == "3"
-      @users = User.tag(@tag_users).user_sort_3.page(params[:page])
-    end
+  #   # ソート機能
+  #   if params[:sort] == "1" || params[:sort] == nil
+  #     @users = User.tag(@tag_users).user_sort_1.page(params[:page])
+  #   elsif params[:sort] == "2"
+  #     @users = User.tag(@tag_users).user_sort_2.page(params[:page])
+  #   else params[:sort] == "3"
+  #     @users = User.tag(@tag_users).user_sort_3.page(params[:page])
+  #   end
 
-    # パンくず
-    @b1_name = @tag.name
-    @b1_url = "/tag/#{@tag.id}"
+  #   # パンくず
+  #   @b1_name = @tag.name
+  #   @b1_url = "/tag/#{@tag.id}"
 
-  end
+  # end
 
 	def event
     @event = Event.find_by(ruby: params[:ruby])
