@@ -6,13 +6,13 @@
 主催者からのご返信をお待ちください。
 - if @user_contact.entry != "練習試合"
   ＼こちらも#{@user_contact.name}さんにオススメです！／
-  https://circle-book.com/#{@user.event.ruby}/#{@user.prefecture.kana}
+  #{event_prefecture_url(@user.event.ruby, @user.prefecture.kana)}
 \--------------------------------------
 ▼#{@user_contact.entry}のお問い合わせ内容
 名前：#{@user_contact.name} さん
 \#{simple_format @user_contact.message}
 
-URL： https://circle-book.com/circles/#{@user.id}
+URL： #{circle_url(@user.id)}
 \--------------------------------------
 
 【主催者から返信がない場合】

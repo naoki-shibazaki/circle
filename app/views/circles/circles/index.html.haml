@@ -1,7 +1,6 @@
 - set_meta_tags title: "【#{@time.strftime("%Y")}年版】47都道府県のサークルやチーム、団体一覧｜メンバー募集サイト"
 - breadcrumb :circle_index
-
-
+= render "circles/markups/circles_list", users: @users
 
 .main.users-index
   .container
@@ -18,6 +17,5 @@
         %br/
         サークルやチーム、団体が見つかる！！
 
-    = render "/circles/commons/search_form"
-
-    = render "/circles/commons/users_list"
+    = render "/circles/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
+    = render "/circles/commons/users_list", users: @users

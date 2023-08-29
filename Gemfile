@@ -94,6 +94,8 @@ group :development do
   gem 'binding_of_caller'
   gem 'bullet' #N+1問題
   gem 'derailed_benchmarks' #メモリ容量チェック
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :test do

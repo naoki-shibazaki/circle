@@ -131,8 +131,17 @@ class User < ApplicationRecord
 	mount_uploader :gallery_03, ImageUploader
 	mount_uploader :gallery_04, ImageUploader
 
+  # 新User用
+  scope :list, -> {(where(ng_account: nil).or(User.where(ng_account: "OK")).where.not(switch: "").where.not(appeal: "")).includes([:event, :prefecture, :tags, :reviews])}
+  scope :where_pref, -> (prefecture_id){where(prefecture_id: prefecture_id).or(User.where(prefecture_sub_id: prefecture_id)).or(User.where(prefecture_id: 50))}
+  scope :where_city, -> (city){where(id: city.users.ids).or(User.where(prefecture_id: 50))}
+  scope :sort_1, -> {order(switch: :asc, last_post: :desc)}
+  scope :sort_2, -> {order(switch: :asc, cb_point: :desc, last_post: :desc)}
+  scope :sort_3, -> {order(switch: :asc, created_at: :desc)}
+
+
 	# User用
-  scope :ng_account, -> {where(ng_account: nil).or(User.where(ng_account: "OK"))}
+  scope :ng_account, -> {(where(ng_account: nil).or(User.where(ng_account: "OK"))).includes([:event, :prefecture, :tags, :reviews])}
   scope :user_sort_1, -> {ng_account.order(switch: :asc, last_post: :desc).where.not(switch: "") }
   scope :user_sort_2, -> {ng_account.order(switch: :asc, cb_point: :desc, last_post: :desc).where.not(switch: "") }
   scope :user_sort_3, -> {ng_account.order(switch: :asc, created_at: :desc).where.not(switch: "") }

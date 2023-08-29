@@ -4,6 +4,9 @@
 = render "users/parts/local_business_show", user: @user
 .user_main.user-show
   .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
     .user-profile
       .header-wrapper.ribbon-wrapper
         .ribbon-content
@@ -148,12 +151,73 @@
               .breadcrumbs_city
                 %ul
                   - @user_cities.sort.each do |user_city|
-                    %li= link_to user_city.name, "/#{@user.event.ruby}/#{user_city.prefecture.kana}/#{user_city.city_kana}"
+                    %li= link_to user_city.name, event_prefecture_city_path(@user.event.ruby, user_city.prefecture.kana, user_city.city_kana)
 
         .content_03
           = @user.recruitment
 
-        = render "/users/gallery"
+
+
+
+        - if @user.gallery_01.present? || @user.gallery_02.present? || @user.gallery_03.present? || @user.gallery_04.present?
+          .gallery_wrap
+            .gallery_even
+              .gallery_container
+                - if @user.gallery_01.present?
+                  .pop-box
+                    %label{:for => "popup-on_01"}
+                      %label{:for => "popup-on_01"}
+                        .btn-open_01
+                          = lazysizes_image_tag @user.gallery_01.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+                      %input#popup-on_01{:type => "checkbox"}/
+                      .popup
+                        %label.icon-close_01{:for => "popup-on_01"} ×
+                        .popup-content
+                          = lazysizes_image_tag @user.gallery_01.url
+                        %label{:for => "popup-on_01"}
+                          .btn-close_01 閉じる
+                - if @user.gallery_02.present?
+                  .pop-box
+                    %label{:for => "popup-on_02"}
+                      %label{:for => "popup-on_02"}
+                        .btn-open_02
+                          = lazysizes_image_tag @user.gallery_02.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+                      %input#popup-on_02{:type => "checkbox"}/
+                      .popup
+                        %label.icon-close_02{:for => "popup-on_02"} ×
+                        .popup-content
+                          = lazysizes_image_tag @user.gallery_02.url
+                        %label{:for => "popup-on_02"}
+                          .btn-close_02 閉じる
+                - if @user.gallery_03.present?
+                  .pop-box
+                    %label{:for => "popup-on_03"}
+                      %label{:for => "popup-on_03"}
+                        .btn-open_03
+                          = lazysizes_image_tag @user.gallery_03.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+                      %input#popup-on_03{:type => "checkbox"}/
+                      .popup
+                        %label.icon-close_03{:for => "popup-on_03"} ×
+                        .popup-content
+                          = lazysizes_image_tag @user.gallery_03.url
+                        %label{:for => "popup-on_03"}
+                          .btn-close_03 閉じる
+                - if @user.gallery_04.present?
+                  .pop-box
+                    %label{:for => "popup-on_04"}
+                      %label{:for => "popup-on_04"}
+                        .btn-open_04
+                          = lazysizes_image_tag @user.gallery_04.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+                      %input#popup-on_04{:type => "checkbox"}/
+                      .popup
+                        %label.icon-close_04{:for => "popup-on_04"} ×
+                        .popup-content
+                          = lazysizes_image_tag @user.gallery_04.url
+                        %label{:for => "popup-on_04"}
+                          .btn-close_04 閉じる
+
+
+
 
         .border
         .article_item.article_padding
@@ -218,7 +282,7 @@
             .content_08
               %i.fa.fa-chain
               %a{:href => "https://circle-book.com/link/#{@user.link.unique_id}"}
-                circle-book.com/link/#{@user.link.unique_id}
+                = "circle-book.com/link/#{@user.link.unique_id}"
             .border
 
         - if @user.web.present?
@@ -229,7 +293,23 @@
           .border
 
         .user_show_tag_list
-          = render "/users/parts/tag_list", user: @user
+          .tag_list_wrap
+            %ul.tag_list_content
+              %li
+                = link_to event_path(@user.event.ruby) do
+                  = @user.event.name
+              %li
+                = link_to prefecture_path(@user.prefecture.kana) do
+                  = @user.prefecture.name
+              - if @user.prefecture_sub_id.present?
+                %li
+                  = link_to prefecture_path(Prefecture.find_by(id: @user.prefecture_sub_id).kana) do
+                    = Prefecture.find_by(id: @user.prefecture_sub_id).name
+              - if @user.tags.present?
+                - @user.tags.order(:order => :asc).each do |tag|
+                  %li
+                    = link_to tag_path(tag.id) do
+                      = tag.name
 
 
         - if @schedules.present?
