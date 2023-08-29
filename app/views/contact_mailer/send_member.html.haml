@@ -19,7 +19,7 @@
     - if @user_contact.entry != "練習試合"
       ＼こちらも#{@user_contact.name}さんにオススメです！／
       %br/
-      https://circle-book.com/#{@user.event.ruby}/#{@user.prefecture.kana}
+      #{event_prefecture_url(@user.event.ruby, @user.prefecture.kana)}
       %br/
       %br/
     \--------------------------------------
@@ -28,7 +28,7 @@
     %br/
     名前：#{@user_contact.name} さん
     \#{simple_format @user_contact.message}
-    URL： https://circle-book.com/circles/#{@user.id}
+    URL： #{circle_url(@user.id)}
     %br/
     \--------------------------------------
     %br/
