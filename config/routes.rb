@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
   root 'home#index'
 
   devise_for :admin_users, :controllers => {
@@ -244,10 +246,14 @@ Rails.application.routes.draw do
   get 'users/:id', to: redirect('circles/%{id}')
   get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
   get 'tag/:id' , to: redirect('tags/%{id}')
-	get ':ruby' , to: redirect('events/%{ruby}')
+	get ':kana' , to: redirect('events/%{kana}')
+	get ':event_kana/:kana' , to: redirect('events/%{event_kana}/prefectures/%{kana}')
 
+
+
+  # 通常のルーティング
 	get ':ruby/tag/:id' , to: 'tags#event'
-	get ':ruby/:kana' , to: 'users#event_prefecture'
+	# get ':ruby/:kana' , to: 'users#event_prefecture'
 	get ':ruby/:kana/tag/:id' , to: 'tags#event_prefecture'
 	get ':ruby/:kana/:city_kana' , to: 'users#event_prefecture_city'
 	get ':ruby/:kana/:city_kana/:id' , to: 'users#event_prefecture_city_station'
