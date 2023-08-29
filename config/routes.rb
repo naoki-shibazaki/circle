@@ -32,19 +32,23 @@ Rails.application.routes.draw do
   scope module: :circles do
     resources :circles, only: [:index, :show]
 
-    # events配下
+    ## events配下
     scope module: :events do
       resources :events, only: [:index, :show], param: :kana do
-        resources :prefectures, only: [:index, :show], param: :kana
+        resources :prefectures, only: [:index, :show], param: :kana do
+          resources :cities, only: [:index, :show], param: :kana
+        end
       end
     end
 
-    # prefectures配下
+    ## prefectures配下
     scope module: :prefectures do
-      resources :prefectures, only: [:index, :show], param: :kana
+      resources :prefectures, only: [:index, :show], param: :kana do
+        resources :cities, only: [:index, :show], param: :kana
+      end
     end
 
-    # tags配下
+    ## tags配下
     scope module: :tags do
       resources :tags, only: [:index, :show]
     end
@@ -88,9 +92,6 @@ Rails.application.routes.draw do
 	end
 
 	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
-
-
-
 
 
 
@@ -178,7 +179,7 @@ Rails.application.routes.draw do
 	# get 'prefectures' , to: 'users#prefecture_index'
 	# get 'prefectures/:kana' , to: 'users#prefecture'
 	get 'prefectures/:kana/tag/:id' , to: 'tags#prefecture'
-	get 'prefectures/:kana/:city_kana' , to: 'users#prefecture_city'
+	# get 'prefectures/:kana/:city_kana' , to: 'users#prefecture_city'
 	get 'prefectures/:kana/:city_kana/:id' , to: 'users#prefecture_city_station'
 	get 'prefectures/:kana/:city_kana/tag/:id' , to: 'tags#prefecture_city'
 
@@ -237,17 +238,18 @@ Rails.application.routes.draw do
 	# delete ':ruby/qa/:event_question_id/:id' , to: 'event_answers#delete'
 
 
-
 	# 旧ブログ用のリダイレクト
 	get 'blogs/:id', to: 'blogs#show_redirect'
 
   # 301リダイレクト
   get 'users/', to: redirect('circles')
   get 'users/:id', to: redirect('circles/%{id}')
-  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
+  get 'prefectures/:prefecture_kana/:kana' , to: redirect('prefectures/%{prefecture_kana}/cities/%{kana}')
   get 'tag/:id' , to: redirect('tags/%{id}')
-	get ':kana' , to: redirect('events/%{kana}')
+  get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
+  get ':kana' , to: redirect('events/%{kana}')
 	get ':event_kana/:kana' , to: redirect('events/%{event_kana}/prefectures/%{kana}')
+	get ':event_kana/:prefecture_kana/:kana' , to: redirect('events/%{event_kana}/prefectures/%{prefecture_kana}/cities/%{kana}')
 
 
 
@@ -255,7 +257,7 @@ Rails.application.routes.draw do
 	get ':ruby/tag/:id' , to: 'tags#event'
 	# get ':ruby/:kana' , to: 'users#event_prefecture'
 	get ':ruby/:kana/tag/:id' , to: 'tags#event_prefecture'
-	get ':ruby/:kana/:city_kana' , to: 'users#event_prefecture_city'
+	# get ':ruby/:kana/:city_kana' , to: 'users#event_prefecture_city'
 	get ':ruby/:kana/:city_kana/:id' , to: 'users#event_prefecture_city_station'
 	get ':ruby/:kana/:city_kana/tag/:id' , to: 'tags#event_prefecture_city'
 

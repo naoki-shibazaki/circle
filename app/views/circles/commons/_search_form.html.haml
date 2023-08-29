@@ -9,8 +9,8 @@
 
 
   .search_select
-    %select{:name => "event_select", :onchange => "location.href=value;"}
 
+    %select{:name => "event_select", :onchange => "location.href=value;"}
       %option{:value => "#"}
         - if @event.present?
           = @event.name
@@ -30,7 +30,6 @@
 
 
     %select{:name => "prefecture_select", :onchange => "location.href=value;"}
-
       %option{:value => "#"}
         - if @prefecture.present?
           = @prefecture.name
