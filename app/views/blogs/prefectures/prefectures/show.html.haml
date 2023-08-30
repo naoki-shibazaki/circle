@@ -1,6 +1,5 @@
-- set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}のサークルやチームの一覧｜メンバー募集サイト",description: "【完全無料／登録不要】#{@prefecture.name}のサークルやチームの募集サイトです！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！バスケやバレー、フットサルなど。無料で簡単にメンバーの募集ができます！",keywords: "#{@prefecture.name},サークル,チーム,団体"
-- breadcrumb :prefecture_show, @prefecture
-= render "circles/markups/circles_list", users: @users
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}のサークルやチームの活動ブログ"
+- breadcrumb :blog_prefecture_show, @prefecture
 
 .main.users-index
   .container
@@ -14,13 +13,9 @@
         %h1.e_header_title
           = "#{@prefecture.name}で活動している"
           %br
-          = "メンバー募集中の"
+          = "サークルやチームの"
           %br
-          = "サークルやチーム"
+          = "活動ブログ"
 
-    - if @users.size != 0
-      = render "/circles/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
-      = render "/circles/commons/users_list", users: @users
-
-    - else
-      = render "/circles/commons/no_hit"
+    = render "/blogs/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
+    = render "/blogs/commons/blogs_list", blogs: @blogs

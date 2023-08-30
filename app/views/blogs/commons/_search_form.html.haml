@@ -1,0 +1,45 @@
+.search_area
+  .search_wrap
+    .search_select
+
+      %select{:name => "event_select", :onchange => "location.href=value;"}
+        %option{:value => "#"}
+          - if @event.present?
+            = @event.name
+          - else
+            = "サークル・チーム"
+
+        - categories.each do |category|
+          %optgroup{:label => "#{category.name}"}
+            - category.events.each do |event|
+
+              - if @event.present? && @event.id == event.id
+              - elsif @prefecture.present?
+                %option{:value => "#{blogs_event_prefecture_path(event.ruby, @prefecture.kana)}"}= event.name
+              - else
+                %option{:value => "#{blogs_event_path(event.ruby)}"}= event.name
+
+
+
+      %select{:name => "prefecture_select", :onchange => "location.href=value;"}
+        %option{:value => "#"}
+          - if @prefecture.present?
+            = @prefecture.name
+          - else
+            = "都道府県"
+
+        - prefectures.each do |prefecture|
+          - if @prefecture.present? && @prefecture.id == prefecture.id
+
+          - elsif @event.present?
+            %option{:value => "#{blogs_event_prefecture_path(@event.ruby, prefecture.kana)}"}= prefecture.name
+          - else
+            %option{:value => "#{blogs_prefecture_path(prefecture.kana)}"}= prefecture.name
+
+
+
+      .search_icon
+        %i.fa.fa-search
+
+
+

@@ -1,3 +1,3 @@
-class Circles::Prefectures::ApplicationController < Circles::ApplicationController
+class Blogs::Prefectures::ApplicationController < Blogs::ApplicationController
 
 end

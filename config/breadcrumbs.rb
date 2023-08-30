@@ -31,6 +31,10 @@ end
     parent :event_prefecture_show, user.event, user.prefecture
   end
 
+  crumb :circle_blog_index do |user|
+    link "ブログ一覧", circle_blogs_path(user.id)
+    parent :circle_show, user
+  end
 
   ## prefectures配下
   crumb :prefecture_show do |prefecture|
@@ -56,3 +60,26 @@ crumb :blog_index do
   link "ブログ一覧", blogs_path
   parent :root
 end
+
+  ## events配下
+  crumb :blog_event_show do |event|
+    link "#{event.name}", blogs_event_path(event.ruby)
+    parent :blog_index
+  end
+
+  crumb :blog_event_prefecture_show do |event, prefecture|
+    link "#{prefecture.name}", blogs_event_prefecture_path(event.ruby, prefecture.kana)
+    parent :blog_event_show, event
+  end
+
+  ## ブログ詳細ページ
+  crumb :blog_show do |blog|
+    link "#{blog.title}", blog_path(blog)
+    parent :blog_event_prefecture_show, blog.user.event, blog.user.prefecture
+  end
+
+  ## prefectures配下
+  crumb :blog_prefecture_show do |prefecture|
+    link "#{prefecture.name}", blogs_prefecture_path(prefecture.kana)
+    parent :blog_index
+  end

@@ -1,27 +1,33 @@
 class Circles::BlogsController < Circles::ApplicationController
+
+  before_action :set_blog
+  before_action :security_blog, only: [:edit, :update, :destroy]
+
   include Circlebook
 
   def index
-		@user = User.find(params[:circle_id])
     @blogs = @user.blogs.order(created_at: "DESC").page(params[:page])
   end
 
+
 	def new
-		@blog = Blog.new
-		@user = User.find(params[:circle_id])
-
 		if current_admin_user.users.find_by(id: params[:circle_id])
-
 		else
 			flash[:notice] = 'URLが間違っています'
-			redirect_to blog_path
+			redirect_to blogs_path
 		end
+    @blog = Blog.new
+  end
 
-	end
 
 	def create
-		@blog = Blog.new(blog_params)
-		@user = User.find(params[:circle_id])
+		if current_admin_user.users.find_by(id: params[:circle_id])
+		else
+			flash[:notice] = 'URLが間違っています'
+			redirect_to blogs_path
+		end
+
+    @blog = Blog.new(blog_params)
 		@blog.user_id = @user.id
 		@blog.save
 
@@ -35,12 +41,11 @@ class Circles::BlogsController < Circles::ApplicationController
 		else
 			render "new"
 		end
-
 	end
+
 
 	def show
 		@blog = Blog.find(params[:id])
-		@user = User.find_by(id: params[:circle_id])
     @blogs = @user.blogs.where.not(id: params[:id])
 
     if @user.blogs.exists?(id: @blog.id)
@@ -49,13 +54,11 @@ class Circles::BlogsController < Circles::ApplicationController
 			flash[:notice] = 'URLが間違っています'
 			redirect_to blogs_path
     end
-
 	end
 
 
 	def edit
     @blog = Blog.find(params[:id])
-    @user = User.find(params[:circle_id])
   end
 
 	def update
@@ -72,6 +75,7 @@ class Circles::BlogsController < Circles::ApplicationController
 		end
 	end
 
+
 	def destroy
     @blog = Blog.find_by(id: params[:id])
     @blog.destroy
@@ -79,7 +83,7 @@ class Circles::BlogsController < Circles::ApplicationController
     @blog.user.save
 
 		flash[:notice] = 'ブログ削除完了'
-		redirect_to("/")
+		redirect_to circle_path(@user.id)
 	end
 
 
@@ -98,6 +102,19 @@ class Circles::BlogsController < Circles::ApplicationController
       :requirement,
       :impressions_count
     )
+  end
+
+  def set_blog
+    @user = User.find(params[:circle_id])
+  end
+
+
+  def security_blog
+		if current_admin_user.users.find_by(id: params[:circle_id]) && @user.blogs.find_by(id: params[:id])
+		else
+			flash[:notice] = 'URLが間違っています'
+			redirect_to blogs_path
+		end
   end
 
 end

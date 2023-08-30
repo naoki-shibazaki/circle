@@ -15,6 +15,5 @@
           %br
           = "活動ブログ"
 
-    -# .search_area
-    -#   = render "/blogs/commons/search"
-    -# = render "/blogs/commons/blogs_list"
+    = render "/blogs/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
+    = render "/blogs/commons/blogs_list", blogs: @blogs

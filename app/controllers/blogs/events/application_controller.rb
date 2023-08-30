@@ -1,3 +1,3 @@
-class Circles::Events::ApplicationController < Circles::ApplicationController
+class Blogs::Events::ApplicationController < Blogs::ApplicationController
 
 end
