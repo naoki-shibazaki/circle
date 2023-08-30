@@ -26,7 +26,7 @@
                     .modal_inner
                       .modal_block
                         = lazysizes_image_tag blog.image_01.url
-                        .gallery_comment= link_to ">>#{blog.title}", user_blog_path(@user, blog)
+                        .gallery_comment= link_to ">>#{blog.title}", circle_blog_path(@user, blog)
                       .modal_close ×
                 - if blog.image_02.present?
                   .modal_box
@@ -34,7 +34,7 @@
                     .modal_inner
                       .modal_block
                         = lazysizes_image_tag blog.image_02.url
-                        .gallery_comment= link_to ">> #{blog.title}", user_blog_path(@user, blog)
+                        .gallery_comment= link_to ">> #{blog.title}", circle_blog_path(@user, blog)
                       .modal_close ×
                 - if blog.image_03.present?
                   .modal_box
@@ -42,7 +42,7 @@
                     .modal_inner
                       .modal_block
                         = lazysizes_image_tag blog.image_03.url
-                        .gallery_comment= link_to ">> #{blog.title}", user_blog_path(@user, blog)
+                        .gallery_comment= link_to ">> #{blog.title}", circle_blog_path(@user, blog)
                       .modal_close ×
                 - if blog.image_04.present?
                   .modal_box
@@ -50,7 +50,7 @@
                     .modal_inner
                       .modal_block
                         = lazysizes_image_tag blog.image_04.url
-                        .gallery_comment= link_to ">> #{blog.title}", user_blog_path(@user, blog)
+                        .gallery_comment= link_to ">> #{blog.title}", circle_blog_path(@user, blog)
                       .modal_close ×
       = render "/layouts/ad_square"
       .ad_space

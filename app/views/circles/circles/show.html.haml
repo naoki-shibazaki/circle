@@ -432,7 +432,7 @@
 
     - if @user.blogs.present?
       - @user.blogs.order(created_at: "DESC").first(5).each do |blog|
-        = link_to(user_blog_path(blog.user_id, blog.id)) do
+        = link_to(circle_blog_path(blog.user_id, blog.id)) do
           .form.users-form
             .form-body
               .header-post.cont-width

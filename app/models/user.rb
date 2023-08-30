@@ -138,6 +138,7 @@ class User < ApplicationRecord
   scope :sort_1, -> {order(switch: :asc, last_post: :desc)}
   scope :sort_2, -> {order(switch: :asc, cb_point: :desc, last_post: :desc)}
   scope :sort_3, -> {order(switch: :asc, created_at: :desc)}
+  scope :user_ids, -> {(where(ng_account: nil).or(User.where(ng_account: "OK")).where.not(switch: "").where.not(appeal: "")).pluck(:id)}
 
 
 	# User用

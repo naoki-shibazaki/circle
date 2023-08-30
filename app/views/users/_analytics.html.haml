@@ -55,7 +55,7 @@
             %br/
             = succeed "\u307E\u3059\uFF01" do
               %span.marker サークルの掲載順位も上がり
-          = link_to ">>ブログの新規投稿", new_user_blog_path(@user)
+          = link_to ">>ブログの新規投稿", new_circle_blog_path(@user)
       - elsif @user.reviews.empty?
         .advice_wrap
           %span.box-title ポイント
@@ -114,7 +114,7 @@
                     P
                 %tr
                   %th
-                    = link_to new_user_blog_path(@user) do
+                    = link_to new_circle_blog_path(@user) do
                       ブログ投稿
                       %i.fa.fa-external-link
                   %td 0.2 P

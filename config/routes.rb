@@ -30,7 +30,9 @@ Rails.application.routes.draw do
 
   # サークル
   scope module: :circles do
-    resources :circles, only: [:index, :show]
+    resources :circles, only: [:index, :show] do
+      resources :blogs
+    end
 
     ## events配下
     scope module: :events do
@@ -55,9 +57,14 @@ Rails.application.routes.draw do
 
   end
 
+  # ブログ
+  scope module: :blogs do
+    resources :blogs, only: [:index]
+  end
+
 
 	resources :users, except: [:show, :index] do
-		resources :blogs, except: [:index]
+		# resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]
 		resources :links, only: [:new, :create]
     resources :schedules
@@ -162,8 +169,8 @@ Rails.application.routes.draw do
 
   # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'
-	get 'users/:user_id/blogs' , to: 'blogs#user_blogs'
-  get 'users/:user_id/gallery' , to: 'blogs#gallery'
+
+
 
   # お問い合わせ
   get 'users/:user_id/thanks/:random_id' , to: 'user_contacts#thanks'
@@ -192,12 +199,7 @@ Rails.application.routes.draw do
   get 'categories/:kana/:p_kana' , to: 'categories#category_prefecture'
 
 
-  # ブログ
-	get 'blog' , to: 'blogs#index'
-	get 'blog/prefectures' , to: 'blogs#prefecture_index'
-	get 'blog/prefectures/:kana' , to: 'blogs#prefecture'
-	get 'blog/:ruby' , to: 'blogs#event'
-	get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
+
 
   # コート情報
 	scope 'coat' do
@@ -239,7 +241,18 @@ Rails.application.routes.draw do
 
 
 	# 旧ブログ用のリダイレクト
-	get 'blogs/:id', to: 'blogs#show_redirect'
+	# get 'blogs/:id', to: 'blogs#show_redirect'
+
+  # ブログ
+	# get 'blog' , to: 'blogs#index'
+	# get 'blog/prefectures' , to: 'blogs#prefecture_index'
+	# get 'blog/prefectures/:kana' , to: 'blogs#prefecture'
+	# get 'blog/:ruby' , to: 'blogs#event'
+	# get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
+  # get 'users/:user_id/blogs' , to: 'blogs#user_blogs'
+  # get 'users/:user_id/gallery' , to: 'blogs#gallery'
+
+
 
   # 301リダイレクト
   get 'users/', to: redirect('circles')

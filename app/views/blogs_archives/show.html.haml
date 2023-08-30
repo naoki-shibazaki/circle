@@ -37,10 +37,10 @@
               - if admin_user_signed_in?
                 - if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1
                   .post_edit
-                    = link_to(edit_user_blog_path) do
+                    = link_to(edit_circle_blog_path) do
                       %i.fa.fa-pencil-square-o
                   .post_delete
-                    = link_to(user_blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do
+                    = link_to(circle_blog_path, method: :delete, data: {confirm: "投稿を削除しますか？"}) do
                       %i.fa.fa-trash
             = render "users/parts/admin_user_check", admin_user: @user.admin_user
             .rich_text_main
@@ -63,7 +63,7 @@
           のブログ一覧
         - @blogs.first(5).each do |blog|
           .blog_list
-            = link_to(user_blog_path(blog.user_id, blog.id)) do
+            = link_to(circle_blog_path(blog.user_id, blog.id)) do
               .blog_link
                 .catch_image= lazysizes_image_tag blog.image_01.url , class:'post_image'
                 .post-bottom= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M")

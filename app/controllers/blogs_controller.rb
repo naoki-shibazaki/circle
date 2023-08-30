@@ -44,7 +44,7 @@ class BlogsController < ApplicationController
       @user.save
 
 			flash[:notice] = 'ブログ投稿完了！'
-			redirect_to user_blog_path(@user, @blog)
+			redirect_to circle_blog_path(@user, @blog)
 		else
 			render "/blogs/edit"
 		end
@@ -109,7 +109,7 @@ class BlogsController < ApplicationController
 			@user.user_time = Time.zone.now
       @user.save
 			flash[:notice] = 'ブログ更新完了！'
-			redirect_to user_blog_path(@blog.user.id, @blog.id)
+			redirect_to circle_blog_path(@blog.user.id, @blog.id)
 		else
 			render "/blogs/edit"
 		end

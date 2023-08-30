@@ -64,7 +64,7 @@
 
 
 
-  - if @path.is('users#show') || @path.is('circles#show') || @path.is('users#mypage') || @path.is('blogs#show') || @path.is('blogs#user_blogs') || @path.is('blogs#gallery') || @path.is('schedules') || @path.is('attendances') || @path.is('questions') || @path.is('reviews#index')
+  - if @path.is('users#show') || @path.is('circles#show') || @path.is('users#mypage') || @path.is('blogs#show') || @path.is('blogs#index') || @path.is('blogs#gallery') || @path.is('schedules') || @path.is('attendances') || @path.is('questions') || @path.is('reviews#index')
     - if @path.is('event_questions') || @path.is('schedules#dates') || @path.is('schedules#year') || @path.is('schedules#month') || @path.is('schedules#day') || @path.is('#new') || @path.is('#edit')
     - else
       %ul.header_menue_btm
@@ -76,11 +76,11 @@
             %span= link_to "トップ", circle_path(@user)
         - if @path.is('blogs#show') || @path.is('blogs#user_blogs')
           %li.current_page
-            %span= link_to "ブログ", user_blogs_path(@user)
+            %span= link_to "ブログ", circle_blogs_path(@user)
             .header_count= @user.blogs.size
         - elsif @user.blogs.present?
           %li
-            %span= link_to "ブログ", user_blogs_path(@user)
+            %span= link_to "ブログ", circle_blogs_path(@user)
             .header_count= @user.blogs.size
         - else
           %li.none_page

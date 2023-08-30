@@ -31,7 +31,7 @@ SitemapGenerator::Sitemap.create do
   end
 
   # Blog.find_each do |blog|
-  #   add user_blog_path(blog.user, blog), :lastmod => blog.updated_at, :priority => 0.3, :changefreq => 'weekly'
+  #   add circle_blog_path(blog.user, blog), :lastmod => blog.updated_at, :priority => 0.3, :changefreq => 'weekly'
   # end
 
   # Schedule.find_each do |schedule|

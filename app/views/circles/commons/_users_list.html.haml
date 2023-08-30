@@ -1,9 +1,9 @@
-- if admin_user_signed_in?
-  .post_message
-    = link_to(circle_path(current_admin_user.first_user)) do
-      = lazysizes_image_tag current_admin_user.first_user.pic_profile.url , class:'post_image_icon'
-    = link_to(new_user_blog_path(current_admin_user.first_user)) do
-      .post_link サークル活動をつぶやく！
+-# - if admin_user_signed_in?
+-#   .post_message
+-#     = link_to(circle_path(current_admin_user.first_user)) do
+-#       = lazysizes_image_tag current_admin_user.first_user.pic_profile.url , class:'post_image_icon'
+-#     = link_to(new_circle_blog_path(current_admin_user.first_user)) do
+-#       .post_link サークル活動をつぶやく！
 
 %ul
   - users.each.with_index(1) do |user, i|
