@@ -20,4 +20,5 @@
                       %option{:value => "/users/#{user.id}/blogs/new"}
                         = user.name
                         （#{user.event.name}）
-        = render "/blogs/form_blog"
+
+        = render "circles/blogs/form", url_path: circle_blogs_path, method: "POST"

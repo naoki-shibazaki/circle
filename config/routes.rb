@@ -25,12 +25,16 @@ Rails.application.routes.draw do
     resources :events, only: :index
   end
 
+  get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
+
   get 'users/kw', to: 'db_keywords#kw'
 
 
-  # サークル
+  # サークル Circle = User
   scope module: :circles do
-    resources :circles, only: [:index, :show]
+    resources :circles, only: [:index, :show] do
+      resources :blogs
+    end
 
     ## events配下
     scope module: :events do
@@ -56,8 +60,29 @@ Rails.application.routes.draw do
   end
 
 
+
+  # ブログ
+  scope module: :blogs do
+    resources :blogs, only: [:index]
+  end
+
+  namespace :blogs do
+    ## events配下
+    scope module: :events do
+      resources :events, only: [:index, :show], param: :kana do
+        resources :prefectures, only: [:index, :show], param: :kana
+      end
+    end
+
+    ## prefectures配下
+    scope module: :prefectures do
+      resources :prefectures, only: [:index, :show], param: :kana
+    end
+  end
+
+
+
 	resources :users, except: [:show, :index] do
-		resources :blogs, except: [:index]
 		resources :matches, only: [:new, :create]
 		resources :links, only: [:new, :create]
     resources :schedules
@@ -91,7 +116,6 @@ Rails.application.routes.draw do
     resources :differences
 	end
 
-	get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
 
 
@@ -106,8 +130,6 @@ Rails.application.routes.draw do
 	get 'admin_users' , to: 'users#admin_users'
 	get 'webmaster' , to: 'users#webmaster'
   get 'admin_user_list' , to: 'users#admin_user_list'
-	# get 'questions' , to: 'questions#questions'
-	# get 'collections' , to: 'collections#collections'
 	get 'event_questions' , to: 'event_questions#event_questions'
   get 'contents' , to: 'differences#contents'
   get 'reviews' , to: 'reviews#all_reviews'
@@ -162,8 +184,7 @@ Rails.application.routes.draw do
 
   # サンプルの質問
 	get 'users/:user_id/question' , to: 'questions#question'
-	get 'users/:user_id/blogs' , to: 'blogs#user_blogs'
-  get 'users/:user_id/gallery' , to: 'blogs#gallery'
+
 
   # お問い合わせ
   get 'users/:user_id/thanks/:random_id' , to: 'user_contacts#thanks'
@@ -173,13 +194,9 @@ Rails.application.routes.draw do
   get 'check_v/:user_id/:random_id' , to: 'user_contacts#check_violation'
 
 
-	# get 'users/:user_id/collection-sample' , to: 'collections#sample'
 
   # エリア別
-	# get 'prefectures' , to: 'users#prefecture_index'
-	# get 'prefectures/:kana' , to: 'users#prefecture'
 	get 'prefectures/:kana/tag/:id' , to: 'tags#prefecture'
-	# get 'prefectures/:kana/:city_kana' , to: 'users#prefecture_city'
 	get 'prefectures/:kana/:city_kana/:id' , to: 'users#prefecture_city_station'
 	get 'prefectures/:kana/:city_kana/tag/:id' , to: 'tags#prefecture_city'
 
@@ -192,12 +209,7 @@ Rails.application.routes.draw do
   get 'categories/:kana/:p_kana' , to: 'categories#category_prefecture'
 
 
-  # ブログ
-	get 'blog' , to: 'blogs#index'
-	get 'blog/prefectures' , to: 'blogs#prefecture_index'
-	get 'blog/prefectures/:kana' , to: 'blogs#prefecture'
-	get 'blog/:ruby' , to: 'blogs#event'
-	get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
+
 
   # コート情報
 	scope 'coat' do
@@ -225,28 +237,26 @@ Rails.application.routes.draw do
 	get 'link/:unique_id', to: 'links#link'
 	get 'u/:unique_id', to: 'links#unique_page'
 
-  # タグ検索
-	# get 'tag/:id' , to: 'tags#index'
-
-  # 種目別
-	# get ':ruby' , to: 'users#event'
-	# get ':ruby/qa' , to: 'event_questions#index'
-	# post ':ruby/qa' , to: 'event_questions#create'
-	# get ':ruby/qa/:id' , to: 'event_questions#show'
-	# post ':ruby/qa/:id' , to: 'event_answers#create'
-	# delete ':ruby/qa/:id' , to: 'event_questions#delete'
-	# delete ':ruby/qa/:event_question_id/:id' , to: 'event_answers#delete'
 
 
-	# 旧ブログ用のリダイレクト
-	get 'blogs/:id', to: 'blogs#show_redirect'
+
+
 
   # 301リダイレクト
-  get 'users/', to: redirect('circles')
+  get 'users', to: redirect('circles')
   get 'users/:id', to: redirect('circles/%{id}')
+  get 'users/:circle_id/blogs', to: redirect('circles/%{circle_id}/blogs')
+
+  get 'blog', to: redirect('blogs')
+  get 'blog/prefectures', to: redirect('blogs')
+  get 'blog/prefectures/:kana', to: redirect('blogs/prefectures/%{kana}')
+  get 'blog/:kana' , to: 'redirect#blogs_event'
+  get 'blog/:event_kana/:kana', to: 'redirect#blogs_event_prefecture'
+
   get 'prefectures/:prefecture_kana/:kana' , to: redirect('prefectures/%{prefecture_kana}/cities/%{kana}')
   get 'tag/:id' , to: redirect('tags/%{id}')
   get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
+
   get ':kana' , to: redirect('events/%{kana}')
 	get ':event_kana/:kana' , to: redirect('events/%{event_kana}/prefectures/%{kana}')
 	get ':event_kana/:prefecture_kana/:kana' , to: redirect('events/%{event_kana}/prefectures/%{prefecture_kana}/cities/%{kana}')
@@ -255,9 +265,7 @@ Rails.application.routes.draw do
 
   # 通常のルーティング
 	get ':ruby/tag/:id' , to: 'tags#event'
-	# get ':ruby/:kana' , to: 'users#event_prefecture'
 	get ':ruby/:kana/tag/:id' , to: 'tags#event_prefecture'
-	# get ':ruby/:kana/:city_kana' , to: 'users#event_prefecture_city'
 	get ':ruby/:kana/:city_kana/:id' , to: 'users#event_prefecture_city_station'
 	get ':ruby/:kana/:city_kana/tag/:id' , to: 'tags#event_prefecture_city'
 

@@ -138,9 +138,7 @@ class QuestionsController < ApplicationController
 	end
 
 
-	def questions
-		@questions = Question.all.order(id: "DESC").page(params[:page])
-	end
+
 
 
   private

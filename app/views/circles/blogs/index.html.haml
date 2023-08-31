@@ -1,6 +1,12 @@
 - set_meta_tags title: "#{@user.name}の活動ブログ｜#{@user.prefecture.name}の#{@user.event.txt}｜サークルブック", description: "#{@user.prefecture.name}で活動している#{@user.event.txt}、#{@user.name}の活動ブログ", og: { image: @user.ogp_img }, twitter: { card: 'summary_large_image'}
+- breadcrumb :circle_blog_index, @user
+
 .user_main.user-show
   .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
     .users-index-item
       %h1.top_title 活動ブログ
       = render "/users/parts/user_switching", user: @user, url_path: "blogs"
@@ -9,7 +15,7 @@
       %div
         - if @blogs.any?
           - @blogs.each do |blog|
-            = link_to(user_blog_path(blog.user_id, blog.id)) do
+            = link_to(circle_blog_path(blog.user_id, blog.id)) do
               .form.users-form
                 .form-body
                   .header-post.cont-width

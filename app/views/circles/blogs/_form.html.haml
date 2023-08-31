@@ -1,7 +1,13 @@
-= form_for ([@user, @blog]) do |f|
+.attention_content
+  .attention_title= "＜注意＞"
+  活動に関係のない内容（故意に表示順位を上げるための投稿）はお控えください。場合によっては、アカウント制限をさせていただくことがございます。
+
+= form_with model: [@user, @blog], url: url_path, method: method, local: true do |f|
+
   .label_item
     %span.label.label_danger> 必須
     タイトル
+
   = f.text_field :title, class: 'form-control', placeholder: "日々の活動記録など！"
   .edit01_warp
     %span.edit01_subtitle ブログ画像（最大4枚）
@@ -32,6 +38,7 @@
           - else
             %i.fa.fa-image
         = f.file_field :image_04, class: "image", style: "display:none;", id: "file_04"
+
       - if @blog.image_01.present? || @blog.image_02.present? || @blog.image_03.present? || @blog.image_04.present?
         %ul.remove_img
           - if @blog.image_01.present?
@@ -50,9 +57,11 @@
             %li
               = f.check_box :remove_image_04
               ④削除
+
   .label_item 本文
   .rich_text_main
     = f.hidden_field :content, id: :article_text
     %trix-editor{:input => "article_text", :placeholder => "○月○日に△△で、サークルブックの活動をしましたー！！今回はこんなことをしました！"}
+
   .warning_txt ※更新完了に少し時間がかかります
-  = f.submit @blog_button, data: { disable_with: '更新中...' }
+  = f.submit "更新する", data: { disable_with: '更新中...' }

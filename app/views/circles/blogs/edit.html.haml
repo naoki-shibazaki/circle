@@ -12,4 +12,6 @@
           .form-error_message
             ・#{message}
         .p_t ブログの編集
-        = render "/blogs/form_blog"
+
+        = render "circles/blogs/form", url_path: circle_blog_path, method: "PUT"
+
