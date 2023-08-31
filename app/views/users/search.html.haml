@@ -6,7 +6,7 @@
       「#{params[:q].truncate(18)}」の検索結果
     .users-txt
       - if admin_user_signed_in?
-        = link_to("活動ブログ", new_user_blog_path(@user) )
+        = link_to("活動ブログ", new_circle_blog_path(@user) )
         を投稿すると
         %br/
         あなたの掲載順位が上がります！

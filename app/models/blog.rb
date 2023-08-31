@@ -37,6 +37,7 @@ class Blog < ApplicationRecord
 	paginates_per 10
 
   scope :blog_sort, -> { order(created_at: "DESC") }
+  scope :list, -> (user_ids){where(user_id: user_ids).includes(user: [:event, :prefecture]).blog_sort}
 
 
 end

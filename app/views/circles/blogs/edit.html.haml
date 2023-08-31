@@ -1,0 +1,17 @@
+- set_meta_tags noindex: true
+.main.users-new
+  .container
+    .form.users-form
+      .form-body.cont-body
+        - if @blog.errors.any?
+          .form-error
+            以下の項目でエラーが発生いたしました。
+            %br/
+            ※原因不明の場合は空欄でご登録ください
+        - @blog.errors.full_messages.each do |message|
+          .form-error_message
+            ・#{message}
+        .p_t ブログの編集
+
+        = render "circles/blogs/form", url_path: circle_blog_path, method: "PUT"
+

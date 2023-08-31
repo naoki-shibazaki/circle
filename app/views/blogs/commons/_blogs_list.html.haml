@@ -1,13 +1,15 @@
 - if admin_user_signed_in?
   .post_message
-    = link_to(circle_path(@user)) do
-      = lazysizes_image_tag @user.pic_profile.url , class:'post_image_icon'
-    = link_to(new_user_blog_path(@user)) do
+    = link_to(circle_path(current_admin_user.first_user)) do
+      = lazysizes_image_tag current_admin_user.first_user.pic_profile.url , class:'post_image_icon'
+    = link_to(new_circle_blog_path(current_admin_user.first_user)) do
       .post_link サークル活動をつぶやく！
-- @blogs.includes(user: [:event, :prefecture]).each.with_index(1) do |blog, i|
+
+
+- blogs.each.with_index(1) do |blog, i|
   .form.users-form
     .blog-body
-      = link_to(user_blog_path(blog.user_id, blog.id)) do
+      = link_to(circle_blog_path(blog.user_id, blog.id)) do
         .header-post.cont-width
           = lazysizes_image_tag blog.user.pic_profile.url , class:'content_icon'
           .post-user_wrap
@@ -40,22 +42,20 @@
             - else
               = simple_format blog.content.truncate(120)
       .blog_tag.tag_bottom.cont-width
-        = link_to("/#{blog.user.event.ruby}", class: "tag_btn") do
+        = link_to event_path(blog.user.event.ruby), class: "tag_btn" do
           %i.fa.fa-tags.tag-color
           = blog.user.event.name
-        = link_to("/#{blog.user.event.ruby}/#{blog.user.prefecture.kana}", class: "tag_btn") do
+
+        = link_to event_prefecture_path(blog.user.event.ruby, blog.user.prefecture.kana), class: "tag_btn" do
           %i.fa.fa-tags.tag-color
           = blog.user.prefecture.name
-        - if blog.user.prefecture_sub_id.present?
-          - @prefectures.each do |sub_prefecture|
-            - if blog.user.prefecture_sub_id == sub_prefecture.id
-              = link_to("/#{blog.user.event.ruby}/#{sub_prefecture.kana}", class: "tag_btn") do
-                %i.fa.fa-tags.tag-color
-                = sub_prefecture.name
+
+
   - if i == 5
     .list_ad
       = render "/layouts/ad_square"
-- if @blogs.empty?
+
+- if blogs.empty?
   .no_hit_wrap.blog_no_hit
     %img.imege_sorry{:src => "/images/sorry.png"}/
     = link_to(root_path) do
@@ -63,4 +63,4 @@
     = link_to(new_admin_user_registration_path) do
       .no_hit_new 新しくサークルを登録する
 = render "/layouts/ad_square"
-= paginate @blogs
+= paginate blogs
