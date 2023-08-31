@@ -186,7 +186,6 @@ Rails.application.routes.draw do
 	get 'users/:user_id/question' , to: 'questions#question'
 
 
-
   # お問い合わせ
   get 'users/:user_id/thanks/:random_id' , to: 'user_contacts#thanks'
   patch 'users/:user_id/contact_list/:id', to: 'user_contacts#update_contact'
@@ -242,23 +241,22 @@ Rails.application.routes.draw do
 
 
 
-  # ブログ
-	# get 'blog/prefectures' , to: 'blogs#prefecture_index'
-	# get 'blog/prefectures/:kana' , to: 'blogs#prefecture'
-	# get 'blog/:ruby' , to: 'blogs#event'
-	# get 'blog/:ruby/:kana' , to: 'blogs#event_prefecture'
-  # get 'users/:user_id/blogs' , to: 'blogs#user_blogs'
-  # get 'users/:user_id/gallery' , to: 'blogs#gallery'
-
-
 
   # 301リダイレクト
   get 'users', to: redirect('circles')
-  get 'blog', to: redirect('blogs')
   get 'users/:id', to: redirect('circles/%{id}')
+  get 'users/:circle_id/blogs', to: redirect('circles/%{circle_id}/blogs')
+
+  get 'blog', to: redirect('blogs')
+  get 'blog/prefectures', to: redirect('blogs')
+  get 'blog/prefectures/:kana', to: redirect('blogs/prefectures/%{kana}')
+  get 'blog/:kana' , to: 'redirect#blogs_event'
+  get 'blog/:event_kana/:kana', to: 'redirect#blogs_event_prefecture'
+
   get 'prefectures/:prefecture_kana/:kana' , to: redirect('prefectures/%{prefecture_kana}/cities/%{kana}')
   get 'tag/:id' , to: redirect('tags/%{id}')
   get 'schedules/:unique_id', to: redirect("s/%{unique_id}/attendances")
+
   get ':kana' , to: redirect('events/%{kana}')
 	get ':event_kana/:kana' , to: redirect('events/%{event_kana}/prefectures/%{kana}')
 	get ':event_kana/:prefecture_kana/:kana' , to: redirect('events/%{event_kana}/prefectures/%{prefecture_kana}/cities/%{kana}')
