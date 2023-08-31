@@ -15,7 +15,8 @@
           .post-user_wrap
             .post-user
               .post-top= blog.user.name.truncate(40)
-              .post-bottom= blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M")
+              .post-bottom
+                = "作成日：#{time_tag blog.created_at.to_date}"
         .post-body
           - if blog.image_01.present?
             - if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank?
