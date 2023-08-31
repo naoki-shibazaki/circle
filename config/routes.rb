@@ -246,6 +246,8 @@ Rails.application.routes.draw do
   get 'users', to: redirect('circles')
   get 'users/:id', to: redirect('circles/%{id}')
   get 'users/:circle_id/blogs', to: redirect('circles/%{circle_id}/blogs')
+  get 'users/:circle_id/blogs/:id', to: redirect('circles/%{circle_id}/blogs/%{id}')
+
 
   get 'blog', to: redirect('blogs')
   get 'blog/prefectures', to: redirect('blogs')
