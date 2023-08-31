@@ -1,5 +1,8 @@
 class Exhibitions::ExhibitionsController < Exhibitions::ApplicationController
 
+  def index
+    @exhibitions = Exhibition.all.includes([:prefecture, exhibition_group: :exhibition_group_profile]).order(end_date: "desc")
+  end
 
   def new
 		@exhibition = current_exhibition_group.exhibitions.build
