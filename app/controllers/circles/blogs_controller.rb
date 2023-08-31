@@ -110,7 +110,7 @@ class Circles::BlogsController < Circles::ApplicationController
 
 
   def security_blog
-		if current_admin_user.users.find_by(id: params[:circle_id]) && @user.blogs.find_by(id: params[:id])
+		if current_admin_user.users.find_by(id: params[:circle_id]) && @user.blogs.find_by(id: params[:id]) || current_admin_user.id == 1
 		else
 			flash[:notice] = 'URLが間違っています'
 			redirect_to blogs_path

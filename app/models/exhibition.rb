@@ -36,6 +36,7 @@
 class Exhibition < ApplicationRecord
 
   belongs_to :prefecture
+  belongs_to :exhibition_group
 
   has_many :exhibition_contacts, dependent: :destroy
 
@@ -52,6 +53,8 @@ class Exhibition < ApplicationRecord
     validates :name
   end
 
-
+  def exhibitor
+    self.exhibition_group.exhibition_group_profile
+  end
 
 end
