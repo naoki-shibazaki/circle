@@ -35,7 +35,8 @@
                 .post-user_wrap
                   .post-user
                     .post-top= @user.name.truncate(40)
-                    .post-bottom= @blog.created_at.strftime("%Y年%-m月%-d日 %-H:%M")
+                    .post-bottom
+                      = "作成日：#{time_tag @blog.created_at.to_date}"
             .post_share.blog_share
               .share_btn_tw
                 - if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present?
