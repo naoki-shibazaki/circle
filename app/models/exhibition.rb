@@ -53,8 +53,13 @@ class Exhibition < ApplicationRecord
     validates :name
   end
 
+	paginates_per 10
+
   def exhibitor
     self.exhibition_group.exhibition_group_profile
   end
+
+  scope :list, -> {includes([:prefecture, exhibition_group: :exhibition_group_profile]).order(end_date: "desc")}
+
 
 end

@@ -1,7 +1,8 @@
 class Exhibitions::ExhibitionsController < Exhibitions::ApplicationController
+  before_action :set_search, only: [:index]
 
   def index
-    @exhibitions = Exhibition.all.includes([:prefecture, exhibition_group: :exhibition_group_profile]).order(end_date: "desc")
+    @exhibitions = Exhibition.all.list.page(params[:page])
   end
 
   def new

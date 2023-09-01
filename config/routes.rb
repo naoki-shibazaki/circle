@@ -82,6 +82,36 @@ Rails.application.routes.draw do
 
 
 
+  # ログインユーザー（出展者）
+  scope module: :exhibitor_apps do
+    resource :exhibitor_profile, only: [:edit, :update]
+    resource :exhibitor_mypage, only: [:show]
+  end
+
+  # 出展
+  scope module: :exhibitions do
+    resources :exhibitors, only: [:show]
+    resources :exhibitions do
+      resources :exhibition_contacts, only: [:create]
+    end
+  end
+
+  namespace :exhibitions do
+    ## categories配下
+    scope module: :categories do
+      resources :categories, only: [:index, :show], param: :kana do
+        resources :prefectures, only: [:index, :show], param: :kana
+      end
+    end
+
+    ## prefectures配下
+    scope module: :prefectures do
+      resources :prefectures, only: [:index, :show], param: :kana
+    end
+  end
+
+
+
 	resources :users, except: [:show, :index] do
 		resources :matches, only: [:new, :create]
 		resources :links, only: [:new, :create]
@@ -138,19 +168,7 @@ Rails.application.routes.draw do
 	get 'member_del' , to: 'members#member_del'
 
 
-  # ログインユーザー（出展者）
-  scope module: :exhibitor_apps do
-    resource :exhibitor_profile, only: [:edit, :update]
-    resource :exhibitor_mypage, only: [:show]
-  end
 
-  # 出展
-  scope module: :exhibitions do
-    resources :exhibitors, only: [:show]
-    resources :exhibitions do
-      resources :exhibition_contacts, only: [:create]
-    end
-  end
 
 
 	get 'user/add', to: 'users#add'
