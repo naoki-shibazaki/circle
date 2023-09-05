@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 	before_action :set_imperfect_current_user
 	before_action :request_path
   before_action :set_data
+  before_action :judge_ip
 
 
   private
@@ -108,7 +109,10 @@ class ApplicationController < ActionController::Base
 		@url = request.url
   end
 
-
+  # 荒らし対策
+  def judge_ip
+    redirect_to root_path if request.remote_ip == "133.106.41.183"
+  end
 
 
 end
