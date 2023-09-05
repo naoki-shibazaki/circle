@@ -1700,6 +1700,8 @@ GEM
     puma (3.12.6)
     racc (1.6.2)
     rack (2.2.7)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
     rack-rewrite (1.5.1)
@@ -1910,6 +1912,7 @@ DEPENDENCIES
   paperclip
   pg
   puma (~> 3.11)
+  rack-attack
   rack-cors
   rack-rewrite
   rails (~> 6.0.5.1)
