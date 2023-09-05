@@ -42,6 +42,9 @@ gem "font-awesome-rails"
 gem 'momentjs-rails'
 gem "rack-cors"
 
+# for security
+gem 'rack-attack'
+
 gem 'carrierwave'
 
 gem 'cloudinary'
