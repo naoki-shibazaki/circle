@@ -7,9 +7,10 @@ class Blogs::Events::EventsController < Blogs::Events::ApplicationController
 
 
   def show
-		@event = Event.find_by(ruby: params[:kana])
+    @event = Event.find_by(ruby: params[:kana])
+    admin_user_ids = AdminUser.ng_account.pluck(:id)
 
-    user_ids = User.where(event_id: @event.id).users_list.pluck(:id)
+    user_ids = User.where(admin_user_id: admin_user_ids).where(event_id: @event.id).users_list.pluck(:id)
     @blogs = Blog.list(user_ids).page(params[:page])
 
   end
