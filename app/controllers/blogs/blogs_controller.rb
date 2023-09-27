@@ -4,8 +4,7 @@ class Blogs::BlogsController < Blogs::ApplicationController
 
 	def index
     admin_user_ids = AdminUser.ng_account.pluck(:id)
-    user_ids = User.where(admin_user_id: admin_user_ids).pluck(:id)
-    # user_ids = User.users_list.pluck(:id)
+    user_ids = User.where(admin_user_id: admin_user_ids).users_list.pluck(:id)
     @blogs = Blog.list(user_ids).page(params[:page])
   end
 
