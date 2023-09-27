@@ -45,7 +45,8 @@ class AdminUser < ApplicationRecord
     true
   end
 
-  scope :ng_account, -> {where(check: nil).or(AdminUser.where(check: ""))}
+  # scope :ng_account, -> {where(check: nil).or(AdminUser.where(check: ""))}
+  scope :ng_account, -> {where(check: nil)}
 
 
 end
