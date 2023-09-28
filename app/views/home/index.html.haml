@@ -15,16 +15,18 @@
         あなたにピッタリの
         %br/
         サークルやチーム、団体が見つかる！！
+
     .search_wrap
       .search_word
-        %h2.search_title
-          %i.fa.fa-search
-          キーワードからサークルを探す
-        = form_tag('/users/search', method: :get, enforce_utf8: false) do
-          %input#page_name.search_area{:name => "q", :placeholder => "#{@search_word}", :size => "30", :type => "text", :value => "#{params[:q]}"}/
+        = form_tag(search_circles_path, method: :get, enforce_utf8: false) do
+          %input.search_area.change_font{:name => "q", :placeholder => "例）バスケ　東京", :size => "30", :type => "text", :value => "#{params[:q]}"}/
           .search_icon
             = submit_tag("検索", :name => nil)
         .search_word_announce ※複数の単語はスペースで区切ってください
+
+
+
+
     .top_contents.bg_blue
       .top_heading
         %h2.sub_title

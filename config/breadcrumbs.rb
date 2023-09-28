@@ -8,6 +8,11 @@ crumb :circle_index do
   parent :root
 end
 
+crumb :circle_search do |q|
+  link "「#{q}」のサークル検索結果", search_circles_path
+  parent :root
+end
+
   ## events配下
   crumb :event_show do |event|
     link "#{event.name}", event_path(event.ruby)
