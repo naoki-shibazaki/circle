@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   # サークル Circle = User
   scope module: :circles do
     resources :circles, only: [:index, :show] do
+      get 'search', on: :collection
       resources :blogs
     end
 
