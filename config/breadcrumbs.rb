@@ -8,8 +8,13 @@ crumb :circle_index do
   parent :root
 end
 
-crumb :circle_search do |q|
-  link "「#{q}」のサークル検索結果", search_circles_path
+crumb :circle_search_index do |q|
+  link "「#{q}」のサークル検索結果", circles_search_index_path
+  parent :root
+end
+
+crumb :circle_search_show do |q|
+  link "「#{q}」のサークル検索結果", circles_search_path
   parent :root
 end
 
