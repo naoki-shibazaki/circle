@@ -31,9 +31,13 @@ Rails.application.routes.draw do
 
 
   # サークル Circle = User
+  namespace :circles do
+    resources :search, only: [:index, :show], param: :q
+    # ↑必ずresources :circlesの上部に記載
+  end
+
   scope module: :circles do
     resources :circles, only: [:index, :show] do
-      get 'search', on: :collection
       resources :blogs
     end
 
@@ -57,8 +61,8 @@ Rails.application.routes.draw do
     scope module: :tags do
       resources :tags, only: [:index, :show]
     end
-
   end
+
 
 
 
@@ -173,7 +177,6 @@ Rails.application.routes.draw do
 
 
 	get 'user/add', to: 'users#add'
-  get 'users/kw/:q', to: 'db_keywords#keyword'
 	get 'users/:id/edit2', to: 'users#edit2'
 	patch 'users/:id/edit2', to: 'users#update2'
 	get 'users/:id/edit3', to: 'users#edit3'
@@ -260,9 +263,9 @@ Rails.application.routes.draw do
 
 
 
-
   # 301リダイレクト
   get 'users', to: redirect('circles')
+  get 'users/kw/:q', to: redirect('/circles/search/%{q}')
   get 'users/:id', to: redirect('circles/%{id}')
   get 'users/:circle_id/blogs', to: redirect('circles/%{circle_id}/blogs')
   get 'users/:circle_id/blogs/:id', to: redirect('circles/%{circle_id}/blogs/%{id}')
