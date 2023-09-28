@@ -158,7 +158,7 @@ class User < ApplicationRecord
   # Blog用
   scope :user_hide, -> { ng_account.where.not(switch: "") }
 
-  # User_検索用
+  # 検索用
 	scope :search_word, ->(keyword) do
     where("LOWER(name) LIKE ?", "%#{keyword.downcase}%").
 		or(where("schedule LIKE ?", "%#{keyword}%")).
