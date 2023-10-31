@@ -110,7 +110,7 @@
                       <div class="reset"></div>
 
                       <div class="text_btn_wrap">
-                        <%= f.button type: "submit", name: "submit", value: "delete", data: {confirm: "一度削除すると、元に戻せません。削除してよろしいでしょうか？"}, class: "text_btn" do %><i class="fa fa-trash-o "></i> 削除する<% end %>
+                        <%= f.button type: "submit", name: "submit", value: "delete", data: {confirm: "一度削除すると、元に戻せません。削除してよろしいでしょうか？　※対象分のサクブポイントも消滅します"}, class: "text_btn" do %><i class="fa fa-trash-o "></i> 削除する<% end %>
                         <br>
 
                         <% if user_contact.account_block.present? %>
