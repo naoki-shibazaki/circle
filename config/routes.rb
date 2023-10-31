@@ -27,8 +27,6 @@ Rails.application.routes.draw do
 
   get '/sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/circlebook/sitemaps/sitemap.xml.gz')
 
-  get 'users/kw', to: 'db_keywords#kw'
-
 
   # サークル Circle = User
   namespace :circles do
