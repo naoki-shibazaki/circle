@@ -19,6 +19,6 @@ module Circle
     # the framework and any gems in your application.
 
     # security
-    config.middleware.use Rack::Attack
+    # config.middleware.use Rack::Attack
   end
 end

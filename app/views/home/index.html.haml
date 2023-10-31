@@ -83,8 +83,9 @@
                   %img.lazyload{:alt => "福岡", "data-src" => "/images/prefectures/fukuoka.jpg"}/
                   .link_txt 福岡
           %ul.prefectures-menus.place_meus
+
             - @prefectures.each do |prefecture|
-              - if prefecture.group != @x
+              - if prefecture.group != @pref_group
                 - if prefecture.id == 50
                   .prefectures-sub-title 全国
                 - else
@@ -94,11 +95,14 @@
                 %li
                   = link_to "/prefectures/#{prefecture.kana}" do
                     = prefecture.name
-                - @x = prefecture.group
+                - @pref_group = prefecture.group
               - else
                 %li
                   = link_to "/prefectures/#{prefecture.kana}" do
                     = prefecture.name
+
+
+
         %label.readmore-label{:for => "check1-2"}
     .top_contents.top_contents_btm.bg_blue
       .top_heading
@@ -106,7 +110,7 @@
           %i.fa.fa-users
           メンバー募集中のサークル
       %ul.user_slide_wrap
-        - @users.includes([:event, :prefecture]).first(7).each do |user|
+        - @users.each do |user|
           = link_to(circle_path(user.id)) do
             %li.user_slide_list
               .user_list_header
@@ -186,7 +190,7 @@
                   .link_txt 福岡
           %ul.prefectures-menus.place_meus
             - @prefectures.each do |prefecture|
-              - if prefecture.group != @x
+              - if prefecture.group != @pref_group
                 - if prefecture.id != 50
                   .prefectures-sub-title
                     = prefecture.group
@@ -194,7 +198,7 @@
                   %li
                     = link_to "/match/prefectures/#{prefecture.kana}" do
                       = prefecture.name
-                - @x = prefecture.group
+                - @pref_group = prefecture.group
               - else
                 %li
                   = link_to "/match/prefectures/#{prefecture.kana}" do
@@ -206,7 +210,7 @@
           %i.fa.fa-flag-checkered
           対戦相手を募集中のサークル
       %ul.user_slide_wrap
-        - @match_users.first(7).each do |m_user|
+        - @match_users.each do |m_user|
           = link_to(match_path(m_user.id)) do
             %li.user_slide_list
               .user_list_header
