@@ -1,6 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default from:     "circlebook.mailer@gmail.com",
-          bcc:      "circlebook.mailer@gmail.com",
-          reply_to: "circlebook.mailer@gmail.com"
+  default from:     "noreply@circle-book.com",
+          bcc:      "noreply@circle-book.com",
+          reply_to: "noreply@circle-book.com"
   layout 'mailer'
 end
