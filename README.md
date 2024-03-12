@@ -1,24 +1,50 @@
-# README
+# サークルブック
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 本番環境
+### デプロイの仕組み
+1. それぞれのサーバーにSSH接続
+2. git pull origin masterを実行
 
-Things you may want to cover:
+という流れのみなので、変更内容によってはサーバー上で追加対応が必要
 
-* Ruby version
+#### 新たにgemを追加した際
 
-* System dependencies
+```
+$ bundle install
+```
 
-* Configuration
+#### DB変更した際
 
-* Database creation
+```
+# 必ずmigration statusを確認してから実行
+$ bundle exec rails db:migrate:status
+$ bundle exec rails db:migrate
+```
 
-* Database initialization
+### コマンドまとめ
 
-* How to run the test suite
+```
+# ファイル設置箇所
+$ cd /var/www/circle
 
-* Services (job queues, cache servers, search engines, etc.)
+# ステータス確認
+$ sudo systemctl status unicorn
+->active
 
-* Deployment instructions
+# unicornサーバー起動
+$ sudo systemctl start unicorn
 
-* ...
+# unicornサーバー停止
+$ sudo systemctl stop unicorn
+
+# ログ確認
+## railsログ
+$ tail /var/www/circle/log/unicorn.stdout.log
+
+## unicornサーバーログ
+$ tail /var/www/circle/log/unicorn.stderr.log
+```
+
+### 注意書き
+
+- 原則本番上でgit add/commit/pushはしない
