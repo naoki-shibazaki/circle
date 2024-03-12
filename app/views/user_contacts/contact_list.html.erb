@@ -32,7 +32,7 @@
         <% end %>
         <br><br>
         <div class="receive_setting">
-          【circlebook.mailer@gmail.com】から送信します。<br>
+          【noreply@circle-book.com】から送信します。<br>
           メールを受信できるように設定をお願いします。
         </div>
         お問い合わせ内容は下記から変更できます。<br>
@@ -73,7 +73,7 @@
               <div class="mail_contact">
                 <i class="fa fa-envelope-square "></i>
                   <%= mail_to "#{user_contact.mail}", nil,
-                        :bcc => "circlebook.mailer@gmail.com",
+                        :bcc => "noreply@circle-book.com",
                         :subject => "【サークルブック】#{@user.name}",
                         :body => "こちらにご記入ください"  %>
               </div>
