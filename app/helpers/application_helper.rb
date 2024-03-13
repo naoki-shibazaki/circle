@@ -38,9 +38,6 @@ module ApplicationHelper
       image_tag("/images/loading.gif", options) + ("<noscript>#{image_tag(source, options)}</noscript>").html_safe
     end
 
-    def amp_ready?
-      defined?(@amp_ready) && @amp_ready == true
-    end
 
 
 

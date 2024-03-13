@@ -50,10 +50,29 @@
             %p
               Ａ.
               ブログや活動スケジュールなどの更新が活発なサークルは上位に表示されやすくなります。
+
         %li.option
           %input#toggle06.toggle{:type => "checkbox"}/
-          %label.title{:for => "toggle06"} Ｑ.サークルの削除方法は？
+          %label.title{:for => "toggle06"} Ｑ.【サークル主催者】サークルの削除方法は？
           .content
             %p
               Ａ.
               ログインした状態で、#{link_to "サークル削除ページ",user_del_path}より、手続きをお願いいたします。
+
+
+        - unless admin_user_signed_in? && current_admin_user.check.present? && current_admin_user.check >= 1
+          %li.option
+            %input#toggle08.toggle{:type => "checkbox"}/
+            %label.title{:for => "toggle08"} Ｑ.【サークル主催者】退会方法は？
+            .content
+              %p
+                Ａ.
+                ログインした状態で、#{link_to "サークルブック退会手続き",unsubscribe_admin_user_path}より、手続きをお願いいたします。※全てのデータが削除されます
+
+          %li.option
+            %input#toggle09.toggle{:type => "checkbox"}/
+            %label.title{:for => "toggle09"} Ｑ.【参加者】退会方法は？
+            .content
+              %p
+                Ａ.
+                ログインした状態で、#{link_to "サークルブック退会手続き",unsubscribe_member_path}より、手続きをお願いいたします。※全てのデータが削除されます

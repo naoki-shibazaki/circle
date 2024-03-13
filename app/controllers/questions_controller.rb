@@ -147,7 +147,7 @@ class QuestionsController < ApplicationController
 
     @question_first = "活動頻度を教えてください！"
     @question_second = "１人でも参加しやすいですか？"
-    @question_third = "メンバーの年齢層はどれくらいですか？"
+    @question_third = "参加者の年齢層はどれくらいですか？"
 
     if @user.present?
 			if @user.switch.present?
