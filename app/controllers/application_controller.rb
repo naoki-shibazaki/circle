@@ -32,6 +32,8 @@ class ApplicationController < ActionController::Base
           end
         elsif action_name == 'destroy'
 
+        elsif controller_path == 'pages' || controller_path == 'unsubscribe/admin_users' || controller_path == 'unsubscribe/members'
+
         else
             flash[:notice] = "登録を完了させてください"
             redirect_to new_user_path
@@ -50,6 +52,8 @@ class ApplicationController < ActionController::Base
             redirect_to "/members/#{current_member.id}/edit"
           end
         elsif action_name == 'destroy'
+
+        elsif controller_path == 'pages' || controller_path == 'unsubscribe/admin_users' || controller_path == 'unsubscribe/members'
 
         else
             flash[:notice] = "登録を完了させてください"

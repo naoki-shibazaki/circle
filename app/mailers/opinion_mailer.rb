@@ -5,7 +5,7 @@ class OpinionMailer < ApplicationMailer
     @user = user
     mail to:      "circlebook.mailer@gmail.com",
           reply_to: user.admin_user.email,
-          subject: '【サークルブック】ご意見箱に投稿がありました！'
+          subject: "【サークルブック】ご意見箱に投稿がありました！"
   end
 
   def send_violation(user, user_contact)
@@ -13,7 +13,7 @@ class OpinionMailer < ApplicationMailer
     @user_contact = user_contact
     mail to:      "circlebook.mailer@gmail.com",
           reply_to: user.admin_user.email,
-          subject: '【サークルブック】規約違反の報告が届きました'
+          subject: "【サークルブック】規約違反の報告が届きました"
   end
 
 

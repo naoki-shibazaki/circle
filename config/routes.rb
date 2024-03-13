@@ -150,6 +150,13 @@ Rails.application.routes.draw do
 	end
 
 
+  # 退会処理
+  namespace :unsubscribe do
+    resource :admin_user, only: [:show, :destroy]
+    resource :member, only: [:show, :destroy]
+  end
+
+
 
 
   # 静的ページ

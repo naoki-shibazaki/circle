@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @question = question
     mail to:      user.admin_user.email,
-          subject: '【サークルブック】新しい質問が届きました！'
+          subject: "【サークルブック】『#{user.name}』宛に新しい質問が届きました！"
   end
 
 end

@@ -4,14 +4,14 @@
     %h1.form-heading ログイン（参加者用）
     .login_info_txt
       = link_to ">>サークル主催者用のログインはコチラ",new_admin_user_session_path
-    .info_wrap
-      .info_title 【重要】
-      一部のユーザーにおいて、ログインができない事象が発生しております。現在、原因を調査中です。
-      %br/
-      誠に申し訳ございませんが、ログインできない方は、以下のパスワード再発行のボタンから、パスワードの再設定をお願いいたします。
-      %br/
-      %br/
-      = link_to ">>パスワードの再発行", new_member_password_path
+    -# .info_wrap
+    -#   .info_title 【重要】
+    -#   一部のユーザーにおいて、ログインができない事象が発生しております。現在、原因を調査中です。
+    -#   %br/
+    -#   誠に申し訳ございませんが、ログインできない方は、以下のパスワード再発行のボタンから、パスワードの再設定をお願いいたします。
+    -#   %br/
+    -#   %br/
+    -#   = link_to ">>パスワードの再発行", new_member_password_path
     .form.users-form
       .form-body.cont-body
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
