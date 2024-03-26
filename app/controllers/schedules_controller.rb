@@ -77,17 +77,28 @@ before_action :set_dates, {only: [:dates, :day]}
 	def update
 		@schedule = Schedule.find(params[:id])
 
-		if @schedule.update(schedule_params)
+    if @schedule.name_schedules.where(answer: 1).size > schedule_params[:recruitment_numbers].to_i && schedule_params[:recruitment_numbers].to_i != 0
+      flash[:notice] = "募集人数がオーバーしています"
+      render "edit"
 
-			@user.user_time = Time.now
-      @user.save
+    else
+      if @schedule.update(schedule_params)
 
-			flash[:notice] = '更新完了！'
-			redirect_to user_schedules_path
-		else
-			render "edit"
-		end
-	end
+        @user.user_time = Time.now
+        @user.save
+
+        flash[:notice] = '更新完了！'
+        redirect_to user_schedules_path
+      else
+        render "edit"
+      end
+    end
+
+
+
+
+
+  end
 
 
 	def show
@@ -162,7 +173,7 @@ before_action :set_dates, {only: [:dates, :day]}
 		@schedule.destroy
 
     cb_point(@user)
-    @user.save
+    ≈.save
 
     flash[:notice] = "削除しました"
 		redirect_to user_schedules_path

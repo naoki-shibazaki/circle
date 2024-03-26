@@ -19,6 +19,7 @@
             = f.radio_button :gender, 0
             = f.label :gender, "その他", {value: 0}
           %br/
+
           - @schedules.each do |schedule|
             - if schedule.recruitment_numbers.present?
               - if schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers && schedule.recruitment_numbers != 0
@@ -29,6 +30,7 @@
                     :prompt => "選択してください"                                       |
                   = name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント"
                   = name_schedule.hidden_field :schedule_id, value: schedule.id
+
             - else
               = f.fields_for :name_schedules do |name_schedule|
                 = render "/schedules/attendances/label_day", schedule: schedule

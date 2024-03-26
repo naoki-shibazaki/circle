@@ -39,7 +39,9 @@
                 %span.set.mark_green 募集中
           - else
             %span.set.mark_gray 開催終了
-        / ▲日程の行 表示▼
+        / ▲日程の行 表示▲
+
+
         / ▼名前＋ステータス 表示▼
         - @names.each do |name|
           - if name.name_schedules.find_by(schedule_id: schedule.id).present?
