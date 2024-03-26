@@ -4,12 +4,6 @@ include Circlebook
 
 before_action :set_attendances
 
-# before_action :ensure_correct_user, {only: [:edit, :update, :new]}
-# before_action :set_schedules, {except: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete, :dates, :day, :year, :month]}
-# before_action :set_attendances, {only: [:secret, :attendance, :attendance_create, :attendance_update, :attendance_delete]}
-# before_action :set_dates, {only: [:dates, :day]}
-
-
 	def index
 
     if params[:archive] == "1"
@@ -27,9 +21,9 @@ before_action :set_attendances
     @today = DateTime.yesterday
 
     # ▼@nemesの取得
-    @schedule_ids = @schedules.map{|s| s.id}
-    @name_ids = NameSchedule.where(schedule_id: @schedule_ids).map{|n| n.name_id}
-    @names = Name.where(id: @name_ids).order(updated_at: :desc)
+    schedule_ids = @schedules.pluck(:id)
+    name_ids = NameSchedule.where(schedule_id: schedule_ids).where.not(answer: nil).pluck(:name_id)
+    @names = Name.where(id: name_ids).order(updated_at: :desc)
   end
 
   def new
@@ -37,11 +31,42 @@ before_action :set_attendances
     @name_schedules = @name.name_schedules.build
     @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
 
+
+    # 空きがあるかチェック
+    # full_schedules = @schedules.select do |schedule|
+    #   schedule.name_schedules.where(answer: 1).size < schedule.recruitment_numbers && schedule.recruitment_numbers != 0
+    # end
+
+    # if full_schedules.present?
+    #   flash[:notice] = "登録できる日程がありません"
+    #   redirect_to attendances_path(@user.unique_id) and return
+    # end
+
+
   end
 
 	def create
-    @name = Name.create(name_params)
+    @name = Name.new(name_params)
     @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
+
+    if name_params[:name_schedules_attributes].present?
+      schedule_ids = name_params[:name_schedules_attributes].values.map { |params| params[:schedule_id] if params[:answer] == "1" }.compact
+      schedules = Schedule.where(id: schedule_ids)
+    else
+      flash[:notice] = "登録できる日程がありません"
+      redirect_to attendances_path(@user.unique_id) and return
+    end
+
+    # 既に満員のスケジュールがあるかチェック
+    full_schedules = schedules.select do |schedule|
+      schedule.name_schedules.where(answer: 1).size >= schedule.recruitment_numbers && schedule.recruitment_numbers != 0
+    end
+
+    if full_schedules.present?
+      flash[:notice] = "既に満員の日程があります"
+      redirect_to new_attendance_path(@user.unique_id) and return
+    end
+
 
     if @name.save
       flash[:notice] = "追加しました"
@@ -54,9 +79,6 @@ before_action :set_attendances
   end
 
 
-	# def show
-	# end
-
 	def edit
     @name = Name.find(params[:id])
     @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
@@ -64,10 +86,27 @@ before_action :set_attendances
 
 	def update
     @name = Name.find(params[:id])
-    @name.update(name_params)
     @name.updated_at = Time.now
+    @schedules = Schedule.where(user_id: @user.id).where("day > ?", DateTime.yesterday).order(:day => :asc, :time_s => :asc)
 
-    if @name.save
+    schedule_ids = name_params[:name_schedules_attributes].values.map { |params| params[:schedule_id] if params[:answer] == "1" }.compact
+    schedules = Schedule.where(id: schedule_ids)
+
+    # 既に満員のスケジュールがあるかチェック
+    full_schedules = schedules.select do |schedule|
+      schedule.name_schedules.where(answer: 1).size > schedule.recruitment_numbers && schedule.recruitment_numbers != 0
+    end
+
+    if full_schedules.present?
+      flash[:notice] = "既に満員の日程があります"
+      redirect_to edit_attendance_path(@user.unique_id, @name.id) and return
+    end
+
+
+    # @name.update(name_params)
+    # @name.updated_at = Time.now
+
+    if @name.update(name_params)
       flash[:notice] = "更新しました"
       redirect_to attendances_path(@user.unique_id)
     else
