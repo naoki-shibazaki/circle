@@ -97,8 +97,6 @@
               <span class="set mark_red">満員御礼</span>
             <% elsif @schedule.recruitment == "中止" %>
               <span class="set mark_yellow">中止</span>
-            <% elsif @schedule.recruitment_numbers.nil? %>
-              <span class="set mark_gray">募集なし</span>
             <% else %>
               <% if @schedule.recruitment_numbers == 0 || @schedule.recruitment_numbers.blank? %>
                 <span class="set mark_green">募集中</span>

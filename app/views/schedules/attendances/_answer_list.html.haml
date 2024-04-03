@@ -20,14 +20,13 @@
                     ／#{schedule.recruitment_numbers}名
                 - else
                   = schedule.name_schedules.where(answer: 1).size
-                  名
-            - elsif schedule.recruitment_numbers.nil?
-              .recruitment_numbers_wrap
-                ー
+                  %span.small_font
+                    名
             - else
               .recruitment_numbers_wrap
                 = schedule.name_schedules.where(answer: 1).size
-                名
+                %span.small_font
+                  名
 
 
         %td.status
@@ -36,8 +35,6 @@
               %span.set.mark_red 満員御礼
             - elsif schedule.recruitment == "中止"
               %span.set.mark_yellow 中止
-            - elsif schedule.recruitment_numbers.nil?
-              %span.set.mark_gray 募集なし
             - else
               - if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank?
                 %span.set.mark_green 募集中

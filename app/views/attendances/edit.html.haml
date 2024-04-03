@@ -36,8 +36,6 @@
                     = name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント"
                     = name_schedule.hidden_field :schedule_id, value: schedule.id
 
-              - elsif schedule.recruitment_numbers.nil?
-
               - else
                 / 定員設定なし
                 = f.fields_for :name_schedules, schedule.name_schedules.build do |name_schedule|

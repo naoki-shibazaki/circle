@@ -43,8 +43,6 @@
           活動エリア
         = f.text_field :venue, value: @copy_schedule.venue, class: 'form-control form-venue', placeholder: "東京都の新宿区周辺"
         .label_item 募集人数
-        .cautions
-          ※未選択の場合は『募集なし』になります
         = render "/schedules/recruitment_numbers", f: f
         .label_item 参加費
         = f.text_field :cost, value: @copy_schedule.cost, class: 'form-control form-venue', placeholder: "500円"
@@ -102,8 +100,6 @@
           活動エリア
         = f.text_field :venue, class: 'form-control form-venue', placeholder: "東京都の新宿区周辺"
         .label_item 募集人数
-        .cautions
-          ※未選択の場合は『募集なし』になります
         = render "/schedules/recruitment_numbers", f: f
         .label_item 参加費
         = f.text_field :cost, class: 'form-control form-venue', placeholder: "500円"
