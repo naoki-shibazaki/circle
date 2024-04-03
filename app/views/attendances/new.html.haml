@@ -31,8 +31,6 @@
                   = name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント"
                   = name_schedule.hidden_field :schedule_id, value: schedule.id
 
-            - elsif schedule.recruitment_numbers.nil?
-
             - else
               = f.fields_for :name_schedules do |name_schedule|
                 = render "/schedules/attendances/label_day", schedule: schedule
