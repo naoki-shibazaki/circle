@@ -11,29 +11,37 @@
                 %br/
                 = schedule.time_s.strftime('%H:%M')
                 \-#{schedule.time_e.strftime('%H:%M') if schedule.time_e.present?}
+
             - if schedule.recruitment_numbers.present?
               .recruitment_numbers_wrap
                 - if schedule.recruitment_numbers >= 1
-                  = schedule.name_schedules.where(answer: 1).count
+                  = schedule.name_schedules.where(answer: 1).size
                   %span.small_font
                     ／#{schedule.recruitment_numbers}名
                 - else
-                  = schedule.name_schedules.where(answer: 1).count
+                  = schedule.name_schedules.where(answer: 1).size
                   名
+            - elsif schedule.recruitment_numbers.nil?
+              .recruitment_numbers_wrap
+                ー
             - else
               .recruitment_numbers_wrap
-                = schedule.name_schedules.where(answer: 1).count
+                = schedule.name_schedules.where(answer: 1).size
                 名
+
+
         %td.status
           - if params[:archive] != "1"
             - if schedule.recruitment == "募集終了"
               %span.set.mark_red 満員御礼
             - elsif schedule.recruitment == "中止"
               %span.set.mark_yellow 中止
+            - elsif schedule.recruitment_numbers.nil?
+              %span.set.mark_gray 募集なし
             - else
               - if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank?
                 %span.set.mark_green 募集中
-              - elsif schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers
+              - elsif schedule.name_schedules.where(answer: 1).size >= schedule.recruitment_numbers
                 %span.set.mark_red 満員御礼
               - else
                 %span.set.mark_green 募集中

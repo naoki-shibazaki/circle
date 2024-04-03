@@ -43,6 +43,8 @@
           活動エリア
         = f.text_field :venue, value: @copy_schedule.venue, class: 'form-control form-venue', placeholder: "東京都の新宿区周辺"
         .label_item 募集人数
+        .cautions
+          ※未選択の場合は『募集なし』になります
         = render "/schedules/recruitment_numbers", f: f
         .label_item 参加費
         = f.text_field :cost, value: @copy_schedule.cost, class: 'form-control form-venue', placeholder: "500円"
@@ -68,6 +70,8 @@
         .warning_txt ※更新完了に少し時間がかかります
         %input{:formaction => "/users/#{@user.id}/schedules?copy=#{params[:copy]}", :formmethod => "POST", :type => "submit", :value => "#{@btn_name}"}/
         .reset
+
+
     - else
       = form_for ([@user, @schedule]) do |f|
         .img_field_profile_wrap
@@ -98,6 +102,8 @@
           活動エリア
         = f.text_field :venue, class: 'form-control form-venue', placeholder: "東京都の新宿区周辺"
         .label_item 募集人数
+        .cautions
+          ※未選択の場合は『募集なし』になります
         = render "/schedules/recruitment_numbers", f: f
         .label_item 参加費
         = f.text_field :cost, class: 'form-control form-venue', placeholder: "500円"
