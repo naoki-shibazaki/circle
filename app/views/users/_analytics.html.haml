@@ -139,13 +139,13 @@
                   %td
                     = @review_point.to_f.round(1)
                     P
-                - if @contact_point.to_f > 0
-                  %tr
-                    %th お問い合わせ件数
-                    %td 0.5 P
-                    %td
-                      = @contact_point.to_f.round(1)
-                      P
+                -# - if @contact_point.to_f > 0
+                -#   %tr
+                -#     %th お問い合わせ件数
+                -#     %td 0.5 P
+                -#     %td
+                -#       = @contact_point.to_f.round(1)
+                -#       P
                 - if @respond_point.to_f > 0
                   %tr
                     %th
@@ -164,6 +164,13 @@
               スケジュール登録やブログ投稿などをすると
               %br/
               件数によってポイントが付与されます！
+              %br/
+              %br/
+              ※意図的にサクブポイントを増やすために不正をしている利用者がいたため、お問い合わせ件数に対するポイント付与を廃止しました
+
+
+
+
             - if @users.count >= 3
               .competitor_wrap
                 %div ▼ あなたの競合サークル

@@ -2,9 +2,7 @@
   .container
     .form.users-form
       .form-body.cont-body
-        - if @blog.errors.any?
-          .form-error
-            対応していないファイル形式です
+
         .p_t ブログの投稿
         - if admin_user_signed_in?
           - if @user.admin_user_id == current_admin_user.id

@@ -19,6 +19,10 @@
                 %span.schedule_mark.mark_red 満員御礼
               - elsif schedule.recruitment == "中止"
                 %span.schedule_mark.mark_yellow 中止
+              - elsif schedule.recruitment_numbers.nil?
+                %span.schedule_mark.mark_gray 募集なし
+
+
               - else
                 - if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank?
                   .schedule_mark.mark_green 募集中

@@ -27,6 +27,7 @@
 class Blog < ApplicationRecord
   belongs_to :user
   validates :title, presence: true
+  validates :content, length: { minimum: 100}
   validates :user_id, presence: true
 
 	mount_uploader :image_01, ImageUploader

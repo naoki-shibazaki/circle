@@ -19,6 +19,7 @@
             = f.radio_button :gender, 0
             = f.label :gender, "その他", {value: 0}
           %br/
+
           - @schedules.each do |schedule|
             - if @name.name_schedules.find_by(schedule_id: schedule.id).blank?
               / 未登録
@@ -34,6 +35,9 @@
                       :prompt => "選択してください"                                       |
                     = name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント"
                     = name_schedule.hidden_field :schedule_id, value: schedule.id
+
+              - elsif schedule.recruitment_numbers.nil?
+
               - else
                 / 定員設定なし
                 = f.fields_for :name_schedules, schedule.name_schedules.build do |name_schedule|
@@ -42,6 +46,7 @@
                     :prompt => "選択してください"                                       |
                   = name_schedule.text_field :comment, class: 'form-control', placeholder: "コメント"
                   = name_schedule.hidden_field :schedule_id, value: schedule.id
+
           = f.fields_for :name_schedules do |name_schedule|
             - if name_schedule.object.schedule.day > Time.now.yesterday
               / 今日以降のみ表示
