@@ -74,13 +74,8 @@
 
       <%= yield %>
 
-      <%= render "/layouts/ad_square"%>
-
       <footer>
-        <% if request.path.match(/\/login(\/)?/) %>
-        <% else %>
-          <%= render "/layouts/footer" %>
-        <% end %>
+        <%= render "/layouts/footer" %>
       </footer>
 
       <div class="footer_btn">
