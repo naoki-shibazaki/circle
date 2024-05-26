@@ -77,7 +77,10 @@
       <%= render "/layouts/ad_square"%>
 
       <footer>
-        <%= render "/layouts/footer" %>
+        <% if request.path.match(/\/login(\/)?/) %>
+        <% else %>
+          <%= render "/layouts/footer" %>
+        <% end %>
       </footer>
 
       <div class="footer_btn">
