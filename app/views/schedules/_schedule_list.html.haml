@@ -1,0 +1,105 @@
+- if @schedules.where.not(id: @schedule.id).present? && params[:page] == nil
+  .schedule_list_wrap
+    - @schedules.each do |schedule|
+      - if schedule.present? && @schedule.id != schedule.id
+        - if @schedule_month != Time.parse(schedule.day).strftime("%-m")
+          %h2.schedule_m
+            %i.fa.fa-calendar
+            = Time.parse(schedule.day).strftime("%-m月")
+            のスケジュール
+          - @schedule_month = Time.parse(schedule.day).strftime("%-m")
+        = link_to(user_schedule_path(@user.id, schedule.id)) do
+          .schedule_list
+            .schedule_day
+              = Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})")
+              - if schedule.time_s.present?
+                = schedule.time_s.strftime('%H:%M')
+                \-#{schedule.time_e.strftime('%H:%M') if schedule.time_e.present?}
+              - if schedule.recruitment == "募集終了"
+                %span.schedule_mark.mark_red 満員御礼
+              - elsif schedule.recruitment == "中止"
+                %span.schedule_mark.mark_yellow 中止
+
+              - else
+                - if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank?
+                  .schedule_mark.mark_green 募集中
+                - elsif schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers
+                  .schedule_mark.mark_red 満員御礼
+                - else
+                  .schedule_mark.mark_green 募集中
+            .schedule_venue
+              %i.fa.fa-map-marker
+              = schedule.venue
+            .schedule_member
+              - if schedule.recruitment_numbers.present?
+                - if schedule.recruitment_numbers == 0
+                  %i.fa.fa-users
+                  募集人数：制限なし
+                - elsif schedule.name_schedules.where(answer: 1).count == 0
+                  %i.fa.fa-users
+                  募集人数：#{schedule.recruitment_numbers}名
+                - elsif schedule.recruitment_numbers >= 1
+                  %i.fa.fa-users
+                  参加人数：#{schedule.name_schedules.where(answer: 1).count}
+                  %span.small_font
+                    \/#{schedule.recruitment_numbers}名
+                - else
+                  %i.fa.fa-users
+                  参加人数：#{schedule.name_schedules.where(answer: 1).count}名
+              - elsif schedule.name_schedules.where(answer: 1).count == 0
+              - else
+                %i.fa.fa-users
+                参加人数：#{schedule.name_schedules.where(answer: 1).count}名
+            - if schedule.title.present?
+              .schedule_title_list
+                = schedule.title
+- if params[:page] == nil
+  = render "/layouts/ad_square"
+  .ad_space
+- if @past_schedules.where.not(id: @schedule.id).present?
+  %h2.past_schedule 開催が終了したスケジュール
+  .schedule_list_wrap
+    - @past_schedules.each do |past_schedule|
+      - if past_schedule.present? && @schedule.id != past_schedule.id
+        - if @past_schedule_month != Time.parse(past_schedule.day).strftime("%-m")
+          %h3.schedule_m
+            %i.fa.fa-calendar
+            = Time.parse(past_schedule.day).strftime("%Y年%-m月")
+          - @past_schedule_month = Time.parse(past_schedule.day).strftime("%-m")
+        = link_to(user_schedule_path(@user.id, past_schedule.id)) do
+          .schedule_list
+            .schedule_day
+              = Time.parse(past_schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(past_schedule.day).wday]})")
+              - if past_schedule.time_s.present?
+                = past_schedule.time_s.strftime('%H:%M')
+                \-#{past_schedule.time_e.strftime('%H:%M') if past_schedule.time_e.present?}
+              %span.schedule_mark.mark_gray 開催終了
+            .schedule_venue
+              %i.fa.fa-map-marker
+              = past_schedule.venue
+            .schedule_member
+              - if past_schedule.recruitment_numbers.present?
+                - if past_schedule.recruitment_numbers == 0
+                  %i.fa.fa-users
+                  募集人数：制限なし
+                - elsif past_schedule.name_schedules.where(answer: 1).count == 0
+                  %i.fa.fa-users
+                  募集人数：#{past_schedule.recruitment_numbers}名
+                - elsif past_schedule.recruitment_numbers >= 1
+                  %i.fa.fa-users
+                  参加人数：#{past_schedule.name_schedules.where(answer: 1).count}
+                  %span.small_font
+                    \/#{past_schedule.recruitment_numbers}名
+                - else
+                  %i.fa.fa-users
+                  参加人数：#{past_schedule.name_schedules.where(answer: 1).count}名
+              - elsif past_schedule.name_schedules.where(answer: 1).count == 0
+              - else
+                %i.fa.fa-users
+                参加人数：#{past_schedule.name_schedules.where(answer: 1).count}名
+            - if past_schedule.title.present?
+              .schedule_title_list
+                = past_schedule.title
+  = render "/layouts/ad_square"
+  .ad_space
+  = paginate @past_schedules

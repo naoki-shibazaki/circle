@@ -1,0 +1,144 @@
+<% set_meta_tags noindex: true,
+				title: "お問い合わせ管理"
+%>
+
+<div class="main">
+  <div class="container">
+
+	<div class="form users-form">
+  <div class="user_contact_wrap">
+
+    <div class="p_t">お問い合わせ管理</div>
+
+      <% if @admin_user.users.count > 1 %>
+      <div class="user_select_wrap">
+        現在のアカウント：
+        <select name="user_select" onChange="location.href=value;">
+          <option value="#"><%= @user.name %>（<%= @user.event.name %>）</option>
+          <% @admin_user.users.each do |user| %>
+            <% if @user.id != user.id %>
+              <option value="/users/<%= user.id %>/contact_list"><%= user.name %>（<%= user.event.name %>）</option>
+            <% end %>
+          <% end %>
+        </select>
+      </div>
+      <% end %>
+
+      <div class="contact_address_wrap">
+        お問い合わせのメールは下記に届いています。<br>
+        <%= @user.admin_user.email %><br>
+        <%= link_to "/admin_users/edit" do %>
+          >> <i class="fa fa-envelope-o "></i> アドレスを変更する
+        <% end %>
+        <br><br>
+        <div class="receive_setting">
+          【noreply@circle-book.com】から送信します。<br>
+          メールを受信できるように設定をお願いします。
+        </div>
+        お問い合わせ内容は下記から変更できます。<br>
+        <%= link_to "/users/#{@user.id}/user_contacts/new" do %>
+          >> <i class="fa fa-file-text-o "></i> テンプレを変更する
+        <% end %>
+      </div>
+
+
+    <% if @respond_check_count > 0 %>
+      <div class="attention_content">
+        オレンジ色は主催者からの返信が<br>届いていないと報告があったユーザーさんです。
+      </div>
+    <% end %>
+
+    <div class="contact_list">
+      <% @user_contacts.each do |user_contact| %>
+
+        <% if user_contact.respond_check == "NG"%>
+          <div class="cp_actab cp_actab_alert">
+        <% else %>
+          <div class="cp_actab">
+        <% end %>
+
+            <input id="tab-<%= user_contact.id %>" type="checkbox" name="tabs">
+            <label for="tab-<%= user_contact.id %>">
+            <% if user_contact.name.present? %>
+              <%= user_contact.name %> さん
+            <% else %>
+              ゲストユーザー さん
+            <% end %>
+            </label>
+
+            <div class="cp_contact-content">
+              <div class="time_contact">
+                <%= user_contact.created_at.strftime("%Y年%-m月%-d日 %-H:%M") %>
+              </div>
+              <div class="mail_contact">
+                <i class="fa fa-envelope-square "></i>
+                  <%= mail_to "#{user_contact.mail}", nil,
+                        :bcc => "circlebook.mailer@gmail.com",
+                        :subject => "【サークルブック】#{@user.name}",
+                        :body => "こちらにご記入ください"  %>
+              </div>
+              <% if user_contact.name.present? %>
+                <div class="name_contact">
+                  <%= user_contact.name %> さん
+                </div>
+              <% else %>
+              <% end %>
+              <div class="message_contact">
+                <%= simple_format user_contact.message %>
+              </div>
+
+
+              <%= form_for user_contact,url: "/users/#{@user.id}/contact_list/#{user_contact.id}" do |f| %>
+                <% if user_contact.respond_check == "NG"%>
+                  <div class="respond_check_alert">
+                    返信が届いていないと報告ががありました。<br>
+                    このお問い合わせに返信しましたか？<br>
+                    <%= f.button type: "submit", name: "submit", value: "respond", class: "respond_btn" do %>>> 確認しました<% end %>
+                  </div>
+                <% end %>
+
+
+                <div class="comment_contact">
+                  <i class="fa fa-pencil-square "></i>  メモする
+
+                      <%= f.text_area :comment, class: 'form-control', placeholder: "7月7日に参加予定" %>
+
+                      <div class="update_wrap">
+                        <%= f.button type: "submit", name: "submit", value: "update" do %>更新する<% end %>
+                      </div>
+
+                      <div class="reset"></div>
+
+                      <div class="text_btn_wrap">
+                        <%= f.button type: "submit", name: "submit", value: "delete", data: {confirm: "一度削除すると、元に戻せません。削除してよろしいでしょうか？"}, class: "text_btn" do %><i class="fa fa-trash-o "></i> 削除する<% end %>
+                        <br>
+
+                        <% if user_contact.account_block.present? %>
+                          <div class="text_btn account_block_done">違反通報済み</div>
+                        <% else %>
+                          <%= f.button type: "submit", name: "submit", value: "report", data: {confirm: "このお問い合わせを、違反報告しますか？"}, class: "text_btn" do %><i class="fa fa-frown-o "></i> 違反報告<% end %>
+                        <% end %>
+                      </div>
+
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+      <% end %>
+    </div>
+
+      <%= render "/layouts/ad_square" %>
+      <div class="ad_space"></div>
+
+
+<%= paginate @user_contacts %>
+
+
+
+  </div>
+	</div>
+
+
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.main.users-new
+  .container
+    .form-heading 投稿の編集
+    .form.users-form
+      .form-body.cont-body
+        - if @place.errors.any?
+          .form-error
+            いずれかのエラーが発生いたしました。
+            %br/
+            ・必須項目の未記入
+            %br/
+            ・『施設名』の重複
+        = render "/places/form_place"

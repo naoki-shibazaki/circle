@@ -1,0 +1,24 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@event.txt}｜メンバー募集サイト",description: "【完全無料／登録不要】#{@event.txt}の募集サイトです！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！無料で簡単にメンバーの募集ができます！",keywords: "#{@event.name},サークル,チーム",og: {image:image_url("/images/events/#{@event.ruby}.jpg")}
+- breadcrumb :event_show, @event
+= render "circles/markups/circles_list", users: @users
+
+.main.users-index
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    .e_header_wrap
+      %img{:alt => "#{@event.name}", :src => "/images/events/#{@event.ruby}.jpg"}/
+      .link_txt
+        %h1.e_header_title
+          = "メンバー募集中の"
+          %br
+          = "#{@event.txt}の一覧"
+
+    - if @users.size != 0
+      = render "/circles/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
+      = render "/circles/commons/users_list", users: @users
+
+    - else
+      = render "/circles/commons/no_hit"

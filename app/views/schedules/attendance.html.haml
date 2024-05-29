@@ -1,0 +1,53 @@
+- set_meta_tags noindex: true,title: "【限定公開】出欠確認｜#{@user.name}",og: {title: "【限定公開】出欠確認｜#{@user.name}",description: "#{@user.prefecture.name}で活動している#{@user.event.name}サークル｜#{@user.name}", image: image_url("/images/attendance_ogp.png")}
+.user_main.users-index
+  .container
+    .users-index-item
+      %h1.top_title 出欠連絡（メンバー限定公開）
+      = render "/users/parts/user_name", user: @user
+      - if admin_user_signed_in?
+        - if @user.admin_user_id == current_admin_user.id && params[:archive] != "1"
+          .join_txt ＼ メンバーに共有すれば簡単に出欠管理！ ／
+          .attendance_url_copy
+            .copyTarget= request.url
+          %button.copyBtn
+            .requirement_copy
+              %i.fa.fa-copy
+              URLをコピーする！
+      - if params[:archive] != "1"
+        - if @names.blank?
+          %img.attendance_img{:src => "/images/attendance_ogp.png"}/
+        = render "/schedules/attendances/new_form"
+        .attendance_txt
+          ◎出欠内容の変更と追加
+          %br/
+          →名前のリンクをクリックしてください
+        .attendance_txt
+          ◎各イベントの詳細確認
+          %br/
+          →日程のリンクをクリックしてください
+      - if @schedules.present?
+        - if @schedules.count >= 3
+          .scroll_txt
+            右にスクロールすると他の日程も見れます→
+      .attendances_table_wrap
+        %table
+          %thead
+            %tr
+              %th.day.fixed.day_title 日程
+              %th.status_title ステータス
+              = render "/schedules/attendances/edit_form"
+          = render "/schedules/attendances/answer_list"
+        .schedule_archive
+          - if params[:archive] == "1"
+            %a{:href => "#{request.path}"} &gt;&gt; 現在の出欠を確認する
+          - elsif @past_schedules.present?
+            %a{:href => "#{request.path}?archive=1"} &gt;&gt; 過去の出欠5件を確認する
+          - else
+        - if params[:archive] != "1"
+          .join_txt
+            ＼ 登録なしで回答できます！ ／
+          .attendances_modal.center
+            %a.js-modal-open{"data-target" => "attendance_add", :href => ""}
+              %span.join_btn 新規で出欠回答する！
+      = render "/layouts/ad_square"
+      .ad_space

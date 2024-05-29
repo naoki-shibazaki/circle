@@ -1,0 +1,95 @@
+.review_contents
+  .review_l
+    - if review.member.present?
+      - if review.member.image_profile.present?
+        = lazysizes_image_tag review.member.image_profile.url , class:'member_icon'
+      - else
+        - if review.member.gender == "1"
+          %img.member_icon{:src => "/images/icon/icon_member_blue.png"}/
+        - elsif review.member.gender == "2"
+          %img.member_icon{:src => "/images/icon/icon_member_pink.png"}/
+        - else
+          %img.member_icon{:src => "/images/icon/icon_member.png"}/
+    - else
+      - if review.gender == "1"
+        %img.member_icon{:src => "/images/icon/icon_member_blue.png"}/
+      - elsif review.gender == "2"
+        %img.member_icon{:src => "/images/icon/icon_member_pink.png"}/
+      - else
+        %img.member_icon{:src => "/images/icon/icon_member.png"}/
+  .review_r
+    .speech_title
+      - if review.review == 1
+        %i.fa.fa-smile-o.good
+      - elsif review.review == 0
+        %i.fa.fa-frown-o.bad
+      - else
+      - if review.member.present?
+        = review.member.nickname
+        さん
+        .btm_content
+          - if review.member.gender == "1"
+            男性
+          - elsif review.member.gender == "2"
+            女性
+          - elsif review.member.gender == "0"
+            その他
+          - else
+          = review.member.age
+          %span.review_day
+            ［#{review.created_at.strftime("%Y年%-m月%-d日")}］
+      - else
+        - if review.nickname.present?
+          = review.nickname
+          さん
+        - else
+          ゲストユーザー
+        .btm_content
+          - if review.gender == "1"
+            男性
+          - elsif review.gender == "2"
+            女性
+          - elsif review.gender == "0"
+            その他
+          - else
+          = review.age
+          %span.review_day
+            ［#{review.created_at.strftime("%Y年%-m月%-d日")}］
+      - if @path.is('reviews#index')
+        - if review.member.present?
+          - if member_signed_in?
+            - if current_member.id == review.member_id
+              %span.review_edit
+                = link_to(edit_user_review_path(@user, review)) do
+                  %i.fa.fa-pencil-square-o
+                  編集
+              %span.review_slash ／
+              %span.review_delete
+                = link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do
+                  %i.fa.fa-trash
+                  削除
+        - if admin_user_signed_in?
+          - if current_admin_user.id == 1
+            %span.review_edit
+              = link_to(edit_user_review_path(@user, review)) do
+                %i.fa.fa-pencil-square-o
+                編集
+            %span.review_slash ／
+            %span.review_delete
+              = link_to(user_review_path(@user, review), method: :delete, data: {confirm: "投稿を削除しますか？"}) do
+                %i.fa.fa-trash
+                削除
+    .speech_bubble
+      = simple_format review.comment
+    - if admin_user_signed_in?
+      - if current_admin_user.id == @user.admin_user.id || current_admin_user.id == 1
+        - if review.ip.present?
+          %span.report_btn
+            - if AccountBlock.find_by(ip_address: review.ip)
+              %i.fa.fa-ban>
+              このアカウントは通報済みです
+            - else
+              = link_to("/users/#{@user.id}/reviews/#{review.id}/block", method: :update, data: {confirm: "投稿者を通報しますか？"}) do
+                %i.fa.fa-ban>
+                投稿者を通報する
+.reset

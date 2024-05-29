@@ -1,0 +1,31 @@
+- set_meta_tags noindex: true,title: "「#{params[:q]}」のサークルやチームの検索結果｜メンバー募集サイト"
+- breadcrumb :circle_search_index, params[:q]
+
+.main.users-index
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    .e_header_wrap
+      %img{:src => "/images/search.jpg"}/
+      .link_txt
+        %h1.e_header_title
+          = "「#{params[:q].truncate(18)}」の"
+          %br
+          = "サークル検索結果"
+
+    - if @users.size != 0
+      = render "/circles/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
+      = render "/circles/commons/users_list", users: @users
+
+    - else
+      .search_wrap
+        .search_word
+          = form_tag(circles_search_index_path, method: :get, enforce_utf8: false) do
+            %input.search_area.change_font{:name => "q", :placeholder => "例）バスケ　東京", :size => "30", :type => "text", :value => "#{params[:q]}"}/
+            .search_icon
+              = submit_tag("検索", :name => nil)
+          .search_word_announce ※複数の単語はスペースで区切ってください
+
+      = render "/circles/commons/no_hit"

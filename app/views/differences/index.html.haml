@@ -1,0 +1,21 @@
+- set_meta_tags title: '間違い探しメーカー',description: '【登録不要】30秒で作れる間違い探しメーカー！あなたは30秒以内に間違いを見つけられるか！？',og: {image: image_url('/images/differences/difference_sample.png')},twitter: { card: 'summary_large_image'}
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .difference_top
+      %h1.p_t 間違い探しメーカー
+      .post_cta.profile_cta.difference_cta
+        = link_to(new_difference_path) do
+          .contact-button.qa_btn.qa
+            間違い探しを作成する！
+    .qa_card_warp
+      %ul
+        - if @differences.any?
+          - @differences.each do |difference|
+            %li.ribbon-wrapper
+              = link_to "/contents/differences/#{difference.id}" do
+                %img.lazyload{:alt => "30秒以内に「\#{difference.dummy}」を見つけられるか！？", "data-src" => "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:#{difference.combine},co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png"}/
+                .qa_judge
+    = render "/layouts/ad_square"
+    .ad_space
+    = paginate @differences

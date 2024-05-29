@@ -1,0 +1,12 @@
+= form_for @column do |f|
+  %p
+    タイトル
+    %span.must_red (必須)
+  = f.text_field :title, class: 'form-control'
+  %p リード文
+  = f.text_area :description, class: 'form-control'
+  %p 画像
+  = f.file_field :image
+  %p 本文
+  = f.text_area :text, class: 'form-control'
+  = f.submit

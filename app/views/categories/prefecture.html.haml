@@ -1,0 +1,20 @@
+- set_meta_tags  noindex: true,title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}のサークルやチームの一覧｜メンバー募集サイト",description: "【完全無料／登録不要】#{@prefecture.name}のサークルやチームの募集サイトです！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！無料で簡単にメンバーの募集ができます！",keywords: "#{@prefecture.name},サークル,チーム"
+= render "users/parts/local_business_user_list"
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .e_header_wrap
+      %img{:src => "/images/top.png"}/
+      .link_txt
+        %h1.e_header_title
+          = @prefecture.name
+          で活動している
+          %br/
+          メンバー募集中の
+          %br/
+          サークルやチーム、団体
+    - if @users.count != 0
+      = render "/categories/search"
+      = render "/users/users_list"
+    - else @users.count == 0
+      = render "/users/no_hit"

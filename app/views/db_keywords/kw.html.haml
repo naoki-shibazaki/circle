@@ -1,0 +1,31 @@
+- set_meta_tags title: "よく検索されるキーワードの一覧｜メンバー募集サイト",description: "よく検索されるキーワードの一覧です！メンバー募集情報を、全国のサークルやチームから探すことができます！スポーツや趣味など豊富に掲載！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！バスケやバレー、フットサルなど。無料で簡単にメンバー募集ができます！",keywords: "サークル,チーム,募集"
+.main.users-index
+  .container
+    %img.lazyload.imege_title.search_img{"data-src" => "/images/search.jpg"}/
+    %h1.users-heading.search_title よく検索されるキーワードの一覧
+    .users-txt
+      - if admin_user_signed_in?
+        = link_to("活動ブログ", new_circle_blog_path(@user) )
+        を投稿すると
+        %br/
+        あなたの掲載順位が上がります！
+      - else
+        あなたにピッタリの
+        %br/
+        サークルやチーム、団体が見つかる！！
+    .search_area
+      = render "/users/search"
+    .kw_list_wrap
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-search
+          キーワード候補から探す
+      %ul
+        - @keywords.each.with_index(1) do |keyword, i|
+          = link_to "/users/kw/#{keyword.keyword}" do
+            %li= keyword.keyword
+          - if i == 50
+            .list_ad
+              = render "/layouts/ad_square"
+    = render "/layouts/ad_square"
+    .ad_space

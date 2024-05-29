@@ -1,0 +1,18 @@
+- set_meta_tags title: "全国のコートや体育館の情報一覧"
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    %h1.users-heading 全国のコートや体育館の情報
+    .place_event_list
+      %ul.events-menus
+        - @events.each do |event|
+          %li
+            = link_to("/places/#{event.ruby}") do
+              .e_icon_wrap
+                %img.lazyload{:alt => "#{event.name}", "data-src" => "/images/events/#{event.ruby}.jpg"}/
+                .link_txt
+                  = event.name
+                  の
+                  %br>/
+                  コートや体育館の情報
+    = render "/layouts/ad_square"

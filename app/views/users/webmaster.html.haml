@@ -1,0 +1,37 @@
+- set_meta_tags noindex: true
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .mypage_wrap
+      .p_t 管理ページ
+      .icon_wrap
+        = link_to invalid_emails_path, class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_01.png"}/
+            .icon_txt
+              無効メール
+        = link_to account_blocks_path, class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_01.png"}/
+            .icon_txt
+              アカウントブロック
+        = link_to db_keywords_path, class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_01.png"}/
+            .icon_txt
+              検索キーワード
+        = link_to db_validation_errors_path, class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_01.png"}/
+            .icon_txt
+              バリデーション
+        = link_to admin_user_list_path, class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_01.png"}/
+            .icon_txt
+              AdminUser

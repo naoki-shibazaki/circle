@@ -1,0 +1,9 @@
+= render "/matches/search"
+.no_hit_wrap
+  %img.imege_sorry{:src => "/images/sorry.png"}/
+  = link_to(matches_path) do
+    .no_hit_top トップページに戻る
+  = link_to(new_admin_user_registration_path) do
+    .no_hit_new 新しくサークルを登録する
+= render "/layouts/ad_square"
+.ad_space

@@ -1,0 +1,38 @@
+.main.users-new
+  .container
+    = render "/layouts/breadcrumb"
+    %h1.form-heading ログイン情報の変更
+    .form.users-form
+      .form-body.cont-body
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = render "devise/shared/error_messages", resource: resource
+          .field
+            = f.label :メールアドレスの変更
+            （変更しない場合はそのまま）
+            %br/
+            = f.email_field :email, autofocus: true, autocomplete: "email", value: @current_admin_user.email
+          .receive_setting
+            お問い合わせメールは以下から送信します。
+            %br/
+            【noreply@circle-book.com】
+            %br/
+            メールを受信できるように設定をお願いします。
+          .field
+            = f.label :現在のパスワード
+            ※
+            %em (6文字以上)
+            = f.password_field :current_password, autocomplete: "current-password"
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            %div
+              Currently waiting confirmation for: #{resource.unconfirmed_email}
+          .field
+            = f.label :パスワードの変更
+            （変更しない場合は空白のまま）
+            %br/
+            = f.password_field :password, autocomplete: "new-password"
+          .field
+            = f.label :パスワードの再確認
+            %br/
+            = f.password_field :password_confirmation, autocomplete: "new-password"
+          .actions
+            = f.submit "変更する"

@@ -1,0 +1,55 @@
+.step_bar
+  %ul.progressbar
+    - if controller.action_name == "new" || controller.action_name == "add"
+      %li.active
+        サークル
+        %br>/
+        基本情報
+      %li
+        サークル
+        %br>/
+        基本情報
+      %li
+        主催者
+        %br>/
+        プロフィール
+    - elsif controller.action_name == "edit"
+      %li.active
+        サークル
+        %br>/
+        基本情報
+      %li
+        サークル
+        %br>/
+        基本情報
+      %li
+        主催者
+        %br>/
+        プロフィール
+    - elsif controller.action_name == "edit2"
+      %li.complete
+        サークル
+        %br>/
+        基本情報
+      %li.active
+        サークル
+        %br>/
+        基本情報
+      %li
+        主催者
+        %br>/
+        プロフィール
+    - elsif controller.action_name == "edit3"
+      %li.complete
+        サークル
+        %br>/
+        基本情報
+      %li.complete
+        サークル
+        %br>/
+        基本情報
+      %li.active
+        主催者
+        %br>/
+        プロフィール
+    - else

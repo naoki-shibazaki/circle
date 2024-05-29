@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: stations
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  city_id    :string
+#
+
+one:
+  city_id: MyString
+  name: MyString
+
+two:
+  city_id: MyString
+  name: MyString

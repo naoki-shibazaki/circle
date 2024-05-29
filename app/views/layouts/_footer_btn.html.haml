@@ -1,0 +1,41 @@
+/ ログインあり
+- if admin_user_signed_in?
+  / ログインなし
+- else
+  / home
+  - if @path.is('users#top') || @path.is('users#index')
+    .footer_btn.bg_btn
+      = link_to(new_admin_user_registration_path) do
+        %span.fixed_btn_b.pickup 無料でメンバーを募集する！
+  / places
+  - if @path.is('places')
+    - if @path.is('places#index, places#show')
+      .footer_btn.bg_btn
+        %a{:href => "/"}
+          %span.fixed_btn_b.mail メンバーを募集する！
+  / questions
+  - if @path.is('questions')
+    - if @path.is('questions#questions')
+      / event_questions
+    - elsif @path.is('event_questions')
+    - else
+      .footer_btn.bg_btn
+        = link_to user_questions_path do
+          %span.fixed_btn_b.mail このサークルに質問する！
+  / other
+  - if @path.is('users') || @path.is('blogs') || @path.is('schedules')
+    - if @path.is('#show') || @path.is('#user_blogs')
+      .footer_btn.bg_btn.footer_btn_2
+        %ul.fixed_btn_list
+          %li.fixed_btn_content
+            = render 'layouts/bookmark_area', user: @user
+          %li.fixed_btn_content
+            %a{:href => "/users/#{@user.id}/reviews"}
+              %i.fa.fa-edit
+              .fixed_btn_txt コメント
+        - if @user.admin_user.check == 1
+          = link_to new_user_user_contact_path(@user, check: "1") do
+            %span.fixed_btn_b.line サークルに参加する
+        - else
+          = link_to new_user_user_contact_path(@user) do
+            %span.fixed_btn_b.line サークルに参加する

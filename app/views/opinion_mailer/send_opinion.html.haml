@@ -1,0 +1,22 @@
+!!!
+%html{:lang => "ja"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8"}/
+  %body
+    質問箱に投稿されました！
+    %br/
+    %br/
+    \--------------------------------------
+    %br/
+    user_id：　	#{@opinion.user_id}
+    %br/
+    https://circle-book.com/users/#{@opinion.user_id}
+    %br/
+    %br/
+    ▼コメント
+    %br/
+    = @opinion.opinion
+    %br/
+    \--------------------------------------
+    %br/

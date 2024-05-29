@@ -1,0 +1,95 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "LocalBusiness",
+  "@id": "<%= request.path %>",
+  "name": "<%= user.name %>",
+  "description": "<%= user.prefecture.name %>で活動している<%= user.event.txt %>",
+  "image": [
+    "<%= user.pic_profile.url %>",
+    <% if user.gallery_01.url.present? %>"<%= user.gallery_01.url %>",<% end %>
+    <% if user.gallery_02.url.present? %>"<%= user.gallery_02.url %>",<% end %>
+    <% if user.gallery_03.url.present? %>"<%= user.gallery_03.url %>",<% end %>
+    <% if user.gallery_04.url.present? %>"<%= user.gallery_04.url %>",<% end %>
+    "<%= user.pic_header.url %>"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "<%= user.prefecture.name %>"
+  },
+  <% if user.reviews.present? %>
+    <% if user.review_score.to_f > 0 %>
+      "aggregateRating": {
+        "@type":"AggregateRating",
+        "ratingValue":<%= user.review_score.to_f %>,
+        "reviewCount":<%= user.reviews.count %>
+      },
+      "review":[
+        <% user.reviews.each.with_index(1) do |review, i| %>
+        <%= "," if i > 1 %>{
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": <% if review.member.present? %>"<%= review.member.nickname  %>"<% else %>"ゲストユーザー"<% end %>
+          },
+          "reviewBody": "<%= review.comment %>"
+        }
+        <% break if i == 5 %>
+        <% end %>
+      ],
+    <% end %>
+  <% end %>
+  "priceRange": "<%= user.cost %>"
+}
+</script>
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "サークルブック",
+    "item": "https://circle-book.com"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "<%= user.event.name %>",
+    "item": "https://circle-book.com/<%= user.event.ruby %>"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": "<%= user.prefecture.name %>",
+    "item": "https://circle-book.com/<%= user.event.ruby %>/<%= user.prefecture.kana %>"
+  },{
+    "@type": "ListItem",
+    "position": 4,
+    "name": "<%= user.name %>",
+    "item": "https://circle-book.com/users/<%= user.id %>"
+  }]
+}
+</script>
+
+<% if user.questions.present? %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    <% user.questions.each.with_index(1) do |question, i| %>
+      <%= "," if i > 1 %>{
+        "@type": "Question",
+        "name": "<%= question.content %>",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": <% if question.answer.present? %>"<%= question.answer %>"<% else %>"未回答の質問です。回答するまで、しばらくお待ちください。"<% end %>
+        }
+      }
+    <% break if i == 5 %>
+    <% end %>
+  ]
+}
+</script>
+<% end %>

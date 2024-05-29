@@ -1,0 +1,53 @@
+!!!
+%html{:lang => "ja"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8"}/
+  %body
+    = @user_contact.name
+    さん
+    %br/
+    サークルブックです。
+    %br/
+    %br/
+    = @user.name
+    へのお問い合わせありがとうございます！
+    %br/
+    主催者からの返信をお待ちください。
+    %br/
+    %br/
+    - if @user_contact.entry != "練習試合"
+      ＼こちらも#{@user_contact.name}さんにオススメです！／
+      %br/
+      #{event_prefecture_url(@user.event.ruby, @user.prefecture.kana)}
+      %br/
+      %br/
+    \--------------------------------------
+    %br/
+    ▼#{@user_contact.entry}のお問い合わせ内容
+    %br/
+    名前：#{@user_contact.name} さん
+    \#{simple_format @user_contact.message}
+    URL： #{circle_url(@user.id)}
+    %br/
+    \--------------------------------------
+    %br/
+    %br/
+    %br/
+    【主催者から返信がない場合】
+    %br/
+    3日以上返信がない場合、下記URLより情報の更新をお願いいたします。
+    %br/
+    https://circle-book.com/check_r/#{@user.id}/#{@user_contact.random_id}
+    %br/
+    %br/
+    %br/
+    【違反行為を見つけた場合】
+    %br/
+    ネットワークビジネスやマルチ商法、
+    %br/
+    宗教勧誘を目的としている場合、下記URLよりご報告ください。
+    %br/
+    https://circle-book.com/check_v/#{@user.id}/#{@user_contact.random_id}
+    %br/
+    %br/

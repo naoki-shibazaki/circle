@@ -1,0 +1,195 @@
+.search_wrap
+  .search_word
+    = form_tag(circles_search_index_path, method: :get, enforce_utf8: false) do
+      %input.search_area.change_font{:name => "q", :placeholder => "例）バスケ　東京", :size => "30", :type => "text", :value => "#{params[:q]}"}/
+      .search_icon
+        = submit_tag("検索", :name => nil)
+    .search_word_announce ※複数の単語はスペースで区切ってください
+
+
+
+  .search_select
+
+    %select{:name => "event_select", :onchange => "location.href=value;"}
+      %option{:value => "#"}
+        - if @event.present?
+          = @event.name
+        - else
+          = "サークル・チーム"
+
+      - categories.each do |category|
+        %optgroup{:label => "#{category.name}"}
+          - category.events.each do |event|
+
+            - if @event.present? && @event.id == event.id
+            - elsif @prefecture.present?
+              %option{:value => "#{event_prefecture_path(event.ruby, @prefecture.kana)}"}= event.name
+            - else
+              %option{:value => "#{event_path(event.ruby)}"}= event.name
+
+
+
+    %select{:name => "prefecture_select", :onchange => "location.href=value;"}
+      %option{:value => "#"}
+        - if @prefecture.present?
+          = @prefecture.name
+        - else
+          = "都道府県"
+
+      - prefectures.each do |prefecture|
+        - if @prefecture.present? && @prefecture.id == prefecture.id
+
+        - elsif @event.present?
+          %option{:value => "#{event_prefecture_path(@event.ruby, prefecture.kana)}"}= prefecture.name
+        - else
+          %option{:value => "#{prefecture_path(prefecture.kana)}"}= prefecture.name
+
+
+
+    .search_icon
+      %i.fa.fa-search
+
+
+
+
+
+
+
+
+  - @wdays =  ["日", "月", "火", "水", "木", "金", "土" ]
+  .date_list_wrap
+    - if path.is('schedules#day')
+      %ul
+        - (-7..14).each do |i|
+          - if Time.parse(@date).since(i.days) > Time.zone.now.since(-1.days)
+            - if i == 0
+              = link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do
+                %li.c_selected
+                  = Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}")
+                  %br/
+                  = Time.parse(@date).since(i.days).strftime("%-d")
+            - elsif Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") == "土"
+              = link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do
+                %li.c_sat
+                  = Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}")
+                  %br/
+                  = Time.parse(@date).since(i.days).strftime("%-d")
+            - elsif Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}") == "日"
+              = link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do
+                %li.c_sun
+                  = Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}")
+                  %br/
+                  = Time.parse(@date).since(i.days).strftime("%-d")
+            - else
+              = link_to "/dates/#{Time.parse(@date).since(i.days).strftime("%Y/%m/%d")}" do
+                %li
+                  = Time.parse(@date).since(i.days).strftime("#{@wdays[Time.parse(@date).since(i.days).wday]}")
+                  %br/
+                  = Time.parse(@date).since(i.days).strftime("%-d")
+
+
+      .search_select
+        %select{:name => "event_select", :onchange => "location.href=value;"}
+          - if params[:event].present?
+            %option{:value => "#"}= @event.name
+          - else
+            %option{:value => "#"} サークル・チーム
+          - @categories.includes([:events]).each do |category|
+            %optgroup{:label => "#{category.name}"}
+              - category.events.each do |event|
+                - if params[:event] != event.ruby
+                  - if params[:pref].present?
+                    %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?pref=#{params[:pref]}&event=#{event.ruby}"}= event.name
+                  - else
+                    %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?event=#{event.ruby}"}= event.name
+        %select{:name => "prefecture_select", :onchange => "location.href=value;"}
+          - if params[:pref].present?
+            %option{:value => "#"}= @prefecture.name
+          - else
+            %option{:value => "#"} 都道府県
+          - @prefectures.each do |prefecture|
+            - if params[:pref] != prefecture.kana
+              - if params[:event].present?
+                %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?event=#{params[:event]}&pref=#{prefecture.kana}"}= prefecture.name
+              - else
+                %option{:value => "/dates/#{params[:year]}/#{params[:month]}/#{params[:day]}?pref=#{prefecture.kana}"}= prefecture.name
+        .search_icon
+          %i.fa.fa-search
+    - else
+      %ul
+        - 14.times do |i|
+          - if Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}") == "土"
+            = link_to "/dates/#{Time.zone.now.since(i.days).strftime("%Y/%m/%d")}" do
+              %li.c_sat
+                = Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}")
+                %br/
+                = Time.zone.now.since(i.days).strftime("%-d")
+          - elsif Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}") == "日"
+            = link_to "/dates/#{Time.zone.now.since(i.days).strftime("%Y/%m/%d")}" do
+              %li.c_sun
+                = Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}")
+                %br/
+                = Time.zone.now.since(i.days).strftime("%-d")
+          - else
+            = link_to "/dates/#{Time.zone.now.since(i.days).strftime("%Y/%m/%d")}" do
+              %li
+                = Time.zone.now.since(i.days).strftime("#{@wdays[Time.zone.now.since(i.days).wday]}")
+                %br/
+                = Time.zone.now.since(i.days).strftime("%-d")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- if controller.action_name == "kw"
+- elsif controller.action_name != "search"
+  %ul.tab_list
+    - if params[:sort] == "1" || params[:sort] == nil
+      %li.list_item.selected 標準
+      %a{:href => "#{request.path}?sort=2"}
+        %li.list_item 人気順
+      %a{:href => "#{request.path}?sort=3"}
+        %li.list_item 新着順
+    - elsif params[:sort] == "2"
+      %a{:href => "#{request.path}?sort=1"}
+        %li.list_item 標準
+      %li.list_item.selected 人気順
+      %a{:href => "#{request.path}?sort=3"}
+        %li.list_item 新着順
+    - else params[:sort] == "3"
+      %a{:href => "#{request.path}?sort=1"}
+        %li.list_item 標準
+      %a{:href => "#{request.path}?sort=2"}
+        %li.list_item 人気順
+      %li.list_item.selected 新着順
+
+- else controller.action_name == "search"
+  %ul.tab_list
+    - if params[:sort] == "1" || params[:sort] == nil
+      %li.list_item.selected 標準
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=2"}
+        %li.list_item 人気順
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=3"}
+        %li.list_item 新着順
+    - elsif params[:sort] == "2"
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=1"}
+        %li.list_item 標準
+      %li.list_item.selected 人気順
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=3"}
+        %li.list_item 新着順
+    - else params[:sort] == "3"
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=1"}
+        %li.list_item 標準
+      %a{:href => "#{request.path}?q=#{params[:q]}&sort=2"}
+        %li.list_item 人気順
+      %li.list_item.selected 新着順

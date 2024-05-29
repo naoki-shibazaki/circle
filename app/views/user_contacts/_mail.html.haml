@@ -1,0 +1,48 @@
+.contact_form.form
+  - if @invalid == "有効"
+    = form_for ([@user, @user_contact]) do |f|
+      = render 'layouts/error_messages', model: f.object
+      .field
+        .label_item
+          %span.label.label_danger> 必須
+          お名前 （英字不可）
+        %span.cautions ※全角の日本語でご記入ください
+        = f.text_field :name, class: 'form-control', placeholder: "サークルブック"
+      .field
+        .label_item
+          %span.label.label_danger> 必須
+          メールアドレス
+        %span.cautions
+          ※『icloud.com』を利用する場合は、
+          %br>/
+          　受信トレイの空き容量を必ずご確認ください
+        = f.text_field :mail, class: 'form-control', id: 'change_mail_01', placeholder: "circlebook47@gmail.com"
+      .field
+        .label_item
+          %span.label.label_danger> 必須
+          確認用メールアドレス
+        %span.cautions ※上と同じアドレスをご記入ください
+        = f.text_field :mail_confirmation, class: 'form-control', id: 'change_mail_02', placeholder: "circlebook47@gmail.com"
+      .field
+        .label_item
+          %span.label.label_danger> 必須
+          お問い合わせ内容
+        = f.text_area :message, class: 'form-control form-note', placeholder: "#{@place_holder}"
+      = f.hidden_field :entry, value: @user_contact.entry
+      .warning_txt ※送信完了に少し時間がかかります
+      = render "users/parts/admin_user_check", admin_user: @user.admin_user
+      = f.submit "送信する", data: { disable_with: '送信中...' }
+      .reset
+  - else @invalid == "無効"
+    .stop_match
+      = @user.name
+      が設定している
+      %br/
+      メールアドレスが無効なため
+      %br/
+      お問い合わせをすることができません。
+      \#{link_to ">> 他のサークルを探す", circles_path, class: "other_match"}
+      - if @users.count >= 3
+        %h2.other_users
+          条件が似ている#{@user.event.txt}
+        = render "/users/users_list_slide", users: @users

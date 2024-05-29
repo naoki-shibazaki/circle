@@ -1,0 +1,16 @@
+- set_meta_tags title: "#{@tag.text}サークルやチーム一覧｜メンバー募集サイト",keywords: "#{@tag.name},サークル,チーム"
+= render "users/parts/local_business_user_list"
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .e_header_wrap
+      %img{:src => "/images/top.png"}/
+      .link_txt
+        %h1.e_header_title
+          = @tag.text
+          サークルやチーム
+    = render "/users/search"
+    - if @users.count != 0
+      = render "/users/users_list"
+    - else @users.count == 0
+      = render "/tags/no_hit"

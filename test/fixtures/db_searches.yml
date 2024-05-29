@@ -1,0 +1,15 @@
+# == Schema Information
+#
+# Table name: db_searches
+#
+#  id         :integer          not null, primary key
+#  keyword    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  keyword: MyString
+
+two:
+  keyword: MyString

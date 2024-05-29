@@ -1,0 +1,123 @@
+- set_meta_tags title: "#{@match.user.name}｜#{@match.user.prefecture.name}の#{@match.user.event.txt}",description: "#{@match.user.prefecture.name}で活動している#{@match.user.event.name}サークル【#{@match.user.name}】です！新しい対戦相手を募集中！#{@match.comment}｜サークルブックは、サークルやチームの対戦相手を募集するサイトです！",keywords: "#{@match.user.event.name},#{@match.user.prefecture.name},サークル,チーム,対戦相手募集",og: {title: "#{@match.user.name}｜サークルブック",description: "#{@match.user.prefecture.name}で活動している#{@match.user.event.name}サークル｜#{@match.user.name}",image: @match.user.pic_profile.url},twitter: { card: 'summary'}
+.main.user-show
+  .container.bg_white
+    = render "/layouts/breadcrumb"
+    .user-profile.matching_wrap
+      .p_t.m_t 対戦相手の募集ページ
+      .matching_card
+        - if @match.user.pic_profile.present?
+          %img.matching_icon{:alt => "プロフィール｜#{@match.user.name}", :src => "#{@match.user.pic_profile.url}"}/
+        - else
+          = lazysizes_image_tag @match.user.pic_profile.url , class:'matching_icon'
+        %h1.matching_name= @match.user.name
+        - if admin_user_signed_in?
+          .match_edit
+            - if @user.admin_user_id == current_admin_user.id
+              = link_to new_user_match_path(@user) do
+                .contact-button.edit プロフィール編集
+        .article_item.article_padding
+          %table
+            %tbody
+              %tr.flex_contents
+                %th.flex_list 種目
+                %td.flex_list
+                  - if @match.user.event_id.present?
+                    = @match.user.event.name if @match.user.event_id?
+                    %br/
+              %tr.flex_contents
+                %th.flex_list 活動場所
+                %td.flex_list
+                  - if @match.user.prefecture_id.present?
+                    = @match.user.prefecture.name if @match.user.prefecture_id?
+                  - if @match.user.prefecture_sub_id.present?
+                    ・#{@sub_prefecture.name}
+              %tr.flex_contents
+                %th.flex_list 年齢層
+                %td.flex_list= @match.age_group
+              %tr.flex_contents
+                %th.flex_list メンバー
+                %td.flex_list= @match.member
+              %tr.flex_contents
+                %th.flex_list レベル
+                %td.flex_list
+                  = @match.level
+                  - if @match.level == "初級"
+                    （★☆☆）
+                  - elsif @match.level == "中級"
+                    （★★☆）
+                  - elsif @match.level == "上級"
+                    （★★★）
+                  - else
+              - if @match.user.switch == "募集中"
+                %tr.flex_contents
+                  %th.flex_list 新規募集
+                  %td.flex_list.txt_s= link_to ">> 新規メンバーの募集ページ", circle_path(@match.user.id)
+              - if @match.user.twitter.present? || @match.user.instagram.present?
+                %tr.flex_contents
+                  %th.flex_list SNS
+                  %td.flex_list
+                    - if @match.user.twitter.present?
+                      %a{:href => "https://twitter.com/#{@match.user.twitter}"}
+                        %span.sns_link.twitter_link
+                          %i.fa.fa-twitter-square
+                          Twitter
+                    - if @match.user.instagram.present?
+                      %a{:href => "https://www.instagram.com/#{@match.user.instagram}"}
+                        %span.sns_link.instagram_link
+                          %i.fa.fa-instagram
+                          Instagram
+        - if @match.user.web.present?
+          .matching_url
+            %i.fa.fa-chain
+            %a{:href => "#{@match.user.web}"}
+              = @match.user.web
+          .border
+        - if @match.comment.present?
+          .profile_list_t.p_t_t
+          .profile_list_p.profile_list_a.border_none= raw Rinku.auto_link(simple_format @match.comment)
+    = render "/matches/contact"
+    .ad_space
+    = render "/layouts/ad_square"
+    .ad_space
+    - if @matches.count >= 1
+      .user-list-wrap
+        %h2.others-user
+          条件が似ている#{@user.event.name if @user.event_id?}サークル
+        - @matches.each do |match|
+          = link_to(match_path(match.id)) do
+            .user_list
+              .user-content
+                .user_list_header
+                  = lazysizes_image_tag match.user.pic_profile.url , class:'image_icon'
+                  %h3.user_name= match.user.name.truncate(20)
+                .article_item.article_padding
+                  %table
+                    %tbody
+                      %tr.flex_contents
+                        %th.flex_list 種目
+                        %td.flex_list
+                          - if match.user.event_id.present?
+                            = match.user.event.name if match.user.event_id?
+                            %br/
+                      %tr.flex_contents
+                        %th.flex_list 活動場所
+                        %td.flex_list
+                          - if match.user.prefecture_id.present?
+                            = match.user.prefecture.name if match.user.prefecture_id?
+                      %tr.flex_contents
+                        %th.flex_list 年齢層
+                        %td.flex_list= match.age_group
+                      %tr.flex_contents
+                        %th.flex_list メンバー
+                        %td.flex_list= match.member
+                      %tr.flex_contents
+                        %th.flex_list レベル
+                        %td.flex_list
+                          = match.level
+                          - if match.level == "初級"
+                            （★☆☆）
+                          - elsif match.level == "中級"
+                            （★★☆）
+                          - elsif match.level == "上級"
+                            （★★★）
+                          - else

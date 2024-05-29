@@ -1,0 +1,240 @@
+<%= render "/layouts/breadcrumb" %>
+
+<div class="schedule_top_image">
+  <% if @schedule.top_image.present? %>
+    <%= lazysizes_image_tag @schedule.top_image.url, class: "top_img" %>
+  <% elsif @user.pic_header.present? %>
+    <%= lazysizes_image_tag @user.pic_header.url, class: "top_img" %>
+  <% else %>
+    <img data-src="/images/events/<%= @user.event.ruby %>.jpg" alt="<%= @user.event.name %>" class="lazyload top_img">
+  <% end %>
+</div>
+
+<div class="users-index-item schedule_user">
+
+  <h1 class="schedule_title">
+    <% if @schedule.title.present? %>
+      <%= @schedule.title %>
+    <% else %>
+      <%= @user.event.name %>
+
+      <% if @path.is('schedules#secret') && @schedule.member_venue.present? %>
+        ＠<%= @schedule.member_venue %>
+      <% else %>
+        ＠<%= @schedule.venue %>
+      <% end %>
+    <% end %>
+  </h1>
+
+
+
+  <div class="post_share schedule_share">
+
+    <% if @path.is('schedules#show') %>
+      <div class="share_btn_tw">
+        <%= link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}の活動日です！%20%23サークルブック%0a", target: '_blank') do %>
+          <i class="fa fa-twitter"></i>ツイートする
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if admin_user_signed_in?  %>
+      <% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
+        <div class="post_edit">
+          <%= link_to(edit_user_schedule_path(@user.id, @schedule.id)) do %>
+            <i class="fa fa-pencil-square-o "> 編集</i>
+          <% end %>
+        </div>
+
+        <div class="post_delete">
+          <%= link_to(user_schedule_path(@user.id, @schedule.id), method: :delete, data: {confirm: "投稿を削除しますか？"}) do %>
+            <i class="fa fa-trash "> 削除</i>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+    <% if admin_user_signed_in?  %>
+      <% if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1 %>
+        <div class="add_schedule_btn_wrap">
+          <%= link_to new_user_schedule_path(@user,copy: @schedule.id ) do %>
+            <div class="add_schedule_btn">
+              <i class="fa fa-calendar-plus-o "></i> コピーして新規作成する！
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
+
+
+  <div class="article_item article_padding place_list ">
+    <table>
+      <tbody>
+        <tr class="flex_contents">
+          <th class="flex_list">日程</th>
+          <td class="flex_list">
+            <%= Time.parse(@schedule.day).strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(@schedule.day).wday]})") %>
+          </td>
+        </tr>
+
+        <% if @schedule.time_s.present? %>
+          <tr class="flex_contents">
+            <th class="flex_list">時間</th>
+            <td class="flex_list">
+                <%= @schedule.time_s.strftime('%H:%M') %>〜<%= @schedule.time_e.strftime('%H:%M') if @schedule.time_e.present? %>
+            </td>
+          </tr>
+        <% end %>
+
+
+        <tr class="flex_contents">
+          <th class="flex_list">ステータス</th>
+          <td class="flex_list">
+            <% if @schedule.recruitment == "募集終了" %>
+              <span class="set mark_red">満員御礼</span>
+            <% elsif @schedule.recruitment == "中止" %>
+              <span class="set mark_yellow">中止</span>
+            <% else %>
+              <% if @schedule.recruitment_numbers == 0 || @schedule.recruitment_numbers.blank? %>
+                <span class="set mark_green">募集中</span>
+              <% elsif @schedule.name_schedules.where(answer: 1).count >= @schedule.recruitment_numbers %>
+                <span class="set mark_red">満員御礼</span>
+              <% else %>
+                <span class="set mark_green">募集中</span>
+              <% end %>
+            <% end %>
+
+            <% if @schedule.recruitment_numbers.present? %>
+              <% if @schedule.recruitment_numbers == 0 %>
+                募集人数：制限なし
+              <% elsif @schedule.name_schedules.where(answer: 1).count == 0 %>
+                募集人数：<%= @schedule.recruitment_numbers %>名
+              <% elsif @schedule.recruitment_numbers >= 1 %>
+                参加人数：<%= @schedule.name_schedules.where(answer: 1).count %><span class="small_font">/<%= @schedule.recruitment_numbers %>名</span>
+              <% else %>
+                参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>名
+              <% end %>
+            <% elsif @schedule.name_schedules.where(answer: 1).count == 0 %>
+
+            <% else %>
+              参加人数：<%= @schedule.name_schedules.where(answer: 1).count %>名
+            <% end %>
+
+          </td>
+        </tr>
+
+
+        <% if @path.is('schedules#secret') %>
+          <% if @schedule.member_venue.present? %>
+            <tr class="flex_contents">
+              <th class="flex_list">開催場所</th>
+              <td class="flex_list"><%= @schedule.member_venue %></td>
+            </tr>
+          <% else %>
+            <tr class="flex_contents">
+              <th class="flex_list">開催エリア</th>
+              <td class="flex_list"><%= @schedule.venue %></td>
+            </tr>
+          <% end %>
+          <tr class="flex_contents">
+            <th class="flex_list">住所</th>
+            <td class="flex_list"><%= @schedule.venue_address %></td>
+          </tr>
+        <% else %>
+          <tr class="flex_contents">
+            <th class="flex_list">開催エリア</th>
+            <td class="flex_list"><%= @schedule.venue %></td>
+          </tr>
+        <% end %>
+
+        <% if @schedule.cost.present? %>
+          <tr class="flex_contents">
+            <th class="flex_list">参加費</th>
+            <td class="flex_list"><%= @schedule.cost %></td>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+
+    <% if @user.link.present? %>
+      <% if @user.link.link02_url.present? %>
+        <div class="content_08"><i class="fa fa-chain "></i><a href="https://circle-book.com/link/<%= @user.link.unique_id %>"> circle-book.com/link/<%= @user.link.unique_id %></a></div>
+        <div class="border"></div>
+      <% end %>
+    <% end %>
+
+    <% if @user.web.present? %>
+      <div class="content_08"><i class="fa fa-chain "></i><a href="<%= @user.web %>" rel=”nofollow”> <%= @user.web %></a></div>
+      <div class="border"></div>
+    <% end %>
+
+    <% if @schedule.note.present? %>
+      <h2 class="schedule_sub_title"><i class="fa fa-book "></i> 活動内容の詳細</h2>
+
+      <% if @schedule.note.include?("<div>") %>
+        <div class="profile_list_p profile_list_a rich_text_sub">
+          <%= raw Rinku.auto_link(sanitize @schedule.note, tags: %w(p a br strong ul li div), attributes:  %w(id class href)) %>
+        </div>
+      <% else %>
+        <div class="profile_list_p profile_list_a">
+          <%= raw Rinku.auto_link(simple_format @schedule.note) %>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>
+
+  <% if @path.is('schedules#show') %>
+    <div class="post_cta schedule_cta">
+      <% if @user.switch == "募集中" %>
+          <%= render "users/parts/admin_user_check", admin_user: @user.admin_user %>
+        <%= render "/users/contact_btn" %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="post_cta schedule_cta">
+      <div class="contact_link">
+        <%= link_to "/schedules/#{@user.unique_id}" do %>
+          <div class="btn btn_c btn_green btn_cubic">
+            <i class="fa fa-calendar-check-o"></i>出欠回答ページに移動
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <% if @path.is('schedules#secret') %>
+    <% if @schedule.venue_address.present? %>
+      <div class="g_map">
+        <iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@schedule.venue_address}") %>></iframe>
+          <div class="google_map_wrap">
+              <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@schedule.venue_address}" do %>
+                <div class="google_map">Google MAP</div>
+              <% end %>
+            </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
+  <%= render "/users/parts/user_profile_large", user: @user %>
+
+</div>
+
+<% if @path.is('schedules#show') %>
+  <% if @schedules.where.not(id: @schedule.id).present? %>
+    <%= render "/layouts/ad_square" %>
+
+    <div class="users-index-item">
+      <%= render "/schedules/schedule_list" %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= render "/layouts/ad_square" %>
+<div class="ad_space"></div>

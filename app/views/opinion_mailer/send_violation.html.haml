@@ -1,0 +1,22 @@
+!!!
+%html{:lang => "ja"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8"}/
+  %body
+    規約違反の報告がありました。
+    %br/
+    %br/
+    \--------------------------------------
+    %br/
+    サークル名：#{@user.name}
+    %br/
+    https://circle-book.com/circles/#{@user.id}
+    %br/
+    %br/
+    ▼ 違反内容
+    %br/
+    = @user_contact.violation
+    %br/
+    \--------------------------------------
+    %br/

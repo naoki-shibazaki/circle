@@ -1,0 +1,74 @@
+- if exhibitions.present?
+  %ul
+    - exhibitions.each.with_index(1) do |exhibition, i|
+      %li.schedule_item_wrap
+        = link_to exhibition_path(exhibition.id) do
+          .header_schedule_list.ribbon-wrapper
+            .header_img_wrap
+              -if exhibition.header_img.present?
+                = lazysizes_image_tag exhibition.header_img.url, class: "header_imege_user_list"
+              - elsif exhibition.exhibitor.header_img.present?
+                = lazysizes_image_tag exhibition.exhibitor.header_img.url, class: "header_imege_user_list"
+              - else
+                %img.lazyload.header_imege_user_list{"data-src" => "/images/top.png"}
+
+          .schedule_list_content
+            %h2.schedule_list_title
+              = exhibition.name
+              = "｜#{exhibition.exhibitor.name}" if exhibition.exhibitor.name.present?
+            .schedule_cont
+              .user_area
+                %i.fa.fa-calendar.icon_c
+                = exhibition.event_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[exhibition.event_date.wday]}) %H:%M")
+                %br
+                = "　　　〜 #{exhibition.end_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[exhibition.end_date.wday]}) %H:%M")}"
+              .user_schedule
+                %i.fa.fa-map-marker.icon_c
+                  = "#{exhibition.prefecture.name}｜#{exhibition.venue_name}"
+
+              -# .user_schedule
+              -#   - if exhibition.recruitment_numbers.present?
+              -#     - if exhibition.recruitment_numbers == 0
+              -#       %i.fa.fa-users>
+              -#       募集人数：制限なし
+              -#     - elsif exhibition.name_schedules.where(answer: 1).count == 0
+              -#       %i.fa.fa-users>
+              -#       募集人数：#{exhibition.recruitment_numbers}名
+              -#     - elsif exhibition.recruitment_numbers >= 1
+              -#       %i.fa.fa-users>
+              -#       参加人数：#{exhibition.name_schedules.where(answer: 1).count}
+              -#       %span.small_font
+              -#         \/#{exhibition.recruitment_numbers}名
+              -#     - else
+              -#       %i.fa.fa-users>
+              -#       参加人数：#{exhibition.name_schedules.where(answer: 1).count}名
+              -#   - elsif exhibition.name_schedules.where(answer: 1).count == 0
+              -#   - else
+              -#     %i.fa.fa-users>
+              -#     参加人数：#{exhibition.name_schedules.where(answer: 1).count}名
+        %hr.hr_w/
+        = link_to exhibitor_path(exhibition.exhibitor.id) do
+          .schedule_user_wrap
+            .schedule_list_sub_title 主催グループ
+            .user_profile_wrap
+              = lazysizes_image_tag exhibition.exhibitor.profile_img.url , class:'image_icon'
+              .user_profile
+                %h3.user_name= exhibition.exhibitor.name.truncate(40)
+              .reset
+
+
+  -#       = render "/users/parts/tag_list", user: exhibition.user
+  -#     - if i == 5 || i == 10 || i == 15
+  -#       .list_ad
+  -#         = render "/layouts/ad_square"
+  -# = render "/layouts/ad_square"
+  -# = paginate @exhibitions
+- else
+  .no_hit_wrap
+    %img.imege_sorry{:src => "/images/sorry.png"}/
+    = link_to(root_path) do
+      .no_hit_top トップページに戻る
+    = link_to(new_admin_user_registration_path) do
+      .no_hit_new 新しくサークルを登録する
+  = render "/layouts/ad_square"
+  .ad_space

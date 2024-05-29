@@ -1,0 +1,22 @@
+.main.users-new
+  .container
+    .form.users-form
+      .form-body.cont-body
+
+        .p_t ブログの投稿
+        - if admin_user_signed_in?
+          - if @user.admin_user_id == current_admin_user.id
+            - if current_admin_user.users.count > 1
+              .user_select_wrap
+                現在のアカウント：
+                %select{:name => "user_select", :onchange => "location.href=value;"}
+                  %option{:value => "#"}
+                    = @user.name
+                    （#{@user.event.name}）
+                  - current_admin_user.users.each do |user|
+                    - if @user.id != user.id
+                      %option{:value => "/users/#{user.id}/blogs/new"}
+                        = user.name
+                        （#{user.event.name}）
+
+        = render "circles/blogs/form", url_path: circle_blogs_path, method: "POST"

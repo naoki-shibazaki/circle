@@ -1,0 +1,301 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <%= csrf_meta_tag %>
+      <%= csp_meta_tag %>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WZ5RS5L');</script>
+      <!-- End Google Tag Manager -->
+
+
+      <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+      <script>
+        window.googletag = window.googletag || {cmd: []};
+        googletag.cmd.push(function() {
+          googletag.defineSlot('/22839798161/test', [300, 250], 'div-gpt-ad-1686711751593-0').addService(googletag.pubads());
+          googletag.pubads().enableSingleRequest();
+          googletag.enableServices();
+        });
+      </script>
+
+      <!-- Google AdSense shiba -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5024401671855884" crossorigin="anonymous"></script>
+
+
+      <%= display_meta_tags(default_meta_tags) %>
+
+
+      <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css' %>
+
+      <!-- フォトスライド -->
+      <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload', defer: true %>
+
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js' %>
+      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js' %>
+      <%= javascript_include_tag 'https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js' %>
+
+
+    </head>
+
+    <body>
+
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ5RS5L"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+
+      <header>
+        <%= render "/layouts/header" %>
+      </header>
+
+      <% if flash[:notice] %>
+        <div class="flash time-limit">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="alert time-limit">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+
+      <!-- /22839798161/test -->
+      <div id='div-gpt-ad-1686711751593-0' style='min-width: 300px; min-height: 250px; margin:auto;'>
+        <script>
+          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1686711751593-0'); });
+        </script>
+      </div>
+
+      <footer>
+        <%= render "/layouts/footer" %>
+      </footer>
+
+      <div class="footer_btn">
+
+      </div>
+
+
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    </script>
+
+    <!-- text copy -->
+    <script>
+      function copyText () {
+        var $target = document.querySelector('.copyTarget');
+        if (!$target) {return false;}
+        var range = document.createRange();
+        range.selectNode($target);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        alert('コピーしました！');
+        return false;
+      }
+        document.querySelector('.copyBtn').addEventListener('click', copyText, false);
+    </script>
+
+
+    <!-- 全角 => 半角　変換 -->
+    <script>
+      $(function(){
+          $("#change_tel, #change_address, #change_time, #change_price, #change_regular_holiday, #change_parking, #change_scale, #change_order, #change_mail_01, #change_mail_02").change(function(){
+              var str = $(this).val();
+              str = str.replace( /[Ａ-Ｚａ-ｚ０-９－！”＃＄％＆’（）＝＜＞，．？＿［］｛｝＠＾￥：]/g, function(s) {
+                  return String.fromCharCode(s.charCodeAt(0) - 65248);
+              });
+              $(this).val(str);
+          }).change();
+      });
+    </script>
+
+    <!-- 半角 => 全角　変換 -->
+    <script>
+      $(function(){
+          $("#change_letter , #change_dummy, #change_qa").change(function(){
+              var str = $(this).val();
+              str = str.replace(  /[A-Za-z0-9-!"#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
+                  return String.fromCharCode(s.charCodeAt(0) + 65248);
+              });
+              $(this).val(str);
+          }).change();
+      });
+    </script>
+
+    <!-- 文字変換 -->
+    <script>
+      // 変換前
+      var beforeStr = new Array('<','>','＜','＞','&','、');
+      // 変換後
+      var afterStr = new Array('【','】','【','】','＆','　');
+
+      function convertStr(str) {
+          var fullStr = str;
+          for(var i = 0; i < beforeStr.length; i++) {
+              fullStr = fullStr.replace(new RegExp(beforeStr[i], 'g'), afterStr[i]);
+          }
+          return fullStr;
+      }
+      $(function() {
+          $('.change_font').on('blur', function() {
+              var str = $(this).val();
+              $(this).val(convertStr(str));
+          });
+
+      });
+    </script>
+
+    <!-- 空白削除 -->
+    <script>
+      $(function(){
+          $("#change_mail_01, #change_mail_02").change(function(){
+              var str = $(this).val();
+              str = str.replace(/\s+/g, "");
+              $(this).val(str);
+          }).change();
+      });
+    </script>
+
+
+    <!-- flashメッセージ -->
+    <script>
+    $(function(){
+      setTimeout("$('.time-limit').fadeOut('slow')", 1000)
+    })
+    </script>
+
+    <!-- カレンダー -->
+    <script>
+    $('#datepicker').datepicker({
+        dateFormat: 'yy-mm-dd', //日付表示
+        minDate: 0, //過去の日付選択不可
+        showOtherMonths: true,//次月表示
+        selectOtherMonths: true, //次月選択可能
+        changeMonth: true, //月選択
+        firstDay: 1, // 月曜始まり
+        duration: 100, //表示タイミング
+        showAnim: 'slideDown' //表示アニメーション
+    });
+    </script>
+
+    <!-- footerボタン -->
+    <script>
+    $(function() {
+      var topBtn = $('.footer_btn');
+      //ボタンを非表示にする
+      topBtn.hide();
+      //スクロールしてページトップから***に達したらボタンを表示
+      $(window).scroll(function () {
+          if ($(this).scrollTop() > 200) {
+            //フェードインで表示
+              topBtn.fadeIn();
+          } else {
+            //フェードアウトで非表示
+              topBtn.fadeOut();
+          }
+      });
+    });
+    </script>
+
+    <!-- 大カテゴリ -> 中カテゴリ -->
+    <script>
+      $(function() {
+        return (function() {
+          var replaceChildrenOptions, replaceSelectOptions;
+          replaceSelectOptions = function($select, results) {
+            $select.html($('<option>'));
+            return $.each(results, function() {
+              var option;
+              option = $('<option>').val(this.id).text(this.name);
+              return $select.append(option);
+            });
+          };
+          replaceChildrenOptions = function() {
+            var $selectChildren, childrenPath;
+            childrenPath = $(this).find('option:selected').data().childrenPath;
+            $selectChildren = $(this).closest('form').find('.user-select-children');
+            if (childrenPath != null) {
+              return $.ajax({
+                url: childrenPath,
+                dataType: "json",
+                success: function(results) {
+                  return replaceSelectOptions($selectChildren, results);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  console.error("Error occurred in replaceChildrenOptions");
+                  console.log("XMLHttpRequest: " + XMLHttpRequest.status);
+                  console.log("textStatus: " + textStatus);
+                  return console.log("errorThrown: " + errorThrown);
+                }
+              });
+            } else {
+              return replaceSelectOptions($selectChildren, []);
+            }
+          };
+          return $('.user-select-parent').on({
+            'change': replaceChildrenOptions
+          });
+        })();
+      });
+    </script>
+
+    <!-- モーダル -->
+    <script>
+    $(function(){
+      $('.js-modal-open').each(function(){
+        $(this).on('click',function(){
+          var target = $(this).data('target');
+          var modal = document.getElementById(target);
+          $(modal).fadeIn();
+          return false;
+        });
+      });
+      $('.js-modal-close').on('click',function(){
+        $('.js-modal').fadeOut();
+        return false;
+      });
+    });
+    </script>
+
+
+
+    <!-- 画像プレビュー -->
+    <%= render "/layouts/image_preview" %>
+
+
+
+
+    </body>
+
+  </html>
+
+
+

@@ -1,0 +1,15 @@
+- set_meta_tags noindex: true
+.main.users-index
+  .container
+    .table_list
+      %table
+        %tr
+          %th No.
+          %th create
+          %th キーワード
+        - @db_searches.each.with_index(1) do |db_search, i|
+          %tr
+            %td= i
+            %td= db_search.created_at.strftime("%-m/%-d %-H:%M")
+            %td= db_search.keyword
+= paginate @db_searches

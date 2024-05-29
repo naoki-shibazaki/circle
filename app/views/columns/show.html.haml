@@ -1,0 +1,18 @@
+.main.user-show
+  .container
+    = render "/layouts/breadcrumb"
+    .form.users-form
+      .form-body
+        - if admin_user_signed_in?
+          - if @current_user.id == 1
+            .post-edit
+              .post-edit_btn
+                = link_to( "編集", edit_column_path)
+                ／
+                \#{link_to( "削除", column_path, method: :delete, data: {confirm: "投稿を削除しますか？"})}
+      .post-body
+        = image_tag @column.image.url , class:'content_image_one' if @column.image.present?
+        .cont-width
+          %h3.blog_title= @column.title
+          = raw Rinku.auto_link(simple_format @column.description)
+          = raw Rinku.auto_link(simple_format @column.text)

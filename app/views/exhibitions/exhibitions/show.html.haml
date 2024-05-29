@@ -1,0 +1,147 @@
+.user_main.users-index.ad_bottom_space
+  .container
+
+
+    .schedule_top_image
+      -if @exhibition.header_img.present?
+        = lazysizes_image_tag @exhibition.header_img.url, class: "top_img"
+    .users-index-item.schedule_user
+
+
+      .dropdown_wrap
+        %h1.schedule_title
+          = @exhibition.name
+        - if exhibition_group_signed_in? && current_exhibition_group.has_written?(@exhibition)
+          .dropdown
+            = image_tag '/images/actions.svg', class: 'dropbtn'
+            .dropdown-content
+              = link_to "編集する", edit_exhibition_path(@exhibition)
+              = link_to "削除する", exhibition_path(@exhibition), data: {method: "delete", confirm: "本当に削除してもよろしいですか？"}
+
+      .article_item.article_padding.place_list
+        %table
+          %tbody
+            -if @exhibition.event_date.present?
+              %tr.flex_contents
+                %th.flex_list 開催日程
+                %td.flex_list
+                  = @exhibition.event_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[@exhibition.event_date.wday]}) %H:%M")
+
+            -if @exhibition.end_date.present?
+              %tr.flex_contents
+                %th.flex_list 終了日程
+                %td.flex_list
+                  = @exhibition.end_date.strftime("%Y年%-m月%-d日(#{%w(日 月 火 水 木 金 土)[@exhibition.end_date.wday]}) %H:%M")
+
+            %tr.flex_contents
+              %th.flex_list エリア
+              %td.flex_list= @exhibition.prefecture.name
+
+            %tr.flex_contents
+              %th.flex_list 会場
+              %td.flex_list= @exhibition.venue_name
+
+            %tr.flex_contents
+              %th.flex_list 住所
+              %td.flex_list= @exhibition.venue_address
+
+            -if @exhibition.exhibit_person_price.present?
+              %tr.flex_contents
+                %th.flex_list 出展料
+                -if @exhibition.exhibit_person_price == 0
+                  %td.flex_list= "無料"
+                - else
+                  %td.flex_list= "#{@exhibition.exhibit_person_price} 円"
+
+            -if @exhibition.visitor_price.present?
+              %tr.flex_contents
+                %th.flex_list 来場料
+                -if @exhibition.visitor_price == 0
+                  %td.flex_list= "無料"
+                - else
+                  %td.flex_list= "#{@exhibition.visitor_price} 円"
+
+        - if @exhibition.detail.present?
+          %h2.schedule_sub_title
+            %i.fa.fa-book
+            活動内容の詳細
+          - if @exhibition.detail.include?("<div>")
+            .profile_list_p.profile_list_a.rich_text_sub
+              = raw Rinku.auto_link(sanitize @exhibition.detail, tags: %w(p a br strong ul li div), attributes:  %w(id class href))
+          - else
+            .profile_list_p.profile_list_a
+              = raw Rinku.auto_link(simple_format @exhibition.detail)
+
+        - if @exhibition.gallery_img_01.present?
+          %h2.schedule_sub_title
+            %i.fa.fa-camera-retro
+            ギャラリー写真
+        .post-body
+          - if @exhibition.gallery_img_01.present?
+            - if @exhibition.gallery_img_02.blank? && @exhibition.gallery_img_03.blank? && @exhibition.gallery_img_04.blank?
+              = lazysizes_image_tag @exhibition.gallery_img_01.url , class:'content_image_one'
+            - else
+              .swiper-container
+                .swiper-wrapper
+                  - if @exhibition.gallery_img_01.present?
+                    .swiper-slide= image_tag @exhibition.gallery_img_01.url , class:'content_image'
+                  - if @exhibition.gallery_img_02.present?
+                    .swiper-slide= image_tag @exhibition.gallery_img_02.url , class:'content_image'
+                  - if @exhibition.gallery_img_03.present?
+                    .swiper-slide= image_tag @exhibition.gallery_img_03.url , class:'content_image'
+                  - if @exhibition.gallery_img_04.present?
+                    .swiper-slide= image_tag @exhibition.gallery_img_04.url , class:'content_image'
+                / Add Pagination
+                .pagination-wrap
+                  .swiper-pagination
+
+
+
+
+
+
+    -if @exhibition.show_contact == 1
+      .users-index-item
+        .p_t
+          お問い合わせフォーム
+
+        .contact_form.form
+          = form_for (@exhibition_contact), url: exhibition_exhibition_contacts_path(@exhibition) do |f|
+            = render 'layouts/error_messages', model: f.object
+            .field
+              .label_item
+                %span.label.label_danger> 必須
+                お名前 （英字不可）
+              %span.cautions ※全角の日本語でご記入ください
+              = f.text_field :name, class: 'form-control', placeholder: "サークルブック"
+            .field
+              .label_item
+                %span.label.label_danger> 必須
+                メールアドレス
+              %span.cautions
+                ※『icloud.com』を利用する場合は、
+                %br>/
+                　受信トレイの空き容量を必ずご確認ください
+              = f.text_field :email, class: 'form-control', id: 'change_mail_01', placeholder: "circlebook47@gmail.com"
+            .field
+              .label_item
+                %span.label.label_danger> 必須
+                確認用メールアドレス
+              %span.cautions ※上と同じアドレスをご記入ください
+              = f.text_field :email_confirmation, class: 'form-control', id: 'change_mail_02', placeholder: "circlebook47@gmail.com"
+
+            .field
+              .label_item
+                %span.label.label_danger> 必須
+                件名
+                = f.select  :subject,  [ ['出展希望', 1], ['質問', 2], ['その他', 99] ], { prompt: "選択してください" }, class: 'form-control'
+
+            .field
+              .label_item
+                お問い合わせ内容
+              = f.text_area :content, class: 'form-control form-note', placeholder: "○○のイベントに出展したいです！"
+
+            .warning_txt ※送信完了に少し時間がかかります
+            = f.submit "送信する", data: { disable_with: '送信中...' }
+            .reset
+

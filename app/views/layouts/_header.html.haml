@@ -1,0 +1,122 @@
+.header_wrap
+  %ul.header-menus_sp
+    / ログイン時の処理
+    - if member_signed_in?
+      %li
+        = link_to(circles_path) do
+          %i.fa.fa-search
+          .link_txt サークル検索
+      %li
+        = link_to(blogs_path) do
+          %i.fa.fa-book
+          .link_txt 活動ブログ
+      %li
+        = link_to(member_path(current_member)) do
+          %i.fa.fa-user
+          .link_txt マイページ
+
+    - elsif exhibition_group_signed_in?
+      %li
+        = link_to(exhibitor_mypage_path) do
+          %i.fa.fa-user
+          .link_txt マイページ
+
+
+    - elsif admin_user_signed_in?
+      - if current_admin_user.users.any?
+        %li
+          = link_to "/users/#{current_admin_user.users.first.id}/mypage" do
+            %i.fa.fa-user.notice_icon
+            .link_txt マイページ
+      %li
+        = link_to(circles_path) do
+          %i.fa.fa-search
+          .link_txt サークル検索
+      %li
+        = link_to(blogs_path) do
+          %i.fa.fa-book
+          .link_txt 活動ブログ
+      / ログインなし
+    - else
+      %li
+        - if @path.is('matches')
+          = link_to(matches_path) do
+            %i.fa.fa-flag-checkered
+            .link_txt 対戦相手募集
+        - else
+          = link_to(circles_path) do
+            %i.fa.fa-search
+            .link_txt サークル検索
+      %li
+        = link_to(blogs_path) do
+          %i.fa.fa-book
+          .link_txt 活動ブログ
+      %li
+        = link_to(new_admin_user_registration_path) do
+          %i.fa.fa-user-plus
+          .link_txt サークル登録
+      %li
+        = link_to(login_path) do
+          %i.fa.fa-sign-in
+          .link_txt ログイン
+    = render "/layouts/menu"
+
+
+
+
+  - if @path.is('users#show') || @path.is('circles#show') || @path.is('users#mypage') || @path.is('blogs#show') || @path.is('blogs#index') || @path.is('blogs#gallery') || @path.is('schedules') || @path.is('attendances') || @path.is('questions') || @path.is('reviews#index')
+    - if @path.is('unsubscribe/admin_users') || @path.is('unsubscribe/members') || @path.is('blogs/blogs#index') || @path.is('event_questions') || @path.is('schedules#dates') || @path.is('schedules#year') || @path.is('schedules#month') || @path.is('schedules#day') || @path.is('#new') || @path.is('#edit')
+    - else
+      %ul.header_menue_btm
+        - if @path.is('users')
+          %li.current_page
+            %span= link_to "トップ", circle_path(@user)
+        - else
+          %li
+            %span= link_to "トップ", circle_path(@user)
+        - if @path.is('blogs#show') || @path.is('blogs#user_blogs')
+          %li.current_page
+            %span= link_to "ブログ", circle_blogs_path(@user)
+            .header_count= @user.blogs.size
+        - elsif @user.blogs.present?
+          %li
+            %span= link_to "ブログ", circle_blogs_path(@user)
+            .header_count= @user.blogs.size
+        - else
+          %li.none_page
+            %span ブログ
+
+        - if @path.is('schedules')
+          %li.current_page
+            %span= link_to "活動日", user_schedules_path(@user)
+            .header_count= @user.schedules.size
+        - elsif @user.schedules.present?
+          %li
+            %span= link_to "活動日", user_schedules_path(@user)
+            .header_count= @user.schedules.size
+        - else
+          %li.none_page
+            %span 活動日
+        - if @path.is('questions')
+          %li.current_page
+            %span= link_to "Ｑ＆Ａ", user_questions_path(@user)
+            .header_count= @user.questions.size
+        - elsif @user.questions.present?
+          %li
+            %span= link_to "Ｑ＆Ａ", user_questions_path(@user)
+            .header_count= @user.questions.size
+        - else
+          %li.none_page
+            %span Ｑ＆Ａ
+        - if @path.is('reviews')
+          %li.current_page
+            %span= link_to "口コミ", user_reviews_path(@user)
+            .header_count= @user.reviews.size
+        - elsif @user.reviews.present?
+          %li
+            %span= link_to "口コミ", user_reviews_path(@user)
+            .header_count= @user.reviews.size
+        - else
+          %li.none_page
+            %span 口コミ
+  %div

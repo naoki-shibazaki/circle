@@ -1,0 +1,255 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】47都道府県のサークルやチーム、団体一覧｜メンバー募集サイト"
+= render "users/parts/local_business_user_list"
+.main.users-index
+  .container.top_page
+    %img.imege_title{:src => "/images/top.png"}/
+    %h1.users-heading
+      %img.img_logo_title{:alt => "サークルブック", :src => "/images/logo.png"}/
+    .users-txt
+      - if admin_user_signed_in?
+        = link_to("活動日の登録", user_schedules_path(current_admin_user.first_user) )
+        を投稿すると
+        %br/
+        あなたの掲載順位が上がります！
+      - else
+        あなたにピッタリの
+        %br/
+        サークルやチーム、団体が見つかる！！
+
+    .search_wrap
+      .search_word
+        = form_tag(circles_search_index_path, method: :get, enforce_utf8: false) do
+          %input.search_area.change_font{:name => "q", :placeholder => "例）バスケ　東京", :size => "30", :type => "text", :value => "#{params[:q]}"}/
+          .search_icon
+            = submit_tag("検索", :name => nil)
+        .search_word_announce ※複数の単語はスペースで区切ってください
+
+
+
+    .top_contents.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          サークルをカテゴリーから探す
+      .readmore
+        %input#check1-1.readmore-check{:type => "checkbox"}/
+        .readmore-content
+          %ul.events-menus
+            - @categories.each do |category|
+              %li
+                = link_to("/categories/#{category.kana}") do
+                  .e_icon_wrap
+                    %img.lazyload{:alt => "#{category.name}", "data-src" => "/images/categories/#{category.kana}.jpg"}/
+                    .link_txt= category.name
+        %label.readmore-label{:for => "check1-1"}
+    .top_contents.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          サークルをエリアから探す
+      .readmore
+        %input#check1-2.readmore-check{:type => "checkbox"}/
+        .readmore-content.pref-menus
+          %ul.events-menus
+            %li
+              = link_to("/prefectures/tokyo") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "東京", "data-src" => "/images/prefectures/tokyo.jpg"}/
+                  .link_txt 東京
+            %li
+              = link_to("/prefectures/kanagawa") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "神奈川", "data-src" => "/images/prefectures/kanagawa.jpg"}/
+                  .link_txt 神奈川
+            %li
+              = link_to("/prefectures/aichi") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "愛知", "data-src" => "/images/prefectures/aichi.jpg"}/
+                  .link_txt 愛知
+            %li
+              = link_to("/prefectures/osaka") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "大阪", "data-src" => "/images/prefectures/osaka.jpg"}/
+                  .link_txt 大阪
+            %li
+              = link_to("/prefectures/kyoto") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "京都", "data-src" => "/images/prefectures/kyoto.jpg"}/
+                  .link_txt 京都
+            %li
+              = link_to("/prefectures/fukuoka") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "福岡", "data-src" => "/images/prefectures/fukuoka.jpg"}/
+                  .link_txt 福岡
+          %ul.prefectures-menus.place_meus
+
+            - @prefectures.each do |prefecture|
+              - if prefecture.group != @pref_group
+                - if prefecture.id == 50
+                  .prefectures-sub-title 全国
+                - else
+                  .prefectures-sub-title
+                    = prefecture.group
+                    エリア
+                %li
+                  = link_to "/prefectures/#{prefecture.kana}" do
+                    = prefecture.name
+                - @pref_group = prefecture.group
+              - else
+                %li
+                  = link_to "/prefectures/#{prefecture.kana}" do
+                    = prefecture.name
+
+
+
+        %label.readmore-label{:for => "check1-2"}
+    .top_contents.top_contents_btm.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          メンバー募集中のサークル
+      %ul.user_slide_wrap
+        - @users.each do |user|
+          = link_to(circle_path(user.id)) do
+            %li.user_slide_list
+              .user_list_header
+                = lazysizes_image_tag user.pic_profile.url , class:'image_icon'
+                %h3.user_name= user.name.truncate(20)
+              .clear
+              .list_02
+                %span.user_area
+                  %i.fa.fa-users
+                  = user.event.name
+              .list_02
+                %span.user_schedule
+                  %i.fa.fa-calendar
+                  = user.schedule
+              .list_03
+                %span.user_area
+                  %i.fa.fa-map-marker
+                  = user.prefecture.name
+                  - if user.area.present?
+                    ：#{user.area}
+      = link_to ">>もっと見る", "/users", class: "more_link"
+    = render "/layouts/ad_square"
+    .top_contents.bg_green
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-flag-checkered
+          対戦相手をジャンルから探す
+      .readmore
+        %input#check2-1.readmore-check{:type => "checkbox"}/
+        .readmore-content
+          %ul.events-menus
+            - @match_events.each do |match_event|
+              %li
+                = link_to("/match/#{match_event.ruby}") do
+                  .e_icon_wrap
+                    %img.lazyload{:alt => "#{match_event.name}", "data-src" => "/images/events/#{match_event.ruby}.jpg"}/
+                    .link_txt= match_event.name
+        %label.readmore-label{:for => "check2-1"}
+    .top_contents.bg_green
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-flag-checkered
+          対戦相手をエリアから探す
+      .readmore
+        %input#check2-2.readmore-check{:type => "checkbox"}/
+        .readmore-content.pref-menus
+          %ul.events-menus
+            %li
+              = link_to("/match/prefectures/tokyo") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "東京", "data-src" => "/images/prefectures/tokyo.jpg"}/
+                  .link_txt 東京
+            %li
+              = link_to("/match/prefectures/kanagawa") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "神奈川", "data-src" => "/images/prefectures/kanagawa.jpg"}/
+                  .link_txt 神奈川
+            %li
+              = link_to("/match/prefectures/aichi") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "愛知", "data-src" => "/images/prefectures/aichi.jpg"}/
+                  .link_txt 愛知
+            %li
+              = link_to("/match/prefectures/osaka") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "大阪", "data-src" => "/images/prefectures/osaka.jpg"}/
+                  .link_txt 大阪
+            %li
+              = link_to("/match/prefectures/kyoto") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "京都", "data-src" => "/images/prefectures/kyoto.jpg"}/
+                  .link_txt 京都
+            %li
+              = link_to("/match/prefectures/fukuoka") do
+                .e_icon_wrap
+                  %img.lazyload{:alt => "福岡", "data-src" => "/images/prefectures/fukuoka.jpg"}/
+                  .link_txt 福岡
+          %ul.prefectures-menus.place_meus
+            - @prefectures.each do |prefecture|
+              - if prefecture.group != @pref_group
+                - if prefecture.id != 50
+                  .prefectures-sub-title
+                    = prefecture.group
+                    エリア
+                  %li
+                    = link_to "/match/prefectures/#{prefecture.kana}" do
+                      = prefecture.name
+                - @pref_group = prefecture.group
+              - else
+                %li
+                  = link_to "/match/prefectures/#{prefecture.kana}" do
+                    = prefecture.name
+        %label.readmore-label{:for => "check2-2"}
+    .top_contents.top_contents_btm.bg_green
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-flag-checkered
+          対戦相手を募集中のサークル
+      %ul.user_slide_wrap
+        - @match_users.each do |m_user|
+          = link_to(match_path(m_user.id)) do
+            %li.user_slide_list
+              .user_list_header
+                = lazysizes_image_tag m_user.user.pic_profile.url , class:'image_icon'
+                %h3.user_name= m_user.user.name.truncate(20)
+              .clear
+              .list_02
+                %span.user_area
+                  %i.fa.fa-users
+                  = m_user.user.event.name
+              .list_02
+                %span.user_area
+                  %i.fa.fa-map-marker
+                  = m_user.user.prefecture.name
+              .list_03
+                %span.user_area
+                  %i.fa.fa-trophy
+                  = m_user.level
+                  - if m_user.level == "初級"
+                    （★☆☆）
+                  - elsif m_user.level == "中級"
+                    （★★☆）
+                  - elsif m_user.level == "上級"
+                    （★★★）
+                  - else
+      = link_to ">>もっと見る", "/matches", class: "more_link"
+    .top_contents.bg_yellow
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-dribbble
+          コートや体育館、施設を探す
+      .readmore
+        %input#check3-1.readmore-check{:type => "checkbox"}/
+        .readmore-content
+          %ul.events-menus
+            - @place_events.each do |place_event|
+              %li
+                = link_to("/places/#{place_event.ruby}") do
+                  .e_icon_wrap
+                    %img.lazyload{:alt => "#{place_event.name}", "data-src" => "/images/events/#{place_event.ruby}.jpg"}/
+                    .link_txt= place_event.name
+        %label.readmore-label{:for => "check3-1"}
+    = render "/layouts/ad_square"

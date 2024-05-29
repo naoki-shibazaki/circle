@@ -1,0 +1,24 @@
+.footer_wrap
+  = render "/layouts/breadcrumb"
+  .breadcrumbs_wrapper.text_slide
+    .breadcrumbs
+      = breadcrumbs separator: "&rsaquo;"
+  %ul.footer_links
+    %li
+      %a{:href => "/faq"} よくある質問
+    %li
+      %a{:href => "/about"} サークルブックについて
+    %li
+      %a{:href => "/rules"} 利用規約
+    %li
+      %a{:href => "/privacypolicy"} プライバシーポリシー
+    - if @path.is('users#show') || @path.is('blogs#show') || @path.is('reviews') || @path.is('schedules') || @path.is('user_contacts') || @path.is('questions')
+    - else
+      %li
+        %a{:href => "mailto:circlebook47@gmail.com?subject=【お問い合わせ】サークルブック"} お問い合わせ
+  .footer_copyright
+    .footer_logo
+      = link_to root_path do
+        %img.footer_logo_img{:alt => "サークルブック", :src => "/images/logo.png"}/
+    .footer_copyright_address
+      Copyright (c) #{link_to "サークルブック", root_path}

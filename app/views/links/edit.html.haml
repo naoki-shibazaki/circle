@@ -1,0 +1,33 @@
+- set_meta_tags noindex: true
+.main.users-edit
+  .container
+    .form.users-form
+      = render "/layouts/breadcrumb"
+      = render "/links/profile"
+      .links_content.links_content_edit
+        = form_for(@link) do |f|
+          %p 1.タイトル
+          = f.text_field :link01_title, class: 'form-control', placeholder: "例）サークルブック"
+          %p 1.URL
+          = f.text_field :link01_url, class: 'form-control', placeholder: "例）https://circle-book.com"
+          %hr/
+          %p 2.タイトル
+          = f.text_field :link02_title, class: 'form-control', placeholder: "例）YouTubeチャンネル"
+          %p 2.URL
+          = f.text_field :link02_url, class: 'form-control', placeholder: "例）https://circle-book.com"
+          %hr/
+          %p 3.タイトル
+          = f.text_field :link03_title, class: 'form-control', placeholder: "例）ブログサイト"
+          %p 3.URL
+          = f.text_field :link03_url, class: 'form-control', placeholder: "例）https://circle-book.com"
+          %hr/
+          %p 4.タイトル
+          = f.text_field :link04_title, class: 'form-control', placeholder: "例）ホームページ"
+          %p 4.URL
+          = f.text_field :link04_url, class: 'form-control', placeholder: "例）https://circle-book.com"
+          %hr/
+          %p 5.タイトル
+          = f.text_field :link05_title, class: 'form-control', placeholder: "例）質問コーナー"
+          %p 5.URL
+          = f.text_field :link05_url, class: 'form-control', placeholder: "例）https://circle-book.com"
+          = f.submit "登録する", data: { disable_with: '更新中...' }

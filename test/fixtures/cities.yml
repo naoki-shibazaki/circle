@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: cities
+#
+#  id            :integer          not null, primary key
+#  city_kana     :string
+#  name          :string
+#  places_count  :integer          default(0), not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  prefecture_id :string
+#
+
+one:
+  prefecture_id: MyString
+  city: MyString
+  city_kana: MyString
+
+two:
+  prefecture_id: MyString
+  city: MyString
+  city_kana: MyString

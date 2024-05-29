@@ -1,0 +1,25 @@
+= @user_contact.name
+さん
+サークルブックです。
+= @user.name
+へのお問い合わせありがとうございます！
+主催者からのご返信をお待ちください。
+- if @user_contact.entry != "練習試合"
+  ＼こちらも#{@user_contact.name}さんにオススメです！／
+  #{event_prefecture_url(@user.event.ruby, @user.prefecture.kana)}
+\--------------------------------------
+▼#{@user_contact.entry}のお問い合わせ内容
+名前：#{@user_contact.name} さん
+\#{simple_format @user_contact.message}
+
+URL： #{circle_url(@user.id)}
+\--------------------------------------
+
+【主催者から返信がない場合】
+3日以上返信がない場合、下記URLより情報の更新をお願いいたします。
+https://circle-book.com/check_r/#{@user.id}/#{@user_contact.random_id}
+
+【違反行為を見つけた場合】
+ネットワークビジネスやマルチ商法、
+宗教勧誘などを目的としたサークルの場合、下記URLよりご報告ください。
+https://circle-book.com/check_v/#{@user.id}/#{@user_contact.random_id}

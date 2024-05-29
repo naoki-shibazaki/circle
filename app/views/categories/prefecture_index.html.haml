@@ -1,0 +1,47 @@
+- set_meta_tags  noindex: true, title: "【#{@time.strftime("%Y")}年版】カテゴリーからサークルやチーム、団体を探す｜メンバー募集サイト"
+= render "users/parts/local_business_user_list"
+.main.users-index
+  .container.top_page
+    %img.imege_title{:src => "/images/top.png"}/
+    %h1.users-heading
+      %img.img_logo_title{:alt => "サークルブック", :src => "/images/logo.png"}/
+    .users-txt
+      - if admin_user_signed_in?
+        = link_to("活動ブログ", new_circle_blog_path(@user) )
+        を投稿すると
+        %br/
+        あなたの掲載順位が上がります！
+      - else
+        あなたにピッタリの
+        %br/
+        サークルやチーム、団体が見つかる！！
+    = render "/categories/search"
+    .top_contents.top_contents_btm.bg_blue
+      .top_heading
+        %h2.sub_title
+          %i.fa.fa-users
+          メンバー募集中のサークル
+      %ul.user_slide_wrap
+        - @users.first(7).each do |user|
+          = link_to(circle_path(user.id)) do
+            %li.user_slide_list
+              .user_list_header
+                = lazysizes_image_tag user.pic_profile.url , class:'image_icon'
+                %h3.user_name= user.name.truncate(20)
+              .clear
+              .list_02
+                %span.user_area
+                  %i.fa.fa-users
+                  = user.event.name
+              .list_02
+                %span.user_schedule
+                  %i.fa.fa-calendar
+                  = user.schedule
+              .list_03
+                %span.user_area
+                  %i.fa.fa-map-marker
+                  = user.prefecture.name
+                  - if user.area.present?
+                    ：#{user.area}
+      = link_to ">>もっと見る", "/users", class: "more_link"
+    = render "/layouts/ad_square"

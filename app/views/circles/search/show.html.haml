@@ -1,0 +1,23 @@
+- set_meta_tags title: "「#{params[:q]}」のサークルやチームの検索結果｜メンバー募集サイト"
+- breadcrumb :circle_search_show, params[:q]
+
+.main.users-index
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    .e_header_wrap
+      %img{:src => "/images/search.jpg"}/
+      .link_txt
+        %h1.e_header_title
+          = "「#{params[:q].truncate(18)}」の"
+          %br
+          = "サークル検索結果"
+
+    - if @users.size != 0
+      = render "/circles/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
+      = render "/circles/commons/users_list", users: @users
+
+    - else
+      = render "/circles/commons/no_hit"

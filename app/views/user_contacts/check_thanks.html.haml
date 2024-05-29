@@ -1,0 +1,15 @@
+- set_meta_tags noindex: true
+.main.users-index
+  .container
+    .contents_wrap
+      .p_t サンクスページ
+      .thanks_txt
+        %img.imege_thanks{:src => "/images/thanks_dog.png"}/
+        %p
+          ご連絡ありがとうございます！
+          %br/
+          今後の運営の参考にさせていただきます。
+        .stop_match
+          = link_to ">> トップページに戻る", circles_path, class: "other_match"
+    = render "/layouts/ad_square"
+    .ad_space

@@ -1,0 +1,210 @@
+<% set_meta_tags title: "#{@user.name}の質問コーナー",
+  og: {
+    title: "登録不要！匿名で「#{@user.name}」に質問ができます！",
+    description: "",
+    image: image_url('/images/qa_top.jpg')
+  },
+  twitter: { card: 'summary_large_image'}
+%>
+
+<div class="user_main users-index">
+  <div class="container bg_white">
+
+		<div class="qa_title_wrap">
+      <h1 class="top_title">質問コーナー<h1>
+      <%= render "/users/parts/user_switching", user: @user, url_path: "questions" %>
+    </div>
+
+	<div class="qa_wrap">
+
+
+    <div class="qa_profile_wrap">
+      <%= render "/users/parts/user_name", user: @user %>
+      <div class="qa_answer speech_bubble_a question_notes_wrap">
+        質問を受付中です！<br>
+        ※個人情報は書かないようにお願いします
+      </div>
+    </div>
+
+    <% if AccountBlock.find_by(ip_address: request.remote_ip) || @user.review_permit == false %>
+    <% else %>
+      <div class="qa_answer_form">
+        <%= form_for ([@user, @question]) do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <%= f.text_area :content, class: 'form-control form-note change_question', id: "input-text",rows: 4, placeholder: "質問を書いてください！（80文字以内）" %>
+          <div class="counter_wrap"><span id="counter">0文字</span> / 80文字</div>
+
+            <div class="actions">
+              <%= f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' } %>
+            </div>
+
+          <div class="reset"></div>
+
+        <% end %>
+      </div>
+    <% end %>
+
+
+
+
+			<% if admin_user_signed_in?  %>
+				<% if @user.admin_user_id == current_admin_user.id %>
+					<div class="qa_tw_share">
+						<%= link_to("https://twitter.com/share?url=#{request.url}&text=質問を募集中です！%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do %>
+							<div class="share_btn_tw">
+                  <i class="fa fa-twitter"></i>質問をTwitterで募集する！
+							</div>
+						<% end %>
+					</div>
+				<% end %>
+			<% end %>
+
+
+	</div>
+
+
+  <div class="qa_card_warp">
+
+    <% if @questions.present? %>
+      <div class="qa_card_txt">
+        ▼ <%= @user.name %>さんに寄せられた質問です！
+      </div>
+    <% end %>
+
+		<ul>
+			<% if @questions.any? %>
+				<% @questions.each do |question| %>
+					<li class="ribbon-wrapper">
+						<div class="ribbon-content">
+							<% if question.answer.nil? %>
+                <span class="ribbon red">未回答</span>
+							<% else %>
+                <span class="ribbon green">回答済み</span>
+							<% end %>
+						</div>
+
+						<%= link_to "/users/#{@user.id}/questions/#{question.id}" do %>
+              <div class="qa_large">
+                <div class="user_slide_qa">
+                  <div class="user_slide_qa_wrap">
+                    <div class="user_slide_qa_content_wrap">
+                      <h2><%= question.content %></h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+						<% end %>
+
+					</li>
+				<% end %>
+			<% end %>
+
+
+			<% @questions.each do |question| %>
+				<% if question.content == @question_first %>
+					<% @question_first_count = 1 %>
+				<% elsif question.content == @question_second %>
+					<% @question_second_count = 1 %>
+				<% else question.content == @question_third %>
+					<% @question_third_count = 1 %>
+				<% end %>
+			<% end %>
+
+			<% if admin_user_signed_in?  %>
+				<% if @user.admin_user_id == current_admin_user.id %>
+
+            <% if @question_first_count != 1 %>
+              <li class="ribbon-wrapper">
+                <div class="ribbon-content">
+                  <span class="ribbon red">未回答</span>
+                </div>
+                <%= link_to controller: :questions, action: :question, sample: "first" do %>
+                  <div class="qa_large">
+                    <div class="user_slide_qa">
+                      <div class="user_slide_qa_wrap">
+                        <div class="user_slide_qa_content_wrap">
+                          <h2><%= @question_first %></h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if @question_second_count != 1 %>
+              <li class="ribbon-wrapper">
+                <div class="ribbon-content">
+                  <span class="ribbon red">未回答</span>
+                </div>
+                <%= link_to controller: :questions, action: :question, sample: "second" do %>
+                  <div class="qa_large">
+                    <div class="user_slide_qa">
+                      <div class="user_slide_qa_wrap">
+                        <div class="user_slide_qa_content_wrap">
+                          <h2><%= @question_second %></h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if @question_third_count != 1 %>
+              <li class="ribbon-wrapper">
+                <div class="ribbon-content">
+                  <span class="ribbon red">未回答</span>
+                </div>
+                <%= link_to controller: :questions, action: :question, sample: "third" do %>
+                  <div class="qa_large">
+                    <div class="user_slide_qa">
+                      <div class="user_slide_qa_wrap">
+                        <div class="user_slide_qa_content_wrap">
+                          <h2><%= @question_third %></h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+
+        <% end %>
+      <% end %>
+
+		</ul>
+
+	</div>
+
+	<%= render "/layouts/ad_square" %>
+	<div class="ad_space"></div>
+
+  <%= paginate @questions %>
+
+  </div>
+</div>
+
+<!-- 半角 => 全角　変換 -->
+<script>
+  $(function(){
+      $(".change_question").change(function(){
+          var str = $(this).val();
+          str = str.replace(  /["#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
+              return String.fromCharCode(s.charCodeAt(0) + 65248);
+          });
+          $(this).val(str);
+      }).change();
+  });
+</script>
+
+
+<!-- 文字カウント -->
+<script>
+  $(function(){
+    $("#input-text").on("keyup", function() {
+      let countNum = String($(this).val().length);
+      $("#counter").text(countNum + "文字");
+    });
+  });
+</script>

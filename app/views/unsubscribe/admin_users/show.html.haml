@@ -1,0 +1,44 @@
+- set_meta_tags noindex: true,title: "アカウントの削除"
+.main.users-new
+  .container
+    .form.users-form
+      .form-body.cont-body.center
+        .p_t アカウントの削除
+
+        .warning_icon
+          %i.fa.fa-warning
+        .warning_text
+          アカウントのデータを全て削除します。
+          %br/
+          一度削除をしてしまうと
+          %br/
+          復元できませんので、ご注意ください。
+
+        - if @admin_user.users.present?
+          %hr/
+          .del_text
+            もし
+            %span.red> サークルを再開する可能性がある場合
+            は
+            %br/
+            ステータスを
+            %span.blue> 【受付終了】
+            に変更すれば
+            %br/
+            お問い合わせが届かなくなり便利です！
+          .del_btn_wrap
+            = link_to(edit_user_path(@admin_user.users.first.id)) do
+              .del_btn.green 受付終了に変更する！
+
+        %hr/
+        .del_text.del_text_ts
+          下記ボタンを押すと削除を実行します。
+          %br/
+          アカウントに紐づく
+          %span.red> 全てのデータが削除
+          されます
+        .del_btn_wrap
+          = link_to(unsubscribe_admin_user_path, method: :delete, data: {confirm: "本当に削除してよろしいでしょうか？"}) do
+            .del_btn.red はい、削除します
+          = link_to(circles_path) do
+            .del_btn.gray いいえ、削除しません

@@ -1,0 +1,26 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}#{@city.name}のサークルやチームの一覧｜メンバー募集サイト",description: "【完全無料／登録不要】#{@prefecture.name}#{@city.name}のサークルやチームの募集サイトです！10代〜60代、社会人や学生、初心者、経験者など、誰でも参加可能！バスケやバレー、フットサルなど。無料で簡単にメンバーの募集ができます！",keywords: "#{@prefecture.name},#{@city.name},サークル,チーム,団体"
+- breadcrumb :prefecture_city_show, @prefecture, @city
+= render "circles/markups/circles_list", users: @users
+
+.main.users-index
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    .e_header_wrap
+      %img{:src => "/images/top.png"}/
+      .link_txt
+        %h1.e_header_title
+          = "#{@prefecture.name}#{@city.name}で活動している"
+          %br
+          = "メンバー募集中の"
+          %br
+          = "サークルやチーム"
+
+    - if @users.size != 0
+      = render "/circles/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
+      = render "/circles/commons/users_list", users: @users
+
+    - else
+      = render "/circles/commons/no_hit"

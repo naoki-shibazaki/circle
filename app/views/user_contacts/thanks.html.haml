@@ -1,0 +1,37 @@
+- set_meta_tags noindex: true
+.main.users-index
+  .container
+    .contents_wrap
+      .p_t サンクスページ
+      .schedule_profile_wrap
+        = link_to(circle_path(@user.id)) do
+          .user-content
+            = image_tag @user.pic_profile.url , class:'image_icon'
+            .list_wrapper.contact_name_wrap
+              .list_01
+                %h2.user_name= @user.name
+        .reset
+      .thanks_txt
+        %p.check_pose_mail
+          確認用のメールを送信しました！
+          %br/
+          - if @user_contact.present?
+            【#{@user_contact.mail}】
+            %br/
+          %br/
+          届いていない場合は、
+          %br/
+          違うアドレスで再度お問い合わせください。
+        %img.imege_thanks{:src => "/images/pose_mail.png"}/
+        %p
+          お問い合わせありがとうございます！
+          %br/
+          主催者から返信が届くまで、お待ちください。
+        .stop_match
+          = link_to ">> トップページに戻る", circles_path, class: "other_match"
+    - if @users.present?
+      .user-list-wrap
+        %h2.others-user あなたにオススメのサークル
+        = render "users/users_list_slide", users: @users
+    = render "/layouts/ad_square"
+    .ad_space

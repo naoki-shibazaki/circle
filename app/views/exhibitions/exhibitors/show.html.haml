@@ -1,0 +1,88 @@
+- set_meta_tags title: "#{@exhibitor.name}"
+
+.user_main.user-show
+  .container
+    .user-profile
+      .header-wrapper
+        - if @exhibitor.header_img.present?
+          .pop-box
+            %label{:for => "popup-on_header"}
+              %label{:for => "popup-on_header"}
+                .btn-open_header
+                  = lazysizes_image_tag @exhibitor.header_img.url, class:'header_imege', alt: "ヘッダー画像｜#{@exhibitor.name}"
+              %input#popup-on_header{:type => "checkbox"}/
+              .popup
+                %label.icon-close_header{:for => "popup-on_header"} ×
+                .popup-content
+                  = lazysizes_image_tag @exhibitor.header_img.url, alt: "ヘッダー画像｜#{@exhibitor.name}"
+                %label{:for => "popup-on_header"}
+                  .btn-close_header 閉じる
+        - else
+          = lazysizes_image_tag @exhibitor.header_img.url , class:'header_imege'
+        - if @exhibitor.profile_img.present?
+          .pop-box
+            %label{:for => "popup-on_profile"}
+              %label{:for => "popup-on_profile"}
+                .btn-open_profile
+                  = lazysizes_image_tag @exhibitor.profile_img.url, class:'profile_imege', alt: "プロフィール画像｜#{@exhibitor.name}"
+              %input#popup-on_profile{:type => "checkbox"}/
+              .popup
+                %label.icon-close_profile{:for => "popup-on_profile"} ×
+                .popup-content
+                  = lazysizes_image_tag @exhibitor.profile_img.url, alt: "プロフィール画像｜#{@exhibitor.name}"
+                %label{:for => "popup-on_profile"}
+                  .btn-close_profile 閉じる
+        - else
+          = lazysizes_image_tag @exhibitor.profile_img.url , class:'profile_imege'
+
+        .contact_area
+          - if exhibition_group_signed_in? && current_exhibition_group.has_exhibitor?(@exhibitor)
+            = link_to edit_exhibitor_profile_path do
+              .contact-button.edit= "プロフィール編集"
+
+      .profile-content
+        .post-bottom.u_right
+          更新日：#{@exhibitor.exhibition_group.updated_at.to_time.strftime("%Y年%-m月%-d日")}
+        - if @exhibitor.exhibition_group.updated_at.to_time <= Time.current.ago(1.years)
+          .attention_content
+            %i.fa.fa-warning
+            このグループは1年以上更新されていません。
+
+        %h1.user_name= @exhibitor.name
+
+        .border
+        - if @exhibitor.twitter_id.present? || @exhibitor.instagram_id.present?
+          .article_item.article_padding
+            %table
+              %tbody
+                %tr.flex_contents
+                  %th.flex_list SNS
+                  %td.flex_list
+                    - if @exhibitor.twitter_id.present?
+                      %a{:href => "https://twitter.com/#{@exhibitor.twitter_id}", :rel => "”nofollow”"}
+                        %span.sns_link.twitter_link
+                          %i.fa.fa-twitter-square
+                          Twitter
+                    - if @exhibitor.instagram_id.present?
+                      %a{:href => "https://www.instagram.com/#{@exhibitor.instagram_id}", :rel => "”nofollow”"}
+                        %span.sns_link.instagram_link
+                          %i.fa.fa-instagram
+                          Instagram
+
+        - if @exhibitor.web_url.present?
+          .content_08
+            %i.fa.fa-chain
+            %a{:href => "#{@exhibitor.web_url}", :rel => "”nofollow”"}
+              = @exhibitor.web_url
+
+        - if @exhibitor.introduction.present?
+          .profile_list_t.p_t_t
+          %h2.user_sub_title
+            %i.fa.fa-book
+            グループの詳細情報
+          .profile_list_p.profile_list_a.rich_text_sub
+            = raw Rinku.auto_link(sanitize @exhibitor.introduction, tags: %w(p a br strong ul li div), attributes:  %w(id class href))
+
+
+    = render "/exhibitions/commons/exhibitions_list", exhibitions: @exhibitions
+

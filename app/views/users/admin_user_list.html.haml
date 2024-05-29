@@ -1,0 +1,15 @@
+- set_meta_tags noindex: true
+.main.users-index
+  .container
+    .table_list
+      %table
+        %tr
+          %th AdminUser
+          %th User
+          %th Name
+        - @admin_users.reverse_each do |admin_user|
+          - admin_user.users.each do |user|
+            %tr
+              %td= admin_user.id
+              %td= user.id
+              %td= link_to user.name, "/users/#{user.id}"

@@ -1,0 +1,6 @@
+- if @user.bookmarked_by?(current_member)
+  .bookmark_btn_wrap
+    = render 'bookmarks/unbookmark', user: @user
+- else
+  .bookmark_btn_wrap
+    = render 'bookmarks/bookmark', user: @user

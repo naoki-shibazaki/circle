@@ -1,0 +1,55 @@
+%li
+  #nav-drawer
+    %input#nav-input.nav-unshown{:type => "checkbox"}/
+    %label#nav-open{:for => "nav-input"}
+      %span
+    %label#nav-close.nav-unshown{:for => "nav-input"}
+    #nav-content
+      .logo_txt
+        = link_to root_path do
+          %img.img_logo_memu{:alt => "サークルブック", :src => "/images/logo.png"}/
+      - if member_signed_in?
+        .menu_btn= link_to 'マイページ', member_path(current_member)
+
+      - elsif admin_user_signed_in?
+        - if current_admin_user.users.any?
+          .menu_btn= link_to 'マイページ', "/users/#{current_admin_user.users.first.id}/mypage"
+
+      - elsif exhibition_group_signed_in?
+
+      - else
+        .menu_btn= link_to 'サークル登録', new_admin_user_registration_path
+        .menu_btn= link_to 'ログイン', login_path
+
+
+      %ul
+        %li= link_to 'サークル検索', circles_path
+        %li= link_to '対戦相手を探す', matches_path
+        %li= link_to 'コート・体育館を探す', '/places'
+
+
+
+      - if member_signed_in?
+        %ul
+          %li= link_to 'ログアウト', destroy_member_session_path, method: :delete
+          %li
+            = link_to edit_member_registration_path do
+              メールアドレス
+              %br>/
+              パスワードの変更
+      - elsif admin_user_signed_in?
+        %ul
+          %li= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete
+          %li
+            = link_to edit_admin_user_registration_path do
+              メールアドレス
+              %br>/
+              パスワードの変更
+
+      - elsif exhibition_group_signed_in?
+        %ul
+          %li= link_to 'ログアウト', destroy_exhibition_group_session_path, method: :delete
+
+      - else
+
+  .link_txt メニュー

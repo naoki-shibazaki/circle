@@ -1,0 +1,22 @@
+- set_meta_tags noindex: true,title: "「#{params[:q].truncate(30)}」のサークルやチーム、団体一覧｜メンバー募集サイト"
+.main.users-index
+  .container
+    %img.lazyload.imege_title.search_img{"data-src" => "/images/search.jpg"}/
+    %h1.users-heading.search_title
+      「#{params[:q].truncate(18)}」の検索結果
+    .users-txt
+      - if admin_user_signed_in?
+        = link_to("活動ブログ", new_circle_blog_path(@user) )
+        を投稿すると
+        %br/
+        あなたの掲載順位が上がります！
+      - else
+        あなたにピッタリの
+        %br/
+        サークルやチーム、団体が見つかる！！
+    - if @users.count != 0
+      .search_area
+        = render "/users/search"
+      = render "users_list"
+    - else @users.count == 0
+      = render "/users/no_hit"

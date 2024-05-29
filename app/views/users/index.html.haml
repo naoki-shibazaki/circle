@@ -1,0 +1,17 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】47都道府県のサークルやチーム、団体一覧｜メンバー募集サイト"
+.main.users-index
+  .container
+    %img.lazyload.imege_title{"data-src" => "/images/top.png"}/
+    %h1.users-heading サークル検索
+    .users-txt
+      - if admin_user_signed_in?
+        = link_to("活動ブログ", new_circle_blog_path(@user) )
+        を投稿すると
+        %br/
+        あなたの掲載順位が上がります！
+      - else
+        あなたにピッタリの
+        %br/
+        サークルやチーム、団体が見つかる！！
+    = render "/users/search"
+    = render "/users/users_list"

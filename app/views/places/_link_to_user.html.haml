@@ -1,0 +1,8 @@
+.link_to_user
+  = link_to "/#{@event.ruby}/#{@prefecture.kana}" do
+    .link_to_user_btn
+      = @prefecture.name
+      で活動している
+      %br/
+      = @event.name
+      サークルの一覧

@@ -1,0 +1,49 @@
+- set_meta_tags title: "サークルリンク"
+.main.user-show
+  .container.white.link_index
+    %h1.p_t サークルリンク
+    .swiper-container
+      .swiper-wrapper
+        %img.lazyload.swiper-slide{"data-src" => "/images/circle_link01.jpg"}/
+        %img.lazyload.swiper-slide{"data-src" => "/images/circle_link02.jpg"}/
+      .pagination-wrap
+        .swiper-pagination
+    %h2.links_sub_title 他の人のサークルリンク
+    %ul.sample_link_slide
+      - @links.each do |link|
+        %li.sample_link_child
+          = link_to "/link/#{link.unique_id}" do
+            .link_profile
+              - if link.user.pic_header.present?
+                .link_img_header
+                  = lazysizes_image_tag link.user.pic_header.url, class:'header_link_imege', alt: "ヘッダー画像｜#{link.user.name}"
+              - else
+                .link_img_header
+                  = lazysizes_image_tag link.user.pic_header.url , class:'header_link_imege'
+              - if link.user.pic_profile.present?
+                .link_img_profile
+                  = lazysizes_image_tag link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{link.user.name}"
+              - else
+                .link_img_profile
+                  = lazysizes_image_tag link.user.pic_profile.url , class:'profile_link_imege'
+              .link_name_wrap
+                .link_name= link.user.name.truncate(12)
+                .link_unique_id
+                  @#{link.unique_id}
+              .reset
+              .sample_link_title_wrap
+                - if link.link01_title.present?
+                  .sample_link_title
+                    = link.link01_title.truncate(14)
+                - if link.link02_title.present?
+                  .sample_link_title
+                    = link.link02_title.truncate(14)
+                - if link.link03_title.present?
+                  .sample_link_title
+                    = link.link03_title.truncate(14)
+    .contact_link.circle_link_btm
+      = link_to(new_admin_user_registration_path) do
+        .btn.btn_c.btn_green.btn_cubic
+          無料登録をして
+          %br/
+          サークルリンクを利用する！

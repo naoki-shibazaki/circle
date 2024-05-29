@@ -1,0 +1,60 @@
+- if @user.gallery_01.present? || @user.gallery_02.present? || @user.gallery_03.present? || @user.gallery_04.present?
+  .gallery_wrap
+    .gallery_even
+      .gallery_container
+        - if @user.gallery_01.present?
+          .pop-box
+            %label{:for => "popup-on_01"}
+              %label{:for => "popup-on_01"}
+                .btn-open_01
+                  = lazysizes_image_tag @user.gallery_01.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+              %input#popup-on_01{:type => "checkbox"}/
+              .popup
+                %label.icon-close_01{:for => "popup-on_01"} ×
+                .popup-content
+                  = lazysizes_image_tag @user.gallery_01.url
+                %label{:for => "popup-on_01"}
+                  .btn-close_01 閉じる
+        - if @user.gallery_02.present?
+          .pop-box
+            %label{:for => "popup-on_02"}
+              %label{:for => "popup-on_02"}
+                .btn-open_02
+                  = lazysizes_image_tag @user.gallery_02.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+              %input#popup-on_02{:type => "checkbox"}/
+              .popup
+                %label.icon-close_02{:for => "popup-on_02"} ×
+                .popup-content
+                  = lazysizes_image_tag @user.gallery_02.url
+                %label{:for => "popup-on_02"}
+                  .btn-close_02 閉じる
+        - if @user.gallery_03.present?
+          .pop-box
+            %label{:for => "popup-on_03"}
+              %label{:for => "popup-on_03"}
+                .btn-open_03
+                  = lazysizes_image_tag @user.gallery_03.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+              %input#popup-on_03{:type => "checkbox"}/
+              .popup
+                %label.icon-close_03{:for => "popup-on_03"} ×
+                .popup-content
+                  = lazysizes_image_tag @user.gallery_03.url
+                %label{:for => "popup-on_03"}
+                  .btn-close_03 閉じる
+        - if @user.gallery_04.present?
+          .pop-box
+            %label{:for => "popup-on_04"}
+              %label{:for => "popup-on_04"}
+                .btn-open_04
+                  = lazysizes_image_tag @user.gallery_04.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+              %input#popup-on_04{:type => "checkbox"}/
+              .popup
+                %label.icon-close_04{:for => "popup-on_04"} ×
+                .popup-content
+                  = lazysizes_image_tag @user.gallery_04.url
+                %label{:for => "popup-on_04"}
+                  .btn-close_04 閉じる
+
+
+
+

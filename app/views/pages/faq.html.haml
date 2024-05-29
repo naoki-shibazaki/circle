@@ -1,0 +1,87 @@
+- set_meta_tags title: "よくある質問"
+.main.users-index
+  .container.QandA_wrap
+    .contents_wrap
+      %h1.p_t よくある質問
+      %ul.QandA_accordion
+        %li.option
+          %input#toggle01.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle01"} Ｑ.サークルブックとは？
+          .content
+            %p
+              Ａ.
+              サークルブックとは、サークルやチームの新規メンバーを募集するためのSNSです。
+        %li.option
+          %input#toggle02.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle02"} Ｑ.無料で使えるんですか？
+          .content
+            %p
+              Ａ.
+              サークルブックのサービスは全て無料でお使いいただくことが可能です。
+
+
+
+        %li.option
+          %input#toggle03.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle03"} Ｑ.【参加者】気になったサークルにどうやって連絡すればいいですか？
+          .content
+            %p
+              Ａ.
+              サークルブックでは、LINE（LINE公式アカウント）やメールで直接やり取りすることが可能です。
+              %br/
+              各サークルのページに、LINEかメールにて連絡ができるボタンがありますので、そちらからご連絡をお願いいたします。
+        %li.option
+          %input#toggle07.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle07"} Ｑ.【参加者】サークル主催者から返信が来ないです
+          .content
+            %p
+              Ａ.
+              申し訳ございません。サークル主催者のメールアドレスが変わったり、サークル活動が停止している場合は、返信が来ない場合がございます。
+              %br/
+              3日以上返信がない場合は、お手数をおかけいたしますが、他のサークルにご応募いただければと存じます。
+          %li.option
+            %input#toggle09.toggle{:type => "checkbox"}/
+            %label.title{:for => "toggle09"} Ｑ.【参加者】退会方法は？
+            .content
+              %p
+                Ａ.
+                ログインした状態で、#{link_to "サークルブック退会手続き",unsubscribe_member_path}より、手続きをお願いいたします。※全てのデータが削除されます
+
+
+        %li.option
+          %input#toggle05.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle05"} Ｑ.【サークル主催者】サークルの並び順を上位にする方法は？
+          .content
+            %p
+              Ａ.
+              ブログや活動スケジュールなどの更新が活発なサークルは上位に表示されやすくなります。
+        %li.option
+          %input#toggle10.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle10"} Ｑ.【サークル主催者】見学・参加希望者からの返信が来ないです
+          .content
+            %p
+              Ａ.
+              お問い合わせ時に見学・参加希望者の、メールアドレスの記入が誤っているか、迷惑フォルダなどに振り分けられて気付いていない可能性がございます。
+              %br/
+              メールアドレス以外の連絡手段がない場合は、申し訳ございませんが、その方とご連絡する方法はございませんので、ご了承ください。
+              %br/
+              %br/
+              今後の対策として、お問い合わせ時の記入項目にSNSなど、他の連絡手段も追加いただければと存じます。
+        %li.option
+          %input#toggle06.toggle{:type => "checkbox"}/
+          %label.title{:for => "toggle06"} Ｑ.【サークル主催者】サークルの削除方法は？
+          .content
+            %p
+              Ａ.
+              ログインした状態で、#{link_to "サークル削除ページ",user_del_path}より、手続きをお願いいたします。
+
+
+        - unless admin_user_signed_in? && current_admin_user.check.present? && current_admin_user.check >= 1
+          %li.option
+            %input#toggle08.toggle{:type => "checkbox"}/
+            %label.title{:for => "toggle08"} Ｑ.【サークル主催者】退会方法は？
+            .content
+              %p
+                Ａ.
+                ログインした状態で、#{link_to "サークルブック退会手続き",unsubscribe_admin_user_path}より、手続きをお願いいたします。※全てのデータが削除されます
+

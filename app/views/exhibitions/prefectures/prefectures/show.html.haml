@@ -1,0 +1,19 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}の出展・イベント情報の一覧"
+-# - breadcrumb :circle_index
+
+.main.users-index
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    %img.lazyload.imege_title{"data-src" => "/images/top.png"}/
+    %h1.users-heading 出展・イベント情報の検索
+    .users-txt
+      = "#{@prefecture.name}の"
+      %br
+      = "出展・イベント情報の一覧"
+
+
+    = render "/exhibitions/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
+    = render "/exhibitions/commons/exhibitions_list", exhibitions: @exhibitions

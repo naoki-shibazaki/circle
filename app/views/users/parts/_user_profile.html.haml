@@ -1,0 +1,21 @@
+.user_profile_wrap
+  = link_to(circle_path(user.id)) do
+    = lazysizes_image_tag user.pic_profile.url , class:'image_icon'
+    .user_profile
+      %h2.user_name= user.name.truncate(40)
+    .reset
+    .user_about
+      .slide_content
+        %i.fa.fa-tags
+        = user.event.txt
+      - if user.schedule.present?
+        .slide_content
+          %i.fa.fa-calendar
+          = user.schedule
+      - if user.prefecture_id.present?
+        .slide_content
+          %i.fa.fa-map-marker
+          = user.prefecture.name
+          = "・#{Prefecture.find(user.prefecture_sub_id).name}" if user.prefecture_sub_id.present?
+          = "：#{user.area}" if user.area.present?
+  .reset

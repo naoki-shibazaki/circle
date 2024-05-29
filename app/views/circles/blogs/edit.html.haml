@@ -1,0 +1,10 @@
+- set_meta_tags noindex: true
+.main.users-new
+  .container
+    .form.users-form
+      .form-body.cont-body
+
+        .p_t ブログの編集
+
+        = render "circles/blogs/form", url_path: circle_blog_path, method: "PUT"
+

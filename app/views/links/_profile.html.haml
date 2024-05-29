@@ -1,0 +1,21 @@
+.link_profile
+  - if @link.user.pic_header.present?
+    .link_img_header
+      = lazysizes_image_tag @link.user.pic_header.url, class:'header_link_imege', alt: "ヘッダー画像｜#{@link.user.name}"
+  - else
+    .link_img_header
+      = lazysizes_image_tag @link.user.pic_header.url , class:'header_link_imege'
+  - if @link.user.pic_profile.present?
+    .link_img_profile
+      = link_to circle_path(@link.user.id) do
+        = lazysizes_image_tag @link.user.pic_profile.url, class:'profile_link_imege', alt: "プロフィール画像｜#{@link.user.name}"
+  - else
+    .link_img_profile
+      = link_to circle_path(@link.user.id) do
+        = lazysizes_image_tag @link.user.pic_profile.url , class:'profile_link_imege'
+  .link_name_wrap
+    = link_to circle_path(@link.user.id) do
+      .link_name= @link.user.name
+      .link_unique_id
+        @#{@link.unique_id}
+  .reset

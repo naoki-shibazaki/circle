@@ -1,0 +1,69 @@
+- set_meta_tags noindex: true
+.main.users-index
+  .container
+    .users-index-item.schedule_wrap
+      %h1.top_title プロフィールの編集
+
+      .form
+        %ul
+          - @profile.errors.full_messages.each do |message|
+            %li= message
+
+        = form_with(model: @profile, url: exhibitor_profile_path, method: 'put', local: true) do |f|
+
+          .img_field_profile_wrap
+            .label_item プロフィール画像（アイコン＆背景写真）
+            #img_field_header{:onclick => "$('#file_header').click()"}
+              - if @profile.header_img.present?
+                = image_tag(@profile.header_img.url)
+              - else
+                %i.fa.fa-image
+            = f.file_field :header_img, class: "image", style: "display:none;", id: "file_header"
+            #img_field_profile{:onclick => "$('#file_profile').click()"}
+              - if @profile.profile_img.present?
+                = image_tag(@profile.profile_img.url)
+              - else
+                %i.fa.fa-image
+            = f.file_field :profile_img, class: "image", style: "display:none;", id: "file_profile"
+            .file_size_p ※10MB以下のjpgかpngのみ対応
+          %br
+          .img_field_profile_space
+          - if @profile.profile_img.present? || @profile.header_img.present?
+            %ul.remove_img
+              - if @profile.profile_img.present?
+                %li
+                  = f.check_box :remove_profile_img
+                  アイコン画像の削除
+              - if @profile.header_img.present?
+                %li
+                  = f.check_box :remove_header_img
+                  背景画像の削除
+
+          .label_item
+            %span.label.label_danger> 必須
+            出展・グループ名
+          = f.text_field :name, class: 'form-control', placeholder: "サークルブック"
+
+          .sns_form
+            .label_item Twitter ID
+            .sns_input
+              %span.atmark @
+              = f.text_field :twitter_ic, class: 'form-control', placeholder: "circle_book_"
+          .sns_form
+            .label_item Instagram ID
+            .sns_input
+              %span.atmark @
+              = f.text_field :instagram_id, class: 'form-control', placeholder: "circlebook47"
+          .reset
+
+          .label_item ホームページ
+          = f.text_field :web_url, class: 'form-control', placeholder: "https://circle-book.com"
+
+          .label_item サークルの詳細情報
+          .rich_text_sub
+            .rich_text_notes ▼文字の装飾は最後に行ってください
+            = f.hidden_field :introduction, id: :article_text
+            %trix-editor{:input => "article_text", :placeholder => "サークルブックは月１回、都内で活動しています！"}
+
+
+          = f.submit "更新する", data: { disable_with: '更新中...' }

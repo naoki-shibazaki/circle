@@ -1,0 +1,116 @@
+.tag_list_wrap
+  %ul.tag_list_content
+    - if @path.is('users#index', 'users#top', 'users#search', 'tags#index', 'categories#index', 'categories#category', 'db_keywords', 'schedules#dates', 'schedules#year', 'schedules#month', 'schedules#day')
+      %li
+        = link_to("/#{user.event.ruby}") do
+          = user.event.name
+      %li
+        = link_to("/prefectures/#{user.prefecture.kana}") do
+          = user.prefecture.name
+      - if user.prefecture_sub_id.present?
+        %li
+          = link_to("/prefectures/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do
+            = Prefecture.find_by(id: user.prefecture_sub_id).name
+      - if user.tags.present?
+        - user.tags.order(:order => :asc).each do |tag|
+          %li
+            = link_to("/tag/#{tag.id}") do
+              = tag.name
+    - elsif @path.is('users#event_prefecture_city', 'tags#event_prefecture_city')
+      %li
+        = link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do
+          = user.event.name
+      %li
+        = link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do
+          = user.prefecture.name
+      - if user.prefecture_sub_id.present?
+        %li
+          = link_to("/#{user.event.ruby}/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do
+            = Prefecture.find_by(id: user.prefecture_sub_id).name
+      - if user.tags.present?
+        - user.tags.order(:order => :asc).each do |tag|
+          %li
+            = link_to("/#{user.event.ruby}/#{user.prefecture.kana}/#{@city.city_kana}/tag/#{tag.id}") do
+              = tag.name
+    - elsif @path.is('users#event_prefecture', 'tags#event_prefecture', 'categories#c_p')
+      %li
+        = link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do
+          = user.event.name
+      %li
+        = link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do
+          = user.prefecture.name
+      - if user.prefecture_sub_id.present?
+        %li
+          = link_to("/#{user.event.ruby}/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do
+            = Prefecture.find_by(id: user.prefecture_sub_id).name
+      - if user.tags.present?
+        - user.tags.order(:order => :asc).each do |tag|
+          %li
+            = link_to("/#{user.event.ruby}/#{user.prefecture.kana}/tag/#{tag.id}") do
+              = tag.name
+    - elsif  @path.is('users#event', 'tags#event', 'categories#event')
+      %li
+        = link_to("/#{user.event.ruby}") do
+          = user.event.name
+      %li
+        = link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do
+          = user.prefecture.name
+      - if user.prefecture_sub_id.present?
+        %li
+          = link_to("/#{user.event.ruby}/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do
+            = Prefecture.find_by(id: user.prefecture_sub_id).name
+      - if user.tags.present?
+        - user.tags.order(:order => :asc).each do |tag|
+          %li
+            = link_to("/#{user.event.ruby}/tag/#{tag.id}") do
+              = tag.name
+    - elsif @path.is('users#prefecture_city', 'tags#prefecture_city', 'categories#prefecture_city')
+      %li
+        = link_to("/#{user.event.ruby}/#{user.prefecture.kana}/#{@city.city_kana}") do
+          = user.event.name
+      %li
+        = link_to("/prefectures/#{user.prefecture.kana}/#{@city.city_kana}") do
+          = user.prefecture.name
+      - if user.prefecture_sub_id.present?
+        %li
+          = link_to("/prefectures/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do
+            = Prefecture.find_by(id: user.prefecture_sub_id).name
+      - if user.tags.present?
+        - user.tags.order(:order => :asc).each do |tag|
+          %li
+            = link_to("/prefectures/#{user.prefecture.kana}/#{@city.city_kana}/tag/#{tag.id}") do
+              = tag.name
+    - elsif @path.is('users#prefecture', 'tags#prefecture', 'categories#prefecture')
+      %li
+        = link_to("/#{user.event.ruby}/#{user.prefecture.kana}") do
+          = user.event.name
+      %li
+        = link_to("/prefectures/#{user.prefecture.kana}") do
+          = user.prefecture.name
+      - if user.prefecture_sub_id.present?
+        %li
+          = link_to("/prefectures/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do
+            = Prefecture.find_by(id: user.prefecture_sub_id).name
+      - if user.tags.present?
+        - user.tags.order(:order => :asc).each do |tag|
+          %li
+            = link_to("/prefectures/#{user.prefecture.kana}/tag/#{tag.id}") do
+              = tag.name
+    - elsif @path.is('users#show', 'circles#show')
+      %li
+        = link_to("/#{user.event.ruby}") do
+          = user.event.name
+      %li
+        = link_to("/prefectures/#{user.prefecture.kana}") do
+          = user.prefecture.name
+      - if user.prefecture_sub_id.present?
+        %li
+          = link_to("/prefectures/#{Prefecture.find_by(id: user.prefecture_sub_id).kana}") do
+            = Prefecture.find_by(id: user.prefecture_sub_id).name
+      - if user.tags.present?
+        - user.tags.order(:order => :asc).each do |tag|
+          %li
+            = link_to("/tag/#{tag.id}") do
+              = tag.name
+    - else
+    %ul

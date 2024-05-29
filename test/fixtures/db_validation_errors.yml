@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: db_validation_errors
+#
+#  id         :integer          not null, primary key
+#  content_01 :text
+#  content_02 :text
+#  content_03 :text
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  name: MyString
+  content_01: MyText
+  content_02: MyText
+  content_03: MyText
+
+two:
+  name: MyString
+  content_01: MyText
+  content_02: MyText
+  content_03: MyText

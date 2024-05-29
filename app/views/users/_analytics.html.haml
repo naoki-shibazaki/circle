@@ -1,0 +1,205 @@
+- if admin_user_signed_in?
+  - if @user.admin_user_id == current_admin_user.id || current_admin_user.id == 1
+    - if @respond_check_count > 0
+      .attention_content
+        %span.attention_count>
+          = @respond_check_count
+          人
+        の応募者が、
+        \#{@user.name} さんから
+        %br/
+        メールの返信がなかったと言っています。
+        .analytics_txt
+          = link_to "/users/#{@user.id}/contact_list" do
+            \&gt;&gt; お問い合わせ内容の確認
+    .s_space
+    - if @user.created_at > Time.now.ago(7.days)
+      - if @user.pic_profile.blank? || @user.pic_header.blank?
+        / プロフィール画像
+        .advice_wrap
+          %span.box-title ポイント
+          %p
+            %span.marker>
+              = "アイコン画像" if @user.pic_profile.blank?
+              = "と" if @user.pic_profile.blank? && @user.pic_header.blank?
+              = "背景画像" if @user.pic_header.blank?
+            を設定しよう！
+            %br/
+            参加者が
+            %span.marker どんな雰囲気かイメージしやすく
+            %br/
+            安心してお問い合わせすることができます！
+          = link_to edit_user_path(@user), data: {"turbolinks" => false} do
+            \&gt;&gt;#{"アイコン画像" if @user.pic_profile.blank?}#{"と" if @user.pic_profile.blank? && @user.pic_header.blank?}#{"背景画像" if @user.pic_header.blank?}の設定
+      - elsif @user.gallery_01.blank? && @user.gallery_02.blank? && @user.gallery_03.blank? && @user.gallery_04.blank?
+        / ギャラリー画像
+        .advice_wrap
+          %span.box-title ポイント
+          %p
+            %span.marker> サークル画像(最大4枚)
+            があると良いです！
+            %br/
+            参加者が
+            %span.marker どんな雰囲気かイメージしやすく
+            %br/
+            安心してお問い合わせすることができます！
+          = link_to ">>サークル画像の設定", edit_user_path(@user), data: {"turbolinks" => false}
+      - elsif @blogs.empty?
+        .advice_wrap
+          %span.box-title ポイント
+          %p
+            %span.marker> ブログ投稿
+            があると良いです！
+            %br/
+            どんな活動をしているのかイメージしやすく
+            %br/
+            = succeed "\u307E\u3059\uFF01" do
+              %span.marker サークルの掲載順位も上がり
+          = link_to ">>ブログの新規投稿", new_circle_blog_path(@user)
+      - elsif @user.reviews.empty?
+        .advice_wrap
+          %span.box-title ポイント
+          %p
+            %span.marker> 口コミ投稿
+            を募集しませんか？
+            %br/
+            %span.marker 新しい参加者が安心して
+            %br/
+            お問い合わせすることができます！
+          = link_to ">>口コミの募集", user_reviews_path(@user)
+      - else
+    - if @user_contacts.count >= 1
+      .analytics_wrap
+        .analytics_title
+          %i.fa.fa-bar-chart-o
+          お問い合わせ件数
+        .analytics_contents
+          %table
+            %tr
+              %th お問い合わせ件数（メール）
+              %td
+                = @user_contacts.count
+                件
+            %tr
+              %th
+                .analytics_txt
+                  = link_to "/users/#{@user.id}/contact_list" do
+                    \&gt;&gt; お問い合わせ管理ページ
+    - if @user.cb_point > 0
+      .analytics_wrap
+        .analytics_title
+          %i.fa.fa-pinterest
+          サクブポイント
+          %span.right
+            累計：#{@user.cb_point.to_f.round(1)} P
+        .cp_box
+          %input#cp01{:type => "checkbox"}/
+          %label{:for => "cp01"}
+          .cp_container
+            .s_space
+            .analytics_contents
+              %table
+                %tr
+                  %th
+                  %td.txt_center 1件
+                  %td.txt_center 合計
+                %tr
+                  %th
+                    = link_to user_schedules_path(@user) do
+                      スケジュール登録
+                      %i.fa.fa-external-link
+                  %td 0.1 P
+                  %td
+                    = @schedule_point.to_f.round(1)
+                    P
+                %tr
+                  %th
+                    = link_to new_circle_blog_path(@user) do
+                      ブログ投稿
+                      %i.fa.fa-external-link
+                  %td 0.2 P
+                  %td
+                    = @blog_point.to_f.round(1)
+                    P
+                %tr
+                  %th
+                    = link_to user_questions_path(@user) do
+                      Ｑ＆Ａの回答
+                      %i.fa.fa-external-link
+                  %td 0.3 P
+                  %td
+                    = @qa_point.to_f.round(1)
+                    P
+                %tr
+                  %th
+                    = link_to user_reviews_path(@user) do
+                      高評価の口コミ
+                      %i.fa.fa-external-link
+                  %td 2.0 P
+                  %td
+                    = @review_point.to_f.round(1)
+                    P
+                -# - if @contact_point.to_f > 0
+                -#   %tr
+                -#     %th お問い合わせ件数
+                -#     %td 0.5 P
+                -#     %td
+                -#       = @contact_point.to_f.round(1)
+                -#       P
+                - if @respond_point.to_f > 0
+                  %tr
+                    %th
+                      = link_to "/users/#{@user.id}/contact_list" do
+                        問い合わせ未返信
+                        %i.fa.fa-external-link
+                    %td -30.0 P
+                    %td
+                      \-#{@respond_point.to_f.round(1)} P
+            .cp_txt
+              サクブ（サークルブック）ポイントを貯めると
+              %br/
+              表示順位が上がりやすくなります！
+              %br/
+              %br/
+              スケジュール登録やブログ投稿などをすると
+              %br/
+              件数によってポイントが付与されます！
+              %br/
+              %br/
+              ※意図的にサクブポイントを増やすために不正をしている利用者がいたため、お問い合わせ件数に対するポイント付与を全アカウント廃止しました。
+              %br/
+              ※全アカウントのポイント調整及び反映に時間がかかるため、申し訳ございませんが完了までお待ちください。
+
+
+
+
+            - if @users.count >= 3
+              .competitor_wrap
+                %div ▼ あなたの競合サークル
+                %ul.user_slide_wrap
+                  - @users.includes([:event]).first(5).each do |user|
+                    = link_to(circle_path(user.id)) do
+                      %li.user_slide_list
+                        .user_list_header
+                          = lazysizes_image_tag user.pic_profile.url , class:'image_icon'
+                          %h3.user_name= user.name.truncate(20)
+                        .clear
+                        .list_02
+                          %span.user_area
+                            %i.fa.fa-users
+                            = user.event.name
+                        .list_02
+                          %span.user_schedule
+                            %i.fa.fa-calendar
+                            = user.schedule
+                        .list_03
+                          %span.user_area
+                            %i.fa.fa-map-marker
+                            = user.area
+                        .list_02
+                          %span.user_schedule
+                            %i.fa.fa-pinterest>
+                            サクブP：#{user.cb_point.to_f.round(1)} P
+                          - if user.cb_point.to_f.round(1) > @user.cb_point.to_f.round(1)
+                            .cbp_txt
+                              → あと#{(user.cb_point.to_f.round(1) - @user.cb_point.to_f.round(1)).round(1)}Pで追いつきます！

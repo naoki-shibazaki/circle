@@ -1,0 +1,130 @@
+<% set_meta_tags noindex: true, nofollow: true %>
+
+<div class="main user-show">
+  <div class="container">
+
+    <%= render "/layouts/breadcrumb" %>
+
+    <div class="users-index-item ribbon-wrapper">
+
+      <div class="ribbon-content">
+        <% if @place.tag.to_i == 1 %>
+          <span class="ribbon green">屋内</span>
+        <% else @place.tag.to_i == 2 %>
+          <span class="ribbon blue">屋外</span>
+        <% end %>
+      </div>
+
+      <div class="place_cnt_wrap">
+
+        <h1 class="place_name"><%= @place.name %></h1>
+
+        <h2 class="place_d">
+            <%= @place.prefecture.name %><%= @place.city.name %>の<%= "屋内" if @place.tag.to_i == 1 %><%= "屋外" if @place.tag.to_i == 2 %>にあるコート情報
+        </h2>
+
+      </div>
+
+			<% if admin_user_signed_in?  %>
+				<% if @place.user_id.to_i == @current_user.id.to_i || @current_user.id.to_i == 1 %>
+
+				<div class="place_edit">
+					<div class="post-edit_btn">
+						<%= link_to( "編集", edit_place_path ) %>／
+						<%= link_to( "削除", place_path, method: :delete, data: {confirm: "コート情報を削除しますか？"}) %>
+					</div>
+				</div>
+
+				<% end %>
+			<% end %>
+
+
+        <div class="border"></div>
+
+        <div class="article_item article_padding place_list ">
+          <table>
+            <tbody>
+
+				<tr class="flex_contents">
+					<th class="flex_list">住所</th>
+					<td class="flex_list"><%= @place.address %></td>
+				</tr>
+				<tr class="flex_contents">
+					<th class="flex_list">アクセス</th>
+					<td class="flex_list"><%= @place.access %></td>
+				</tr>
+				<tr class="flex_contents">
+					<th class="flex_list">駐車場情報</th>
+					<td class="flex_list"><%= raw Rinku.auto_link(simple_format @place.parking) %></td>
+				</tr>
+				<tr class="flex_contents">
+					<th class="flex_list">利用可能時間</th>
+					<td class="flex_list"><%= raw Rinku.auto_link(simple_format @place.time) %></td>
+				</tr>
+				<tr class="flex_contents">
+					<th class="flex_list">定休日</th>
+					<td class="flex_list"><%= raw Rinku.auto_link(simple_format @place.regular_holiday) %></td>
+				</tr>
+
+				<% if @place_events.present? %>
+					<tr class="flex_contents">
+						<th class="flex_list">用途</th>
+						<td class="flex_list">
+							<% @place_events.sort.each do |event| %>
+										<span class="flex_list_line">
+											<% if event.name == "バスケ" %>
+												バスケットボール
+											<% else%>
+												<%= event.name %>
+											<% end %>
+										</span>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+
+
+				<tr class="flex_contents">
+					<th class="flex_list">施設規模</th>
+					<td class="flex_list"><%= raw Rinku.auto_link(simple_format @place.scale) %></td>
+				</tr>
+				<tr class="flex_contents">
+					<th class="flex_list">利用料金</th>
+					<td class="flex_list"><%= raw Rinku.auto_link(simple_format @place.price) %></td>
+				</tr>
+				<tr class="flex_contents">
+					<th class="flex_list">電話番号</th>
+					<td class="flex_list"><a href="tel:<%= @place.tel %>"><%= @place.tel %></a>
+				</tr>
+				<tr class="flex_contents">
+					<th class="flex_list">サイトURL</th>
+					<td class="flex_list"><a href="<%= @place.url %>" ><%= @place.url %></a></td>
+				</tr>
+
+            </tbody>
+          </table>
+        </div>
+
+
+				<div class="g_map">
+					<iframe src=<%= url_for("https://maps.google.co.jp/maps?output=embed&z=14&q=#{@place.address}") %>></iframe>
+						<div class="google_map_wrap">
+              <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@place.address}" do %>  
+                <div class="google_map">Google MAP</div>
+              <% end %>
+            </div>
+				</div>
+
+
+				<%= render "/layouts/ad_square" %>
+
+
+			<div class="place_note">
+				本サイトでは正確な情報を掲載するよう心がけておりますが、<br>間違いや古い情報が掲載されていることがございます。<br>
+				※誤りがあった場合、メニューのお問い合わせよりご連絡ください。	
+			</div>
+
+      </div>
+
+  </div>
+</div>

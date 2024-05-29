@@ -1,0 +1,93 @@
+- if admin_user_signed_in?
+  .post_message
+    = link_to(circle_path(@user)) do
+      = lazysizes_image_tag @user.pic_profile.url , class:'post_image_icon'
+    = link_to(new_user_schedule_path(@user)) do
+      .post_link スケジュールを追加する！
+- if @schedules.present?
+  %ul
+    - @schedules.includes(user: [:event, :prefecture, :tags]).each.with_index(1) do |schedule, i|
+      %li.schedule_item_wrap
+        = link_to(user_schedule_path(schedule.user.id, schedule.id)) do
+          .header_schedule_list.ribbon-wrapper
+            .header_img_wrap
+              - if schedule.top_image.present?
+                = lazysizes_image_tag schedule.top_image.url , class:'header_imege_user_list', alt: "#{schedule.title}"
+              - elsif schedule.user.pic_header.present?
+                = lazysizes_image_tag schedule.user.pic_header.url , class:'header_imege_user_list', alt: "#{schedule.user.name}"
+              - else
+                = lazysizes_image_tag schedule.user.pic_header.url , class:'header_imege_user_list'
+            .ribbon-content
+              - if schedule.recruitment == "募集終了"
+                %span.ribbon.red 満員御礼
+              - elsif schedule.recruitment == "中止"
+                %span.ribbon.yellow 中止
+              - else
+                - if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank?
+                  %span.ribbon.green 募集中
+                - elsif schedule.name_schedules.where(answer: 1).count >= schedule.recruitment_numbers
+                  %span.ribbon.red 満員御礼
+                - else
+                  %span.ribbon.green 募集中
+          .schedule_list_content
+            %h2.schedule_list_title
+              = schedule.user.event.name
+              = "｜#{schedule.title}" if schedule.title.present?
+            .schedule_cont
+              .user_area
+                %i.fa.fa-calendar.icon_c
+                = Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})")
+                - if schedule.time_s.present?
+                  = schedule.time_s.strftime('%H:%M')
+                  〜
+                  \#{schedule.time_e.strftime('%H:%M') if schedule.time_e.present?}
+              .user_schedule
+                %i.fa.fa-map-marker.icon_c
+                = schedule.user.prefecture.name
+                - if schedule.user.prefecture_sub_id.present?
+                  ・#{Prefecture.find(schedule.user.prefecture_sub_id).name}
+                ：#{schedule.venue}
+              .user_schedule
+                - if schedule.recruitment_numbers.present?
+                  - if schedule.recruitment_numbers == 0
+                    %i.fa.fa-users>
+                    募集人数：制限なし
+                  - elsif schedule.name_schedules.where(answer: 1).count == 0
+                    %i.fa.fa-users>
+                    募集人数：#{schedule.recruitment_numbers}名
+                  - elsif schedule.recruitment_numbers >= 1
+                    %i.fa.fa-users>
+                    参加人数：#{schedule.name_schedules.where(answer: 1).count}
+                    %span.small_font
+                      \/#{schedule.recruitment_numbers}名
+                  - else
+                    %i.fa.fa-users>
+                    参加人数：#{schedule.name_schedules.where(answer: 1).count}名
+                - elsif schedule.name_schedules.where(answer: 1).count == 0
+                - else
+                  %i.fa.fa-users>
+                  参加人数：#{schedule.name_schedules.where(answer: 1).count}名
+        %hr.hr_w/
+        = link_to(circle_path(schedule.user.id)) do
+          .schedule_user_wrap
+            .schedule_list_sub_title 主催サークル
+            .user_profile_wrap
+              = lazysizes_image_tag schedule.user.pic_profile.url , class:'image_icon'
+              .user_profile
+                %h3.user_name= schedule.user.name.truncate(40)
+              .reset
+        = render "/users/parts/tag_list", user: schedule.user
+      - if i == 5 || i == 10 || i == 15
+        .list_ad
+          = render "/layouts/ad_square"
+  = render "/layouts/ad_square"
+  = paginate @schedules
+- else
+  .no_hit_wrap
+    %img.imege_sorry{:src => "/images/sorry.png"}/
+    = link_to(root_path) do
+      .no_hit_top トップページに戻る
+    = link_to(new_admin_user_registration_path) do
+      .no_hit_new 新しくサークルを登録する
+  = render "/layouts/ad_square"
+  .ad_space

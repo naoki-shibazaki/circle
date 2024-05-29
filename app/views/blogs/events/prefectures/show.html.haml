@@ -1,0 +1,22 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】#{@prefecture.name}の#{@event.txt}の活動ブログ"
+- breadcrumb :blog_event_prefecture_show, @event, @prefecture
+
+.main.users-index
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    .e_header_wrap
+      %img{:alt => "#{@event.name}", :src => "/images/events/#{@event.ruby}.jpg"}/
+      .link_txt
+        %h1.e_header_title
+          = "#{@prefecture.name}で活動している"
+          %br
+          = "#{@event.txt}の"
+          %br
+          = "活動ブログ"
+
+
+    = render "/blogs/commons/search_form", categories: @categories, prefectures: @prefectures, path: @path
+    = render "/blogs/commons/blogs_list", blogs: @blogs

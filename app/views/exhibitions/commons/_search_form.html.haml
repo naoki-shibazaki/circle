@@ -1,0 +1,47 @@
+.search_area
+  .search_wrap
+    .search_select
+
+      %select{:name => "event_select", :onchange => "location.href=value;"}
+        %option{:value => "#"}
+          - if @category.present?
+            = @category.name
+          - else
+            = "出展・イベント"
+
+
+          -# - categories.each do |category|
+          -#   - if @category.present? && @category.id == category.id
+          -#   - elsif @prefecture.present?
+          -#     %option{:value => "#{exhibitions_category_prefecture_path(category.kana, @prefecture.kana)}"}= category.name
+          -#   - else
+          -#     %option{:value => "#{exhibitions_category_path(category.kana)}"}= category.name
+
+          - if @prefecture.present?
+            %option{:value => "#{exhibitions_category_prefecture_path(@categories.kana, @prefecture.kana)}"}= @categories.name
+          - else
+            %option{:value => "#{exhibitions_category_path(@categories.kana)}"}= @categories.name
+
+
+      %select{:name => "prefecture_select", :onchange => "location.href=value;"}
+        %option{:value => "#"}
+          - if @prefecture.present?
+            = @prefecture.name
+          - else
+            = "都道府県"
+
+        - prefectures.each do |prefecture|
+          - if @prefecture.present? && @prefecture.id == prefecture.id
+
+          - elsif @category.present?
+            %option{:value => "#{exhibitions_category_prefecture_path(@category.kana, prefecture.kana)}"}= prefecture.name
+          - else
+            %option{:value => "#{exhibitions_prefecture_path(prefecture.kana)}"}= prefecture.name
+
+
+
+      .search_icon
+        %i.fa.fa-search
+
+
+

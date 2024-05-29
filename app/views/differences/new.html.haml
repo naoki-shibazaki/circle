@@ -1,0 +1,27 @@
+- set_meta_tags title: "間違い探しメーカー",og: {title: "間違い探しメーカー",description: "",image: ""},twitter: { card: 'summary_large_image'}
+.main.users-edit
+  .container
+    .form.users-form
+      .form-body.cont-body
+        - if @difference.errors.any?
+          .form-error
+            以下の項目でエラーが発生いたしました。
+            %br/
+        - @difference.errors.full_messages.each do |message|
+          .form-error_message
+            ・#{message}
+        = form_for @difference do |f|
+          .p_t 間違い探しメーカー
+          .difference_sample
+            %img{:src => "/images/differences/difference_sample.png"}/
+            ※この画像はサンプルです
+          %p 文字（1文字）
+          = f.text_field :letter, class: 'form-control form-smart', id: 'change_letter', placeholder: "田"
+          %p 偽文字（1文字）
+          = f.text_field :dummy, class: 'form-control form-smart', id: 'change_dummy', placeholder: "囲"
+          %p
+            偽文字の配置場所
+            %br>/
+            1〜308までの数字を記入
+          = f.text_field :order, class: 'form-control form-smart', id: 'change_order', placeholder: "123"
+          = f.submit "作成する", data: { disable_with: '更新中...' }

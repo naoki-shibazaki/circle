@@ -1,0 +1,17 @@
+!!!
+%html{:lang => "ja"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8"}/
+  %body
+    = @user.name
+    さん
+    %br/
+    %br/
+    低評価の口コミが#{@user.name}さん宛に届きました。
+    %br/
+    %br/
+    以下のリンクから口コミをチェックをお願いします。
+    %br/
+    https://circle-book.com/users/#{@user.id}/reviews
+    %br/

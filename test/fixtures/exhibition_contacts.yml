@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: exhibition_contacts
+#
+#  id            :integer          not null, primary key
+#  content       :text             not null
+#  email         :string           not null
+#  name          :string           not null
+#  subject       :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  exhibition_id :integer          not null
+#
+# Indexes
+#
+#  index_exhibition_contacts_on_exhibition_id  (exhibition_id)
+#
+# Foreign Keys
+#
+#  exhibition_id  (exhibition_id => exhibitions.id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

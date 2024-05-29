@@ -1,0 +1,55 @@
+- set_meta_tags title: "#{@user.name}の活動ブログ｜#{@user.prefecture.name}の#{@user.event.txt}｜サークルブック", description: "#{@user.prefecture.name}で活動している#{@user.event.txt}、#{@user.name}の活動ブログ", og: { image: @user.ogp_img }, twitter: { card: 'summary_large_image'}
+- breadcrumb :circle_blog_index, @user
+
+.user_main.user-show
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    .users-index-item
+      %h1.top_title 活動ブログ
+      = render "/users/parts/user_switching", user: @user, url_path: "blogs"
+      = render "/users/parts/user_profile", user: @user
+    .space_content
+      %div
+        - if @blogs.any?
+          - @blogs.each do |blog|
+            = link_to(circle_blog_path(blog.user_id, blog.id)) do
+              .form.users-form
+                .form-body
+                  .header-post.cont-width
+                    = lazysizes_image_tag @user.pic_profile.url , class:'content_icon'
+                    .post-user_wrap
+                      .post-user
+                        .post-top= @user.name.truncate(40)
+                        .post-bottom= blog.created_at.strftime("%Y年%-m月%-d日 %H:%M")
+                  %div
+                    - if blog.image_01.present?
+                      - if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank?
+                        = lazysizes_image_tag blog.image_01.url , class:'content_image_one'
+                      - else
+                        .swiper-container
+                          .swiper-wrapper
+                            - if blog.image_01.present?
+                              .swiper-slide= lazysizes_image_tag blog.image_01.url , class:'content_image'
+                            - if blog.image_02.present?
+                              .swiper-slide= lazysizes_image_tag blog.image_02.url , class:'content_image'
+                            - if blog.image_03.present?
+                              .swiper-slide= lazysizes_image_tag blog.image_03.url , class:'content_image'
+                            - if blog.image_04.present?
+                              .swiper-slide= lazysizes_image_tag blog.image_04.url , class:'content_image'
+                          / Add Pagination
+                          .pagination-wrap
+                            .swiper-pagination
+                    .cont-width
+                      %h3.blog_title= blog.title
+                      .rich_text_main
+                        - if blog.content.include?("<div>")
+                          = sanitize blog.content.truncate(140), tags: %w(p br h1 strong ul li div), attributes:  %w(id class href)
+                        - else
+                          = simple_format blog.content.truncate(140)
+        .ad_space
+        = render "/layouts/ad_square"
+        .ad_space
+        = paginate @blogs

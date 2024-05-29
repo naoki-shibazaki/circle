@@ -1,0 +1,498 @@
+- set_meta_tags title: "#{@user.name}｜#{@user.prefecture.name}の#{@user.event.txt}",description: "#{@user.prefecture.name}で活動している#{@user.event.txt}の【#{@user.name}】です！新しいメンバーを募集中！#{@user.recruitment}｜サークルブックは、クラブやチームメンバーを募集するSNSです！",keywords: "#{@user.event.name},#{@user.prefecture.name},サークル,チーム,募集",og: {title: "#{@user.name}｜#{@user.prefecture.name}で活動している#{@user.event.txt}｜サークルブック",description: "#{@user.prefecture.name}で活動している#{@user.event.txt}｜#{@user.name}", image: @user.ogp_img }
+- breadcrumb :circle_show, @user
+
+= render "users/parts/local_business_show", user: @user
+.user_main.user-show
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    .user-profile
+      .header-wrapper.ribbon-wrapper
+        .ribbon-content
+          - if @user.switch == "募集中"
+            %span.ribbon.green= @user.switch
+          - else
+            %span.ribbon.red= @user.switch
+
+        - if @user.pic_header.present?
+          .pop-box
+            %label{:for => "popup-on_header"}
+              %label{:for => "popup-on_header"}
+                .btn-open_header
+                  = lazysizes_image_tag @user.pic_header.url, class:'header_imege', alt: "ヘッダー画像｜#{@user.name}"
+              %input#popup-on_header{:type => "checkbox"}/
+              .popup
+                %label.icon-close_header{:for => "popup-on_header"} ×
+                .popup-content
+                  = lazysizes_image_tag @user.pic_header.url, alt: "ヘッダー画像｜#{@user.name}"
+                %label{:for => "popup-on_header"}
+                  .btn-close_header 閉じる
+        - else
+          = lazysizes_image_tag @user.pic_header.url , class:'header_imege'
+
+
+        - if @user.pic_profile.present?
+          .pop-box
+            %label{:for => "popup-on_profile"}
+              %label{:for => "popup-on_profile"}
+                .btn-open_profile
+                  = lazysizes_image_tag @user.pic_profile.url, class:'profile_imege', alt: "プロフィール画像｜#{@user.name}"
+              %input#popup-on_profile{:type => "checkbox"}/
+              .popup
+                %label.icon-close_profile{:for => "popup-on_profile"} ×
+                .popup-content
+                  = lazysizes_image_tag @user.pic_profile.url, alt: "プロフィール画像｜#{@user.name}"
+                %label{:for => "popup-on_profile"}
+                  .btn-close_profile 閉じる
+        - else
+          = lazysizes_image_tag @user.pic_profile.url , class:'profile_imege'
+        .data-box.slide_content
+          - if @user.event_id.present?
+            %span.data-r= @user.event.name if @user.event_id?
+          - if @user.prefecture_id.present?
+            %span.data-l= @user.prefecture.name if @user.prefecture_id?
+          - if @user.prefecture_sub_id.present?
+            %span.data-l= @sub_prefecture.name
+
+
+        .contact_area
+          .share_btn_tw.btn_tw_space
+            - if @user.name.present? && @user.event.name.present? && @user.prefecture.name.present?
+              = link_to("https://twitter.com/share?url=#{request.url}&text=#{@user.name}%0a%0a%23#{@user.event.name}%20%23#{@user.prefecture.name}%20%23サークルブック%0a", target: '_blank') do
+                %i.fa.fa-twitter>
+                ツイート
+
+          - if admin_user_signed_in?
+            - if @user.admin_user_id == current_admin_user.id
+              = link_to edit_user_path(@user), data: {"turbolinks" => false} do
+                .contact-button.edit プロフィール編集
+            - else
+              - if @user.switch == "募集中"
+                = render "/users/contact_icon"
+              - else
+                .contact-button.end 募集終了
+          - else
+            - if @user.switch == "募集中"
+              = render "/users/contact_icon"
+            - else
+              .contact-button.end 募集終了
+
+
+            - if @user.bookmarked_by?(current_member)
+              .bookmark_btn_wrap
+                = link_to user_bookmarks_path(@user), id: :"bookmark_b_d_#{@user.id}", :remote => true, method: :delete do
+                  %span.bookmark_icon
+                    %i.fa.fa-bookmark
+                    .booknark_txt 解除
+
+            - else
+              .bookmark_btn_wrap
+                = link_to user_bookmarks_path(@user), id: :"bookmark_b_c_#{@user.id}", :remote => true, method: :post do
+                  %span.bookmark_icon
+                    %i.fa.fa-bookmark-o
+                    .booknark_txt 保存
+
+
+      .profile-content
+        - if @user.user_time.present?
+          .post-bottom.u_right
+            更新日：#{time_tag @user.user_time.to_date}
+          - if @user.user_time.to_time <= Time.current.ago(1.years)
+            .attention_content
+              %i.fa.fa-warning
+              このサークルは1年以上更新されていません。
+        - else
+          .attention_content
+            %i.fa.fa-warning
+            このサークルは1年以上更新されていません。
+
+        = render "users/parts/admin_user_check", admin_user: @user.admin_user
+
+        %h1.user_name= @user.name
+
+
+        - if admin_user_signed_in?
+          - if current_admin_user.id == 1
+            .admin_area
+              .admin_edit= link_to("編集", edit_user_path, data: {"turbolinks" => false})
+              .admin_delete= link_to( "削除", user_path, method: :delete, data: {confirm: "このサークルを削除しますか？"})
+            - if @admin_user.users.count > 1
+              .admin_user_list
+                - @admin_user.users.each do |user|
+                  %ul
+                    - if user.id != @user.id
+                      %li
+                        = "● #{link_to(user.name,"/users/#{user.id}")}"
+
+
+        .content_01
+        .content_02
+          .user_schedule.slide_content
+            %i.fa.fa-tags
+            = @user.event.txt
+
+          - if @user.schedule.present?
+            .user_schedule.slide_content
+              %i.fa.fa-calendar
+              = @user.schedule
+
+          .user_area.slide_content
+            - if @user.prefecture_id.present?
+              %i.fa.fa-map-marker
+              = @user.prefecture.name
+              - if @user.prefecture_sub_id.present?
+                = "・#{@sub_prefecture.name}"
+              = "：" if @user.area.present?
+              = @user.area
+
+          - if @user_cities.present?
+            .breadcrumbs_wrapper_city
+              .breadcrumbs_city
+                %ul
+                  - @user_cities.sort.each do |user_city|
+                    %li= link_to user_city.name, event_prefecture_city_path(@user.event.ruby, user_city.prefecture.kana, user_city.city_kana)
+
+        .content_03
+          = @user.recruitment
+
+
+
+
+        - if @user.gallery_01.present? || @user.gallery_02.present? || @user.gallery_03.present? || @user.gallery_04.present?
+          .gallery_wrap
+            .gallery_even
+              .gallery_container
+                - if @user.gallery_01.present?
+                  .pop-box
+                    %label{:for => "popup-on_01"}
+                      %label{:for => "popup-on_01"}
+                        .btn-open_01
+                          = lazysizes_image_tag @user.gallery_01.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+                      %input#popup-on_01{:type => "checkbox"}/
+                      .popup
+                        %label.icon-close_01{:for => "popup-on_01"} ×
+                        .popup-content
+                          = lazysizes_image_tag @user.gallery_01.url
+                        %label{:for => "popup-on_01"}
+                          .btn-close_01 閉じる
+                - if @user.gallery_02.present?
+                  .pop-box
+                    %label{:for => "popup-on_02"}
+                      %label{:for => "popup-on_02"}
+                        .btn-open_02
+                          = lazysizes_image_tag @user.gallery_02.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+                      %input#popup-on_02{:type => "checkbox"}/
+                      .popup
+                        %label.icon-close_02{:for => "popup-on_02"} ×
+                        .popup-content
+                          = lazysizes_image_tag @user.gallery_02.url
+                        %label{:for => "popup-on_02"}
+                          .btn-close_02 閉じる
+                - if @user.gallery_03.present?
+                  .pop-box
+                    %label{:for => "popup-on_03"}
+                      %label{:for => "popup-on_03"}
+                        .btn-open_03
+                          = lazysizes_image_tag @user.gallery_03.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+                      %input#popup-on_03{:type => "checkbox"}/
+                      .popup
+                        %label.icon-close_03{:for => "popup-on_03"} ×
+                        .popup-content
+                          = lazysizes_image_tag @user.gallery_03.url
+                        %label{:for => "popup-on_03"}
+                          .btn-close_03 閉じる
+                - if @user.gallery_04.present?
+                  .pop-box
+                    %label{:for => "popup-on_04"}
+                      %label{:for => "popup-on_04"}
+                        .btn-open_04
+                          = lazysizes_image_tag @user.gallery_04.url , class:'gallery_imege', alt: "ギャラリー｜#{@user.name}"
+                      %input#popup-on_04{:type => "checkbox"}/
+                      .popup
+                        %label.icon-close_04{:for => "popup-on_04"} ×
+                        .popup-content
+                          = lazysizes_image_tag @user.gallery_04.url
+                        %label{:for => "popup-on_04"}
+                          .btn-close_04 閉じる
+
+
+
+
+        .border
+        .article_item.article_padding
+          %table
+            %tbody
+              %tr.flex_contents
+                %th.flex_list メンバー
+                %td.flex_list= @user.member
+              %tr.flex_contents
+                %th.flex_list 年齢層
+                - if @user.age_ids.present?
+                  %td.flex_list
+                    - @user_ages.sort.each do |user_age|
+                      = user_age.name
+                - else
+                  %td.flex_list= @user.average_age
+              %tr.flex_contents
+                %th.flex_list 募集中
+                - if @user.group_ids.present?
+                  %td.flex_list
+                    - @user_groups.sort.each do |user_group|
+                      = user_group.name
+                - else
+                  %td.flex_list= @user.grouping
+              %tr.flex_contents
+                %th.flex_list 費用
+                %td.flex_list= @user.cost
+              %tr.flex_contents
+                %th.flex_list 目標
+                %td.flex_list= @user.goal
+
+              - if @user.match.present?
+                - if @user.match.recruit == "募集中"
+                  %tr.flex_contents
+                    %th.flex_list 練習試合
+                    %td.flex_list.txt_s= link_to ">> 練習試合の募集ページ", match_path(@user.match.id)
+
+              - if @user.twitter.present? || @user.instagram.present?
+                %tr.flex_contents
+                  %th.flex_list SNS
+                  %td.flex_list
+                    - if @user.twitter.present?
+                      %a{:href => "https://twitter.com/#{@user.twitter}", :rel => "”nofollow”"}
+                        %span.sns_link.twitter_link
+                          %i.fa.fa-twitter-square
+                          Twitter
+                    - if @user.instagram.present?
+                      %a{:href => "https://www.instagram.com/#{@user.instagram}", :rel => "”nofollow”"}
+                        %span.sns_link.instagram_link
+                          %i.fa.fa-instagram
+                          Instagram
+
+              %tr.flex_contents
+                %th.flex_list 口コミ
+                %td.flex_list
+                  .star_review
+                    = link_to user_reviews_path(@user) do
+                      = render "layouts/review_score", review_score: @user.review_score.to_f, reviews_count: @user.reviews.count
+
+        - if @user.link.present?
+          - if @user.link.link02_url.present?
+            .content_08
+              %i.fa.fa-chain
+              %a{:href => "https://circle-book.com/link/#{@user.link.unique_id}"}
+                = "circle-book.com/link/#{@user.link.unique_id}"
+            .border
+
+        - if @user.web.present?
+          .content_08
+            %i.fa.fa-chain
+            %a{:href => "#{@user.web}", :rel => "”nofollow”"}
+              = @user.web
+          .border
+
+        .user_show_tag_list
+          .tag_list_wrap
+            %ul.tag_list_content
+              %li
+                = link_to event_path(@user.event.ruby) do
+                  = @user.event.name
+              %li
+                = link_to prefecture_path(@user.prefecture.kana) do
+                  = @user.prefecture.name
+              - if @user.prefecture_sub_id.present?
+                %li
+                  = link_to prefecture_path(Prefecture.find_by(id: @user.prefecture_sub_id).kana) do
+                    = Prefecture.find_by(id: @user.prefecture_sub_id).name
+              - if @user.tags.present?
+                - @user.tags.order(:order => :asc).each do |tag|
+                  %li
+                    = link_to tag_path(tag.id) do
+                      = tag.name
+
+
+        - if @schedules.present?
+          %h2.user_sub_title
+            %i.fa.fa-calendar
+            活動スケジュール
+          .profile_list_p
+            - @schedules.first(7).each do |schedule|
+              - if schedule.present?
+                = link_to(user_schedules_path(@user.id)) do
+                  .text_slide
+                    = "・#{Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})")}"
+                    - if schedule.time_s.present?
+                      = schedule.time_s.strftime('%H:%M')
+                      = "\-#{schedule.time_e.strftime('%H:%M') if schedule.time_e.present?}"
+                    = schedule.venue
+            - if admin_user_signed_in?
+              - if @user.id != current_admin_user.id
+                = link_to(user_schedules_path(@user.id)) do
+                  .schedule_index_btn
+                    %i.fa.fa-calendar
+                    スケジュールの詳細を見る
+            - else
+              = link_to(user_schedules_path(@user.id)) do
+                .schedule_index_btn
+                  %i.fa.fa-calendar
+                  スケジュールの詳細を見る
+          .border
+
+        - if @user.appeal.present?
+          .profile_list_t.p_t_t
+          %h2.user_sub_title
+            %i.fa.fa-book
+            サークルの詳細内容
+          - if @user.appeal.include?("<div>")
+            .profile_list_p.profile_list_a.rich_text_sub
+              = raw Rinku.auto_link(sanitize @user.appeal, tags: %w(p a br strong ul li div), attributes:  %w(id class href))
+          - else
+            .profile_list_p.profile_list_a
+              = raw Rinku.auto_link(simple_format @user.appeal)
+          .border
+
+        - if @user.switch == "募集中"
+          = render "/users/contact_btn"
+          .border
+
+        - if @user.reviews.any?
+          %h2.user_sub_title
+            %i.fa.fa-smile-o
+            口コミ・評価
+          - @user.reviews.order(created_at: :DESC).first(3).each do |review|
+            = render "/reviews/review_comment", review: review
+          .review_link_b= link_to ">>口コミをもっと見る",user_reviews_path(@user)
+
+          .border
+
+        - else
+          %h2.user_sub_title
+            %i.fa.fa-smile-o
+            口コミ・評価
+          .review_sub_title 口コミがまだ投稿されていません。
+          .new_review_comment
+            このサークルに参加されたことがある方は
+            %br/
+            最初の口コミを投稿してみませんか？
+          .review_link_b= link_to ">>口コミ投稿",user_reviews_path(@user)
+          .border
+
+        - if AccountBlock.find_by(ip_address: request.remote_ip) || @user.review_permit == false
+        - else
+          = render "/users/question_card"
+
+        - if @user.switch == "募集中"
+          .border
+          = render "/users/contact_btn"
+
+        - if @user.admin_user.open == 1 && @user.admin_user.nickname.present? && @user.admin_user.profile.present?
+          .border
+          %h2.user_sub_title
+            %i.fa.fa-user
+            主催者のプロフィール
+          .admin_user_profile_wrap
+            .admin_user_profile
+              .admin_user_img
+                - if @user.admin_user.image_profile.present?
+                  = lazysizes_image_tag @user.admin_user.image_profile.url , class:'admin_user_icon'
+                - else
+                  = lazysizes_image_tag @user.pic_profile.url, class:'admin_user_icon'
+              .admin_user_name_wrap
+                %h3.admin_user_name
+                  = @user.admin_user.nickname
+                .admin_user_cont
+                  - if @user.admin_user.gender == "1"
+                    男性
+                  - elsif @user.admin_user.gender == "2"
+                    女性
+                  - elsif @user.admin_user.gender == "0"
+                    その他
+                  - else
+                  = @user.admin_user.age
+                  - if @user.admin_user.prefecture.present?
+                    %i.fa.fa-map-marker
+                    = @user.admin_user.prefecture.name
+
+            - if @user.admin_user.profile.size >= 200
+              .reset
+              .readmore
+                %input#check_admin_prof.readmore-check{:type => "checkbox"}/
+                .readmore-content
+                  .admin_user_txt
+                    = raw Rinku.auto_link(simple_format(@user.admin_user.profile))
+                %label.readmore-label{:for => "check_admin_prof"}
+            - else
+              .admin_user_txt
+                = raw Rinku.auto_link(simple_format(@user.admin_user.profile))
+          .reset
+
+    = render "/layouts/ad_square"
+    .ad_space
+
+    - if @user.blogs.present?
+      - @user.blogs.order(created_at: "DESC").first(5).each do |blog|
+        = link_to(circle_blog_path(blog.user_id, blog.id)) do
+          .form.users-form
+            .form-body
+              .header-post.cont-width
+                = lazysizes_image_tag @user.pic_profile.url , class:'content_icon'
+                .post-user_wrap
+                  .post-user
+                    .post-top= @user.name.truncate(40)
+                    .post-bottom= blog.created_at.strftime("%Y年%-m月%-d日 %H:%M")
+              %div
+                - if blog.image_01.present?
+                  - if blog.image_02.blank? && blog.image_03.blank? && blog.image_04.blank?
+                    = lazysizes_image_tag blog.image_01.url , class:'content_image_one'
+                  - else
+                    .swiper-container
+                      .swiper-wrapper
+                        - if blog.image_01.present?
+                          .swiper-slide= lazysizes_image_tag blog.image_01.url , class:'content_image'
+                        - if blog.image_02.present?
+                          .swiper-slide= lazysizes_image_tag blog.image_02.url , class:'content_image'
+                        - if blog.image_03.present?
+                          .swiper-slide= lazysizes_image_tag blog.image_03.url , class:'content_image'
+                        - if blog.image_04.present?
+                          .swiper-slide= lazysizes_image_tag blog.image_04.url , class:'content_image'
+                      / Add Pagination
+                      .pagination-wrap
+                        .swiper-pagination
+                .cont-width
+                  %h3.blog_title= blog.title
+                  .rich_text_main
+                    - if blog.content.include?("<div>")
+                      = sanitize blog.content.truncate(140), tags: %w(p br h1 strong ul li div), attributes:  %w(id class href)
+                    - else
+                      = simple_format blog.content.truncate(140)
+
+    - if @users.size >= 1
+      .user-list-wrap
+        %h2.others-user
+          = "条件が似ている#{@user.event.name if @user.event_id?}サークル"
+        - @users.each do |user|
+          = link_to(circle_path(user.id)) do
+            .user_list
+              .user-content
+                .user_list_header
+                  = lazysizes_image_tag user.pic_profile.url , class:'image_icon'
+                  %h3.user_name= user.name.truncate(20)
+                .list_02
+                  %span.user_schedule
+                    %i.fa.fa-calendar
+                    = user.schedule
+                .list_03
+                  %span.user_area
+                    %i.fa.fa-map-marker
+                    = user.area
+        - if @users.size > 5
+          .more_link
+            = link_to "/#{@user.event.ruby}/#{@user.prefecture.kana}" do
+              \&gt;&gt; 他のサークルをもっと見る
+
+    - if @user.blogs.size >= 3 || @users.size >= 3
+      = render "/layouts/ad_square"
+      .ad_space
+    .space_btm

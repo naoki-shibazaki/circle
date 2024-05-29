@@ -1,0 +1,66 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "LocalBusiness",
+  "@id": "<%= request.path %>",
+  "name": "<%= place.name %>",
+  "description": "<%= place.prefecture.name %><%= place.city.name %>にある<%= place.name %>のコート情報",
+  "image": [
+    "/images/events/<%= @event.ruby %>.jpg"
+  ],
+  <% if place.tel.present? %>"telephone": "<%= place.tel %>",<% end %>
+  <% if place.price.present? %>"priceRange": "<%= place.price %>",<% end %>
+  <% if place.place_reviews.count.to_f > 0 %>
+    "aggregateRating": {
+      "@type":"AggregateRating",
+      "ratingValue":<%= place.average_score.to_f %>,
+      "reviewCount":<%= place.place_reviews.count.to_f %>
+    },
+  <% end %>
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "<%= place.prefecture.name %>",
+    "addressLocality": "<%= place.city.name %>",
+    "streetAddress": "<%= place.address %>"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "サークルブック",
+    "item": "https://circle-book.com"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "コートや体育館の情報",
+    "item": "https://circle-book.com/places"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": "<%= @event.name %>",
+    "item": "https://circle-book.com/places/<%= @event.ruby %>"
+  },{
+    "@type": "ListItem",
+    "position": 4,
+    "name": "<%= place.prefecture.name %>",
+    "item": "https://circle-book.com/places/<%= @event.ruby %>/<%= place.prefecture.kana %>"
+  },{
+    "@type": "ListItem",
+    "position": 5,
+    "name": "<%= place.city.name %>",
+    "item": "https://circle-book.com/places/<%= @event.ruby %>/<%= place.prefecture.kana %>/<%= place.city.city_kana %>"
+  },{
+    "@type": "ListItem",
+    "position": 6,
+    "name": "<%= place.name %>",
+    "item": "https://circle-book.com/places/<%= @event.ruby %>/<%= place.prefecture.kana %>/<%= place.city.city_kana %>/<%= place.id %>"
+  }]
+}
+</script>

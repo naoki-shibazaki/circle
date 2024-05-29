@@ -1,0 +1,159 @@
+- set_meta_tags noindex: true, title: "マイページ"
+.user_main.users-index
+  .container
+    .mypage_wrap
+      = render "/users/alert"
+      - if @admin_user.users.count > 1
+        .user_select_wrap
+          現在のアカウント：
+          %select{:name => "user_select", :onchange => "location.href=value;"}
+            %option{:value => "#"}
+              = @user.name
+              （#{@user.event.name}）
+            - @admin_user.users.each do |user|
+              - if @user.id != user.id
+                %option{:value => "/users/#{user.id}/mypage"}
+                  = user.name
+                  （#{user.event.name}）
+            - if @ng_accounts.count == 0 && @admin_user.users.count < 5
+              - if @admin_user.check.present? && @admin_user.check != 0
+              - else
+                %option{:value => "/user/add"} ＋ サークルを新規追加する
+      - if @user.link.present?
+        - if @user.link.unique_id.present?
+          .join_txt ＼ サークルページのURL ／
+          .attendance_url_copy
+            .copyTarget
+              https://circle-book.com/u/#{@user.link.unique_id}
+          %button.copyBtn.mypage_url_copy
+            .requirement_copy
+              %i.fa.fa-copy
+              URLをコピーする！
+      = render "/users/analytics"
+
+      = render "/layouts/ads/picte_mypage", user: @user
+
+      .icon_wrap
+        = link_to circle_path(@user), class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_01.png"}/
+            .icon_txt
+              サークルページ
+        = link_to edit_user_path(@user), class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_01.png"}/
+            .icon_txt
+              サークル編集
+        = link_to new_circle_blog_path(@user), class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_03.png"}/
+            .icon_txt
+              ブログ
+        = link_to user_schedules_path(@user), class: "icon_cont" do
+          %div
+            .icon_img
+              - if @schedules.blank?
+                .notice_icon
+                  %img.icon_size{:src => "/images/icon/icon_08.png"}/
+              - else
+                .nil
+                  %img.icon_size{:src => "/images/icon/icon_08.png"}/
+            .icon_txt
+              スケジュール
+        - if @schedules.present?
+          = link_to attendances_path(@user.unique_id), class: "icon_cont" do
+            %div
+              .icon_img
+                .notice_icon
+                  %img.icon_size{:src => "/images/icon/icon_18.png"}/
+              .icon_txt
+                メンバー出欠管理
+        = link_to user_questions_path(@user), class: "icon_cont" do
+          %div
+            .icon_img
+              - if @questions_current.count < 3 || @questions_current_nil.count >= 1
+                .notice_icon
+                  %img.icon_size{:src => "/images/icon/icon_06.png"}/
+              - else
+                .nil
+                  %img.icon_size{:src => "/images/icon/icon_06.png"}/
+            .icon_txt
+              質問コーナー
+        = link_to user_reviews_path(@user), class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_13.png"}/
+            .icon_txt
+              口コミ・評価
+        = link_to new_user_link_path(@user), class: "icon_cont" do
+          %div
+            .icon_img
+              %img.icon_size{:src => "/images/icon/icon_15.png"}/
+            .icon_txt
+              リンク集
+        - if @user.user_contacts.present?
+          = link_to "/users/#{@user.id}/contact_list", class: "icon_cont" do
+            %div
+              .icon_img
+                - if @user_contact_alerts.present?
+                  .notice_icon
+                    %img.icon_size{:src => "/images/icon/icon_14.png"}/
+                    .icon_txt
+                      お問い合わせ管理
+                - else
+                  .nil
+                    %img.icon_size{:src => "/images/icon/icon_14.png"}/
+                    .icon_txt
+                      お問い合わせ管理
+        - if @user.event.matching != 0
+          - if @user.match.present?
+            = link_to match_path(@user), class: "icon_cont" do
+              %div
+                .icon_img
+                  %img.icon_size{:src => "/images/icon/icon_10.png"}/
+                .icon_txt
+                  対戦相手の募集
+          - else
+            = link_to new_user_match_path(@user), class: "icon_cont" do
+              %div
+                .icon_img
+                  %img.icon_size{:src => "/images/icon/icon_10.png"}/
+                .icon_txt
+                  対戦相手の募集
+          = link_to matches_path, class: "icon_cont" do
+            %div
+              .icon_img
+                %img.icon_size{:src => "/images/icon/icon_11.png"}/
+              .icon_txt
+                対戦相手の一覧
+        - if @ng_accounts.count == 0 && @admin_user.users.count < 5
+          - if @admin_user.check.present? && @admin_user.check != 0
+          - else
+            = link_to "/user/add", class: "icon_cont" do
+              %div
+                .icon_img
+                  %img.icon_size{:src => "/images/icon/icon_12.png"}/
+                .icon_txt
+                  サークル新規追加
+      = render "/users/openchat"
+      .border
+      = render "/layouts/ad_square"
+      .ad_space
+      .border
+      .opinion_wrap
+        .p_t.opinion_title ご意見箱
+        .opinion_txt
+          どんな些細なことでも構いませんので、
+          %br/
+          サークルブックへのご意見をお聞かせください！
+        = form_for ([@user, @opinion]) do |f|
+          = f.text_area :opinion, class: 'form-control form-note', placeholder: "「こんな機能があると便利！」「ここをこうして欲しい！」など。気軽にお書きください！"
+          .contact
+            \&gt;&gt;返信が必要な場合は
+            %a{:href => "mailto:circlebook47@gmail.com?subject=【お問い合わせ】サークルブック｜#{@user.id}"}> コチラ
+            から
+          = f.submit "送信する", data: { disable_with: '送信中...' }
+          .reset

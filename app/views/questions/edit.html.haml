@@ -1,0 +1,105 @@
+- set_meta_tags title: "#{@user.name}の質問コーナー",og: {title: "登録不要！匿名で「#{@user.name}」に質問ができます！",description: "",image: image_url('/images/qa_top.jpg')},twitter: { card: 'summary_large_image'}
+.user_main.users-index
+  .container.bg_white
+    .qa_title_wrap
+      %h1.top_title
+        質問コーナー
+        %h1
+          = render "/users/parts/user_switching", user: @user, url_path: "questions"
+    .qa_wrap
+      - if @user.switch == "募集中"
+        .qa_profile_wrap
+          = render "/users/parts/user_name", user: @user
+          .qa_answer.speech_bubble_a.question_notes_wrap
+            質問を受付中です！
+            %br/
+            ※個人情報は書かないようにお願いします
+
+        - if AccountBlock.find_by(ip_address: request.remote_ip) || @user.review_permit == false
+        - else
+          .qa_answer_form
+            = form_for ([@user, @question]) do |f|
+              = render 'layouts/error_messages', model: f.object
+              = f.text_area :content, class: 'form-control form-note change_question', placeholder: "質問を書いてください！（80文字以内）"
+              .actions
+                = f.submit "質問する", class: "submit_btn", data: { confirm: "この内容でよろしいですか？", disable_with: '更新中...' }
+              .reset
+
+      - if admin_user_signed_in?
+        - if @user.admin_user_id == current_admin_user.id
+          .qa_tw_share
+            = link_to("https://twitter.com/share?url=#{request.url}&text=質問を募集中です！%0a%0a%23質問コーナー%20%23サークルブック%0a", target: '_blank') do
+              .share_btn_tw
+                %i.fa.fa-twitter>
+                質問をTwitterで募集する！
+    .qa_card_warp
+      - if @questions.present?
+        .qa_card_txt
+          ▼ #{@user.name}さんに寄せられた質問です！
+      %ul
+        - if @questions.any?
+          - @questions.each do |question|
+            %li.ribbon-wrapper
+              .ribbon-content
+                - if question.answer.nil?
+                  %span.ribbon.red 未回答
+                - else
+                  %span.ribbon.green 回答済み
+              = link_to "/users/#{@user.id}/questions/#{question.id}" do
+                .qa_large
+                  .user_slide_qa
+                    .user_slide_qa_wrap
+                      .user_slide_qa_content_wrap
+                        %h2= question.content
+        - @questions.each do |question|
+          - if question.content == @question_first
+            - @question_first_count = 1
+          - elsif question.content == @question_second
+            - @question_second_count = 1
+          - else question.content == @question_third
+            - @question_third_count = 1
+        - if admin_user_signed_in?
+          - if @user.admin_user_id == current_admin_user.id
+            - if @question_first_count != 1
+              %li.ribbon-wrapper
+                .ribbon-content
+                  %span.ribbon.red 未回答
+                = link_to controller: :questions, action: :question, sample: "first" do
+                  .qa_large
+                    .user_slide_qa
+                      .user_slide_qa_wrap
+                        .user_slide_qa_content_wrap
+                          %h2= @question_first
+            - if @question_second_count != 1
+              %li.ribbon-wrapper
+                .ribbon-content
+                  %span.ribbon.red 未回答
+                = link_to controller: :questions, action: :question, sample: "second" do
+                  .qa_large
+                    .user_slide_qa
+                      .user_slide_qa_wrap
+                        .user_slide_qa_content_wrap
+                          %h2= @question_second
+            - if @question_third_count != 1
+              %li.ribbon-wrapper
+                .ribbon-content
+                  %span.ribbon.red 未回答
+                = link_to controller: :questions, action: :question, sample: "third" do
+                  .qa_large
+                    .user_slide_qa
+                      .user_slide_qa_wrap
+                        .user_slide_qa_content_wrap
+                          %h2= @question_third
+    = render "/layouts/ad_square"
+    .ad_space
+/ 半角 => 全角　変換
+:javascript
+  $(function(){
+      $(".change_question").change(function(){
+          var str = $(this).val();
+          str = str.replace(  /["#$%&'()=<>,.?_\[\]{}@^~\\]/g, function(s) {
+              return String.fromCharCode(s.charCodeAt(0) + 65248);
+          });
+          $(this).val(str);
+      }).change();
+  });

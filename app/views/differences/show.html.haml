@@ -1,0 +1,52 @@
+- set_meta_tags title: "30秒以内に「#{@difference.dummy}」を見つけられたら天才",og: {title: "30秒以内に「#{@difference.dummy}」を見つけられたらRT",description: "自分で問題が作れる間違い探しメーカー",image: "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:#{@difference.combine},co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png"},twitter: { card: 'summary_large_image'}
+.main.users-index
+  .container
+    = render "/layouts/breadcrumb"
+    .difference_top
+      .p_t 間違い探しメーカー
+    .difference_txt
+      ▼ 30秒以内に「#{@difference.dummy}」を見つけられたら天才 ▼
+    .difference_image
+      %img{:alt => "30秒以内に「\#{@difference.dummy}」を見つけられるか！？", :src => "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:#{@difference.combine},co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png"}/
+    .users-index-item
+      .post_cta.profile_cta.difference_cta
+        .blob_cta_2
+          .contact-button.tw
+            = link_to("https://twitter.com/share?url=#{request.url}&text=30秒以内に「#{@difference.dummy}」を見つけられたらRT%20%0a%23間違い探しメーカー%0a", target: '_blank') do
+              %i.fa.fa-twitter
+              ツイートする
+          .contact-button.line
+            = link_to("http://line.me/R/msg/text/?#{request.url}", target: '_blank') do
+              LINEでシェアする
+        .difference_new
+          %span.difference_subtitle 新しい問題を作る！
+          - if @difference.errors.any?
+            .form-error
+              以下の項目でエラーが発生いたしました。
+              %br/
+          - @difference.errors.full_messages.each do |message|
+            .form-error_message
+              ・#{message}
+          = form_for @difference_new, :url => { :controller => :differences, :action => :create }  do |f|
+            .difference_sample
+              %img{:src => "/images/differences/difference_sample.png"}/
+              ※この画像はサンプルです
+            %p 文字（1文字）
+            = f.text_field :letter, class: 'form-control form-smart', id: 'change_letter', placeholder: "田"
+            %p 偽文字（1文字）
+            = f.text_field :dummy, class: 'form-control form-smart', id: 'change_dummy', placeholder: "囲"
+            %p
+              偽文字の配置場所
+              %br>/
+              1〜308までの数字を記入
+            = f.text_field :order, class: 'form-control form-smart', id: 'change_order', placeholder: "123"
+            = f.submit "作成する"
+      = render "/layouts/ad_square"
+    .qa_card_warp
+      %ul
+        - @differences.shuffle.first(5).each do |difference|
+          - if difference.id != @difference.id
+            %li.ribbon-wrapper
+              = link_to "/contents/differences/#{difference.id}" do
+                %img{:alt => "30秒以内に「\#{difference.dummy}」を見つけられるか！？", :src => "https://res.cloudinary.com/hgvtbyy8v/image/upload/l_text:Sawarabi%20Gothic_40:#{difference.combine},co_rgb:ffffff,w_1100,c_fit/v1590044851/content_yrwckx.png"}/
+                .qa_judge

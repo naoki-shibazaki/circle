@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: tags
+#
+#  id         :integer          not null, primary key
+#  category   :string
+#  name       :string
+#  order      :string
+#  tag        :string
+#  text       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  category: MyString
+  tag: MyString
+  name: MyString
+  text: MyString
+
+two:
+  category: MyString
+  tag: MyString
+  name: MyString
+  text: MyString

@@ -1,0 +1,183 @@
+.form-body.cont-body
+  - if @user.errors.any?
+    .form-error
+      以下の項目でエラーが発生いたしました。
+      %br/
+      ※原因不明の場合は空欄でご登録ください
+  - @user.errors.full_messages.each do |message|
+    .form-error_message
+      ・#{message}
+  - if current_admin_user.id == 1
+    .form
+      = form_for @admin_user, url:"/users/#{@user.id}/admin_user_update" do |f|
+        .label_item
+          %span.label.label_danger> 管理権限
+          規約違反判定
+        %br/
+        = f.select :check, [ ['なし',''],['ネットワークビジネス',1], ['宗教',2], ['Shadow banning',3] ]
+        = f.submit "更新する", data: { disable_with: '更新中...' }
+    .reset
+  = form_for @user do |f|
+    .img_field_profile_wrap
+      .label_item プロフィール画像（アイコン＆背景写真）
+      #img_field_header{:onclick => "$('#file_header').click()"}
+        - if @user.pic_header.present?
+          = image_tag(@user.pic_header.url)
+        - else
+          %i.fa.fa-image
+      = f.file_field :pic_header, class: "image", style: "display:none;", id: "file_header"
+      #img_field_profile{:onclick => "$('#file_profile').click()"}
+        - if @user.pic_profile.present?
+          = image_tag(@user.pic_profile.url)
+        - else
+          %i.fa.fa-image
+      = f.file_field :pic_profile, class: "image", style: "display:none;", id: "file_profile"
+      .file_size_p ※10MB以下のjpgかpngのみ対応
+    .img_field_profile_space
+    - if @user.pic_profile.present? || @user.pic_header.present?
+      %ul.remove_img
+        - if @user.pic_profile.present?
+          %li
+            = f.check_box :remove_pic_profile
+            アイコン画像の削除
+        - if @user.pic_header.present?
+          %li
+            = f.check_box :remove_pic_header
+            背景画像の削除
+    - if current_admin_user.id == 1
+      .label_item
+        %span.label.label_danger> 管理権限
+        NGアカウント判定
+      = f.select :ng_account, [ ['OK', 'OK'], ['NG','NG'] ]
+      .label_item
+        %span.label.label_danger> 管理権限
+        口コミ・質問の投稿許可
+      = f.select :review_permit, [ ['許可', true], ['禁止', false] ]
+    - if @user.switch.present?
+      .label_item
+        %span.label.label_danger> 必須
+        新規メンバーの募集
+      = f.select :switch, [ ['募集中','募集中'], ['受付終了','受付終了'] ]
+    .label_item
+      %span.label.label_danger> 必須
+      サークル名
+    = f.text_field :name, class: 'form-control change_font', placeholder: "サークルブック"
+    .label_item
+      %span.label.label_danger> 必須
+      サークル種目（大）
+    - category_options = Category.order(:id).map { |e| [e.name, e.id, data: { children_path: category_events_path(e) }] }
+    = f.select :category_id, category_options, { include_blank: true }, class: 'user-select-parent'
+    .label_item
+      %span.label.label_danger> 必須
+      サークル種目（中）
+    - events = Event.where(category_id: @user.category).order(:users_count => :desc)
+    - event_options = events.map { |e| [e.name, e.id] }
+    = f.select :event_id, event_options, { include_blank: true }, class: 'user-select-children'
+    .label_item
+      %span.label.label_danger> 必須
+      メインの活動エリア（例：東京都）
+    = f.collection_select :prefecture_id, Prefecture.all.order(:order => :asc), :id, :name, :prompt => "選択してください"
+    .label_item サブの活動エリア（例：神奈川県）
+    = f.collection_select :prefecture_sub_id, Prefecture.where.not(id: 50).order(:order => :asc), :id, :name, :include_blank => true
+    .label_item 活動時間
+    = f.text_field :schedule, class: 'form-control', placeholder: "月曜日 18〜20時"
+    .label_item 活動場所
+    = f.text_field :area, class: 'form-control', placeholder: "世田谷区周辺"
+    .label_item こんな人を探しています
+    = f.text_field :recruitment, class: 'form-control', placeholder: "初心者・経験者でもOKです！"
+    .label_item 現在の構成メンバー
+    = f.text_field :member, class: 'form-control', placeholder: "10名程"
+    .edit01_warp
+      %span.edit01_subtitle 年齢層
+      .check_boxes
+        = f.collection_check_boxes(:age_ids, Age.all, :id, :name)
+    .edit01_warp
+      %span.edit01_subtitle 募集内容
+      .check_boxes
+        = f.collection_check_boxes(:group_ids, Group.all.order(:id => :asc), :id, :name)
+    .label_item 会費・費用
+    = f.text_field :cost, class: 'form-control', placeholder: "500円"
+    .label_item サークル目標
+    = f.text_field :goal, class: 'form-control', placeholder: "ゆくる、楽しく活動をする！"
+    .label_item LINEビジネス（LINE@）／LINEのURL
+    %a.line_id{:href => "/line", :target => "_blank"} &gt;&gt;30秒で作れるLINEアカウントの追加方法
+    = f.text_field :line_id, class: 'form-control', placeholder: "http://nav.cx/3JiS9Im"
+    - if @user.line_id.present?
+      .label_item 連絡方法
+      = f.select :contact, [ ['メール＆LINE','both'], ['LINEのみ','line'] , ['メールのみ','mail'] ]
+    .sns_form
+      .label_item Twitter ID
+      .sns_input
+        %span.atmark @
+        = f.text_field :twitter, class: 'form-control', placeholder: "circle_book_"
+    .sns_form
+      .label_item Instagram ID
+      .sns_input
+        %span.atmark @
+        = f.text_field :instagram, class: 'form-control', placeholder: "circlebook47"
+    .reset
+    .label_item ホームページ
+    = f.text_field :web, class: 'form-control', placeholder: "https://circle-book.com/"
+    .edit01_warp
+      %span.edit01_subtitle サークル画像（最大4枚）
+      .file_upload_wrap
+        %span.file_size ※10MB以下のjpgかpngのみ対応
+        .img_field_gallery_wrap
+          #img_field_01{:onclick => "$('#file_01').click()"}
+            - if @user.gallery_01.present?
+              = image_tag(@user.gallery_01.url)
+            - else
+              %i.fa.fa-image
+          = f.file_field :gallery_01, class: "image", style: "display:none;", id: "file_01"
+          #img_field_02{:onclick => "$('#file_02').click()"}
+            - if @user.gallery_02.present?
+              = image_tag(@user.gallery_02.url)
+            - else
+              %i.fa.fa-image
+          = f.file_field :gallery_02, class: "image", style: "display:none;", id: "file_02"
+          #img_field_03{:onclick => "$('#file_03').click()"}
+            - if @user.gallery_03.present?
+              = image_tag(@user.gallery_03.url)
+            - else
+              %i.fa.fa-image
+          = f.file_field :gallery_03, class: "image", style: "display:none;", id: "file_03"
+          #img_field_04{:onclick => "$('#file_04').click()"}
+            - if @user.gallery_04.present?
+              = image_tag(@user.gallery_04.url)
+            - else
+              %i.fa.fa-image
+          = f.file_field :gallery_04, class: "image", style: "display:none;", id: "file_04"
+      - if @user.gallery_01.present? || @user.gallery_02.present? || @user.gallery_03.present? || @user.gallery_04.present?
+        %ul.remove_img
+          - if @user.gallery_01.present?
+            %li
+              = f.check_box :remove_gallery_01
+              ①削除
+          - if @user.gallery_02.present?
+            %li
+              = f.check_box :remove_gallery_02
+              ②削除
+          - if @user.gallery_03.present?
+            %li
+              = f.check_box :remove_gallery_03
+              ③削除
+          - if @user.gallery_04.present?
+            %li
+              = f.check_box :remove_gallery_04
+              ④削除
+    .label_item サークルの詳細情報
+    .rich_text_sub
+      .rich_text_notes ▼文字の装飾は最後に行ってください
+      = f.hidden_field :appeal, id: :article_text
+      %trix-editor{:input => "article_text", :placeholder => "サークルブックは週１回、都内で活動しています！興味がある人は気軽にご連絡ください！"}
+    - if @path.is('users#edit')
+      .warning_txt ※更新完了に少し時間がかかります
+      = f.submit "更新する", data: { disable_with: '更新中...' }
+    - elsif @admin_user.check.present? && @admin_user.check != 0
+      %br/
+      .attention_content
+        %i.fa.fa-warning
+        このアカウントは一時的に制限されています
+    - else
+      .warning_txt ※更新完了に少し時間がかかります
+      = f.submit "更新する", data: { disable_with: '更新中...' }

@@ -1,0 +1,45 @@
+# == Schema Information
+#
+# Table name: exhibitions
+#
+#  id                   :integer          not null, primary key
+#  detail               :text
+#  end_date             :datetime
+#  event_date           :datetime
+#  exhibit_person_price :integer
+#  gallery_img_01       :string
+#  gallery_img_02       :string
+#  gallery_img_03       :string
+#  gallery_img_04       :string
+#  header_img           :string
+#  name                 :string           not null
+#  online               :integer          default(1)
+#  show_contact         :integer          default(1)
+#  venue_address        :string
+#  venue_name           :string
+#  visitor_price        :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  exhibition_group_id  :integer          not null
+#  prefecture_id        :integer          not null
+#
+# Indexes
+#
+#  index_exhibitions_on_exhibition_group_id  (exhibition_group_id)
+#  index_exhibitions_on_prefecture_id        (prefecture_id)
+#
+# Foreign Keys
+#
+#  exhibition_group_id  (exhibition_group_id => exhibition_groups.id)
+#  prefecture_id        (prefecture_id => prefectures.id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

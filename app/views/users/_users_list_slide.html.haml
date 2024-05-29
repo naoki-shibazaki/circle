@@ -1,0 +1,20 @@
+%ul.user_slide_wrap
+  - users.first(5).each do |user|
+    = link_to(circle_path(user.id)) do
+      %li.user_slide_list
+        .user_list_header
+          = lazysizes_image_tag user.pic_profile.url , class:'image_icon'
+          %h3.user_name= user.name.truncate(20)
+        .clear
+        .list_02
+          %span.user_area
+            %i.fa.fa-users
+            = user.event.name
+        .list_02
+          %span.user_schedule
+            %i.fa.fa-calendar
+            = user.schedule
+        .list_03
+          %span.user_area
+            %i.fa.fa-map-marker
+            = user.area

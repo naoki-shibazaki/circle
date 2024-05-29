@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: differences
+#
+#  id         :integer          not null, primary key
+#  combine    :text
+#  dummy      :string
+#  letter     :string
+#  order      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  letter: MyString
+  dummy: MyString
+  order: MyString
+  combine: MyText
+
+two:
+  letter: MyString
+  dummy: MyString
+  order: MyString
+  combine: MyText

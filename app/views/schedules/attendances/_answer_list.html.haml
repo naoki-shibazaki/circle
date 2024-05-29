@@ -1,0 +1,73 @@
+- if @schedules.present?
+  %tbody
+    / ▼日程の行 表示▼
+    - @schedules.each.with_index(1) do |schedule, i|
+      %tr
+        %td.day.fixed
+          = link_to("/schedules/#{@user.unique_id}/#{schedule.id}") do
+            .schedule_day_link
+              = Time.parse(schedule.day).strftime("%-m月%-d日(#{%w(日 月 火 水 木 金 土)[Time.parse(schedule.day).wday]})")
+              - if schedule.time_s.present?
+                %br/
+                = schedule.time_s.strftime('%H:%M')
+                \-#{schedule.time_e.strftime('%H:%M') if schedule.time_e.present?}
+
+            - if schedule.recruitment_numbers.present?
+              .recruitment_numbers_wrap
+                - if schedule.recruitment_numbers >= 1
+                  = schedule.name_schedules.where(answer: 1).size
+                  %span.small_font
+                    ／#{schedule.recruitment_numbers}名
+                - else
+                  = schedule.name_schedules.where(answer: 1).size
+                  %span.small_font
+                    名
+            - else
+              .recruitment_numbers_wrap
+                = schedule.name_schedules.where(answer: 1).size
+                %span.small_font
+                  名
+
+
+        %td.status
+          - if params[:archive] != "1"
+            - if schedule.recruitment == "募集終了"
+              %span.set.mark_red 満員御礼
+            - elsif schedule.recruitment == "中止"
+              %span.set.mark_yellow 中止
+            - else
+              - if schedule.recruitment_numbers == 0 || schedule.recruitment_numbers.blank?
+                %span.set.mark_green 募集中
+              - elsif schedule.name_schedules.where(answer: 1).size >= schedule.recruitment_numbers
+                %span.set.mark_red 満員御礼
+              - else
+                %span.set.mark_green 募集中
+          - else
+            %span.set.mark_gray 開催終了
+        / ▲日程の行 表示▲
+
+
+        / ▼名前＋ステータス 表示▼
+        - @names.each do |name|
+          - if name.name_schedules.find_by(schedule_id: schedule.id).present?
+            - if name.name_schedules.find_by(schedule_id: schedule.id).answer == 1
+              %td
+                .answer_content
+                  .answer1
+                  - if name.name_schedules.find_by(schedule_id: schedule.id).comment.present?
+                    .attendance_comment
+                      .attendance_comment_scroll
+                        = name.name_schedules.find_by(schedule_id: schedule.id).comment
+            - elsif name.name_schedules.find_by(schedule_id: schedule.id).answer == 0
+              %td
+                .answer_content
+                  .answer0
+                  - if name.name_schedules.find_by(schedule_id: schedule.id).comment.present?
+                    .attendance_comment
+                      .attendance_comment_scroll
+                        = name.name_schedules.find_by(schedule_id: schedule.id).comment
+            - else
+              %td
+          - else
+            %td
+        / ▲名前＋ステータス 表示▲

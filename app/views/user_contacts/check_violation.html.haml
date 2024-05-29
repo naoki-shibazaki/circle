@@ -1,0 +1,12 @@
+- set_meta_tags noindex: true
+.main.users-index
+  .container
+    .users-index-item
+      .p_t サークルブックへの報告
+      .form
+        = form_for ([@user, @user_contact]) do |f|
+          %p ▼ 違反内容を教えてください
+          = f.text_area :violation, class: 'form-control form-note', placeholder: "例）マルチ商法（ネットワークビジネス）の勧誘を目的としたサークルでした。 |
+            何回かサークルに参加後、ホームパーティーに呼ばれて勧誘されました。"                                                                          |
+          .reset
+          = f.submit "報告する", data: { disable_with: '送信中...' }
