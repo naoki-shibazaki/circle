@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2023_05_08_082157) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "account_blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.string "image_profile"
     t.text "profile"
     t.integer "check"
-    t.integer "prefecture_id"
+    t.bigint "prefecture_id"
     t.string "age"
     t.integer "open", default: 0, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content"
@@ -70,8 +73,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "member_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "member_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_bookmarks_on_member_id"
@@ -98,7 +101,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
 
   create_table "collections", force: :cascade do |t|
     t.string "day"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price"
@@ -149,8 +152,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event_question_id"
-    t.integer "member_id"
+    t.bigint "event_question_id"
+    t.bigint "member_id"
     t.string "answer_member_id"
     t.string "nickname"
     t.string "icon"
@@ -162,7 +165,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "question"
-    t.integer "event_id"
+    t.bigint "event_id"
     t.index ["event_id"], name: "index_event_questions_on_event_id"
   end
 
@@ -191,7 +194,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "exhibition_contacts", force: :cascade do |t|
-    t.integer "exhibition_id", null: false
+    t.bigint "exhibition_id", null: false
     t.string "name", null: false
     t.string "email", null: false
     t.integer "subject"
@@ -202,8 +205,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "exhibition_group_profiles", force: :cascade do |t|
-    t.integer "exhibition_group_id", null: false
-    t.integer "exhibition_category_id", null: false
+    t.bigint "exhibition_group_id", null: false
+    t.bigint "exhibition_category_id", null: false
     t.string "name", null: false
     t.string "header_img"
     t.string "profile_img"
@@ -230,8 +233,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "exhibitions", force: :cascade do |t|
-    t.integer "exhibition_group_id", null: false
-    t.integer "prefecture_id", null: false
+    t.bigint "exhibition_group_id", null: false
+    t.bigint "prefecture_id", null: false
     t.string "name", null: false
     t.datetime "event_date"
     t.datetime "end_date"
@@ -293,7 +296,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "collection_id"
+    t.bigint "collection_id"
     t.string "name"
     t.integer "money"
     t.string "check"
@@ -312,7 +315,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   create_table "links", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "unique_id"
     t.string "link01_title"
     t.string "link01_url"
@@ -336,7 +339,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.string "level"
     t.string "recruit"
     t.text "comment"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_matches_on_user_id"
   end
 
@@ -353,7 +356,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.string "random_id"
     t.string "gender"
     t.text "profile"
-    t.integer "prefecture_id"
+    t.bigint "prefecture_id"
     t.string "age"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["prefecture_id"], name: "index_members_on_prefecture_id"
@@ -361,8 +364,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "members_events", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "event_id"
+    t.bigint "member_id"
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_members_events_on_event_id"
@@ -370,8 +373,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "name_schedules", force: :cascade do |t|
-    t.integer "name_id"
-    t.integer "schedule_id"
+    t.bigint "name_id"
+    t.bigint "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "answer"
@@ -391,7 +394,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.text "opinion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_opinions_on_user_id"
   end
 
@@ -399,7 +402,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.integer "event_id"
     t.string "ip_address"
     t.text "comment"
-    t.integer "place_id"
+    t.bigint "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "average_score"
@@ -440,8 +443,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "places_events", force: :cascade do |t|
-    t.integer "place_id"
-    t.integer "event_id"
+    t.bigint "place_id"
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_places_events_on_event_id"
@@ -461,7 +464,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
 
   create_table "questions", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "answer"
@@ -470,8 +473,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "member_id"
+    t.bigint "user_id"
+    t.bigint "member_id"
     t.text "comment"
     t.integer "review"
     t.datetime "created_at", null: false
@@ -485,7 +488,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "day"
@@ -523,7 +526,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "user_contacts", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "mail"
     t.text "message"
     t.datetime "created_at", null: false
@@ -541,8 +544,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   end
 
   create_table "user_tags", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "tag_id"
+    t.bigint "user_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_user_tags_on_tag_id"
@@ -571,7 +574,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.text "appeal"
     t.string "password"
     t.string "goal"
-    t.integer "prefecture_id"
+    t.bigint "prefecture_id"
     t.string "user_id"
     t.integer "event_id"
     t.integer "decade_age"
@@ -591,7 +594,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.integer "admin_user_id"
+    t.bigint "admin_user_id"
     t.string "user_time"
     t.string "contact"
     t.string "twitter"
@@ -632,6 +635,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "blogs", "users"
   add_foreign_key "bookmarks", "members"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "collections", "users"
@@ -641,15 +645,21 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
   add_foreign_key "exhibitions", "exhibition_groups"
   add_foreign_key "exhibitions", "prefectures"
   add_foreign_key "items", "collections"
+  add_foreign_key "links", "users"
+  add_foreign_key "matches", "users"
   add_foreign_key "members_events", "events"
   add_foreign_key "members_events", "members"
   add_foreign_key "name_schedules", "names"
   add_foreign_key "name_schedules", "schedules"
+  add_foreign_key "place_reviews", "places"
   add_foreign_key "places_events", "events"
   add_foreign_key "places_events", "places"
   add_foreign_key "questions", "users"
   add_foreign_key "reviews", "members"
   add_foreign_key "reviews", "users"
+  add_foreign_key "schedules", "users"
+  add_foreign_key "user_contacts", "users"
   add_foreign_key "user_tags", "tags"
   add_foreign_key "user_tags", "users"
+  add_foreign_key "users", "prefectures"
 end

@@ -2,7 +2,7 @@
 #
 # Table name: tags
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  category   :string
 #  name       :string
 #  order      :string

@@ -2,7 +2,7 @@
 #
 # Table name: user_contacts
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  account_block :string
 #  comment       :text
 #  contact_del   :string
@@ -16,11 +16,15 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  random_id     :string
-#  user_id       :integer
+#  user_id       :bigint
 #
 # Indexes
 #
 #  index_user_contacts_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 class UserContact < ApplicationRecord
 	belongs_to :user

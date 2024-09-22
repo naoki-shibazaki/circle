@@ -2,11 +2,11 @@
 #
 # Table name: members_events
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  event_id   :integer
-#  member_id  :integer
+#  event_id   :bigint
+#  member_id  :bigint
 #
 # Indexes
 #
@@ -15,8 +15,8 @@
 #
 # Foreign Keys
 #
-#  event_id   (event_id => events.id)
-#  member_id  (member_id => members.id)
+#  fk_rails_...  (event_id => events.id)
+#  fk_rails_...  (member_id => members.id)
 #
 require 'test_helper'
 

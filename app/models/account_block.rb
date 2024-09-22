@@ -2,7 +2,7 @@
 #
 # Table name: account_blocks
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  block      :integer          default(0), not null
 #  ip_address :string
 #  model      :string

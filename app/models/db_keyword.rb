@@ -2,7 +2,7 @@
 #
 # Table name: db_keywords
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  keyword      :string
 #  search_count :integer          default(0), not null
 #  created_at   :datetime         not null

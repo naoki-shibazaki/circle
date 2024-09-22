@@ -39,3 +39,5 @@ public/sitemap.xml.gz
 .DS_Store
 /config/credentials/production.key
 vendor/
+
+/.idea

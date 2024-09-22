@@ -2,13 +2,13 @@
 #
 # Table name: name_schedules
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  answer      :integer
 #  comment     :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  name_id     :integer
-#  schedule_id :integer
+#  name_id     :bigint
+#  schedule_id :bigint
 #
 # Indexes
 #
@@ -17,8 +17,8 @@
 #
 # Foreign Keys
 #
-#  name_id      (name_id => names.id)
-#  schedule_id  (schedule_id => schedules.id)
+#  fk_rails_...  (name_id => names.id)
+#  fk_rails_...  (schedule_id => schedules.id)
 #
 class NameSchedule < ApplicationRecord
   belongs_to :name

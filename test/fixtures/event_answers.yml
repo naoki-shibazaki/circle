@@ -2,15 +2,15 @@
 #
 # Table name: event_answers
 #
-#  id                :integer          not null, primary key
+#  id                :bigint           not null, primary key
 #  answer            :text
 #  icon              :string
 #  nickname          :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  answer_member_id  :string
-#  event_question_id :integer
-#  member_id         :integer
+#  event_question_id :bigint
+#  member_id         :bigint
 #
 # Indexes
 #

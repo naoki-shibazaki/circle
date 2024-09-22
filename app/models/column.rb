@@ -2,7 +2,7 @@
 #
 # Table name: columns
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  description :text
 #  image       :string
 #  text        :text

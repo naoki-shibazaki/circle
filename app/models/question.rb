@@ -2,13 +2,13 @@
 #
 # Table name: questions
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  answer     :text
 #  content    :text
 #  ip_address :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer
+#  user_id    :bigint
 #
 # Indexes
 #
@@ -16,7 +16,7 @@
 #
 # Foreign Keys
 #
-#  user_id  (user_id => users.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class Question < ApplicationRecord
   belongs_to :user

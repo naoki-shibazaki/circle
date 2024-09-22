@@ -2,11 +2,11 @@
 #
 # Table name: bookmarks
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  member_id  :integer          not null
-#  user_id    :integer          not null
+#  member_id  :bigint           not null
+#  user_id    :bigint           not null
 #
 # Indexes
 #
@@ -15,8 +15,8 @@
 #
 # Foreign Keys
 #
-#  member_id  (member_id => members.id)
-#  user_id    (user_id => users.id)
+#  fk_rails_...  (member_id => members.id)
+#  fk_rails_...  (user_id => users.id)
 #
 require 'test_helper'
 

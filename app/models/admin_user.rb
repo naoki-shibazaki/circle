@@ -2,7 +2,7 @@
 #
 # Table name: admin_users
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint           not null, primary key
 #  age                    :string
 #  check                  :integer
 #  email                  :string           default(""), not null
@@ -17,7 +17,7 @@
 #  reset_password_token   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  prefecture_id          :integer
+#  prefecture_id          :bigint
 #
 # Indexes
 #
