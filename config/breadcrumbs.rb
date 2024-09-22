@@ -64,6 +64,11 @@ end
     parent :circle_index
   end
 
+# present
+crumb :present_index do
+  link "プレゼント", presents_path
+  parent :root
+end
 
 # blog
 crumb :blog_index do

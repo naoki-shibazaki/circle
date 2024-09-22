@@ -62,6 +62,11 @@ Rails.application.routes.draw do
   end
 
 
+  scope module: :presents do
+    resources :presents, only: [:index] do
+      get :point, on: :collection
+    end
+  end
 
 
   # ブログ
