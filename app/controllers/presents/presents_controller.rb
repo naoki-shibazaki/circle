@@ -3,7 +3,9 @@ class Presents::PresentsController < Presents::ApplicationController
   before_action :set_search, only: [:index]
 
   def index
-
+    if current_member
+      @can_receive_points = current_member_can_receive_points?
+    end
   end
 
   def point
