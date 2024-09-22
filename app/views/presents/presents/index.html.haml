@@ -1,0 +1,20 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】サークルやチームの活動ブログ"
+- breadcrumb :present_index
+
+.main.users-index
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    .e_header_wrap
+      %img{:src => "/images/top.png"}/
+      .link_txt
+        %h1.e_header_title
+          = "プレゼント"
+
+    .no_hit_wrap.blog_no_hit
+      = link_to(point_presents_path) do
+        .no_hit_top ポイントを取得
+      = link_to(presents_path) do
+        .no_hit_new 応募
