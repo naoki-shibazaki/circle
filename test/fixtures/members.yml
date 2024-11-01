@@ -2,7 +2,7 @@
 #
 # Table name: members
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint           not null, primary key
 #  age                    :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
@@ -15,7 +15,7 @@
 #  reset_password_token   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  prefecture_id          :integer
+#  prefecture_id          :bigint
 #  random_id              :string
 #
 # Indexes

@@ -2,7 +2,7 @@
 #
 # Table name: db_validation_errors
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  content_01 :text
 #  content_02 :text
 #  content_03 :text

@@ -2,7 +2,7 @@
 #
 # Table name: prefectures
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  group        :string
 #  kana         :string
 #  name         :string

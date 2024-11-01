@@ -2,7 +2,7 @@
 #
 # Table name: names
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  gender     :integer
 #  name       :string
 #  created_at :datetime         not null

@@ -2,11 +2,11 @@
 #
 # Table name: user_tags
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  tag_id     :integer
-#  user_id    :integer
+#  tag_id     :bigint
+#  user_id    :bigint
 #
 # Indexes
 #
@@ -15,8 +15,8 @@
 #
 # Foreign Keys
 #
-#  tag_id   (tag_id => tags.id)
-#  user_id  (user_id => users.id)
+#  fk_rails_...  (tag_id => tags.id)
+#  fk_rails_...  (user_id => users.id)
 #
 require 'test_helper'
 

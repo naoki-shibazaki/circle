@@ -2,7 +2,7 @@
 #
 # Table name: exhibition_categories
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  display_name :string
 #  kana         :string
 #  name         :string

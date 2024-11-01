@@ -2,7 +2,7 @@
 #
 # Table name: places
 #
-#  id                  :integer          not null, primary key
+#  id                  :bigint           not null, primary key
 #  access              :string
 #  address             :string
 #  average_access      :float

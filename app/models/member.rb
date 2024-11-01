@@ -2,20 +2,22 @@
 #
 # Table name: members
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint           not null, primary key
 #  age                    :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  gender                 :string
 #  image_profile          :string
+#  last_get_point_at      :datetime
 #  nickname               :string
+#  points                 :integer          default(0), not null
 #  profile                :text
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  prefecture_id          :integer
+#  prefecture_id          :bigint
 #  random_id              :string
 #
 # Indexes

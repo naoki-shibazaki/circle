@@ -2,7 +2,7 @@
 #
 # Table name: users
 #
-#  id                :integer          not null, primary key
+#  id                :bigint           not null, primary key
 #  age               :string
 #  appeal            :text
 #  area              :string
@@ -51,11 +51,11 @@
 #  web               :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  admin_user_id     :integer
+#  admin_user_id     :bigint
 #  category_id       :string
 #  event_id          :integer
 #  line_id           :string
-#  prefecture_id     :integer
+#  prefecture_id     :bigint
 #  prefecture_sub_id :integer
 #  unique_id         :string
 #  user_id           :string
@@ -65,6 +65,10 @@
 #  index_users_on_admin_user_id  (admin_user_id)
 #  index_users_on_prefecture_id  (prefecture_id)
 #  index_users_on_unlock_token   (unlock_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (prefecture_id => prefectures.id)
 #
 
 one:

@@ -2,7 +2,7 @@
 #
 # Table name: links
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  link01_title :string
 #  link01_url   :string
 #  link02_title :string
@@ -16,12 +16,16 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  unique_id    :string
-#  user_id      :integer
+#  user_id      :bigint
 #
 # Indexes
 #
 #  index_links_on_unique_id  (unique_id) UNIQUE
 #  index_links_on_user_id    (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 require 'test_helper'
 

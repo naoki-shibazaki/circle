@@ -2,14 +2,14 @@
 #
 # Table name: exhibition_contacts
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  content       :text             not null
 #  email         :string           not null
 #  name          :string           not null
 #  subject       :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  exhibition_id :integer          not null
+#  exhibition_id :bigint           not null
 #
 # Indexes
 #
@@ -17,7 +17,7 @@
 #
 # Foreign Keys
 #
-#  exhibition_id  (exhibition_id => exhibitions.id)
+#  fk_rails_...  (exhibition_id => exhibitions.id)
 #
 
 # This model initially had no columns defined. If you add columns to the

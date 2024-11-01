@@ -2,11 +2,11 @@
 #
 # Table name: event_questions
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  question   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  event_id   :integer
+#  event_id   :bigint
 #
 # Indexes
 #

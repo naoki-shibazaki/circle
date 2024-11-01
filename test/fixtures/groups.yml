@@ -2,7 +2,7 @@
 #
 # Table name: groups
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  group      :string
 #  name       :string
 #  created_at :datetime         not null

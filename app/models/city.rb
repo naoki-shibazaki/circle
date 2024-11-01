@@ -2,7 +2,7 @@
 #
 # Table name: cities
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  city_kana     :string
 #  name          :string
 #  places_count  :integer          default(0), not null

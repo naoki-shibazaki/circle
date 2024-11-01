@@ -2,7 +2,7 @@
 #
 # Table name: exhibitions
 #
-#  id                   :integer          not null, primary key
+#  id                   :bigint           not null, primary key
 #  detail               :text
 #  end_date             :datetime
 #  event_date           :datetime
@@ -20,8 +20,8 @@
 #  visitor_price        :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  exhibition_group_id  :integer          not null
-#  prefecture_id        :integer          not null
+#  exhibition_group_id  :bigint           not null
+#  prefecture_id        :bigint           not null
 #
 # Indexes
 #
@@ -30,8 +30,8 @@
 #
 # Foreign Keys
 #
-#  exhibition_group_id  (exhibition_group_id => exhibition_groups.id)
-#  prefecture_id        (prefecture_id => prefectures.id)
+#  fk_rails_...  (exhibition_group_id => exhibition_groups.id)
+#  fk_rails_...  (prefecture_id => prefectures.id)
 #
 class Exhibition < ApplicationRecord
 

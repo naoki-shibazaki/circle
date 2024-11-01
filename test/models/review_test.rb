@@ -2,7 +2,7 @@
 #
 # Table name: reviews
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  age        :string
 #  comment    :text
 #  gender     :string
@@ -11,8 +11,8 @@
 #  review     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  member_id  :integer
-#  user_id    :integer
+#  member_id  :bigint
+#  user_id    :bigint
 #
 # Indexes
 #
@@ -21,8 +21,8 @@
 #
 # Foreign Keys
 #
-#  member_id  (member_id => members.id)
-#  user_id    (user_id => users.id)
+#  fk_rails_...  (member_id => members.id)
+#  fk_rails_...  (user_id => users.id)
 #
 require 'test_helper'
 

@@ -2,7 +2,7 @@
 #
 # Table name: ages
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  decade     :integer
 #  name       :string
 #  created_at :datetime         not null

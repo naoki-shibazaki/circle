@@ -2,7 +2,7 @@
 #
 # Table name: schedules
 #
-#  id                  :integer          not null, primary key
+#  id                  :bigint           not null, primary key
 #  cost                :string
 #  date                :string
 #  day                 :string
@@ -19,11 +19,15 @@
 #  venue_address       :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  user_id             :integer
+#  user_id             :bigint
 #
 # Indexes
 #
 #  index_schedules_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 require 'test_helper'
 

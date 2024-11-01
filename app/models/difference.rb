@@ -2,7 +2,7 @@
 #
 # Table name: differences
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  combine    :text
 #  dummy      :string
 #  letter     :string

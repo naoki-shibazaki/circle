@@ -2,11 +2,11 @@
 #
 # Table name: places_events
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  event_id   :integer
-#  place_id   :integer
+#  event_id   :bigint
+#  place_id   :bigint
 #
 # Indexes
 #
@@ -15,8 +15,8 @@
 #
 # Foreign Keys
 #
-#  event_id  (event_id => events.id)
-#  place_id  (place_id => places.id)
+#  fk_rails_...  (event_id => events.id)
+#  fk_rails_...  (place_id => places.id)
 #
 require 'test_helper'
 
