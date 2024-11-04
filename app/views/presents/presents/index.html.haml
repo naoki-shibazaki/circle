@@ -23,9 +23,14 @@
             .no_hit_top ポイントを取得
         - else
           .no_hit_top(style="background-color: grey;") 本日のポイントは取得済みです
-        = link_to(presents_path) do
+        = link_to(apply_presents_path) do
           .no_hit_new 応募
 
+        .winners_wrap.text-center
+          %h3.mb2 当選者リスト
+          %ul
+            - @winners.each do |winner|
+              %li= winner.member.nickname
     - else
       .no_hit_wrap
         プレゼント機能を利用するためにはログインが必要です。

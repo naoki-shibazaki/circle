@@ -65,6 +65,7 @@ Rails.application.routes.draw do
   scope module: :presents do
     resources :presents, only: [:index] do
       get :point, on: :collection
+      get :apply, on: :collection
     end
   end
 

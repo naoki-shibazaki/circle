@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_08_082157) do
+ActiveRecord::Schema.define(version: 2024_10_01_154008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "decade"
+  end
+
+  create_table "applications", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.datetime "applied_at", null: false
+    t.string "status", default: "pending"
+    t.datetime "won_at"
+    t.integer "points_used", default: 30, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_applications_on_member_id"
   end
 
   create_table "blogs", force: :cascade do |t|
@@ -358,6 +369,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.text "profile"
     t.bigint "prefecture_id"
     t.string "age"
+    t.integer "points", default: 0, null: false
+    t.datetime "last_get_point_at"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["prefecture_id"], name: "index_members_on_prefecture_id"
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
@@ -635,6 +648,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_082157) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "applications", "members"
   add_foreign_key "blogs", "users"
   add_foreign_key "bookmarks", "members"
   add_foreign_key "bookmarks", "users"
