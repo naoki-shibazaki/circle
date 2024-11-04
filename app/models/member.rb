@@ -35,16 +35,20 @@ class Member < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :members_events, dependent: :destroy
   has_many :events, through: :members_events
+  has_many :applications
 
   belongs_to :prefecture, optional: true
 
-	mount_uploader :image_profile, ImageUploader
-
-
-
+  mount_uploader :image_profile, ImageUploader
 
   def remember_me
     true
+  end
+
+  def can_apply?
+    last_application = applications.order(applied_at: :desc).first
+    return true if last_application.nil?
+    last_application.applied_at < 1.month.ago
   end
 
 end

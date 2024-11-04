@@ -8,7 +8,9 @@
 #  encrypted_password     :string           default(""), not null
 #  gender                 :string
 #  image_profile          :string
+#  last_get_point_at      :datetime
 #  nickname               :string
+#  points                 :integer          default(0), not null
 #  profile                :text
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime

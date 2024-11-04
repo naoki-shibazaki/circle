@@ -1,0 +1,39 @@
+- set_meta_tags title: "【#{@time.strftime("%Y")}年版】サークルやチームの活動ブログ"
+- breadcrumb :present_index
+
+.main.users-index
+  .container
+    .breadcrumbs_wrapper.text_slide
+      .breadcrumbs
+        = breadcrumbs separator: "&rsaquo;"
+
+    .e_header_wrap
+      %img{:src => "/images/top.png"}/
+      .link_txt
+        %h1.e_header_title
+          = "プレゼント"
+
+    - if member_signed_in?
+      .no_hit_wrap
+        - if current_member.points > 0
+          取得ポイント
+          = current_member.points
+        - if @can_receive_points
+          = link_to(point_presents_path) do
+            .no_hit_top ポイントを取得
+        - else
+          .no_hit_top(style="background-color: grey;") 本日のポイントは取得済みです
+        = link_to(apply_presents_path) do
+          .no_hit_new 応募
+
+        .winners_wrap.text-center
+          %h3.mb2 当選者リスト
+          %ul
+            - @winners.each do |winner|
+              %li= winner.member.nickname
+
+    - else
+      .no_hit_wrap
+        プレゼント機能を利用するためにはログインが必要です。
+        = link_to(new_member_session_path) do
+          .no_hit_top ログインする
