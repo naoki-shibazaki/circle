@@ -1,6 +1,6 @@
 root_path = File.expand_path('../../', __FILE__)
 
-worker_processes 2
+worker_processes 8
 
 working_directory root_path
 
