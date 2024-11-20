@@ -162,7 +162,8 @@ Rails.application.routes.draw do
     resource :member, only: [:show, :destroy]
   end
 
-
+  # ヘルスチェック用のルーティング
+  get 'health', to: 'healthcheck#index'
 
 
   # 静的ページ
