@@ -1,5 +1,6 @@
 import "../trix-editor-overrides"
 import '@fortawesome/fontawesome-free/js/all';
+import "@rails/actioncable"
 
 require("@rails/ujs").start()
 // require("turbolinks").start()
