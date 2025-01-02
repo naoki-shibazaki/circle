@@ -19,5 +19,3 @@
 //= require moment/ja.js
 //= require bootstrap-sprockets
 //= require trix
-
-//= require_tree .
