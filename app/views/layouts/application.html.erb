@@ -37,16 +37,14 @@
       <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css' %>
 
       <!-- フォトスライド -->
-      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/datepicker-ja.min.js', 'data-turbolinks-track': 'reload' %>
-
-      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag 'swiper.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag 'photoswipe', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'swiper.min', 'data-turbolinks-track': 'reload', defer: true %>
-      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js' %>
+      <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js' %>
+      <%= javascript_include_tag 'https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js' %>
 
 
     </head>
