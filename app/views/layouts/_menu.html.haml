@@ -31,7 +31,7 @@
 
       - if member_signed_in?
         %ul
-          %li= link_to 'ログアウト', destroy_member_session_path, method: :delete, data: { turbo_method: :delete}
+          %li= link_to 'ログアウト', destroy_member_session_path, method: :delete
           %li
             = link_to edit_member_registration_path do
               メールアドレス
@@ -39,7 +39,7 @@
               パスワードの変更
       - elsif admin_user_signed_in?
         %ul
-          %li= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete, data: { turbo_method: :delete}
+          %li= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete
           %li
             = link_to edit_admin_user_registration_path do
               メールアドレス
@@ -48,7 +48,7 @@
 
       - elsif exhibition_group_signed_in?
         %ul
-          %li= link_to 'ログアウト', destroy_exhibition_group_session_path, method: :delete, data: { turbo_method: :delete}
+          %li= link_to 'ログアウト', destroy_exhibition_group_session_path, method: :delete
 
       - else
 
