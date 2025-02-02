@@ -23,6 +23,8 @@
             .no_hit_top ポイントを取得
         - else
           .no_hit_top(style="background-color: grey;") 本日のポイントは取得済みです
+        %div
+          %img{src: "/images/presents/amazon_gift.jpg", style: "width: 100%;"}
         = link_to(apply_presents_path) do
           .no_hit_new 応募
 
