@@ -39,7 +39,13 @@
             %p
               メインの活動エリア
               %span.must_red (必須)
-            = f.collection_select :prefecture_id, Prefecture.where.not(id: 50).order(:order => :asc), :id, :name, :prompt => "選択してください"
+            = f.collection_select :prefecture_id, @prefectures, :id, :name, :prompt => "選択してください"
+            %p お住まいの都道府県
+            = f.collection_select :living_prefecture_id, @prefectures, :id, :name, prompt: "選択してください"
+            %p 市区町村
+            = f.text_field :living_city, class: 'form-control', placeholder: "例：渋谷区"
+            %p 住所
+            = f.text_field :living_address, class: 'form-control', placeholder: "例：道玄坂1-1-1"
             .box_warp
               %span.box_subtitle
                 興味のある種目（複数選択OK）
