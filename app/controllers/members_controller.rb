@@ -14,6 +14,7 @@ class MembersController < ApplicationController
     def edit
         @member = Member.find(params[:id])
         @events = Event.all.order(order: :asc)
+        @prefectures = Prefecture.where.not(id: 50).order(:order => :asc)
     end
 
     def update
@@ -71,10 +72,24 @@ class MembersController < ApplicationController
 
 
     private
+
     def member_params
-      params.require(:member).permit(:id, :email, :event_question_id, :nickname, :image_profile, :answer, :gender, :profile, :prefecture_id, :age,
-            event_ids:[]
-            )
+        params.require(:member).permit(
+            :id,
+            :email,
+            :event_question_id,
+            :nickname,
+            :image_profile,
+            :answer,
+            :gender,
+            :profile,
+            :prefecture_id,
+            :living_prefecture_id,
+            :living_city,
+            :living_address,
+            :age,
+            event_ids: []
+        )
     end
 
 

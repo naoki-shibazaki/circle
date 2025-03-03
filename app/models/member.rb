@@ -9,6 +9,8 @@
 #  gender                 :string
 #  image_profile          :string
 #  last_get_point_at      :datetime
+#  living_address         :string
+#  living_city            :string
 #  nickname               :string
 #  points                 :integer          default(0), not null
 #  profile                :text
@@ -17,6 +19,7 @@
 #  reset_password_token   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  living_prefecture_id   :integer
 #  prefecture_id          :bigint
 #  random_id              :string
 #

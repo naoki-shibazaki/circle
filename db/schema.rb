@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_01_154008) do
+ActiveRecord::Schema.define(version: 2025_03_03_142909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -371,6 +371,9 @@ ActiveRecord::Schema.define(version: 2024_10_01_154008) do
     t.string "age"
     t.integer "points", default: 0, null: false
     t.datetime "last_get_point_at"
+    t.integer "living_prefecture_id"
+    t.string "living_city"
+    t.string "living_address"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["prefecture_id"], name: "index_members_on_prefecture_id"
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
