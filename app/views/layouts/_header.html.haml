@@ -14,11 +14,6 @@
         = link_to(member_path(current_member)) do
           %i.fa.fa-user
           .link_txt マイページ
-      %li
-        = link_to(presents_path) do
-          %i.fa.fa-gift
-          .link_txt プレゼント
-
     - elsif exhibition_group_signed_in?
       %li
         = link_to(exhibitor_mypage_path) do
@@ -59,10 +54,6 @@
         = link_to(new_admin_user_registration_path) do
           %i.fa.fa-user-plus
           .link_txt サークル登録
-      %li
-        = link_to(presents_path) do
-          %i.fa.fa-gift
-          .link_txt プレゼント
     = render "/layouts/menu"
 
 
