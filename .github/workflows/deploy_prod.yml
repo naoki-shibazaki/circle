@@ -20,6 +20,9 @@ jobs:
               script: |
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
+                npm install --prefix . 2>/dev/null || true
+                ~/.rbenv/shims/bundle exec rake assets:precompile RAILS_ENV=production
+                kill -USR2 $(cat tmp/pids/unicorn.pid)
           - name: Deploy to circle-book-web-server2
             uses: appleboy/ssh-action@master
             with:
@@ -30,3 +33,6 @@ jobs:
               script: |
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
+                npm install --prefix . 2>/dev/null || true
+                ~/.rbenv/shims/bundle exec rake assets:precompile RAILS_ENV=production
+                kill -USR2 $(cat tmp/pids/unicorn.pid)
