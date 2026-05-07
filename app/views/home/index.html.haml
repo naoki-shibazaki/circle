@@ -6,7 +6,7 @@
     %h1.users-heading
       %img.img_logo_title{:alt => "サークルブック", :src => "/images/logo.png"}/
     .users-txt
-      - if admin_user_signed_in?
+      - if admin_user_signed_in? && current_admin_user.first_user
         = link_to("活動日の登録", user_schedules_path(current_admin_user.first_user) )
         を投稿すると
         %br/
