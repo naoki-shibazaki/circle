@@ -20,5 +20,8 @@ module Circle
 
     # security
     # config.middleware.use Rack::Attack
+
+    # gzip圧縮（レスポンスサイズ削減）
+    config.middleware.use Rack::Deflater
   end
 end

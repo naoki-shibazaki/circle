@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   private
 	def set_current_user
-    @current_user = User.find_by(id: session[:user_id])
+    @current_user = User.find_by(id: session[:user_id]) if session[:user_id]
 		if admin_user_signed_in?
 			@admin_user = User.find_by(admin_user_id: current_admin_user.id)
 		end

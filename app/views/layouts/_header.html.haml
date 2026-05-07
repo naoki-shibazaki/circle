@@ -22,9 +22,10 @@
 
 
     - elsif admin_user_signed_in?
-      - if current_admin_user.users.any?
+      - first_user = current_admin_user.users.first
+      - if first_user
         %li
-          = link_to "/users/#{current_admin_user.users.first.id}/mypage" do
+          = link_to "/users/#{first_user.id}/mypage" do
             %i.fa.fa-user.notice_icon
             .link_txt マイページ
       %li
