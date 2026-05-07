@@ -15,8 +15,10 @@ class SuperAdmin::CirclesController < ApplicationController
 
   private
 
+  SUPER_ADMIN_EMAIL = "n.shibazaki@bugs.co.jp"
+
   def require_super_admin
-    unless current_admin_user.id == 1
+    unless current_admin_user.email == SUPER_ADMIN_EMAIL
       flash[:notice] = "権限がありません"
       redirect_to root_path
     end
