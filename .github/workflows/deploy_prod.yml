@@ -21,6 +21,7 @@ jobs:
                 cd ${{ secrets.DEPLOY_DIR }}
                 git pull origin master
                 npm install --prefix . 2>/dev/null || true
+                ~/.rbenv/shims/bundle exec rake db:migrate RAILS_ENV=production
                 ~/.rbenv/shims/bundle exec rake assets:precompile RAILS_ENV=production
                 kill -USR2 $(cat tmp/pids/unicorn.pid)
           - name: Deploy to circle-book-web-server2

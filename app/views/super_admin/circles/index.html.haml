@@ -1,0 +1,20 @@
+- set_meta_tags noindex: true
+.main.users-index
+  .container
+    %h2 サークル管理（SuperAdmin）
+    .table_list
+      %table.table.table-bordered
+        %tr
+          %th サークル名
+          %th メールアドレス
+          %th 登録日
+          %th ユーザー数
+          %th 操作
+        - @admin_users.each do |admin_user|
+          - circle = admin_user.users.first
+          %tr
+            %td= circle&.name
+            %td= admin_user.email
+            %td= admin_user.created_at.strftime("%Y/%m/%d")
+            %td= admin_user.users.count
+            %td= link_to "削除", super_admin_circle_path(admin_user.id), method: :delete, data: { confirm: "#{circle&.name} を削除しますか？この操作は取り消せません。" }, class: "btn btn-danger btn-sm"

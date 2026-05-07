@@ -156,6 +156,11 @@ Rails.application.routes.draw do
 	end
 
 
+  # 管理画面（SuperAdmin）
+  namespace :super_admin do
+    resources :circles, only: [:index, :destroy]
+  end
+
   # 退会処理
   namespace :unsubscribe do
     resource :admin_user, only: [:show, :destroy]

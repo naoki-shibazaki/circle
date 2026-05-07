@@ -96,6 +96,7 @@ class User < ApplicationRecord
 
 
 	belongs_to :prefecture
+	belongs_to :prefecture_sub, class_name: 'Prefecture', foreign_key: 'prefecture_sub_id', optional: true
 	belongs_to :category, optional: true
 	belongs_to :event
   counter_culture :event, column_name: 'users_count'
@@ -120,6 +121,12 @@ class User < ApplicationRecord
 	NGWORD = %w(http)
 	NGWORD_REGEX = %r(#{NGWORD.join('|')})
 	validates :template, format: { without: NGWORD_REGEX }
+
+	NG_WORDS = %w(出張館 密会 援交 デリヘル 風俗 売春 援助 AV 풍속 escort)
+	NG_REGEX = /#{NG_WORDS.join('|')}/i
+	validates :name,   format: { without: NG_REGEX, message: "に使用できない言葉が含まれています" }
+	validates :appeal, format: { without: NG_REGEX, message: "に使用できない言葉が含まれています" }, allow_blank: true
+	validates :goal,   format: { without: NG_REGEX, message: "に使用できない言葉が含まれています" }, allow_blank: true
 
 	paginates_per 20
 

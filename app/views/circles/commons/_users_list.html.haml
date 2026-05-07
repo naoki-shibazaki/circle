@@ -106,7 +106,7 @@
                     %i.fa.fa-map-marker.icon_c
                     = user.prefecture.name
                     - if user.prefecture_sub_id.present?
-                      ・#{Prefecture.find(user.prefecture_sub_id).name}
+                      ・#{user.prefecture_sub.name}
                     = "：" if user.area.present?
                     = user.area
                 .list_02
@@ -133,8 +133,8 @@
                 = user.prefecture.name
             - if user.prefecture_sub_id.present?
               %li
-                = link_to prefecture_path(Prefecture.find_by(id: user.prefecture_sub_id).kana) do
-                  = Prefecture.find_by(id: user.prefecture_sub_id).name
+                = link_to prefecture_path(user.prefecture_sub.kana) do
+                  = user.prefecture_sub.name
             - if user.tags.present?
               - user.tags.order(:order => :asc).each do |tag|
                 %li

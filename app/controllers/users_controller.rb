@@ -3,7 +3,7 @@ include ApplicationHelper
 include Circlebook
 
 before_action :ensure_correct_user, only: [:mypage, :edit, :update, :edit2, :update2, :edit3, :update3, :update_contact, :account_del]
-before_action :set_users, except: [:show]
+before_action :set_users, except: [:show, :new, :create]
 
 helper_method :link_count
 
@@ -17,13 +17,13 @@ helper_method :link_count
 
 		# 検索ワードの数だけand検索を行う
 		keywords.each do |keyword|
-			@event_ids = Event.where("name LIKE ?", "%#{keyword}%").map { |e| e.id }
-			@prefecture_ids = Prefecture.where("name LIKE ?", "%#{keyword}%").map { |p| p.id }
+			@event_ids = Event.where("name LIKE ?", "%#{keyword}%").pluck(:id)
+			@prefecture_ids = Prefecture.where("name LIKE ?", "%#{keyword}%").pluck(:id)
 
-			@city_ids = City.where("name LIKE ?", "%#{keyword}%").map { |c| c.id }
-			@city_user_ids = UsersCity.where(city_id: @city_ids).map { |u| u.user_id }
-			@tag_ids = Tag.where("name LIKE ?", "%#{keyword}%").map { |t| t.id }
-			@tag_user_ids = UserTag.where(tag_id: @tag_ids).map { |u| u.user_id }
+			@city_ids = City.where("name LIKE ?", "%#{keyword}%").pluck(:id)
+			@city_user_ids = UsersCity.where(city_id: @city_ids).pluck(:user_id)
+			@tag_ids = Tag.where("name LIKE ?", "%#{keyword}%").pluck(:id)
+			@tag_user_ids = UserTag.where(tag_id: @tag_ids).pluck(:user_id)
 
 			@users = @users.search_word(keyword).
 			or(@users.where(event_id: @event_ids)).
@@ -120,8 +120,8 @@ helper_method :link_count
       end
 
 			# like検索用
-			@user.grouping = @user.users_groups.map{|g| g.group.name}
-			@user.average_age = @user.users_ages.map{|a| a.age.name}
+			@user.grouping = @user.users_groups.includes(:group).map{|g| g.group.name}
+			@user.average_age = @user.users_ages.includes(:age).map{|a| a.age.name}
 			@user.save
 
 			if @user.switch == "受付終了"
@@ -215,8 +215,8 @@ helper_method :link_count
 
 		if @user.update(user_params)
 			# like検索用
-			@user.grouping = @user.users_groups.map{|g| g.group.name}
-			@user.average_age = @user.users_ages.map{|a| a.age.name}
+			@user.grouping = @user.users_groups.includes(:group).map{|g| g.group.name}
+			@user.average_age = @user.users_ages.includes(:age).map{|a| a.age.name}
 			@user.save
 			if @user.switch == "受付終了"
 				@user.last_post = Time.zone.now.ago(60.days)
@@ -432,7 +432,7 @@ helper_method :link_count
 	# 	@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 	# 	@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
-	# 	@city_users = @city.users_cities.map{|c| c.user.id}
+	# 	@city_users = @city.users_cities.pluck(:user_id)
 
 	# 	# ソート機能
   #     if params[:sort] == "1" || params[:sort] == nil
@@ -464,7 +464,7 @@ helper_method :link_count
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 		@city_judge = City.find_by(city_kana: params[:city_kana])
 
-		@city_users = @city.users_cities.map{|c| c.user.id}
+		@city_users = @city.users_cities.pluck(:user_id)
 
 		# ソート機能
       if params[:sort] == "1" || params[:sort] == nil
@@ -517,7 +517,7 @@ helper_method :link_count
 	# 	@cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 	# 	# @prefecture_judge = Prefecture.find_by(kana: params[:kana])
 
-	# 	@city_users = @city.users_cities.map{|c| c.user.id}
+	# 	@city_users = @city.users_cities.pluck(:user_id)
 
 	# 	# ソート機能
   #     if params[:sort] == "1" || params[:sort] == nil
@@ -553,7 +553,7 @@ helper_method :link_count
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
 		@city_judge = City.find_by(city_kana: params[:city_kana])
 
-		@city_users = @city.users_cities.map{|c| c.user.id}
+		@city_users = @city.users_cities.pluck(:user_id)
 
 		# ソート機能
     if params[:sort] == "1" || params[:sort] == nil
