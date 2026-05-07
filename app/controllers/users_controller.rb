@@ -81,6 +81,7 @@ helper_method :link_count
         redirect_to "/users/#{current_admin_user.users.first.id}/mypage"
       else
         @user = User.new
+        @admin_user = current_admin_user
       end
 
     else
@@ -149,6 +150,7 @@ helper_method :link_count
 			end
 
 		else
+			@admin_user = current_admin_user
 			render "/users/edit"
 		end
 
