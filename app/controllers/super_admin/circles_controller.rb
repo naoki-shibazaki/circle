@@ -3,7 +3,7 @@ class SuperAdmin::CirclesController < ApplicationController
   before_action :require_super_admin
 
   def index
-    @admin_users = AdminUser.order(created_at: :desc).includes(:users)
+    @admin_users = AdminUser.order(created_at: :desc).includes(:users).page(params[:page]).per(50)
   end
 
   def destroy
