@@ -18,7 +18,9 @@ class ApplicationController < ActionController::Base
   # 登録未完了時のアクション
   def set_imperfect_current_user
     if admin_user_signed_in? #管理人ログイン判定
-      if current_admin_user.users.any? # 登録1つ以上の判定
+      if current_admin_user.email == "n.shibazaki@bugs.co.jp" # スーパー管理者は登録不要
+        # OK
+      elsif current_admin_user.users.any? # 登録1つ以上の判定
         # OK
       elsif controller_path == 'events'
         # OK（Ajax用）
