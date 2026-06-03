@@ -55,7 +55,8 @@ class AdminUser < ApplicationRecord
   end
 
   def moderator?
-    super_admin? || self[:moderator] == true
+    return true if super_admin?
+    self.class.column_names.include?("moderator") && self[:moderator] == true
   end
 
 end
