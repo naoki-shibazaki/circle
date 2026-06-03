@@ -9,6 +9,8 @@ class Circles::Events::PrefecturesController < Circles::Events::ApplicationContr
 		@event = Event.find_by(ruby: params[:event_kana])
 		@prefecture = Prefecture.find_by(kana: params[:kana])
 
+    return redirect_to circles_path if @event.nil? || @prefecture.nil?
+
     users = User.where(event_id: @event.id).where_pref(@prefecture.id).list.order("prefectures.sort asc")
     case params[:sort]
     when "1", nil

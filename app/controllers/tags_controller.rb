@@ -72,6 +72,7 @@ before_action :set_tags
 	def event_prefecture_city
 		@event = Event.find_by(ruby: params[:ruby])
 		@city = City.find_by(city_kana: params[:city_kana])
+    return redirect_to circles_path if @event.nil? || @city.nil?
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
     @cities = City.where(prefecture_id: @prefecture.id).order(:id => :asc)
 		@prefecture_judge = Prefecture.find_by(kana: params[:kana])
