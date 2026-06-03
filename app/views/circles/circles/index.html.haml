@@ -11,7 +11,7 @@
     %img.lazyload.imege_title{"data-src" => "/images/top.png"}/
     %h1.users-heading サークル検索
     .users-txt
-      - if admin_user_signed_in?
+      - if admin_user_signed_in? && current_admin_user.first_user
         = link_to("活動日の登録", user_schedules_path(current_admin_user.first_user) )
         をすると
         %br/
