@@ -210,6 +210,7 @@
           対戦相手を募集中のサークル
       %ul.user_slide_wrap
         - @match_users.each do |m_user|
+          - next if m_user.user.nil?
           = link_to(match_path(m_user.id)) do
             %li.user_slide_list
               .user_list_header

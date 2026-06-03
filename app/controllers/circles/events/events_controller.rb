@@ -8,6 +8,7 @@ class Circles::Events::EventsController < Circles::Events::ApplicationController
 
   def show
 		@event = Event.find_by(ruby: params[:kana])
+    return redirect_to circles_path if @event.nil?
 
     users = User.where(event_id: @event.id).list
     case params[:sort]
