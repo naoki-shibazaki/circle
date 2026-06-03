@@ -9,6 +9,7 @@
 #  encrypted_password     :string           default(""), not null
 #  gender                 :string
 #  image_profile          :string
+#  moderator              :boolean          default(FALSE), not null
 #  nickname               :string
 #  open                   :integer          default(0), not null
 #  profile                :text
@@ -47,5 +48,14 @@ class AdminUser < ApplicationRecord
 
   scope :ng_account, -> {where(check: nil)}
 
+  SUPER_ADMIN_EMAIL = "n.shibazaki@bugs.co.jp"
+
+  def super_admin?
+    email == SUPER_ADMIN_EMAIL
+  end
+
+  def moderator?
+    super_admin? || self[:moderator] == true
+  end
 
 end

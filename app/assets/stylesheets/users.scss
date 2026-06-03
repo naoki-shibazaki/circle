@@ -1813,3 +1813,20 @@ border-bottom: 1px solid;
   }
 
 }
+.moderator-delete-btn {
+  display: inline-block;
+  float: right;
+  background-color: #e74c3c;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 6px 8px 0 0;
+  cursor: pointer;
+  z-index: 10;
+  position: relative;
+  &:hover {
+    background-color: #c0392b;
+    color: #fff;
+  }
+}

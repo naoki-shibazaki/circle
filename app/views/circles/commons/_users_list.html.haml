@@ -1,14 +1,17 @@
-- if admin_user_signed_in?
+- if admin_user_signed_in? && current_admin_user.first_user
   .post_message
     = link_to(circle_path(current_admin_user.first_user)) do
       = lazysizes_image_tag current_admin_user.first_user.pic_profile.url , class:'post_image_icon'
     = link_to(new_circle_blog_path(current_admin_user.first_user)) do
       .post_link サークル活動をつぶやく！
 
-- cache users do
+- is_moderator = admin_user_signed_in? && current_admin_user.moderator?
+- cache_unless is_moderator, users do
   %ul
     - users.each.with_index(1) do |user, i|
       %li.user_item_wrap
+        - if is_moderator
+          = link_to "削除", user_path(user), method: :delete, data: { confirm: "「#{user.name}」を削除しますか？" }, class: "moderator-delete-btn"
         = link_to(circle_path(user.id)) do
           .header_user_list.ribbon-wrapper
             .header_img_wrap

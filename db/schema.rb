@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_03_142909) do
+ActiveRecord::Schema.define(version: 2026_06_03_144104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2025_03_03_142909) do
     t.bigint "prefecture_id"
     t.string "age"
     t.integer "open", default: 0, null: false
+    t.boolean "moderator", default: false, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["prefecture_id"], name: "index_admin_users_on_prefecture_id"
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
@@ -321,6 +322,8 @@ ActiveRecord::Schema.define(version: 2025_03_03_142909) do
     t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_likes_on_blog_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -371,9 +374,9 @@ ActiveRecord::Schema.define(version: 2025_03_03_142909) do
     t.string "age"
     t.integer "points", default: 0, null: false
     t.datetime "last_get_point_at"
-    t.integer "living_prefecture_id"
-    t.string "living_city"
-    t.string "living_address"
+    t.integer "living_prefecture_id", comment: "現住所: 都道府県"
+    t.string "living_city", comment: "現住所: 市区町村"
+    t.string "living_address", comment: "現住所: 以下住所"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["prefecture_id"], name: "index_members_on_prefecture_id"
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
@@ -626,7 +629,12 @@ ActiveRecord::Schema.define(version: 2025_03_03_142909) do
     t.float "cb_point", default: 0.0, null: false
     t.boolean "review_permit", default: true
     t.index ["admin_user_id"], name: "index_users_on_admin_user_id"
+    t.index ["event_id"], name: "index_users_on_event_id"
+    t.index ["last_post"], name: "index_users_on_last_post"
+    t.index ["ng_account"], name: "index_users_on_ng_account"
     t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
+    t.index ["prefecture_sub_id"], name: "index_users_on_prefecture_sub_id"
+    t.index ["switch"], name: "index_users_on_switch"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
@@ -635,6 +643,8 @@ ActiveRecord::Schema.define(version: 2025_03_03_142909) do
     t.integer "age_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["age_id"], name: "index_users_ages_on_age_id"
+    t.index ["user_id"], name: "index_users_ages_on_user_id"
   end
 
   create_table "users_cities", force: :cascade do |t|
@@ -642,6 +652,8 @@ ActiveRecord::Schema.define(version: 2025_03_03_142909) do
     t.integer "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_users_cities_on_city_id"
+    t.index ["user_id"], name: "index_users_cities_on_user_id"
   end
 
   create_table "users_groups", force: :cascade do |t|
@@ -649,6 +661,8 @@ ActiveRecord::Schema.define(version: 2025_03_03_142909) do
     t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_users_groups_on_group_id"
+    t.index ["user_id"], name: "index_users_groups_on_user_id"
   end
 
   add_foreign_key "applications", "members"

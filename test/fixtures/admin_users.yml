@@ -9,6 +9,7 @@
 #  encrypted_password     :string           default(""), not null
 #  gender                 :string
 #  image_profile          :string
+#  moderator              :boolean          default(FALSE), not null
 #  nickname               :string
 #  open                   :integer          default(0), not null
 #  profile                :text
