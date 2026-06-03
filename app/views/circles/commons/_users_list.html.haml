@@ -6,7 +6,7 @@
       .post_link サークル活動をつぶやく！
 
 - is_moderator = admin_user_signed_in? && current_admin_user.moderator?
-- cache_unless is_moderator, users do
+- cache [users, is_moderator] do
   %ul
     - users.each.with_index(1) do |user, i|
       %li.user_item_wrap
