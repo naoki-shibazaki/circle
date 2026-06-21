@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 	before_action :request_path
   before_action :set_data
   before_action :judge_ip
+  before_action :set_canonical_url
 
 
   private
@@ -118,6 +119,16 @@ class ApplicationController < ActionController::Base
   # 荒らし対策
   def judge_ip
     redirect_to root_path if request.remote_ip == "133.106.41.183"
+  end
+
+  # ?sort= パラメータをcanonicalから除去してURL重複を防ぐ
+  def set_canonical_url
+    if params[:sort].present?
+      canonical_params = request.query_parameters.except('sort')
+      canonical_url = request.base_url + request.path
+      canonical_url += "?#{canonical_params.to_query}" if canonical_params.present?
+      set_meta_tags canonical: canonical_url
+    end
   end
 
 

@@ -27,6 +27,7 @@
 #  index_admin_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class AdminUser < ApplicationRecord
+  include AdminUserDecorator
 
   has_many :users, dependent: :destroy
   belongs_to :prefecture, optional: true
