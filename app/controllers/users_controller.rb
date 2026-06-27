@@ -290,7 +290,8 @@ helper_method :link_count
 
 
 	def destroy
-		@user = User.find(params[:id])
+		@user = User.find_by(id: params[:id])
+    return redirect_to circles_path, notice: "該当するサークルが見つかりません" if @user.nil?
 
     # 削除データの保存
     @db_validation_error = DbValidationError.new
@@ -459,7 +460,8 @@ helper_method :link_count
 	# end
 
 	def prefecture_city_station
-		@station = Station.find(params[:id])
+		@station = Station.find_by(id: params[:id])
+    return redirect_to circles_path if @station.nil?
 		@city = City.find_by(id: @station.city_id)
 
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
@@ -548,7 +550,8 @@ helper_method :link_count
 
 	def event_prefecture_city_station
 		@event = Event.find_by(ruby: params[:ruby])
-		@station = Station.find(params[:id])
+		@station = Station.find_by(id: params[:id])
+    return redirect_to circles_path if @event.nil? || @station.nil?
 		@city = City.find_by(id: @station.city_id)
 
 		@prefecture =  Prefecture.find_by(id: @city.prefecture_id)
