@@ -10,13 +10,10 @@
           %img.img_logo_memu{:alt => "サークルブック", :src => "/images/logo.png"}/
       - if member_signed_in?
         .menu_btn= link_to 'マイページ', member_path(current_member)
-
       - elsif admin_user_signed_in?
         - if current_admin_user.users.any?
           .menu_btn= link_to 'マイページ', "/users/#{current_admin_user.users.first.id}/mypage"
-
       - elsif exhibition_group_signed_in?
-
       - else
         .menu_btn= link_to 'サークル登録', new_admin_user_registration_path
         .menu_btn= link_to 'ログイン', login_path
@@ -45,16 +42,13 @@
               メールアドレス
               %br>/
               パスワードの変更
-
       - elsif exhibition_group_signed_in?
         %ul
           %li= link_to 'ログアウト', destroy_exhibition_group_session_path, method: :delete
 
-      - else
-
       .menu_contact
         %p 主催者/参加者のアカウント問わず、インスタグラムのDMからお問い合わせください。
         = link_to 'https://www.instagram.com/circle_book4839', target: '_blank', rel: 'noopener' do
-          %i.fa.fa-instagram
+          %i.fab.fa-instagram
 
   .link_txt メニュー
